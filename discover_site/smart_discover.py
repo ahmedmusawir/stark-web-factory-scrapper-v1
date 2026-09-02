@@ -198,7 +198,7 @@ async def main():
         print("❌ Error: Please provide a URL")
         print("\nUsage: python smart_discover_v2.py <url-with-sidebar>")
         print("\nExample:")
-        print("  python smart_discover_v2.py https://marketplace.gohighlevel.com/docs/oauth/GettingStarted")
+        print("  python smart_discover_v2.py https://example.com/docs/getting-started")
         return
     
     # Discover URLs

@@ -194,7 +194,6 @@ def main() -> None:
     print("\n✨ Using fit_markdown (AI-cleaned output)")
     print("   - Removes navigation junk")
     print("   - Cleaner, smaller files")
-    print("   - Better RAG quality")
     
     print("\n📄 First 5 URLs:")
     for u in urls[:5]:
@@ -244,9 +243,6 @@ def main() -> None:
         print(f"   Average per file: {avg_size / 1024:.1f} KB")
         print(f"   Success rate: {(successful / len(urls)) * 100:.1f}%")
     
-    print("\n🎯 Next step: Generate summaries")
-    print(f"   Run: python summary_generator_ghl.py")
-
 
 if __name__ == "__main__":
     main()
