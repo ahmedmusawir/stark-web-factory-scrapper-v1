@@ -196,9 +196,9 @@ async def main():
         base_url = sys.argv[1]
     else:
         print("❌ Error: Please provide a URL")
-        print("\nUsage: python smart_discover_v2.py <url-with-sidebar>")
+        print("\nUsage: python -m discover_site.smart_discover <url-with-sidebar>")
         print("\nExample:")
-        print("  python smart_discover_v2.py https://example.com/docs/getting-started")
+        print("  python -m discover_site.smart_discover https://example.com/docs/getting-started")
         return
     
     # Discover URLs
@@ -232,9 +232,12 @@ async def main():
     print("🔍 URL Pattern Analysis:")
     
     # Count different patterns
+    from urllib.parse import urlparse
+    parsed_base = urlparse(base_url)
+    docs_prefix = f"{parsed_base.scheme}://{parsed_base.netloc}/docs/"
     patterns = {}
     for url in urls:
-        path = url.replace('https://marketplace.gohighlevel.com/docs/', '')
+        path = url.replace(docs_prefix, '')
         parts = path.split('/')
         if len(parts) >= 2:
             category = f"{parts[0]}/{parts[1]}"

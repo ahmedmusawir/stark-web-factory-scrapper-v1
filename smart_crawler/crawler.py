@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-UPGRADED BATCH CRAWLER - Crawl4AI v0.7.x
+UPGRADED BATCH CRAWLER - Crawl4AI v0.6.x
 -----------------------------------------
 Processes all URLs with AI-cleaned markdown (fit_markdown)
 Superior quality output - removes navigation junk automatically
 
-Run: python crawler_v2_batch.py
+Run (from repo root): python -m smart_crawler.crawler
+Reads outputs/discovered_pages_final.json, writes outputs/pages/*.md
 """
 
 from pathlib import Path

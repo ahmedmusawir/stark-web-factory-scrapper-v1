@@ -1,14 +1,17 @@
 import sys
 import json
 import argparse
+from pathlib import Path
 from urllib.parse import urlparse, urljoin
 
 import requests
 from bs4 import BeautifulSoup
 
-from sitemap_utils import fetch_sitemap_urls
+from discover_site.sitemap_utils import fetch_sitemap_urls
 
-output_path = 'outputs/discovered_pages.json'
+# Anchor to the repo root so the script works from any CWD (run as: python -m discover_site.discover <url>)
+REPO_ROOT = Path(__file__).resolve().parents[1]
+output_path = REPO_ROOT / 'outputs' / 'discovered_pages.json'
 
 def is_valid_link(href, domain):
     if not href:
@@ -47,6 +50,7 @@ def extract_internal_links(base_url):
 
 def write_to_json(urls, output_path):
     data = [ {"url": url} for url in urls ]
+    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
         json.dump(data, f, indent=2)
     print(f"[SUCCESS] Saved {len(data)} links to {output_path}")
