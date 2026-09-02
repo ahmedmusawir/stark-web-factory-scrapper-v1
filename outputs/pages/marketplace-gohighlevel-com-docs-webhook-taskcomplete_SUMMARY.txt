@@ -1,0 +1,47 @@
+Here's a structured summary of the `TaskComplete` webhook documentation:
+
+### 1. ENDPOINT NAME:
+TaskComplete Webhook
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+POST (This is the method HighLevel uses to send the webhook payload to your configured endpoint.)
+
+### 4. ENDPOINT URL:
+N/A (This refers to the URL that you configure in HighLevel to receive this webhook event. It is not an endpoint provided by HighLevel for you to call.)
+
+### 5. FULL URL:
+N/A (Same as above)
+
+### 6. REQUIRED PARAMETERS (in the webhook payload):
+*   `type` (string): The type of the webhook event, which will be "TaskComplete".
+*   `locationId` (string): The unique identifier of the location (sub-account) where the task was completed.
+*   `id` (string): The unique identifier of the completed task.
+*   `assignedTo` (string): The unique identifier of the user to whom the task was assigned.
+*   `body` (string): The detailed description or content of the task.
+*   `contactId` (string): The unique identifier of the contact associated with the task.
+*   `title` (string): The title or subject of the task.
+*   `dateAdded` (string): The timestamp (ISO 8601 format) indicating when the task was created.
+*   `dueDate` (string): The timestamp (ISO 8601 format) indicating the original due date of the task.
+
+**Note:** The provided JSON schema does not explicitly use the `required` keyword. However, all listed properties are present in the example payload, implying they are standard and expected components of the `TaskComplete` webhook event.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation. All parameters listed in the schema appear in the example payload.
+
+### 8. AUTHENTICATION:
+Not specified in documentation for receiving webhooks. Typically, HighLevel would expect you to implement a mechanism to verify the authenticity of incoming webhooks (e.g., using a shared secret and signature).
+
+### 9. RESPONSE FORMAT:
+Not specified in documentation. When receiving webhooks, it is common practice to respond with a 2xx HTTP status code (e.g., `200 OK`) to acknowledge successful receipt and processing of the payload.
+
+### 10. PURPOSE:
+This webhook is called by HighLevel and sent to your configured endpoint whenever a task is marked as completed within the HighLevel platform.
+
+### 11. TAGS:
+Webhook, Events, Task, TaskComplete, CRM, Automation, HighLevel
+
+### 12. CODE EXAMPLES:
+No client-side code examples (e.g., Python, Node, cURL) are present in this specific documentation page for consuming the webhook.

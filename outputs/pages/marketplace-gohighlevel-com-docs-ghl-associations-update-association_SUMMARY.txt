@@ -1,0 +1,85 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME
+Update Association By Id
+
+### 2. CATEGORY
+Associations
+
+### 3. HTTP METHOD
+PUT
+
+### 4. ENDPOINT URL
+`/associations/:associationId`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/associations/:associationId`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   associationId (string): The unique identifier for the association.
+*   **Body Parameters (application/json):**
+    *   firstObjectLabel (object): The label for the first object in the association. Example: `student`
+    *   secondObjectLabel (object): The label for the second object in the association. Example: `tutor`
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Scope(s):** `associations.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`, `Bearer Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `locationId` (string, required): Example: `string`
+        *   `id` (string, required): Example: `ve9EPM428h8vShlRW1KT`
+        *   `key` (string, required): First Objects Association Label. Example: `student`
+        *   `firstObjectLabel` (object, required): First Objects Association Label. Example: `student`
+        *   `firstObjectKey` (object, required): First Objects Key. Example: `custom_objects.children`
+        *   `secondObjectLabel` (object, required): Second Object Association Label. Example: `Teacher`
+        *   `secondObjectKey` (object, required): Second Objects Key. Example: `contact`
+        *   `associationType` (object, required): Association Type can be USER_DEFINED or SYSTEM_DEFINED. Example: `USER_DEFINED`
+    *   **Example:**
+        ```json
+        {
+          "locationId": "string",
+          "id": "ve9EPM428h8vShlRW1KT",
+          "key": "student",
+          "firstObjectLabel": "student",
+          "firstObjectKey": "custom_objects.children",
+          "secondObjectLabel": "Teacher",
+          "secondObjectKey": "contact",
+          "associationType": "USER_DEFINED"
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        ```json
+        {"statusCode": 400, "message": "Bad Request"}
+        ```
+    *   **401 Unauthorized:**
+        ```json
+        {"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}
+        ```
+    *   **422 Unprocessable Entity:**
+        ```json
+        {"statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity"}
+        ```
+
+### 10. PURPOSE
+This endpoint allows you to update the labels of an existing association by its ID.
+
+### 11. TAGS
+Associations, Update, Labels, PUT, API, HighLevel, GHL, Custom Objects, Relationships
+
+### Availability of Code Examples
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

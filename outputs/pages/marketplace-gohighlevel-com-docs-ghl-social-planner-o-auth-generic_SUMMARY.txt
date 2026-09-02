@@ -1,0 +1,58 @@
+This document describes the **OAuth | Generic** section within the HighLevel API's Social Planner category, providing an overview of endpoints related to managing generic OAuth integrations for social media accounts.
+
+---
+
+### **CATEGORY SUMMARY**
+
+*   **CATEGORY NAME:** OAuth | Generic
+*   **PARENT CATEGORY:** Social Planner
+*   **PURPOSE:** Provides a set of API endpoints to initiate, retrieve, and attach OAuth-connected social media accounts for generic social platforms within the HighLevel ecosystem.
+*   **TAGS:** Social Planner, OAuth, Generic, Social Media, Authentication, Accounts
+
+---
+
+### **ENDPOINT 1: Starts OAuth For Oauth Account**
+
+*   **ENDPOINT NAME:** Starts OAuth For Oauth Account
+*   **CATEGORY:** Social Planner -> OAuth | Generic
+*   **HTTP METHOD:** Not explicitly specified, but typically a client-side action triggered by a `GET` request to initiate a redirect.
+*   **ENDPOINT URL:** `/ghl/social-planner/start-oauth`
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/social-planner/start-oauth`
+*   **REQUIRED PARAMETERS:** Not specified in documentation. (Documentation mentions "appropriate params and headers" are needed, but details are not provided.)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation.
+*   **AUTHENTICATION:** Not specified in documentation for this specific initiation. The overall HighLevel API typically uses API Keys or OAuth 2.0 tokens for marketplace apps. This endpoint's purpose is to *obtain* external OAuth authentication.
+*   **RESPONSE FORMAT:** The documentation states: "On successful login, listen on window object for message where event listener returns data in its callback function." This describes a client-side event rather than a direct API response.
+*   **PURPOSE:** Initiates the OAuth authorization flow for a generic social media account, redirecting the user to the external OAuth login screen.
+*   **TAGS:** Social Planner, OAuth, Generic OAuth, Authentication, Connect Account, Redirect, Social Media, Start OAuth, Initiate
+
+---
+
+### **ENDPOINT 2: Get oauth accounts**
+
+*   **ENDPOINT NAME:** Get oauth accounts
+*   **CATEGORY:** Social Planner -> OAuth | Generic
+*   **HTTP METHOD:** `GET`
+*   **ENDPOINT URL:** `/ghl/social-planner/get-oauth-accounts`
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/social-planner/get-oauth-accounts`
+*   **REQUIRED PARAMETERS:** Not specified in documentation.
+*   **OPTIONAL PARAMETERS:** Not specified in documentation.
+*   **AUTHENTICATION:** Not specified in documentation, but typically API Key or OAuth 2.0 token for HighLevel API calls.
+*   **RESPONSE FORMAT:** Not specified in documentation. (Expected to be a JSON array of OAuth account details.)
+*   **PURPOSE:** Retrieves a list of OAuth-connected social media accounts associated with the current HighLevel account.
+*   **TAGS:** Social Planner, OAuth, Generic OAuth, Accounts, Retrieve, List, Social Media, Get Accounts
+
+---
+
+### **ENDPOINT 3: Attach oauth accounts**
+
+*   **ENDPOINT NAME:** Attach oauth accounts
+*   **CATEGORY:** Social Planner -> OAuth | Generic
+*   **HTTP METHOD:** Not explicitly specified, but commonly `POST` or `PUT` for attaching resources.
+*   **ENDPOINT URL:** `/ghl/social-planner/attach-oauth-accounts`
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/social-planner/attach-oauth-accounts`
+*   **REQUIRED PARAMETERS:** Not specified in documentation. (Likely requires parameters such as the OAuth token or account ID obtained from the initial OAuth flow.)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation.
+*   **AUTHENTICATION:** Not specified in documentation, but typically API Key or OAuth 2.0 token for HighLevel API calls.
+*   **RESPONSE FORMAT:** Not specified in documentation.
+*   **PURPOSE:** Attaches an OAuth-connected social media account, likely obtained from a previous authorization flow, to the user's HighLevel account.
+*   **TAGS:** Social Planner, OAuth, Generic OAuth, Accounts, Attach, Link, Social Media, Connect Account

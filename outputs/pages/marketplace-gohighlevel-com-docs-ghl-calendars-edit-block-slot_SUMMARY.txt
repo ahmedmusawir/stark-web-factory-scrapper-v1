@@ -1,0 +1,69 @@
+Here is a structured summary of the API documentation for "Update Block Slot":
+
+### 1. ENDPOINT NAME:
+Update Block Slot
+
+### 2. CATEGORY:
+Calendars (specifically Calendar Events)
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/calendars/events/block-slots/:eventId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/events/block-slots/:eventId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`.
+*   **Path Parameters:**
+    *   `eventId` (string): Event Id or Instance id. For recurring appointments send masterEventId to modify original series. (Examples: `ocQHyuzHvysMo5N5VsXc`, `ocQHyuzHvysMo5N5VsXc_1729821600000_1800`)
+*   **Body Parameters:**
+    *   `calendarId` (string): Either calendarId or assignedUserId can be set, not both. (Example: `CVokAlI8fgw4WYWoCtQz`)
+    *   `locationId` (string): Location Id. (Example: `C2QujeCh8ZnC7al2InWR`)
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   `title` (string): Title. (Example: `Test Event`)
+    *   `assignedUserId` (string): Either calendarId or assignedUserId can be set, not both. (Example: `CVokAlI8fgw4WYWoCtQz`)
+    *   `startTime` (string): Start Time. (Example: `2021-06-23T03:30:00+05:30`)
+    *   `endTime` (string): End Time. (Example: `2021-06-23T04:30:00+05:30`)
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `calendars/events.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (201)**:
+    *   **Content Type**: `application/json`
+    *   **Schema**:
+        *   `id` (string, required): Id (Example: `0TkCdp9PfvLeWKYRRvIz`)
+        *   `locationId` (string, required): Location Id (Example: `C2QujeCh8ZnC7al2InWR`)
+        *   `title` (string, required): Title (Example: `My event`)
+        *   `startTime` (string, required): Start Time (Example: `2021-06-23T03:30:00+05:30`)
+        *   `endTime` (string, required): End Time (Example: `2021-06-23T04:30:00+05:30`)
+        *   `calendarId` (string): Calendar id (Example: `CVokAlI8fgw4WYWoCtQz`)
+        *   `assignedUserId` (string): Assigned User Id (Example: `0007BWpSzSwfiuSl0tR2`)
+    *   **Example**: `{"id":"0TkCdp9PfvLeWKYRRvIz","locationId":"C2QujeCh8ZnC7al2InWR","title":"My event","startTime":"2021-06-23T03:30:00+05:30","endTime":"2021-06-23T04:30:00+05:30","calendarId":"CVokAlI8fgw4WYWoCtQz","assignedUserId":"0007BWpSzSwfiuSl0tR2"}`
+*   **Error Responses**:
+    *   **400 Bad Request**: `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized**: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint allows updating an existing block slot in a calendar by its event ID or instance ID.
+
+### 11. TAGS:
+Calendars, Events, Block Slot, Update, Edit, Modify, PUT, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for cURL, nodejs, python, php, java, go, ruby, and powershell. The cURL example is directly provided in the documentation.

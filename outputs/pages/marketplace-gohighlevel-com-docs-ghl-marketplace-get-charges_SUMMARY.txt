@@ -1,0 +1,90 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get all wallet charges
+
+### 2. CATEGORY:
+Wallet Charges (under Developer Marketplace)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/marketplace/billing/charges`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/marketplace/billing/charges`
+
+### 6. REQUIRED PARAMETERS:
+Not specified in documentation (All query parameters are optional for filtering and pagination).
+
+### 7. OPTIONAL PARAMETERS:
+*   **meterId** (string): Billing Meter ID (you can find this on your app's pricing page on the developer portal)
+*   **eventId** (string): Event ID / Transaction ID
+*   **userId** (string): Filter results by User ID that your server passed via API when the charge was created
+*   **startDate** (string): Filter results AFTER a specific date. Use this in combination with endDate to filter results in a specific time window. Example: `2025-03-26`
+*   **endDate** (string): Filter results BEFORE a specific date. Use this in combination with startDate to filter results in a specific time window. Example: `2025-03-26`
+*   **skip** (number): Number of records to skip
+*   **limit** (number): Maximum number of records to return
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `charges.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **Location**: `header` (with name `Authorization`)
+
+### 9. RESPONSE FORMAT:
+
+**Successful Response (200 OK):**
+*   **Content Type**: `application/json`
+*   **Schema**:
+    *   `charges`: Array of objects, where each object represents a wallet charge and includes:
+        *   `refunded` (boolean): Value is 'true' if the charge has subsequently been refunded.
+        *   `currency` (string): Currency of the transaction. Currently supports USD only.
+        *   `appId` (string): App ID.
+        *   `meterId` (string): Billing Meter ID.
+        *   `chargeId` (string): Charge ID.
+        *   `entityType` (string): Indicates who was charged? Currently, supports 'location' only.
+        *   `entityId` (string): If the entityType is Location, entityId would be locationId.
+        *   `amountCharged` (number): Total amount charged.
+        *   `pricePerUnit` (number): Price per unit for the charge.
+        *   `transactionType` (string): Can be 'charge' or 'refund'.
+        *   `units` (number): Number of units that the sub-account was charged for.
+        *   `meta` (object): Contains details sent while creating the charge via the API (eventID, description, eventTime, userId).
+        *   `createdAt` (date-time): Timestamp when the charge was created in the system.
+        *   `updatedAt` (date-time): Timestamp when the charge was last updated in the system.
+    *   `total` (number): Total number of charges.
+*   **Example**:
+    ```json
+    {"charges":[{"refunded":true,"currency":"string","appId":"string","meterId":"string","chargeId":"string","entityType":"string","entityId":"string","amountCharged":0,"pricePerUnit":0,"transactionType":"string","units":0,"meta":{},"createdAt":"2024-07-29T15:51:28.071Z","updatedAt":"2024-07-29T15:51:28.071Z"}],"total":0}
+    ```
+
+**Error Response (422 Unprocessable Entity):**
+*   **Content Type**: `application/json`
+*   **Schema**:
+    *   `statusCode` (number): Example: `422`
+    *   `message` (string[]): Example: `["Unprocessable Entity"]`
+    *   `error` (string): Example: `Unprocessable Entity`
+*   **Example**:
+    ```json
+    {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+    ```
+
+### 10. PURPOSE:
+This endpoint retrieves a list of all wallet charges, with options to filter by meter ID, event ID, user ID, date range, and paginate results.
+
+### 11. TAGS:
+Wallet Charges, Billing, Marketplace, Developer, Charges, Get, List, Read, Sub-Account.
+
+### 12. CODE EXAMPLES:
+Code examples are available for the following languages/tools:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

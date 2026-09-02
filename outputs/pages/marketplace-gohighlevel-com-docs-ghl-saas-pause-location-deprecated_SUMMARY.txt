@@ -1,0 +1,49 @@
+Here's a structured summary of the API documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+Pause location (Deprecated)
+
+### 2. CATEGORY:
+Saas
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/saas-api/public-api/pause/:locationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/saas-api/public-api/pause/:locationId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+*   **Path Parameters:**
+    *   `locationId` (string): Location ID to pause/unpause. Example: `AUKAtFVo0lWezBsBQ3FE`
+*   **Body Parameters (application/json):**
+    *   `paused` (boolean): Paused. Example: `true`
+    *   `companyId` (string): Company ID. Example: `companyId1`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Header:** `Authorization: Bearer <TOKEN>` (Bearer token, JWT format, generated with user type as Company)
+
+### 9. RESPONSE FORMAT:
+*   **200 OK:**
+    *   **Description:** Location paused/unpaused successfully
+    *   **Schema:** `boolean` (the response body is a boolean value)
+
+### 10. PURPOSE:
+This endpoint is used to pause or unpause a Sub-Account (formerly known as a location) given its `locationId`. This endpoint is deprecated and may be replaced or removed in future versions.
+
+### 11. TAGS:
+Saas, pause, location, sub-account, deprecated, subscription, management, agency, billing
+
+### 12. CODE EXAMPLES:
+cURL, nodejs, python, php, java, go, ruby, powershell.

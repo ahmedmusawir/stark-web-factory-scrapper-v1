@@ -1,0 +1,112 @@
+```
+## STRUCTURED SUMMARY: Messages API Overview
+
+### 1. ENDPOINT NAME:
+Messages (Overview Page)
+
+### 2. CATEGORY:
+Conversations
+
+### 3. HTTP METHOD:
+Not applicable to this overview page. HTTP methods vary for the individual message-related endpoints linked from this page (e.g., GET, POST).
+
+### 4. ENDPOINT URL:
+`/docs/ghl/conversations/messages/index.html`
+
+### 5. FULL URL:
+`https://marketplace.gohighlevel.com/docs/ghl/conversations/messages/index.html`
+
+### 6. REQUIRED PARAMETERS:
+Not specified in this overview documentation. Required parameters are specific to individual sub-endpoints and are hinted at in their descriptions (see "Sub-Endpoints Overview" below).
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in this overview documentation. Optional parameters are specific to individual sub-endpoints.
+
+### 8. AUTHENTICATION:
+Not specified in documentation. Authentication details are typically provided at a higher level (e.g., "Authorization" section) or within the detailed documentation for each specific endpoint.
+
+### 9. RESPONSE FORMAT:
+Not specified in documentation. Response formats are specific to individual sub-endpoints.
+
+### 10. PURPOSE:
+This page serves as an index and overview for various API operations related to managing messages within the HighLevel Conversations module, providing links to detailed documentation for each specific message endpoint.
+
+### 11. TAGS:
+Conversations, Messages, API, Overview, Index, Documentation, HighLevel, CRM, Communication, Messaging, Endpoints
+
+### Availability of Code Examples:
+Not specified in documentation (no code examples are present on this overview page).
+
+---
+
+## Sub-Endpoints Overview (Linked from this page):
+
+This section details the individual API operations listed on the "Messages" overview page, including any parameters hinted at in their brief descriptions.
+
+### 1. Export messages by location ID
+*   **Purpose:** Export messages for a specific location with cursor-based pagination support.
+*   **Hinted Parameters:**
+    *   `location ID` (string): The identifier for the location.
+    *   *Pagination-related parameters:* (types and names not specified, but implied by "cursor-based pagination support").
+
+### 2. Get message by message id
+*   **Purpose:** Get message by message id.
+*   **Hinted Parameters:**
+    *   `message id` (string): The unique identifier for the message.
+
+### 3. Get messages by conversation id
+*   **Purpose:** Get messages by conversation id.
+*   **Hinted Parameters:**
+    *   `conversation id` (string): The unique identifier for the conversation.
+
+### 4. Send a new message
+*   **Purpose:** Post the necessary fields for the API to send a new message.
+*   **Hinted Parameters:**
+    *   *Necessary fields:* (types and names not specified, but will include message content, recipient, sender, etc.).
+
+### 5. Add an inbound message
+*   **Purpose:** Post the necessary fields for the API to add a new inbound message.
+*   **Required Hinted Parameters:**
+    *   `conversationId` (string): The unique identifier for the conversation.
+    *   **OR**
+    *   `contactId` (string): The unique identifier for the contact.
+    *   *Note:* Either `conversationId` or `contactId` is required.
+    *   *Additional necessary fields:* (types and names not specified, but will include message content, sender, etc.).
+
+### 6. Add an external outbound call
+*   **Purpose:** Post the necessary fields for the API to add a new outbound call.
+*   **Hinted Parameters:**
+    *   *Necessary fields:* (types and names not specified, but will include call details, participants, duration, etc.).
+
+### 7. Cancel a scheduled message.
+*   **Purpose:** Post the messageId for the API to delete a scheduled message.
+*   **Required Hinted Parameters:**
+    *   `messageId` (string): The unique identifier of the scheduled message to cancel.
+
+### 8. Upload file attachments
+*   **Purpose:** Post the necessary fields for the API to upload files.
+*   **Required Hinted Parameters:**
+    *   `fileAttachment` (buffer): The file content as a buffer.
+*   **Allowed File Types:** JPG, JPEG, PNG, MP4, MPEG, ZIP, RAR, PDF, DOC, DOCX, TXT, MP3, WAV.
+*   **Response:** An object containing the URLs of the uploaded files.
+
+### 9. Update message status
+*   **Purpose:** Post the necessary fields for the API to update message status.
+*   **Hinted Parameters:**
+    *   *Necessary fields:* (types and names not specified, but will include `messageId` and `status`).
+
+### 10. Get Recording by Message ID
+*   **Purpose:** Get the recording for a message by passing the message id.
+*   **Hinted Parameters:**
+    *   `message ID` (string): The unique identifier for the message associated with the recording.
+
+### 11. Get transcription by Message ID
+*   **Purpose:** Get the recording transcription for a message by passing the message id.
+*   **Hinted Parameters:**
+    *   `message ID` (string): The unique identifier for the message associated with the transcription.
+
+### 12. Download transcription by Message ID
+*   **Purpose:** Download the recording transcription for a message by passing the message id.
+*   **Hinted Parameters:**
+    *   `message ID` (string): The unique identifier for the message associated with the transcription to download.
+```

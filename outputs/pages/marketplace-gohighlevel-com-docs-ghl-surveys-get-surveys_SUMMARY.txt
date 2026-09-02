@@ -1,0 +1,72 @@
+```
+1. ENDPOINT NAME: Get Surveys
+
+2. CATEGORY: Surveys
+
+3. HTTP METHOD: GET
+
+4. ENDPOINT URL: /surveys/
+
+5. FULL URL: https://services.leadconnectorhq.com/surveys/
+
+6. REQUIRED PARAMETERS:
+   - Version (string): API Version. Possible values: [`2021-07-28`]
+   - locationId (string): Example: `ve9EPM428h8vShlRW1KT`
+
+7. OPTIONAL PARAMETERS:
+   - skip (number): Example: `0`
+   - limit (number): Limit Per Page records count. Will allow maximum up to 50 and default will be 10. Default value: `10`. Example: `20`
+   - type (string): Example: `folder`
+
+8. AUTHENTICATION:
+   - Scope(s): `surveys.readonly`
+   - Auth Method(s): `OAuth Access Token`, `Private Integration Token`
+   - Token Type(s): `Sub-Account Token`
+   - Scheme: `bearer`
+   - Bearer Format: `JWT`
+   - In: `header`
+   - Description: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+9. RESPONSE FORMAT:
+   - Status Code: 200 (Successful response)
+   - Content Type: `application/json`
+   - Schema:
+     ```json
+     {
+       "surveys": [
+         {
+           "id": "string",  // Example: "I5GFa3d3cKjojpe4VVUx"
+           "name": "string", // Example: "Survey 1"
+           "locationId": "string" // Example: "ve9EPM428h8vShlRW1KT"
+         }
+       ],
+       "total": "number" // Number of surveys. Example: 20
+     }
+     ```
+   - Example (200 OK):
+     ```json
+     {"surveys":[{"id":"I5GFa3d3cKjojpe4VVUx","name":"Survey 1","locationId":"ve9EPM428h8vShlRW1KT"}],"total":20}
+     ```
+   - Example (400 Bad Request):
+     ```json
+     {"statusCode":400,"message":"Bad Request"}
+     ```
+   - Example (401 Unauthorized):
+     ```json
+     {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+     ```
+
+10. PURPOSE: This endpoint retrieves a list of surveys based on the provided criteria.
+
+11. TAGS: Surveys, Get, List, Retrieve, Location, Read, API
+
+12. CODE EXAMPLES:
+    - curl: Available
+    - nodejs: Available
+    - python: Available
+    - php: Available
+    - java: Available
+    - go: Available
+    - ruby: Available
+    - powershell: Available
+```

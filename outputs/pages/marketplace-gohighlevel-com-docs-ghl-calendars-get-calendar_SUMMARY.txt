@@ -1,0 +1,103 @@
+Here's a structured summary of the "Get Calendar" API documentation:
+
+1.  **ENDPOINT NAME:** Get Calendar
+
+2.  **CATEGORY:** Calendars
+
+3.  **HTTP METHOD:** GET
+
+4.  **ENDPOINT URL:** /calendars/:calendarId
+
+5.  **FULL URL:** https://services.leadconnectorhq.com/calendars/:calendarId
+
+6.  **REQUIRED PARAMETERS:**
+    *   Version (string, Header Parameter): API Version. Possible values: `2021-04-15`
+    *   calendarId (string, Path Parameter): Calendar Id. Example: `ocQHyuzHvysMo5N5VsXc`
+
+7.  **OPTIONAL PARAMETERS:**
+    *   Not specified in documentation
+
+8.  **AUTHENTICATION:**
+    *   **Scope(s):** `calendars.readonly`
+    *   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+    *   **Token Type(s):** `Sub-Account Token`
+
+9.  **RESPONSE FORMAT:**
+    *   **200 OK (application/json):**
+        A successful response contains a `calendar` object with details such as:
+        *   `isActive` (boolean)
+        *   `notifications` (object[] - deprecated)
+        *   `locationId` (string)
+        *   `groupId` (string)
+        *   `teamMembers` (object[])
+        *   `eventType` (string)
+        *   `name` (string)
+        *   `description` (string)
+        *   `slug` (string)
+        *   `widgetSlug` (string)
+        *   `calendarType` (string)
+        *   `widgetType` (string)
+        *   `eventTitle` (string)
+        *   `eventColor` (string)
+        *   `meetingLocation` (string - deprecated)
+        *   `locationConfigurations` (object[])
+        *   `slotDuration` (number)
+        *   `slotDurationUnit` (string)
+        *   `slotInterval` (number)
+        *   `slotIntervalUnit` (string)
+        *   `slotBuffer` (number)
+        *   `slotBufferUnit` (string)
+        *   `preBuffer` (number)
+        *   `preBufferUnit` (string)
+        *   `appoinmentPerSlot` (number)
+        *   `appoinmentPerDay` (number)
+        *   `allowBookingAfter` (number)
+        *   `allowBookingAfterUnit` (string)
+        *   `allowBookingFor` (number)
+        *   `allowBookingForUnit` (string)
+        *   `openHours` (object[])
+        *   `enableRecurring` (boolean)
+        *   `recurring` (object)
+        *   `bookingOption` (string)
+        *   `bookingOverlapDefaultStatus` (string)
+        *   `formId` (string)
+        *   `stickyContact` (boolean)
+        *   `isLivePaymentMode` (boolean)
+        *   `autoConfirm` (boolean)
+        *   `shouldSendAlertEmailsToAssignedMember` (boolean)
+        *   `alertEmail` (string)
+        *   `googleInvitationEmails` (boolean)
+        *   `allowReschedule` (boolean)
+        *   `allowCancellation` (boolean)
+        *   `shouldAssignContactToTeamMember` (boolean)
+        *   `shouldSkipAssigningContactForExisting` (boolean)
+        *   `notes` (string)
+        *   `pixelId` (string)
+        *   `formSubmitType` (string)
+        *   `formSubmitRedirectURL` (string)
+        *   `formSubmitThanksMessage` (string)
+        *   `availabilityType` (number)
+        *   `availabilities` (object[])
+        *   `guestType` (string)
+        *   `consentLabel` (string)
+        *   `calendarCoverImage` (string)
+        *   `lookBusyConfig` (object)
+        *   `id` (string)
+    *   **400 Bad Request (application/json):**
+        Returns `statusCode` (number) and `message` (string).
+    *   **401 Unauthorized (application/json):**
+        Returns `statusCode` (number), `message` (string), and `error` (string).
+
+10. **PURPOSE:** This endpoint retrieves the details of a specific calendar by its ID.
+
+11. **TAGS:** Calendars, Get, Retrieve, Read, Calendar ID, HighLevel, API, Sub-Account, Calendar Details.
+
+12. **Code Examples:**
+    *   cURL: Available
+    *   nodejs: Available
+    *   python: Available
+    *   php: Available
+    *   java: Available
+    *   go: Available
+    *   ruby: Available
+    *   powershell: Available

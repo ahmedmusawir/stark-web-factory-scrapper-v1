@@ -1,0 +1,56 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Disconnect existing provider config
+
+### 2. CATEGORY:
+Payments: Custom Provider
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/payments/custom-provider/disconnect`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/payments/custom-provider/disconnect`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+*   **Query Parameters:**
+    *   locationId (string): Location id. Example: `Lk3nlfk4lxlelVEwcW`
+*   **Body:**
+    *   liveMode (boolean): Whether the config is for test mode or live mode. `true` represents config is for live payments. Example: `true`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `payments/custom-provider.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code**: `200` (Successful response)
+*   **Content Type**: `application/json`
+*   **Schema**:
+    ```json
+    {
+      "success": true
+    }
+    ```
+    Where `success` (boolean) indicates whether the custom provider config is disconnected.
+
+### 10. PURPOSE:
+API to disconnect an existing payment config for a given location.
+
+### 11. TAGS:
+Payments, Custom Provider, Disconnect, Configuration, Location, API, Marketplace App, Integration
+
+### Code Examples Availability:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

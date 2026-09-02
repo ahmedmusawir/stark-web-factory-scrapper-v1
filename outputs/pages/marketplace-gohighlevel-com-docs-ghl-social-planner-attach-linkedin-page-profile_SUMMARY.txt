@@ -1,0 +1,110 @@
+Here is a structured summary of the provided API documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+Attach linkedin pages and profile
+
+### 2. CATEGORY:
+Social Planner (Sub-category: OAuth | LinkedIn)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/social-media-posting/oauth/:locationId/linkedin/accounts/:accountId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/oauth/:locationId/linkedin/accounts/:accountId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-07-28`
+
+*   **Path Parameters:**
+    *   `locationId` (string): Account Location Id.
+    *   `accountId` (string): Account Id.
+
+*   **Body Parameters (application/json):**
+    *   `type` (string): The type of LinkedIn entity to attach. Possible values: `page`, `group`, `profile`, `location`, `business`
+    *   `originId` (string): The unique identifier from LinkedIn for the page/profile.
+    *   `name` (string): The name of the LinkedIn page or profile.
+    *   `avatar` (string): URL to the avatar/profile picture.
+    *   `urn` (string): The Universal Resource Name (URN) for the LinkedIn entity.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header (`Authorization` header)
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (201 Created):**
+    *   **Content-Type:** `application/json`
+    *   **Structure Example:**
+        ```json
+        {
+          "success": true,
+          "statusCode": 200,
+          "message": "Added LinkedIn Account",
+          "results": {
+            "_id": "65f2d989a4f2f1e5322c3856",
+            "oAuthId": "u37swmmLbA02zgqKPpxITe2",
+            "oldId": "u37swmmLbA02zgqKPpxITe2",
+            "locationId": "u37swmmLbA02zgqKPpxITe2",
+            "originId": "u37swmmLbA02zgqKPpxITe2",
+            "platform": "linkedin",
+            "type": "profile",
+            "name": "Profile Name",
+            "avatar": "u37swmmLbA02zgqKPpxITe2",
+            "meta": {
+              "pageId": "u37swmmLbA02zgqKPpxITe2",
+              "page": {
+                "id": "u37swmmLbA02zgqKPpxITe2",
+                "name": "Account Name",
+                "avatar": "u37swmmLbA02zgqKPpxITe2"
+              },
+              "storeCode": "122",
+              "isVerified": "true",
+              "verified": true,
+              "protected": true,
+              "locationId": "u37swmmLbA02zgqKPpxITe2",
+              "accountId": "u37swmmLbA02zgqKPpxITe2",
+              "openId": "u37swmmLbA02zgqKPpxITe2",
+              "urn": "u37swmmLbA02zgqKPpxITe2",
+              "username": "testUser",
+              "storefrontAddress": {
+                "regionCode": "30021",
+                "languageCode": "E001",
+                "postalCode": "1221",
+                "administrativeArea": "Down Town",
+                "locality": "Louis Street",
+                "addressLines": ["207", "county"]
+              }
+            },
+            "active": true,
+            "deleted": true,
+            "createdAt": "2024-03-14T11:03:37.015Z",
+            "updatedAt": "2024-03-14T11:03:37.015Z"
+          }
+        }
+        ```
+        *Note: The documentation specifies a 201 status code for success, but the example shows 200.*
+
+*   **Error Responses:**
+    *   `400` Bad Request: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401` Unauthorized: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `422` Unprocessable Entity: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows a user to attach a LinkedIn page or profile, identified by its origin ID and URN, to a specific HighLevel account location within the social media planner.
+
+### 11. TAGS:
+`Social Planner`, `LinkedIn`, `OAuth`, `Attach`, `Account`, `Page`, `Profile`, `Integration`, `Post`
+
+*Availability of code examples for cURL, nodejs, python, php, java, go, ruby, and powershell is noted.*

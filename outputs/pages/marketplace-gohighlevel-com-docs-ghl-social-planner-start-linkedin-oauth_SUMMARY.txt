@@ -1,0 +1,85 @@
+```
+## STRUCTURED SUMMARY
+
+### 1. ENDPOINT NAME:
+Starts OAuth For LinkedIn Account
+
+### 2. CATEGORY:
+Social Planner
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/oauth/linkedin/start`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/oauth/linkedin/start`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version (Possible values: `2021-07-28`)
+*   **locationId** (string): Location Id. Example: `w37swmmLbA02zgqKPpxITe2`
+*   **userId** (string): User Id. Example: `u37swmmLbA02zgqKPpxITe2`
+
+### 7. OPTIONAL PARAMETERS:
+*   **page** (string): Page. Example: `integration`
+*   **reconnect** (string): Reconnect. Example: `integration`
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header (Authorization header)
+
+### 9. RESPONSE FORMAT:
+*   **200 OK (Successful Response):** The documentation describes opening the API in a window which navigates the user to LinkedIn login. On successful login, event data is returned via a `window.addEventListener('message', ...)` callback.
+    *   **Event Data Response Structure (JavaScript `message` event):**
+        ```json
+        {
+          "actionType": "string", // Ex: "close"
+          "page": "string",       // Ex: "social-media-posting"
+          "platform": "string",   // Ex: "linkedin"
+          "placement": "string",  // Ex: "placement"
+          "accountId": "string",  // Ex: "658a9b6833b91e0ecb8f3958"
+          "reconnectAccounts": ["string"] // Ex: ["658a9b6833b91e0ecb834acd", "efd2daa9b6833b91e0ecb8f3511"]
+        }
+        ```
+*   **400 Bad Request:**
+    *   **Content-Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "statusCode": 400,
+          "message": "Bad Request"
+        }
+        ```
+*   **401 Unauthorized:**
+    *   **Content-Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "statusCode": 401,
+          "message": "Invalid token: access token is invalid",
+          "error": "Unauthorized"
+        }
+        ```
+*   **422 Unprocessable Entity:**
+    *   **Content-Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "statusCode": 422,
+          "message": ["Unprocessable Entity"],
+          "error": "Unprocessable Entity"
+        }
+        ```
+
+### 10. PURPOSE:
+This endpoint initiates the OAuth authentication flow for a LinkedIn account, redirecting the user to the LinkedIn login page to authorize the connection, and then communicates the result back via a window message event.
+
+### 11. TAGS:
+Social Planner, LinkedIn, OAuth, Authorization, Integration, Account Connection, GET, Authentication Start, Social Media Posting.
+
+### Code Examples:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`. A cURL example is directly provided in the documentation.
+```

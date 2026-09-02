@@ -1,0 +1,121 @@
+```json
+{
+  "ENDPOINT_NAME": "Add an external outbound call",
+  "CATEGORY": "Conversations",
+  "HTTP_METHOD": "POST",
+  "ENDPOINT_URL": "/conversations/messages/outbound",
+  "FULL_URL": "https://services.leadconnectorhq.com/conversations/messages/outbound",
+  "REQUIRED_PARAMETERS": [
+    {
+      "paramName": "Version",
+      "paramType": "string (header)",
+      "description": "API Version. Possible values: [`2021-04-15`]"
+    },
+    {
+      "paramName": "type",
+      "paramType": "string (body)",
+      "description": "Message Type. Possible values: [`Call`]"
+    },
+    {
+      "paramName": "conversationId",
+      "paramType": "string (body)",
+      "description": "Conversation Id"
+    },
+    {
+      "paramName": "conversationProviderId",
+      "paramType": "string (body)",
+      "description": "Conversation Provider Id"
+    },
+    {
+      "paramName": "call",
+      "paramType": "object (body)",
+      "description": "Phone call dialer and receiver information"
+    },
+    {
+      "paramName": "call.to",
+      "paramType": "string (body, nested under call)",
+      "description": "Phone number of the receiver"
+    },
+    {
+      "paramName": "call.from",
+      "paramType": "string (body, nested under call)",
+      "description": "Phone number of the dialer"
+    },
+    {
+      "paramName": "call.status",
+      "paramType": "string (body, nested under call)",
+      "description": "Call status. Possible values: [`pending`, `completed`, `answered`, `busy`, `no-answer`, `failed`, `canceled`, `voicemail`]"
+    }
+  ],
+  "OPTIONAL_PARAMETERS": [
+    {
+      "paramName": "attachments",
+      "paramType": "string[] (body)",
+      "description": "Array of attachments"
+    },
+    {
+      "paramName": "altId",
+      "paramType": "string (body)",
+      "description": "external mail provider's message id"
+    },
+    {
+      "paramName": "date",
+      "paramType": "date-time (body)",
+      "description": "Date of the outbound message"
+    }
+  ],
+  "AUTHENTICATION": {
+    "scopes": ["conversations/message.write"],
+    "authMethods": ["OAuth Access Token", "Private Integration Token"],
+    "tokenTypes": ["Sub-Account Token"],
+    "scheme": "bearer",
+    "bearerFormat": "JWT",
+    "in": "header",
+    "headerName": "Authorization"
+  },
+  "RESPONSE_FORMAT": {
+    "200_OK": {
+      "status_code": 200,
+      "content_type": "application/json",
+      "schema": {
+        "success": "boolean (required)",
+        "conversationId": "string (required)",
+        "messageId": "string (required)",
+        "message": "string (required)",
+        "contactId": "string",
+        "dateAdded": "date-time",
+        "emailMessageId": "string"
+      },
+      "example": {
+        "success": true,
+        "conversationId": "ABC12h2F6uBrIkfXYazb",
+        "messageId": "t22c6DQcTDf3MjRhwf77",
+        "message": "string",
+        "contactId": "string",
+        "dateAdded": "2024-07-29T15:51:28.071Z",
+        "emailMessageId": "string"
+      }
+    },
+    "400_Bad_Request": {
+      "status_code": 400,
+      "content_type": "application/json",
+      "example": {
+        "statusCode": 400,
+        "message": "Bad Request"
+      }
+    },
+    "401_Unauthorized": {
+      "status_code": 401,
+      "content_type": "application/json",
+      "example": {
+        "statusCode": 401,
+        "message": "Invalid token: access token is invalid",
+        "error": "Unauthorized"
+      }
+    }
+  },
+  "PURPOSE": "This endpoint allows users to add a new external outbound call record to a conversation by posting the necessary call details.",
+  "TAGS": ["Conversations", "Messages", "Call", "Outbound", "Phone", "Communication", "Add", "Create"],
+  "CODE_EXAMPLES": ["curl", "nodejs", "python", "php", "java", "go", "ruby", "powershell"]
+}
+```

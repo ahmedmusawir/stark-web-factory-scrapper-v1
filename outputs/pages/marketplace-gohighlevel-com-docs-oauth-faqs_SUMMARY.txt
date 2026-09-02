@@ -1,0 +1,50 @@
+```
+## STRUCTURED SUMMARY
+
+### 1. ENDPOINT NAME:
+API FAQs
+
+### 2. CATEGORY:
+General API Information / Documentation & Support
+
+### 3. HTTP METHOD:
+Not applicable as this is an FAQ documentation page, not a specific API endpoint.
+
+### 4. ENDPOINT URL:
+Not applicable as this is an FAQ documentation page, not a specific API endpoint.
+
+### 5. FULL URL:
+Not applicable as this is an FAQ documentation page, not a specific API endpoint.
+
+### 6. REQUIRED PARAMETERS:
+Not applicable as this documentation page discusses general FAQs and configuration, not specific API endpoint parameters.
+
+### 7. OPTIONAL PARAMETERS:
+Not applicable as this documentation page discusses general FAQs and configuration, not specific API endpoint parameters.
+
+### 8. AUTHENTICATION:
+*   **Method:** OAuth 2.0 (implicit)
+*   **Access Tokens:** Valid for one day.
+*   **Refresh Tokens:** Valid for one year. A new refresh token is issued (valid for one year) each time it's used.
+*   **Token Expiry Handling:**
+    1.  Make an API request with the `accessToken`.
+    2.  If an expired token response is received, refresh the token using the refresh token API.
+    3.  Save the new access token and refresh token in your database.
+    4.  Retry the original API request with the new `accessToken`.
+*   **Required Scopes:** Scopes are required for webhook events and should be added in the app settings.
+
+### 9. RESPONSE FORMAT:
+*   **Token Expiry:** A response indicating the token is expired (specific status code or body not provided, but implies a need to refresh).
+*   **Rate Limit Headers (API 2.0):**
+    *   `X-RateLimit-Limit-Daily`: Your daily limit.
+    *   `X-RateLimit-Daily-Remaining`: The remaining number of requests for the day.
+    *   `X-RateLimit-Interval-Milliseconds`: The time interval for burst requests.
+    *   `X-RateLimit-Max`: The maximum request limit in the specified time interval.
+    *   `X-RateLimit-Remaining`: The remaining number of requests in the current time interval.
+
+### 10. PURPOSE:
+This documentation page provides answers to frequently asked questions regarding the HighLevel API 2.0, covering topics such as webhook setup, API token management, and rate limits.
+
+### 11. TAGS:
+FAQs, Webhooks, Authentication, OAuth, Access Token, Refresh Token, Token Expiry, Rate Limits, API 2.0, Marketplace App, HighLevel, Configuration, Troubleshooting.
+```

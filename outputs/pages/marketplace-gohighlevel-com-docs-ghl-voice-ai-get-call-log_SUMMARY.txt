@@ -1,0 +1,114 @@
+Here's a structured summary of the API documentation for "Get Call Log":
+
+### 1. ENDPOINT NAME
+Get Call Log
+
+### 2. CATEGORY
+Voice AI / Dashboard
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/voice-ai/dashboard/call-logs/:callId`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/voice-ai/dashboard/call-logs/:callId`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-04-15`]
+*   **Path Parameters:**
+    *   `callId` (string): Call ID. Example: `507f1f77bcf86cd799439011`
+*   **Query Parameters:**
+    *   `locationId` (string): Location ID. Example: `LOC123456789ABCDEF`
+
+### 7. OPTIONAL PARAMETERS
+Not explicitly specified in documentation.
+
+### 8. AUTHENTICATION
+
+*   **Scope(s):** `voice-ai-dashboard.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+
+### 9. RESPONSE FORMAT
+
+*   **Status Code:** `200 OK`
+*   **Content Type:** `application/json`
+*   **Schema (JSON Object):**
+    *   `id` (string, required): Unique identifier for the call. Example: `507f1f77bcf86cd799439011`
+    *   `contactId` (string): Associated contact ID. Example: `507f1f77bcf86cd799439012`
+    *   `agentId` (string, required): Agent ID associated with the call. Example: `507f1f77bcf86cd799439013`
+    *   `isAgentDeleted` (boolean, required): Whether the agent is deleted. Example: `false`
+    *   `fromNumber` (string): Caller phone number. Example: `+1234567890`
+    *   `createdAt` (date-time, required): Timestamp when the call was created. Example: `2024-01-15T10:30:00.000Z`
+    *   `duration` (number, required): Call duration in seconds. Example: `180`
+    *   `trialCall` (boolean, required): Whether this call was a trial call. Example: `false`
+    *   `executedCallActions` (array of objects, required): Actions performed during the call.
+        *   `actionId` (string): Action ID reference. Example: `507f1f77bcf86cd799439015`
+        *   `actionType` (string, required): Action type. Possible values: [`CALL_TRANSFER`, `DATA_EXTRACTION`, `IN_CALL_DATA_EXTRACTION`, `WORKFLOW_TRIGGER`, `SMS`, `APPOINTMENT_BOOKING`, `CUSTOM_ACTION`, `KNOWLEDGE_BASE`]. Example: `SMS`
+        *   `actionName` (string, required): Action name. Example: `Send SMS Confirmation`
+        *   `actionParameters` (object): Action-specific parameters (structure varies by `actionType`).
+            *   **For `CALL_TRANSFER`:**
+                *   `transferToType` (string, required): Type of transfer destination. Possible values: [`number`]. Example: `number`
+                *   `transferToValue` (string, required): Phone number to transfer to. Example: `+12345678901`
+                *   `triggerMessage` (string, required): Message to tell the caller before transferring. Example: `Let me transfer you to a manager right away`
+                *   `hearWhisperMessage` (boolean): Whether to play whisper message. Example: `true`
+            *   **For `DATA_EXTRACTION` / `IN_CALL_DATA_EXTRACTION`:**
+                *   `contactFieldId` (string, required): ID of the contact field to be updated. Example: `507f1f77bcf86cd799439011`
+                *   `description` (string, required): Description of what data to extract. Example: `Caller's phone number`
+                *   `examples` (string[], required): Example values. Min 1, max 5. Example: `["+1234567890","+9876543210"]`
+                *   `overwriteExistingValue` (boolean): Whether to overwrite existing value. Default: `false`. Example: `false`
+            *   **For `WORKFLOW_TRIGGER`:**
+                *   `triggerPrompt` (string, required): When to trigger this workflow. Example: `When caller requests a quote`
+                *   `triggerMessage` (string, required): Message to tell the caller. Example: `Let me start that process for you`
+                *   `workflowId` (string, required): Workflow ID to trigger. Example: `507f1f77bcf86cd799439011`
+            *   **For `SMS`:**
+                *   `triggerPrompt` (string, required): When to send the SMS. Example: `When caller asks for booking confirmation`
+                *   `triggerMessage` (string, required): Message to tell the caller. Example: `I'll send you a confirmation text`
+                *   `messageBody` (string, required): SMS message content. Example: `Your appointment is confirmed for tomorrow at 2 PM`
+            *   **For `APPOINTMENT_BOOKING`:**
+                *   `calendarId` (string, required): Calendar ID to book appointments in. Example: `507f1f77bcf86cd799439011`
+                *   `daysOfOfferingDates` (number, required): Number of days ahead to offer booking dates. Example: `3`
+                *   `slotsPerDay` (number, required): Number of available slots per day. Example: `3`
+                *   `hoursBetweenSlots` (number, required): Hours between available slots. Example: `1`
+            *   **For `CUSTOM_ACTION`:**
+                *   `triggerPrompt` (string, required): When to call the custom API. Example: `When caller provides order number`
+                *   `triggerMessage` (string, required): Message to tell the caller. Example: `Let me check that order status`
+                *   `apiDetails` (object): API endpoint configuration.
+                    *   `url` (string, required): API endpoint URL. Example: `https://api.example.com/orders`
+                    *   `method` (string, required): HTTP method. Possible values: [`POST`, `GET`]. Example: `GET`
+                    *   `authenticationRequired` (boolean): Whether authentication is required. Example: `true`
+                    *   `authenticationValue` (string): Authentication token or API key. Example: `token123`
+                    *   `headers` (array of objects): HTTP headers to include.
+                        *   `key` (string, required): HTTP header name. Example: `id`
+                        *   `value` (string, required): HTTP header value. Example: `1234567890`
+                    *   `parameters` (array of objects): API parameters to send.
+                        *   `name` (string, required): Parameter name. Example: `orderId`
+                        *   `description` (string): Parameter description. Example: `Order ID to look up`
+                        *   `type` (string): Parameter type. Example: `string`
+                        *   `example` (string): Example parameter value. Example: `ORD-12345`
+                    *   `selectedPaths` (string[]): Selected response paths to extract. Example: `["data.orderId","status"]`
+            *   **For `KNOWLEDGE_BASE`:**
+                *   `triggerPrompt` (string, required): When to query the knowledge base. Example: `When caller asks about pricing`
+                *   `knowledgeBaseId` (string, required): Knowledge base ID to query. Example: `507f1f77bcf86cd799439011`
+        *   `executedAt` (date-time): When the action was executed. Example: `2024-01-15T10:32:00.000Z`
+        *   `triggerReceivedAt` (date-time): When the trigger was received. Example: `2024-01-15T10:31:45.000Z`
+    *   `summary` (string, required): Call summary. Example: `Customer called to inquire about product pricing and was transferred to sales team.`
+    *   `transcript` (string, required): Call transcript. Example: `bot: Hello, how can I help you today? human: I would like to know about your pricing...`
+    *   `translation` (object): Transcript translation details.
+        *   `enabled` (boolean): Whether translation is enabled. Example: `false`
+        *   `language` (string): Translation language code. Example: `es`
+    *   `extractedData` (object): Dynamic data extracted from the call based on agent configuration. Example: `{"phoneNumber":"+1234567890","customerName":"John Doe"}`
+    *   `messageId` (string): Message identifier associated with the call. Example: `507f1f77bcf86cd799439014`
+
+### 10. PURPOSE
+This endpoint returns a specific call log by its `callId`.
+
+### 11. TAGS
+Voice AI, Call Log, Dashboard, Get, Retrieve, Call Management, API, Readonly, Analytics, Reporting, Sub-Account.
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

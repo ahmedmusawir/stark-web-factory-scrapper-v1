@@ -1,0 +1,107 @@
+Here's a structured summary of the API documentation for "Update Custom Field By Id":
+
+### 1. ENDPOINT NAME:
+Update Custom Field By Id
+
+### 2. CATEGORY:
+Custom Fields V2
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/custom-fields/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/custom-fields/:id`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version.
+        *   Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `id` (string): Unique identifier of the custom field.
+*   **Body Parameters:**
+    *   `locationId` (string): Location Id.
+        *   Example: `ve9EPM428h8vShlRW1KT`
+    *   `showInForms` (boolean): Whether the field should be shown in forms.
+    *   **If `options` array is provided, each option object must contain:**
+        *   `key` (string): Key of the option (Included in Create and Response, excluded in Update).
+        *   `label` (string): Value of the option.
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   `name` (string): Field name.
+        *   Example: `Name`
+    *   `description` (string): Description of the field.
+    *   `placeholder` (string): Placeholder text for the field.
+    *   `options` (object[]): Options for the field. Important: Providing options will completely replace the existing options array. You must include all existing options alongside any new options you wish to add. Removal of options is not supported through this update. Applicable only for SINGLE_OPTIONS, MULTIPLE_OPTIONS, RADIO, CHECKBOX, TEXTBOX_LIST types.
+        *   **Within each `options` array object:**
+            *   `url` (string): URL associated with the option (Optional, valid only for RADIO type).
+    *   `acceptedFormats` (string): Allowed file formats for uploads. Applicable only for fields with a data type of FILE_UPLOAD.
+        *   Possible values: [`.pdf`, `.docx`, `.doc`, `.jpg`, `.jpeg`, `.png`, `.gif`, `.csv`, `.xlsx`, `.xls`, `all`]
+    *   `maxFileLimit` (number): Maximum file limit for uploads. Applicable only for fields with a data type of FILE_UPLOAD.
+        *   Example: `2`
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `locations/customFields.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** `header` (Authorization)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 Successful response:**
+    *   **Content Type:** `application/json`
+    *   **Schema (object `field`):**
+        *   `locationId` (string, required): Location Id. Example: `ve9EPM428h8vShlRW1KT`
+        *   `name` (string): Field name. Example: `Name`
+        *   `description` (string): Description of the field.
+        *   `placeholder` (string): Placeholder text for the field.
+        *   `showInForms` (boolean, required): Whether the field should be shown in forms.
+        *   `options` (object[]): Options for the field.
+            *   `key` (string, required): Key of the option.
+            *   `label` (string, required): Value of the option.
+            *   `url` (string): URL associated with the option (Optional).
+        *   `acceptedFormats` (string): Allowed file formats for uploads. Possible values: [`.pdf`, `.docx`, `.doc`, `.jpg`, `.jpeg`, `.png`, `.gif`, `.csv`, `.xlsx`, `.xls`, `all`]
+        *   `id` (string, required): Unique identifier of the object.
+        *   `objectKey` (string, required): The key for your custom / standard object. Example: `custom_object.pet`
+        *   `dataType` (string, required): Type of field. Possible values: [`TEXT`, `LARGE_TEXT`, `NUMERICAL`, `PHONE`, `MONETORY`, `CHECKBOX`, `SINGLE_OPTIONS`, `MULTIPLE_OPTIONS`, `DATE`, `TEXTBOX_LIST`, `FILE_UPLOAD`, `RADIO`]
+        *   `parentId` (string, required): ID of the parent folder. Example: `3v34PM428h8vShlRW1KT`
+        *   `fieldKey` (string, required): Field key. Example: `custom_object.pet.name`
+        *   `allowCustomOption` (boolean): Determines if users can add a custom option value. Example: `true`
+        *   `maxFileLimit` (number): Maximum file limit for uploads. Example: `2`
+        *   `dateAdded` (date-time, required): Date and time when the object was added.
+        *   `dateUpdated` (date-time, required): Date and time when the object was last updated.
+    *   **Example (auto):**
+        ```json
+        {"field":{"locationId":"ve9EPM428h8vShlRW1KT","name":"Name","description":"string","placeholder":"string","showInForms":true,"options":[{"key":"string","label":"string","url":"string"}],"acceptedFormats":".pdf","id":"string","objectKey":"custom_object.pet","dataType":"TEXT","parentId":"3v34PM428h8vShlRW1KT","fieldKey":"custom_object.pet.name","allowCustomOption":true,"maxFileLimit":2,"dateAdded":"2024-07-29T15:51:28.071Z","dateUpdated":"2024-07-29T15:51:28.071Z"}}
+        ```
+*   **400 Bad Request:**
+    *   `statusCode` (number): `400`
+    *   `message` (string): `Bad Request`
+*   **401 Unauthorized:**
+    *   `statusCode` (number): `401`
+    *   `message` (string): `Invalid token: access token is invalid`
+    *   `error` (string): `Unauthorized`
+
+### 10. PURPOSE:
+This endpoint allows you to update the details of an existing custom field by its ID, currently supporting Custom Objects and Company (Business) objects.
+
+### 11. TAGS:
+Custom Fields, Update, Field, Custom Objects, Company, Business, Put, HighLevel, API V2
+
+### 12. CODE EXAMPLES AVAILABILITY:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

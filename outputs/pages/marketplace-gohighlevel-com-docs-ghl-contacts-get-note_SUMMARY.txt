@@ -1,0 +1,76 @@
+Here's a structured summary of the API documentation for "Get Note":
+
+### 1. ENDPOINT NAME:
+Get Note
+
+### 2. CATEGORY:
+Contacts (specifically, Notes within Contacts)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/contacts/:contactId/notes/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/:contactId/notes/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   contactId (string): Contact Id (Example: `sx6wyHhbFdRXh302LLNR`)
+    *   id (string): Note Id (Example: `ocQHyuzHvysMo5N5VsXc`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Required Scope(s):** `contacts.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Authorization Header:** `Authorization: Bearer <TOKEN>` (Bearer Token scheme with JWT format)
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:** An object containing a `note` object.
+        *   `note` (object)
+            *   `id` (string) - Example: `HGPcayliwcdoUFzvbTok`
+            *   `body` (string) - Example: `lorem ipsum`
+            *   `userId` (string) - Example: `TUcmRxWrjqzJS8EjkxNK`
+            *   `dateAdded` (string) - Example: `2021-07-08T12:02:11.285Z`
+            *   `contactId` (string) - Example: `TUcmRxWrjqzJS8EjkxNK`
+    *   **Example:**
+        ```json
+        {
+          "note": {
+            "id": "HGPcayliwcdoUFzvbTok",
+            "body": "lorem ipsum",
+            "userId": "TUcmRxWrjqzJS8EjkxNK",
+            "dateAdded": "2021-07-08T12:02:11.285Z",
+            "contactId": "TUcmRxWrjqzJS8EjkxNK"
+          }
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint retrieves a specific note associated with a given contact using its unique contact ID and note ID.
+
+### 11. TAGS:
+Contacts, Notes, Get, Retrieve, Read, CRM, HighLevel API, GHL, Note Management, Data Retrieval.
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

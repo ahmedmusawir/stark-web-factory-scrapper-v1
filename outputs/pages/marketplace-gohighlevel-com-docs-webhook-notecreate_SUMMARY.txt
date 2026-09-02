@@ -1,0 +1,54 @@
+Here's a structured summary of the NoteCreate webhook documentation:
+
+### 1. ENDPOINT NAME
+NoteCreate
+
+### 2. CATEGORY
+Webhook
+
+### 3. HTTP METHOD
+N/A (This is a webhook event, not a callable API endpoint. HighLevel sends this event via an HTTP POST request to a URL you configure.)
+
+### 4. ENDPOINT URL
+N/A (As a webhook, you provide the URL to HighLevel where these events should be sent.)
+
+### 5. FULL URL
+N/A (The documentation URL is `https://marketplace.gohighlevel.com/docs/webhook/NoteCreate/index.html`.)
+
+### 6. PAYLOAD FIELDS (RECEIVED BY WEBHOOK)
+*   **type** (string): The type of the webhook event. Example: `NoteCreate`
+*   **locationId** (string): The unique identifier of the location where the note was created.
+*   **id** (string): The unique identifier of the created note.
+*   **body** (string): The textual content of the note.
+*   **contactId** (string): The unique identifier of the contact associated with the note.
+*   **dateAdded** (string): The ISO 8601 timestamp indicating when the note was added.
+
+### 7. OPTIONAL PAYLOAD FIELDS
+Not specified in documentation. All fields listed in the schema appear to be mandatory for this event type.
+
+### 8. AUTHENTICATION
+Not specified in documentation for receiving the webhook. (Webhook security often involves shared secrets for signature verification, but details are not provided here.)
+
+### 9. RESPONSE FORMAT
+The webhook sends a JSON object as its payload. A successful receipt by the receiving server typically expects an HTTP 200 OK status code, but this is not explicitly stated in the documentation.
+
+**Example Payload:**
+```json
+{
+  "type": "NoteCreate",
+  "locationId": "ve9EPM428h8vShlRW1KT",
+  "id": "otg8dTQqGLh3Q6iQI55w",
+  "body": "Loram ipsum",
+  "contactId": "CWBf1PR9LvvBkcYqiXlc",
+  "dateAdded": "2021-11-26T12:41:02.193Z"
+}
+```
+
+### 10. PURPOSE
+This webhook is called whenever a new note is created within the HighLevel system.
+
+### 11. TAGS
+Webhook Events, Note, Create, Event
+
+### 12. CODE EXAMPLES
+None available in the provided documentation.

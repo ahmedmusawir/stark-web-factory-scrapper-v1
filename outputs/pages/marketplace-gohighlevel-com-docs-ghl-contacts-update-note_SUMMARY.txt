@@ -1,0 +1,80 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Update Note
+
+### 2. CATEGORY:
+Contacts
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/contacts/:contactId/notes/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/:contactId/notes/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   contactId (string): Contact Id (Example: `sx6wyHhbFdRXh302LLNR`)
+    *   id (string): Note Id (Example: `ocQHyuzHvysMo5N5VsXc`)
+*   **Body Parameters:**
+    *   body (string): The content of the note (Example: `lorem ipsum`)
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters:**
+    *   userId (string): The ID of the user associated with the note (Example: `GCs5KuzPqTls7vWclkEV`)
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `contacts.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** header
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    ```json
+    {
+      "note": {
+        "id": "HGPcayliwcdoUFzvbTok",
+        "body": "lorem ipsum",
+        "userId": "TUcmRxWrjqzJS8EjkxNK",
+        "dateAdded": "2021-07-08T12:02:11.285Z",
+        "contactId": "TUcmRxWrjqzJS8EjkxNK"
+      }
+    }
+    ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        ```json
+        {"statusCode":400,"message":"Bad Request"}
+        ```
+    *   **401 Unauthorized:**
+        ```json
+        {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+        ```
+    *   **422 Unprocessable Entity:**
+        ```json
+        {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+        ```
+
+### 10. PURPOSE:
+This endpoint allows you to update an existing note associated with a specific contact using its ID and the contact's ID.
+
+### 11. TAGS:
+Contacts, Notes, Update, PUT, API, LeadConnector, HighLevel, CRM, Modify, Edit
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   CURL
+*   Node.js
+*   Python
+*   PHP
+*   Java
+*   Go
+*   Ruby
+*   PowerShell

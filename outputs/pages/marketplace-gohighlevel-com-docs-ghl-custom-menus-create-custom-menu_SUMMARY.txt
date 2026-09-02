@@ -1,0 +1,125 @@
+Here's a structured summary of the API documentation for "Create Custom Menu Link":
+
+### 1. ENDPOINT NAME:
+Create Custom Menu Link
+
+### 2. CATEGORY:
+Custom menus
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/custom-menus/`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/custom-menus/`
+
+### 6. REQUIRED PARAMETERS:
+-   **Header Parameters:**
+    *   Version (string): API Version.
+        *   Possible values: [`2021-07-28`]
+-   **Body Parameters:**
+    *   title (string): Title of the custom menu.
+    *   url (string): URL of the custom menu.
+    *   icon.name (string): Name of the icon (required if `icon` object is present).
+    *   icon.fontFamily (string): Font family of the icon (required if `icon` object is present).
+        *   Possible values: [`fab`, `fas`, `far`]
+    *   showOnCompany (boolean): Whether the menu must be displayed on the agency's level.
+        *   Default value: `true`
+    *   showOnLocation (boolean): Whether the menu must be displayed for sub-accounts level.
+        *   Default value: `true`
+    *   showToAllLocations (boolean): Whether the menu must be displayed to all sub-accounts.
+        *   Default value: `true`
+    *   openMode (string): Mode for opening the menu link.
+        *   Possible values: [`iframe`, `new_tab`, `current_tab`]
+    *   locations (string[]): List of sub-account IDs where the menu should be shown. This list is applicable only when `showOnLocation` is `true` and `showToAllLocations` is `false`.
+    *   userRole (string): Which user-roles should the menu be accessible to?
+        *   Possible values: [`all`, `admin`, `user`]
+
+### 7. OPTIONAL PARAMETERS:
+-   **Body Parameters:**
+    *   icon (object): Icon information for the custom menu.
+    *   allowCamera (boolean): Whether to allow camera access (only for iframe mode).
+    *   allowMicrophone (boolean): Whether to allow microphone access (only for iframe mode).
+
+### 8. AUTHENTICATION:
+-   **Scope(s):** `custom-menu-link.write`
+-   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+-   **Token Type(s):** `Agency Token`
+-   **Scheme:** Bearer (JWT)
+-   **In:** Header (`Authorization: Bearer <TOKEN>`)
+
+### 9. RESPONSE FORMAT:
+
+*   **201 Custom menu successfully created**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "customMenu": {
+            "id": "string",
+            "icon": {
+              "name": "string",
+              "fontFamily": "string"
+            },
+            "title": "string",
+            "url": "string",
+            "order": "number",
+            "showOnCompany": "boolean",
+            "showOnLocation": "boolean",
+            "showToAllLocations": "boolean",
+            "locations": ["string"],
+            "openMode": "string",
+            "userRole": "string",
+            "allowCamera": "boolean",
+            "allowMicrophone": "boolean"
+          }
+        }
+        ```
+    *   **Example (201):**
+        ```json
+        {
+          "customMenu": {
+            "id": "12345",
+            "icon": {
+              "name": "yin-yang",
+              "fontFamily": "fab"
+            },
+            "title": "Dashboard",
+            "url": "/dashboard",
+            "order": 1,
+            "showOnCompany": true,
+            "showOnLocation": true,
+            "showToAllLocations": true,
+            "locations": ["gfWreTIHL8pDbggBb7af", "67WreTIHL8pDbggBb7ty"],
+            "openMode": "iframe",
+            "userRole": "all",
+            "allowCamera": false,
+            "allowMicrophone": false
+          }
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:** Invalid input.
+    *   **401 Unauthorized:** Invalid token or authentication error.
+        *   Example: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **403 Forbidden:** Insufficient permissions.
+    *   **422 Unprocessable Entity:** Semantic errors in the request.
+        *   Example: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint creates a new custom menu for a company, requiring authentication and proper permissions to configure its display, access, and behavior within the HighLevel platform.
+
+### 11. TAGS:
+Custom Menus, Create, Link, POST, Company, Agency, Sub-Account, UI Customization, Navigation, API
+
+### 12. CODE EXAMPLES AVAILABILITY:
+-   **curl:** Available
+-   **nodejs:** Not explicitly shown in the provided text.
+-   **python:** Not explicitly shown in the provided text.
+-   **php:** Not explicitly shown in the provided text.
+-   **java:** Not explicitly shown in the provided text.
+-   **go:** Not explicitly shown in the provided text.
+-   **ruby:** Not explicitly shown in the provided text.
+-   **powershell:** Not explicitly shown in the provided text.

@@ -1,0 +1,52 @@
+Here is the structured summary of the API documentation:
+
+**1. ENDPOINT NAME:**
+Remove Contact From Campaign
+
+**2. CATEGORY:**
+Contacts
+
+**3. HTTP METHOD:**
+DELETE
+
+**4. ENDPOINT URL:**
+`/contacts/:contactId/campaigns/:campaignId`
+
+**5. FULL URL:**
+`https://services.leadconnectorhq.com/contacts/:contactId/campaigns/:campaignId`
+
+**6. REQUIRED PARAMETERS:**
+*   `Version` (string): API Version. Possible values: `2021-07-28`
+*   `contactId` (string): Contact Id. Example: `3bZD1nQzbul0MCancbQD`
+*   `campaignId` (string): Campaigns Id. Example: `Y2I9XM7aO1hncuSOlc9L`
+
+**7. OPTIONAL PARAMETERS:**
+Not specified in documentation
+
+**8. AUTHENTICATION:**
+*   **Scope(s):** `contacts.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+**9. RESPONSE FORMAT:**
+*   **200 OK (Successful response)**
+    *   Content Type: `application/json`
+    *   Schema:
+        *   `succeded` (boolean). Example: `true`
+    *   Example:
+        ```json
+        {"succeded": true}
+        ```
+
+**10. PURPOSE:**
+This endpoint removes a specific contact from a specified campaign.
+
+**11. TAGS:**
+Contacts, Campaign, Remove, Delete, CRM, Marketing Automation, HighLevel
+
+**12. Code Examples:**
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`. A cURL example is provided in the documentation.

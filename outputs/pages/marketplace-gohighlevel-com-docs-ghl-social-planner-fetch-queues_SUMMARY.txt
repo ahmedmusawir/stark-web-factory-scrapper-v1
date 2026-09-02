@@ -1,0 +1,96 @@
+Here's a structured summary of the API documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+Fetch category queues for a location
+
+### 2. CATEGORY:
+Social Planner - Category Queue
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/social-media-posting/category/queues/list`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/category/queues/list`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible value: `2021-07-28`
+*   **Body Parameters:**
+    *   `locationId` (string): Location ID
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters:**
+    *   `skip` (number): Number of items to skip
+    *   `limit` (number): Maximum number of items to return
+
+### 8. AUTHENTICATION:
+Token-based (e.g., OAuth 2.0 Bearer Token). Indicated by a `401 Unauthorized` response with the message "Invalid token: access token is invalid". Specific scopes are not detailed in this documentation section.
+
+### 9. RESPONSE FORMAT:
+**Successful Response (201):**
+`application/json`
+
+```json
+{
+  "success": true,
+  "statusCode": 201,
+  "results": {
+    "message": "Queues fetched successfully",
+    "queues": [
+      {
+        "_id": "60af88475f1b2c001f5d5f4b",
+        "locationId": "location-123",
+        "categoryId": "60af88475f1b2c001f5d5f4b",
+        "timeSlots": [
+          {
+            "dayOfWeek": 0,
+            "time": "09:00"
+          }
+        ],
+        "enableFuturePosts": false,
+        "prioritizeNewContent": false,
+        "currentOrder": 1000,
+        "status": "active",
+        "startDate": "2023-01-01T12:00:00Z",
+        "skipDateTime": ["2023-01-02T12:00:00Z"],
+        "currentPostId": "60af88475f1b2c001f5d5f4b",
+        "totalPosts": 10,
+        "lastScheduledTime": "2023-01-01T12:00:00Z",
+        "createdBy": "user-123",
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z",
+        "category": {
+          "_id": "6756f381be2553245b08d30c",
+          "name": "Category Name",
+          "primaryColor": "#FFFFFF",
+          "secondaryColor": "#000000",
+          "deleted": false,
+          "locationId": "fvg1TXIiVxGcdOaL0riG",
+          "createdBy": "SQ6d63Va2PUbWEZ9k0TD",
+          "createdAt": "2024-12-09T13:41:21.385Z",
+          "updatedAt": "2024-12-09T13:41:21.385Z"
+        }
+      }
+    ],
+    "meta": {
+      "count": "100"
+    }
+  },
+  "traceId": "string"
+}
+```
+
+### 10. PURPOSE:
+This endpoint retrieves a paginated list of all category queues for a specified location, excluding any queues that have been marked as deleted.
+
+### 11. TAGS:
+Social Planner, Category Queue, Queue, Fetch, List, Location, Pagination, Social Media Posting
+
+---
+**Code Examples Availability:**
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

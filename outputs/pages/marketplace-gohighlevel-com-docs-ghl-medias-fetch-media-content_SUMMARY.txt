@@ -1,0 +1,76 @@
+Here is a structured summary of the API documentation:
+
+### STRUCTURED SUMMARY
+
+**1. ENDPOINT NAME:** Get List of Files/ Folders
+
+**2. CATEGORY:** Media Storage
+
+**3. HTTP METHOD:** GET
+
+**4. ENDPOINT URL:** `/medias/files`
+
+**5. FULL URL:** `https://services.leadconnectorhq.com/medias/files`
+
+**6. REQUIRED PARAMETERS:**
+*   `Version` (string): API Version. Possible values: [`2021-07-28`] (Header Parameter)
+*   `sortBy` (string): Field to sorting the file listing by. Example: `createdAt` (Query Parameter)
+*   `sortOrder` (string): Direction in which file needs to be sorted. Example: `asc` (Query Parameter)
+*   `type` (string): Type. Example: `file` (Query Parameter)
+*   `altType` (string): AltType. Possible values: [`location`] (Query Parameter)
+*   `altId` (string): location Id (Query Parameter)
+
+**7. OPTIONAL PARAMETERS:**
+*   `offset` (string): Number of files to skip in listing. Example: `5` (Query Parameter)
+*   `limit` (string): Number of files to show in the listing. Example: `10` (Query Parameter)
+*   `query` (string): Query text. Example: `Test file` (Query Parameter)
+*   `parentId` (string): parent id or folder id (Query Parameter)
+*   `fetchAll` (string): Fetch all files or folders. Example: `false` (Query Parameter)
+
+**8. AUTHENTICATION:**
+*   **Scope(s):** `medias.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Authorization Header:**
+    *   `name`: Authorization
+    *   `type`: http
+    *   `scopes`: `medias.readonly`
+    *   `scheme`: bearer
+    *   `bearerFormat`: JWT
+    *   `in`: header
+    *   `description`: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+**9. RESPONSE FORMAT:**
+*   **Status Code:** `200` (Successful response)
+*   **Content Type:** `application/json`
+*   **Schema:**
+    ```json
+    {
+      "files": [
+        {
+          "altId": "locationId",
+          "altType": "location",
+          "name": "file name",
+          "parentId": "parent folder id",
+          "url": "file url",
+          "path": "file path"
+        }
+      ]
+    }
+    ```
+    *Note: The `files` field is an array of File Objects.*
+
+**10. PURPOSE:** Fetches a list of files and folders from the media storage.
+
+**11. TAGS:** Media Storage, Medias, Files, Folders, Get, List, Fetch, Read, Content, Assets
+
+**Code Examples:**
+The documentation indicates availability of code examples for:
+*   `curl`
+*   `nodejs`
+*   `python`
+*   `php`
+*   `java`
+*   `go`
+*   `ruby`
+*   `powershell`

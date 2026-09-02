@@ -1,0 +1,109 @@
+Here's a structured summary of the API documentation for "Send Estimate":
+
+### 1. ENDPOINT NAME
+Send Estimate
+
+### 2. CATEGORY
+Invoice Management - Estimates
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/invoices/estimate/:estimateId/send`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/invoices/estimate/:estimateId/send`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+
+*   **Path Parameters:**
+    *   `estimateId` (string): Estimate Id (Example: `5f9d6d8b1b2d2c001f2d9e4b`)
+
+*   **Body Parameters:**
+    *   `altId` (string): Location Id or Agency Id (Example: `6578278e879ad2646715ba9c`)
+    *   `altType` (string): Possible values: [`location`]
+    *   `action` (string): Possible values: [`sms_and_email`, `send_manually`, `email`, `sms`]
+    *   `liveMode` (boolean): livemode for estimate (Example: `true`)
+    *   `userId` (string): Please ensure that the UserId corresponds to an authorized personnel, either by an employee ID or agency ID, to access this location. This account will serve as the primary channel for all future communications and updates. (Example: `6578278e879ad2646715ba9c`)
+
+### 7. OPTIONAL PARAMETERS
+
+*   **Body Parameters:**
+    *   `sentFrom` (object): sender details for invoice, valid only if invoice is not sent manually
+        *   `fromName` (string): Sender name to be used while sending email notification (Example: `Alex`)
+        *   `fromEmail` (string): Email id to be used while sending email notification (Example: `alex@example.com`)
+    *   `estimateName` (string): estimate name (Example: `Estimate`)
+
+### 8. AUTHENTICATION
+
+*   **Scope(s)**: `invoices/estimate.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`, `Agency Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+
+*   **Successful Response (201 Created)**:
+    *   **Content-Type**: `application/json`
+    *   **Schema**:
+        *   `altId` (string): Location Id or Agency Id
+        *   `altType` (string): Possible values: [`location`]
+        *   `_id` (string): Unique identifier
+        *   `liveMode` (boolean): Indicates if it is in live mode
+        *   `deleted` (boolean): Indicates if deleted
+        *   `name` (string): Name
+        *   `currency` (string): Currency code
+        *   `businessDetails` (object): Business details associated with the estimate
+        *   `items` (array[]): An array of items
+        *   `discount` (object): Discount details for the estimate template
+        *   `value` (number): Discount Value (Default: `0`)
+        *   `type` (string): Discount type (Possible values: [`percentage`, `fixed`], Default: `percentage`)
+        *   `validOnProductIds` (string[]): Product Ids on which discount is applicable
+        *   `title` (string): Title
+        *   `estimateNumberPrefix` (string): Estimate number prefix
+        *   `attachments` (object[]): Attachments (id, name, url, type, size)
+        *   `updatedBy` (string): User Id of who last updated
+        *   `total` (number): Total amount
+        *   `createdAt` (date-time): Timestamp when created
+        *   `updatedAt` (date-time): Timestamp when last updated
+        *   `__v` (number): Version number
+        *   `automaticTaxesEnabled` (boolean): Indicates if automatic taxes are enabled for this estimate
+        *   `termsNotes` (string): Terms and conditions for the estimate, supports HTML markup
+        *   `companyId` (string): Company identifier associated with the estimate
+        *   `contactDetails` (object): Contact details for the estimate
+        *   `issueDate` (date-time): Date when the estimate was issued
+        *   `expiryDate` (date-time): Date when the estimate expires
+        *   `sentBy` (string): User who sent the estimate
+        *   `automaticTaxesCalculated` (boolean): Indicates if automatic taxes were calculated
+        *   `meta` (object): Additional metadata associated with the estimate
+        *   `estimateActionHistory` (string[]): History of actions taken on the estimate
+        *   `sentTo` (object): Recipient details for the estimate (email, phoneNo)
+        *   `frequencySettings` (object): Frequency settings for recurring estimates
+        *   `enabled` (boolean): enabled for the frequency settings
+        *   `schedule` (object): schedule setting for the estimate (executeAt, rrule, intervalType, interval, startDate, startTime, endDate, endTime, dayOfMonth, dayOfWeek, numOfWeek, monthOfYear, count, daysBefore, useStartAsPrimaryUserAccepted, endType)
+        *   `lastVisitedAt` (date-time): Timestamp when the estimate was last visited
+        *   `totalamountInUSD` (number): Total amount in USD
+        *   `autoInvoice` (object): Auto-invoice settings for the estimate (enabled, directPayments)
+        *   `traceId` (string): Trace ID for logging and debugging
+    *   **Example (JSON)**: Provided in documentation, a comprehensive JSON object representing the sent estimate.
+
+*   **Error Responses**:
+    *   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `422 Unprocessable Entity`: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE
+This API endpoint allows you to send an estimate by its unique identifier, specifying the recipient details and delivery method.
+
+### 11. TAGS
+Invoice, Estimate, Send, Communication, Billing, Transaction, Documents
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

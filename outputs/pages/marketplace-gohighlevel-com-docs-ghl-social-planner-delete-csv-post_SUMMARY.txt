@@ -1,0 +1,70 @@
+Here is a structured summary of the API documentation for "Delete CSV Post":
+
+### 1. ENDPOINT NAME:
+Delete CSV Post
+
+### 2. CATEGORY:
+Social Planner / CSV
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/social-media-posting/:locationId/csv/:csvId/post/:postId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/:locationId/csv/:csvId/post/:postId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `locationId` (string): The ID of the location. Example: `sdfdsfdsfEWEsdfsdsW32dd`
+    *   `postId` (string): The ID of the CSV Post. Example: `65f92e55cc884f0d0845e447`
+    *   `csvId` (string): The ID of the CSV. Example: `65f92e55cc884f0d0845e447`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `Bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** `Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.`
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `success` (boolean): Success or Failure. Example: `true`
+        *   `statusCode` (number): Status Code. Example: `200`
+        *   `message` (string): Message. Example: `Deleted Post`
+        *   `results` (object): Requested Results
+            *   `postId` (string): Post Id
+    *   **Example:**
+        ```json
+        {"success":true,"statusCode":200,"message":"Deleted Post","results":{"postId":"string"}}
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows for the deletion of a specific social media post that was originally created via a CSV upload, identified by its location ID, CSV ID, and post ID.
+
+### 11. TAGS:
+Social Planner, CSV, Delete, Post, Social Media Posting, Location, HighLevel, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for the following languages:
+*   `curl`
+*   `nodejs`
+*   `python`
+*   `php`
+*   `java`
+*   `go`
+*   `ruby`
+*   `powershell`

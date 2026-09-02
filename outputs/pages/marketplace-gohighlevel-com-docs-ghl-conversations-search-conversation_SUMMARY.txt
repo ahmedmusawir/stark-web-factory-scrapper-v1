@@ -1,0 +1,86 @@
+Here's a structured summary of the "Search Conversations" API documentation:
+
+### 1. ENDPOINT NAME:
+Search Conversations
+
+### 2. CATEGORY:
+Conversations
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/conversations/search`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversations/search`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-04-15`)
+*   **Query Parameters:**
+    *   `locationId` (string): Location Id
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   `contactId` (string): Contact Id
+    *   `assignedTo` (string): User IDs that conversations are assigned to. Multiple IDs can be provided as comma-separated values. Use "unassigned" to fetch conversations not assigned to any user.
+    *   `followers` (string): User IDs of followers to filter conversations by. Multiple IDs can be provided as comma-separated values.
+    *   `mentions` (string): User Id of the mention. Multiple values are comma separated.
+    *   `query` (string): Search parameter as a string
+    *   `sort` (string): Sort parameter - asc or desc (Possible values: `asc`, `desc`)
+    *   `startAfterDate` (any): Search to begin after the specified date - should contain the sort value of the last document
+    *   `id` (string): Id of the conversation
+    *   `limit` (number): Limit of conversations - Default is 20
+    *   `lastMessageType` (string): Type of the last message in the conversation as a string (Possible values: `TYPE_CALL`, `TYPE_SMS`, `TYPE_EMAIL`, `TYPE_SMS_REVIEW_REQUEST`, `TYPE_WEBCHAT`, `TYPE_SMS_NO_SHOW_REQUEST`, `TYPE_CAMPAIGN_SMS`, `TYPE_CAMPAIGN_CALL`, `TYPE_CAMPAIGN_EMAIL`, `TYPE_CAMPAIGN_VOICEMAIL`, `TYPE_FACEBOOK`, `TYPE_CAMPAIGN_FACEBOOK`, `TYPE_CAMPAIGN_MANUAL_CALL`, `TYPE_CAMPAIGN_MANUAL_SMS`, `TYPE_GMB`, `TYPE_CAMPAIGN_GMB`, `TYPE_REVIEW`, `TYPE_INSTAGRAM`, `TYPE_WHATSAPP`, `TYPE_CUSTOM_SMS`, `TYPE_CUSTOM_EMAIL`, `TYPE_CUSTOM_PROVIDER_SMS`, `TYPE_CUSTOM_PROVIDER_EMAIL`, `TYPE_IVR_CALL`, `TYPE_ACTIVITY_CONTACT`, `TYPE_ACTIVITY_INVOICE`, `TYPE_ACTIVITY_PAYMENT`, `TYPE_ACTIVITY_OPPORTUNITY`, `TYPE_LIVE_CHAT`, `TYPE_LIVE_CHAT_INFO_MESSAGE`, `TYPE_ACTIVITY_APPOINTMENT`, `TYPE_FACEBOOK_COMMENT`, `TYPE_INSTAGRAM_COMMENT`, `TYPE_CUSTOM_CALL`, `TYPE_INTERNAL_COMMENT`, `TYPE_ACTIVITY_EMPLOYEE_ACTION_LOG`)
+    *   `lastMessageAction` (string): Action of the last outbound message in the conversation as string. (Possible values: `automated`, `manual`)
+    *   `lastMessageDirection` (string): Direction of the last message in the conversation as string. (Possible values: `inbound`, `outbound`)
+    *   `status` (string): The status of the conversation to be filtered - all, read, unread, starred (Possible values: `all`, `read`, `unread`, `starred`, `recents`)
+    *   `sortBy` (string): The sorting of the conversation to be filtered as - manual messages or all messages (Possible values: `last_manual_message_date`, `last_message_date`, `score_profile`)
+    *   `sortScoreProfile` (string): Id of score profile on which sortBy.ScoreProfile should sort on
+    *   `scoreProfile` (string): Id of score profile on which conversations should get filtered out, works with scoreProfileMin & scoreProfileMax
+    *   `scoreProfileMin` (number): Minimum value for score
+    *   `scoreProfileMax` (number): Maximum value for score
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `conversations.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code**: `200 OK`
+*   **Content Type**: `application/json`
+*   **Schema**:
+    *   `conversations` (array of objects, required): The list of all conversations found for the given query
+        *   `id` (string, required): Conversation Id
+        *   `contactId` (string, required): Contact Id
+        *   `locationId` (string, required): Location Id
+        *   `lastMessageBody` (string, required): Content of the most recent message in the conversation
+        *   `lastMessageType` (string, required): Channel/type of the most recent message (SMS, Email, Call, etc)
+        *   `type` (string, required): Primary channel/type of the conversation (Phone, Email, etc)
+        *   `unreadCount` (number, required): Number of unread messages in this conversation
+        *   `fullName` (string, required): Complete name of the contact (first and last name)
+        *   `contactName` (string, required): Alternative display name for the contact - used when full name is not available
+        *   `email` (string, required): Primary email address of the contact
+        *   `phone` (string, required): Primary phone number of the contact
+    *   `total` (number, required): Total Number of results found for the given query
+*   **Example**:
+    ```json
+    {"conversations":[{"id":"ABCHkzuJQ8ZMd4Te84GK","contactId":"ABCHkzuJQ8ZMd4Te84GK","locationId":"ABCHkzuJQ8ZMd4Te84GK","lastMessageBody":"This is a sample message body","lastMessageType":"TYPE_SMS","type":"TYPE_PHONE","unreadCount":1,"fullName":"John Doe","contactName":"John Doe Company","email":"johndoe@mailingdomain.com","phone":"+15550001234"}],"total":100}
+    ```
+*   **Error Responses**:
+    *   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+Returns a list of all conversations matching the search criteria along with the sort and filter options selected.
+
+### 11. TAGS:
+Conversations, Search, Retrieve, Filter, List, GET, Messaging, Communication
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

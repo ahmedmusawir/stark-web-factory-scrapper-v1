@@ -1,0 +1,77 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Create a new wallet charge
+
+### 2. CATEGORY:
+Wallet Charges (under Developer Marketplace)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/marketplace/billing/charges`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/marketplace/billing/charges`
+
+### 6. REQUIRED PARAMETERS:
+*   `appId` (string): App ID of the App
+*   `meterId` (string): Billing Meter ID (you can find this on your app's pricing page)
+*   `eventId` (string): Event ID / Transaction ID on your server's side. This will help you maintain the reference of the event/transaction on your end that you charged the customer for.
+*   `locationId` (string): ID of the Sub-Account to be charged
+*   `companyId` (string): ID of the Agency the Sub-account belongs to
+*   `description` (string): Description of the charge
+*   `units` (string): Number of units to charge
+
+### 7. OPTIONAL PARAMETERS:
+*   `userId` (string): User ID
+*   `price` (number): Price per unit to charge
+*   `eventTime` (string): The timestamp when the event/transaction was performed. If blank, the billing timestamp will be set as the event time. ISO8601 Format. Example: `2025-03-26T00:00:000Z`
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `charges.write`
+*   **Auth Method(s):** `OAuth Access Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**Successful Response (201 Created):**
+```json
+{
+  "success": true,
+  "chargeId": "charge_123"
+}
+```
+*   **success** (boolean): Indicates if the charge was successful.
+*   **chargeId** (string): The ID of the created charge.
+
+**Error Responses:**
+*   **400 Bad Request:**
+    ```json
+    {"message":"string","statusCode":400}
+    ```
+*   **422 Unprocessable Entity:**
+    ```json
+    {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+    ```
+
+### 10. PURPOSE:
+This endpoint allows an authorized application to create a new wallet charge for a specific sub-account based on a billing meter, app, and event details.
+
+### 11. TAGS:
+Wallet, Charge, Billing, Marketplace, Developer, Create, Post, Financial, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   Node.js
+*   Python
+*   PHP
+*   Java
+*   Go
+*   Ruby
+*   PowerShell

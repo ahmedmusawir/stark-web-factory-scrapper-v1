@@ -1,0 +1,86 @@
+Here's a structured summary of the API documentation for "Update Rebilling":
+
+### 1. ENDPOINT NAME:
+Update Rebilling (Deprecated)
+
+### 2. CATEGORY:
+Saas
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/saas-api/public-api/update-rebilling/:companyId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/saas-api/public-api/update-rebilling/:companyId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`.
+
+*   **Path Parameters:**
+    *   `companyId` (string): Company ID to update rebilling for.
+
+*   **Body Parameters:**
+    *   `product` (string): The product to update rebilling for. Possible values: [`contentAI`, `workflow_premium_actions`, `workflow_ai`, `conversationAI`, `EmailNotification`, `whatsApp`, `reviewsAI`, `VERIFIED_CALLER_ID`, `WALLET_SALES_TAX`, `NOTIFICATION_SMS`, `EmailSmtp`, `EmailVerification`, `autoCompleteAddress`, `funnelAI`, `domainPurchase`, `Phone`, `Email`].
+    *   `locationIds` (string[]): Array of location IDs to update rebilling for.
+    *   `config` (object): Configuration for rebilling settings.
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters (fields within the required `config` object):**
+    *   `optIn` (boolean): Enable the product for the locations.
+    *   `enabled` (boolean): Enable the rebilling for the locations.
+    *   `markup` (number): Additional value to be added in terms of percentage. For example, if the product price is $100 and the markup is 5, the amount charged will be $105.
+
+### 8. AUTHENTICATION:
+
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Scheme:** `bearer` (JWT)
+*   **In:** `header` (Authorization header)
+*   **Description:** Use the Access Token generated with user type as Company.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Success):**
+    *   **Description:** Rebilling updated successfully
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "success": true
+        }
+        ```
+    *   **Example:** `{"success":true}`
+
+*   **400 Bad Request:**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{"statusCode": number, "message": string}`
+    *   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+
+*   **401 Unauthorized:**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{"statusCode": number, "message": string, "error": string}`
+    *   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+*   **404 Resource not found:**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{"statusCode": number, "message": string[]}`
+    *   **Example:** `{"statusCode":404,"message":["Contact not found","User not found","Group not found","Channel not found"]}`
+
+*   **500 Internal server error:**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{"statusCode": number, "message": string}`
+    *   **Example:** `{"statusCode":500,"message":"Internal Server Error"}`
+
+### 10. PURPOSE:
+This endpoint is used to bulk update rebilling for given location IDs and has been deprecated.
+
+### 11. TAGS:
+`Saas`, `Rebilling`, `Update`, `Location`, `Subscription`, `Company`, `Product`, `Deprecated`
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

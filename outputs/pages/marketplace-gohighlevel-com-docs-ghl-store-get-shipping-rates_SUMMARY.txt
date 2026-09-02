@@ -1,0 +1,69 @@
+```
+## STRUCTURED SUMMARY
+
+### 1. ENDPOINT NAME:
+Get Shipping Rate
+
+### 2. CATEGORY:
+Store
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/store/shipping-zone/:shippingZoneId/shipping-rate/:shippingRateId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/store/shipping-zone/:shippingZoneId/shipping-rate/:shippingRateId`
+
+### 6. REQUIRED PARAMETERS:
+*   `shippingZoneId` (string): ID of the shipping zone
+*   `shippingRateId` (string): ID of the shipping rate that needs to be returned
+*   `altId` (string): Location Id or Agency Id
+*   `altType` (string): Possible values: [`location`]
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+
+### 9. RESPONSE FORMAT:
+**Status Code:** `200 OK`
+**Content Type:** `application/json`
+**Structure:**
+An object containing:
+*   `status` (boolean): Status of API action (e.g., `true`)
+*   `message` (string): Success message (e.g., `Successfully created`)
+*   `data` (object): Contains the shipping rate details:
+    *   `altId` (string): Location Id or Agency Id
+    *   `altType` (string): Possible values: [`location`]
+    *   `name` (string): Name of the shipping zone
+    *   `description` (string): Delivery description
+    *   `currency` (string): The currency of the amount of the rate / handling fee
+    *   `amount` (number): The amount of the shipping rate (0 means free). Fixed Handling fee if it is a carrier rate.
+    *   `conditionType` (string): Type of condition to provide the conditional pricing (Possible values: [`none`, `price`, `weight`])
+    *   `minCondition` (number): Minimum condition for applying this price.
+    *   `maxCondition` (number): Maximum condition for applying this price.
+    *   `isCarrierRate` (boolean): Indicates if this is a carrier rate.
+    *   `shippingCarrierId` (string): Shipping carrier ID.
+    *   `percentageOfRateFee` (number): Percentage of rate fee if it is a carrier rate.
+    *   `shippingCarrierServices` (array of objects):
+        *   `name` (string): Name of the shipping carrier service
+        *   `value` (string): Value of the shipping carrier service
+    *   `_id` (string): The unique identifier for the shipping rate.
+    *   `shippingZoneId` (string): The unique identifier for the shipping zone.
+    *   `createdAt` (string): Timestamp of creation.
+    *   `updatedAt` (string): Timestamp of last update.
+
+### 10. PURPOSE:
+Retrieves the details of a specific shipping rate by its ID within a designated shipping zone.
+
+### 11. TAGS:
+Store, Shipping, Shipping Rate, Get, Retrieve, Shipping Zone, Rate, Details
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.
+```

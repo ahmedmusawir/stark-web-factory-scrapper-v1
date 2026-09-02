@@ -1,0 +1,80 @@
+Here is a structured summary of the API documentation for "Fetch Coupon":
+
+### 1. ENDPOINT NAME
+Fetch Coupon
+
+### 2. CATEGORY
+Payments
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/payments/coupon`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/payments/coupon`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Query Parameters:**
+    *   `altId` (string): Location Id
+    *   `altType` (string): Alt Type. Possible values: [`location`]
+    *   `id` (string): Coupon id
+    *   `code` (string): Coupon code
+    *(Note: While the purpose states "using either its unique identifier or promotional code", both `id` and `code` are explicitly marked as `required` in the parameter list.)*
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Scope(s):** `payments/coupons.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer` (bearerFormat: `JWT`)
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+
+**Successful Response (200 OK):**
+*   **Content Type:** `application/json`
+*   **Schema (JSON Object):**
+    *   `_id` (string): Unique MongoDB identifier for the coupon
+    *   `usageCount` (number): Number of times the coupon has been used
+    *   `limitPerCustomer` (number): Maximum number of times a customer can use this coupon (0 for unlimited)
+    *   `altId` (string): Location Id
+    *   `altType` (string): Type of entity. Example: `location`
+    *   `name` (string): Display name of the coupon
+    *   `code` (string): Redemption code for the coupon
+    *   `discountType` (string): Type of discount. Possible values: [`percentage`, `amount`]
+    *   `discountValue` (number): Value of the discount (percentage or fixed amount)
+    *   `status` (string): Current status of the coupon. Possible values: [`scheduled`, `active`, `expired`]
+    *   `startDate` (string): Date when the coupon becomes active (ISO 8601 format)
+    *   `endDate` (string, optional): End date when the coupon expires (ISO 8601 format)
+    *   `applyToFuturePayments` (boolean): Indicates if the coupon applies to future recurring payments
+    *   `applyToFuturePaymentsConfig` (object, optional): Configuration for how the coupon applies to future payments
+        *   `type` (string): Type of future payments configuration. Possible values: [`forever`, `fixed`]
+        *   `duration` (number, optional): Duration value for fixed type configurations
+        *   `durationType` (string, optional): Duration type for fixed configurations (e.g., `months`)
+    *   `userId` (string, optional): User ID associated with the coupon (if applicable)
+    *   `createdAt` (string): Creation timestamp (ISO 8601 format)
+    *   `updatedAt` (string): Last update timestamp (ISO 8601 format)
+    *   `traceId` (string): Unique identifier for tracing this API request
+
+**Error Response (422 Unprocessable Entity):**
+*   **Content Type:** `application/json`
+*   **Schema (JSON Object):**
+    *   `statusCode` (number)
+    *   `message` (string[])
+    *   `error` (string)
+
+### 10. PURPOSE
+The "Get Coupon Details" API enables you to retrieve comprehensive information about a specific coupon using either its unique identifier or promotional code.
+
+### 11. TAGS
+Payments, Coupons, Fetch, Get, Retrieve, Details, Read, Coupon Code, Location
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

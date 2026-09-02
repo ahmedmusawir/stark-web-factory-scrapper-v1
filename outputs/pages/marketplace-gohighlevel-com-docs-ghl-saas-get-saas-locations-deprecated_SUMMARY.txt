@@ -1,0 +1,66 @@
+Here's a structured summary of the API documentation for "Get SaaS Locations":
+
+### 1. ENDPOINT NAME:
+Get SaaS Locations
+
+### 2. CATEGORY:
+Saas
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/saas-api/public-api/saas-locations/:companyId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/saas-api/public-api/saas-locations/:companyId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+*   **Path Parameters:**
+    *   `companyId` (string): Company ID to get SaaS locations for. Example: `5DP4iH6HLkQsiKESj6rh`
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   `page` (number): Page number for pagination. Example: `1`
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Authorization Header:** Bearer Token (JWT format) in the `Authorization` header.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `200 OK`
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   `locations` (array of objects): Array of SaaS locations.
+        *   `locationId` (string): Location ID. Example: `locationId1`
+        *   `companyId` (string): Company ID. Example: `companyId1`
+        *   `saasMode` (string): SaaS mode. Example: `saasV2`
+        *   `subscriptionId` (string): Subscription ID. Example: `subscriptionId1`
+        *   `customerId` (string): Customer ID. Example: `customerId1`
+        *   `name` (string): Name. Example: `John Doe`
+        *   `email` (string): Email. Example: `john.doe@example.com`
+        *   `providerLocationId` (string): Provider location ID. Example: `r06mdj4OrrERzYDvsOdh`
+        *   `isSaaSV2` (boolean): Indicates if the SaaS is V2. Example: `true`
+        *   `subscriptionInfo` (object): Subscription information. Example: `{"priceId":"price_1QDPY5FpU9DlKp7RQ8BXfywx","saasPlanId":"66c4d36534f21f900dc2a265","stripeProductId":"prod_1QDPY5FpU9DlKp7RQ8BXfywx","subscriptionStatus":"active"}`
+    *   `pagination` (object):
+        *   `page` (number): Page number. Example: `1`
+        *   `limit` (number): Number of items per page. Example: `10`
+        *   `total` (number): Total number of items. Example: `100`
+        *   `totalPages` (number): Total number of pages. Example: `10`
+        *   `hasNext` (boolean): Indicates if there is a next page. Example: `true`
+        *   `hasPrev` (boolean): Indicates if there is a previous page. Example: `true`
+
+### 10. PURPOSE:
+This endpoint fetches all SaaS-activated locations for a given company with support for pagination.
+
+### 11. TAGS:
+SaaS, Locations, Company, Get, Fetch, Pagination, Deprecated, Agency, Subscription
+
+### 12. DEPRECATION STATUS:
+This endpoint is **deprecated** and may be replaced or removed in future API versions.
+
+### 13. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

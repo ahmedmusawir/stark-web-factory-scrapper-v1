@@ -1,0 +1,319 @@
+[Skip to main content](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html#__docusaurus_skipToContent_fallback)
+[![HighLevel Logo](https://marketplace.gohighlevel.com/docs/img/highlevel.png)](https://marketplace.gohighlevel.com/docs/)[Highlevel API 2.0](https://marketplace.gohighlevel.com/docs/oauth/GettingStarted)
+[Sign In](https://marketplace.gohighlevel.com/login)
+  * [AI Agents Contest - Guide](https://marketplace.gohighlevel.com/docs/other/AIAgentsGettingStarted)
+  * [Getting Started](https://marketplace.gohighlevel.com/docs/oauth/GettingStarted)
+  * [Authorization](https://marketplace.gohighlevel.com/docs/Authorization/authorization_doc)
+  * [SDK Overview](https://marketplace.gohighlevel.com/docs/sdk/GettingStartedSDK)
+  * [External Billing](https://marketplace.gohighlevel.com/docs/oauth/Billing)
+  * [External Authentication](https://marketplace.gohighlevel.com/docs/oauth/ExternalAuthentication)
+  * [User Context in Marketplace Apps](https://marketplace.gohighlevel.com/docs/other/user-context-marketplace-apps)
+  * [MCP Server](https://marketplace.gohighlevel.com/docs/other/mcp)
+  * [Marketplace Modules](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Marketplace Policies](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Changelog](https://marketplace.gohighlevel.com/docs/Changelog)
+  * [Country List](https://marketplace.gohighlevel.com/docs/oauth/country)
+  * [FAQs](https://marketplace.gohighlevel.com/docs/oauth/Faqs)
+  * [OAuth 2.0](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Business](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Calendars](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Campaigns](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Companies](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Contacts](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Objects](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Associations](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Custom Fields V2](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Conversations](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Courses](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Email](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Forms](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Invoice](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Trigger Links](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Sub-Account (Formerly location)](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Media Storage](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Developer marketplace](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Blogs](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Funnels](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Opportunities](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Payments](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Products](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+    * [Introduction](https://marketplace.gohighlevel.com/docs/ghl/products/products-api)
+    * [Products](https://marketplace.gohighlevel.com/docs/ghl/products/products)
+      * [Bulk Update Products](https://marketplace.gohighlevel.com/docs/ghl/products/bulk-update)
+      * [Bulk Edit Products and Prices](https://marketplace.gohighlevel.com/docs/ghl/products/bulk-edit)
+      * [Get Product by ID](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id)
+      * [Delete Product by ID](https://marketplace.gohighlevel.com/docs/ghl/products/delete-product-by-id)
+      * [Update Product by ID](https://marketplace.gohighlevel.com/docs/ghl/products/update-product-by-id)
+      * [Create Product](https://marketplace.gohighlevel.com/docs/ghl/products/create-product)
+      * [List Products](https://marketplace.gohighlevel.com/docs/ghl/products/list-invoices)
+    * [Prices](https://marketplace.gohighlevel.com/docs/ghl/products/prices)
+    * [Store](https://marketplace.gohighlevel.com/docs/ghl/products/store)
+    * [Collections](https://marketplace.gohighlevel.com/docs/ghl/products/collections)
+    * [Reviews](https://marketplace.gohighlevel.com/docs/ghl/products/reviews)
+  * [Saas](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Snapshots](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Social Planner](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Surveys](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Users](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Workflows](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [LC Email](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Custom menus](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Voice AI](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Proposals](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Knowledge Base](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Conversation AI](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Phone System](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Store](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [AI Agent Studio](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html)
+  * [Webhook Integration Guide](https://marketplace.gohighlevel.com/docs/webhook/WebhookIntegrationGuide)
+  * [Webhook Logs Dashboard](https://marketplace.gohighlevel.com/docs/webhook/WebhookLogsDashboard)
+  * [Webhook](https://marketplace.gohighlevel.com/docs/category/webhook)
+
+
+  * [](https://marketplace.gohighlevel.com/docs/)
+  * Products
+  * [Products](https://marketplace.gohighlevel.com/docs/ghl/products/products)
+  * Get Product by ID
+
+
+# Get Product by ID
+```
+GET 
+## https://services.leadconnectorhq.com/products/:productId
+
+```
+
+The "Get Product by ID" API allows to retrieve information for a specific product using its unique identifier. Use this endpoint to fetch details for a single product based on the provided product ID.
+### Requirements
+#### Scope(s)
+`products.readonly`
+#### Auth Method(s)
+`OAuth Access Token``Private Integration Token`
+#### Token Type(s)
+`Sub-Account Token``Agency Token`
+## Request[​](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html#request "Direct link to Request")
+### Header Parameters
+**Version** stringrequired
+**Possible values:** [`2021-07-28`]
+API Version
+
+
+### Path Parameters
+**productId** stringrequired
+ID or the slug of the product that needs to be returned
+Example: 6578278e879ad2646715ba9c
+
+
+### Query Parameters
+**locationId** stringrequired
+location Id
+Example: 6578278e879ad2646715ba9c
+**sendWishlistStatus** boolean
+Parameter which will decide whether to show the wishlisting status of products
+Example: 
+
+
+## Responses[​](https://marketplace.gohighlevel.com/docs/ghl/products/get-product-by-id/index.html#responses "Direct link to Responses")
+  * 200
+  * 400
+  * 401
+  * 422
+
+
+Successful response 
+  * application/json
+
+
+  * Schema
+  * Example (auto)
+
+
+**Schema**
+**_id** stringrequired
+The unique identifier for the product.
+Example:`655b33a82209e60b6adb87a5`
+**description** string
+product description
+Example:`This is a really awesome product`
+**variants** object[]
+An array of variants for the product.
+  * Array [
+**id** stringrequired
+A unique identifier for the variant.
+Example:`38s63qmxfr4`
+**name** stringrequired
+The name of the variant.
+Example:`Size`
+**options** object[]required
+An array of options for the variant.
+  * Array [
+**id** stringrequired
+The unique identifier for the option.
+Example:`h4z7u0im2q8`
+**name** stringrequired
+The name of the option.
+Example:`XL`
+  * ]
+  * ]
+**locationId** stringrequired
+The unique identifier for the location.
+Example:`3SwdhCsvxI8Au3KsPJt6`
+**name** stringrequired
+The name of the product.
+Example:`Awesome Product`
+**productType** stringrequired
+The type of the product (e.g., PHYSICAL).
+Example:`PHYSICAL`
+**availableInStore** boolean
+Indicates whether the product is available in-store.
+Example:`true`
+**createdAt** date-timerequired
+The creation timestamp of the product.
+Example:`2023-11-20T10:23:36.515Z`
+**updatedAt** date-timerequired
+The last update timestamp of the product.
+Example:`2024-01-23T09:57:04.846Z`
+**statementDescriptor** string
+The statement descriptor for the product.
+Example:`abcde`
+**image** string
+The URL for the product image.
+Example:`https://storage.googleapis.com/ghl-test/3SwdhCsvxI8Au3KsPJt6/media/65af8d5df88bdb4b1022ee90.png`
+**collectionIds** string[]
+An array of category Ids for the product
+Example:`["65d71377c326ea78e1c47df5","65d71377c326ea78e1c47d34"]`
+**isTaxesEnabled** boolean
+The field indicates whether taxes are enabled for the product or not.
+**Default value:**`false`
+Example:`true`
+**taxes** string[]
+An array of ids of Taxes attached to the Product. If the expand query includes tax, the taxes will be of type `ProductTaxDto`. Please refer to the `ProductTaxDto` for additional details.
+Example:`["654492a4e6bef380114de15a"]`
+**automaticTaxCategoryId** string
+Tax category ID for Automatic taxes calculation.
+Example:`65d71377c326ea78e1c47df5`
+**label** object
+The Product label details
+**title** stringrequired
+The content for the product label.
+Example:`Featured`
+**startDate** string
+Start date in YYYY-MM-DDTHH:mm:ssZ format
+Example:`2024-06-26T05:43:35.000Z`
+**endDate** string
+Start date in YYYY-MM-DDTHH:mm:ssZ format
+Example:`2024-06-30T05:43:39.000Z`
+**slug** string
+The slug of the product by which the product will be navigated
+Example:`washing-machine`
+
+
+```
+{"_id":"655b33a82209e60b6adb87a5","description":"This is a really awesome product","variants":[{"id":"38s63qmxfr4","name":"Size","options":[{"id":"h4z7u0im2q8","name":"XL"}]}],"locationId":"3SwdhCsvxI8Au3KsPJt6","name":"Awesome Product","productType":"PHYSICAL","availableInStore":true,"createdAt":"2023-11-20T10:23:36.515Z","updatedAt":"2024-01-23T09:57:04.846Z","statementDescriptor":"abcde","image":"https://storage.googleapis.com/ghl-test/3SwdhCsvxI8Au3KsPJt6/media/65af8d5df88bdb4b1022ee90.png","collectionIds":["65d71377c326ea78e1c47df5","65d71377c326ea78e1c47d34"],"isTaxesEnabled":true,"taxes":["654492a4e6bef380114de15a"],"automaticTaxCategoryId":"65d71377c326ea78e1c47df5","label":{"title":"Featured","startDate":"2024-06-26T05:43:35.000Z","endDate":"2024-06-30T05:43:39.000Z"},"slug":"washing-machine"}
+```
+
+Product not found 
+  * application/json
+
+
+  * Schema
+  * Example (auto)
+
+
+**Schema**
+**statusCode** number
+Example:`400`
+**message** string
+Example:`Bad Request`
+
+
+```
+{"statusCode":400,"message":"Bad Request"}
+```
+
+Unauthorized 
+  * application/json
+
+
+  * Schema
+  * Example (auto)
+
+
+**Schema**
+**statusCode** number
+Example:`401`
+**message** string
+Example:`Invalid token: access token is invalid`
+**error** string
+Example:`Unauthorized`
+
+
+```
+{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+```
+
+Unprocessable Entity 
+  * application/json
+
+
+  * Schema
+  * Example (auto)
+
+
+**Schema**
+**statusCode** number
+Example:`422`
+**message** string[]
+Example:`["Unprocessable Entity"]`
+**error** string
+Example:`Unprocessable Entity`
+
+
+```
+{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+```
+
+## Share your feedback
+★★★★★
+#### Authorization: Authorization
+```
+**name:** Authorization[](https://marketplace.gohighlevel.com/docs/ghl/products/products-api#authentication)**type: **http**scopes: **products.readonly**scheme: **bearer**bearerFormat: **JWT**in: **header**description: **Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+```
+
+  * curl
+  * nodejs
+  * python
+  * php
+  * java
+  * go
+  * ruby
+  * powershell
+
+
+  * CURL
+
+
+```
+curl -L 'https://services.leadconnectorhq.com/products/:productId' \-H 'Accept: application/json' \-H 'Authorization: Bearer <TOKEN>'
+```
+
+Request Collapse all
+Base URL
+Edit
+https://services.leadconnectorhq.com
+Auth
+Security Scheme
+Location-AccessAgency-Access
+Bearer Token
+Parameters
+productId — pathrequired
+locationId — queryrequired
+Version — headerrequired
+---2021-07-28
+Show optional parameters
+sendWishlistStatus — query
+---truefalse
+Send API Request
+ResponseClear
+Click the `Send API Request` button above and see the response here!
+[PreviousBulk Edit Products and Prices](https://marketplace.gohighlevel.com/docs/ghl/products/bulk-edit)[NextDelete Product by ID](https://marketplace.gohighlevel.com/docs/ghl/products/delete-product-by-id)

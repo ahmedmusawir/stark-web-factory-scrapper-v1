@@ -1,0 +1,53 @@
+## STRUCTURED SUMMARY
+
+### 1. ENDPOINT NAME:
+Cancel a scheduled email message.
+
+### 2. CATEGORY:
+Conversations (specifically Email)
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/conversations/messages/email/:emailMessageId/schedule`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversations/messages/email/:emailMessageId/schedule`
+
+### 6. REQUIRED PARAMETERS:
+*   `emailMessageId` (string): Email Message Id
+    *   Example: `ve9EPM428h8vShlRW1KT`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+Not specified in documentation
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    *   Status: `200`
+    *   Message: "The scheduled email message was cancelled successfully"
+    *   *No specific JSON body schema provided for success, only a descriptive message.*
+
+*   **Error Response (e.g., 404 Not Found):**
+    *   Status: `404` (Example status code shown)
+    *   Schema:
+        *   `status` (number, required): HTTP Status code of the request.
+            *   Example: `404`
+        *   `message` (string, required): Error message of the request.
+            *   Example: `Failed cancel the scheduled message`
+    *   Example JSON:
+        ```json
+        {"status":404,"message":"Failed cancel the scheduled message"}
+        ```
+
+### 10. PURPOSE:
+This endpoint allows an application to cancel a previously scheduled email message by providing its unique message ID.
+
+### 11. TAGS:
+Conversations, Email, Cancel, Delete, Scheduled Message, Message, Communication
+
+### Code Examples Availability:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

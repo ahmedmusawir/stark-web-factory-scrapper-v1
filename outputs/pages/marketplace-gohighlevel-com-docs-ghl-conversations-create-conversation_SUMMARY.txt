@@ -1,0 +1,89 @@
+```
+## STRUCTURED API SUMMARY
+
+### 1. ENDPOINT NAME:
+Create Conversation
+
+### 2. CATEGORY:
+Conversations
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/conversations/`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversations/`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-04-15`]
+*   **Body Parameters (application/json):**
+    *   `locationId` (string): Location ID as string.
+    *   `contactId` (string): Contact ID as string.
+
+### 7. OPTIONAL PARAMETERS:
+*   `assignedTo` (string): Unique identifier of the team member assigned to this conversation. (This is optional in the response schema, but not mentioned as a request parameter).
+*   Not specified in documentation for request body/header.
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `conversations.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header` (Authorization header)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **201 Successful response (application/json):**
+    *   `success` (boolean): Indicates whether the API request was successful.
+    *   `conversation` (object): Conversation data.
+        *   `id` (string): Unique identifier for the conversation.
+        *   `dateUpdated` (string): Date when the conversation was last updated.
+        *   `dateAdded` (string): Date when the conversation was created.
+        *   `deleted` (boolean): Flag indicating if this conversation has been deleted.
+        *   `contactId` (string): Unique identifier of the contact associated with this conversation.
+        *   `locationId` (string): Unique identifier of the business location where this conversation takes place.
+        *   `lastMessageDate` (string): Date of the last message in the conversation.
+        *   `assignedTo` (string, optional): Unique identifier of the team member assigned to this conversation.
+
+    *   **Example (201):**
+        ```json
+        {
+          "success": true,
+          "conversation": {
+            "id": "tDtDnQdgm2LXpyiqYvZ6",
+            "dateUpdated": "2023-10-01T12:00:00Z",
+            "dateAdded": "2023-10-01T12:00:00Z",
+            "deleted": false,
+            "contactId": "ve9EPM428kjkvShlRW1KT",
+            "locationId": "ve9EPM428kjkvShlRW1KT",
+            "lastMessageDate": "2023-10-01T12:00:00Z",
+            "assignedTo": "ve9EPM428kjkvShlRW1KT"
+          }
+        }
+        ```
+
+*   **400 Bad Request (application/json):**
+    *   `statusCode` (number): `400`
+    *   `message` (string): `Bad Request`
+    *   **Example (400):** `{"statusCode":400,"message":"Bad Request"}`
+
+*   **401 Unauthorized (application/json):**
+    *   `statusCode` (number): `401`
+    *   `message` (string): `Invalid token: access token is invalid`
+    *   `error` (string): `Unauthorized`
+    *   **Example (401):** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+Creates a new conversation with the provided location and contact data.
+
+### 11. TAGS:
+Conversations, Create, POST, GHL, HighLevel, API, New Conversation, Location, Contact
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.
+```

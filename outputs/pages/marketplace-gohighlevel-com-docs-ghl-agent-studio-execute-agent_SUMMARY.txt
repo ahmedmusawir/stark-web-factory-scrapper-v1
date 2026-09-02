@@ -1,0 +1,144 @@
+```json
+{
+  "ENDPOINT_NAME": "Execute Agent",
+  "CATEGORY": "AI Agent Studio / Agents",
+  "HTTP_METHOD": "POST",
+  "ENDPOINT_URL": "/agent-studio/public-api/agents/:agentId/execute",
+  "FULL_URL": "https://services.leadconnectorhq.com/agent-studio/public-api/agents/:agentId/execute",
+  "REQUIRED_PARAMETERS": [
+    {
+      "paramName": "Version",
+      "type": "string",
+      "location": "Header",
+      "description": "API Version. Possible values: [2021-04-15]"
+    },
+    {
+      "paramName": "agentId",
+      "type": "string",
+      "location": "Path",
+      "description": "Example: p1q2r3s4t5u6v7w8x9y0z1a2"
+    },
+    {
+      "paramName": "message",
+      "type": "string",
+      "location": "Body",
+      "description": "Message to send to the agent. Example: How can you help me with my marketing?"
+    },
+    {
+      "paramName": "userId",
+      "type": "string",
+      "location": "Body",
+      "description": "User ID for scope validation. Example: 0IHuJvc2ofPAAA8GzTRi"
+    },
+    {
+      "paramName": "attachments",
+      "type": "object[]",
+      "location": "Body",
+      "description": "Attachments for the message",
+      "subParameters": [
+        {
+          "paramName": "type",
+          "type": "string",
+          "description": "Type of attachment. Example: image"
+        },
+        {
+          "paramName": "imageUrl",
+          "type": "string",
+          "description": "URL of the image attachment. Example: https://example.com/image.png"
+        }
+      ]
+    },
+    {
+      "paramName": "locationId",
+      "type": "string",
+      "location": "Body",
+      "description": "Location ID. Example: C2QujeCh8ZnC7al2InWR"
+    }
+  ],
+  "OPTIONAL_PARAMETERS": [
+    {
+      "paramName": "source",
+      "type": "string",
+      "location": "Query",
+      "description": "Example: api"
+    },
+    {
+      "paramName": "executionId",
+      "type": "string",
+      "location": "Body",
+      "description": "Execution ID for continuing an existing conversation. For the first message in a new session, do not include. Example: a1b2c3d4e5f6g7h8i9j0k1l2"
+    },
+    {
+      "paramName": "inputVariables",
+      "type": "object",
+      "location": "Body",
+      "description": "Input variables to pass to the agent"
+    }
+  ],
+  "AUTHENTICATION": {
+    "authMethods": [
+      "OAuth Access Token",
+      "Private Integration Token"
+    ],
+    "tokenTypes": [
+      "Sub-Account Token"
+    ],
+    "scheme": "Bearer",
+    "bearerFormat": "JWT",
+    "in": "header",
+    "description": "Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account."
+  },
+  "RESPONSE_FORMAT": {
+    "statusCode": "200 OK",
+    "description": "Agent executed successfully",
+    "contentType": "application/json",
+    "schema": {
+      "success": "boolean (required) - Success status. Example: true",
+      "executionId": "string (required) - Unique session identifier that maintains conversational context. Example: a1b2c3d4e5f6g7h8i9j0k1l2",
+      "interactionId": "string (required) - Unique identifier for a single interaction cycle. Example: m9n8o7p6q5r4s3t2u1v0w9x8",
+      "response": "string (required) - Agent response text. Example: I can help you with various tasks...",
+      "type": "string (required) - Response type. Example: text",
+      "nextExpectedInput": "string (required) - Expected input type for next interaction. Example: text",
+      "goalCompletion": "boolean (required) - When end node is added in the graph, this will be true if the agent reached the end node in the graph. Example: false",
+      "executionStatus": "string (required) - Execution status. Example: completed",
+      "attachments": "array (required) - Response attachments. Example: []",
+      "generativeOutputs": "array (required) - Generated outputs. Example: []"
+    },
+    "example": {
+      "success": true,
+      "executionId": "a1b2c3d4e5f6g7h8i9j0k1l2",
+      "interactionId": "m9n8o7p6q5r4s3t2u1v0w9x8",
+      "response": "I can help you with various tasks...",
+      "type": "text",
+      "nextExpectedInput": "text",
+      "goalCompletion": false,
+      "executionStatus": "completed",
+      "attachments": [],
+      "generativeOutputs": []
+    }
+  },
+  "PURPOSE": "Executes the specified agent and returns a non-streaming JSON response with the complete agent output. The agent must be in active status and belong to the specified location. Session management allows continuing conversations using 'executionId'.",
+  "TAGS": [
+    "AI Agent Studio",
+    "Agents",
+    "Execute Agent",
+    "AI",
+    "Conversation",
+    "Chatbot",
+    "Automation",
+    "Agent Execution",
+    "POST",
+    "Public API"
+  ],
+  "CODE_EXAMPLES_AVAILABILITY": [
+    "curl",
+    "nodejs",
+    "python",
+    "php",
+    "java",
+    "go",
+    "ruby",
+    "powershell"
+  ]
+}
+```

@@ -1,0 +1,66 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get Blog posts by Blog ID
+
+### 2. CATEGORY:
+Blogs
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+/blogs/posts/all
+
+### 5. FULL URL:
+https://services.leadconnectorhq.com/blogs/posts/all
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Query Parameters:**
+    *   locationId (string): Example: `ve9EPM428h8vShlRW1KT`
+    *   blogId (string): Example: `66f429b8afdce84227a4610d`
+    *   limit (number): Example: `4`
+    *   offset (number): Example: `0`
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   searchTerm (string): search for any post by name (Example: `ai news`)
+    *   status (string): (Possible values: `ALL`, `PUBLISHED`, `SCHEDULED`, `ARCHIVED`, `DRAFT`) (Example: `PUBLISHED`)
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `blogs/posts.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **Location:** Header (`Authorization: Bearer <TOKEN>`)
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** 200 (Successful response)
+*   **Content Type:** `application/json`
+*   **Structure:** An object containing an array of blog post objects.
+    *   `blogs`: array of objects, each containing:
+        *   `categories` (string[]): Array of category IDs associated with the blog post.
+        *   `tags` (string[]): Array of tags associated with the blog post.
+        *   `archived` (boolean): Indicates whether the blog post is archived.
+        *   `_id` (string): Unique identifier of the blog post.
+        *   `title` (string): Title of the blog post.
+        *   `description` (string): Description of the blog post.
+        *   `imageUrl` (string): URL of the image associated with the blog post.
+        *   `status` (string): Publication status of the blog post.
+        *   `imageAltText` (string): Alternative text for the blog post image.
+        *   `urlSlug` (string): URL slug for the blog post.
+        *   `canonicalLink` (string): Canonical link of the blog post.
+        *   `author` (string): Identifier of the author of the blog post.
+        *   `publishedAt` (string): Timestamp when the blog post was published.
+        *   `updatedAt` (string): Timestamp when the blog post was last updated.
+
+### 10. PURPOSE:
+The "Get Blog posts by Blog ID" API allows you to retrieve blog posts for a specific blog site using its unique blog ID.
+
+### 11. TAGS:
+Blogs, Posts, Get, Retrieve, Read, Blog ID, Blog Posts, API, Content, Publishing, Location.
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

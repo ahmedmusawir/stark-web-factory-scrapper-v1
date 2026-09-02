@@ -1,0 +1,150 @@
+Here's a structured summary of the API documentation for "Get CSV Post":
+
+### 1. ENDPOINT NAME:
+Get CSV Post
+
+### 2. CATEGORY:
+Social Planner - CSV
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/:locationId/csv/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/:locationId/csv/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   locationId (string): Example: `sdfdsfdsfEWEsdfsdsW32dd`
+    *   id (string): CSV Id. Example: `65f92e55cc884f0d0845e447`
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   skip (string): Example: `0`
+    *   limit (string): Example: `10`
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Bearer Format:** `JWT`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `200` (Successful response)
+*   **Content Type:** `application/json`
+*   **Structure:**
+    ```json
+    {
+      "success": boolean,
+      "statusCode": number,
+      "message": string,
+      "results": {
+        "csv": {
+          "_id": string,
+          "locationId": string,
+          "fileName": string,
+          "accountIds": string[],
+          "file": string,
+          "status": string, // "pending", "in_progress", "completed", "failed", "in_review", "im`porting", "deleted"
+          "count": number,
+          "createdBy": string,
+          "traceId": string,
+          "originId": string,
+          "approver": string,
+          "createdAt": date-time
+        },
+        "count": number,
+        "posts": [
+          {
+            "accountIds": string[],
+            "link": {
+              "url": string,
+              "ogDescription": string,
+              "ogImage": { "url": string, "width": number, "height": number, "type": string },
+              "ogTitle": string,
+              "ogUrl": string,
+              "ogSiteName": string,
+              "error": string
+            },
+            "medias": [
+              {
+                "url": string,
+                "type": string,
+                "size": number,
+                "width": number,
+                "height": number,
+                "aspectRatio": number,
+                "duration": number,
+                "format": string,
+                "videoCodecName": string,
+                "frameRate": number,
+                "audioCodecName": string,
+                "audioChannels": number,
+                "displayAspectRatio": string,
+                "frames": string[],
+                "selectedPoster": number,
+                "error": string, // e.g., "Image is larger than 10MB"
+                "instagramError": string, // e.g., "imageSize"
+                "gmbError": string, // e.g., "imageDimension"
+                "facebookError": string, // e.g., "videoDuration"
+                "linkedinError": string, // e.g., "imageType"
+                "twitterError": string, // e.g., "videoSize"
+                "tiktokError": string, // e.g., "videoFrameRate"
+                "tiktokBusinessError": string, // e.g., "videoType"
+                "invalidError": string // e.g., "imageSize"
+              }
+            ],
+            "scheduleDate": string,
+            "summary": string,
+            "followUpComment": string,
+            "type": string, // Example: "post"
+            "tiktokPostDetails": {
+              "privacyLevel": string, // "PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "SELF_ONLY"
+              "promoteOtherBrand": boolean,
+              "enableComment": boolean,
+              "enableDuet": boolean,
+              "enableStitch": boolean,
+              "videoDisclosure": boolean,
+              "promoteYourBrand": boolean
+            },
+            "gmbPostDetails": {
+              "gmbEventType": string, // "STANDARD", "EVENT", "OFFER"
+              "title": string,
+              "offerTitle": string,
+              "startDate": {
+                "startDate": { "year": number, "month": number, "day": number },
+                "startTime": { "hours": number, "minutes": number, "seconds": number }
+              },
+              "endDate": {
+                "endDate": { "year": number, "month": number, "day": number },
+                "endTime": { "hours": number, "minutes": number, "seconds": number }
+              },
+              "termsConditions": string,
+              "url": string,
+              "couponCode": string,
+              "redeemOnlineUrl": string,
+              "actionType": string // "none", "order", "book", "shop", "learn_more", "call", "sign_up"
+            },
+            "errorMessage": string
+          }
+        ]
+      }
+    }
+    ```
+*   **Error Responses:**
+    *   `400 Bad Request`: `{"statusCode": 400, "message": "Bad Request"}`
+    *   `401 Unauthorized`: `{"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}`
+    *   `422 Unprocessable Entity`: `{"statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint retrieves the details of posts associated with a specific CSV upload for social media planning within a given location.
+
+### 11. TAGS:
+Social Planner, CSV, Posts, Get, Retrieve, Read, Social Media, Bulk Upload, Location, Analytics
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

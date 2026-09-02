@@ -1,0 +1,82 @@
+Here's a structured summary of the provided API documentation for the `OpportunityMonetaryValueUpdate` webhook:
+
+### 1. ENDPOINT NAME
+OpportunityMonetaryValueUpdate
+
+### 2. CATEGORY
+Webhook
+
+### 3. HTTP METHOD
+Webhook Event (HighLevel sends a POST request to your configured webhook URL upon event occurrence)
+
+### 4. ENDPOINT URL
+Not applicable (This defines a webhook event sent by HighLevel, not an endpoint to be called by a client.)
+
+### 5. FULL URL
+Not applicable (The provided URL `https://marketplace.gohighlevel.com/docs/webhook/OpportunityMonetaryValueUpdate/index.html` is for the documentation itself.)
+
+### 6. REQUIRED PARAMETERS (Webhook Payload Fields)
+*   **type** (string): The type of the webhook event, which is "OpportunityMonetaryValueUpdate".
+*   **locationId** (string): The unique identifier for the location (sub-account) where the opportunity belongs.
+*   **id** (string): The unique identifier of the opportunity.
+*   **assignedTo** (string): The unique identifier of the user to whom the opportunity is assigned.
+*   **contactId** (string): The unique identifier of the contact associated with the opportunity.
+*   **monetaryValue** (number): The updated monetary value of the opportunity.
+*   **name** (string): The name of the opportunity.
+*   **pipelineId** (string): The unique identifier of the pipeline the opportunity belongs to.
+*   **pipelineStageId** (string): The unique identifier of the pipeline stage the opportunity is in.
+*   **source** (string): The source from which the opportunity originated.
+*   **status** (string): The current status of the opportunity (e.g., "open").
+*   **dateAdded** (string): The date and time when the opportunity was added, in ISO 8601 format.
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation (All fields listed in the schema are expected to be present in the webhook payload.)
+
+### 8. AUTHENTICATION
+Not specified in documentation (For receiving webhooks, HighLevel typically relies on the security of the configured webhook URL. Best practices often include shared secrets or signature verification, but these are not mentioned here.)
+
+### 9. RESPONSE FORMAT
+The webhook payload is a JSON object as described by the schema.
+**Expected Acknowledgment:** Not explicitly stated, but typically a 200 OK status code is expected by the webhook sender to acknowledge successful receipt.
+
+**Payload Structure:**
+```json
+{
+  "type": "string",
+  "locationId": "string",
+  "id": "string",
+  "assignedTo": "string",
+  "contactId": "string",
+  "monetaryValue": "number",
+  "name": "string",
+  "pipelineId": "string",
+  "pipelineStageId": "string",
+  "source": "string",
+  "status": "string",
+  "dateAdded": "string"
+}
+```
+
+**Example Payload:**
+```json
+{
+  "type": "OpportunityMonetaryValueUpdate",
+  "locationId": "ve9EPM428h8vShlRW1KT",
+  "id": "wWhVuzqpRuOA1ZVWi4FC",
+  "assignedTo": "bNl8QNGXhIQJLv8eeASQ",
+  "contactId": "cJAWDskpkJHbRbhAT7bs",
+  "monetaryValue": 40,
+  "name": "Loram ipsu",
+  "pipelineId": "VDm7RPYC2GLUvdpKmBfC",
+  "pipelineStageId": "e93ba61a-53b3-45e7-985a-c7732dbcdb69",
+  "source": "Loram ipsu",
+  "status": "open",
+  "dateAdded": "2021-11-26T12:41:02.193Z"
+}
+```
+
+### 10. PURPOSE
+This webhook is called whenever an opportunity's monetary value field is updated within the HighLevel platform.
+
+### 11. TAGS
+Webhook, Webhook Events, Opportunity, Monetary Value Update, CRM Event, HighLevel API, Notifications, Event-driven.

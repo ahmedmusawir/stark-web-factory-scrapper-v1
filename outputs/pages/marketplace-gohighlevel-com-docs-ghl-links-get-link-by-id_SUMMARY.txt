@@ -1,0 +1,70 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get Link by ID
+
+### 2. CATEGORY:
+Trigger Links
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/links/id/:linkId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/links/id/:linkId`
+
+### 6. REQUIRED PARAMETERS:
+*   `Authorization` (string): Access Token (Header Parameter)
+*   `Version` (string): API Version (Header Parameter), Possible values: [`2021-07-28`]
+*   `linkId` (string): Link Id (Path Parameter)
+*   `locationId` (string): Location Id (Query Parameter)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header
+
+### 9. RESPONSE FORMAT:
+*   **200 OK (application/json):**
+    Returns a `link` object containing the details of the requested trigger link.
+    ```json
+    {
+      "link": {
+        "id": "n4AriwEnFrGh3tu08W0U",
+        "name": "first tag",
+        "redirectTo": "https://www.google.com/",
+        "fieldKey": "{{trigger_link.n4AriwEnFrGh3tu08W0U}}",
+        "locationId": "ve9EPM428h8vShlRW1KT"
+      }
+    }
+    ```
+    *   **Fields in `link` object:**
+        *   `id` (string)
+        *   `name` (string)
+        *   `redirectTo` (string)
+        *   `fieldKey` (string)
+        *   `locationId` (string)
+
+*   **400 Bad Request (application/json):**
+    ```json
+    {"statusCode":400,"message":"Bad Request"}
+    ```
+*   **401 Unauthorized (application/json):**
+    ```json
+    {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+    ```
+
+### 10. PURPOSE:
+This endpoint retrieves details for a single trigger link using its unique identifier.
+
+### 11. TAGS:
+Trigger Links, Get, Retrieve, Link, ID, Read, HighLevel, API, Sub-Account
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

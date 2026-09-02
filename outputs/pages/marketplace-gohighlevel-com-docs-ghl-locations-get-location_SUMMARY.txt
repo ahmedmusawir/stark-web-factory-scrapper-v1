@@ -1,0 +1,89 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get Sub-Account (Formerly Location)
+
+### 2. CATEGORY:
+Sub-Account (Formerly Location)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/locations/:locationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/locations/:locationId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   locationId (string): Location Id. Example: `ve9EPM428h8vShlRW1KT`
+
+### 7. OPTIONAL PARAMETERS:
+None specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `locations.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** Bearer (JWT) in header
+
+### 9. RESPONSE FORMAT:
+**200 OK (application/json)**
+A JSON object containing a `location` object with the following structure:
+*   `location` (object):
+    *   `id` (string): The ID of the location.
+    *   `companyId` (string)
+    *   `name` (string): The name of the location.
+    *   `domain` (string)
+    *   `address` (string)
+    *   `city` (string)
+    *   `state` (string)
+    *   `logoUrl` (string): URL for the location's logo.
+    *   `country` (string)
+    *   `postalCode` (string)
+    *   `website` (string)
+    *   `timezone` (string)
+    *   `firstName` (string)
+    *   `lastName` (string)
+    *   `email` (string)
+    *   `phone` (string)
+    *   `business` (object):
+        *   `name` (string)
+        *   `address` (string)
+        *   `city` (string)
+        *   `state` (string)
+        *   `country` (string)
+        *   `postalCode` (string)
+        *   `website` (string)
+        *   `timezone` (string)
+        *   `logoUrl` (string)
+    *   `social` (object):
+        *   `facebookUrl` (string): Facebook URL
+        *   `googlePlus` (string): Googleplus URL
+        *   `linkedIn` (string): LinkedIn URL
+        *   `foursquare` (string): Foursquare URL
+        *   `twitter` (string): Twitter URL
+        *   `yelp` (string): Yelp URL
+        *   `instagram` (string): Instagram URL
+        *   `youtube` (string): YouTube URL
+        *   `pinterest` (string): Pinterest URL
+        *   `blogRss` (string): Blog RSS URL
+        *   `googlePlacesId` (string): Google Business Places ID
+    *   `settings` (object):
+        *   `allowDuplicateContact` (boolean)
+        *   `allowDuplicateOpportunity` (boolean)
+        *   `allowFacebookNameMerge` (boolean)
+        *   `disableContactTimezone` (boolean)
+    *   `reseller` (object)
+
+### 10. PURPOSE:
+This endpoint retrieves the detailed information of a specific Sub-Account (formerly known as Location) by passing its unique sub-account ID.
+
+### 11. TAGS:
+Sub-Account, Location, Get, Retrieve, Read, Details, Business, Profile, HighLevel, CRM, Account, Information
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

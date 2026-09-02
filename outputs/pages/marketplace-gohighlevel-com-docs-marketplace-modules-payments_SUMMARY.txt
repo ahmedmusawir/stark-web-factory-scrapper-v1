@@ -1,0 +1,195 @@
+## STRUCTURED SUMMARY: Custom Payments Integration Guide
+
+---
+
+1.  **ENDPOINT NAME:** Building a Custom Payments Integration on the GoHighLevel Platform (This document describes an integration process, not a single API endpoint.)
+
+2.  **CATEGORY:** Marketplace Modules (Payments)
+
+3.  **HTTP METHOD:**
+    *   **POST:** For various interactions between GoHighLevel and your custom `queryUrl` (e.g., Payment Verification, Listing Payment Methods, Charging Payment Methods, Handling Refunds). Also for your server to send webhook events to GoHighLevel's webhook endpoint.
+    *   **Implicit (OAuth/iFrame):** For app installation redirect, loading of `paymentsUrl` in iFrame, and for API calls from your service to GoHighLevel (e.g., `create-integration`, `create-config`), where the specific HTTP method is not explicitly stated but implies standard REST (likely POST/PUT).
+
+4.  **ENDPOINT URL:** (These are URLs involved in the integration, some are *your* service's endpoints, some are GoHighLevel's.)
+    *   **Your `Redirect URL` (configured in GHL Marketplace app):** e.g., `https://yourdomain.com/oauth/callback` (Receives OAuth code).
+    *   **Your `Webhook URL` (configured in GHL Marketplace app):** (Receives GHL system events like app install/uninstall).
+    *   **Your `queryUrl` (provided to GHL during `create-integration`):** (Receives POST requests from GHL for payment-related queries: Verify, Refund, List Payment Methods, Charge Payment).
+    *   **Your `paymentsUrl` (provided to GHL during `create-integration`):** (Public page URL loaded in an iFrame for making payments on the frontend, dispatches/receives events).
+    *   **GoHighLevel's Webhook Event Endpoint:** `https://backend.leadconnectorhq.com/payments/custom-provider/webhook` (Your server sends POST requests to this URL to notify GHL of payment events like `payment.captured`).
+
+5.  **FULL URL:** Not applicable, as this guide outlines multiple interaction points and URLs, including those hosted by the integrating developer.
+
+6.  **REQUIRED PARAMETERS:**
+
+    *   **For Marketplace App Configuration (UI & initial setup):**
+        *   `Name` (String): Name of your payment provider.
+        *   `App Description` (String): Description of your payment provider's functionality.
+        *   `Payment Provider Type` (Enum): OneTime, Recurring, Off Session.
+        *   `Logo` (String): Public image URL for your payment provider's logo.
+        *   `Redirect URL` (URL): Your OAuth callback URL.
+        *   `Webhook URL` (URL): Your endpoint for app installation/uninstallation events.
+        *   `SSO Key` (String): Used to decrypt auth token for custom pages.
+        *   `Client Keys` (String): `clientId` and `clientSecret` for OAuth flow (implicitly required).
+
+    *   **For OAuth Callback (Your `Redirect URL` receives):**
+        *   `code` (String): OAuth authorization code.
+
+    *   **For GHL `/payments/create-integration` API call (Your service *sends* to GHL):**
+        *   `name` (String): Name of the integration shown in GHL everywhere.
+        *   `description` (String): Short description/tagline for payments app.
+        *   `imageUrl` (String): Public image URL for payment provider logo.
+        *   `locationId` (String): Sub-account ID where the app is installed.
+        *   `queryUrl` (String): Your URL which receives different requests for all queries related to payments (Verify, Refund, etc.).
+        *   `paymentsUrl` (String): Your public page URL loaded in iFrame for making payments on frontend.
+
+    *   **For GHL `/payments/create-config` API call (Your service *sends* to GHL):**
+        *   `apiKey` (String): Key used for verification in backend calls from HighLevel to your server.
+        *   `publishableKey` (String): Public API key used for frontend verification while initiating payment.
+
+    *   **For `custom_provider_ready` event (Your `paymentsUrl` page *dispatches*):**
+        *   `type` (String): "custom_provider_ready"
+        *   `loaded` (Boolean): `true`
+
+    *   **For `payment_initiate_props` event (Your `paymentsUrl` page *receives* from GHL):**
+        *   `type` (String): "payment_initiate_props"
+        *   `publishableKey` (String): Your public key.
+        *   `amount` (Number): Payment amount.
+        *   `currency` (String): Currency code (e.g., "USD").
+        *   `mode` (String): "payment".
+        *   `productDetails` (Object):
+            *   `productId` (String)
+            *   `priceId` (String)
+        *   `contact` (Object):
+            *   `id` (String)
+            *   `name` (String)
+            *   `email` (String)
+            *   `contact` (String)
+        *   `orderId` (String)
+        *   `transactionId` (String)
+        *   `subscriptionId` (String)
+        *   `locationId` (String)
+
+    *   **For `custom_element_success_response` event (Your `paymentsUrl` page *dispatches*):**
+        *   `type` (String): "custom_element_success_response"
+        *   `chargeId` (String)
+
+    *   **For `custom_element_error_response` event (Your `paymentsUrl` page *dispatches*):**
+        *   `type` (String): "custom_element_error_response"
+        *   `error` (Object):
+            *   `description` (String): Error description.
+
+    *   **For `custom_element_close_response` event (Your `paymentsUrl` page *dispatches*):**
+        *   `type` (String): "custom_element_close_response"
+
+    *   **For Payment Verification (GHL *sends* POST to your `queryUrl`):**
+        *   `type` (String): "verify"
+        *   `transactionId` (String)
+        *   `apiKey` (String): Your API key for verification.
+        *   `chargeId` (String)
+        *   `subscriptionId` (String)
+
+    *   **For Adding a Payment Method (`custom_provider_ready` event) (Your `paymentsUrl` page *dispatches*):**
+        *   `type` (String): "custom_provider_ready"
+        *   `loaded` (Boolean): `true`
+        *   `addCardOnFileSupported` (Boolean): `true`
+
+    *   **For `setup_initiate_props` event (Your `paymentsUrl` page *receives* from GHL):**
+        *   `type` (String): "setup_initiate_props"
+        *   `publishableKey` (String): Your public key.
+        *   `currency` (String): Currency code (e.g., "USD").
+        *   `mode` (String): "setup".
+        *   `contact` (Object):
+            *   `id` (String)
+        *   `locationId` (String)
+
+    *   **For Listing Payment Methods (GHL *sends* POST to your `queryUrl`):**
+        *   `locationId` (String)
+        *   `contactId` (String)
+        *   `apiKey` (String): Your API key for verification.
+        *   `type` (String): "list_payment_methods"
+
+    *   **For Charging a Payment Method (GHL *sends* POST to your `queryUrl`):**
+        *   `paymentMethodId` (String)
+        *   `contactId` (String)
+        *   `transactionId` (String)
+        *   `chargeDescription` (String)
+        *   `amount` (Number)
+        *   `currency` (String)
+        *   `apiKey` (String): Your API key for verification.
+        *   `type` (String): "charge_payment"
+
+    *   **For Handling Refunds (GHL *sends* POST to your `queryUrl`):**
+        *   `type` (String): "refund"
+        *   `amount` (Number)
+        *   `transactionId` (String)
+
+    *   **For Webhook Events (Your server *sends* POST to GHL's webhook endpoint):**
+        *   `event` (String): Name of the event (e.g., "payment.captured", "subscription.active").
+        *   `chargeId` (String)
+        *   `ghlTransactionId` (String)
+        *   `chargeSnapshot` (Object):
+            *   `status` (String)
+            *   `amount` (Number)
+            *   `chargeId` (String)
+            *   `chargedAt` (Number - Unix timestamp)
+        *   `locationId` (String)
+        *   `apiKey` (String): Your API key.
+
+7.  **OPTIONAL PARAMETERS:** Not explicitly specified for any of the described interactions. All listed parameters appear to be required for their respective operations.
+
+8.  **AUTHENTICATION:**
+    *   **OAuth 2.0:** Required for app installation and exchanging a `code` for an OAuth access token, allowing API calls to GoHighLevel. Uses `Client Keys` (`clientId`, `clientSecret`) and a `Redirect URL`.
+    *   **Scopes:**
+        *   `payments/orders.readonly`
+        *   `payments/orders.write`
+        *   `payments/subscriptions.readonly`
+        *   `payments/transactions.readonly`
+        *   `payments/custom-provider.readonly`
+        *   `payments/custom-provider.write`
+        *   `products.readonly`
+        *   `products/prices.readonly`
+    *   **SSO Key:** Securely stored key used to decrypt the authentication token received for custom pages.
+    *   **`apiKey` (Developer's API Key):** Your private key, sent by GoHighLevel in backend calls to your `queryUrl` for verification. Also used by your server when sending payment status webhooks *to* GoHighLevel.
+    *   **`publishableKey` (Developer's Public Key):** Your public key, provided by GoHighLevel to your frontend `paymentsUrl` for initiating payments.
+
+9.  **RESPONSE FORMAT:**
+
+    *   **For Payment Verification (Your `queryUrl` responds to GHL):**
+        *   Success: `{"success": true}`
+        *   Failure: `{"failed": true}`
+        *   Pending: `{"success": false}`
+    *   **For Listing Payment Methods (Your `queryUrl` responds to GHL):**
+        ```json
+        [
+          {
+            "id": "pm_123",
+            "type": "card",
+            "title": "Visa",
+            "subTitle": "**** **** **** 4242",
+            "expiry": "12/25",
+            "customerId": "cust_123",
+            "imageUrl": "https://yourdomain.com/visa.png"
+          }
+        ]
+        ```
+    *   **For Charging a Payment Method (Your `queryUrl` responds to GHL):**
+        ```json
+        {
+          "success": true,
+          "failed": false,
+          "chargeId": "charge_123",
+          "message": "Payment successful",
+          "chargeSnapshot": {
+            "id": "charge_123",
+            "status": "succeeded",
+            "amount": 100.00,
+            "chargeId": "charge_123",
+            "chargedAt": 1617187200
+          }
+        }
+        ```
+    *   **For Handling Refunds (Your `queryUrl` responds to GHL):** Not explicitly stated, but implies a similar success/failure structure as other `queryUrl` interactions.
+
+10. **PURPOSE:** This comprehensive guide outlines the detailed steps, technical requirements, and communication protocols for developers to build and seamlessly integrate a custom payment gateway application as a Marketplace Module within the GoHighLevel platform, enabling custom payment processing, subscription management, and transaction handling for users.
+
+11. **TAGS:** Payments, Integration, Custom Provider, Marketplace, OAuth, Webhooks, Transactions, Subscriptions, Developer Guide, GoHighLevel, Payment Gateway, API.

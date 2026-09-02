@@ -1,0 +1,89 @@
+Here is a structured summary of the API documentation for the InvoiceDelete webhook:
+
+### 1. ENDPOINT NAME
+InvoiceDelete
+
+### 2. CATEGORY
+Invoice (Webhook Event)
+
+### 3. HTTP METHOD
+N/A (This is a webhook event notification, typically delivered via POST to a configured endpoint)
+
+### 4. ENDPOINT URL
+N/A (This is a webhook event notification; the URL provided in the prompt is for the documentation, not the event endpoint itself)
+
+### 5. FULL URL
+N/A (This is a webhook event notification; the URL provided in the prompt is for the documentation, not the event endpoint itself)
+
+### 6. REQUIRED PARAMETERS
+All parameters listed below represent the structure of the data payload received when an invoice is deleted. The documentation does not explicitly distinguish between required and optional fields within this payload; all fields shown in the schema are expected to be part of the event data.
+
+*   **_id** (string): The unique identifier of the deleted invoice.
+*   **status** (string): The status of the invoice, typically "delete" for this event.
+*   **liveMode** (boolean): Indicates if the event occurred in live mode (true) or test mode (false).
+*   **amountPaid** (number): The amount paid on the invoice before deletion.
+*   **altId** (string): An alternative identifier for the invoice, possibly related to its context (e.g., location ID).
+*   **altType** (string): The type associated with the `altId` (e.g., "location").
+*   **name** (string): The name of the invoice.
+*   **businessDetails** (object): Details of the business associated with the invoice.
+    *   **name** (string): Name of the business.
+    *   **address** (string): Address of the business.
+    *   **phoneNo** (string): Phone number of the business.
+    *   **website** (string): Website of the business.
+    *   **logoUrl** (string): URL to the business logo.
+    *   **customValues** (array of string): Custom values associated with the business.
+*   **invoiceNumber** (string): The number assigned to the invoice.
+*   **currency** (string): The currency of the invoice (e.g., "USD").
+*   **contactDetails** (object): Details of the contact associated with the invoice.
+    *   **id** (string): The unique identifier of the contact.
+    *   **phoneNo** (string): Phone number of the contact.
+    *   **email** (string): Email of the contact.
+    *   **customFields** (array of string): Custom fields for the contact.
+    *   **name** (string): Name of the contact.
+    *   **address** (object): Address details of the contact.
+        *   **countryCode** (string): Country code (e.g., "US").
+        *   **addressLine1** (string): First line of the address.
+        *   **addressLine2** (string): Second line of the address.
+        *   **city** (string): City.
+        *   **state** (string): State.
+        *   **postalCode** (string): Postal code.
+    *   **additionalEmails** (array of objects): Additional email addresses for the contact.
+        *   **email** (string): An additional email address.
+    *   **companyName** (string): Company name of the contact.
+*   **issueDate** (string): The date the invoice was issued (ISO 8601 format).
+*   **dueDate** (string): The date the invoice was due (ISO 8601 format).
+*   **discount** (object): Details of any discount applied to the invoice.
+    *   **type** (string): Type of discount (e.g., "percentage").
+    *   **value** (number): Value of the discount.
+*   **invoiceItems** (array of objects): List of items included in the invoice.
+    *   **taxes** (array): Array of tax details (structure not detailed but shown as empty in example).
+    *   **_id** (string): Unique identifier for the invoice item.
+    *   **productId** (string): The ID of the product.
+    *   **priceId** (string): The ID of the price.
+    *   **currency** (string): Currency of the item.
+    *   **name** (string): Name of the item.
+    *   **qty** (number): Quantity of the item.
+    *   **amount** (number): Amount for the item.
+*   **total** (number): The grand total amount of the invoice.
+*   **title** (string): The title of the invoice.
+*   **amountDue** (number): The remaining amount due on the invoice.
+*   **createdAt** (string): Timestamp when the invoice was created (ISO 8601 format).
+*   **updatedAt** (string): Timestamp when the invoice was last updated (ISO 8601 format).
+*   **totalSummary** (object): Summary of total amounts.
+    *   **subTotal** (number): Subtotal before discounts.
+    *   **discount** (number): Total discount amount.
+
+### 7. OPTIONAL PARAMETERS
+Not explicitly specified in documentation. All parameters listed in the schema are expected to be part of the webhook payload.
+
+### 8. AUTHENTICATION
+Not specified in documentation. (Webhook security often involves signing secrets or IP whitelisting configured in the platform's webhook settings.)
+
+### 9. RESPONSE FORMAT
+A successful notification is the receipt of a JSON payload with an HTTP 200 OK status by the configured webhook listener. The structure of this JSON payload is described by the schema above.
+
+### 10. PURPOSE
+This webhook is called whenever an invoice is deleted within the HighLevel platform, notifying external systems of the event and providing details of the deleted invoice.
+
+### 11. TAGS
+Webhook Events, Invoice, Delete, InvoiceDelete, Notification, CRM, Billing, Financial

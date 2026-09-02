@@ -1,0 +1,47 @@
+Here is a structured summary of the API documentation for the `LocationUpdate` webhook:
+
+### 1. ENDPOINT NAME:
+LocationUpdate
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+POST (This is the method HighLevel sends to the configured webhook URL)
+
+### 4. ENDPOINT URL:
+Not applicable (This is a webhook payload sent by HighLevel to a URL configured by the app developer)
+
+### 5. FULL URL:
+Not applicable (This is a webhook payload sent by HighLevel to a URL configured by the app developer)
+
+### 6. REQUIRED PARAMETERS:
+*   `type` (string): The type of the webhook event.
+*   `id` (string): The unique identifier of the location that was updated.
+*   `name` (string): The name of the updated location.
+*   `email` (string): The email associated with the updated location.
+*   `stripeProductId` (string): The Stripe product ID associated with the updated location.
+*   `companyId` (string): The unique identifier of the company the location belongs to.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Availability:** Available to Agency Level Apps for all sub-accounts or to specific sub-accounts.
+*   **Method (for receiving endpoint):** Not explicitly specified in this documentation. Typically, webhook consumers would verify the authenticity of the incoming webhook (e.g., using a signature or secret key), but this is not detailed here.
+
+### 9. RESPONSE FORMAT:
+Not applicable (This document describes the payload *sent* by the webhook, not a response *from* an API call.)
+
+### 10. PURPOSE:
+This webhook is called whenever a location (sub-account) within HighLevel is updated, providing the latest details of the modified location.
+
+### 11. TAGS:
+*   Webhook Events
+*   Location
+*   Update
+*   Sub-Account
+*   HighLevel
+
+### 12. CODE EXAMPLES:
+No code examples (e.g., Python, Node, cURL) are present in this documentation for interacting with or receiving this webhook.

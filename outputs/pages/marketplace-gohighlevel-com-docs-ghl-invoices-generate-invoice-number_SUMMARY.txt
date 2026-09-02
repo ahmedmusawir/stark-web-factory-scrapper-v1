@@ -1,0 +1,78 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Generate Invoice Number
+
+### 2. CATEGORY:
+Invoice
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/invoices/generate-invoice-number`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/generate-invoice-number`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Query Parameters:**
+    *   `altId` (string): Location Id
+    *   `altType` (string): Possible values: [`location`]
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `invoices.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header` (specifically, the `Authorization` header)
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "invoiceNumber": number // Invoice Number
+        }
+        ```
+    *   **Example:**
+        ```json
+        {"invoiceNumber":"19"}
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        ```json
+        {"statusCode":400,"message":"Bad Request"}
+        ```
+    *   **401 Unauthorized:**
+        ```json
+        {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+        ```
+    *   **422 Unprocessable Entity:**
+        ```json
+        {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+        ```
+
+### 10. PURPOSE:
+This endpoint retrieves the next available invoice number for a specified location.
+
+### 11. TAGS:
+Invoice, Generate, Number, Get, Readonly, Location, Financial, Billing, Utility
+
+### 12. CODE EXAMPLES:
+Code examples are available for the following languages:
+*   cURL
+*   Node.js
+*   Python
+*   PHP
+*   Java
+*   Go
+*   Ruby
+*   PowerShell

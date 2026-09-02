@@ -1,0 +1,127 @@
+Here is the structured summary of the API documentation for "Search Object Records":
+
+### 1. ENDPOINT NAME:
+Search Object Records
+
+### 2. CATEGORY:
+Objects
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/objects/:schemaKey/records/search`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/objects/:schemaKey/records/search`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   `schemaKey` (string): custom object key. Example: `632c34b4c9b7da3358ac9891`
+*   **Body Parameters (application/json):**
+    *   `locationId` (string): Location Id. Example: `ve9EPM428h8vShlRW1KT`
+    *   `page` (number): Page. Example: `1`
+    *   `pageLimit` (number): Page Limit. Example: `10`
+    *   `query` (string): Pass this query parameter to search using your searchable properties. For example, if you have a custom object called “Pets” and have configured “name” as a searchable property, you can pass `name:Buddy` to search for pets with the name “Buddy.” Example: `Buddy`
+    *   `searchAfter` (string[]): Pagination cursor for subsequent requests. Example: `["sx6wyHhbFdRXh302Lunr","sx6wyHhbFdRXh302Lunr"]`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `objects/record.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+**200 OK (application/json)**
+*   **Schema:**
+    *   `records` (object[]): Array of record objects
+        *   `id` (string): id of the record.
+        *   `owner` (string[]): Owner (User's id). Limited to 1 for now. Only supported for custom objects for now.
+        *   `followers` (string[]): Follower (User's ids). Limited to 10 and supported for custom objects for now.
+        *   `properties` (string): Properties of the record (JSON string).
+        *   `createdAt` (date-time): Date and time when the object was added.
+        *   `updatedAt` (date-time): Date and time when the object was last updated.
+        *   `locationId` (string): Location Id.
+        *   `objectId` (string): ObjectId Id.
+        *   `objectKey` (string): ObjectId key.
+        *   `createdBy` (object): Created By Meta
+            *   `channel` (string): Creation Channel.
+            *   `createdAt` (string): Created At.
+            *   `source` (string): From where the record was created.
+            *   `sourceId` (string): User/Resource Id.
+        *   `lastUpdatedBy` (object): Last Updated By Meta
+            *   `channel` (string): Creation Channel.
+            *   `createdAt` (string): Created At.
+            *   `source` (string): From where the record was created.
+            *   `sourceId` (string): User/Resource Id.
+        *   `searchAfter` (number[]): Used for pagination.
+    *   `total` (number): Total Number of records.
+*   **Example:**
+    ```json
+    {
+      "records": [
+        {
+          "id": "661c06b4ffde146bdb469442",
+          "owner": ["sx6wyHhbFdRXh302Lunr"],
+          "followers": ["sx6wyHhbFdRXh302Lunr", "v5cEPM428h8vShlRW1KT"],
+          "properties": {
+            "customer_number": 1424,
+            "ticket_name": "Customer not able login",
+            "phone_number": "+917000000000",
+            "money": { "currency": "default", "value": 100 },
+            "type_of_ticket": "doubt",
+            "section_of_app": ["contacts", "smartlist"],
+            "recieved_on": "2024-07-11",
+            "my_files": [{ "url": "---url_of_file---" }],
+            "my_textbox_list.option_a": "Value 1",
+            "my_textbox_list.option_b": "Value 2"
+          },
+          "createdAt": "2024-07-29T15:51:28.071Z",
+          "updatedAt": "2024-07-29T15:51:28.071Z",
+          "locationId": "ve9EPM428h8vShlRW1KT",
+          "objectId": "6d6f6e676f5f6576656e7473",
+          "objectKey": "custom_objects.pet",
+          "createdBy": {
+            "channel": "WEB_USER",
+            "createdAt": "2025-01-02T09:35:39.032Z",
+            "source": "PUBLIC_API",
+            "sourceId": "26653146-ec82-435d-8a99-84ecdb7fde13"
+          },
+          "lastUpdatedBy": {
+            "channel": "WEB_USER",
+            "createdAt": "2025-01-02T09:35:39.032Z",
+            "source": "PUBLIC_API",
+            "sourceId": "26653146-ec82-435d-8a99-84ecdb7fde13"
+          },
+          "searchAfter": [1738683828372, "67a235b49b289431bcf657f8"]
+        }
+      ],
+      "total": 20
+    }
+    ```
+
+**400 Bad Request (application/json)**
+*   **Schema:** `statusCode` (number), `message` (string)
+*   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+
+**401 Unauthorized (application/json)**
+*   **Schema:** `statusCode` (number), `message` (string), `error` (string)
+*   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint allows users to search for records within custom or standard objects (such as "business") by providing a query based on configured searchable properties.
+
+### 11. TAGS:
+Objects, search, records, custom objects, API, GoHighLevel, retrieve, filter, query, data, CRM.
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

@@ -1,0 +1,86 @@
+Here's a structured summary of the API documentation for "Start CSV Finalize":
+
+### 1. ENDPOINT NAME:
+Start CSV Finalize
+
+### 2. CATEGORY:
+Social Planner (CSV)
+
+### 3. HTTP METHOD:
+PATCH
+
+### 4. ENDPOINT URL:
+`/social-media-posting/:locationId/csv/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/:locationId/csv/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   `locationId` (string): Location ID
+    *   `id` (string): CSV Id
+*   **Body Parameters:**
+    *   `userId` (string): User ID
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **200 OK (Successful response):**
+    *   **Status Code:** `200`
+    *   **Body (application/json):**
+        ```json
+        {
+          "success": true,
+          "statusCode": 200,
+          "message": "Updated Successfully"
+        }
+        ```
+*   **400 Bad Request:**
+    *   **Status Code:** `400`
+    *   **Body (application/json):**
+        ```json
+        {
+          "statusCode": 400,
+          "message": "Bad Request"
+        }
+        ```
+*   **401 Unauthorized:**
+    *   **Status Code:** `401`
+    *   **Body (application/json):**
+        ```json
+        {
+          "statusCode": 401,
+          "message": "Invalid token: access token is invalid",
+          "error": "Unauthorized"
+        }
+        ```
+*   **422 Unprocessable Entity:**
+    *   **Status Code:** `422`
+    *   **Body (application/json):**
+        ```json
+        {
+          "statusCode": 422,
+          "message": ["Unprocessable Entity"],
+          "error": "Unprocessable Entity"
+        }
+        ```
+
+### 10. PURPOSE:
+This endpoint is used to finalize the process of posting social media content from an uploaded CSV file.
+
+### 11. TAGS:
+Social Planner, CSV, Finalize, Patch, Social Media Posting, Upload, Location, Sub-Account, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for `cURL`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

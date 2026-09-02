@@ -1,0 +1,95 @@
+Here's a structured summary of the API documentation for "Create Custom Field":
+
+### 1. ENDPOINT NAME:
+Create Custom Field
+
+### 2. CATEGORY:
+Sub-Account Custom Field Management
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/locations/:locationId/customFields`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/locations/:locationId/customFields`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   locationId (string): Location Id. Example: `ve9EPM428h8vShlRW1KT`
+*   **Body Parameters:**
+    *   name (string): Example: `Custom Field`
+    *   dataType (string): Example: `TEXT`
+    *   model (string): Model of the custom field you want to create. Possible values: [`contact`, `opportunity`] Example: `opportunity`
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   placeholder (string): Example: `Placeholder Text`
+    *   acceptedFormat (string[]): Example: `[".pdf",".docx",".jpeg"]`
+    *   isMultipleFile (boolean): Example: `false`
+    *   maxNumberOfFiles (number): Example: `2`
+    *   textBoxListOptions (object[]): An array of objects.
+        *   label (string): Example: `First`
+        *   prefillValue (string): Example: `""`
+    *   position (number): Default value: `0`. Example: `0`
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `locations/customFields.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (201 Created):**
+    ```json
+    {
+      "customField": {
+        "id": "3sv6UEo51C9Bmpo1cKTq",
+        "name": "pincode",
+        "fieldKey": "contact.pincode",
+        "placeholder": "Pin code",
+        "dataType": "TEXT",
+        "position": 0,
+        "picklistOptions": [
+          "first option"
+        ],
+        "picklistImageOptions": [],
+        "isAllowedCustomOption": false,
+        "isMultiFileAllowed": true,
+        "maxFileLimit": 4,
+        "locationId": "3sv6UEo51C9Bmpo1cKTq",
+        "model": "opportunity"
+      }
+    }
+    ```
+*   **Error Responses:**
+    *   400 Bad Request
+    *   401 Unauthorized
+    *   422 Unprocessable Entity
+
+### 10. PURPOSE:
+This endpoint allows you to create a new custom field for a specific sub-account (formerly location) within the Highlevel platform.
+
+### 11. TAGS:
+Sub-Account, Location, Custom Field, Create, API, Highlevel, Fields, Configuration, Post, CRM, Data, Customization
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

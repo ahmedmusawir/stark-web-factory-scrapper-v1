@@ -1,0 +1,106 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get notification
+
+### 2. CATEGORY:
+Calendars / Calendar Notifications
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/calendars/:calendarId/notifications/:notificationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/:calendarId/notifications/:notificationId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-04-15`
+*   **Path Parameters:**
+    *   calendarId (string): Not specified in documentation
+    *   notificationId (string): Not specified in documentation
+
+### 7. OPTIONAL PARAMETERS:
+None specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `calendars/events.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer` (JWT format)
+*   **In:** `header`
+
+### 9. RESPONSE FORMAT:
+**200 OK (application/json)**
+```json
+{
+  "_id": "string",                  // Notification ID
+  "receiverType": "string",         // Possible values: ["contact", "guest", "assignedUser", "emails", "phoneNumbers"]
+  "additionalEmailIds": [
+    "string"                        // Example: ["example1@email.com", "example2@email.com"]
+  ],
+  "additionalPhoneNumbers": [
+    "string"                        // Example: ["+919876744444", "+919876744445"]
+  ],
+  "channel": "string",              // Possible values: ["email", "inApp", "sms", "whatsapp"]
+  "notificationType": "string",     // Possible values: ["booked", "confirmation", "cancellation", "reminder", "followup", "reschedule"]
+  "isActive": "boolean",
+  "additionalWhatsappNumbers": [
+    "string"                        // Example: ["+919876744444", "+919876744445"]
+  ],
+  "templateId": "string",
+  "body": "string",                 // Example: "This is a test notification"
+  "subject": "string",              // Example: "Test Notification"
+  "afterTime": [
+    {
+      "timeOffset": "number",
+      "unit": "string"
+    }
+  ],
+  "beforeTime": [
+    {
+      "timeOffset": "number",
+      "unit": "string"
+    }
+  ],
+  "selectedUsers": [
+    "string"                        // Example: ["user1", "user2"]
+  ],
+  "deleted": "boolean"
+}
+```
+
+**400 Bad Request (application/json)**
+```json
+{
+  "statusCode": 400,
+  "message": "Bad Request"
+}
+```
+
+**401 Unauthorized (application/json)**
+```json
+{
+  "statusCode": 401,
+  "message": "Invalid token: access token is invalid",
+  "error": "Unauthorized"
+}
+```
+
+### 10. PURPOSE:
+This endpoint retrieves a specific calendar event notification by its `notificationId` within a given `calendarId`.
+
+### 11. TAGS:
+Calendars, Calendar Notifications, Get, Retrieve, Find, Event, Notification, Read, `calendars/events.readonly`
+
+### 12. CODE EXAMPLES:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

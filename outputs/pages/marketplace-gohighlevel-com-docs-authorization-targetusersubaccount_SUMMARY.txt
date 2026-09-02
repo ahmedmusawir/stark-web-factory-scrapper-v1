@@ -1,0 +1,90 @@
+This document details the process of obtaining and managing OAuth 2.0 access tokens when your application is configured with a "Target User: Sub-Account". It describes two distinct API interactions involved in this process.
+
+---
+
+### **API Endpoint 1: Get Access Token (Initial OAuth Code Exchange)**
+
+1.  **ENDPOINT NAME:** Get Access Token (OAuth 2.0 Authorization Code Flow)
+2.  **CATEGORY:** Authorization / OAuth 2.0
+3.  **HTTP METHOD:** POST
+4.  **ENDPOINT URL:** `/oauth/token`
+5.  **FULL URL:** `https://services.leadconnectorhq.com/oauth/token`
+6.  **REQUIRED PARAMETERS:**
+    *   `client_id` (string): Your application's client ID.
+    *   `client_secret` (string): Your application's client secret.
+    *   `grant_type` (string): Must be `authorization_code`.
+    *   `code` (string): The authorization code received after a user installs the app and the redirect URL is triggered.
+    *   `user_type` (string): Specifies the context of the token. Can be `Company` for an Agency-level token or `Location` for a Sub-Account-level token.
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation
+8.  **AUTHENTICATION:**
+    *   Method: Requires `client_id` and `client_secret` sent as `application/x-www-form-urlencoded` in the request body.
+    *   Required Scopes: Not directly applicable to the token generation endpoint itself, but the resulting token will have scopes based on app configuration and user consent.
+    *   Token Type: Generates a Bearer token.
+9.  **RESPONSE FORMAT:**
+    *   Status Code: 200 OK
+    *   Structure: JSON object
+    ```json
+    {
+      "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "token_type": "Bearer",
+      "expires_in": 86399,
+      "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "scope": "businesses.readonly",
+      "refreshTokenId": "68a32a7fb5154c26d5dd218c",
+      "userType": "Company" or "Location",
+      "companyId": "GNb7aIv4rQFVb9iwNl5K",
+      "isBulkInstallation": true,
+      "userId": "Rg6BRRiHh7dS9gJy3W8a"
+    }
+    ```
+10. **PURPOSE:** To exchange an authorization code, obtained after an app installation, for an OAuth 2.0 access token (and refresh token) which grants access to the HighLevel API resources at either the Agency (`Company`) or Sub-Account (`Location`) level.
+11. **TAGS:** Authorization, OAuth, Access Token, Token Generation, Grant Type, Code Exchange, Company Token, Location Token, Initial Auth.
+12. **CODE EXAMPLES:** cURL
+
+---
+
+### **API Endpoint 2: Get Location Access Token from Agency Token**
+
+1.  **ENDPOINT NAME:** Get Location Access Token from Agency Token
+2.  **CATEGORY:** Authorization / OAuth 2.0
+3.  **HTTP METHOD:** POST
+4.  **ENDPOINT URL:** `/oauth/locationToken`
+5.  **FULL URL:** `https://services.leadconnectorhq.com/oauth/locationToken`
+6.  **REQUIRED PARAMETERS:**
+    *   `companyId` (string): The ID of the agency/company for which the initial Agency-level token was generated.
+    *   `locationId` (string): The ID of the specific sub-account (location) for which to obtain a Location-level access token. (This can be obtained from the "App Install event" webhook payload).
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation
+8.  **AUTHENTICATION:**
+    *   Method: Bearer Token in `Authorization` header.
+    *   Token Type: Requires an **Agency-level `access_token`** obtained from the initial OAuth exchange.
+    *   Required Headers:
+        *   `Content-Type: application/x-www-form-urlencoded`
+        *   `Accept: application/json`
+        *   `Version: 2021-07-28`
+        *   `Authorization: Bearer {AGENCY_ACCESS_TOKEN}`
+9.  **RESPONSE FORMAT:**
+    *   Status Code: 200 OK
+    *   Structure: JSON object
+    ```json
+    {
+      "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2OGEzMmRhNjlkN2EzY2E5NT",
+      "token_type": "Bearer",
+      "expires_in": 86400,
+      "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoQ2xhc3MiOiJMb2NhdGlvbiIsImF",
+      "scope": "businesses.readonly oauth.write oauth.readonly",
+      "userType": "Location",
+      "companyId": "GNb7aIv4rQFVb9iwNl5K",
+      "locationId": "HjiMUOsCCHCjtxzEf8PR",
+      "userId": "Rg6BRRiHh7dS9gJy3W8a",
+      "traceId": "8cf33664-9f4f-4392-adf6-71b8bed2592a"
+    }
+    ```
+10. **PURPOSE:** To exchange an existing Agency-level access token for a specific Sub-Account (Location-level) access token, allowing an application to make API calls and perform actions directly within the context of that particular sub-account.
+11. **TAGS:** Authorization, OAuth, Access Token, Token Exchange, Agency Token, Location Token, Sub-Account Token, Hierarchy.
+12. **CODE EXAMPLES:** cURL
+
+---
+
+### **OVERALL DOCUMENT PURPOSE:**
+
+This document explains the nuances of handling OAuth 2.0 access tokens for HighLevel marketplace apps where the "Target User" is set to "Sub-Account". It outlines how the type of generated token (Agency-level vs. Sub-Account-level) depends on the app's installation settings ("Agency Only" vs. "Everyone") and the user role (Agency Admin vs. Sub-Account User) performing the installation, providing the necessary API calls and examples for both initial token generation and subsequent token exchange.

@@ -1,0 +1,91 @@
+Here's a structured summary of the "List Shipping Zones" API documentation:
+
+### 1. ENDPOINT NAME:
+List Shipping Zones
+
+### 2. CATEGORY:
+Store, Shipping Zone
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+/store/shipping-zone
+
+### 5. FULL URL:
+https://services.leadconnectorhq.com/store/shipping-zone
+
+### 6. REQUIRED PARAMETERS:
+*   **altId** (string): Location Id or Agency Id. Example: `6578278e879ad2646715ba9c`
+*   **altType** (string): Possible values: [`location`]. Example: `location`
+
+### 7. OPTIONAL PARAMETERS:
+*   **limit** (number): The maximum number of items to be included in a single page of results. Default value: `0`. Example: `20`
+*   **offset** (number): The starting index of the page, indicating the position from which the results should be retrieved. Default value: `0`. Example: `0`
+*   **withShippingRate** (boolean): Include shipping rates array in the response. Example: `true` or `false`
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s)**: OAuth Access Token, Private Integration Token
+*   **Token Type(s)**: Sub-Account Token
+*   **Scheme**: Bearer
+*   **Bearer Format**: JWT
+*   **In**: Header
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code**: 200 (Successful response)
+*   **Content Type**: application/json
+*   **Schema**:
+    *   **total** (number, required): Total number of items. Example: `20`
+    *   **data** (array of objects, required): An array of shipping zone items.
+        *   **altId** (string, required): Location Id or Agency Id. Example: `6578278e879ad2646715ba9c`
+        *   **altType** (string, required): Possible values: [`location`]. Example: `location`
+        *   **name** (string, required): Name of the shipping zone. Example: `North zone`
+        *   **countries** (array of objects, required): List of countries that are available.
+            *   **code** (number, required): Country code. Possible values are an extensive list of ISO 3166-1 alpha-2 codes (e.g., `US, CA, AF, AX, AL`, etc.). Example: `US`
+            *   **states** (array of objects, optional): List of states that are available. If states is empty, then all states are available.
+                *   **code** (string, required): State code. Possible values are an extensive list of state/province codes (e.g., `AL, AK, AS`, etc.). Example: `VA`
+        *   **_id** (string, required): The unique identifier for the shipping zone. Example: `655b33a82209e60b6adb87a5`
+        *   **shippingRates** (array of objects, optional): Array of shipping rates under this shipping zone (included if `withShippingRate` query parameter is true).
+            *   **altId** (string, required): Location Id or Agency Id. Example: `6578278e879ad2646715ba9c`
+            *   **altType** (string, required): Possible values: [`location`]. Example: `location`
+            *   **name** (string, required): Name of the shipping zone. Example: `North zone`
+            *   **description** (string, optional): Delivery description. Example: `Ships next day`
+            *   **currency** (string, required): The currency of the amount of the rate / handling fee. Example: `USD`
+            *   **amount** (number, required): The amount of the shipping rate if it is a normal rate (0 means free). Fixed Handling fee if it is a carrier rate (it will add to the carrier rate). Example: `99.99`
+            *   **conditionType** (string, required): Type of condition to provide the conditional pricing. Possible values: [`none`, `price`, `weight`]. Example: `price`
+            *   **minCondition** (number, required): Minimum condition for applying this price. Set 0 or null if there is no minimum. Example: `99.99`
+            *   **maxCondition** (number, required): Maximum condition for applying this price. Set 0 or null if there is no maximum. Example: `99.99`
+            *   **isCarrierRate** (boolean, optional): Indicates if this is a carrier rate. Example: `true`
+            *   **shippingCarrierId** (string, required): Shipping carrier id. Example: `655b33a82209e60b6adb87a5`
+            *   **percentageOfRateFee** (number, optional): Percentage of rate fee if it is a carrier rate. Example: `10.99`
+            *   **shippingCarrierServices** (array of objects, optional): An array of shipping carrier services.
+                *   **name** (string, required): Name of the shipping carrier service. Example: `Priority Mail Express International`
+                *   **value** (string, required): Value of the shipping carrier service. Example: `PriorityMailExpressInternational`
+            *   **_id** (string, required): The unique identifier for the shipping rate. Example: `655b33a82209e60b6adb87a5`
+            *   **shippingZoneId** (string, required): The unique identifier for the shipping zone. Example: `655b33a82209e60b6adb87a5`
+            *   **createdAt** (string, required): Timestamp of creation. Example: `2023-12-12T09:27:42.355Z`
+            *   **updatedAt** (string, required): Timestamp of last update. Example: `2023-12-12T09:27:42.355Z`
+        *   **createdAt** (string, required): Timestamp of creation. Example: `2023-12-12T09:27:42.355Z`
+        *   **updatedAt** (string, required): Timestamp of last update. Example: `2023-12-12T09:27:42.355Z`
+*   **Error Responses**:
+    *   **400 Bad Request**: `{ "statusCode": 400, "message": "Bad Request" }`
+    *   **401 Unauthorized**: `{ "statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized" }`
+    *   **422 Unprocessable Entity**: `{ "statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity" }`
+
+### 10. PURPOSE:
+The "List Shipping Zone" API allows retrieving a list of shipping zones.
+
+### 11. TAGS:
+Store, Shipping Zone, List, Retrieve, GET, E-commerce, Location, Shipping Rates, Countries, States, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

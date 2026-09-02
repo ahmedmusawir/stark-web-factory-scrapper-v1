@@ -1,0 +1,97 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Update Contacts Tags
+
+### 2. CATEGORY:
+Contacts
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/contacts/bulk/tags/update/:type`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/bulk/tags/update/:type`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Body Parameters:**
+    *   contacts (string[]): list of contact ids to be processed
+    *   tags (string[]): list of tags to be added or removed
+    *   locationId (string): location id from where the bulk request is executed
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters:**
+    *   removeAllTags (boolean): Option to implement remove all tags. if true, all tags will be removed from the contacts. Can only be used with remove type.
+
+### 8. AUTHENTICATION:
+Not specified in documentation for this specific endpoint. (The general API might require OAuth 2.0 or API keys as indicated by the sidebar navigation, but specific requirements for this endpoint are not detailed).
+
+### 9. RESPONSE FORMAT:
+**Successful Response (201 Created):**
+*   **Content Type:** application/json
+*   **Structure:**
+    ```json
+    {
+      "succeded": true,
+      "errorCount": 0,
+      "responses": [
+        {
+          "contactId": "qFSqySFkVvNzOSqgGqFi",
+          "message": "Tags updated",
+          "type": "success",
+          "oldTags": ["tag-1", "tag-2"],
+          "tagsAdded": [],
+          "tagsRemoved": []
+        },
+        {
+          "contactId": "abcdef",
+          "message": "contact id is not a valid firebase id",
+          "type": "error"
+        },
+        {
+          "contactId": "qFSqySFkVvNzOSqgGqFi",
+          "message": "contact is deleted",
+          "type": "error"
+        },
+        {
+          "contactId": "3ualbhnV7j3n3a9r2moD",
+          "message": "contact does not belong to location",
+          "type": "error"
+        }
+      ]
+    }
+    ```
+    *   `succeded` (boolean): Indicates if the operation was successful.
+    *   `errorCount` (number): Number of errors encountered during the operation.
+    *   `responses` (string[]): Responses for each contact processed, detailing success/error for individual contact tag updates.
+
+**Error Responses:**
+*   **400 Bad Request:**
+    ```json
+    {"statusCode": 400, "message": "Bad Request"}
+    ```
+*   **422 Unprocessable Entity:**
+    ```json
+    {"statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity"}
+    ```
+
+### 10. PURPOSE:
+This endpoint allows you to update tags for multiple contacts at once, enabling the addition or removal of tags from a list of specified contacts.
+
+### 11. TAGS:
+Contacts, Tags, Bulk Update, CRM, Marketing Automation, Lead Connector, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for the following languages, with cURL explicitly provided:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

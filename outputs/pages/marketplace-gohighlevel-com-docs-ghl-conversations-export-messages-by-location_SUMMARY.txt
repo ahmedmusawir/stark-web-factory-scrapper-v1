@@ -1,0 +1,92 @@
+Here's a structured summary of the API documentation for "Export messages by location ID":
+
+### 1. ENDPOINT NAME:
+Export messages by location ID
+
+### 2. CATEGORY:
+Conversations
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/conversations/messages/export`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversations/messages/export`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+*   **Query Parameters:**
+    *   `locationId` (string): Location ID to filter messages by
+
+### 7. OPTIONAL PARAMETERS:
+*   `channel` (string): Filter by message channel. When omitted, returns all non-email message types including activity messages. To fetch email messages, you must explicitly set `channel=Email`. Possible values: `Call`, `SMS`, `Email`, `WhatsApp`, `Instagram`, `Facebook`
+*   `limit` (number): Number of messages to return per page. Possible values: `>= 10` and `<= 500`. Default value: `100`
+*   `cursor` (string): Cursor for pagination. Pass the `nextCursor` from previous response to get the next page.
+*   `sortBy` (string): Field to sort by. Possible values: `createdAt`, `updatedAt`. Default value: `createdAt`
+*   `sortOrder` (string): Sort order. Possible values: `asc`, `desc`. Default value: `desc`
+*   `conversationId` (string): Filter messages by conversation ID
+*   `contactId` (string): Filter messages by contact ID
+*   `startDate` (string): Start date to filter messages by
+*   `endDate` (string): End date to filter messages by
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `conversations/message.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (application/json):**
+    A JSON object containing:
+    *   `messages` (array of objects, required): An array of message objects. Each object includes:
+        *   `id` (string, required): Unique identifier for the message.
+        *   `altId` (string): Alternative identifier for the message.
+        *   `type` (number, required): Numeric type of the message (e.g., `1` for SMS).
+        *   `messageType` (string, required): String representation of the message type (e.g., `SMS`, `EMAIL`, `CALL`).
+        *   `locationId` (string, required): The ID of the location the message belongs to.
+        *   `contactId` (string, required): The ID of the contact involved in the conversation.
+        *   `conversationId` (string, required): The ID of the conversation.
+        *   `dateAdded` (string, required): ISO 8601 timestamp when the message was added.
+        *   `body` (string): The content of the message.
+        *   `direction` (string, required): `inbound` or `outbound`.
+        *   `status` (string): The status of the message (e.g., `connected`, `delivered`, `read`, `failed`).
+        *   `contentType` (string, required): The content type of the message (e.g., `text/plain`).
+        *   `attachments` (array of strings): An array of URLs for file attachments.
+        *   `meta` (object): Optional metadata specific to the message type, which may include:
+            *   `callDuration` (string): Duration of the call in seconds.
+            *   `callStatus` (string): Status of the call (e.g., `completed`, `no-answer`).
+            *   `email` (object): Contains `messageIds` for email messages.
+            *   `ig` (object): Contains `page_id` and `page_name` for Instagram messages.
+            *   `fb` (object): Contains `page_id` and `page_name` for Facebook messages.
+        *   `source` (string): Origin of the message (e.g., `workflow`, `api`, `app`).
+        *   `userId` (string): User ID associated with the message.
+        *   `conversationProviderId` (string): Conversation Provider ID.
+        *   `chatWidgetId` (string): Chat Widget ID.
+    *   `nextCursor` (string): Cursor value for fetching the next page of results. `null` if no more results.
+    *   `total` (number, required): The total number of messages matching the query.
+
+*   **400 Bad Request (application/json):**
+    `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized (application/json):**
+    `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint allows users to export messages for a specific location with cursor-based pagination, supporting filtering by various parameters like channel, conversation ID, contact ID, and date range.
+
+### 11. TAGS:
+Conversations, Messages, Export, Location, Get, Read, Pagination, History, Communication, API, Filtering, Sub-Account, Data Export
+
+### 12. CODE EXAMPLES:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

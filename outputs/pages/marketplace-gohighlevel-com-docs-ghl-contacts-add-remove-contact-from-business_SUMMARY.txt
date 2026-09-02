@@ -1,0 +1,76 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Add/Remove Contacts From Business
+
+### 2. CATEGORY:
+Contacts (Bulk Operations)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/contacts/bulk/business`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/bulk/business`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameter:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+*   **Body Parameters:**
+    *   locationId (string): The ID of the location/sub-account where the contacts belong.
+    *   ids (string[]): An array of contact IDs to add or remove from the business. Max length: `<= 50 characters` for each ID.
+    *   businessId (string, nullable): The ID of the business to associate the contacts with. Passing `null` will remove the businessId from the contacts.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+Not explicitly specified in documentation for this endpoint, but mentions "Authorization" as a general topic in the sidebar.
+
+### 9. RESPONSE FORMAT:
+*   **200 OK (Successful response)**
+    *   Content Type: `application/json`
+    *   Schema:
+        ```json
+        {
+          "success": true,
+          "ids": ["string"] // Array of contact IDs successfully processed
+        }
+        ```
+    *   Example:
+        ```json
+        {"success":true,"ids":["pOC0uJ97VYOKH2m3fkMD"]}
+        ```
+*   **422 Unprocessable Entity**
+    *   Content Type: `application/json`
+    *   Schema:
+        ```json
+        {
+          "statusCode": 422,
+          "message": ["string"],
+          "error": "string"
+        }
+        ```
+    *   Example:
+        ```json
+        {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+        ```
+
+### 10. PURPOSE:
+This endpoint allows for adding multiple contacts to a specific business or removing them from an associated business by passing a `null` businessId.
+
+### 11. TAGS:
+Contacts, Bulk, Business, Add, Remove, Association, CRM, LeadConnector, HighLevel, Update
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

@@ -1,0 +1,92 @@
+```
+## STRUCTURED API SUMMARY
+
+### 1. ENDPOINT NAME:
+Update Shipping Carrier
+
+### 2. CATEGORY:
+Store > Shipping Carrier
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/store/shipping-carrier/:shippingCarrierId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/store/shipping-carrier/:shippingCarrierId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Path Parameters:**
+    *   shippingCarrierId (string): ID of the shipping carrier that needs to be returned
+
+*   **Body Parameters (application/json):**
+    *   altId (string): Location Id or Agency Id
+    *   altType (string): Possible values: [`location`]
+    *   name (string): Name of the shipping carrier
+    *   callbackUrl (string): The URL endpoint that GHL needs to retrieve shipping rates. This must be a public URL.
+    *   services (object[]): An array of available shipping carrier services
+        *   name (string): Name of the shipping carrier service
+        *   value (string): Value of the shipping carrier service
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters (application/json):**
+    *   allowsMultipleServiceSelection (boolean): The seller can choose multiple services while creating shipping rates if this is true.
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** OAuth Access Token, Private Integration Token
+*   **Token Type(s):** Sub-Account Token
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header (Authorization)
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Structure:**
+        ```json
+        {
+          "status": boolean,
+          "message": string,
+          "data": {
+            "altId": string,
+            "altType": string,
+            "name": string,
+            "callbackUrl": string,
+            "services": [
+              {
+                "name": string,
+                "value": string
+              }
+            ],
+            "allowsMultipleServiceSelection": boolean,
+            "_id": string,
+            "marketplaceAppId": string,
+            "createdAt": string,
+            "updatedAt": string
+          }
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:** `{"statusCode": number, "message": string}`
+    *   **401 Unauthorized:** `{"statusCode": number, "message": string, "error": string}`
+    *   **422 Unprocessable Entity:** `{"statusCode": number, "message": string[], "error": string}`
+
+### 10. PURPOSE:
+The "update Shipping Carrier" API allows updating an existing shipping carrier in the system.
+
+### 11. TAGS:
+Store, Shipping Carrier, Update, PUT, Ecommerce, Shipping, Logistics, API, GoHighLevel
+
+### 12. CODE EXAMPLES:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
+```

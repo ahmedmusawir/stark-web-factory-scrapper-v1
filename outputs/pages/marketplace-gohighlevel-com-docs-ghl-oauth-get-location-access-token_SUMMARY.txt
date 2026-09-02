@@ -1,0 +1,80 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get Location Access Token from Agency Token
+
+### 2. CATEGORY:
+OAuth 2.0
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/oauth/locationToken`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/oauth/locationToken`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+
+*   **Body Parameters (application/x-www-form-urlencoded):**
+    *   `companyId` (string): Company Id of location you want to request token for
+    *   `locationId` (string): The location ID for which you want to obtain accessToken
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `oauth.write`
+*   **Auth Method(s):** `OAuth Access Token`
+*   **Token Type(s):** `Agency Token`
+*   **Authorization Header:** `Bearer <TOKEN>` (where `<TOKEN>` is the Agency Access Token)
+
+### 9. RESPONSE FORMAT:
+
+*   **Status Code:** `200`
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   `access_token` (string): Location access token which can be used to authenticate & authorize API under following scope. Example: `ab12dc0ae1234a7898f9ff06d4f69gh`
+    *   `token_type` (string): Example: `Bearer`
+    *   `expires_in` (number): Time in seconds remaining for token to expire. Example: `86399`
+    *   `scope` (string): Scopes the following accessToken have access to. Example: `conversations/message.readonly conversations/message.write`
+    *   `locationId` (string): Location ID - Present only for Sub-Account Access Token. Example: `l1C08ntBrFjLS0elLIYU`
+    *   `planId` (string): Plan Id of the subscribed plan in paid apps. Example: `l1C08ntBrFjLS0elLIYU`
+    *   `userId` (string, required): USER ID - Represent user id of person who performed installation. Example: `l1C08ntBrFjLS0elLIYU`
+*   **Example (200 Success):**
+    ```json
+    {
+      "access_token": "ab12dc0ae1234a7898f9ff06d4f69gh",
+      "token_type": "Bearer",
+      "expires_in": 86399,
+      "scope": "conversations/message.readonly conversations/message.write",
+      "locationId": "l1C08ntBrFjLS0elLIYU",
+      "planId": "l1C08ntBrFjLS0elLIYU",
+      "userId": "l1C08ntBrFjLS0elLIYU"
+    }
+    ```
+*   **Error Responses:**
+    *   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This API allows you to generate a `locationAccessToken` for a specific location using an `AgencyAccessToken`.
+
+### 11. TAGS:
+OAuth, token, access token, location, agency, authentication, authorization, token generation, security.
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

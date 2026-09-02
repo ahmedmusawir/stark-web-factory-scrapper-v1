@@ -1,0 +1,63 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Delete CSV
+
+### 2. CATEGORY:
+Social Planner - CSV
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/social-media-posting/:locationId/csv/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/:locationId/csv/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   `Version` (string): API Version (Possible values: `2021-07-28`) - Header Parameter
+*   `locationId` (string): Location ID - Path Parameter
+*   `id` (string): CSV Id - Path Parameter
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s)**: OAuth Access Token, Private Integration Token
+*   **Token Type(s)**: Sub-Account Token
+*   **Scheme**: Bearer (JWT format), in: Header
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    *   **Content-Type**: `application/json`
+    *   **Schema:**
+        *   `success` (boolean): Indicates if the operation was successful (`true`).
+        *   `statusCode` (number): HTTP status code (`200`).
+        *   `message` (string): A descriptive message (`Deleted Post`).
+        *   `results` (object): Contains the deleted CSV data.
+            *   `csv` (object):
+                *   `locationId` (string): The ID of the location.
+                *   `fileName` (string): The name of the CSV file.
+                *   `accountIds` (string[]): Array of account IDs.
+                *   `file` (string): File reference.
+                *   `status` (string): Current status of the CSV (e.g., `completed`, `pending`, `in_progress`, `failed`, `in_review`, `importing`, `deleted`).
+                *   `count` (number): Number of items in the CSV.
+                *   `createdBy` (string): ID of the creator.
+                *   `traceId` (string): Trace ID.
+                *   `originId` (string): Origin ID.
+                *   `approver` (string): Approver ID.
+*   **Error Responses:**
+    *   `400 Bad Request`
+    *   `401 Unauthorized`
+    *   `422 Unprocessable Entity`
+
+### 10. PURPOSE:
+This endpoint allows users to delete a specific CSV file associated with social media posting for a given location.
+
+### 11. TAGS:
+Social Planner, CSV, Delete, Social Media, Posting, Location, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for: cURL, nodejs, python, php, java, go, ruby, powershell.

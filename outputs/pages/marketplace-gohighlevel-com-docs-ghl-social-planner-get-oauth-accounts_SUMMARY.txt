@@ -1,0 +1,85 @@
+Here's a structured summary of the API documentation for "Get oauth accounts":
+
+### 1. ENDPOINT NAME:
+Get oauth accounts
+
+### 2. CATEGORY:
+Social Planner (under OAuth | Generic)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/oauth/:locationId/:platform/accounts/:accountId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/oauth/:locationId/:platform/accounts/:accountId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Authorization (string): Access Token (Example: `Bearer 9c48df2694a849b6089f9d0d3513efe`)
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   locationId (string): Account Location Id (Example: `w37swmmLbA02zgqKPpxITe2`)
+    *   platform (string): Platform (Possible values: `google`, `facebook`, `instagram`, `linkedin`, `tiktok`, `tiktok-business`, `youtube`, `pinterest`) (Example: `facebook`)
+    *   accountId (string): Account Id (Example: `w37swmmLbA02zgqKPpxITe`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Method:** Bearer Token in the `Authorization` header.
+*   **Token Type:** Access Token
+*   **Scopes:** Not specified in documentation
+
+### 9. RESPONSE FORMAT:
+A successful response (HTTP 200) indicates successful OAuth execution and returns account details. The structure of the `results` object varies depending on the specified `platform`.
+
+**Common successful response structure:**
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Fetched [Platform] Account",
+  "results": {
+    // Platform-specific account details (e.g., "pages" for Facebook, "accounts" for Instagram, "locations" and "account" for Google Business Account, "pages" and "profile" for LinkedIn/Tiktok, etc.)
+  }
+}
+```
+**Example (Facebook):**
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Fetched Facebook Account",
+  "results": {
+    "pages": [
+      {
+        "id": "u37swmmLbA02zgqKPpxITe2",
+        "name": "FB Page",
+        "avatar": "u37swmmLbA02zgqKPpxITe2",
+        "isOwned": true,
+        "isConnected": true
+      }
+    ]
+  }
+}
+```
+Possible error responses: 400 Bad Request, 401 Unauthorized, 422 Unprocessable Entity.
+
+### 10. PURPOSE:
+This endpoint retrieves the OAuth connected accounts for a specific platform and location, returning account details that vary based on the chosen social media platform.
+
+### 11. TAGS:
+Social Planner, OAuth, Accounts, Get, Retrieve, Social Media, Google, Facebook, Instagram, LinkedIn, Tiktok, YouTube, Pinterest
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

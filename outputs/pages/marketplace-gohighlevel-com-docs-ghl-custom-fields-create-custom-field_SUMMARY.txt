@@ -1,0 +1,135 @@
+```
+## STRUCTURED API SUMMARY
+
+### 1. ENDPOINT NAME:
+Create Custom Field
+
+### 2. CATEGORY:
+Custom Fields V2
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/custom-fields/`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/custom-fields/`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+
+*   **Body Parameters:**
+    *   locationId (string): Location Id
+    *   showInForms (boolean): Whether the field should be shown in forms
+    *   dataType (string): Type of field that you are trying to create (Possible values: `TEXT`, `LARGE_TEXT`, `NUMERICAL`, `PHONE`, `MONETORY`, `CHECKBOX`, `SINGLE_OPTIONS`, `MULTIPLE_OPTIONS`, `DATE`, `TEXTBOX_LIST`, `FILE_UPLOAD`, `RADIO`, `EMAIL`)
+    *   fieldKey (string): Field key. For Custom Object it's formatted as "custom_object.{objectKey}.{fieldKey}". "custom_object" is a fixed prefix, "{objectKey}" is your custom object's identifier, and "{fieldKey}" is the unique field name within that object.
+    *   objectKey (string): The key for your custom object. This key uniquely identifies the custom object.
+    *   parentId (string): ID of the parent folder
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   name (string): Field name
+    *   description (string): Description of the field
+    *   placeholder (string): Placeholder text for the field
+    *   options (object[]): Options for the field (Valid only for SINGLE_OPTIONS, MULTIPLE_OPTIONS, RADIO, CHECKBOX, TEXTBOX_LIST type)
+        *   key (string): Key of the option (Required within the `options` array)
+        *   label (string): Value of the option (Required within the `options` array)
+        *   url (string): URL associated with the option (Optional, valid only for RADIO type)
+    *   acceptedFormats (string): Allowed file formats for uploads. Options include: .pdf, .docx, .doc, .jpg, .jpeg, .png, .gif, .csv, .xlsx, .xls, all (Possible values: `.pdf`, `.docx`, `.doc`, `.jpg`, `.jpeg`, `.png`, `.gif`, `.csv`, `.xlsx`, `.xls`, `all`)
+    *   maxFileLimit (number): Maximum file limit for uploads. Applicable only for fields with a data type of FILE_UPLOAD.
+    *   allowCustomOption (boolean): Determines if users can add a custom option value different from the predefined options in records for RADIO type fields.
+
+### 8. AUTHENTICATION:
+
+*   **Required Scope(s):** `locations/customFields.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **Location:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **201 Successful response**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `field` (object)
+            *   `locationId` (string)
+            *   `name` (string)
+            *   `description` (string)
+            *   `placeholder` (string)
+            *   `showInForms` (boolean)
+            *   `options` (object[])
+                *   `key` (string)
+                *   `label` (string)
+                *   `url` (string)
+            *   `acceptedFormats` (string)
+            *   `id` (string)
+            *   `objectKey` (string)
+            *   `dataType` (string)
+            *   `parentId` (string)
+            *   `fieldKey` (string)
+            *   `allowCustomOption` (boolean)
+            *   `maxFileLimit` (number)
+            *   `dateAdded` (date-time)
+            *   `dateUpdated` (date-time)
+    *   **Example:**
+        ```json
+        {
+          "field": {
+            "locationId": "ve9EPM428h8vShlRW1KT",
+            "name": "Name",
+            "description": "string",
+            "placeholder": "string",
+            "showInForms": true,
+            "options": [
+              {
+                "key": "string",
+                "label": "string",
+                "url": "string"
+              }
+            ],
+            "acceptedFormats": ".pdf",
+            "id": "string",
+            "objectKey": "custom_object.pet",
+            "dataType": "TEXT",
+            "parentId": "3v34PM428h8vShlRW1KT",
+            "fieldKey": "custom_object.pet.name",
+            "allowCustomOption": true,
+            "maxFileLimit": 2,
+            "dateAdded": "2024-07-29T15:51:28.071Z",
+            "dateUpdated": "2024-07-29T15:51:28.071Z"
+          }
+        }
+        ```
+*   **400 Bad Request**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `statusCode` (number), `message` (string)
+    *   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `statusCode` (number), `message` (string), `error` (string)
+    *   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint creates a new custom field for Custom Objects and Company (Business) objects within a specified location, with support for other Standard Objects planned for the future.
+
+### 11. TAGS:
+Custom Fields, Create, Field, Custom Object, Company, Business, Location, POST, API, CustomFieldsV2
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
+```

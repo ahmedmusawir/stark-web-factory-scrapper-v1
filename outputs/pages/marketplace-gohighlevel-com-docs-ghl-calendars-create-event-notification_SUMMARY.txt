@@ -1,0 +1,131 @@
+```
+## STRUCTURED API SUMMARY
+
+### 1. ENDPOINT NAME:
+Create notification
+
+### 2. CATEGORY:
+Calendars
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/calendars/:calendarId/notifications`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/:calendarId/notifications`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-04-15`]
+
+*   **Path Parameters:**
+    *   `calendarId` (string): The ID of the calendar for which notifications are to be created.
+
+*   **Body (array of objects):**
+    *   `receiverType` (string): Notification recipient type. Possible values: [`contact`, `guest`, `assignedUser`, `emails`, `phoneNumbers`]
+    *   `channel` (string): Notification channel. Possible values: [`email`, `inApp`, `sms`, `whatsapp`]
+    *   `notificationType` (string): Notification type. Possible values: [`booked`, `confirmation`, `cancellation`, `reminder`, `followup`, `reschedule`]
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body (array of objects):**
+    *   `isActive` (boolean): Is the notification active. Default value: `true`
+    *   `templateId` (string): Template ID for email notification. Not necessary for in-App notification.
+    *   `body` (string): Body for email notification. Not necessary for in-App notification.
+    *   `subject` (string): Subject for email notification. Not necessary for in-App notification.
+    *   `afterTime` (object[]): Specifies the time after which the follow-up notification should be sent. This is not required for other notification types.
+        *   `timeOffset` (number)
+        *   `unit` (string)
+    *   `beforeTime` (object[]): Specifies the time before which the reminder notification should be sent. This is not required for other notification types.
+        *   `timeOffset` (number)
+        *   `unit` (string)
+    *   `additionalEmailIds` (string[]): Additional email addresses to receive notifications. Example: `["example1@email.com","example2@email.com"]`
+    *   `additionalPhoneNumbers` (string[]): Additional phone numbers to receive notifications. Example: `["+919876744444","+919876744445"]`
+    *   `selectedUsers` (string[]): Selected user for in-App notification.
+    *   `fromAddress` (string): From address for email notification.
+    *   `fromName` (string): From name for email/sms notification.
+    *   `fromNumber` (string): From number for sms notification.
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `calendars/events.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Successful response):**
+    *   **Content Type:** `application/json`
+    *   **Schema:** An array of objects, where each object represents a created notification with the following fields:
+        *   `_id` (string): Notification ID
+        *   `receiverType` (string): Possible values: [`contact`, `guest`, `assignedUser`, `emails`, `phoneNumbers`]
+        *   `additionalEmailIds` (string[])
+        *   `additionalPhoneNumbers` (string[])
+        *   `channel` (string): Possible values: [`email`, `inApp`, `sms`, `whatsapp`]
+        *   `notificationType` (string): Possible values: [`booked`, `confirmation`, `cancellation`, `reminder`, `followup`, `reschedule`]
+        *   `isActive` (boolean)
+        *   `additionalWhatsappNumbers` (string[])
+        *   `templateId` (string)
+        *   `body` (string)
+        *   `subject` (string)
+        *   `afterTime` (object[]): Array of objects with `timeOffset` (number) and `unit` (string)
+        *   `beforeTime` (object[]): Array of objects with `timeOffset` (number) and `unit` (string)
+        *   `selectedUsers` (string[])
+        *   `deleted` (boolean)
+    *   **Example (JSON):**
+        ```json
+        [
+          {
+            "_id": "string",
+            "receiverType": "contact",
+            "additionalEmailIds": ["example1@email.com", "example2@email.com"],
+            "additionalPhoneNumbers": ["+919876744444", "+919876744445"],
+            "channel": "email",
+            "notificationType": "confirmation",
+            "isActive": true,
+            "additionalWhatsappNumbers": ["+919876744444", "+919876744445"],
+            "templateId": "0as9d8as0d",
+            "body": "This is a test notification",
+            "subject": "Test Notification",
+            "afterTime": [{"timeOffset": 1, "unit": "hours"}],
+            "beforeTime": [{"timeOffset": 1, "unit": "hours"}],
+            "selectedUsers": ["user1", "user2"],
+            "deleted": false
+          }
+        ]
+        ```
+
+*   **400 Bad Request:**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `statusCode` (number), `message` (string)
+    *   **Example (JSON):** `{"statusCode":400,"message":"Bad Request"}`
+
+*   **401 Unauthorized:**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `statusCode` (number), `message` (string), `error` (string)
+    *   **Example (JSON):** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint allows the creation of one or multiple calendar notifications for a specific calendar, supporting various recipient types, communication channels, and notification timings (e.g., booked, reminder, follow-up).
+
+### 11. TAGS:
+Calendars, Notifications, Create, Events, Appointments, POST, API, HighLevel, Marketing, Communication
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
+```

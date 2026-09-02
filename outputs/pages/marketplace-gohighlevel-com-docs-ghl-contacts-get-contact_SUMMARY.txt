@@ -1,0 +1,126 @@
+Here's a structured summary of the "Get Contact" API documentation:
+
+### 1. ENDPOINT NAME:
+Get Contact
+
+### 2. CATEGORY:
+Contacts
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/contacts/:contactId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/:contactId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameter:**
+    *   Version (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameter:**
+    *   contactId (string): Contact Id (Example: `ocQHyuzHvysMo5N5VsXc`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation for the request.
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `contacts.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Authorization Header:** `Bearer <TOKEN>` (Bearer format: JWT, in: header, description: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.)
+
+### 9. RESPONSE FORMAT:
+
+*   **200 Successful Response (application/json):**
+    A JSON object containing the contact's details.
+    ```json
+    {
+      "contact": {
+        "id": "string",
+        "name": "string",
+        "locationId": "string",
+        "firstName": "string",
+        "lastName": "string",
+        "email": "string",
+        "emailLowerCase": "string",
+        "timezone": "string",
+        "companyName": "string",
+        "phone": "string",
+        "dnd": true,
+        "dndSettings": {
+          "Call": { "status": "string", "message": "string", "code": "string" },
+          "Email": { "status": "string", "message": "string", "code": "string" },
+          "SMS": { "status": "string", "message": "string", "code": "string" },
+          "WhatsApp": { "status": "string", "message": "string", "code": "string" },
+          "GMB": { "status": "string", "message": "string", "code": "string" },
+          "FB": { "status": "string", "message": "string", "code": "string" }
+        },
+        "type": "string",
+        "source": "string",
+        "assignedTo": "string",
+        "address1": "string",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "postalCode": "string",
+        "website": "string",
+        "tags": ["string"],
+        "dateOfBirth": "string",
+        "dateAdded": "string",
+        "dateUpdated": "string",
+        "attachments": "string",
+        "ssn": "string",
+        "keyword": "string",
+        "firstNameLowerCase": "string",
+        "fullNameLowerCase": "string",
+        "lastNameLowerCase": "string",
+        "lastActivity": "string",
+        "customFields": [{ "id": "string", "value": "string" }],
+        "businessId": "string",
+        "attributionSource": {
+          "url": "string", "campaign": "string", "utmSource": "string",
+          "utmMedium": "string", "utmContent": "string", "referrer": "string",
+          "campaignId": "string", "fbclid": "string", "gclid": "string",
+          "msclikid": "string", "dclid": "string", "fbc": "string",
+          "fbp": "string", "fbEventId": "string", "userAgent": "string",
+          "ip": "string", "medium": "string", "mediumId": "string"
+        },
+        "lastAttributionSource": {
+          "url": "string", "campaign": "string", "utmSource": "string",
+          "utmMedium": "string", "utmContent": "string", "referrer": "string",
+          "campaignId": "string", "fbclid": "string", "gclid": "string",
+          "msclikid": "string", "dclid": "string", "fbc": "string",
+          "fbp": "string", "fbEventId": "string", "userAgent": "string",
+          "ip": "string", "medium": "string", "mediumId": "string"
+        },
+        "visitorId": "string"
+      }
+    }
+    ```
+    *   **dndSettings sub-object**: For Call, Email, SMS, WhatsApp, GMB, FB, the `status` field is required and can be `active`, `inactive`, or `permanent`.
+    *   **Attribution Sources**: Both `attributionSource` and `lastAttributionSource` objects have a required `url` field, and many nullable fields related to tracking.
+
+*   **400 Bad Request (application/json):**
+    ```json
+    { "statusCode": 400, "message": "Bad Request" }
+    ```
+*   **401 Unauthorized (application/json):**
+    ```json
+    { "statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized" }
+    ```
+*   **422 Unprocessable Entity (application/json):**
+    ```json
+    { "statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity" }
+    ```
+
+### 10. PURPOSE:
+This endpoint allows retrieving comprehensive details for a specific contact using their unique contact ID.
+
+### 11. TAGS:
+Contacts, Get, Retrieve, Contact, Read, CRM, LeadConnector, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

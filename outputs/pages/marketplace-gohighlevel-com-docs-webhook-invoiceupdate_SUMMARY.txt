@@ -1,0 +1,93 @@
+Here is a structured summary of the API documentation for the InvoiceUpdate webhook:
+
+### 1. ENDPOINT NAME
+InvoiceUpdate
+
+### 2. CATEGORY
+Webhook
+
+### 3. HTTP METHOD
+POST (Inferred: Webhooks typically deliver payloads via POST requests. Not explicitly stated in documentation for receiving end.)
+
+### 4. ENDPOINT URL
+Not applicable. This is a webhook event that HighLevel sends to a URL configured by the user. There is no fixed endpoint URL to call for this event, nor is there a fixed URL where HighLevel sends it; it is user-defined.
+
+### 5. FULL URL
+Not applicable. (See ENDPOINT URL explanation above. The provided URL is for the documentation page.)
+
+### 6. REQUIRED PARAMETERS
+This section describes the fields present in the JSON payload that HighLevel sends to your configured webhook URL. All fields listed in the schema are typically included in the payload.
+
+**Top-Level Payload Fields:**
+*   `_id` (string): Unique identifier for the invoice.
+*   `status` (string): Current status of the invoice (e.g., "draft", "sent", "paid", "partially_paid", "void").
+*   `liveMode` (boolean): Indicates if the invoice is in live mode or test mode.
+*   `amountPaid` (number): The total amount paid for the invoice.
+*   `altId` (string): An alternative ID associated with the invoice (e.g., location ID).
+*   `altType` (string): The type of the `altId` (e.g., "location").
+*   `name` (string): Name of the invoice.
+*   `businessDetails` (object): Details of the business associated with the invoice.
+    *   `businessDetails.name` (string): Name of the business.
+    *   `businessDetails.address` (string): Address of the business.
+    *   `businessDetails.phoneNo` (string): Phone number of the business.
+    *   `businessDetails.website` (string): Website of the business.
+    *   `businessDetails.logoUrl` (string): URL of the business logo.
+    *   `businessDetails.customValues` (array of string): Custom values associated with the business.
+*   `invoiceNumber` (string): The invoice number.
+*   `currency` (string): The currency of the invoice (e.g., "USD").
+*   `contactDetails` (object): Details of the contact associated with the invoice.
+    *   `contactDetails.id` (string): ID of the contact.
+    *   `contactDetails.phoneNo` (string): Phone number of the contact.
+    *   `contactDetails.email` (string): Email of the contact.
+    *   `contactDetails.customFields` (array of string): Custom fields associated with the contact.
+    *   `contactDetails.name` (string): Name of the contact.
+    *   `contactDetails.address` (object): Address of the contact.
+        *   `contactDetails.address.countryCode` (string): Country code (e.g., "US").
+        *   `contactDetails.address.addressLine1` (string): First line of the address.
+        *   `contactDetails.address.addressLine2` (string): Second line of the address.
+        *   `contactDetails.address.city` (string): City.
+        *   `contactDetails.address.state` (string): State.
+        *   `contactDetails.address.postalCode` (string): Postal code.
+    *   `contactDetails.additionalEmails` (array of objects): Additional email addresses for the contact.
+        *   `contactDetails.additionalEmails[].email` (string): An additional email address.
+    *   `contactDetails.companyName` (string): Company name of the contact.
+*   `issueDate` (string): The date the invoice was issued (ISO 8601 format).
+*   `dueDate` (string): The date the invoice is due (ISO 8601 format).
+*   `discount` (object): Discount applied to the invoice.
+    *   `discount.type` (string): Type of discount (e.g., "percentage", "amount").
+    *   `discount.value` (number): Value of the discount.
+*   `invoiceItems` (array of objects): Line items included in the invoice.
+    *   `invoiceItems[].taxes` (array): Array of taxes applied to the item (items type not specified in schema).
+    *   `invoiceItems[]._id` (string): Unique ID for the invoice item.
+    *   `invoiceItems[].productId` (string): ID of the associated product.
+    *   `invoiceItems[].priceId` (string): ID of the associated price.
+    *   `invoiceItems[].currency` (string): Currency of the item.
+    *   `invoiceItems[].name` (string): Name of the item.
+    *   `invoiceItems[].qty` (number): Quantity of the item.
+    *   `invoiceItems[].amount` (number): Amount per item.
+*   `total` (number): The total amount of the invoice before any payments.
+*   `title` (string): The title of the invoice.
+*   `amountDue` (number): The remaining amount due on the invoice.
+*   `createdAt` (string): Timestamp when the invoice was created (ISO 8601 format).
+*   `updatedAt` (string): Timestamp when the invoice was last updated (ISO 8601 format).
+*   `totalSummary` (object): Summary of the invoice totals.
+    *   `totalSummary.subTotal` (number): Subtotal of the invoice.
+    *   `totalSummary.discount` (number): Total discount applied.
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation. All fields in the provided schema are generally expected as part of the webhook payload.
+
+### 8. AUTHENTICATION
+Not specified in documentation for receiving the webhook. Typically, webhook integrations involve verifying the request's origin (e.g., via a shared secret or signature header) for security, but specific methods are not detailed here.
+
+### 9. RESPONSE FORMAT
+Not specified in documentation. For webhooks, the receiving server is typically expected to return a `200 OK` status code to acknowledge successful receipt of the payload.
+
+### 10. PURPOSE
+This webhook is called by HighLevel to notify a subscribed application whenever an invoice is updated within the HighLevel platform.
+
+### 11. TAGS
+Webhook Events, Invoice, Update, Notification, Financial
+
+### Availability of Code Examples
+No code examples (e.g., Python, Node, cURL) are present in this documentation section.

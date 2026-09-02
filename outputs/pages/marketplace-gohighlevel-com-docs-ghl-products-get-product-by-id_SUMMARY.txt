@@ -1,0 +1,81 @@
+Here's a structured summary of the "Get Product by ID" API documentation:
+
+### 1. ENDPOINT NAME:
+Get Product by ID
+
+### 2. CATEGORY:
+Products
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/products/:productId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/products/:productId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string, header): API Version. Possible values: `2021-07-28`
+*   **productId** (string, path): ID or the slug of the product that needs to be returned. Example: `6578278e879ad2646715ba9c`
+*   **locationId** (string, query): location Id. Example: `6578278e879ad2646715ba9c`
+
+### 7. OPTIONAL PARAMETERS:
+*   **sendWishlistStatus** (boolean, query): Parameter which will decide whether to show the wishlisting status of products. Example: `true`
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `products.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** Bearer (JWT)
+
+### 9. RESPONSE FORMAT:
+**200 OK (Successful response - `application/json`)**
+Returns a product object with the following structure:
+*   `_id` (string): The unique identifier for the product.
+*   `description` (string): Product description.
+*   `variants` (array of objects): An array of variants for the product.
+    *   `id` (string): A unique identifier for the variant.
+    *   `name` (string): The name of the variant.
+    *   `options` (array of objects): An array of options for the variant.
+        *   `id` (string): The unique identifier for the option.
+        *   `name` (string): The name of the option.
+*   `locationId` (string): The unique identifier for the location.
+*   `name` (string): The name of the product.
+*   `productType` (string): The type of the product (e.g., `PHYSICAL`).
+*   `availableInStore` (boolean): Indicates whether the product is available in-store.
+*   `createdAt` (date-time): The creation timestamp of the product.
+*   `updatedAt` (date-time): The last update timestamp of the product.
+*   `statementDescriptor` (string): The statement descriptor for the product.
+*   `image` (string): The URL for the product image.
+*   `collectionIds` (array of strings): An array of category Ids for the product.
+*   `isTaxesEnabled` (boolean): Indicates whether taxes are enabled for the product (default: `false`).
+*   `taxes` (array of strings): An array of IDs of Taxes attached to the Product.
+*   `automaticTaxCategoryId` (string): Tax category ID for Automatic taxes calculation.
+*   `label` (object): The Product label details.
+    *   `title` (string): The content for the product label.
+    *   `startDate` (string): Start date in YYYY-MM-DDTHH:mm:ssZ format.
+    *   `endDate` (string): End date in YYYY-MM-DDTHH:mm:ssZ format.
+*   `slug` (string): The slug of the product by which the product will be navigated.
+
+**Error Responses:**
+*   **400 Bad Request**: `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized**: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity**: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows retrieval of detailed information for a specific product by its unique identifier or slug, fetching all relevant product data based on the provided product ID.
+
+### 11. TAGS:
+Products, Get, Retrieve, Product ID, Details, Read, E-commerce, Inventory, Catalog
+
+### Code Examples:
+Code examples are available for:
+*   CURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

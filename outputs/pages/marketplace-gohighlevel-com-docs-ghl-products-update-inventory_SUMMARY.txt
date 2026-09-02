@@ -1,0 +1,65 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Update Inventory
+
+### 2. CATEGORY:
+Products / Prices
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/products/inventory`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/products/inventory`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+*   **Body Parameters:**
+    *   `altId` (string): Location Id or Agency Id (Example: `6578278e879ad2646715ba9c`)
+    *   `altType` (string): Possible values: [`location`]
+    *   `items` (object[]): Array of items to update in the inventory.
+        *   `priceId` (string): The unique identifier for the price, in MongoDB ID format. (Example: `5e9f8f8f8f8f8f8f8f8f8f8`)
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters (within `items` array):**
+    *   `availableQuantity` (number): The available quantity of the item. (Example: `10`)
+    *   `allowOutOfStockPurchases` (boolean): Whether to continue selling the item when out of stock. (Example: `false`)
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `products/prices.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `201` (Successful response)
+*   **Schema (application/json):**
+    ```json
+    {
+      "status": true,
+      "message": "Successfully created"
+    }
+    ```
+    *   `status` (boolean): Status of api action (Example: `true`)
+    *   `message` (string): Success message (Example: `Successfully created`)
+
+*   **Error Responses:**
+    *   `400` Bad Request
+    *   `401` Unauthorized
+    *   `422` Unprocessable Entity
+
+### 10. PURPOSE:
+This endpoint allows users to bulk update the inventory for multiple items, including available quantity and out-of-stock purchase settings.
+
+### 11. TAGS:
+Products, Prices, Inventory, Update, Stock, Quantity, Bulk Update, eCommerce, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

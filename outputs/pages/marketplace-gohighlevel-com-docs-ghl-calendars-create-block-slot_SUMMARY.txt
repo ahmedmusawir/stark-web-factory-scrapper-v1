@@ -1,0 +1,78 @@
+Here is a structured summary of the API documentation for "Create Block Slot":
+
+### 1. ENDPOINT NAME:
+Create Block Slot
+
+### 2. CATEGORY:
+Calendars / Calendar Events
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/calendars/events/block-slots`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/events/block-slots`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: [`2021-04-15`]
+*   **Body Parameters:**
+    *   calendarId (string): Either calendarId or assignedUserId can be set, not both.
+    *   locationId (string): Location Id
+    *   startTime (string): Start Time
+    *   endTime (string): End Time
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters:**
+    *   title (string): Title
+    *   assignedUserId (string): Either calendarId or assignedUserId can be set, not both.
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `calendars/events.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Authorization Header:** `Bearer <TOKEN>` (JWT format)
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** 201 (Successful response)
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   id (string): Id
+    *   locationId (string): Location Id
+    *   title (string): Title
+    *   startTime (object): Start Time
+    *   endTime (object): End Time
+    *   calendarId (string): Calendar id
+    *   assignedUserId (string): Assigned User Id
+*   **Example:**
+    ```json
+    {
+      "id": "0TkCdp9PfvLeWKYRRvIz",
+      "locationId": "C2QujeCh8ZnC7al2InWR",
+      "title": "My event",
+      "startTime": "2021-06-23T03:30:00+05:30",
+      "endTime": "2021-06-23T04:30:00+05:30",
+      "calendarId": "CVokAlI8fgw4WYWoCtQz",
+      "assignedUserId": "0007BWpSzSwfiuSl0tR2"
+    }
+    ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        ```json
+        {"statusCode":400,"message":"Bad Request"}
+        ```
+    *   **401 Unauthorized:**
+        ```json
+        {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+        ```
+
+### 10. PURPOSE:
+This endpoint allows the creation of a block slot (an unavailable time slot) on a specified calendar or for an assigned user within a given location and time frame.
+
+### 11. TAGS:
+Calendars, Calendar Events, Create, Block Slot, Schedule, Time Management, API
+
+### 12. Code Examples:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

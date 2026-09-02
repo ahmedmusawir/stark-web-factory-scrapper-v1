@@ -1,0 +1,113 @@
+Here's a structured summary of the "Update Coupon" API documentation:
+
+### 1. ENDPOINT NAME
+Update Coupon
+
+### 2. CATEGORY
+Payments, Coupons
+
+### 3. HTTP METHOD
+PUT
+
+### 4. ENDPOINT URL
+`/payments/coupon`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/payments/coupon`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Body Parameters:**
+    *   `altId` (string): Location Id. Example: `BQdAwxa0ky1iK2sstLGJ`
+    *   `altType` (string): Alt Type. Possible values: [`location`]. Example: `location`
+    *   `name` (string): Coupon Name. Example: `New Year Sale`
+    *   `code` (string): Coupon Code. Example: `LEVELUPDAY2022`
+    *   `discountType` (string): Discount Type. Possible values: [`percentage`, `amount`]. Example: `amount`
+    *   `discountValue` (number): Discount Value. Example: `10`
+    *   `startDate` (string): Start date in YYYY-MM-DDTHH:mm:ssZ format. Example: `2023-01-01T22:45:00.000Z`
+    *   `id` (string): Coupon Id. Example: `6241712be68f7a98102ba272`
+    *   **Note**: If `applyToFuturePaymentsConfig` object is included in the request body, its internal fields are required:
+        *   `applyToFuturePaymentsConfig.type` (string): Type of the config. Possible values: [`forever`, `fixed`]. Example: `forever | fixed`
+        *   `applyToFuturePaymentsConfig.duration` (number): Duration the coupon to be applied in a subscription. Example: `5`
+        *   `applyToFuturePaymentsConfig.durationType` (string): Type of the duration. Possible values: [`months`]. Example: `months`
+
+### 7. OPTIONAL PARAMETERS
+
+*   **Body Parameters:**
+    *   `endDate` (string): End date in YYYY-MM-DDTHH:mm:ssZ format. Example: `2023-01-31T22:45:00.000Z`
+    *   `usageLimit` (number): Max number of times coupon can be used. Example: `10`
+    *   `productIds` (string[]): Product Ids. Example: `["6241712be68f7a98102ba272"]`
+    *   `applyToFuturePayments` (boolean): Is Coupon applicable on upcoming subscription transactions. Default value: `true`. Example: `true`
+    *   `applyToFuturePaymentsConfig` (object): If coupon is applicable on upcoming subscription transactions, how many months should it be applicable for a subscription. (Note: If this object is included, its nested fields `type`, `duration`, `durationType` are required as specified above).
+    *   `limitPerCustomer` (boolean): Limits whether a coupon can be redeemed only once per customer. Default value: `false`. Example: `true`
+
+### 8. AUTHENTICATION
+
+*   **Scope(s):** `payments/coupons.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+
+*   **200 OK (Successful response)**
+    *   **Content Type:** `application/json`
+    *   **Schema:** An object containing the updated coupon details:
+        *   `_id` (string): Unique MongoDB identifier for the coupon (required)
+        *   `usageCount` (number): Number of times the coupon has been used (required)
+        *   `limitPerCustomer` (number): Maximum number of times a customer can use this coupon (0 for unlimited) (required)
+        *   `altId` (string): Location Id (required)
+        *   `altType` (string): Type of entity (required)
+        *   `name` (string): Display name of the coupon (required)
+        *   `code` (string): Redemption code for the coupon (required)
+        *   `discountType` (string): Type of discount (percentage or amount) (required)
+        *   `discountValue` (number): Value of the discount (percentage or fixed amount) (required)
+        *   `status` (string): Current status of the coupon (required)
+        *   `startDate` (string): Date when the coupon becomes active (required)
+        *   `endDate` (string): End date when the coupon expires
+        *   `applyToFuturePayments` (boolean): Indicates if the coupon applies to future recurring payments (required)
+        *   `applyToFuturePaymentsConfig` (object): Configuration for how the coupon applies to future payments (required)
+            *   `type` (string): Type of future payments configuration (required). Possible values: [`forever`, `fixed`]
+            *   `duration` (number): Duration value for fixed type configurations
+            *   `durationType` (string): Duration type for fixed configurations (e.g. months)
+        *   `userId` (string): User ID associated with the coupon (if applicable)
+        *   `createdAt` (string): Creation timestamp (required)
+        *   `updatedAt` (string): Last update timestamp (required)
+        *   `traceId` (string): Unique identifier for tracing this API request (required)
+    *   **Example (JSON):**
+        ```json
+        {"_id":"67f6c132d9485f9dacd5f123","usageCount":12,"limitPerCustomer":5,"altId":"79t07PzK8Tvf73d12312","altType":"location","name":"NEWT6","code":"NEWT6","discountType":"percentage","discountValue":25,"status":"scheduled","startDate":"2025-04-30T18:30:00.000Z","endDate":"2025-05-30T18:30:00.000Z","applyToFuturePayments":true,"applyToFuturePaymentsConfig":{"type":"fixed","duration":3,"durationType":"months"},"userId":"q0m15dTLGeiGOXG123123","createdAt":"2025-04-09T18:49:22.026Z","updatedAt":"2025-04-09T18:49:22.026Z","traceId":"c667b18d-8f5e-44cf-a914"}
+        ```
+
+*   **422 Unprocessable Entity**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `statusCode` (number)
+        *   `message` (string[])
+        *   `error` (string)
+    *   **Example (JSON):**
+        ```json
+        {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+        ```
+
+### 10. PURPOSE
+The "Update Coupon" API enables you to modify existing coupon details such as discount values, validity periods, usage limits, and other promotional parameters, allowing you to adjust or extend promotional offers for your customers.
+
+### 11. TAGS
+Payments, Coupons, Update, Modify, Edit, Promotions, Discount, Sub-Account, API
+
+### 12. CODE EXAMPLES
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

@@ -1,0 +1,65 @@
+Here is a structured summary of the API documentation for the `PriceCreate` webhook:
+
+---
+
+### 1. ENDPOINT NAME:
+PriceCreate
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+Not applicable (This describes a webhook event payload, not an API endpoint for making requests. The HighLevel system sends this event via a POST request to a configured URL).
+
+### 4. ENDPOINT URL:
+Not applicable (This describes the payload of a webhook event).
+
+### 5. FULL URL:
+Not applicable (This describes the payload of a webhook event).
+
+### 6. REQUIRED PARAMETERS:
+Not specified in documentation (The provided schema describes the structure of the webhook payload, not parameters for an API request. All listed properties are part of the event payload).
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation (The provided schema describes the structure of the webhook payload. It does not explicitly mark fields as optional or required within the payload itself using JSON Schema `required` keyword).
+
+### WEBHOOK PAYLOAD PROPERTIES:
+The following properties are part of the `PriceCreate` webhook payload:
+
+*   **_id** (string): Unique identifier for the price.
+*   **membershipOffers** (array of objects): A list of membership offers associated with the price.
+    *   **label** (string): Label for the membership offer.
+    *   **value** (string): Value associated with the membership offer.
+    *   **_id** (string): Unique identifier for the membership offer.
+*   **variantOptionIds** (array of string): List of IDs for product variant options.
+*   **locationId** (string): Identifier of the location where the price was created.
+*   **product** (string): Identifier of the product associated with this price.
+*   **userId** (string): Identifier of the user who created or last updated the price.
+*   **name** (string): Name of the price (e.g., "Red / S").
+*   **priceType** (string): Type of price (e.g., "one_time").
+*   **currency** (string): Currency of the price (e.g., "INR").
+*   **amount** (number): The price amount.
+*   **recurring** (object): Details if the price is recurring.
+    *   **interval** (string): Interval for recurring payment (e.g., "day").
+    *   **intervalCount** (number): Number of intervals (e.g., 1).
+*   **createdAt** (string): ISO 8601 timestamp when the price was created.
+*   **updatedAt** (string): ISO 8601 timestamp when the price was last updated.
+*   **compareAtPrice** (number): A price to compare against, often used for showing discounts.
+*   **trackInventory** (null): Indicates if inventory is tracked for this price (schema specifies type "null", suggesting it's always null or not used).
+*   **availableQuantity** (number): The quantity of the product available at this price.
+*   **allowOutOfStockPurchases** (boolean): Indicates if purchases are allowed even when out of stock.
+
+### 8. AUTHENTICATION:
+Not specified in documentation for receiving the webhook. Typically, webhook receivers would authenticate the sender via shared secrets or digital signatures, but no specific method is mentioned here.
+
+### 9. RESPONSE FORMAT:
+The documentation describes the *payload* of the webhook event that HighLevel sends. It does not specify the expected response format from the webhook receiver, though typically a `200 OK` status code is expected to acknowledge successful receipt.
+
+### 10. PURPOSE:
+This webhook is called whenever a price is created in the HighLevel system, providing details about the newly created price.
+
+### 11. TAGS:
+Webhook Events, Price, Create, Product, Billing, Ecommerce, Inventory
+
+### 12. CODE EXAMPLES:
+No code examples (e.g., cURL, Python, Node.js) are provided in the snippet. Only the JSON schema and an example payload are shown.

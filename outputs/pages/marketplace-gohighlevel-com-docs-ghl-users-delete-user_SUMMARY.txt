@@ -1,0 +1,67 @@
+Here is a structured summary of the API documentation for "Delete User":
+
+### STRUCTURED SUMMARY
+
+1.  **ENDPOINT NAME:** Delete User
+
+2.  **CATEGORY:** Users
+
+3.  **HTTP METHOD:** DELETE
+
+4.  **ENDPOINT URL:** `/users/:userId`
+
+5.  **FULL URL:** `https://services.leadconnectorhq.com/users/:userId`
+
+6.  **REQUIRED PARAMETERS:**
+    *   **:userId** (path parameter): The unique identifier of the user to be deleted. (Implicit from URL structure, not explicitly typed or described in a parameter list, but essential for the endpoint)
+    *   **Version** (header string): API Version. Possible values: [`2021-07-28`]
+
+7.  **OPTIONAL PARAMETERS:**
+    *   Not specified in documentation
+
+8.  **AUTHENTICATION:**
+    *   **Scope(s):** `users.write`
+    *   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+    *   **Token Type(s):** `Agency Token`, `Sub-Account Token`
+    *   **Scheme:** `bearer`
+    *   **Bearer Format:** `JWT`
+    *   **In:** `header`
+    *   **Description:** Use the Access Token generated with user type as Agency (OR) Private Integration Token of Agency.
+
+9.  **RESPONSE FORMAT:**
+    *   **Status Code:** `200 OK`
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `succeded` (boolean): Indicates if the operation was successful. Example: `true`
+        *   `message` (string): A message describing the outcome. Example: `Queued deleting user with e-mail john@deo.com and name John Deo. Will take effect in a few minutes.`
+    *   **Example (200):**
+        ```json
+        {"succeded":true,"message":"Queued deleting user with e-mail john@deo.com and name John Deo. Will take effect in a few minutes."}
+        ```
+    *   **Error Responses (Examples):**
+        *   **400 Bad Request:**
+            ```json
+            {"statusCode":400,"message":"Bad Request"}
+            ```
+        *   **401 Unauthorized:**
+            ```json
+            {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+            ```
+        *   **422 Unprocessable Entity:**
+            ```json
+            {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+            ```
+
+10. **PURPOSE:** This endpoint allows for the deletion of a specific user within the HighLevel system by providing their user ID.
+
+11. **TAGS:** Users, Delete, User Management, API, GHL, HighLevel, CRM, Authentication, Write
+
+12. **CODE EXAMPLES:**
+    *   cURL
+    *   nodejs
+    *   python
+    *   php
+    *   java
+    *   go
+    *   ruby
+    *   powershell

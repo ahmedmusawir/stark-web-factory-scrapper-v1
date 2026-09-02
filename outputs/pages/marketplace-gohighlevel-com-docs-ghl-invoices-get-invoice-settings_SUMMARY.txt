@@ -1,0 +1,81 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Get Invoice Settings
+
+### 2. CATEGORY:
+Invoice
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/invoices/settings`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/settings`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters**:
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Query Parameters**:
+    *   altId (string): Location Id or Agency Id (Example: `6578278e879ad2646715ba9c`)
+    *   altType (string): Possible values: [`location`]
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `invoices.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`, `Agency Token`
+*   **Scheme**: Bearer (JWT)
+
+### 9. RESPONSE FORMAT:
+*   **Status Code**: `200`
+*   **Content Type**: `application/json`
+*   **Structure**: A JSON object containing various invoice and estimate settings:
+    *   `altId` (string): Sub-Account Id
+    *   `altType` (string): Alt Type (e.g., `location`)
+    *   `termsNote` (string): Terms and conditions for invoices
+    *   `estimatesTermsNote` (string): Terms and conditions for estimates
+    *   `title` (string): Title for invoices
+    *   `estimatesTitle` (string): Title for estimates
+    *   `invoiceNumberPrefix` (string): Prefix for invoice numbers
+    *   `estimateNumberPrefix` (string): Prefix for estimate numbers
+    *   `dueAfterXDays` (number): Number of days after which invoice is due
+    *   `estimatesExpireAfterXDays` (number): Number of days after which estimate expires
+    *   `minimumPercentagePartialPayment` (number): Minimum percentage for partial payment
+    *   `customFields` (string[]): Custom fields array (max 3)
+    *   `customNotification` (object): Object containing notification settings for various events (customer send invoice, team/customer payment success/failure, auto-payment success/failure/info/amount changed/skip, recurring invoice failed, customer send estimate, team estimate accepted/declined). Each notification object includes:
+        *   `enabled` (boolean)
+        *   `emailTemplate` (string)
+        *   `smsTemplate` (string)
+        *   `fromName` (string, optional)
+        *   `fromEmail` (string, optional)
+        *   `emailSubject` (string, optional)
+        *   `defaultEmailTemplateId` (string, optional)
+    *   `businessDetails` (object): Business details including `logoUrl`, `name`, `phoneNo`, `address` (with `addressLine1`, `addressLine2`, `city`, `state`, `countryCode`, `postalCode`), `website`, `customValues`.
+    *   `senderConfiguration` (object): Sender name and email for notifications.
+    *   `productSettings` (object): Product-related settings like `enableImportProductDescription` and `descriptionOptional`.
+    *   `reminderSettings` (object): Contains `defaultEmailTemplateId` and an array of `reminders`. Each reminder object includes:
+        *   `enabled` (boolean), `emailTemplate` (string), `smsTemplate` (string), `emailSubject` (string), `reminderId` (string), `reminderName` (string), `reminderTime` (string), `intervalType` (string), `maxReminders` (number), `reminderInvoiceCondition` (string), `reminderNumber` (number), `startTime` (string), `endTime` (string), `timezone` (string).
+    *   `lateFeesConfiguration` (object): Settings for late fees including `enable`, `value`, `type`, `frequency` (with `intervalCount`, `interval`), `grace` (with `intervalCount`, `interval`), and `maxLateFees` (with `type`, `value`).
+    *   `tipsConfiguration` (object): Tips settings including `tipsPercentage` (string[]) and `tipsEnabled` (boolean).
+    *   `paymentMethods` (object): Payment methods configuration, currently including `stripe` (with `enableBankDebitOnly`).
+
+### 10. PURPOSE:
+This endpoint retrieves the comprehensive invoice and estimate settings configured for a specific location.
+
+### 11. TAGS:
+Invoice, Settings, Get, Retrieve, Configuration, Location, Billing, Payment, Notifications, Reminders, Late Fees, Estimates
+
+### 12. CODE EXAMPLES:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

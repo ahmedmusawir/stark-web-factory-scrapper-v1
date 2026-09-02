@@ -1,0 +1,107 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME
+List templates
+
+### 2. CATEGORY
+Invoice Templates
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/invoices/template`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/invoices/template`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version.
+        *   **Possible values:** `2021-07-28`
+*   **Query Parameters:**
+    *   `altId` (string): location Id / company Id based on altType.
+        *   **Example:** `6578278e879ad2646715ba9c`
+    *   `altType` (string): Alt Type.
+        *   **Possible values:** `location`
+        *   **Example:** `location`
+    *   `limit` (string): Limit the number of items to return.
+        *   **Example:** `10`
+    *   `offset` (string): Number of items to skip.
+        *   **Example:** `10`
+
+### 7. OPTIONAL PARAMETERS
+
+*   **Query Parameters:**
+    *   `status` (string): status to be filtered.
+    *   `startAt` (string): startAt in YYYY-MM-DD format.
+        *   **Example:** `2023-01-01`
+    *   `endAt` (string): endAt in YYYY-MM-DD format.
+        *   **Example:** `2023-01-01`
+    *   `search` (string): To search for an invoice by id / name / email / phoneNo.
+        *   **Example:** `Alex`
+    *   `paymentMode` (string): payment mode.
+        *   **Possible values:** `default`, `live`, `test`
+        *   **Example:** `live`
+
+### 8. AUTHENTICATION
+
+*   **Required Scope(s):** `invoices/template.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** `bearer` (JWT format)
+*   **In:** `header`
+
+### 9. RESPONSE FORMAT
+
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `data` (array of objects): List of invoice templates.
+            *   `_id` (string): Template Id.
+            *   `altId` (string): Location Id or Agency Id.
+            *   `altType` (string): `location`
+            *   `name` (string): Name of the Template.
+            *   `businessDetails` (object): Business Details
+                *   `logoUrl` (string): Business Logo URL.
+                *   `name` (string): Business Name.
+                *   `phoneNo` (string): Business Phone Number.
+                *   `address` (object): Business Address
+                    *   `addressLine1` (string): Address Line 1.
+                    *   `addressLine2` (string): Address Line 2.
+                    *   `city` (string): City.
+                    *   `state` (string): State.
+                    *   `countryCode` (string): Country Code.
+                    *   `postalCode` (string): Postal Code.
+                *   `website` (string): Business Website Link.
+            *   `customValues` (array of strings): Custom Values.
+            *   `currency` (string): Currency.
+            *   `discount` (object): Discount
+                *   `value` (number): Discount Value.
+                *   `type` (string): Discount type.
+                    *   **Possible values:** `percentage`, `fixed`
+                *   `validOnProductIds` (array of strings): Product Ids on which discount is applicable.
+            *   `items` (array of strings): Invoice Items (JSON string format).
+            *   `invoiceNumberPrefix` (string): prefix for invoice number.
+            *   `total` (number): Total Amount.
+            *   `createdAt` (string): created at (ISO 8601 format).
+            *   `updatedAt` (string): updated at (ISO 8601 format).
+        *   `totalCount` (number): Total number of Templates.
+    *   **Example:**
+        ```json
+        {"data":[{"_id":"6578278e879ad2646715ba9c","altId":"6578278e879ad2646715ba9c","altType":"location","name":"New Template","businessDetails":{"name":"Alex","address":{"addressLine1":"9931 Beechwood","city":"St. Houston","state":"TX","countryCode":"USA","postalCode":"559-6993"},"phoneNo":"+1-214-559-6993","website":"www.example.com"},"currency":"USD","discount":{"type":"percentage","value":0},"items":[{"taxes":[],"_id":"c6tZZU0rJBf30ZXx9Gli","productId":"c6tZZU0rJBf30ZXx9Gli","priceId":"c6tZZU0rJBf30ZXx9Gli","currency":"USD","name":"Macbook Pro","qty":1,"amount":999}],"invoiceNumberPrefix":"INV-","total":999,"createdAt":"2023-12-12T09:27:42.355Z","updatedAt":"2023-12-12T09:27:42.355Z"}],"totalCount":100}
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE
+This API endpoint retrieves a paginated list of invoice templates, allowing filtering by status, date range, search query, and payment mode for a specific location or company.
+
+### 11. TAGS
+Invoice, Template, List, Get, Read, Financial, Pagination, CRM, Business, Location
+
+### Availability of Code Examples
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`. A `curl` example is directly provided in the documentation.

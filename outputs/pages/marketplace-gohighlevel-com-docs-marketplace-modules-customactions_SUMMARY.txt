@@ -1,0 +1,111 @@
+Here's a structured summary of the provided API documentation for creating Marketplace Workflow Actions:
+
+---
+
+**1. ENDPOINT NAME:** Creating a Marketplace Workflow Action
+
+**2. CATEGORY:** Marketplace Modules > Workflow Actions and Triggers
+
+**3. HTTP METHOD:**
+   This documentation describes the process of *configuring* a custom workflow action within the HighLevel Marketplace UI. The configured workflow action itself can then *make* external API calls using the following methods:
+   *   **POST:** For Action Execution API endpoint, Dynamic Field API endpoint.
+   *   **GET:** For External API options for Select/Multi Select/Radio field types.
+
+**4. ENDPOINT URL:**
+   This document does not provide an API endpoint for programmatically creating, managing, or deleting Marketplace Workflow Actions. Instead, it details the configuration steps within the HighLevel Marketplace UI. The URLs mentioned are those *configured within* the custom workflow action to interact with external services:
+   *   **Configured URL for External API (GET):** For loading options in Select/Multi Select/Radio field types.
+   *   **Configured URL for Field Type Dynamic (POST):** For building custom fields from an API call.
+   *   **Configured URL for Action Execution (POST):** The API endpoint to which data is sent when the workflow action is executed.
+
+**5. FULL URL:** Not applicable, as this documentation describes UI-based configuration for creating workflow actions, not an external API for managing them.
+
+**6. REQUIRED PARAMETERS:**
+   These are the required configuration fields and settings when creating a Marketplace Workflow Action in the HighLevel UI:
+
+   *   **Action Information:**
+        *   **Name** (string): Descriptive name for the action.
+        *   **Key** (string): Unique identifier for the action (immutable).
+        *   **Icon** (selection): Visual representation of the action.
+        *   **Short Description** (string): Brief explanation of the action.
+        *   **Summary** (string): Detailed information about the action's functionality.
+   *   **Create New Field (within Action Configuration > Manage Fields):**
+        *   **Name** (string): Field name.
+        *   **Type** (enum): Field type (String, Numerical, Textarea, Select, Multiple Select, Radio, Toggle, Checkbox, Attachment, Rich Text Editor, Hidden, Dynamic).
+        *   **Required** (boolean): Enable if this is a required field.
+        *   **Reference** (string): Unique reference key for binding field value.
+   *   **Validation Rules (for each field):**
+        *   **Custom Error Message** (string): Message to display if validation fails.
+   *   **Field Types: Select / Multi Select / Radio:**
+        *   **Option Type** (enum): Constants, Internal Reference, or External API.
+        *   **If 'Constants':** Each constant requires a `Label` (string) and `Value` (string).
+        *   **If 'Internal Reference':** Selection of a `HighLevel Internal Module`.
+        *   **If 'External API':** `URL (GET)` (string).
+   *   **Field Type: Dynamic:**
+        *   **URL (POST)** (string): API endpoint URL for dynamic field creation.
+   *   **Action Execution:**
+        *   **Execution Type** (enum): API or Custom Code.
+        *   **If 'API':** `URL (POST)` (string): API endpoint for action execution.
+   *   **Manage Custom Variables (for each variable):**
+        *   **Name** (string): Label name for the custom variable.
+        *   **Reference** (selection): Reference key from the saved Response Data sample.
+   *   **Submit for Review:**
+        *   **Changelog Information** (string): Required details for the submitted version.
+   *   **Delete Action:**
+        *   **Action Name** (string): Confirmation by re-entering the action's name.
+
+**7. OPTIONAL PARAMETERS:**
+   These are the optional configuration fields and settings when creating a Marketplace Workflow Action in the HighLevel UI:
+
+   *   **Create New Field (within Action Configuration > Manage Fields):**
+        *   **Default Value** (string/map): Default value for the field.
+        *   **Alters Dynamic Field** (boolean): If enabled, changes trigger dynamic field loading.
+        *   **Validation Rules** (array): Set of rules for input validation.
+   *   **Field Types: Select / Multi Select / Radio (External API):**
+        *   **Headers** (object): Key-value pairs for HTTP headers.
+   *   **Field Type: Dynamic:**
+        *   **Headers** (object): Key-value pairs for HTTP headers.
+   *   **Multi-branch:**
+        *   **Branch Section** (string): Name/identifier for the branch section.
+        *   **Branch Section Description** (string): Description of the branch section.
+        *   **Branch Name Label** (string): Label for the branch name.
+        *   **Branch Name Helptext** (string): Additional info for the branch name.
+        *   **Delete Branch Title** (string): Title for deleting a branch.
+        *   **Delete Branch Description** (string): Description for deleting a branch.
+        *   **Options** (boolean flags):
+            *   Allow New Branches
+            *   Is Predefined Branches Editable
+            *   Show Branches Section
+            *   Disabled Allow new branch
+   *   **Action Execution (API):**
+        *   **Headers** (object): Key-value pairs for HTTP headers.
+   *   **Action Execution (Custom code):**
+        *   **Code Editor** (string): Custom JavaScript code.
+   *   **Pause Execution** (toggle): If true, contact is held until resume webhook.
+
+**8. AUTHENTICATION:**
+   *   **For creating/managing the workflow action in HighLevel:** Not specified; implied to be handled by user access to the Marketplace UI.
+   *   **For external APIs called by the workflow action:** The documentation mentions "Headers" for `External API` options, `Field Type: Dynamic`, and `Action Execution` API calls, suggesting that API keys, tokens, or other credentials can be passed via HTTP headers. Specific authentication methods (e.g., OAuth, API Key) are not detailed but are expected to be configured by the user within the headers.
+
+**9. RESPONSE FORMAT:**
+   *   **External API (for field options - GET):**
+        ```json
+        {"options":[{"label":"Afghanistan","value":"AF"},{"label":"Åland Islands","value":"AX"}]}
+        ```
+   *   **Field Type: Dynamic (POST):**
+        ```json
+        {"inputs":[{"section":"Personal Info","fields":[{"field":"name","title":"Name","fieldType":"string","required":true}]}]}
+        ```
+        (Full sample includes various field types and sections)
+   *   **Action Execution (Sample Payload sent to configured API - POST):**
+        ```json
+        {"data":{"name":"John Doe","age":"29"},"extras":{"locationId":"xyz","contactId":"abc","workflowId":"def"},"meta":{"key":"custom_action_key","version":"1.0"}}
+        ```
+        (Full sample includes branches if configured)
+   *   **Resume Webhook (for Pause Execution):** Not explicitly shown, but implied to be a structure with `branchId` for sync flow, or requires `extras` object from sample payload for async.
+   *   **Response Data (for Custom Variables):** Expects a "valid sample response JSON structure" which can be an object or an array of objects.
+
+**10. PURPOSE:**
+    This documentation guides developers through the process of creating, configuring, and managing custom workflow actions within the HighLevel Marketplace, enabling them to build integrations that push or pull data from external applications/APIs directly within HighLevel workflows using customizable fields and logic.
+
+**11. TAGS:**
+    Marketplace, Workflow, Actions, Custom Actions, Integration, Automation, API, HighLevel, Configuration, Developers, Modules, Triggers, Fields, Validation, Multi-branch, External API, Custom Code, Pause Execution, Custom Variables.

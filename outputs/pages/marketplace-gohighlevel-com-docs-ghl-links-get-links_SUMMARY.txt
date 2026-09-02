@@ -1,0 +1,64 @@
+Here's a structured summary of the "Get Links" API documentation:
+
+### 1. ENDPOINT NAME
+Get Links
+
+### 2. CATEGORY
+Trigger Links
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/links/`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/links/`
+
+### 6. REQUIRED PARAMETERS
+*   **Version** (string): API Version. Possible values: [`2021-07-28`]
+*   **locationId** (string): Example: `ve9EPM428h8vShlRW1KT`
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Required Scope(s)**: `links.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`, `Bearer Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+*   **200 Successful response**
+    *   **Content Type**: `application/json`
+    *   **Schema**: An object containing an array of `links`.
+        *   `links` (array of objects)
+            *   `id` (string): Example: `n4AriwEnFrGh3tu08W0U`
+            *   `name` (string): Example: `first tag`
+            *   `redirectTo` (string): Example: `https://www.google.com/`
+            *   `fieldKey` (string): Example: `{{trigger_link.n4AriwEnFrGh3tu08W0U}}`
+            *   `locationId` (string): Example: `ve9EPM428h8vShlRW1KT`
+    *   **Example**: `{"links":[{"id":"n4AriwEnFrGh3tu08W0U","name":"first tag","redirectTo":"https://www.google.com/","fieldKey":"{{trigger_link.n4AriwEnFrGh3tu08W0U}}","locationId":"ve9EPM428h8vShlRW1KT"}]}`
+*   **400 Bad Request**
+    *   **Content Type**: `application/json`
+    *   **Schema**:
+        *   `statusCode` (number): `400`
+        *   `message` (string): `Bad Request`
+*   **401 Unauthorized**
+    *   **Content Type**: `application/json`
+    *   **Schema**:
+        *   `statusCode` (number): `401`
+        *   `message` (string): `Invalid token: access token is invalid`
+        *   `error` (string): `Unauthorized`
+
+### 10. PURPOSE
+This endpoint retrieves a list of Trigger Links associated with a specific location (Sub-Account).
+
+### 11. TAGS
+Trigger Links, Get, Retrieve, List, Links, Read, GHL, HighLevel, API, Location, Sub-Account
+
+### CODE EXAMPLES
+Available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

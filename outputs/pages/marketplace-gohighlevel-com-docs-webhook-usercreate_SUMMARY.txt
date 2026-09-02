@@ -1,0 +1,89 @@
+Here's a structured summary of the `UserCreate` webhook documentation:
+
+### 1. ENDPOINT NAME:
+UserCreate
+
+### 2. CATEGORY:
+Webhook (User management)
+
+### 3. HTTP METHOD:
+N/A - This is an outgoing webhook event sent by the HighLevel system, not an API endpoint to be called via HTTP methods.
+
+### 4. ENDPOINT URL:
+N/A - This refers to the URL where *your* system receives the webhook event, which is configured by you.
+
+### 5. FULL URL:
+N/A - This refers to the URL where *your* system receives the webhook event, which is configured by you.
+
+### 6. REQUIRED PARAMETERS (Payload Fields):
+*   `type` (string): The type of the webhook event, which is "UserCreate".
+*   `locationId` (string): The unique identifier of the sub-account (location) where the user was created. *Present for Sub Account Users; absent for Agency Users.*
+*   `companyId` (string): The unique identifier of the company (agency) where the user was created. *Present for Agency Users; absent for Sub Account Users.*
+*   `id` (string): The unique identifier of the created user.
+*   `firstName` (string): The first name of the user.
+*   `lastName` (string): The last name of the user.
+*   `email` (string): The email address of the user.
+*   `phone` (string): The primary phone number of the user.
+*   `extension` (string): The phone extension for the user.
+*   `role` (string): The role assigned to the user (e.g., "user", "admin").
+*   `permissions` (object): An object containing boolean flags for various permissions granted to the user.
+    *   `adwordsReportingEnabled` (boolean)
+    *   `affiliateManagerEnabled` (boolean)
+    *   `agentReportingEnabled` (boolean)
+    *   `appointmentsEnabled` (boolean)
+    *   `assignedDataOnly` (boolean)
+    *   `attributionsReportingEnabled` (boolean)
+    *   `bloggingEnabled` (boolean)
+    *   `botService` (boolean)
+    *   `bulkRequestsEnabled` (boolean)
+    *   `campaignsEnabled` (boolean)
+    *   `campaignsReadOnly` (boolean)
+    *   `cancelSubscriptionEnabled` (boolean)
+    *   `communitiesEnabled` (boolean)
+    *   `contactsEnabled` (boolean)
+    *   `contentAiEnabled` (boolean)
+    *   `conversationsEnabled` (boolean)
+    *   `dashboardStatsEnabled` (boolean)
+    *   `facebookAdsReportingEnabled` (boolean)
+    *   `funnelsEnabled` (boolean)
+    *   `invoiceEnabled` (boolean)
+    *   `leadValueEnabled` (boolean)
+    *   `marketingEnabled` (boolean)
+    *   `membershipEnabled` (boolean)
+    *   `onlineListingsEnabled` (boolean)
+    *   `opportunitiesEnabled` (boolean)
+    *   `paymentsEnabled` (boolean)
+    *   `phoneCallEnabled` (boolean)
+    *   `recordPaymentEnabled` (boolean)
+    *   `refundsEnabled` (boolean)
+    *   `reviewsEnabled` (boolean)
+    *   `settingsEnabled` (boolean)
+    *   `socialPlanner` (boolean)
+    *   `tagsEnabled` (boolean)
+    *   `triggersEnabled` (boolean)
+    *   `websitesEnabled` (boolean)
+    *   `workflowsEnabled` (boolean)
+    *   `workflowsReadOnly` (boolean)
+*   `scopes` (array of string): An array of strings representing the API scopes granted to the user.
+*   `locations` (array of string): An array of location IDs that an agency user has access to. *Present for Agency Users; absent for Sub Account Users.*
+
+### 7. OPTIONAL PARAMETERS:
+Not explicitly marked as optional. All fields listed in the Schema define the structure of the webhook payload. Some fields (e.g., `locationId` vs `companyId`, or the `locations` array) are conditionally present based on the user's role, as demonstrated in the examples.
+
+### 8. AUTHENTICATION:
+Not specified in documentation. (Typically, webhooks are secured using a shared secret or signature verification to ensure the request originates from the legitimate source.)
+
+### 9. RESPONSE FORMAT:
+N/A - This is an outgoing webhook event. The receiving server (your endpoint) is expected to return a successful HTTP status code (e.g., 200 OK) to acknowledge receipt of the webhook payload. The documentation does not specify what HighLevel expects in the response body.
+
+### 10. PURPOSE:
+This webhook is called whenever a new user is created within the HighLevel platform, providing details about the newly created user and their permissions.
+
+### 11. TAGS:
+Webhook Events, User, Create, HighLevel, API, UserCreate, SubAccount User, Agency User, Permissions
+
+**Code Examples:**
+*   **JSON Schema:** Available for the webhook payload structure.
+*   **JSON Examples:** Two examples are provided:
+    *   One for a Sub Account User.
+    *   One for an Agency User.

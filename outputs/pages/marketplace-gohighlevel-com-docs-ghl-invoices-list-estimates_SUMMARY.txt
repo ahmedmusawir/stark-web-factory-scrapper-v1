@@ -1,0 +1,66 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME
+List Estimates
+
+### 2. CATEGORY
+Invoice - Estimate
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/invoices/estimate/list`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/invoices/estimate/list`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: [`2021-07-28`]
+*   **Query Parameters:**
+    *   altId (string): Location Id or Agency Id. Example: `6578278e879ad2646715ba9c`
+    *   altType (string): Possible values: [`location`]
+    *   limit (string): Limit the number of items to return. Example: `10`
+    *   offset (string): Number of items to skip. Example: `10`
+
+### 7. OPTIONAL PARAMETERS
+*   **Query Parameters:**
+    *   startAt (string): startAt in YYYY-MM-DD format. Example: `2023-01-01`
+    *   endAt (string): endAt in YYYY-MM-DD format. Example: `2023-01-01`
+    *   search (string): search text for estimates name. Example: `Home services estimate`
+    *   status (string): estimate status. Possible values: [`all`, `draft`, `sent`, `accepted`, `declined`, `invoiced`, `viewed`]. Example: `sent`
+    *   contactId (string): Contact ID for the estimate. Example: `AmuzcoPBpgKeccNsFlib`
+
+### 8. AUTHENTICATION
+*   **Scope(s):** `invoices/estimate.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** `bearer` (bearerFormat: `JWT`)
+*   **Location:** `header` (name: `Authorization`)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+*   **Successful Response (200 OK):**
+    *   Content-Type: `application/json`
+    *   Schema:
+        ```json
+        {
+          "estimates": ["string"], // List of estimates
+          "total": 0,              // Total number of estimates
+          "traceId": "string"      // Unique identifier for tracing the request
+        }
+        ```
+*   **Error Responses:**
+    *   `400 Bad Request`
+    *   `401 Unauthorized`
+    *   `422 Unprocessable Entity`
+
+### 10. PURPOSE
+This endpoint retrieves a paginated list of estimates for a specified location or agency.
+
+### 11. TAGS
+Invoice, Estimate, List, Read, Pagination, Estimates, GHL, CRM, Sales, Finances
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

@@ -1,0 +1,71 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get association by ID
+
+### 2. CATEGORY:
+Associations
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/associations/:associationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/associations/:associationId`
+
+### 6. REQUIRED PARAMETERS:
+*   `Version` (string): API Version. Possible values: `[2021-07-28]` (Header Parameter)
+*   `associationId` (string): The unique identifier of the association. (Path Parameter)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `associations.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `200 OK`
+*   **Content Type:** `application/json`
+*   **Schema (Successful Response):**
+    *   `locationId` (string)
+    *   `id` (string)
+    *   `key` (string)
+    *   `firstObjectLabel` (object)
+    *   `firstObjectKey` (object)
+    *   `secondObjectLabel` (object)
+    *   `secondObjectKey` (object)
+    *   `associationType` (object)
+*   **Example (Successful Response):**
+    ```json
+    {
+      "locationId": "string",
+      "id": "ve9EPM428h8vShlRW1KT",
+      "key": "student",
+      "firstObjectLabel": "student",
+      "firstObjectKey": "custom_objects.children",
+      "secondObjectLabel": "Teacher",
+      "secondObjectKey": "contact",
+      "associationType": "USER_DEFINED"
+    }
+    ```
+*   **Error Responses (with schemas and examples):**
+    *   `400 Bad Request`
+    *   `401 Unauthorized`
+    *   `422 Unprocessable Entity`
+
+### 10. PURPOSE:
+This API allows you to retrieve a SYSTEM_DEFINED or USER_DEFINED association by its unique identifier.
+
+### 11. TAGS:
+Associations, Get, Retrieve, ID, System-Defined, User-Defined, Location
+
+### CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

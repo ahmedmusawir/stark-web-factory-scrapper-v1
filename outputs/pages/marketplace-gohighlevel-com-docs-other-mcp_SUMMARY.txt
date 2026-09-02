@@ -1,0 +1,58 @@
+Here's a structured summary of the Highlevel MCP Server API documentation:
+
+---
+
+1.  **ENDPOINT NAME:** Highlevel MCP Server (Model Context Protocol)
+
+2.  **CATEGORY:** AI Integration, API Orchestration, Tooling, Automation
+
+3.  **HTTP METHOD:** Not explicitly specified for direct interaction with individual tools; however, interactions are typically initiated via HTTP requests from AI agents/clients, often using **POST** for tool calls. "HTTP Streamable" transport protocol is mentioned for n8n.
+
+4.  **ENDPOINT URL:** `/mcp/`
+
+5.  **FULL URL:** `https://services.leadconnectorhq.com/mcp/`
+
+6.  **REQUIRED PARAMETERS:**
+    *   `Authorization` (header string): Bearer token containing the Private Integration Token (PIT) for authentication.
+    *   `toolIdentifier` (string): The internal identifier of the GoHighLevel tool to be invoked (e.g., `calendars_get-calendar-events`). This is passed as part of the AI agent's instructions or payload to the MCP server.
+    *   `userId` (string): Required for the `calendars_get-calendar-events` tool.
+    *   `groupId` (string): Required for the `calendars_get-calendar-events` tool.
+    *   `calendarId` (string): Required for the `calendars_get-calendar-events` tool.
+    *(Note: Parameters for other specific tools (e.g., `contacts_add-tags` requiring `contactId` and `tags`) are implied by their descriptions but not explicitly listed with types and descriptions in this documentation.)*
+
+7.  **OPTIONAL PARAMETERS:**
+    *   `locationId` (header string / prompt string): The ID of the GoHighLevel sub-account. Can be passed as an HTTP header or dynamically provided within the AI agent's prompts.
+
+8.  **AUTHENTICATION:**
+    *   **Method:** Header-based authentication using a Bearer Token.
+    *   **Token Type:** Private Integration Token (PIT), prefixed with `Bearer`. Example: `Authorization: Bearer pit-12345`.
+    *   **Required Scopes (for full tool access):**
+        *   View Contacts
+        *   Edit Contacts
+        *   View Conversations
+        *   Edit Conversations
+        *   View Conversation Messages
+        *   Edit Conversation Messages
+        *   View Opportunities
+        *   Edit Opportunities
+        *   View Calendars
+        *   View Payment Orders
+        *   View Custom Fields
+        *   View Payment Transactions
+        *   View Forms
+        *   View Locations
+        *   View Calendar Events
+        *   Edit Calendar Events
+        *   Edit Calendars
+        *(Note: If not all tools are needed, a minimal "view location" scope combined with specific required scopes for your AI can be used.)*
+
+9.  **RESPONSE FORMAT:** Not explicitly specified in documentation (e.g., JSON structure, typical status codes). The documentation implies the AI agent/client receives the output from the invoked GoHighLevel tools.
+
+10. **PURPOSE:** The GoHighLevel MCP (Model Context Protocol) Server provides a standardized bridge for advanced AI assistants and agents to directly query, automate, and orchestrate data and tools within a GoHighLevel account using natural language and structured tool calls.
+
+11. **TAGS:** AI Integration, Model Context Protocol, MCP, GoHighLevel, GHL, Automation, Orchestration, Tooling, API Gateway, Chatbot, AI Agents, Contacts, Calendars, Conversations, Opportunities, Payments, n8n, Langgraph, Private Integration Token, PIT.
+
+12. **CODE EXAMPLES:**
+    *   JSON configuration for `mcpServers` (general client setup).
+    *   Python (using Langgraph and `langchain_mcp_adapters`) for a sample agent.
+    *   Configuration steps for n8n integration.

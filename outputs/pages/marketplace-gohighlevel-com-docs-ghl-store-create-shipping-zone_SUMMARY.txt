@@ -1,0 +1,156 @@
+Here's a structured summary of the API documentation for "Create Shipping Zone":
+
+### 1. ENDPOINT NAME
+Create Shipping Zone
+
+### 2. CATEGORY
+Store
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+/store/shipping-zone
+
+### 5. FULL URL
+https://services.leadconnectorhq.com/store/shipping-zone
+
+### 6. REQUIRED PARAMETERS
+*   **Request Body (application/json)**
+    *   `altId` (string): Location Id or Agency Id
+    *   `altType` (string): Possible values: [`location`]
+    *   `name` (string): Name of the shipping zone
+    *   `countries` (object[]): List of countries that are available
+        *   `code` (string): Country code (e.g., `US`, `CA`). Possible values include a comprehensive list of ISO 3166-1 alpha-2 codes.
+
+### 7. OPTIONAL PARAMETERS
+*   **Request Body (application/json)**
+    *   `countries[].states` (object[]): List of states that are available for a given country. If states is empty, then all states for that country are available.
+        *   `code` (string): State code (e.g., `VA`, `AL`). Possible values include a comprehensive list of state/province codes.
+
+### 8. AUTHENTICATION
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+*   **Status Code**: `201` (Successful response)
+*   **Content Type**: `application/json`
+*   **Schema**:
+    ```json
+    {
+      "status": true,
+      "message": "Successfully created",
+      "data": {
+        "altId": "string",
+        "altType": "location",
+        "name": "string",
+        "countries": [
+          {
+            "code": "string",
+            "states": [
+              {
+                "code": "string"
+              }
+            ]
+          }
+        ],
+        "_id": "string",
+        "shippingRates": [
+          {
+            "altId": "string",
+            "altType": "location",
+            "name": "string",
+            "description": "string",
+            "currency": "string",
+            "amount": "number",
+            "conditionType": "string",
+            "minCondition": "number",
+            "maxCondition": "number",
+            "isCarrierRate": "boolean",
+            "shippingCarrierId": "string",
+            "percentageOfRateFee": "number",
+            "shippingCarrierServices": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "_id": "string",
+            "shippingZoneId": "string",
+            "createdAt": "string (date-time)",
+            "updatedAt": "string (date-time)"
+          }
+        ],
+        "createdAt": "string (date-time)",
+        "updatedAt": "string (date-time)"
+      }
+    }
+    ```
+    *   **Example (successful)**:
+        ```json
+        {
+          "status": true,
+          "message": "Successfully created",
+          "data": {
+            "altId": "6578278e879ad2646715ba9c",
+            "altType": "location",
+            "name": "North zone",
+            "countries": [
+              {
+                "code": "US",
+                "states": [
+                  {
+                    "code": "VA"
+                  }
+                ]
+              }
+            ],
+            "_id": "655b33a82209e60b6adb87a5",
+            "shippingRates": [
+              {
+                "altId": "6578278e879ad2646715ba9c",
+                "altType": "location",
+                "name": "North zone",
+                "description": "Ships next day",
+                "currency": "USD",
+                "amount": 99.99,
+                "conditionType": "price",
+                "minCondition": 99.99,
+                "maxCondition": 99.99,
+                "isCarrierRate": true,
+                "shippingCarrierId": "655b33a82209e60b6adb87a5",
+                "percentageOfRateFee": 10.99,
+                "shippingCarrierServices": [
+                  {
+                    "name": "Priority Mail Express International",
+                    "value": "PriorityMailExpressInternational"
+                  }
+                ],
+                "_id": "655b33a82209e60b6adb87a5",
+                "shippingZoneId": "655b33a82209e60b6adb87a5",
+                "createdAt": "2023-12-12T09:27:42.355Z",
+                "updatedAt": "2023-12-12T09:27:42.355Z"
+              }
+            ],
+            "createdAt": "2023-12-12T09:27:42.355Z",
+            "updatedAt": "2023-12-12T09:27:42.355Z"
+          }
+        }
+        ```
+*   **Error Responses**:
+    *   `400` Bad Request: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401` Unauthorized: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `422` Unprocessable Entity: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE
+The "Create Shipping Zone" API allows adding a new shipping zone to define shipping regions and their associated rates.
+
+### 11. TAGS
+Store, Shipping, Zone, Create, Ecommerce, Location, Geolocation, Sub-Account, API
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

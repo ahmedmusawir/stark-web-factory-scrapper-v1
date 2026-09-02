@@ -1,0 +1,81 @@
+Here's a structured summary of the API documentation for "Create Calendar Group":
+
+### 1. ENDPOINT NAME:
+Create Calendar Group
+
+### 2. CATEGORY:
+Calendars
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/calendars/groups`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/groups`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`.
+
+*   **Body Parameters:**
+    *   `locationId` (string): The ID of the location where the calendar group will be created. Example: `ocQHyuzHvysMo5N5VsXc`
+    *   `name` (string): The name of the calendar group. Example: `group a`
+    *   `description` (string): A description for the calendar group. Example: `group description`
+    *   `slug` (string): A URL-friendly identifier for the calendar group. Example: `15-mins`
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   `isActive` (boolean): Indicates whether the calendar group is active. Example: `true`
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `calendars/groups.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+
+### 9. RESPONSE FORMAT:
+
+*   **201 Successful Response (application/json):**
+    A JSON object containing the newly created calendar group details.
+    ```json
+    {
+      "group": {
+        "locationId": "ocQHyuzHvysMo5N5VsXc",
+        "name": "group a",
+        "description": "group description",
+        "slug": "15-mins",
+        "isActive": true,
+        "id": "ocQHyuzHvysMo5N5VsXc"
+      }
+    }
+    ```
+    The `group` object contains:
+    *   `locationId` (string)
+    *   `name` (string)
+    *   `description` (string)
+    *   `slug` (string)
+    *   `isActive` (boolean)
+    *   `id` (string)
+
+*   **400 Bad Request (application/json):**
+    ```json
+    {"statusCode":400,"message":"Bad Request"}
+    ```
+
+*   **401 Unauthorized (application/json):**
+    ```json
+    {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+    ```
+
+### 10. PURPOSE:
+This endpoint allows an authenticated user to create a new calendar group within a specific sub-account location by providing its name, description, slug, and active status.
+
+### 11. TAGS:
+Calendars, Calendar Group, Create, Group, Appointment, Scheduling, POST, API, LeadConnector, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

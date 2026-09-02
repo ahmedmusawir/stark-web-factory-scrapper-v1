@@ -1,0 +1,95 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get all FAQs by knowledge base with pagination support
+
+### 2. CATEGORY:
+Knowledge Base - Faqs
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/knowledge-bases/faqs`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/knowledge-bases/faqs`
+
+### 6. REQUIRED PARAMETERS:
+*   **Authorization** (string): Access Token. Example: Bearer 9c48df2694a849b6089f9d0d3513efe
+*   **Version** (string): API Version. Possible values: `2021-04-15`
+*   **knowledgeBaseId** (string): knowledge base ID as string. Example: `710KoEzy793Fxubft0bc`
+*   **locationId** (string): location ID as string. Example: `qDZpF8GH3qvgJTmKCoL`
+
+### 7. OPTIONAL PARAMETERS:
+*   **limit** (number): Limit the number of FAQs returned. Default value: `10`. Example: `10`
+*   **lastFaqId** (string): Last FAQ ID for pagination (cursor-based). Example: `3rzeElC1FOVY91veVBkp`
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: Bearer
+*   **Bearer Format**: JWT
+*   **In**: header
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**200 OK (application/json)**
+```json
+{
+  "count": 150,
+  "faqs": [
+    {
+      "id": "3rzeElC1FOVY91veVBkp",
+      "question": "What is 1+2?",
+      "questionLowerCase": "what is 1+2?",
+      "answer": "3",
+      "knowledgeBaseId": "I1rITlYLJofFosIqC4Np",
+      "locationId": "qIyivCmsuEOSnyoFYEej",
+      "trainedUrlId": "688e6b6d8a1887e6d94d1475",
+      "deleted": false,
+      "createdAt": "2025-08-02T19:47:57.243Z",
+      "updatedAt": "2025-08-02T19:47:57.243Z"
+    }
+  ],
+  "lastFaqId": "3rzeElC1FOVY91veVBkp",
+  "hasMore": true
+}
+```
+**Schema:**
+*   **count** (number, required): Total count of all FAQs in the knowledge base.
+*   **faqs** (array of objects, required): Array of FAQ objects.
+    *   **id** (string, required): FAQ ID.
+    *   **question** (string, required): FAQ question.
+    *   **questionLowerCase** (string, required): FAQ question in lowercase.
+    *   **answer** (string, required): FAQ answer.
+    *   **knowledgeBaseId** (string, required): Knowledge base ID.
+    *   **locationId** (string, required): Location ID.
+    *   **trainedUrlId** (string, required): Trained URL ID.
+    *   **deleted** (boolean, required): Whether the FAQ is deleted.
+    *   **createdAt** (string, required): Date when FAQ was created.
+    *   **updatedAt** (string, required): Date when FAQ was last updated.
+*   **lastFaqId** (string, optional): Last FAQ ID for pagination.
+*   **hasMore** (boolean, optional): Whether there are more FAQs available.
+
+**Error Responses:**
+*   **400 Bad Request** (application/json): `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized** (application/json): `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity** (application/json): `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+*   **500 Internal Server Error** (application/json): `{"statusCode":500,"message":"Internal Server Error"}`
+
+### 10. PURPOSE:
+This endpoint retrieves FAQs for a specified knowledge base, supporting pagination through `limit` and `lastFaqId` parameters.
+
+### 11. TAGS:
+`Knowledge Base`, `FAQs`, `Retrieve`, `List`, `Get`, `Pagination`, `Sub-Account`, `API`, `GHL`
+
+**Code Examples Availability:**
+*   CURL: Available
+*   nodejs: Not explicitly shown in this section, but a tab is present.
+*   python: Not explicitly shown in this section, but a tab is present.
+*   php: Not explicitly shown in this section, but a tab is present.
+*   java: Not explicitly shown in this section, but a tab is present.
+*   go: Not explicitly shown in this section, but a tab is present.
+*   ruby: Not explicitly shown in this section, but a tab is present.
+*   powershell: Not explicitly shown in this section, but a tab is present.

@@ -1,0 +1,62 @@
+Here's a structured summary of the API documentation:
+
+1.  **ENDPOINT NAME:** Update Redirect By Id
+
+2.  **CATEGORY:** Funnels, Redirect
+
+3.  **HTTP METHOD:** PATCH
+
+4.  **ENDPOINT URL:** `/funnels/lookup/redirect/:id`
+
+5.  **FULL URL:** `https://services.leadconnectorhq.com/funnels/lookup/redirect/:id`
+
+6.  **REQUIRED PARAMETERS:**
+    *   **Header Parameters:**
+        *   Version (string): API Version. Possible values: [`2021-07-28`]
+    *   **Path Parameters:**
+        *   id (string): The unique identifier of the redirect to be updated.
+    *   **Body Parameters (application/json):**
+        *   target (string): The target URL to which the original path will be redirected. Example: `https://www.google.com`
+        *   action (string): The action performed by the redirect. Possible values: [`funnel`, `website`, `url`, `all`]. Example: `URL`
+        *   locationId (string): The identifier of the location associated with the redirect. Example: `6p2RxpgtMKQwO3E6IUaT`
+
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation
+
+8.  **AUTHENTICATION:**
+    *   Scope(s): `funnels/redirect.write`
+    *   Auth Method(s): `OAuth Access Token`, `Private Integration Token`
+    *   Token Type(s): `Sub-Account Token`
+    *   Scheme: `bearer`
+    *   Bearer Format: `JWT`
+    *   In: `header`
+    *   Description: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+9.  **RESPONSE FORMAT:**
+    *   **200 OK (application/json):**
+        *   `data` (object): Data containing details of the updated redirect.
+            *   `id` (string): Unique identifier of the redirect. Example: `6p2RxpgtMKQwO3E6IUaT`
+            *   `locationId` (string): Identifier of the location associated with the redirect. Example: `6p2RxpgtMKQwO3E6IUaT`
+            *   `domain` (string): Domain where the redirect occurs. Example: `www.example.com`
+            *   `path` (string): Original path that will be redirected. Example: `/old-path`
+            *   `pathLowercase` (string): Lowercase version of the original path. Example: `/old-path`
+            *   `type` (string): Type of redirect (e.g., Permanent, Temporary). Example: `Permanent`
+            *   `target` (string): Target URL to which the original path will be redirected. Example: `https://www.example.com/new-path`
+            *   `action` (string): Action performed by the redirect. Example: `url`
+    *   **422 Unprocessable Entity (application/json):**
+        *   `statusCode` (number): Example: `422`
+        *   `message` (string[]): Example: `["Unprocessable Entity"]`
+        *   `error` (string): Example: `Unprocessable Entity`
+
+10. **PURPOSE:** This API allows updating an existing URL redirect in the system by modifying a URL redirect with the specified ID using details provided in the request payload.
+
+11. **TAGS:** Funnels, Redirect, Update, Modify, URL, PATCH, API, GoHighLevel, Location
+
+**Code Examples Availability:**
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

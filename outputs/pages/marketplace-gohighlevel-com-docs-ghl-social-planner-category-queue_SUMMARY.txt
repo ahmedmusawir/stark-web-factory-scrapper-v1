@@ -1,0 +1,183 @@
+Here is the structured summary of the provided API documentation for the Social Planner's Category Queue module, optimized for search and retrieval.
+
+---
+
+### **1. ENDPOINT NAME: Fetch available categories for a queue**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** GET (Inferred from "Retrieves")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/fetch-available-categories`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `locationId`)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Retrieves a list of available categories for a specified location, indicating whether each category is already associated with a queue or not.
+*   **TAGS:** social planner, category queue, categories, fetch, retrieve, list, available categories, location
+
+---
+
+### **2. ENDPOINT NAME: Create a category queue**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** POST (Inferred from "Creates")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/create-queue`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `locationId`, `categoryId`)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Creates a new queue for a specific category within a location, initializing it with existing published posts or an empty post if none exist.
+*   **TAGS:** social planner, category queue, create, new queue, category, location, posts, initialize
+
+---
+
+### **3. ENDPOINT NAME: Fetch category queues for a location**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** GET (Inferred from "Retrieves")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/fetch-queues`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `locationId`)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation (Likely pagination parameters like `page`, `limit`)
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Retrieves a paginated list of all category queues for a given location, excluding any that have been marked as deleted.
+*   **TAGS:** social planner, category queue, fetch, retrieve, list, location, paginated, deleted
+
+---
+
+### **4. ENDPOINT NAME: Fetch a category queue by ID**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** GET (Inferred from "Retrieves")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/fetch-queue-by-id`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `queueId`)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Retrieves the details of a single category queue by its unique ID, including a count of posts within the queue that have errors.
+*   **TAGS:** social planner, category queue, fetch, retrieve, queue ID, details, errors
+
+---
+
+### **5. ENDPOINT NAME: Update a category queue**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** PUT/PATCH (Inferred from "Updates")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/update-queue`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `queueId`, and parameters to update)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation (e.g., `status` (active, paused), `skipDateTime`)
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Updates the parameters of a specific category queue, such as its status (e.g., active, paused) or `skipDateTime` to delete a post on a specific date.
+*   **TAGS:** social planner, category queue, update, modify, status, skip date, parameters
+
+---
+
+### **6. ENDPOINT NAME: Fetch items from a category queue**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** GET (Inferred from "Retrieves")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/fetch-queue-items`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `queueId`)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation (Likely `errorsOnly` boolean, pagination parameters like `page`, `limit`)
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Retrieves a paginated list of items within a specific category queue, with an option to filter for items that have errors.
+*   **TAGS:** social planner, category queue, fetch, retrieve, items, posts, paginated, errors, filter
+
+---
+
+### **7. ENDPOINT NAME: Delete an item from a queue**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** DELETE (Inferred from "Deletes")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/delete-queue-item`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `queueId`, `itemId`)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Deletes a specific item from a category queue.
+*   **TAGS:** social planner, category queue, delete, item, remove
+
+---
+
+### **8. ENDPOINT NAME: Update an item in a queue**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** PUT/PATCH (Inferred from "Updates")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/update-queue-item`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `queueId`, `itemId`, and content to update)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation (e.g., `content`, `variations`)
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Updates the content or variations of a specific item within a category queue.
+*   **TAGS:** social planner, category queue, update, modify, item, content, variations
+
+---
+
+### **9. ENDPOINT NAME: Fetch calendar list for queues**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** GET (Inferred from "Retrieves")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/fetch-calendar-list`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `locationId`)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Retrieves a list of scheduled posts from all active queues for a given location, formatted for a calendar view.
+*   **TAGS:** social planner, category queue, fetch, retrieve, calendar, scheduled posts, active queues, location
+
+---
+
+### **10. ENDPOINT NAME: Delete an active post and schedule the next one**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** DELETE (Inferred from "Deletes") / POST (Inferred from "schedule") - Mixed operation, likely a specific POST or DELETE with side effect.
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/delete-current-active-post-and-schedule-next`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `queueId`, `postId` or `itemId`)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Deletes a post that is currently scheduled and automatically triggers the scheduling of the next available post in the queue.
+*   **TAGS:** social planner, category queue, delete, active post, schedule next, automation, queue management
+
+---
+
+### **11. ENDPOINT NAME: Reset an item in a queue**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** PUT/PATCH (Inferred from "Resets")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/reset-queue-item`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `queueId`, `itemId`)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Resets a specific queue item to its original state, discarding any modifications made.
+*   **TAGS:** social planner, category queue, reset, item, revert, discard changes, original state
+
+---
+
+### **12. ENDPOINT NAME: Create a new item in a category queue**
+
+*   **CATEGORY:** Social Planner > Category Queue
+*   **HTTP METHOD:** POST (Inferred from "Creates")
+*   **ENDPOINT URL:** Not specified in documentation (Documentation link: `https://marketplace.gohighlevel.com/docs/ghl/social-planner/create-queue-item`)
+*   **FULL URL:** Not specified in documentation (The provided URL is for the documentation page, not the API endpoint itself.)
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Likely `queueId`, and post content)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Creates a new post item directly within a specified category queue, useful for adding new queue items without any existing published post.
+*   **TAGS:** social planner, category queue, create, new item, post, add, published post, queue content
+
+---

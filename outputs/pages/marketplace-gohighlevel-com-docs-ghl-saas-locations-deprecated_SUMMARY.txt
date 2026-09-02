@@ -1,0 +1,50 @@
+Here is the structured summary of the API documentation:
+
+### API ENDPOINT SUMMARY
+
+1.  **ENDPOINT NAME**: Get locations by stripeId with companyId (Deprecated)
+
+2.  **CATEGORY**: Saas
+
+3.  **HTTP METHOD**: GET
+
+4.  **ENDPOINT URL**: `/saas-api/public-api/locations`
+
+5.  **FULL URL**: `https://services.leadconnectorhq.com/saas-api/public-api/locations`
+
+6.  **REQUIRED PARAMETERS**:
+    *   **Header Parameters**:
+        *   Version (string): API Version (Possible values: `2021-04-15`)
+    *   **Query Parameters**:
+        *   companyId (string): Company ID to filter locations. Example: `5DP4iH6HLkQsiKESj6rh`
+
+7.  **OPTIONAL PARAMETERS**:
+    *   **Query Parameters**:
+        *   customerId (string): Stripe customer ID to find locations for. Example: `cus_OD2oBjRfKEF6FV`
+        *   subscriptionId (string): Stripe subscription ID to find locations for. Example: `sub_1NVqlLByVlfITvRXgirIdpyc`
+
+8.  **AUTHENTICATION**:
+    *   **Auth Method(s)**: OAuth Access Token, Private Integration Token
+    *   **Token Type(s)**: Agency Token
+    *   **Authorization Header**: `Authorization: Bearer <TOKEN>` (Bearer Token, JWT)
+
+9.  **RESPONSE FORMAT**:
+    *   **Success (200 OK)**:
+        *   **Description**: Locations retrieved successfully
+        *   **Content Type**: `application/json`
+        *   **Schema**: Array of strings
+        *   **Example**: `["string"]`
+    *   **Error (400 Bad Request)**:
+        *   **Schema**: `{"statusCode": 400, "message": "Bad Request"}`
+    *   **Error (401 Unauthorized)**:
+        *   **Schema**: `{"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}`
+    *   **Error (404 Resource not found)**:
+        *   **Schema**: `{"statusCode": 404, "message": ["Contact not found","User not found","Group not found","Channel not found"]}`
+    *   **Error (500 Internal server error)**:
+        *   **Schema**: `{"statusCode": 500, "message": "Internal Server Error"}`
+
+10. **PURPOSE**: This endpoint is used to retrieve a list of locations associated with a given company ID, optionally filtered by a Stripe customer ID or subscription ID. It is currently marked as deprecated and may be replaced or removed in future versions.
+
+11. **TAGS**: Saas, Locations, Stripe, Company, API, Get, Deprecated, CRM, Agency, Sub-Account, Billing
+
+12. **CODE EXAMPLES**: Available (cURL, nodejs, python, php, java, go, ruby, powershell)

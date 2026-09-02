@@ -1,0 +1,127 @@
+Here's a structured summary of the API documentation for "Get Agent":
+
+### 1. ENDPOINT NAME:
+Get Agent
+
+### 2. CATEGORY:
+Voice AI - Agents
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/voice-ai/agents/:agentId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/voice-ai/agents/:agentId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-04-15`)
+*   **Path Parameters:**
+    *   agentId (string): Unique agent identifier. Example: `507f1f77bcf86cd799439011`
+*   **Query Parameters:**
+    *   locationId (string): Location ID. Example: `LOC123456789ABCDEF`
+
+### 7. OPTIONAL PARAMETERS:
+None explicitly specified in Header, Path, or Query Parameters. (However, some fields within the response schema are marked as optional).
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `voice-ai-agents.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+
+### 9. RESPONSE FORMAT:
+A successful response returns a `200 OK` status code with `application/json` content, detailing the agent's configuration.
+
+**200 OK Response Schema:**
+*   **id** (string): Unique identifier for the created agent. Example: `507f1f77bcf86cd799439011`
+*   **locationId** (string): Unique identifier for the location where this agent operates. Example: `LOC123456789ABCDEF`
+*   **agentName** (string): Display name of the voice AI agent. Example: `Customer Support Agent`
+*   **businessName** (string): Name of the business this agent represents. Example: `Acme Corporation`
+*   **welcomeMessage** (string): Greeting message spoken when the agent answers calls. Example: `Hello! Thank you for calling. How can I assist you today?`
+*   **agentPrompt** (string): Custom instructions defining the agent's behavior. Example: `You are a helpful customer service representative.`
+*   **voiceId** (string): Identifier for the speech synthesis voice being used. Example: `507f1f77bcf86cd799439011`
+*   **language** (string): Language code for the agent's speech and understanding. Example: `en-US`
+*   **patienceLevel** (string): Current tolerance level for caller response delays. Example: `medium`
+*   **maxCallDuration** (number): Maximum call duration in seconds, between 180-900. (Possible values: `>= 180` and `<= 900`). Example: `600`
+*   **sendUserIdleReminders** (boolean): Indicates whether automatic idle reminders are enabled. Example: `true`
+*   **reminderAfterIdleTimeSeconds** (number): Seconds to wait before sending idle reminders, between 1-20. (Possible values: `>= 1` and `<= 20`). Example: `5`
+*   **inboundNumber** (string, optional): Phone number for receiving inbound calls. Example: `+1234567890`
+*   **numberPoolId** (string, optional): Identifier for the number pool managing this agent's phone allocation. Example: `pool_507f1f77bcf86cd799439011`
+*   **callEndWorkflowIds** (string[], optional): Array of workflow IDs triggered automatically when calls end. Example: `[]`
+*   **sendPostCallNotificationTo** (object, optional): Current post-call notification settings.
+    *   **admins** (boolean): Send notifications to admins. Example: `true`
+    *   **allUsers** (boolean): Send notifications to all users. Example: `false`
+    *   **contactAssignedUser** (boolean): Send notifications to contact assigned user. Example: `false`
+    *   **specificUsers** (string[]): Specific user IDs to notify. Example: `[]`
+    *   **customEmails** (string[]): Custom email addresses to notify. Example: `[]`
+*   **agentWorkingHours** (object[], optional): Time intervals when the agent accepts calls.
+    *   **dayOfTheWeek** (number): Day of the week for this working hours (Monday=1 to Sunday=7). (Possible values: `1`, `2`, `3`, `4`, `5`, `6`, `7`). Example: `1`
+    *   **intervals** (object[]): Array of time intervals for the day.
+        *   **startHour** (number): Starting hour (0-23). (Possible values: `<= 23`). Example: `9`
+        *   **endHour** (number): Ending hour (0-23). (Possible values: `<= 23`). Example: `17`
+        *   **startMinute** (number): Starting minute (0-59). (Possible values: `<= 59`). Example: `0`
+        *   **endMinute** (number): Ending minute (0-59). (Possible values: `<= 59`). Example: `30`
+*   **timezone** (string): IANA timezone identifier for working hours and scheduling. Example: `America/New_York`
+*   **isAgentAsBackupDisabled** (boolean): Indicates whether this agent is excluded from backup scenarios. Example: `false`
+*   **translation** (object): Current language translation settings.
+    *   **enabled** (boolean): Whether translation is enabled. Example: `false`
+    *   **language** (string): Translation language code. Example: `es`
+*   **actions** (object[], optional): Raw actions configured for this agent.
+    *   **id** (string): Unique identifier for this action. Example: `507f1f77bcf86cd799439011`
+    *   **actionType** (string): Type of action. (Possible values: `CALL_TRANSFER`, `DATA_EXTRACTION`, `IN_CALL_DATA_EXTRACTION`, `WORKFLOW_TRIGGER`, `SMS`, `APPOINTMENT_BOOKING`, `CUSTOM_ACTION`, `KNOWLEDGE_BASE`). Example: `CALL_TRANSFER`
+    *   **name** (string): Human-readable name for this action. Example: `Transfer to Manager`
+    *   **actionParameters** (object): Action parameters (structure varies by `actionType`).
+        *   **CallTransferActionParameters:**
+            *   `triggerPrompt (string)`
+            *   `transferToType (string)` (Possible values: `number`)
+            *   `transferToValue (string)`
+            *   `triggerMessage (string)`
+            *   `hearWhisperMessage (boolean, optional)`
+        *   **DataExtractionActionParameters / InCallDataExtractionActionParameters:**
+            *   `contactFieldId (string)`
+            *   `description (string)`
+            *   `examples (string[])` (At least one, max 5)
+            *   `overwriteExistingValue (boolean, optional, default: false)`
+        *   **WorkflowTriggerParameters:**
+            *   `triggerPrompt (string)`
+            *   `triggerMessage (string)`
+            *   `workflowId (string)`
+        *   **SMSParameters:**
+            *   `triggerPrompt (string)`
+            *   `triggerMessage (string)`
+            *   `messageBody (string)`
+        *   **AppointmentBookingActionParameters:**
+            *   `calendarId (string)`
+            *   `daysOfOfferingDates (number)`
+            *   `slotsPerDay (number)`
+            *   `hoursBetweenSlots (number)`
+        *   **CustomActionParameters:**
+            *   `triggerPrompt (string)`
+            *   `triggerMessage (string)`
+            *   `apiDetails (object)`:
+                *   `url (string)`
+                *   `method (string)` (Possible values: `POST`, `GET`)
+                *   `authenticationRequired (boolean, optional)`
+                *   `authenticationValue (string, optional)`
+                *   `headers (object[], optional)`: `key (string)`, `value (string)`
+                *   `parameters (object[], optional)`: `name (string)`, `description (string, optional)`, `type (string, optional)`, `example (string, optional)`
+                *   `selectedPaths (string[], optional)` (Required: at least 1 for GET; empty for POST)
+        *   **KnowledgeBaseParameters:**
+            *   `triggerPrompt (string)`
+            *   `knowledgeBaseId (string)`
+
+**Error Responses:**
+*   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint retrieves the detailed configuration and settings for a specific voice AI agent.
+
+### 11. TAGS:
+`Voice AI`, `Agent`, `Get`, `Retrieve`, `Configuration`, `Settings`, `Readonly`
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

@@ -1,0 +1,78 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Delete schedule
+
+### 2. CATEGORY:
+Invoice / Schedule
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/invoices/schedule/:scheduleId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/schedule/:scheduleId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   scheduleId (string): Schedule Id. Example: `6578278e879ad2646715ba9c`
+*   **Query Parameters:**
+    *   altId (string): location Id / company Id based on altType. Example: `6578278e879ad2646715ba9c`
+    *   altType (string): Alt Type. Possible values: `location`. Example: `location`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `invoices/schedule.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** Bearer (JWT) in header
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Successful response):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "success": boolean
+        }
+        ```
+    *   **Example:** `{"success": true}`
+
+*   **400 Bad Request:**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{"statusCode": number, "message": string}`
+    *   **Example:** `{"statusCode": 400, "message": "Bad Request"}`
+
+*   **401 Unauthorized:**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{"statusCode": number, "message": string, "error": string}`
+    *   **Example:** `{"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}`
+
+*   **422 Unprocessable Entity:**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{"statusCode": number, "message": string[], "error": string}`
+    *   **Example:** `{"statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This API is used to delete an invoice schedule by its schedule ID.
+
+### 11. TAGS:
+Invoice, Schedule, Delete, Recurring Invoice, API, GHL, GoHighLevel, Payment, Billing
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   CURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

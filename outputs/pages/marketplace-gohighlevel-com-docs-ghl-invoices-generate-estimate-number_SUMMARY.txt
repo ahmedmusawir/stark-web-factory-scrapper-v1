@@ -1,0 +1,83 @@
+```
+## STRUCTURED SUMMARY
+
+### 1. ENDPOINT NAME:
+Generate Estimate Number
+
+### 2. CATEGORY:
+Invoice, Estimate
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/invoices/estimate/number/generate`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/estimate/number/generate`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Query Parameters:**
+    *   `altId` (string): Location Id or Agency Id. Example: `6578278e879ad2646715ba9c`
+    *   `altType` (string): Possible values: [`location`]
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `invoices/estimate.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header` (Authorization)
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (application/json)**
+    ```json
+    {
+      "estimateNumber": 0,
+      "traceId": "string"
+    }
+    ```
+    *   `estimateNumber` (number): The next available estimate number. (required)
+    *   `traceId` (string): A unique identifier for the request. (required)
+
+*   **400 Bad Request (application/json)**
+    ```json
+    {
+      "statusCode": 400,
+      "message": "Bad Request"
+    }
+    ```
+
+*   **401 Unauthorized (application/json)**
+    ```json
+    {
+      "statusCode": 401,
+      "message": "Invalid token: access token is invalid",
+      "error": "Unauthorized"
+    }
+    ```
+
+*   **422 Unprocessable Entity (application/json)**
+    ```json
+    {
+      "statusCode": 422,
+      "message": ["Unprocessable Entity"],
+      "error": "Unprocessable Entity"
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint retrieves the next available estimate number for a specified location or agency.
+
+### 11. TAGS:
+Invoice, Estimate, Generate, Number, Readonly, Location, API, Get
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.
+```

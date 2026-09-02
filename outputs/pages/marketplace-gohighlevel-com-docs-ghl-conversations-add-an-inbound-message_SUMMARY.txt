@@ -1,0 +1,91 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Add an inbound message
+
+### 2. CATEGORY:
+Conversations
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/conversations/messages/inbound`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversations/messages/inbound`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-04-15`]
+*   **Body Parameters:**
+    *   `type` (string): Message Type. Possible values: [`SMS`, `Email`, `WhatsApp`, `GMB`, `IG`, `FB`, `Custom`, `WebChat`, `Live_Chat`, `Call`]
+    *   `conversationProviderId` (string): Conversation Provider Id
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters:**
+    *   `attachments` (string[]): Array of attachments
+    *   `message` (string): Message Body
+    *   `conversationId` (string): Conversation Id. **Note:** Either `conversationId` or `contactId` is required.
+    *   `contactId` (string): Contact Id. **Note:** Either `conversationId` or `contactId` is required.
+    *   `html` (string): HTML Body of Email
+    *   `subject` (string): Subject of the Email
+    *   `emailFrom` (string): Email address to send from. This field is associated with the contact record and cannot be dynamically changed.
+    *   `emailTo` (string): Recipient email address. This field is associated with the contact record and cannot be dynamically changed.
+    *   `emailCc` (string[]): List of email address to CC
+    *   `emailBcc` (string[]): List of email address to BCC
+    *   `emailMessageId` (string): Send the email message id for which this email should be threaded. This is for replying to a specific email
+    *   `altId` (string): external mail provider's message id
+    *   `direction` (object): Message direction, if required can be set manually, default is outbound. Default value: `outbound`. Example: `["outbound","inbound"]`
+    *   `date` (date-time): Date of the inbound message
+    *   `call` (object): Phone call dialer and receiver information
+        *   `to` (string): Phone number of the receiver (nested under `call`)
+        *   `from` (string): Phone number of the dialer (nested under `call`)
+        *   `status` (string): Call status. Possible values: [`pending`, `completed`, `answered`, `busy`, `no-answer`, `failed`, `canceled`, `voicemail`] (nested under `call`)
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `conversations/message.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **200 OK (Created the message)**
+    *   `success` (boolean): required
+    *   `conversationId` (string): required. Conversation ID.
+    *   `messageId` (string): required. This is the main Message ID.
+    *   `message` (string): required
+    *   `contactId` (string)
+    *   `dateAdded` (date-time)
+    *   `emailMessageId` (string)
+    *   **Example:**
+        ```json
+        {"success":true,"conversationId":"ABC12h2F6uBrIkfXYazb","messageId":"t22c6DQcTDf3MjRhwf77","message":"string","contactId":"string","dateAdded":"2024-07-29T15:51:28.071Z","emailMessageId":"string"}
+        ```
+*   **400 Bad Request**
+    *   `statusCode` (number)
+    *   `message` (string)
+    *   **Example:**
+        ```json
+        {"statusCode":400,"message":"Bad Request"}
+        ```
+*   **401 Unauthorized**
+    *   `statusCode` (number)
+    *   `message` (string)
+    *   `error` (string)
+    *   **Example:**
+        ```json
+        {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+        ```
+
+### 10. PURPOSE:
+This endpoint allows an API client to add a new inbound message to a specific conversation or contact within the HighLevel platform.
+
+### 11. TAGS:
+Conversations, Messages, Inbound Message, Add Message, Communication, CRM, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

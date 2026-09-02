@@ -1,0 +1,52 @@
+## Structured Summary: Private Integrations Token (Authentication Method)
+
+### 1. ENDPOINT NAME: Private Integrations Token
+
+### 2. CATEGORY: Authorization
+
+### 3. HTTP METHOD:
+*   GET (for retrieving Location details)
+*   POST (for creating Contact)
+
+### 4. ENDPOINT URL:
+*   `/locations/:locationId` (for retrieving Location details)
+*   `/contacts/` (for creating Contact)
+
+### 5. FULL URL:
+*   `https://services.leadconnectorhq.com/locations/:locationId` (for retrieving Location details)
+*   `https://services.leadconnectorhq.com/contacts/` (for creating Contact)
+
+### 6. REQUIRED PARAMETERS:
+
+#### For `GET /locations/:locationId` (Example: Retrieve Location Details)
+*   `locationId` (string): The unique identifier for the sub-account (e.g., `ve9EPM428h8vShlRW1KT`). This is a path parameter.
+
+#### For `POST /contacts/` (Example: Create Contact)
+*   `firstName` (string): The first name of the contact (e.g., "John").
+*   `lastName` (string): The last name of the contact (e.g., "Doe").
+*   `email` (string): The email address of the contact (e.g., "john.doe@example.com").
+*   `phone` (string): The phone number of the contact (e.g., "+1234567890").
+*   `locationId` (string): The unique identifier of the sub-account where the contact will be created (e.g., "LOCATION_ID").
+
+### 7. OPTIONAL PARAMETERS: Not specified in documentation for the provided examples.
+
+### 8. AUTHENTICATION:
+*   **Method:** Bearer Token via `Authorization` header.
+*   **Token Type:** Private Integration Token.
+*   **Required Scopes:** Scopes/permissions are selected by the user when generating the Private Integration Token, restricting access to specific parts of the account data.
+*   **Required Headers:**
+    *   `Authorization: Bearer <YOUR PRIVATE INTEGRATION TOKEN>`
+    *   `Version: 2021-07-28` (as shown in examples)
+    *   `Accept: application/json` (as shown in `GET` example)
+    *   `Content-Type: application/json` (as shown in `POST` example)
+
+### 9. RESPONSE FORMAT: Not explicitly described in documentation for the provided examples.
+
+### 10. PURPOSE:
+Private Integrations allow users to build secure and powerful custom integrations between their HighLevel account and third-party apps by generating scoped, static OAuth2 Access Tokens.
+
+### 11. TAGS:
+Authorization, Private Integration, API Key, OAuth2, Bearer Token, Token Management, Security, API v2.0, Access Token, Locations, Contacts, HighLevel, Custom Integrations, Token Rotation, Token Compromise.
+
+### Availability of Code Examples:
+cURL examples are available for both `GET /locations/:locationId` and `POST /contacts/`.

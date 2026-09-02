@@ -1,0 +1,63 @@
+Here's the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Delete a wallet charge
+
+### 2. CATEGORY:
+Wallet Charges (under Developer Marketplace)
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/marketplace/billing/charges/:chargeId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/marketplace/billing/charges/:chargeId`
+
+### 6. REQUIRED PARAMETERS:
+*   `chargeId` (string): ID of the charge to delete
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `charges.write`
+*   **Auth Method(s):** `OAuth Access Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**Status Code:** `200 OK`
+**Content Type:** `application/json`
+**Schema:**
+```json
+{
+  "success": true
+}
+```
+**Example:**
+```json
+{"success":true}
+```
+*(Also provides 404 "Charge not found" and 422 "Unprocessable Entity" responses)*
+
+### 10. PURPOSE:
+This endpoint allows you to delete an existing wallet charge.
+
+### 11. TAGS:
+Developer Marketplace, Wallet Charges, Billing, Delete, Charge, API, HighLevel, Sub-Account, Marketplace
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

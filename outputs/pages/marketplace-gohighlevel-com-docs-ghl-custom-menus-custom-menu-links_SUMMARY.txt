@@ -1,0 +1,97 @@
+This API documentation covers the "Custom Menu Links" functionality within the HighLevel platform, outlining operations to manage custom menus for companies.
+
+---
+
+### **1. Get Custom Menu Link**
+
+1.  **ENDPOINT NAME:** Get Custom Menu Link
+2.  **CATEGORY:** Custom Menu Links
+3.  **HTTP METHOD:** GET
+4.  **ENDPOINT URL:** Not specified in documentation (The documentation link `https://marketplace.gohighlevel.com/docs/ghl/custom-menus/get-custom-menu-by-id` is provided, but the actual API endpoint path is not explicitly stated. It is inferred to be resource-based, likely `/{customMenuLinkId}`.)
+5.  **FULL URL:** Not specified in documentation
+6.  **REQUIRED PARAMETERS:**
+    *   id (string): The unique identifier of the custom menu link to fetch.
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation
+8.  **AUTHENTICATION:** Implied: Requires authentication and proper permissions.
+9.  **RESPONSE FORMAT:** Not specified in documentation
+10. **PURPOSE:** Fetches a single custom menu based on its ID, allowing clients to retrieve custom menu configurations, including menu items, categories, and associated metadata.
+11. **TAGS:** Custom Menus, Links, Get, Retrieve, Fetch, ID, Configuration
+12. **Code examples:** Not specified in documentation
+
+---
+
+### **2. Delete Custom Menu Link**
+
+1.  **ENDPOINT NAME:** Delete Custom Menu Link
+2.  **CATEGORY:** Custom Menu Links
+3.  **HTTP METHOD:** DELETE
+4.  **ENDPOINT URL:** Not specified in documentation (The documentation link `https://marketplace.gohighlevel.com/docs/ghl/custom-menus/delete-custom-menu` is provided, but the actual API endpoint path is not explicitly stated. It is inferred to be resource-based, likely `/{customMenuLinkId}` within a company context.)
+5.  **FULL URL:** Not specified in documentation
+6.  **REQUIRED PARAMETERS:**
+    *   id (string): The unique ID of the custom menu to remove.
+    *   company (string): The identifier of the company within which the operation is performed.
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation
+8.  **AUTHENTICATION:** Requires authentication and proper permissions.
+9.  **RESPONSE FORMAT:** Not specified in documentation
+10. **PURPOSE:** Removes a specific custom menu from the system. This operation is performed within the context of a specific company and requires the custom menu's unique ID.
+11. **TAGS:** Custom Menus, Links, Delete, Remove, ID, Company
+12. **Code examples:** Not specified in documentation
+
+---
+
+### **3. Update Custom Menu Link**
+
+1.  **ENDPOINT NAME:** Update Custom Menu Link
+2.  **CATEGORY:** Custom Menu Links
+3.  **HTTP METHOD:** PUT/PATCH
+4.  **ENDPOINT URL:** Not specified in documentation (The documentation link `https://marketplace.gohighlevel.com/docs/ghl/custom-menus/update-custom-menu` is provided, but the actual API endpoint path is not explicitly stated. It is inferred to be resource-based, likely `/{customMenuLinkId}` within a company context, with a request body for updates.)
+5.  **FULL URL:** Not specified in documentation
+6.  **REQUIRED PARAMETERS:**
+    *   id (string): The unique identifier of the custom menu to update.
+    *   company (string): The identifier of the company for which the custom menu is updated.
+    *   request body (object): The data containing the updated custom menu properties.
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation
+8.  **AUTHENTICATION:** Requires authentication and proper permissions.
+9.  **RESPONSE FORMAT:** Not specified in documentation
+10. **PURPOSE:** Updates an existing custom menu for a given company.
+11. **TAGS:** Custom Menus, Links, Update, Modify, Company, ID
+12. **Code examples:** Not specified in documentation
+
+---
+
+### **4. Get Custom Menu Links**
+
+1.  **ENDPOINT NAME:** Get Custom Menu Links
+2.  **CATEGORY:** Custom Menu Links
+3.  **HTTP METHOD:** GET
+4.  **ENDPOINT URL:** Not specified in documentation (The documentation link `https://marketplace.gohighlevel.com/docs/ghl/custom-menus/get-custom-menus` is provided, but the actual API endpoint path is not explicitly stated. It is inferred to be a collection endpoint, likely `/custom-menus`.)
+5.  **FULL URL:** Not specified in documentation
+6.  **REQUIRED PARAMETERS:** Not specified in documentation
+7.  **OPTIONAL PARAMETERS:**
+    *   filtering (string): Query parameter(s) to filter the collection of custom menus based on specified criteria.
+    *   sorting (string): Query parameter(s) to sort the collection of custom menus.
+    *   pagination (object): Query parameter(s) for paginating the response (e.g., `limit`, `offset`, `page`).
+8.  **AUTHENTICATION:** Implied: Requires authentication and proper permissions.
+9.  **RESPONSE FORMAT:** Not specified in documentation
+10. **PURPOSE:** Fetches a collection of custom menus based on specified criteria, allowing clients to retrieve custom menu configurations, including menu items, categories, and associated metadata. The response can be tailored using query parameters for filtering, sorting, and pagination.
+11. **TAGS:** Custom Menus, Links, Get, Retrieve, Fetch, Collection, Filter, Sort, Paginate, Configuration
+12. **Code examples:** Not specified in documentation
+
+---
+
+### **5. Create Custom Menu Link**
+
+1.  **ENDPOINT NAME:** Create Custom Menu Link
+2.  **CATEGORY:** Custom Menu Links
+3.  **HTTP METHOD:** POST
+4.  **ENDPOINT URL:** Not specified in documentation (The documentation link `https://marketplace.gohighlevel.com/docs/ghl/custom-menus/create-custom-menu` is provided, but the actual API endpoint path is not explicitly stated. It is inferred to be a collection endpoint, likely `/custom-menus` or `/companies/{companyId}/custom-menus`, with a request body for creation.)
+5.  **FULL URL:** Not specified in documentation
+6.  **REQUIRED PARAMETERS:**
+    *   company (string): The identifier of the company for which the new custom menu is created.
+    *   request body (object): The data for the new custom menu, including its configuration and details.
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation
+8.  **AUTHENTICATION:** Requires authentication and proper permissions.
+9.  **RESPONSE FORMAT:** Not specified in documentation
+10. **PURPOSE:** Creates a new custom menu for a company.
+11. **TAGS:** Custom Menus, Links, Create, New, Company, Icon
+12. **Code examples:** Not specified in documentation

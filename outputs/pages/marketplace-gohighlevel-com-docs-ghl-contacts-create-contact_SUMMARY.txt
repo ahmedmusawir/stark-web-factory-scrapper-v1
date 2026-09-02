@@ -1,0 +1,153 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Create Contact
+
+### 2. CATEGORY:
+Contacts
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/contacts/`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+
+*   **Body Parameters:**
+    *   `locationId` (string): The ID of the location (sub-account) where the contact will be created. Example: `ve9EPM428h8vShlRW1KT`
+    *   `dndSettings.Call.status` (string): Status for Do Not Disturb settings for calls. Possible values: [`active`, `inactive`, `permanent`]
+    *   `dndSettings.Email.status` (string): Status for Do Not Disturb settings for emails. Possible values: [`active`, `inactive`, `permanent`]
+    *   `dndSettings.SMS.status` (string): Status for Do Not Disturb settings for SMS. Possible values: [`active`, `inactive`, `permanent`]
+    *   `dndSettings.WhatsApp.status` (string): Status for Do Not Disturb settings for WhatsApp. Possible values: [`active`, `inactive`, `permanent`]
+    *   `dndSettings.GMB.status` (string): Status for Do Not Disturb settings for Google My Business. Possible values: [`active`, `inactive`, `permanent`]
+    *   `dndSettings.FB.status` (string): Status for Do Not Disturb settings for Facebook. Possible values: [`active`, `inactive`, `permanent`]
+    *   `inboundDndSettings.all.status` (string): Status for inbound Do Not Disturb settings. Possible values: [`active`, `inactive`]
+    *   `customFields[].id` (string): The ID of the custom field. Example: `6dvNaf7VhkQ9snc5vnjJ` (Required for each custom field object in the array.)
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   `firstName` (string, nullable): The first name of the contact. Example: `Rosan`
+    *   `lastName` (string, nullable): The last name of the contact. Example: `Deo`
+    *   `name` (string, nullable): The full name of the contact. Example: `Rosan Deo`
+    *   `email` (string, nullable): The email address of the contact. Example: `rosan@deos.com`
+    *   `gender` (string): The gender of the contact. Example: `male`
+    *   `phone` (string, nullable): The phone number of the contact. Example: `+1 888-888-8888`
+    *   `address1` (string, nullable): The first line of the contact's address. Example: `3535 1st St N`
+    *   `city` (string, nullable): The city of the contact's address. Example: `Dolomite`
+    *   `state` (string, nullable): The state of the contact's address. Example: `AL`
+    *   `postalCode` (string): The postal code of the contact's address. Example: `35061`
+    *   `website` (string, nullable): The contact's website. Example: `https://www.tesla.com`
+    *   `timezone` (string, nullable): The contact's timezone. Example: `America/Chihuahua`
+    *   `dnd` (boolean): Flag to enable/disable Do Not Disturb for the contact. Example: `true`
+    *   `dndSettings.Call.message` (string): Message for call DND status.
+    *   `dndSettings.Call.code` (string): Code for call DND status.
+    *   `dndSettings.Email.message` (string): Message for email DND status.
+    *   `dndSettings.Email.code` (string): Code for email DND status.
+    *   `dndSettings.SMS.message` (string): Message for SMS DND status.
+    *   `dndSettings.SMS.code` (string): Code for SMS DND status.
+    *   `dndSettings.WhatsApp.message` (string): Message for WhatsApp DND status.
+    *   `dndSettings.WhatsApp.code` (string): Code for WhatsApp DND status.
+    *   `dndSettings.GMB.message` (string): Message for GMB DND status.
+    *   `dndSettings.GMB.code` (string): Code for GMB DND status.
+    *   `dndSettings.FB.message` (string): Message for FB DND status.
+    *   `dndSettings.FB.code` (string): Code for FB DND status.
+    *   `inboundDndSettings.all.message` (string): Message for inbound DND status.
+    *   `tags` (string[]): An array of tags to associate with the contact. Example: `["nisi sint commodo amet","consequat"]`
+    *   `customFields[].key` (string): The key of the custom field. Example: `my_custom_field`
+    *   `customFields[].field_value` (any): The value of the custom field. Type varies based on the custom field definition (e.g., string for text, number for numeric, array of strings for multi-select, object for file).
+        *   Examples: `"My Text"`, `100`, `100.5`, `["test","test2"]`, `{"f31175d4-2b06-4fc6-b7bc-74cd814c68cb":{...}}`
+    *   `source` (string): The source from which the contact was created. Example: `public api`
+    *   `dateOfBirth` (object, nullable): The birth date of the contact. Supported formats: YYYY/MM/DD, MM/DD/YYYY, YYYY-MM-DD, MM-DD-YYYY, YYYY.MM.DD, MM.DD.YYYY, YYYY_MM_DD, MM_DD_YYYY. Example: `1990-09-25`
+    *   `country` (string): The country of the contact. Example: `US` (List of acceptable values provided in external link.)
+    *   `companyName` (string, nullable): The company name associated with the contact. Example: `DGS VolMAX`
+    *   `assignedTo` (string): The User's ID to whom the contact is assigned. Example: `y0BeYjuRIlDwsDcOHOJo`
+
+### 8. AUTHENTICATION:
+
+*   **Required Scope(s):** `contacts.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (201 Created):**
+    *   **Content Type:** `application/json`
+    *   **Structure:** An object containing a `contact` object.
+    *   **`contact` object fields include:**
+        `id`, `dateAdded`, `dateUpdated`, `deleted`, `tags`, `type`, `customFields` (array of objects with `id` and `value`), `locationId`, `firstName`, `firstNameLowerCase`, `fullNameLowerCase`, `lastName`, `lastNameLowerCase`, `email`, `emailLowerCase`, `bounceEmail`, `unsubscribeEmail`, `dnd`, `dndSettings` (object detailing DND status, message, and code for Call, Email, SMS, WhatsApp, GMB, FB), `phone`, `address1`, `city`, `state`, `country`, `postalCode`, `website`, `source`, `companyName`, `dateOfBirth` (format: `YYYY-MM-DDTHH:mm:ss.sssZ`), `birthMonth`, `birthDay`, `lastSessionActivityAt`, `offers`, `products`, `businessId`, `assignedTo`.
+    *   **Example:**
+        ```json
+        {
+          "contact": {
+            "id": "seD4PfOuKoVMLkEZqohJ",
+            "dateAdded": "2021-08-31T09:59:41.937Z",
+            "dateUpdated": "2021-08-31T09:59:41.937Z",
+            "deleted": false,
+            "tags": ["nisi sint commodo amet", "consequat"],
+            "type": "read",
+            "customFields": [{"id": "MgobCB14YMVKuE4Ka8p1", "value": "name"}],
+            "locationId": "ve9EPM428h8vShlRW1KT",
+            "firstName": "rubika",
+            "firstNameLowerCase": "rubika",
+            "fullNameLowerCase": "rubika deo",
+            "lastName": "Deo",
+            "lastNameLowerCase": "deo",
+            "email": "rubika@deos.com",
+            "emailLowerCase": "rubika@deos.com",
+            "bounceEmail": false,
+            "unsubscribeEmail": false,
+            "dnd": true,
+            "dndSettings": {
+              "Call": {"status": "active", "message": "string", "code": "string"},
+              "Email": {"status": "active", "message": "string", "code": "string"},
+              "SMS": {"status": "active", "message": "string", "code": "string"},
+              "WhatsApp": {"status": "active", "message": "string", "code": "string"},
+              "GMB": {"status": "active", "message": "string", "code": "string"},
+              "FB": {"status": "active", "message": "string", "code": "string"}
+            },
+            "phone": "+18832327657",
+            "address1": "3535 1st St N",
+            "city": "ruDolomitebika",
+            "state": "AL",
+            "country": "US",
+            "postalCode": "35061",
+            "website": "https://www.tesla.com",
+            "source": "public api",
+            "companyName": "DGS VolMAX",
+            "dateOfBirth": "Date format will be YYYY-MM-DDTHH:mm:ss.sssZ and Example 1990-09-25T00:00:00.000Z",
+            "birthMonth": 8,
+            "birthDay": 25,
+            "lastSessionActivityAt": "2021-07-16T11:39:30.564Z",
+            "offers": [],
+            "products": [],
+            "businessId": "641c094001436dbc2081e642",
+            "assignedTo": "y0BeYjuRIlDwsDcOHOJo"
+          }
+        }
+        ```
+
+*   **Error Responses:**
+    *   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows creating a new contact within a specified sub-account, including their personal details, contact preferences, tags, custom fields, and other relevant information.
+
+### 11. TAGS:
+Contacts, Create, POST, Contact Management, CRM, HighLevel API, Sub-Account, Custom Fields, DND Settings, LeadConnector, API 2.0
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

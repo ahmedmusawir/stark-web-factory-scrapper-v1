@@ -1,0 +1,85 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get Snapshot Push between Dates
+
+### 2. CATEGORY:
+Snapshots
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/snapshots/snapshot-status/:snapshotId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/snapshots/snapshot-status/:snapshotId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `snapshotId` (string): Example: `39It2BFz7EkNaNBALPif`
+*   **Query Parameters:**
+    *   `companyId` (string): Example: `5D112kQsiKESj6rash`
+    *   `from` (string): Only accepts ISO 8601 format. Example: `2022-10-10T12:00:00Z` or `2022-10-10`
+    *   `to` (string): Only accepts ISO 8601 format. Example: `2023-12-18T11:59:59Z` or `2023-12-18`
+    *   `lastDoc` (string): Id for last document till what you want to skip. Example: `VUJO4Sw2TrDNZ5lx4wZg`
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   `limit` (string): Limit of documents to return. Default is 20. Example: `10`
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`, `Bearer Token (JWT)`
+*   **Description:** Use the Access Token generated with user type as Agency (OR) Personal Integration Token from Agency.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Successful response):**
+    *   **Content-Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "data": [
+            {
+              "id": "string",       // Document id, Example: "1eM2UgkfaECOYyUdCo9Pa"
+              "locationId": "string", // Sub-account id, Example: "BrKClvyvdxhJ9Mxz2pzQ"
+              "status": "string",   // Status of snapshot push, Example: "processing"
+              "dateAdded": "date-time" // Timestamp of when snapshot processing starts for sub-account, Example: "10/28/2022, 6:24:54 PM"
+            }
+          ]
+        }
+        ```
+    *   **Example:**
+        ```json
+        {"data":[{"id":"1eM2UgkfaECOYyUdCo9Pa","locationId":"BrKClvyvdxhJ9Mxz2pzQ","status":"processing","dateAdded":"10/28/2022, 6:24:54 PM"}]}
+        ```
+
+*   **400 Bad Request:**
+    *   **Content-Type:** `application/json`
+    *   **Schema:** `{"statusCode": number, "message": string}`
+    *   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+
+*   **401 Unauthorized:**
+    *   **Content-Type:** `application/json`
+    *   **Schema:** `{"statusCode": number, "message": string, "error": string}`
+    *   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint retrieves a list of sub-accounts for which a specific snapshot was pushed within a given time period.
+
+### 11. TAGS:
+Snapshots, Get, Push Status, Sub-accounts, Date Range, Retrieval, API, GHL
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

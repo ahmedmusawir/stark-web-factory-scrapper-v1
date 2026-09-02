@@ -1,0 +1,86 @@
+Here is a structured summary of the provided API documentation:
+
+---
+
+**1. ENDPOINT NAME:** Bulk Update Product Reviews
+
+**2. CATEGORY:** Products (specifically Reviews)
+
+**3. HTTP METHOD:** POST
+
+**4. ENDPOINT URL:** `/products/reviews/bulk-update`
+
+**5. FULL URL:** `https://services.leadconnectorhq.com/products/reviews/bulk-update`
+
+**6. REQUIRED PARAMETERS:**
+    *   **Header Parameters:**
+        *   `Version (string)`: API Version (Possible values: `2021-07-28`)
+    *   **Body Parameters:**
+        *   `altId (string)`: Location Id or Agency Id
+        *   `altType (string)`: Type of altId (Possible values: `location`)
+        *   `reviews (object[])`: Array of Product Reviews to update. Each object in the array requires:
+            *   `reviewId (string)`: Review Id
+            *   `productId (string)`: Product Id
+            *   `storeId (string)`: Store Id
+        *   `status (string)`: Status of the review (Example: `approved`)
+
+**7. OPTIONAL PARAMETERS:** Not specified in documentation
+
+**8. AUTHENTICATION:**
+    *   **Scope(s):** `products.write`
+    *   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+    *   **Token Type(s):** `Sub-Account Token`
+    *   **Scheme:** Bearer (JWT)
+
+**9. RESPONSE FORMAT:**
+    *   **201 Successful Response (application/json):**
+        ```json
+        {
+          "status": true,
+          "message": "Successfully created"
+        }
+        ```
+        *   `status (boolean)`: Status of API action
+        *   `message (string)`: Success message
+
+    *   **400 Bad Request (application/json):**
+        ```json
+        {
+          "statusCode": 400,
+          "message": "Bad Request"
+        }
+        ```
+
+    *   **401 Unauthorized (application/json):**
+        ```json
+        {
+          "statusCode": 401,
+          "message": "Invalid token: access token is invalid",
+          "error": "Unauthorized"
+        }
+        ```
+
+    *   **422 Unprocessable Entity (application/json):**
+        ```json
+        {
+          "statusCode": 422,
+          "message": ["Unprocessable Entity"],
+          "error": "Unprocessable Entity"
+        }
+        ```
+
+**10. PURPOSE:** This endpoint allows updating the status, reply, or other attributes of one or multiple product reviews in a single request.
+
+**11. TAGS:** Products, Reviews, Bulk Update, Update, eCommerce, API, HighLevel, Marketing, Status, Moderation
+
+**12. CODE EXAMPLES:**
+    *   cURL
+    *   nodejs
+    *   python
+    *   php
+    *   java
+    *   go
+    *   ruby
+    *   powershell
+
+---

@@ -1,0 +1,75 @@
+Here's a structured summary of the API documentation for "Create White-label Integration Provider":
+
+---
+
+### 1. ENDPOINT NAME:
+Create White-label Integration Provider
+
+### 2. CATEGORY:
+Payments (Integrations)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/payments/integrations/provider/whitelabel`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/payments/integrations/provider/whitelabel`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-07-28`
+
+*   **Body Parameters:**
+    *   `altId` (string): location Id / company Id based on altType. Example: `6578278e879ad2646715ba9c`
+    *   `altType` (string): Alt Type. Possible values: [`location`]. Example: `location`
+    *   `uniqueName` (string): A unique name given to the integration provider, uniqueName must start and end with a character. Only lowercase characters and hyphens (-) are supported. Example: `easy-direct`
+    *   `title` (string): The title or name of the integration provider. Example: `Title`
+    *   `provider` (string): The type of payment provider associated with the integration provider. Possible values: [`authorize-net`, `nmi`]. (Note: The documentation's example JSON and cURL command show `{"AUTHORIZE_NET":"authorize-net","NMI":"nmi"}` for this field, which conflicts with the stated `type: string` and `Possible values` implying a single string value like `"authorize-net"` or `"nmi"`).
+    *   `description` (string): A brief description providing additional information about the integration provider. Example: `Description`
+    *   `imageUrl` (string): The URL to an image representing the integration provider. The imageUrl should start with "https://" and ensure that this URL is publicly accessible. Example: `https://example.com/image.jpg`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s)**: `payments/integration.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Description**: This endpoint can only be invoked using a marketplace-app token. Use an Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (Status Code: 200, application/json)**:
+    *   `_id` (string): The unique identifier of the integration provider. Example: `65cb47dda50f4f13ced4b870`
+    *   `altId` (string): The altId / locationId of the integration provider. Example: `Z4Bxl8J4SaPEPLq9IQ8g`
+    *   `altType` (string): The altType of the integration provider. Example: `location`
+    *   `title` (string): The title or name of the integration provider. Example: `Example`
+    *   `route` (string): The route name associated with the integration provider. Example: `epd`
+    *   `provider` (string): The payment provider associated with the integration provider. Example: `nmi`
+    *   `description` (string): A brief description providing additional information about the integration provider. Example: `Lorem`
+    *   `imageUrl` (string): The URL to an image representing the integration provider. Example: `https://example.com/assets/pmd/img/payments/nmi-logo.webp`
+    *   `createdAt` (date-time): The timestamp when the integration provider was created. Example: `2024-02-13T10:43:41.026Z`
+    *   `updatedAt` (date-time): The timestamp when the integration provider was last updated. Example: `2024-02-13T10:43:41.026Z`
+
+*   **Error Responses:**
+    *   **400 Bad Request (application/json)**:
+        `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized (application/json)**:
+        `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity (application/json)**:
+        `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows adding a new white-label payment provider integration to the system, which is built on top of Authorize.net or NMI, by providing specific integration details.
+
+### 11. TAGS:
+Payments, Integrations, White-label, Provider, Create, Authorize.net, NMI, API, Configuration
+
+### Code Examples:
+Code examples are available for cURL, nodejs, python, php, java, go, ruby, and powershell.
+
+---

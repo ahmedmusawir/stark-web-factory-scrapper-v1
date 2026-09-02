@@ -1,0 +1,86 @@
+Here's a structured summary of the API documentation for "Get Location Subscription Details":
+
+### 1. ENDPOINT NAME:
+Get Location Subscription Details (Deprecated)
+
+### 2. CATEGORY:
+Saas
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/saas-api/public-api/get-saas-subscription/:locationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/saas-api/public-api/get-saas-subscription/:locationId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: [`2021-04-15`]
+*   **Path Parameters:**
+    *   locationId (string): Location ID to get subscription details for. Example: AUKAtFVo0lWezBsBQ3FE
+*   **Query Parameters:**
+    *   companyId (string): Company ID to filter subscription details. Example: 5DP4iH6HLkQsiKESj6rh
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** OAuth Access Token, Private Integration Token
+*   **Token Type(s):** Agency Token
+*   **Authorization Header:** `Authorization: Bearer <TOKEN>` (Bearer format: JWT)
+
+### 9. RESPONSE FORMAT:
+*   **200 OK (application/json):** Location subscription details retrieved successfully
+    ```json
+    {
+      "locationId": "locationId1",
+      "isSaaSV2": true,
+      "companyId": "companyId1",
+      "saasMode": "saasV2",
+      "subscriptionId": "subscriptionId1",
+      "customerId": "customerId1",
+      "productId": "productId1",
+      "priceId": "priceId1",
+      "saasPlanId": "saasPlanId1",
+      "subscriptionStatus": "active"
+    }
+    ```
+    **Schema details:**
+    *   `locationId` (string, required): Location ID
+    *   `isSaaSV2` (boolean, required): Indicates if the SaaS is V2
+    *   `companyId` (string, required): Company ID
+    *   `saasMode` (string): SaaS mode
+    *   `subscriptionId` (string): Subscription ID
+    *   `customerId` (string): Customer ID
+    *   `productId` (string): Product ID
+    *   `priceId` (string): Price ID
+    *   `saasPlanId` (string): SaaS plan ID
+    *   `subscriptionStatus` (string): Subscription status
+*   **400 Bad Request (application/json):**
+    ```json
+    {"statusCode":400,"message":"Bad Request"}
+    ```
+*   **401 Unauthorized (application/json):**
+    ```json
+    {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+    ```
+*   **404 Resource not found (application/json):**
+    ```json
+    {"statusCode":404,"message":["Contact not found","User not found","Group not found","Channel not found"]}
+    ```
+*   **500 Internal server error (application/json):**
+    ```json
+    {"statusCode":500,"message":"Internal Server Error"}
+    ```
+
+### 10. PURPOSE:
+This endpoint is used to fetch subscription details for a specific location from location metadata.
+
+### 11. TAGS:
+Saas, Location, Subscription, Details, Get, Fetch, API, Deprecated, HighLevel
+
+### Additional Notes:
+*   This endpoint is explicitly marked as `deprecated`.
+*   Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

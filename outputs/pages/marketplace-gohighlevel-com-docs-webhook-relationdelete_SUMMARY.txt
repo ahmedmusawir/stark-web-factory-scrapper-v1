@@ -1,0 +1,69 @@
+Here is the structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Relation Delete
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+This documentation describes a webhook *response payload* that is *sent* by the HighLevel API to a configured endpoint when a specific event occurs. It is not an endpoint that developers *call* using HTTP methods like GET, POST, PUT, or DELETE. Webhook notifications are typically sent via `POST` requests from the HighLevel platform to the subscriber's endpoint, but the specific HTTP method for the *incoming* webhook is not explicitly stated in this document.
+
+### 4. ENDPOINT URL:
+Not applicable. This document describes the *payload* of a webhook notification. The URL `https://marketplace.gohighlevel.com/docs/webhook/RelationDelete/index.html` is for the documentation page itself, not the webhook endpoint.
+
+### 5. FULL URL:
+Not applicable.
+
+### 6. REQUIRED PARAMETERS:
+(These are fields present in the webhook response payload)
+*   `id` (string): Unique identifier for the deleted association.
+*   `firstObjectKey` (string): Key representing the first object in the association.
+*   `firstRecordId` (string): Identifier of the first object’s specific record.
+*   `secondObjectKey` (string): Key representing the second object in the association.
+*   `secondRecordId` (string): Identifier of the second object’s specific record.
+*   `associationId` (string): Unique identifier for the association that was deleted.
+*   `locationId` (string): Identifies the location associated with the deleted association.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation. All fields listed in the schema are expected to be present in the webhook response.
+
+### 8. AUTHENTICATION:
+Not specified in documentation for receiving the webhook. (Typically, webhook authentication involves signature verification or a shared secret, but details are not provided here.)
+
+### 9. RESPONSE FORMAT:
+The webhook response is a JSON object.
+**Status Code:** Not specified for the incoming webhook notification itself.
+**Structure:**
+```json
+{
+  "id": "string",
+  "firstObjectKey": "string",
+  "firstRecordId": "string",
+  "secondObjectKey": "string",
+  "secondRecordId": "string",
+  "associationId": "string",
+  "locationId": "string"
+}
+```
+**Example Response:**
+```json
+{
+  "id": "67ae0d741119d218c9d0c477",
+  "firstObjectKey": "custom_objects.mad",
+  "firstRecordId": "67a349a79b28947ec1f65bb5",
+  "secondObjectKey": "contact",
+  "secondRecordId": "emqfhnG3g9D9chy9inTz",
+  "associationId": "669e5795add2094075906c65",
+  "locationId": "eHy2cOSZxMQzQ6Yyvl8P"
+}
+```
+
+### 10. PURPOSE:
+This webhook response is triggered when an existing relation between two objects (e.g., a custom object record and a contact) is deleted within the HighLevel system.
+
+### 11. TAGS:
+Webhook, Relation, Delete, Object, Association, Notification, Data Change, Event, Webhook Response.
+
+### 12. CODE EXAMPLES:
+A JSON schema and an example JSON response payload are provided. There are no code examples in specific programming languages (e.g., Python, Node.js, cURL) for integrating or receiving this webhook.

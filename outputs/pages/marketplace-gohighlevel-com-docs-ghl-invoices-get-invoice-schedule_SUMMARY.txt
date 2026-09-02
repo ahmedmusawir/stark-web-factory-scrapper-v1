@@ -1,0 +1,152 @@
+Here is a structured summary of the API documentation for "Get an schedule":
+
+---
+
+### 1. ENDPOINT NAME:
+Get an schedule
+
+### 2. CATEGORY:
+Invoice Schedule
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/invoices/schedule/:scheduleId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/schedule/:scheduleId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version
+    *   Possible values: [`2021-07-28`]
+    *   Location: Header
+*   **scheduleId** (string): Schedule Id
+    *   Example: `6578278e879ad2646715ba9c`
+    *   Location: Path
+*   **altId** (string): location Id / company Id based on altType
+    *   Example: `6578278e879ad2646715ba9c`
+    *   Location: Query
+*   **altType** (string): Alt Type
+    *   Possible values: [`location`]
+    *   Location: Query
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation for request parameters. All listed request parameters are marked as required.
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `invoices/schedule.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`, `Agency Token`
+*   **Scheme**: Bearer
+*   **Bearer Format**: JWT
+*   **Location**: Header
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (application/json):**
+    A JSON object containing the details of the requested invoice schedule.
+    *   `_id` (string): Schedule Id
+    *   `status` (string): Schedule Status (e.g., `draft`)
+    *   `liveMode` (boolean): Live Mode
+    *   `altId` (string): Location Id or Agency Id
+    *   `altType` (string): Possible values: [`location`]
+    *   `name` (string): Name of the invoice
+    *   `schedule` (object):
+        *   `executeAt` (string)
+        *   `rrule` (object):
+            *   `intervalType` (string): Possible values: [`yearly`, `monthly`, `weekly`, `daily`, `hourly`, `minutely`, `secondly`]
+            *   `interval` (number)
+            *   `startDate` (string): YYYY-MM-DD
+            *   `startTime` (string): HH:mm:ss
+            *   `endDate` (string): YYYY-MM-DD (Optional)
+            *   `endTime` (string): HH:mm:ss (Optional)
+            *   `dayOfMonth` (number): -1, 1-28 (Optional)
+            *   `dayOfWeek` (string): Possible values: [`mo`, `tu`, `we`, `th`, `fr`, `sa`, `su`] (Optional)
+            *   `numOfWeek` (number): -1, 1-4 (Optional)
+            *   `monthOfYear` (string): Possible values: [`jan`, `feb`, `mar`, `apr`, `may`, `jun`, `jul`, `aug`, `sep`, `oct`, `nov`, `dec`] (Optional)
+            *   `count` (number): Max number of task executions (Optional)
+            *   `daysBefore` (number): Execute task number of days before (Optional)
+            *   `useStartAsPrimaryUserAccepted` (boolean) (Optional)
+            *   `endType` (string): End type like after, by, count (Optional)
+    *   `invoices` (array of objects):
+        *   `_id` (string): Invoice Id
+        *   `status` (string): Possible values: [`draft`, `sent`, `payment_processing`, `paid`, `void`, `partially_paid`]
+        *   `liveMode` (boolean)
+        *   `amountPaid` (number)
+        *   `altId` (string)
+        *   `altType` (string): Possible values: [`location`]
+        *   `name` (string)
+        *   `businessDetails` (object)
+        *   `invoiceNumber` (string)
+        *   `currency` (string)
+        *   `contactDetails` (object)
+        *   `issueDate` (string): YYYY-MM-DD
+        *   `dueDate` (string): YYYY-MM-DD
+        *   `discount` (object)
+        *   `invoiceItems` (array of objects): (Schema specifies `string[]`, example shows objects like `{"taxes":[],"_id":"...", "productId":"...", "priceId":"...", "currency":"USD","name":"Macbook Pro","qty":1,"amount":999}`)
+        *   `total` (number)
+        *   `title` (string)
+        *   `amountDue` (number)
+        *   `createdAt` (string): ISO 8601 timestamp
+        *   `updatedAt` (string): ISO 8601 timestamp
+        *   `automaticTaxesEnabled` (boolean) (Optional)
+        *   `automaticTaxesCalculated` (boolean) (Optional)
+        *   `paymentSchedule` (object) (Optional)
+    *   `businessDetails` (object):
+        *   `logoUrl` (string) (Optional)
+        *   `name` (string) (Optional)
+        *   `phoneNo` (string) (Optional)
+        *   `address` (object): `addressLine1`, `addressLine2` (Optional), `city`, `state`, `countryCode`, `postalCode` (Optional)
+        *   `website` (string) (Optional)
+        *   `customValues` (array of strings) (Optional)
+    *   `currency` (string)
+    *   `contactDetails` (object):
+        *   `id` (string)
+        *   `name` (string)
+        *   `phoneNo` (string)
+        *   `email` (string)
+        *   `additionalEmails` (array of objects): `email` (string) (Optional)
+        *   `companyName` (string) (Optional)
+        *   `address` (object): `addressLine1` (Optional), `addressLine2` (Optional), `city` (Optional), `state` (Optional), `countryCode` (Optional), `postalCode` (Optional)
+        *   `customFields` (array of strings) (Optional)
+    *   `discount` (object):
+        *   `value` (number) (Default: `0`)
+        *   `type` (string): Possible values: [`percentage`, `fixed`] (Default: `percentage`)
+        *   `validOnProductIds` (array of strings) (Optional)
+    *   `items` (array of objects): (Schema specifies `string[]`, example shows objects like `{"taxes":[],"_id":"...", "productId":"...", "priceId":"...", "currency":"USD","name":"Macbook Pro","qty":1,"amount":999}`)
+    *   `total` (number)
+    *   `title` (string)
+    *   `termsNotes` (string)
+    *   `compiledTermsNotes` (string)
+    *   `createdAt` (string): ISO 8601 timestamp
+    *   `updatedAt` (string): ISO 8601 timestamp
+
+*   **400 Bad Request (application/json):**
+    `{"statusCode": 400, "message": "Bad Request"}`
+
+*   **401 Unauthorized (application/json):**
+    `{"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}`
+
+*   **422 Unprocessable Entity (application/json):**
+    `{"statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This API endpoint retrieves the details of a specific invoice schedule using its unique schedule ID.
+
+### 11. TAGS:
+Invoice, Schedule, Get, Retrieve, Read, Recurring Invoice, API, Billing
+
+### 12. Code Examples:
+Code examples are available for:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
+
+---

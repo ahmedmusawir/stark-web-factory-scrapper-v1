@@ -1,0 +1,94 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get all trained page links by knowledge base
+
+### 2. CATEGORY:
+Knowledge Base (Sub-category: Web Crawler)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/knowledge-bases/crawler`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/knowledge-bases/crawler`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Authorization` (string): Access Token. Example: `Bearer 9c48df2694a849b6089f9d0d3513efe`
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+*   **Query Parameters:**
+    *   `knowledgeBaseId` (string): knowledge base ID as string. Example: `tDtDnQdgm2LXpyiqYvZ6`
+    *   `locationId` (string): location ID as string. Example: `tDtDnQdgm2LXpyiqYvZ6`
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   `page` (number): Page number. Example: `1`
+    *   `pageLength` (number): Records per page. Example: `1`
+    *   `query` (string): query to filter on url links. Example: `www.example.com/`
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**Status Code: 200 (OK)**
+**Content Type:** `application/json`
+
+**Schema:**
+*   `count` (number, required): Total count of URLs in the knowledge base. Example: `64`
+*   `urls` (object[], required): Array of crawled URLs with their details
+    *   `id` (string, required): Unique identifier for the URL. Example: `688c73a25275c513f5f3a7de`
+    *   `url` (string, required): The actual URL that was crawled. Example: `https://developer.mozilla.org/en-US/blog`
+    *   `title` (string, required): Title of the webpage. Example: `MDN Blog`
+    *   `status` (string, required): Current processing status of the URL. Possible values: [`Pending`, `Processing`, `Successful`, `Failed`, `Existing`, `Restricted`, `Cancelled`, `Aborted`, `Training`]. Example: `Successful`
+    *   `locationId` (string, required): Location ID associated with this URL. Example: `qIyivCmsuEOSnyoFYEej`
+    *   `knowledgeBaseId` (string, required): Knowledge base ID this URL belongs to. Example: `Arc9QRauPKkSuMJO8D0m`
+    *   `content` (string, required): URL to the stored content file. Example: `https://storage.googleapis.com/crm-conversations-ai-staging/conversationAI/2025/8/1/locations/qIyivCmsuEOSnyoFYEej/688c739c88c89f21ad30f63e-4IseusbZ3vDXMT8WNw9M.txt`
+    *   `contentEditedByUser` (boolean, required): Whether the content was edited by user. Example: `false`
+    *   `updatedAt` (string, required): Last updated timestamp. Example: `2025-08-01T07:58:29.858Z`
+
+**Example:**
+```json
+{
+  "count": 64,
+  "urls": [
+    {
+      "id": "688c73a25275c513f5f3a7de",
+      "url": "https://developer.mozilla.org/en-US/blog",
+      "title": "MDN Blog",
+      "status": "Successful",
+      "locationId": "qIyivCmsuEOSnyoFYEej",
+      "knowledgeBaseId": "Arc9QRauPKkSuMJO8D0m",
+      "content": "https://storage.googleapis.com/crm-conversations-ai-staging/conversationAI/2025/8/1/locations/qIyivCmsuEOSnyoFYEej/688c739c88c89f21ad30f63e-4IseusbZ3vDXMT8WNw9M.txt",
+      "contentEditedByUser": false,
+      "updatedAt": "2025-08-01T07:58:29.858Z"
+    }
+  ]
+}
+```
+
+Other possible responses include 400 (Bad Request), 401 (Unauthorized), 422 (Unprocessable Entity), and 500 (Internal Server Error), each with a standard JSON error schema.
+
+### 10. PURPOSE:
+This endpoint retrieves a paginated list of all trained page links associated with a specific knowledge base and location, allowing for filtering by URL queries.
+
+### 11. TAGS:
+Knowledge Base, Web Crawler, Get URLs, List Trained Pages, Data Retrieval, AI, Pages, Links, Sub-Account, Location, Crawler Status.
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

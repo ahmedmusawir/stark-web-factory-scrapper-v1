@@ -1,0 +1,73 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Create a new template
+
+### 2. CATEGORY:
+Email Templates
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/emails/builder`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/emails/builder`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-07-28`
+*   **Body Parameters:**
+    *   `locationId` (string): The ID of the sub-account (location). Example: `ve9EPM428h8vShlRW1KT`
+    *   `type` (string): The type of template to create. Possible values: [`html`, `folder`, `import`, `builder`, `blank`]
+    *   `importProvider` (string): The provider from which the template is imported (required if `type` is `import`). Possible values: [`mailchimp`, `active_campaign`, `kajabi`]
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters:**
+    *   `title` (string): The title of the template. Example: `template title`
+    *   `updatedBy` (string): The ID of the user who updated the template. Example: `zYy3YOUuHxgomU1uYJty`
+    *   `builderVersion` (string): The version of the email builder to use. Possible values: [`1`, `2`]. Default value: `2`
+    *   `name` (string): The name of the template. Example: `Template1`
+    *   `parentId` (string): The ID of the parent folder if the template is nested. Example: `zYy3YOUuHxgomU1uYJty`
+    *   `templateDataUrl` (string): URL for template data. Example: (empty string)
+    *   `importURL` (string): The URL of the template to import (required if `type` is `import`). Example: `https://tplshare.com/fhYJ3Mi`
+    *   `templateSource` (string): Source of the template. Example: `template_library`
+    *   `isPlainText` (boolean): Indicates if the template is plain text. Example: `false`
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `emails/builder.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use an Access Token generated with user type as Sub-Account OR a Private Integration Token of a Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Success Status Code:** `201` (Created)
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   `redirect` (string): The ID of the newly created template. Example: `66e811229245fc098765590`
+    *   `traceId` (string): A unique trace ID for the request. Example: `0c52e980-41f6-4be7-8c4b-e2c5a13dc3c2`
+*   **Example:**
+    ```json
+    {
+        "redirect": "66e811229245fc098765590",
+        "traceId": "0c52e980-41f6-4be7-8c4b-e2c5a13dc3c2"
+    }
+    ```
+*   **Error Responses:**
+    *   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `404 Not Found` (No schema/example provided)
+    *   `422 Unprocessable Entity`: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint is used to create a new email template within a specified sub-account.
+
+### 11. TAGS:
+Email, Template, Create, Builder, Marketing, Communication, HighLevel, GHL, POST
+
+### 12. CODE EXAMPLES:
+Code examples are available for the following languages/tools: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

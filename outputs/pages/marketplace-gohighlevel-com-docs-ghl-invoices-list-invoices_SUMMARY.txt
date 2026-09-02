@@ -1,0 +1,107 @@
+Here's a structured summary of the API documentation for "List Invoices":
+
+### 1. ENDPOINT NAME:
+List invoices
+
+### 2. CATEGORY:
+Invoice
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/invoices/`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+*   **Query Parameters:**
+    *   altId (string): location Id / company Id based on altType. Example: `6578278e879ad2646715ba9c`
+    *   altType (string): Alt Type. Possible values: `location`. Example: `location`
+    *   limit (string): Limit the number of items to return. Example: `10`
+    *   offset (string): Number of items to skip. Example: `10`
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   status (string): status to be filtered
+    *   startAt (string): startAt in YYYY-MM-DD format. Example: `2023-01-01`
+    *   endAt (string): endAt in YYYY-MM-DD format. Example: `2023-01-01`
+    *   search (string): To search for an invoice by id / name / email / phoneNo. Example: `Alex`
+    *   paymentMode (string): payment mode. Possible values: `default`, `live`, `test`. Example: `live`
+    *   contactId (string): Contact ID for the invoice. Example: `AmuzcoPBpgKeccNsFlib`
+    *   sortField (string): The field on which sorting should be applied. Possible values: `issueDate`. Example: `issueDate`
+    *   sortOrder (string): The order of sort which should be applied for the sortField. Possible values: `ascend`, `descend`. Example: `descend`
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `invoices.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`, `Agency Token`
+*   **Scheme**: Bearer (JWT) in the `Authorization` header.
+
+### 9. RESPONSE FORMAT:
+*   **200 Successful Response (`application/json`)**:
+    *   **Structure**: An object containing an array of `invoices` and a `total` count.
+    *   **Schema Details**:
+        *   `invoices`: (Array of objects)
+            *   `_id` (string): Invoice Id
+            *   `status` (string): Invoice Status. Possible values: `draft`, `sent`, `payment_processing`, `paid`, `void`, `partially_paid`
+            *   `liveMode` (boolean): Live Mode
+            *   `amountPaid` (number): Amount Paid
+            *   `altId` (string): Location Id or Agency Id
+            *   `altType` (string): Possible values: `location`
+            *   `name` (string): Name of the invoice
+            *   `businessDetails` (object): Business Details
+                *   `name` (string)
+                *   `address` (object: `addressLine1`, `city`, `state`, `countryCode`, `postalCode`)
+                *   `phoneNo` (string)
+                *   `website` (string)
+            *   `invoiceNumber` (number): Invoice Number
+            *   `currency` (string): Currency
+            *   `contactDetails` (object): Contact Details
+                *   `id` (string), `phoneNo` (string), `email` (string), `customFields` (array), `name` (string), `address` (object: `countryCode`)
+            *   `issueDate` (string): Issue date in YYYY-MM-DD format
+            *   `dueDate` (string): Due date in YYYY-MM-DD format
+            *   `discount` (object): Discount
+                *   `type` (string), `value` (number)
+            *   `invoiceItems` (Array of objects): Invoice Items
+                *   `taxes` (array)
+                *   `_id` (string), `productId` (string), `priceId` (string), `currency` (string), `name` (string), `qty` (number), `amount` (number)
+            *   `total` (number): Total Amount (for the individual invoice)
+            *   `title` (string): Title
+            *   `amountDue` (number): Total Amount Due
+            *   `createdAt` (string): created at (ISO date string)
+            *   `updatedAt` (string): updated at (ISO date string)
+            *   `automaticTaxesEnabled` (boolean): Automatic taxes enabled for the Invoice
+            *   `automaticTaxesCalculated` (boolean): Is Automatic taxes calculated for the Invoice items
+            *   `paymentSchedule` (object): split invoice into payment schedule summing up to full invoice amount (object)
+            *   `totalSummary` (object):
+                *   `subTotal` (number), `discount` (number), `tax` (number)
+            *   `remindersConfiguration` (object): Reminders Configuration
+                *   `reminderExecutionDetailsList` (object)
+                *   `reminderSettings` (object)
+                    *   `defaultEmailTemplateId` (string)
+                    *   `reminders` (Array of objects):
+                        *   `enabled` (boolean), `emailTemplate` (string), `smsTemplate` (string), `emailSubject` (string), `reminderId` (string), `reminderName` (string), `reminderTime` (string, `before`/`after`), `intervalType` (string, `yearly`/`monthly`/`weekly`/`daily`/`hourly`/`minutely`/`secondly`), `maxReminders` (number), `reminderInvoiceCondition` (string, `invoice_sent`/`invoice_overdue`), `reminderNumber` (number), `startTime` (string), `endTime` (string), `timezone` (string)
+        *   `total` (number): Total number of invoices (overall count)
+    *   **Example**:
+        ```json
+        {"invoices":[{"_id":"6578278e879ad2646715ba9c","status":"draft","liveMode":false,"amountPaid":0,"altId":"6578278e879ad2646715ba9c","altType":"location","name":"New Invoice","businessDetails":{"name":"Alex","address":{"addressLine1":"9931 Beechwood","city":"St. Houston","state":"TX","countryCode":"USA","postalCode":"559-6993"},"phoneNo":"+1-214-559-6993","website":"www.example.com"},"invoiceNumber":19,"currency":"USD","contactDetails":{"id":"c6tZZU0rJBf30ZXx9Gli","phoneNo":"+1-214-559-6993","email":"alex@example.com","customFields":[],"name":"Alex","address":{"countryCode":"US"}},"issueDate":"2023-01-01","dueDate":"2023-01-01","discount":{"type":"percentage","value":0},"invoiceItems":[{"taxes":[],"_id":"c6tZZU0rJBf30ZXx9Gli","productId":"c6tZZU0rJBf30ZXx9Gli","priceId":"c6tZZU0rJBf30ZXx9Gli","currency":"USD","name":"Macbook Pro","qty":1,"amount":999}],"total":999,"title":"INVOICE","amountDue":999,"createdAt":"2023-12-12T09:27:42.355Z","updatedAt":"2023-12-12T09:27:42.355Z","automaticTaxesEnabled":true,"automaticTaxesCalculated":true,"paymentSchedule":{},"totalSummary":{"subTotal":999,"discount":0,"tax":0},"remindersConfiguration":{"reminderExecutionDetailsList":{},"reminderSettings":{"defaultEmailTemplateId":"dhwjqi2899012990w2u","reminders":[{"enabled":true,"emailTemplate":"default","smsTemplate":"default","emailSubject":"Reminder","reminderId":"9333e45f-a27d-4659-90e5-76c5ef06d094","reminderName":"Special Reminder","reminderTime":"before","intervalType":"daily","maxReminders":3,"reminderInvoiceCondition":"invoice_sent","reminderNumber":10,"startTime":"9:00 AM","endTime":"5:00 PM","timezone":"businessTZ"}]}}}],"total":100}
+        ```
+*   **400 Bad Request (`application/json`)**:
+    *   `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized (`application/json`)**:
+    *   `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity (`application/json`)**:
+    *   `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+API to get a list of invoices based on specified filters.
+
+### 11. TAGS:
+Invoice, List, Get, Retrieve, Read, Invoices, Financial, API, Marketplace, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for cURL, nodejs, python, php, java, go, ruby, and powershell, with the cURL example shown.

@@ -1,0 +1,86 @@
+Here is the structured summary of the API documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+Create Product Collection
+
+### 2. CATEGORY:
+Products (specifically, Collections)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/products/collections`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/products/collections`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: [`2021-07-28`]
+*   **Body Parameters:**
+    *   altId (string): Location Id. Example: `6578278e879ad2646715ba9c`
+    *   altType (string): The type of alt. For now it is only LOCATION. Possible values: [`location`]. Example: `LOCATION`
+    *   name (string): Name of the Product Collection. Example: `Best Sellers`
+    *   slug (string): Slug of the Product Collection which helps in navigation. Example: `best-sellers`
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters:**
+    *   collectionId (string): Unique Identifier of the Product Collection, Mongo Id. Example: `66057f9d28536eae584ec047`
+    *   image (string): The URL of the image that is going to be displayed as the collection Thumbnail. Example: `http://example.com/watermark.png`
+    *   seo (object): The metadata information which will be displayed in SEO previews
+        *   title (string): The title which will be displayed as an SEO format. Example: `Best Sellers`
+        *   description (string): The description which would be displayed in preview purposes. Example: `Collections where all the best products are available`
+
+### 8. AUTHENTICATION:
+*   **Required Scopes:** `products/collection.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `201` (Successful response)
+*   **Content Type:** `application/json`
+*   **Schema (data object):**
+    *   _id (string, required): The unique identifier for the collection. Example: `655b33a82209e60b6adb87a5`
+    *   altId (string, required): Location Id to which the collection is associated. Example: `Z4Bxl8J4SaPEPLq9IQ8g`
+    *   name (string, required): Name of the collection. Example: `Best Sellers`
+    *   slug (string, required): Slug of the collection with which navigation is established. Special Characters and spacing is not allowed and should be unique. Example: `best-sellers`
+    *   image (string, required): The URL of the image that is going to be displayed as the collection Thumbnail. Example: `http://example.com/watermark.png`
+    *   seo (object, required): The information which will be displayed in SEO previews
+        *   title (string): The title which will be displayed as an SEO format. Example: `Best Sellers`
+        *   description (string): The description which would be displayed in preview purposes. Example: `Collections where all the best products are available`
+    *   createdAt (string, required): Date at which the collection was created. Example: `2024-02-22T09:27:19.728Z`
+*   **Example:**
+    ```json
+    {
+        "data": {
+            "_id": "655b33a82209e60b6adb87a5",
+            "altId": "Z4Bxl8J4SaPEPLq9IQ8g",
+            "name": "Best Sellers",
+            "slug": "best-sellers",
+            "image": "http://example.com/watermark.png",
+            "seo": {
+                "title": "Best Sellers",
+                "description": "Collections where all the best products are available"
+            },
+            "createdAt": "2024-02-22T09:27:19.728Z"
+        }
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint creates a new Product Collection for a specific location within HighLevel.
+
+### 11. TAGS:
+Products, Collection, Create, E-commerce, Marketing, Location-specific, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.
+
+---

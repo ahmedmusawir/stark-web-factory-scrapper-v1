@@ -1,0 +1,276 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Create a new item in a category queue
+
+### 2. CATEGORY:
+Social Planner - Category Queue
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/social-media-posting/category/queues/:queueId/create/item`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/category/queues/:queueId/create/item`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   `queueId` (string)
+*   **Body Parameters:**
+    *   `locationId` (string): Location ID
+    *   `modifiedPostPayload.media.url` (string): URL of media (within `media` array)
+    *   `modifiedPostPayload.gmbPostDetails.startDate.startDate.year` (number): Year for GMB event start date
+    *   `modifiedPostPayload.gmbPostDetails.startDate.startDate.month` (number): Month for GMB event start date
+    *   `modifiedPostPayload.gmbPostDetails.startDate.startDate.day` (number): Day for GMB event start date
+    *   `modifiedPostPayload.gmbPostDetails.startDate.startTime.hours` (number): Hours for GMB event start time
+    *   `modifiedPostPayload.gmbPostDetails.startDate.startTime.minutes` (number): Minutes for GMB event start time
+    *   `modifiedPostPayload.gmbPostDetails.startDate.startTime.seconds` (number): Seconds for GMB event start time
+    *   `modifiedPostPayload.gmbPostDetails.endDate.endDate.year` (number): Year for GMB event end date
+    *   `modifiedPostPayload.gmbPostDetails.endDate.endDate.month` (number): Month for GMB event end date
+    *   `modifiedPostPayload.gmbPostDetails.endDate.endDate.day` (number): Day for GMB event end date
+    *   `modifiedPostPayload.gmbPostDetails.endDate.endTime.hours` (number): Hours for GMB event end time
+    *   `modifiedPostPayload.gmbPostDetails.endDate.endTime.minutes` (number): Minutes for GMB event end time
+    *   `modifiedPostPayload.gmbPostDetails.endDate.endTime.seconds` (number): Seconds for GMB event end time
+    *   `modifiedPostPayload.linkedinPostDetails.pdfTitle` (string): Title of the PDF for LinkedIn
+    *   `modifiedPostPayload.linkedinPostDetails.postAsPdf` (boolean): If the LinkedIn post is to be posted as PDF
+    *   `modifiedPostPayload.pinterestPostDetails.boardIds` (object): Mapping of OAuth IDs of connected accounts to board IDs for Pinterest
+    *   `modifiedPostPayload.facebookPostDetails.type` (object): Post Type for Facebook (Possible values: `post`, `story`, `reel`)
+    *   `modifiedPostPayload.instagramPostDetails.type` (object): Post Type for Instagram (Possible values: `post`, `story`, `reel`)
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   `modifiedPostPayload` (object): New post details (container object)
+        *   `accountIds` (string[]): Account Ids (OAuth only)
+        *   `summary` (string): Post Content
+        *   `media` (object[]): Post Media (array of objects)
+            *   `caption` (string)
+            *   `type` (string): e.g., `video/mp4` or `image/png`
+            *   `thumbnail` (string)
+            *   `defaultThumb` (string)
+            *   `id` (string)
+        *   `status` (object): Post status (Possible values: `null`, `in_progress`, `draft`, `failed`, `published`, `scheduled`, `in_review`, `notification_sent`, `deleted`)
+        *   `scheduleDate` (string): Schedule Date
+        *   `createdBy` (string): Created By
+        *   `followUpComment` (string): Follow Up Comment on platform
+        *   `ogTagsDetails` (object): Og Tags Meta Data
+            *   `metaImage` (string): URL of the image for social media shares
+            *   `metaLink` (string): The URL of the original webpage/article being shared
+            *   `ogTitle` (string): The title of the content for social media shares
+        *   `type` (object): Post Type (Possible values: `post`, `story`, `reel`) - *Note: top-level type, distinct from platform-specific types*
+        *   `postApprovalDetails` (object): Post Approval Details
+            *   `approver` (string): Approver ID
+            *   `requesterNote` (string): Requester Notes
+            *   `approverNote` (string): Approver Notes
+            *   `approvalStatus` (object): Approval Status (Possible values: `pending`, `approved`, `rejected`, `not_required`)
+        *   `scheduleTimeUpdated` (boolean): If schedule datetime is updated
+        *   `tags` (string[]): Array of Tag Value IDs
+        *   `categoryId` (string): Category Id
+        *   `tiktokPostDetails` (object): Tiktok Post Details
+            *   `privacyLevel` (object): Privacy level (Possible values: `PUBLIC_TO_EVERYONE`, `MUTUAL_FOLLOW_FRIENDS`, `SELF_ONLY`)
+            *   `promoteOtherBrand` (boolean): Promote other brand
+            *   `enableComment` (boolean): Enable comment
+            *   `enableDuet` (boolean): Enable duet
+            *   `enableStitch` (boolean): Enable stitch
+            *   `videoDisclosure` (boolean): Video disclosure
+            *   `promoteYourBrand` (boolean): Promote your brand
+        *   `gmbPostDetails` (object): GMB Post Details
+            *   `gmbEventType` (string): GMB Event Type (Possible values: `STANDARD`, `EVENT`, `OFFER`)
+            *   `title` (string): Event Title
+            *   `offerTitle` (string): Offer Title
+            *   `startDate` (object): GMB Start Date/Time container
+                *   `startDate` (object): GMB Start Date container
+                *   `startTime` (object): GMB Start Time container
+            *   `endDate` (object): GMB End Date/Time container
+                *   `endDate` (object): GMB End Date container
+                *   `endTime` (object): GMB End Time container
+            *   `termsConditions` (string): Terms Condition Url
+            *   `url` (string): Url
+            *   `couponCode` (string): Coupon Code
+            *   `redeemOnlineUrl` (string): Redeem Online Url
+            *   `actionType` (object): Action Type (Possible values: `none`, `order`, `book`, `shop`, `learn_more`, `call`, `sign_up`)
+        *   `userId` (string): User ID
+        *   `linkedinPostDetails` (object): Linkedin Post Details (container)
+        *   `pinterestPostDetails` (object): Pinterest Post Details (container)
+            *   `title` (string): Title of the Pinterest Post
+            *   `link` (string): Link associated with the Pinterest Post
+        *   `facebookPostDetails` (object): Facebook Post Details (container)
+        *   `instagramPostDetails` (object): Instagram Post Details (container)
+            *   `collaborators` (object): Object mapping account IDs to arrays of associated usernames for collaboration.
+        *   `youtubePostDetails` (object): Youtube Post Details
+            *   `title` (string): Title
+            *   `privacyLevel` (object): Youtube Privacy Level (Possible values: `private`, `public`, `unlisted`)
+            *   `type` (object): Youtube Post Type (Possible values: `video`, `short`)
+        *   `locationId` (string): Location Id (appears to be a redundant field within modifiedPostPayload, as a top-level locationId is required)
+    *   `order` (number): Order for the new item in the queue. Defaults to end if not provided.
+    *   `variations` (object[]): Variations (array of objects)
+        *   `content` (string)
+        *   `mentions` (object[])
+        *   `ogTags` (object)
+            *   `metaLink` (object)
+            *   `metaImage` (object)
+            *   `ogTitle` (object)
+    *   `primaryImage` (string): Primary media URL (image) for the post.
+
+### 8. AUTHENTICATION:
+Not specified in documentation for this specific endpoint, but typically uses OAuth 2.0 based on the broader API documentation context (e.g., "Authorization" link in the sidebar).
+
+### 9. RESPONSE FORMAT:
+
+*   **201 Created (Success):**
+    ```json
+    {
+      "success": true,
+      "statusCode": 201,
+      "results": {
+        "message": "Queue item created successfully",
+        "queueItem": {
+          "_id": "string",
+          "order": 0,
+          "variations": [
+            {
+              "_id": "string",
+              "content": "string",
+              "mentions": [{}],
+              "ogTags": {
+                "metaLink": "https://example.com",
+                "metaImage": "https://example.com/image.png",
+                "ogTitle": "Example Title"
+              }
+            }
+          ],
+          "primaryImage": "string",
+          "lastScheduledTime": null,
+          "queueId": "string",
+          "postId": "string",
+          "modifiedPostPayload": {
+            "_id": "61bb16833b3f2791f9715be2",
+            "source": "composer",
+            "locationId": "ve9EPM428h8vShlRW1KT",
+            "displayDate": "2023-08-02T00:00:00.000Z",
+            "createdAt": "2023-08-02T00:00:00.000Z",
+            "updatedAt": "2023-08-02T00:00:00.000Z",
+            "accountId": "w37swmmLbA02zgqKPpxITe",
+            "error": "Failed due to auth token",
+            "postId": "323534534435",
+            "publishedAt": "2021-06-22T05:32:49.463Z",
+            "accountIds": ["aF3KhyL8JIuBwzK3m7Ly_iVrVJ2uoXNF0wzcBzgl5_12554616564525983496"],
+            "summary": "Sample Summary",
+            "media": [
+              {
+                "url": "https://i0.wp.com/www.lifeofanarchitect.com/wp-content/uploads/2021/10/architectural-model-making-stairs.jpg",
+                "caption": "Caption 1",
+                "type": "video/mp4 or image/png",
+                "thumbnail": "https://storage.googleapis.com/test/test/media/test.jpeg",
+                "defaultThumb": "https://storage.googleapis.com/test/test/media/test.jpeg",
+                "id": "Edf3323fsfsdsd"
+              }
+            ],
+            "status": "published",
+            "createdBy": "Lx1EI6YIgQYMQi0ytFXv",
+            "type": "post",
+            "tags": ["aF3KhyL8JIuBwzK3m7Ly_iVrVJ2uoXNF0wzcBzgl5_12554616564525983496"],
+            "ogTagsDetails": {
+              "metaImage": "https://wwww.lifeofanarchitect.com/wp-content/uploads/2021/10/architectural-model-making-stairs.jpg",
+              "metaLink": "https://www.yahoo.com/",
+              "ogTitle": "Yahoo | Mail, Weather, Search, Politics, News, Finance, Sports & Videos"
+            },
+            "postApprovalDetails": {
+              "approver": "iVrVJ2uoXNF0wzcBzgl5",
+              "requesterNote": "Test suggestion",
+              "approverNote": "Test suggestion",
+              "approvalStatus": "approved",
+              "approverUser": {
+                "id": "6284c43d519161e96cc09c13",
+                "title": "Mr",
+                "firstName": "Harry",
+                "lastName": "Spencer",
+                "profilePhoto": "https://storage.googleapis.com/user/kCrjKGHZQ2/profile/1dca8c-61c9-404d-a459-751fbcb.jpeg",
+                "phone": "901111119",
+                "email": "abc@xyc.com"
+              }
+            },
+            "tiktokPostDetails": {
+              "privacyLevel": "PUBLIC_TO_EVERYONE",
+              "promoteOtherBrand": true,
+              "enableComment": true,
+              "enableDuet": true,
+              "enableStitch": true,
+              "videoDisclosure": true,
+              "promoteYourBrand": true
+            },
+            "gmbPostDetails": {
+              "gmbEventType": "STANDARD",
+              "title": "Event Title",
+              "offerTitle": "Hey",
+              "startDate": {
+                "startDate": { "year": 2022, "month": 1, "day": 1 },
+                "startTime": { "hours": 23, "minutes": 56, "seconds": 34 }
+              },
+              "endDate": {
+                "endDate": { "year": 2022, "month": 1, "day": 1 },
+                "endTime": { "hours": 23, "minutes": 56, "seconds": 34 }
+              },
+              "termsConditions": "https://google.com/privacy",
+              "url": "https://google.com",
+              "couponCode": "BOGO-50",
+              "redeemOnlineUrl": "https://google.com",
+              "actionType": "book"
+            },
+            "user": {
+              "id": "6284c43d519161e96cc09c13",
+              "title": "Mr",
+              "firstName": "Harry",
+              "lastName": "Spencer",
+              "profilePhoto": "https://storage.googleapis.com/user/kCrjKGHZQ2/profile/1dca8c-61c9-404d-a459-751fbcb.jpeg",
+              "phone": "901111119",
+              "email": "abc@xyc.com"
+            },
+            "linkedinPostDetails": { "pdfTitle": "test.pdf", "postAsPdf": true },
+            "pinterestPostDetails": {
+              "title": "My Pinterest Pin",
+              "link": "https://www.pinterest.com/",
+              "boardIds": { "6887d6de1d8175813d50dab8": "boardId", "682c7d1710a2fe3d805a3513": "boardId" }
+            },
+            "facebookPostDetails": { "type": "post" },
+            "instagramPostDetails": { "type": "post", "collaborators": { "accountId1": ["username1", "username2"], "accountId2": ["username3", "username4"] } },
+            "youtubePostDetails": { "title": "Untitled", "privacyLevel": "public", "type": "video" },
+            "mediaOptimization": true
+          },
+          "parentPostId": "string",
+          "errors": ["INVALID_USER_ID", "PIXABAY_MEDIA"],
+          "currentVariation": 0,
+          "createdAt": "2024-12-09T13:41:21.385Z",
+          "updatedAt": "2024-12-09T13:41:21.385Z",
+          "deleted": false,
+          "locationId": "fvg1TXIiVxGcdOaL0riG"
+        }
+      },
+      "traceId": "string"
+    }
+    ```
+*   **400 Bad Request:**
+    *   `statusCode` (number)
+    *   `message` (string)
+*   **401 Unauthorized:**
+    *   `statusCode` (number)
+    *   `message` (string)
+    *   `error` (string)
+*   **422 Unprocessable Entity:**
+    *   `statusCode` (number)
+    *   `message` (string[])
+    *   `error` (string)
+
+### 10. PURPOSE:
+This endpoint creates a new post item and adds it directly to a specified category queue, facilitating the addition of new queue items without requiring an existing published post.
+
+### 11. TAGS:
+Social Planner, Category Queue, Create, Post, Queue Item, Social Media, Content Scheduling, API, HighLevel, Marketing
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

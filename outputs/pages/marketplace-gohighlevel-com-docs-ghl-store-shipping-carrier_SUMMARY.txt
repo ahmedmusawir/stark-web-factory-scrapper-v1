@@ -1,0 +1,94 @@
+This structured summary covers the "Shipping Carrier" API module and its individual operations as described in the provided documentation.
+
+---
+
+### **1. Shipping Carrier Module Overview**
+
+*   **ENDPOINT NAME:** Shipping Carrier
+*   **CATEGORY:** Store
+*   **PURPOSE:** Provides comprehensive documentation for the store API functionalities related to managing shipping carriers. This module allows for creating, listing, retrieving, updating, and deleting shipping carrier records.
+*   **TAGS:** Store, Shipping, Carrier, Management, API, Documentation, eCommerce
+
+---
+
+### **2. Create Shipping Carrier**
+
+*   **ENDPOINT NAME:** Create Shipping Carrier
+*   **CATEGORY:** Store
+*   **HTTP METHOD:** POST
+*   **ENDPOINT URL:** `/ghl/store/create-shipping-carrier`
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/store/create-shipping-carrier`
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Typically, carrier details like name, type, etc., in the request body)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation (Likely OAuth 2.0 as per HighLevel API standards)
+*   **RESPONSE FORMAT:** Not specified in documentation (Expected: 201 Created, typically returns the created shipping carrier object in JSON format)
+*   **PURPOSE:** Allows adding a new shipping carrier to the system.
+*   **TAGS:** Store, Shipping Carrier, Create, Add, POST, New Carrier
+
+---
+
+### **3. List Shipping Carriers**
+
+*   **ENDPOINT NAME:** List Shipping Carriers
+*   **CATEGORY:** Store
+*   **HTTP METHOD:** GET
+*   **ENDPOINT URL:** `/ghl/store/list-shipping-carriers`
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/store/list-shipping-carriers`
+*   **REQUIRED PARAMETERS:** Not specified in documentation
+*   **OPTIONAL PARAMETERS:** Not specified in documentation (Commonly includes parameters for pagination like `limit`, `offset`, `page`, and filtering options)
+*   **AUTHENTICATION:** Not specified in documentation (Likely OAuth 2.0 as per HighLevel API standards)
+*   **RESPONSE FORMAT:** Not specified in documentation (Expected: 200 OK, typically returns a JSON array of shipping carrier objects)
+*   **PURPOSE:** Allows retrieving a list of all available shipping carriers.
+*   **TAGS:** Store, Shipping Carrier, List, Get, Retrieve, GET, All Carriers
+
+---
+
+### **4. Get Shipping Carrier**
+
+*   **ENDPOINT NAME:** Get Shipping Carrier
+*   **CATEGORY:** Store
+*   **HTTP METHOD:** GET
+*   **ENDPOINT URL:** `/ghl/store/get-shipping-carriers` (Note: documentation describes this as retrieving "a paginated list", implying it functions similarly to 'List Shipping Carriers' but explicitly mentions pagination.)
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/store/get-shipping-carriers`
+*   **REQUIRED PARAMETERS:** Not specified in documentation (If intended for a single carrier, a `shippingCarrierId` would be required in the path or as a query parameter. For a paginated list, none might be strictly required).
+*   **OPTIONAL PARAMETERS:** Not specified in documentation (Commonly includes parameters for pagination like `limit`, `offset`, `page`)
+*   **AUTHENTICATION:** Not specified in documentation (Likely OAuth 2.0 as per HighLevel API standards)
+*   **RESPONSE FORMAT:** Not specified in documentation (Expected: 200 OK, typically returns a JSON array of shipping carrier objects, potentially with pagination metadata)
+*   **PURPOSE:** Allows retrieving a paginated list of shipping carriers.
+*   **TAGS:** Store, Shipping Carrier, Get, Retrieve, Paginated List, GET
+
+---
+
+### **5. Update Shipping Carrier**
+
+*   **ENDPOINT NAME:** Update Shipping Carrier
+*   **CATEGORY:** Store
+*   **HTTP METHOD:** PUT or PATCH (Inferred from "Update")
+*   **ENDPOINT URL:** `/ghl/store/update-shipping-carrier`
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/store/update-shipping-carrier`
+*   **REQUIRED PARAMETERS:** Not specified in documentation (Typically, `shippingCarrierId` in the path and updated carrier details in the request body)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation (Likely OAuth 2.0 as per HighLevel API standards)
+*   **RESPONSE FORMAT:** Not specified in documentation (Expected: 200 OK, typically returns the updated shipping carrier object in JSON format)
+*   **PURPOSE:** Allows updating an existing shipping carrier's information in the system.
+*   **TAGS:** Store, Shipping Carrier, Update, Modify, PUT, PATCH, Edit
+
+---
+
+### **6. Delete Shipping Carrier**
+
+*   **ENDPOINT NAME:** Delete Shipping Carrier
+*   **CATEGORY:** Store
+*   **HTTP METHOD:** DELETE
+*   **ENDPOINT URL:** `/ghl/store/delete-shipping-carrier/:shippingCarrierId`
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/store/delete-shipping-carrier/:shippingCarrierId`
+*   **REQUIRED PARAMETERS:**
+    *   `shippingCarrierId` (string): The unique identifier of the shipping carrier to be deleted.
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation (Likely OAuth 2.0 as per HighLevel API standards)
+*   **RESPONSE FORMAT:** Not specified in documentation (Expected: 204 No Content for successful deletion, or 200 OK with a success message)
+*   **PURPOSE:** Deletes a specific shipping carrier from the system using its ID.
+*   **TAGS:** Store, Shipping Carrier, Delete, Remove, DELETE, By ID
+
+---
+**Code Examples:** Not specified in documentation.

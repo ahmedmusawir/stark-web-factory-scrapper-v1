@@ -1,0 +1,87 @@
+```
+## STRUCTURED SUMMARY
+
+### 1. ENDPOINT NAME:
+Delete trained pages
+
+### 2. CATEGORY:
+Knowledge Base (Web Crawler)
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/knowledge-bases/crawler`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/knowledge-bases/crawler`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   Authorization (string): Access Token. Example: `Bearer 9c48df2694a849b6089f9d0d3513efe`
+    *   Version (string): API Version. Possible values: `[2021-04-15]`
+*   **Body Parameters (application/json):**
+    *   knowledgeBaseId (string): knowledge base ID as string. Example: `tDtDnQdgm2LXpyiqYvZ6`
+    *   locationId (string): location ID as string. Example: `tDtDnQdgm2LXpyiqYvZ6`
+    *   urlIds (string[]): List of trained urls ids (fetched from the Get all trained page links by knowledge base endpoint). Example: `[tDtDnQdgm2LXpyiqYvZ6]`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK - Selected pages deleted successfully:**
+    ```json
+    {
+      "success": true
+    }
+    ```
+*   **400 Bad Request:**
+    ```json
+    {
+      "statusCode": 400,
+      "message": "Bad Request"
+    }
+    ```
+*   **401 Unauthorized:**
+    ```json
+    {
+      "statusCode": 401,
+      "message": "Invalid token: access token is invalid",
+      "error": "Unauthorized"
+    }
+    ```
+*   **422 Unprocessable Entity:**
+    ```json
+    {
+      "statusCode": 422,
+      "message": ["Unprocessable Entity"],
+      "error": "Unprocessable Entity"
+    }
+    ```
+*   **500 Internal Server Error:**
+    ```json
+    {
+      "statusCode": 500,
+      "message": "Internal Server Error"
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint allows users to delete specific trained pages from a knowledge base using their unique IDs.
+
+### 11. TAGS:
+Knowledge Base, Web Crawler, Delete, Pages, URLs, Training, AI, Ingestion, Data Management
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.
+```

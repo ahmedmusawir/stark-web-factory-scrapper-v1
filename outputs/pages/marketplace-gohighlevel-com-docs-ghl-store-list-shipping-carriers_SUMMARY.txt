@@ -1,0 +1,81 @@
+Here is a structured summary of the API documentation for "List Shipping Carriers":
+
+### 1. ENDPOINT NAME
+List Shipping Carriers
+
+### 2. CATEGORY
+Store, Shipping Carrier
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/store/shipping-carrier`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/store/shipping-carrier`
+
+### 6. REQUIRED PARAMETERS
+*   `altId` (string): Location Id or Agency Id. Example: `6578278e879ad2646715ba9c`
+*   `altType` (string): Possible values: `['location']`
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Header:** `Authorization: Bearer <TOKEN>` (Bearer format: JWT)
+
+### 9. RESPONSE FORMAT
+
+**200 Successful Response**
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   `status` (boolean): Status of API action. Example: `true`
+    *   `message` (string): Success message. Example: `Successfully created` (Note: Message might be a placeholder from creation endpoint)
+    *   `data` (array of objects): An array of shipping carrier items.
+        *   `altId` (string): Location Id or Agency Id. Example: `6578278e879ad2646715ba9c`
+        *   `altType` (string): Possible values: `['location']`
+        *   `name` (string): Name of the shipping carrier. Example: `FedEx`
+        *   `callbackUrl` (string): The URL endpoint that GHL needs to retrieve shipping rates. This must be a public URL. Example: `https://example.com/get-shipping-rates`
+        *   `services` (array of objects): An array of available shipping carrier services.
+            *   `name` (string): Name of the shipping carrier service. Example: `Priority Mail Express International`
+            *   `value` (string): Value of the shipping carrier service. Example: `PriorityMailExpressInternational`
+        *   `allowsMultipleServiceSelection` (boolean): The seller can choose multiple services while creating shipping rates if this is true. Example: `true`
+        *   `_id` (string): The unique identifier for the shipping carrier. Example: `655b33a82209e60b6adb87a5`
+        *   `marketplaceAppId` (string): The unique identifier for the marketplace app. Example: `655b33a82209e60b6adb87a5`
+        *   `createdAt` (string): created at (ISO 8601 date-time string). Example: `2023-12-12T09:27:42.355Z`
+        *   `updatedAt` (string): updated at (ISO 8601 date-time string). Example: `2023-12-12T09:27:42.355Z`
+*   **Example (200 OK):**
+    ```json
+    {"status":true,"message":"Successfully created","data":[{"altId":"6578278e879ad2646715ba9c","altType":"location","name":"FedEx","callbackUrl":"https://example.com/get-shipping-rates","services":[{"name":"Priority Mail Express International","value":"PriorityMailExpressInternational"}],"allowsMultipleServiceSelection":true,"_id":"655b33a82209e60b6adb87a5","marketplaceAppId":"655b33a82209e60b6adb87a5","createdAt":"2023-12-12T09:27:42.355Z","updatedAt":"2023-12-12T09:27:42.355Z"}]}
+    ```
+
+**Error Responses:**
+*   **400 Bad Request:**
+    *   Schema: `statusCode` (number), `message` (string)
+    *   Example: `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized:**
+    *   Schema: `statusCode` (number), `message` (string), `error` (string)
+    *   Example: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:**
+    *   Schema: `statusCode` (number), `message` (array of strings), `error` (string)
+    *   Example: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE
+The "List Shipping Carrier" API allows to retrieve a list of shipping carriers.
+
+### 11. TAGS
+Store, Shipping, Carrier, List, Retrieve, Get, Location, Agency, Marketplace, eCommerce
+
+### 12. CODE EXAMPLES
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

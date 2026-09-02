@@ -1,0 +1,63 @@
+Here is a structured summary of the API documentation for "Get Campaigns":
+
+### STRUCTURED SUMMARY
+
+**1. ENDPOINT NAME:** Get Campaigns
+
+**2. CATEGORY:** Campaigns
+
+**3. HTTP METHOD:** GET
+
+**4. ENDPOINT URL:** `/campaigns/`
+
+**5. FULL URL:** `https://services.leadconnectorhq.com/campaigns/`
+
+**6. REQUIRED PARAMETERS:**
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Query Parameters:**
+    *   `locationId` (string): The ID of the location for which campaigns are to be retrieved.
+        *   Example: `ve9EPM428h8vShlRW1KT`
+
+**7. OPTIONAL PARAMETERS:**
+*   **Query Parameters:**
+    *   `status` (string): Filter campaigns by their status.
+        *   Example: `draft`
+
+**8. AUTHENTICATION:**
+*   **Scope(s):** `campaigns.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer
+*   **Bearer Format:** JWT
+*   **In:** Header
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+**9. RESPONSE FORMAT:**
+*   **Status Code:** 200 OK
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   `campaigns` (array of objects)
+        *   `id` (string)
+            *   Example: `mIVALPYuTD7YjUHnFEx4`
+        *   `name` (string)
+            *   Example: `test`
+        *   `status` (string)
+            *   Example: `published`
+        *   `locationId` (string)
+            *   Example: `ve9EPM428h8vShlRW1KT`
+*   **Example (JSON):**
+    ```json
+    {"campaigns":[{"id":"mIVALPYuTD7YjUHnFEx4","name":"test","status":"published","locationId":"ve9EPM428h8vShlRW1KT"}]}
+    ```
+*   **Error Responses (examples provided):**
+    *   400 Bad Request
+    *   401 Unauthorized
+    *   422 Unprocessable Entity
+
+**10. PURPOSE:** This endpoint allows users to retrieve a list of campaigns associated with a specific location, with an option to filter by status.
+
+**11. TAGS:** Campaigns, Get, Retrieve, List, Read, Location, Marketing, Automation, CRM
+
+**12. CODE EXAMPLES:**
+Code examples are available for: curl, nodejs, python, php, java, go, ruby, powershell.

@@ -1,0 +1,82 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get Custom Fields
+
+### 2. CATEGORY:
+Sub-Account (formerly Location) / Custom Field
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/locations/:locationId/customFields`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/locations/:locationId/customFields`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters**:
+    *   `Version` (string): API Version. Possible values: `2021-07-28`.
+*   **Path Parameters**:
+    *   `locationId` (string): Location Id. Example: `ve9EPM428h8vShlRW1KT`.
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters**:
+    *   `model` (string): Model of the custom field you want to retrieve. Possible values: [`contact`, `opportunity`, `all`]. Example: `opportunity`.
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `locations/customFields.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**Successful response (HTTP 200 OK)**
+*   **Content Type**: `application/json`
+*   **Structure**: An object containing an array of `customFields`.
+    ```json
+    {
+      "customFields": [
+        {
+          "id": "3sv6UEo51C9Bmpo1cKTq",
+          "name": "pincode",
+          "fieldKey": "contact.pincode",
+          "placeholder": "Pin code",
+          "dataType": "TEXT",
+          "position": 0,
+          "picklistOptions": ["first option"],
+          "picklistImageOptions": [],
+          "isAllowedCustomOption": false,
+          "isMultiFileAllowed": true,
+          "maxFileLimit": 4,
+          "locationId": "3sv6UEo51C9Bmpo1cKTq",
+          "model": "opportunity"
+        }
+      ]
+    }
+    ```
+*   **Error Responses**:
+    *   **400 Bad Request**: `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized**: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity**: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint retrieves a list of all custom fields associated with a specific location (sub-account), with an option to filter by custom field model.
+
+### 11. TAGS:
+`Sub-Account`, `Location`, `Custom Field`, `Get`, `List`, `Retrieve`, `Read`, `locations`, `customFields`, `API`
+
+### Code Examples:
+Code examples are available for:
+*   `curl`
+*   `nodejs`
+*   `python`
+*   `php`
+*   `java`
+*   `go`
+*   `ruby`
+*   `powershell`

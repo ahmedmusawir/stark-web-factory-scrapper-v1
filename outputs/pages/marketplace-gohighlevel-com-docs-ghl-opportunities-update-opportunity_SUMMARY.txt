@@ -1,0 +1,111 @@
+Here's a structured summary of the "Update Opportunity" API documentation:
+
+### 1. ENDPOINT NAME:
+Update Opportunity
+
+### 2. CATEGORY:
+Opportunities
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/opportunities/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/opportunities/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   id (string): Opportunity Id (Example: `yWQobCRIhRguQtD2llvk`)
+*   **Body Parameters:**
+    *   Body (object): The request body itself is required, containing fields for the opportunity update. While the top-level body fields (`pipelineId`, `name`, etc.) are not explicitly marked as `required` in the "Request" section, updating an opportunity typically requires at least one of these to be present. For `customFields`, the `id` field within each custom field object is explicitly marked as required.
+        *   customFields (object[]): Array of custom field objects.
+            *   id (string): Pass either `id` or `key` of custom field (required within the custom field object). (Example: `6dvNaf7VhkQ9snc5vnjJ`)
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters:**
+    *   pipelineId (string): pipeline Id (Example: `bCkKGpDsyPP4peuKowkG`)
+    *   name (string): (Example: `First Opps`)
+    *   pipelineStageId (string): (Example: `7915dedc-8f18-44d5-8bc3-77c04e994a10`)
+    *   status (string): (Possible values: `open`, `won`, `lost`, `abandoned`, `all`)
+    *   monetaryValue (number): (Example: `220`)
+    *   assignedTo (string): (Example: `082goXVW3lIExEQPOnd3`)
+    *   customFields (object[]): Update custom fields to opportunities.
+        *   key (string): Pass either `id` or `key` of custom field. (Example: `my_custom_field`)
+        *   field_value (string): The value for a string-type custom field. (Example: `9039160788`)
+        *   field_value (string[]): The value for an array-type custom field. (Example: `["test","test2"]`)
+        *   field_value (object): The value for an object-type custom field. (Example: `{}`)
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `opportunities.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+
+### 9. RESPONSE FORMAT:
+*   **200 OK (Successful response):**
+    *   **Content Type:** `application/json`
+    *   **Schema:** An object containing an `opportunity` object, which includes details like `id`, `name`, `monetaryValue`, `pipelineId`, `pipelineStageId`, `assignedTo`, `status`, `contactId`, `locationId`, and nested `contact` object with `id`, `name`, `companyName`, `email`, `phone`, `tags`, `notes`, `tasks`, `calendarEvents`, `customFields`, and `followers`.
+    *   **Example (JSON):**
+        ```json
+        {
+          "opportunity": {
+            "id": "yWQobCRIhRguQtD2llvk",
+            "name": "testing",
+            "monetaryValue": 500,
+            "pipelineId": "VDm7RPYC2GLUvdpKmBfC",
+            "pipelineStageId": "e93ba61a-53b3-45e7-985a-c7732dbcdb69",
+            "assignedTo": "zT46WSCPbudrq4zhWMk6",
+            "status": "open",
+            "source": "",
+            "lastStatusChangeAt": "2021-08-03T04:55:17.355Z",
+            "lastStageChangeAt": "2021-08-03T04:55:17.355Z",
+            "lastActionDate": "2021-08-03T04:55:17.355Z",
+            "indexVersion": 1,
+            "createdAt": "2021-08-03T04:55:17.355Z",
+            "updatedAt": "2021-08-03T04:55:17.355Z",
+            "contactId": "zT46WSCPbudrq4zhWMk6",
+            "locationId": "zT46WSCPbudrq4zhW",
+            "contact": {
+              "id": "byMEV0NQinDhq8ZfiOi2",
+              "name": "John Deo",
+              "companyName": "Tesla Inc",
+              "email": "john@deo.com",
+              "phone": "+1202-555-0107",
+              "tags": ["string"]
+            },
+            "notes": ["string"],
+            "tasks": ["string"],
+            "calendarEvents": ["string"],
+            "customFields": [
+              {
+                "id": "MgobCB14YMVKuE4Ka8p1",
+                "fieldValue": "string"
+              }
+            ],
+            "followers": [[null]]
+          }
+        }
+        ```
+*   **400 Bad Request:** Returns `statusCode`, `message`.
+*   **401 Unauthorized:** Returns `statusCode`, `message`, `error`.
+*   **422 Unprocessable Entity:** Returns `statusCode`, `message`, `error`.
+
+### 10. PURPOSE:
+This endpoint allows for updating the details of an existing opportunity, including its pipeline, stage, status, monetary value, assigned user, and custom fields.
+
+### 11. TAGS:
+Opportunities, Update, API, HighLevel, CRM, Pipeline, Sales, Custom Fields
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   CURL
+*   Node.js
+*   Python
+*   PHP
+*   Java
+*   Go
+*   Ruby
+*   PowerShell

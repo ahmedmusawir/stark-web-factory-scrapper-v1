@@ -1,0 +1,121 @@
+Here's a structured summary of the "OrderCreate" webhook documentation:
+
+### 1. ENDPOINT NAME:
+OrderCreate
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+Webhook (server-initiated POST to user's configured callback URL)
+
+### 4. ENDPOINT URL:
+Not applicable for webhook *payload definition*. The user provides a callback URL to HighLevel during webhook setup.
+
+### 5. FULL URL:
+Not applicable for webhook *payload definition*.
+
+### 6. REQUIRED PARAMETERS:
+(These parameters represent the structure of the JSON payload sent by HighLevel to the configured webhook URL when an order is created. All listed properties are expected to be present in the payload, though some may have `null` or empty values if not applicable.)
+
+*   **Top-Level Parameters:**
+    *   `type` (string): The type of the webhook event, always "OrderCreate".
+    *   `locationId` (string): The ID of the location where the order was created.
+    *   `altId` (string): An alternate ID, often the same as `locationId` for webhooks of this type.
+    *   `altType` (string): An alternate type, often "location".
+    *   `_id` (string): The unique identifier for the created order.
+    *   `contactId` (string): The unique identifier of the contact associated with the order.
+    *   `status` (string): The current status of the order (e.g., "pending").
+    *   `fulfillmentStatus` (string): The fulfillment status of the order (e.g., "unfulfilled").
+    *   `currency` (string): The currency used for the order (e.g., "USD").
+    *   `amount` (number): The total monetary amount of the order.
+    *   `liveMode` (boolean): Indicates if the order was created in live mode or test mode.
+    *   `createdAt` (string): ISO 8601 timestamp when the order was created.
+    *   `updatedAt` (string): ISO 8601 timestamp when the order was last updated.
+
+*   **`contactSnapshot` Object Parameters:**
+    *   `contactSnapshot` (object): A snapshot of the contact's details at the time of order creation.
+        *   `locationId` (string): The ID of the location the contact belongs to.
+        *   `id` (string): The unique identifier of the contact.
+        *   `address1` (string): The primary address line of the contact.
+        *   `city` (string): The city of the contact's address.
+        *   `companyName` (string): The company name associated with the contact.
+        *   `country` (string): The country of the contact's address.
+        *   `source` (string): The origin or source from which the contact was added.
+        *   `dateAdded` (string): ISO 8601 timestamp when the contact was added.
+        *   `dateOfBirth` (string): The contact's date of birth.
+        *   `dnd` (boolean): Do Not Disturb status for the contact.
+        *   `email` (string): The contact's email address.
+        *   `name` (string): The full name of the contact.
+        *   `firstName` (string): The first name of the contact.
+        *   `lastName` (string): The last name of the contact.
+        *   `phone` (string): The contact's phone number.
+        *   `postalCode` (string): The postal code of the contact's address.
+        *   `state` (string): The state or province of the contact's address.
+        *   `tags` (array): An array of tags associated with the contact.
+        *   `website` (string): The contact's website.
+        *   `attachments` (array): An array of attachments associated with the contact.
+        *   `assignedTo` (string): The user ID the contact is assigned to.
+
+*   **`items` Array Parameters:**
+    *   `items` (array): An array of objects, each representing an item included in the order.
+        *   Each item object contains:
+            *   `name` (string): The name of the ordered item.
+            *   `qty` (number): The quantity of this item ordered.
+            *   `product` (object): Details about the product itself.
+                *   `_id` (string): The unique identifier of the product.
+                *   `name` (string): The name of the product.
+                *   `availableInStore` (boolean): Indicates if the product is available in the store.
+                *   `taxes` (array): An array of tax details applied to the product (may contain `_id`, `calculation`, `deleted`, `altId`, `altType`, `name`, `rate`, `createdAt`, `updatedAt`, `__v`).
+                *   `description` (string): A description of the product.
+                *   `variants` (array): An array of product variants, each containing `id`, `name`, and an `options` array (each option having `id` and `name`).
+            *   `price` (object): Details about the specific price point for the item.
+                *   `_id` (string): The unique identifier of the price.
+                *   `name` (string): The name of the price (e.g., variant name).
+                *   `type` (string): The type of price (e.g., "one_time").
+                *   `currency` (string): The currency of this specific price.
+                *   `amount` (number): The monetary amount of this specific price.
+                *   `variantOptionIds` (array): An array of IDs for the variant options chosen for this price.
+
+*   **`amountSummary` Object Parameters:**
+    *   `amountSummary` (object): A summary of the monetary components of the order.
+        *   `discount` (number): The total discount applied to the order.
+        *   `shipping` (number): The total shipping cost for the order.
+        *   `subtotal` (number): The subtotal amount of the order before taxes and shipping.
+        *   `tax` (number): The total tax amount applied to the order.
+
+*   **`taxSummary` Array Parameters:**
+    *   `taxSummary` (array): An array of objects, each detailing a specific tax component.
+        *   Each tax entry object contains:
+            *   `_id` (string): The unique identifier for the tax.
+            *   `amount` (number): The amount of this specific tax.
+            *   `calculation` (string): The method of tax calculation (e.g., "exclusive").
+            *   `name` (string): The name of the tax (e.g., "10%").
+            *   `rate` (number): The rate of the tax (e.g., 10).
+
+*   **`source` Object Parameters:**
+    *   `source` (object): Details about the origin of the order.
+        *   `id` (string): The ID of the source.
+        *   `name` (string): The name of the source (e.g., "Ecom Store").
+        *   `type` (string): The type of source (e.g., "website").
+        *   `subType` (string): The sub-type of the source (e.g., "store").
+        *   `meta` (object): Additional metadata related to the source.
+            *   `stepId` (string): The step ID in the funnel/website flow.
+            *   `pageId` (string): The page ID where the order occurred.
+            *   `domain` (string): The domain where the order was placed.
+            *   `pageUrl` (string): The specific URL of the page where the order was placed.
+
+### 7. OPTIONAL PARAMETERS:
+Not explicitly specified in documentation. The schema defines the structure of the payload that will be sent. Individual fields might be `null` or empty if no value is applicable, but their presence in the payload structure is expected.
+
+### 8. AUTHENTICATION:
+Not specified in documentation for the webhook payload itself. HighLevel typically requires authentication when *registering* the webhook URL, and webhook payloads often include a signature for verification by the receiving server.
+
+### 9. RESPONSE FORMAT:
+The webhook payload is a JSON object with the structure described in the "Schema" section and exemplified in the "Example" section, detailing the `OrderCreate` event and its associated data.
+
+### 10. PURPOSE:
+This webhook is called whenever a new order is created within the HighLevel platform, providing detailed information about the order, the associated contact, and the purchased items.
+
+### 11. TAGS:
+Webhook Events, Order, Create, E-commerce, Sales, Contact, Product, Payment, Notification.

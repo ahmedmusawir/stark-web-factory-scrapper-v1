@@ -1,0 +1,76 @@
+This API documentation describes the "Coupons" category within the HighLevel Payments API, outlining several individual API operations for managing promotional coupons.
+
+---
+
+## **Coupons API Category Summary**
+
+*   **CATEGORY:** Payments
+*   **AUTHENTICATION:** Not explicitly specified for individual endpoints, but HighLevel API generally uses OAuth 2.0 (as indicated by the "Authorization" and "OAuth 2.0" links in the navigation). Required scopes would depend on the specific operation (e.g., `payments.coupons.read` for fetching, `payments.coupons.write` for creating/updating/deleting).
+*   **RESPONSE FORMAT:** Not specified in documentation for individual endpoints; typically JSON with standard HTTP status codes (e.g., 200 OK, 201 Created, 204 No Content, 400 Bad Request, 401 Unauthorized, 404 Not Found, 500 Internal Server Error).
+*   **TAGS:** Payments, Coupons, Discounts, Promotions, HighLevel API, Marketing, E-commerce, Offers
+
+---
+
+## **Individual Coupon API Operations**
+
+### 1. ENDPOINT NAME: List Coupons
+
+*   **HTTP METHOD:** GET
+*   **ENDPOINT URL:** Not explicitly detailed in the provided documentation. Assumed relative API path: `/payments/coupons`
+*   **FULL URL:** Not explicitly detailed in the provided documentation. Assumed format: `[API_BASE_URL]/payments/coupons`
+*   **REQUIRED PARAMETERS:** Not specified in documentation
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **PURPOSE:** Retrieves a list of all coupons available in a specific location, allowing users to view all promotional offers and special discounts for their customers.
+
+### 2. ENDPOINT NAME: Create Coupon
+
+*   **HTTP METHOD:** POST
+*   **ENDPOINT URL:** Not explicitly detailed in the provided documentation. Assumed relative API path: `/payments/coupons`
+*   **FULL URL:** Not explicitly detailed in the provided documentation. Assumed format: `[API_BASE_URL]/payments/coupons`
+*   **REQUIRED PARAMETERS:** Not explicitly detailed in the provided documentation. Expected parameters for creating a coupon might include:
+    *   `name` (string): Name of the coupon.
+    *   `code` (string): Unique promotional code.
+    *   `discountType` (enum): Type of discount (e.g., `PERCENTAGE`, `FIXED_AMOUNT`).
+    *   `discountValue` (number): The value of the discount.
+    *   `validFrom` (datetime): Start date/time of coupon validity.
+    *   `validUntil` (datetime): End date/time of coupon validity.
+    *   `usageLimit` (integer): Maximum number of times the coupon can be used overall.
+    *   `appliesTo` (array of strings/objects): Products or services the coupon applies to.
+*   **OPTIONAL PARAMETERS:** Not explicitly detailed in the provided documentation. Could include `minPurchaseAmount`, `maxRedemptionsPerCustomer`, etc.
+*   **PURPOSE:** Creates a new promotional coupon with customizable parameters such as discount amount, validity period, usage limits, and applicable products, enabling the setup of promotional offers and special discounts.
+
+### 3. ENDPOINT NAME: Update Coupon
+
+*   **HTTP METHOD:** PUT or PATCH (PATCH is typically used for partial updates, PUT for full replacement of a resource). Given "modify existing coupon details", PATCH is slightly more fitting for specific field updates, but PUT is also commonly used for resource updates.
+*   **ENDPOINT URL:** Not explicitly detailed in the provided documentation. Assumed relative API path: `/payments/coupons/:couponId`
+*   **FULL URL:** Not explicitly detailed in the provided documentation. Assumed format: `[API_BASE_URL]/payments/coupons/:couponId`
+*   **REQUIRED PARAMETERS:**
+    *   `couponId` (string): The unique identifier of the coupon to be updated (as a path parameter).
+    *   Other parameters depend on the fields being updated (e.g., `discountValue`, `validUntil`, `usageLimit`, `appliesTo`).
+*   **OPTIONAL PARAMETERS:** Not explicitly detailed in the provided documentation. Expected parameters would mirror those from `Create Coupon` that are intended for modification.
+*   **PURPOSE:** Modifies existing coupon details such as discount values, validity periods, usage limits, and other promotional parameters, allowing for adjustment or extension of promotional offers.
+
+### 4. ENDPOINT NAME: Delete Coupon
+
+*   **HTTP METHOD:** DELETE
+*   **ENDPOINT URL:** Not explicitly detailed in the provided documentation. Assumed relative API path: `/payments/coupons/:couponId`
+*   **FULL URL:** Not explicitly detailed in the provided documentation. Assumed format: `[API_BASE_URL]/payments/coupons/:couponId`
+*   **REQUIRED PARAMETERS:**
+    *   `couponId` (string): The unique identifier of the coupon to be deleted (as a path parameter).
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **PURPOSE:** Permanently removes a coupon from the system using its unique identifier, allowing for discontinuing promotional offers or cleaning up unused coupons. This action cannot be undone.
+
+### 5. ENDPOINT NAME: Fetch Coupon
+
+*   **HTTP METHOD:** GET
+*   **ENDPOINT URL:** Not explicitly detailed in the provided documentation. Assumed relative API paths:
+    *   By ID: `/payments/coupons/:couponId`
+    *   By Code: `/payments/coupons/code/:couponCode`
+*   **FULL URL:** Not explicitly detailed in the provided documentation. Assumed formats:
+    *   By ID: `[API_BASE_URL]/payments/coupons/:couponId`
+    *   By Code: `[API_BASE_URL]/payments/coupons/code/:couponCode`
+*   **REQUIRED PARAMETERS:** One of the following:
+    *   `couponId` (string): The unique identifier of the coupon (as a path parameter).
+    *   `couponCode` (string): The promotional code of the coupon (as a path parameter).
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **PURPOSE:** Retrieves comprehensive information about a specific coupon using either its unique identifier or promotional code, allowing users to view coupon parameters, usage statistics, validity periods, and other promotional details.

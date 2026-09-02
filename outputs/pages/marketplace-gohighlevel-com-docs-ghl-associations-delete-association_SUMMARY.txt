@@ -1,0 +1,59 @@
+Here's a structured summary of the API documentation for the "Delete Association" endpoint:
+
+### 1. ENDPOINT NAME:
+Delete Association
+
+### 2. CATEGORY:
+Associations
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/associations/:associationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/associations/:associationId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version. Possible values: `2021-07-28` (Header Parameter)
+*   **associationId** (string): (Path Parameter)
+
+### 7. OPTIONAL PARAMETERS:
+None specified in documentation.
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `associations.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header (Authorization)
+
+### 9. RESPONSE FORMAT:
+**Status Code:** `200 OK`
+**Content Type:** `application/json`
+**Schema:**
+```json
+{
+  "deleted": true,  // boolean, Deletion status
+  "id": "6d6f6e676f5f6576656e7473", // string, Association Id
+  "message": "Association deleted successfully" // string
+}
+```
+
+### 10. PURPOSE:
+This endpoint is used to delete a user-defined association by its ID, which also removes all associated relations.
+
+### 11. TAGS:
+Associations, Delete, Remove, CRM, Objects, Relationship, API
+
+### Code Examples:
+Code examples are available for:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

@@ -1,0 +1,86 @@
+Here is a structured summary of the InvoiceVoid webhook documentation:
+
+---
+
+### API Documentation Summary
+
+1.  **ENDPOINT NAME:** InvoiceVoid
+
+2.  **CATEGORY:** Webhook
+
+3.  **HTTP METHOD:** Not applicable (This describes a webhook event payload sent by HighLevel, not an endpoint called by a user. The user's server typically receives a POST request from HighLevel containing this payload.)
+
+4.  **ENDPOINT URL:** Not applicable (This is a webhook event. The URL provided in the documentation is for the documentation page itself. The actual webhook payload would be sent to a URL configured by the user.)
+
+5.  **FULL URL:** Not applicable (This is a webhook event. The URL provided in the documentation is for the documentation page itself: `https://marketplace.gohighlevel.com/docs/webhook/InvoiceVoid/index.html`)
+
+6.  **REQUIRED PARAMETERS:**
+    *(Note: These are fields present in the webhook payload received by your system, describing the invoice void event. The JSON schema implies all listed properties are part of the expected payload.)*
+    *   `_id` (string): The unique identifier of the invoice.
+    *   `status` (string): The status of the invoice (e.g., "void").
+    *   `liveMode` (boolean): Indicates if the event occurred in live mode.
+    *   `amountPaid` (number): The amount already paid on the invoice.
+    *   `altId` (string): An alternative identifier for the invoice, often the same as `_id`.
+    *   `altType` (string): The type of the alternative ID (e.g., "location").
+    *   `name` (string): The name of the invoice.
+    *   `businessDetails` (object): Details of the business associated with the invoice.
+        *   `businessDetails.name` (string): Name of the business.
+        *   `businessDetails.address` (string): Address of the business.
+        *   `businessDetails.phoneNo` (string): Phone number of the business.
+        *   `businessDetails.website` (string): Website of the business.
+        *   `businessDetails.logoUrl` (string): URL of the business logo.
+        *   `businessDetails.customValues` (array of string): Custom values associated with the business.
+    *   `invoiceNumber` (string): The number assigned to the invoice.
+    *   `currency` (string): The currency of the invoice (e.g., "USD").
+    *   `contactDetails` (object): Details of the contact associated with the invoice.
+        *   `contactDetails.id` (string): Unique identifier of the contact.
+        *   `contactDetails.phoneNo` (string): Phone number of the contact.
+        *   `contactDetails.email` (string): Email address of the contact.
+        *   `contactDetails.customFields` (array of string): Custom fields for the contact.
+        *   `contactDetails.name` (string): Name of the contact.
+        *   `contactDetails.address` (object): Address of the contact.
+            *   `contactDetails.address.countryCode` (string): Country code (e.g., "US").
+            *   `contactDetails.address.addressLine1` (string): First line of the address.
+            *   `contactDetails.address.addressLine2` (string): Second line of the address.
+            *   `contactDetails.address.city` (string): City.
+            *   `contactDetails.address.state` (string): State.
+            *   `contactDetails.address.postalCode` (string): Postal code.
+        *   `contactDetails.additionalEmails` (array of object): Additional email addresses for the contact.
+            *   `contactDetails.additionalEmails[].email` (string): An additional email address.
+        *   `contactDetails.companyName` (string): Company name of the contact.
+    *   `issueDate` (string): The date the invoice was issued (ISO 8601 format).
+    *   `dueDate` (string): The date the invoice is due (ISO 8601 format).
+    *   `discount` (object): Details of any discount applied to the invoice.
+        *   `discount.type` (string): Type of discount (e.g., "percentage").
+        *   `discount.value` (number): Value of the discount.
+    *   `invoiceItems` (array of object): List of items included in the invoice.
+        *   `invoiceItems[].taxes` (array): Array of taxes applied to the item.
+        *   `invoiceItems[]._id` (string): Unique identifier for the invoice item.
+        *   `invoiceItems[].productId` (string): ID of the product.
+        *   `invoiceItems[].priceId` (string): ID of the price.
+        *   `invoiceItems[].currency` (string): Currency of the item.
+        *   `invoiceItems[].name` (string): Name of the item.
+        *   `invoiceItems[].qty` (number): Quantity of the item.
+        *   `invoiceItems[].amount` (number): Amount for the item.
+    *   `total` (number): The total amount of the invoice.
+    *   `title` (string): The title of the invoice.
+    *   `amountDue` (number): The remaining amount due on the invoice.
+    *   `createdAt` (string): Timestamp when the invoice was created (ISO 8601 format).
+    *   `updatedAt` (string): Timestamp when the invoice was last updated (ISO 8601 format).
+    *   `totalSummary` (object): Summary of total amounts.
+        *   `totalSummary.subTotal` (number): Subtotal before discounts/taxes.
+        *   `totalSummary.discount` (number): Total discount amount.
+
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation (All fields in the provided schema are expected to be part of the webhook payload when received).
+
+8.  **AUTHENTICATION:** Not specified for this specific webhook event in the provided documentation. For HighLevel webhooks, it typically involves verifying the webhook signature using a shared secret to ensure the authenticity and integrity of the payload.
+
+9.  **RESPONSE FORMAT:**
+    *   **Status Code:** The documentation describes the payload *sent by HighLevel*. Your server, upon successfully receiving and processing the webhook, should respond with a `200 OK` status code to acknowledge receipt.
+    *   **Structure:** The structure of the payload sent by HighLevel is a JSON object as detailed in the "Schema" section and exemplified in the "Example" section above.
+
+10. **PURPOSE:** This webhook event is triggered and sent by HighLevel whenever an invoice in the system is marked as void.
+
+11. **TAGS:** Webhook, Webhook Events, Invoice, Void, Financial, Notification.
+
+12. **Code Examples:** No code examples (e.g., Python, Node, cURL) are present in the provided documentation for this specific webhook.

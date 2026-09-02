@@ -1,0 +1,70 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Train discovered website pages and ingest into the knowledge base
+
+### 2. CATEGORY:
+Knowledge Base / Web Crawler
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/knowledge-bases/crawler/train`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/knowledge-bases/crawler/train`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Authorization (string): Access Token (Example: Bearer 9c48df2694a849b6089f9d0d3513efe)
+    *   Version (string): API Version (Possible values: `2021-04-15`)
+*   **Body Parameters:**
+    *   locationId (string): Location ID as string (Example: `tDtDnQdgm2LXpyiqYvZ6`)
+    *   urlIds (string[]): List of Object ids of the discovered urls (Example: `["688b640bcb02d498102a13ec","688b640bcb02d498102a13ea"]`)
+    *   knowledgeBaseId (string): knowledge base id (Example: `jjkkxftgvbhjmn,`)
+    *   operationId (string): operation id as string (Example: `688b640bcb02d498102a13f0,`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header (Authorization)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**201 OK - Pages trained successfully**
+```json
+{
+  "success": true
+}
+```
+**Other Responses:**
+*   **400 Bad Request:**
+    ```json
+    {"statusCode":400,"message":"Bad Request"}
+    ```
+*   **401 Unauthorized:**
+    ```json
+    {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+    ```
+*   **422 Unprocessable Entity:**
+    ```json
+    {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+    ```
+*   **500 Internal Server Error:**
+    ```json
+    {"statusCode":500,"message":"Internal Server Error"}
+    ```
+
+### 10. PURPOSE:
+This endpoint trains discovered website pages and ingests them into a specified knowledge base.
+
+### 11. TAGS:
+Knowledge Base, Web Crawler, Train, Ingest, Pages, URLs, AI, Training, Website Content
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

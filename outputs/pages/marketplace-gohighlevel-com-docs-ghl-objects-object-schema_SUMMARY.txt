@@ -1,0 +1,90 @@
+Here is a structured summary of the API documentation for "Object Schema":
+
+---
+
+### **1. ENDPOINT NAME: Object Schema (Overview)**
+
+*   **CATEGORY:** Objects
+*   **HTTP METHOD:** Not applicable (This is an overview page describing a concept and related operations.)
+*   **ENDPOINT URL:** Not applicable
+*   **FULL URL:** Not applicable
+*   **REQUIRED PARAMETERS:** Not applicable
+*   **OPTIONAL PARAMETERS:** Not applicable
+*   **AUTHENTICATION:** Not specified in documentation (Broader API context implies authentication, e.g., OAuth 2.0, as per sidebar)
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Provides an overview of custom objects, explaining that they are customizable structures to store and manage tailored information, including custom fields, relationships, and workflow integration, extending beyond standard objects like Contacts, Opportunities, or Companies.
+*   **TAGS:** Objects, Custom Objects, Schema, Definitions, Structure, Metadata
+
+---
+
+### **2. Operation: Get Object Schema by key / id**
+
+*   **ENDPOINT NAME:** Get Object Schema by key / id
+*   **CATEGORY:** Objects
+*   **HTTP METHOD:** GET (Inferred from "Get")
+*   **ENDPOINT URL:** `/objects/schema/{keyOrId}` (Inferred API path)
+*   **FULL URL:** `[Base API URL]/objects/schema/{keyOrId}` (Base API URL not specified in documentation)
+*   **REQUIRED PARAMETERS:**
+    *   `keyOrId` (string/UUID): The unique key or ID of the object schema to retrieve.
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation (Expected to return the schema of the custom object, including its fields and properties.)
+*   **PURPOSE:** Retrieves the schema of a specified custom object or standard object (contact, opportunity, business) using its unique key or ID, providing details about its fields and properties.
+*   **TAGS:** Get, Retrieve, Object Schema, Custom Object, Contact, Opportunity, Business, Schema Definition, Metadata
+
+---
+
+### **3. Operation: Update Object Schema By Key / Id**
+
+*   **ENDPOINT NAME:** Update Object Schema By Key / Id
+*   **CATEGORY:** Objects
+*   **HTTP METHOD:** PUT / PATCH (Inferred from "Update")
+*   **ENDPOINT URL:** `/objects/schema/{keyOrId}` (Inferred API path)
+*   **FULL URL:** `[Base API URL]/objects/schema/{keyOrId}` (Base API URL not specified in documentation)
+*   **REQUIRED PARAMETERS:**
+    *   `keyOrId` (string/UUID): The unique key or ID of the object schema to update.
+    *   Request Body (object): The updated schema definition for the custom object, or details for updating searchable fields of a standard object. (Structure not detailed)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Updates an existing custom object's schema or modifies the searchable fields for standard objects such as contacts, opportunities, and businesses.
+*   **TAGS:** Update, Modify, Object Schema, Custom Object, Contact, Opportunity, Business, Schema Definition, Metadata
+
+---
+
+### **4. Operation: Get all objects for a location**
+
+*   **ENDPOINT NAME:** Get all objects for a location
+*   **CATEGORY:** Objects
+*   **HTTP METHOD:** GET (Inferred from "Get all")
+*   **ENDPOINT URL:** `/locations/{locationId}/objects/schema` (Inferred API path)
+*   **FULL URL:** `[Base API URL]/locations/{locationId}/objects/schema` (Base API URL not specified in documentation)
+*   **REQUIRED PARAMETERS:**
+    *   `locationId` (string/UUID): The unique identifier of the location for which to retrieve object schemas.
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation (Expected to return a list of object schemas.)
+*   **PURPOSE:** Retrieves all supported object schemas (custom, contact, opportunity, business) associated with a specific location.
+*   **TAGS:** Get, List, All Objects, Location, Object Schema, Custom Object, Contact, Opportunity, Business, Schema Definition, Metadata
+
+---
+
+### **5. Operation: Create Custom Object**
+
+*   **ENDPOINT NAME:** Create Custom Object
+*   **CATEGORY:** Objects
+*   **HTTP METHOD:** POST (Inferred from "Create")
+*   **ENDPOINT URL:** `/objects/schema` (Inferred API path)
+*   **FULL URL:** `[Base API URL]/objects/schema` (Base API URL not specified in documentation)
+*   **REQUIRED PARAMETERS:**
+    *   Request Body (object): The complete schema definition for the new custom object. (Structure not detailed)
+*   **OPTIONAL PARAMETERS:** Not specified in documentation
+*   **AUTHENTICATION:** Not specified in documentation
+*   **RESPONSE FORMAT:** Not specified in documentation
+*   **PURPOSE:** Creates a new custom object schema, allowing for the definition of its structure and properties.
+*   **TAGS:** Create, New, Custom Object, Object Schema, Schema Definition
+
+---
+
+**Code Examples:**
+*   No code examples (Python, Node, cURL) are present in this specific section of the documentation.

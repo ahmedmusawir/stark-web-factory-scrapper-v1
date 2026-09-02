@@ -1,0 +1,55 @@
+```
+1. ENDPOINT NAME: Delete Agent Action
+
+2. CATEGORY: Voice AI
+
+3. HTTP METHOD: DELETE
+
+4. ENDPOINT URL: /voice-ai/actions/:actionId
+
+5. FULL URL: https://services.leadconnectorhq.com/voice-ai/actions/:actionId
+
+6. REQUIRED PARAMETERS:
+    *   Version (string): API Version (Possible values: `2021-04-15`)
+    *   actionId (string): Unique identifier for the action
+    *   locationId (string): Location ID (Example: `LOC123456789ABCDEF`)
+    *   agentId (string): Agent ID the action is attached to
+
+7. OPTIONAL PARAMETERS: Not specified in documentation
+
+8. AUTHENTICATION:
+    *   Required Scope(s): `voice-ai-agent-goals.write`
+    *   Auth Method(s): `OAuth Access Token`, `Private Integration Token`
+    *   Token Type(s): `Sub-Account Token`
+    *   Scheme: Bearer (JWT)
+    *   In: Header
+
+9. RESPONSE FORMAT:
+    *   **204 No Content:** Action deleted successfully (No content returned in the body).
+    *   **400 Bad Request:**
+        ```json
+        {"statusCode":400,"message":"Bad Request"}
+        ```
+    *   **401 Unauthorized:**
+        ```json
+        {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+        ```
+    *   **422 Unprocessable Entity:**
+        ```json
+        {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+        ```
+
+10. PURPOSE: This endpoint allows you to permanently delete an existing action and its configuration from a voice AI agent.
+
+11. TAGS: Voice AI, Actions, Delete, Agent, Goals, API
+
+12. CODE EXAMPLES:
+    *   cURL
+    *   nodejs
+    *   python
+    *   php
+    *   java
+    *   go
+    *   ruby
+    *   powershell
+```

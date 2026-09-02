@@ -1,0 +1,58 @@
+Here's a structured summary of the provided API documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+Get Access Token (Exchange Authorization Code for Access Token)
+
+### 2. CATEGORY:
+Authorization, OAuth 2.0
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/oauth/token`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/oauth/token`
+
+### 6. REQUIRED PARAMETERS:
+*   `client_id` (string): The unique identifier for your application.
+*   `client_secret` (string): The secret key for your application, used for authentication.
+*   `grant_type` (string): Specifies the type of grant. Must be `authorization_code`.
+*   `code` (string): The authorization code received from the HighLevel platform after app installation.
+*   `user_type` (string): Specifies the type of user for which the token is being generated. Must be `Company` for Agency-targeted apps.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Method for this endpoint:** The request is authenticated using the `client_id` and `client_secret` along with the `authorization_code`.
+*   **Token Type Generated:** Bearer Token.
+*   **Generated Token Scopes:** The generated access token will have associated scopes (e.g., `locations.write` as seen in the sample response), indicating the permissions granted.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** Not explicitly stated, but typically 200 OK for a successful token exchange.
+*   **Structure:** JSON object containing the following fields:
+    *   `access_token` (string): The generated access token.
+    *   `token_type` (string): The type of token, typically `Bearer`.
+    *   `expires_in` (integer): The lifetime in seconds of the access token.
+    *   `refresh_token` (string): A token that can be used to obtain new access tokens when the current one expires.
+    *   `scope` (string): The scope of the access token.
+    *   `refreshTokenId` (string): Unique identifier for the refresh token.
+    *   `userType` (string): The type of user for which the token was issued (e.g., `Company`).
+    *   `companyId` (string): The ID of the agency/company.
+    *   `isBulkInstallation` (boolean): Indicates if the installation was part of a bulk process.
+    *   `userId` (string): The ID of the user who performed the installation.
+
+### 10. PURPOSE:
+This endpoint facilitates the exchange of an authorization code, obtained after an Agency-targeted app installation, for a valid access token. This access token is then used to make subsequent API calls on behalf of the Agency.
+
+### 11. TAGS:
+Authorization, OAuth 2.0, Access Token, Token Generation, Agency, POST, Exchange Token, Developer, Client Credentials, Authorization Code, App Installation, API Key, Security.
+
+### 12. CODE EXAMPLES:
+*   cURL sample request is provided.
+
+---

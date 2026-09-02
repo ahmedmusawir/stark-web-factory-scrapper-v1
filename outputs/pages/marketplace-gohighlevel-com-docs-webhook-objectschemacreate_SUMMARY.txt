@@ -1,0 +1,47 @@
+Here is a structured summary of the provided API documentation for the `ObjectSchemaCreate` webhook:
+
+### 1. ENDPOINT NAME
+Object Schema Create
+
+### 2. CATEGORY
+Webhook
+
+### 3. HTTP METHOD
+POST (This is the method HighLevel uses to send the webhook payload to your listener.)
+
+### 4. ENDPOINT URL
+Not applicable (This documentation describes an outgoing webhook payload. The URL would be your custom webhook listener URL, configured within the HighLevel platform.)
+
+### 5. FULL URL
+Not applicable (This documentation describes an outgoing webhook payload.)
+
+### 6. REQUIRED PAYLOAD FIELDS
+*   **`labels` (object)**: An object that defines the human-readable names associated with the custom object.
+    *   **`singular` (string)**: The name of the object in singular form (e.g., `"pet"`).
+    *   **`plural` (string)**: The name of the object in plural form (e.g., `"pets"`).
+*   **`primaryDisplayProperty` (string)**: The key property used to display the custom object.
+*   **`key` (string)**: Unique identifier for the custom object type.
+*   **`locationId` (string)**: Identifies the location associated with the custom object.
+
+### 7. OPTIONAL PAYLOAD FIELDS
+*   **`description` (string)**: A brief explanation of the custom object.
+*   **`searchableProperties` (array)**: List of properties that are indexed for search.
+*   **`createdBy` (object)**: Metadata about the user who created the object.
+*   **`updatedBy` (object)**: Metadata about the user who last updated the object.
+*   **`timestamp` (string, `date-time` format)**: The date and time when the object was created.
+*   **`objectType` (string)**: Specifies the type of object, currently supports only `"USER_DEFINED"`. (Default: `"USER_DEFINED"`)
+
+### 8. AUTHENTICATION
+Not specified in documentation (for webhook authentication/signature verification).
+
+### 9. RESPONSE FORMAT
+Not specified in documentation (for what HighLevel expects back from your webhook listener). The incoming payload from HighLevel is JSON.
+
+### 10. PURPOSE
+This webhook is triggered when a new custom object schema is created, allowing systems to listen for and react to these events.
+
+### 11. TAGS
+Webhook Events
+
+### 12. CODE EXAMPLES
+Not specified in documentation (only JSON schema and example payload).

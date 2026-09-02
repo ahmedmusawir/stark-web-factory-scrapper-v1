@@ -1,0 +1,49 @@
+Here's a structured summary of the provided API documentation for the "Contacts" module, optimized for search and retrieval:
+
+---
+
+### 1. ENDPOINT NAME:
+Contacts
+
+### 2. CATEGORY:
+Contacts
+
+### 3. HTTP METHOD:
+Not applicable (This page serves as an overview/index for the Contacts API module, not a direct API endpoint itself. Specific HTTP methods like GET, POST, PUT, DELETE would apply to the individual contact operations listed.)
+
+### 4. ENDPOINT URL:
+Not applicable (This page serves as an overview/index. Specific API endpoint paths would apply to the individual contact operations listed, e.g., `/contacts/:contactId` for Get Contact.)
+
+### 5. FULL URL:
+`https://marketplace.gohighlevel.com/docs/ghl/contacts/contacts` (This is the URL of the documentation page being analyzed, not an API endpoint URL.)
+
+### 6. REQUIRED PARAMETERS:
+Not specified in documentation for this overview page. Required parameters would be specific to the individual contact operations (e.g., a contact ID for 'Get Contact').
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation for this overview page. Optional parameters would be specific to the individual contact operations.
+However, the following detail is mentioned concerning specific sub-endpoints listed on this page:
+*   For **Update Contact**, **Upsert Contact**, and **Create Contact**:
+    *   `country` field: Acceptable values for this field can be found [here](https://highlevel.stoplight.io/docs/integrations/ZG9jOjI4MzUzNDIy-country-list). (The type and full description for this parameter are not detailed on this overview page, only its existence and a reference for valid values).
+
+Additionally, for the **Upsert Contact** operation, the documentation notes:
+*   The API adheres to the "Allow Duplicate Contact" setting at the Location level.
+*   If configured to check both Email and Phone, the API prioritizes fields as per the setting.
+*   If multiple existing contacts match (e.g., one by email, one by phone) and both are provided in an upsert request, the contact matching the *first* field in the configured sequence will be updated, ignoring the second to prevent duplication.
+
+### 8. AUTHENTICATION:
+Not specified in documentation for this specific overview page. General API authentication methods (e.g., OAuth 2.0, Authorization) are mentioned in the sidebar for the HighLevel API 2.0.
+
+### 9. RESPONSE FORMAT:
+Not specified in documentation for this overview page. Response formats (e.g., JSON structure, status codes) would be specific to the individual contact operations.
+
+### 10. PURPOSE:
+This documentation page provides an introduction and serves as an index for various API operations related to managing contacts within the HighLevel platform, outlining capabilities such as retrieving, creating, updating, deleting, and upserting contact records.
+
+### 11. TAGS:
+Contacts, API, Overview, Index, Documentation, HighLevel, CRM, Get, Update, Create, Delete, Upsert, BusinessId, Tasks, Appointments, Tags, Notes, Campaigns, Workflow, Bulk, Search, Followers
+
+---
+
+**Availability of Code Examples:**
+No code examples (Python, Node, cURL) are present on *this specific documentation page*. They would typically be found on the individual sub-pages linked from this overview.

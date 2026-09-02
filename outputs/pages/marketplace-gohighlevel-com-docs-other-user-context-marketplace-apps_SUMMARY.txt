@@ -1,0 +1,86 @@
+```
+## STRUCTURED SUMMARY
+
+### 1. ENDPOINT NAME
+User Context in Marketplace Apps
+
+### 2. CATEGORY
+Other / Marketplace Apps / Authentication & Security
+
+### 3. HTTP METHOD
+Not applicable for a direct HighLevel API endpoint. The documentation describes a mechanism involving frontend methods provided by HighLevel. For the *developer's backend example* that decrypts the user data, the HTTP method is `POST`.
+
+### 4. ENDPOINT URL
+Not applicable for a direct HighLevel API endpoint. The documentation provides `/decrypt-user-data` as an example endpoint path for a *developer's own backend* to handle decryption.
+
+### 5. FULL URL
+Not applicable for a direct HighLevel API endpoint. Developers integrate this mechanism into their own frontend applications, which then communicate with their own backend endpoints (e.g., `https://your-app.com/decrypt-user-data`). The provided URL `https://marketplace.gohighlevel.com/docs/other/user-context-marketplace-apps/index.html` is for this documentation page itself.
+
+### 6. REQUIRED PARAMETERS
+*   **For HighLevel Frontend Methods (`exposeSessionDetails` / `postMessage` mechanism):**
+    *   `APP_ID` (string): Your application's unique identifier (used with `window.exposeSessionDetails`).
+*   **For Developer's Backend Decryption (conceptual):**
+    *   `encryptedUserData` (string): The encrypted user data received from the frontend.
+    *   `sharedSecretKey` (string): The Shared Secret key generated for the application.
+*   **For Developer's Example Express Endpoint (`/decrypt-user-data`):**
+    *   `encryptedData` (string): Sent in the request body from the frontend to the backend.
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Method**: Secure access is provided via signed tokens encrypted using a `Shared Secret` key.
+*   **Key Generation**: A `Shared Secret` key must be generated in the application's Advanced Settings > Auth section within HighLevel.
+*   **Security**: The `Shared Secret` key must be kept confidential and used only on the backend for decryption.
+
+### 9. RESPONSE FORMAT
+Upon successful decryption by the developer's backend, a JSON object containing user information is returned. The structure varies based on the user's context:
+
+**Agency Context:**
+```json
+{
+  "userId": "MKQJ7wOVVmNOMvrnKKKK",
+  "companyId": "GNb7aIv4rQFVb9iwNl5K",
+  "role": "admin",
+  "type": "agency",
+  "userName": "John Doe",
+  "email": "johndoe@gmail.com",
+  "isAgencyOwner": true
+}
+```
+
+**Location Context:**
+```json
+{
+  "userId": "MKQJ7wOVVmNOMvrnKKKK",
+  "companyId": "GNb7aIv4rQFVb9iwNl5K",
+  "role": "admin",
+  "type": "agency",
+  "activeLocation": "yLKVZpNppIdYpah4RjNE",
+  "userName": "John Doe",
+  "email": "johndoe@gmail.com",
+  "isAgencyOwner": false
+}
+```
+
+**Field Descriptions:**
+*   `userId` (string): Unique identifier for the user.
+*   `companyId` (string): Unique identifier for the company/agency.
+*   `role` (string): User's role in the system (e.g., 'admin', 'user').
+*   `type` (string): Context type ('agency' or 'location').
+*   `activeLocation` (string): (Location context only) Unique identifier for the active location.
+*   `userName` (string): Full name of the user.
+*   `email` (string): User's email address.
+*   `isAgencyOwner` (boolean): Indicates if the logged-in user is the agency owner.
+
+### 10. PURPOSE
+This mechanism provides a secure way for HighLevel Marketplace Apps to access authenticated user information (user ID, role, company ID, etc.) via encrypted tokens, which developers then decrypt on their backend using a `Shared Secret` key.
+
+### 11. TAGS
+User Context, Marketplace Apps, Authentication, Security, Shared Secret, Decryption, Frontend Integration, Backend Processing, Agency Context, Location Context, User Data.
+
+### Code Examples
+*   **Frontend (JavaScript):** Examples are provided for `Custom JavaScript Implementation` using `window.exposeSessionDetails` and `Custom Pages Implementation` using `window.parent.postMessage`.
+*   **Backend (Node.js/JavaScript):** An example Express.js endpoint (`app.post("/decrypt-user-data", ...)`) is provided using `crypto-js` for decrypting the user data.
+*   **Reference Implementation:** A link to the `GoHighLevel Marketplace App Template` repository is provided for a complete example.
+```

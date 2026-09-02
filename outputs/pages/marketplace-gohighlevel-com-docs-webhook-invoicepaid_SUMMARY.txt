@@ -1,0 +1,90 @@
+Here's a structured summary of the InvoicePaid webhook documentation:
+
+### 1. ENDPOINT NAME
+InvoicePaid
+
+### 2. CATEGORY
+Webhook
+
+### 3. HTTP METHOD
+N/A (This is a webhook event sent by the system, not a client-callable API endpoint with a specific HTTP method.)
+
+### 4. ENDPOINT URL
+N/A (This is a webhook event; the URL is configured on the receiving server.)
+
+### 5. FULL URL
+N/A (This is a webhook event; the URL is configured on the receiving server.)
+
+### 6. REQUIRED PARAMETERS (Webhook Payload Fields)
+*   **_id (string)**: The unique identifier of the invoice.
+*   **status (string)**: The status of the invoice, e.g., "paid".
+*   **liveMode (boolean)**: Indicates if the event occurred in live mode.
+*   **amountPaid (number)**: The amount paid for the invoice.
+*   **altId (string)**: An alternative ID, possibly related to the associated entity (e.g., location ID).
+*   **altType (string)**: The type of the alternative ID (e.g., "location").
+*   **name (string)**: The name of the invoice.
+*   **businessDetails (object)**: Details about the business associated with the invoice.
+    *   **name (string)**: Name of the business.
+    *   **address (string)**: Address of the business.
+    *   **phoneNo (string)**: Phone number of the business.
+    *   **website (string)**: Website of the business.
+    *   **logoUrl (string)**: URL of the business logo.
+    *   **customValues (array of string)**: Custom values associated with the business.
+*   **invoiceNumber (string)**: The number of the invoice.
+*   **currency (string)**: The currency of the invoice (e.g., "USD").
+*   **contactDetails (object)**: Details about the contact associated with the invoice.
+    *   **id (string)**: The unique identifier of the contact.
+    *   **phoneNo (string)**: Phone number of the contact.
+    *   **email (string)**: Email address of the contact.
+    *   **customFields (array of string)**: Custom fields associated with the contact.
+    *   **name (string)**: Name of the contact.
+    *   **address (object)**: Address of the contact.
+        *   **countryCode (string)**: Country code.
+        *   **addressLine1 (string)**: First line of the address.
+        *   **addressLine2 (string)**: Second line of the address.
+        *   **city (string)**: City.
+        *   **state (string)**: State.
+        *   **postalCode (string)**: Postal code.
+    *   **additionalEmails (array of object)**: Additional email addresses for the contact.
+        *   **email (string)**: An additional email address.
+    *   **companyName (string)**: Company name of the contact.
+*   **issueDate (string)**: The date the invoice was issued (ISO 8601 format).
+*   **dueDate (string)**: The date the invoice is due (ISO 8601 format).
+*   **discount (object)**: Discount applied to the invoice.
+    *   **type (string)**: Type of discount (e.g., "percentage").
+    *   **value (number)**: Value of the discount.
+*   **invoiceItems (array of object)**: A list of items included in the invoice.
+    *   **taxes (array)**: An array for taxes associated with the item (currently empty in example).
+    *   **_id (string)**: Unique identifier for the invoice item.
+    **productId (string)**: ID of the product.
+    *   **priceId (string)**: ID of the price.
+    *   **currency (string)**: Currency of the item.
+    *   **name (string)**: Name of the item.
+    *   **qty (number)**: Quantity of the item.
+    *   **amount (number)**: Amount per item.
+*   **total (number)**: The total amount of the invoice.
+*   **title (string)**: The title of the invoice.
+*   **amountDue (number)**: The remaining amount due on the invoice.
+*   **createdAt (string)**: Timestamp when the invoice was created (ISO 8601 format).
+*   **updatedAt (string)**: Timestamp when the invoice was last updated (ISO 8601 format).
+*   **totalSummary (object)**: Summary of totals.
+    *   **subTotal (number)**: The subtotal before discounts.
+    *   **discount (number)**: The total discount amount.
+
+### 7. OPTIONAL PARAMETERS
+Not explicitly specified in documentation. All properties listed in the schema are considered part of the webhook payload.
+
+### 8. AUTHENTICATION
+Not specified in documentation for receiving the webhook. Webhooks generally rely on a shared secret for signature verification to ensure authenticity, but details are not provided here.
+
+### 9. RESPONSE FORMAT
+Not applicable from the perspective of HighLevel sending the webhook. The receiving server should typically return a `200 OK` status code to acknowledge receipt of the webhook event.
+
+### 10. PURPOSE
+This webhook is called whenever an invoice is successfully paid within the HighLevel system.
+
+### 11. TAGS
+Webhook Events, Invoice, Paid, Payment, Notification, Financial.
+
+### 12. CODE EXAMPLES
+No code examples (e.g., Python, Node.js, cURL) are present for *receiving* this webhook, only a JSON schema and an example payload.

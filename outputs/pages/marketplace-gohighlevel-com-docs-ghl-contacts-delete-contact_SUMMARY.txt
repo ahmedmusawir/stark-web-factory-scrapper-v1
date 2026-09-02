@@ -1,0 +1,51 @@
+Here is a structured summary of the API documentation for "Delete Contact":
+
+### 1. ENDPOINT NAME:
+Delete Contact
+
+### 2. CATEGORY:
+Contacts
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/contacts/:contactId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/:contactId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `[2021-07-28]`)
+*   **Path Parameters:**
+    *   contactId (string): Contact Id (Example: `ocQHyuzHvysMo5N5VsXc`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `contacts.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT format)
+
+### 9. RESPONSE FORMAT:
+**200 OK (Successful response)**
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   `succeded` (boolean)
+*   **Example:**
+    ```json
+    {"succeded": true}
+    ```
+(Also includes error responses for 400 Bad Request, 401 Unauthorized, 422 Unprocessable Entity)
+
+### 10. PURPOSE:
+This endpoint facilitates the deletion of a specific contact record from the system using their unique contact identifier.
+
+### 11. TAGS:
+Contacts, Delete, Remove, CRM, GHL, HighLevel, API, Contact Management, Data Deletion
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

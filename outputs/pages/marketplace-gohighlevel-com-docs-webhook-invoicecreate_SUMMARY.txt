@@ -1,0 +1,98 @@
+```
+## API Endpoint Summary: InvoiceCreate Webhook
+
+### 1. ENDPOINT NAME:
+InvoiceCreate
+
+### 2. CATEGORY:
+Webhook (Specifically, related to Invoice management)
+
+### 3. HTTP METHOD:
+N/A (This is a webhook event, not a callable API endpoint. Data is *sent* by Highlevel when an invoice is created, typically via a POST request to a user-configured URL.)
+
+### 4. ENDPOINT URL:
+N/A (This is a webhook payload description. The URL is configured by the user to receive the webhook event.)
+
+### 5. FULL URL:
+N/A (This is a webhook payload description. The URL is configured by the user to receive the webhook event.)
+
+### 6. REQUIRED PARAMETERS:
+(These describe the structure of the JSON payload sent by the webhook. All properties within the schema are listed as they define the complete data object for an InvoiceCreate event.)
+
+*   **_id** (string): The unique identifier for the invoice.
+*   **status** (string): The current status of the invoice (e.g., "draft", "sent", "paid", "void").
+*   **liveMode** (boolean): Indicates if the invoice was created in live mode.
+*   **amountPaid** (number): The amount that has been paid towards the invoice.
+*   **altId** (string): An alternative identifier, often related to the location or business.
+*   **altType** (string): The type of the alternative identifier (e.g., "location").
+*   **name** (string): The name of the invoice.
+*   **businessDetails** (object): Details of the business associated with the invoice.
+    *   **name** (string): The name of the business.
+    *   **address** (string): The address of the business.
+    *   **phoneNo** (string): The phone number of the business.
+    *   **website** (string): The website URL of the business.
+    *   **logoUrl** (string): The URL to the business's logo.
+    *   **customValues** (array of string): Custom values associated with the business.
+*   **invoiceNumber** (string): The unique invoice number.
+*   **currency** (string): The currency used for the invoice (e.g., "USD").
+*   **contactDetails** (object): Details of the contact associated with the invoice.
+    *   **id** (string): The unique identifier for the contact.
+    *   **phoneNo** (string): The phone number of the contact.
+    *   **email** (string): The email address of the contact.
+    *   **customFields** (array of string): Custom fields associated with the contact.
+    *   **name** (string): The name of the contact.
+    *   **address** (object): The billing address of the contact.
+        *   **countryCode** (string): The country code (e.g., "US").
+        *   **addressLine1** (string): The first line of the address.
+        *   **addressLine2** (string): The second line of the address.
+        *   **city** (string): The city.
+        *   **state** (string): The state/province.
+        *   **postalCode** (string): The postal code.
+    *   **additionalEmails** (array of object): A list of additional email addresses for the contact.
+        *   **email** (string): An additional email address.
+    *   **companyName** (string): The company name of the contact.
+*   **issueDate** (string): The date the invoice was issued (ISO 8601 format).
+*   **dueDate** (string): The date the invoice is due (ISO 8601 format).
+*   **discount** (object): Details of any discount applied to the invoice.
+    *   **type** (string): The type of discount (e.g., "percentage", "fixed").
+    *   **value** (number): The value of the discount.
+*   **invoiceItems** (array of object): A list of items included in the invoice.
+    *   **taxes** (array): An array representing taxes applied to the item (schema not detailed).
+    *   **_id** (string): The unique identifier for the invoice item.
+    *   **productId** (string): The ID of the product associated with the item.
+    *   **priceId** (string): The ID of the price associated with the item.
+    *   **currency** (string): The currency of the item.
+    *   **name** (string): The name of the item.
+    *   **qty** (number): The quantity of the item.
+    *   **amount** (number): The amount/price of a single unit of the item.
+*   **total** (number): The grand total amount of the invoice.
+*   **title** (string): The title of the invoice (e.g., "INVOICE").
+*   **amountDue** (number): The remaining amount due on the invoice.
+*   **createdAt** (string): The timestamp when the invoice was created (ISO 8601 format).
+*   **updatedAt** (string): The timestamp when the invoice was last updated (ISO 8601 format).
+*   **totalSummary** (object): A summary of the invoice totals.
+    *   **subTotal** (number): The sub-total before discounts and taxes.
+    *   **discount** (number): The total discount applied.
+
+### 7. OPTIONAL PARAMETERS:
+Not explicitly specified in documentation. All fields listed in the schema are expected to be part of the webhook payload for an InvoiceCreate event.
+
+### 8. AUTHENTICATION:
+Not specified in documentation for the webhook itself. Users receiving webhooks would typically implement their own authentication/verification (e.g., secret keys, signature verification) on their receiving endpoint.
+
+### 9. RESPONSE FORMAT:
+The documentation describes the *payload* that is *sent by* the webhook. The format is JSON, conforming to the `Schema` provided.
+*   **Status Code**: N/A (This describes the *outgoing* data from Highlevel).
+*   **Structure**: A JSON object representing the newly created invoice and its associated details, as detailed in the "Required Parameters" section above.
+
+### 10. PURPOSE:
+This webhook is triggered and sends a JSON payload containing comprehensive details of an invoice whenever a new invoice is created within the Highlevel platform.
+
+### 11. TAGS:
+Webhook, Webhook Events, Invoice, Create, Financial, Billing, InvoiceCreate
+
+### 12. CODE EXAMPLES:
+*   **JSON Schema**: Yes, provided.
+*   **JSON Example**: Yes, provided.
+*   **Other Languages (Python, Node, cURL)**: No, not provided.
+```

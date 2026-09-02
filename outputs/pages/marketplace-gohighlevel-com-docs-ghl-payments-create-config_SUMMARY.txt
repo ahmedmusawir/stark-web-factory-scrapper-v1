@@ -1,0 +1,74 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME
+Create new provider config
+
+### 2. CATEGORY
+Payments
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/payments/custom-provider/connect`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/payments/custom-provider/connect`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible value: `2021-07-28`)
+*   **Query Parameters:**
+    *   `locationId` (string): Location id
+*   **Body Parameters (application/json):**
+    *   `live` (object): Live config containing api-key and publishable key for live payments
+        *   `apiKey` (string): Api-key for custom payment provider config
+        *   `publishableKey` (string): Publishable-key for custom payment provider config
+    *   `test` (object): Test config containing api-key and publishable-key for test payments
+        *   `apiKey` (string): Api-key for custom payment provider config
+        *   `publishableKey` (string): Publishable-key for custom payment provider config
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Scope(s):** `payments/custom-provider.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+
+### 9. RESPONSE FORMAT
+*   **200 OK (Successful response - application/json):**
+    *   `name` (string): The name of the custom provider
+    *   `description` (string): Description of payment gateway. Shown on the payments integrations page as subtext
+    *   `paymentsUrl` (string): This url will be loaded in iFrame to start a payment session.
+    *   `queryUrl` (string): The url used for querying payments related events. Ex. verify, refund, subscription etc.
+    *   `imageUrl` (string): Public image url for logo of the payment gateway displayed on the payments integrations page.
+    *   `_id` (string): The unique identifier for the custom provider.
+    *   `locationId` (string): Location id
+    *   `marketplaceAppId` (string): The application id of marketplace
+    *   `paymentProvider` (object): Payment provider details.
+    *   `deleted` (boolean): Whether the config is deleted or not. true represents config is deleted
+    *   `createdAt` (date-time): The creation timestamp of the custom provider.
+    *   `updatedAt` (date-time): The last update timestamp of the custom provider.
+    *   `traceId` (string): Trace id of the custom provider.
+*   **400 Bad Request (application/json):**
+    *   `statusCode` (number): e.g., 400
+    *   `message` (string): e.g., "Bad Request"
+*   **401 Unauthorized (application/json):**
+    *   `statusCode` (number): e.g., 401
+    *   `message` (string): e.g., "Invalid token: access token is invalid"
+    *   `error` (string): e.g., "Unauthorized"
+*   **422 Unprocessable Entity (application/json):**
+    *   `statusCode` (number): e.g., 422
+    *   `message` (string[]): e.g., `["Unprocessable Entity"]`
+    *   `error` (string): e.g., "Unprocessable Entity"
+
+### 10. PURPOSE
+This API is used to create a new payment configuration for a given location, allowing the integration of custom payment providers.
+
+### 11. TAGS
+Payments, Custom Provider, Configuration, Connect, Create, POST, API Key, Publishable Key, Location
+
+### Code Examples
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

@@ -1,0 +1,67 @@
+Here's a structured summary of the `LocationCreate` webhook event documentation:
+
+### 1. ENDPOINT NAME
+LocationCreate Webhook Event
+
+### 2. CATEGORY
+Webhook
+
+### 3. HTTP METHOD
+Outgoing Webhook Event (triggered by Location Create)
+*(Note: HighLevel sends a POST request to a pre-configured URL when a location is created. This is not an endpoint an external application calls directly.)*
+
+### 4. ENDPOINT URL
+Not applicable (This is an outgoing webhook event; the URL is configured by the receiving application.)
+
+### 5. FULL URL
+Not applicable (This is an outgoing webhook event; the URL is configured by the receiving application.)
+
+### 6. REQUIRED PARAMETERS
+*(These are the properties included in the webhook payload, generally expected to be present.)*
+-   **type** (string): The type of the webhook event. Value will be `LocationCreate`.
+-   **id** (string): The unique identifier of the newly created location.
+-   **name** (string): The name of the newly created location.
+-   **email** (string): The email address associated with the newly created location.
+-   **stripeProductId** (string): The Stripe product ID linked to the newly created location.
+-   **companyId** (string): The unique identifier of the company to which the location belongs.
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+-   **Access Requirement**: Available only to Agency Level Apps.
+*(Note: The documentation does not specify authentication methods for verifying the webhook's origin, such as shared secrets or signature headers. Implementations typically use these for security.)*
+
+### 9. RESPONSE FORMAT
+The webhook payload sent by HighLevel is a JSON object.
+*(Note: The receiving application is expected to respond with a 2xx HTTP status code to acknowledge successful receipt of the webhook event.)*
+
+**Payload Structure (JSON):**
+```json
+{
+  "type": "string",
+  "id": "string",
+  "name": "string",
+  "email": "string",
+  "stripeProductId": "string",
+  "companyId": "string"
+}
+```
+
+**Example Payload:**
+```json
+{
+  "type": "LocationCreate",
+  "id": "ve9EPM428h8vShlRW1KT",
+  "companyId": "otg8dTQqGLh3Q6iQI55w",
+  "name": "Loram ipsum",
+  "email": "mailer@example.com",
+  "stripeProductId": "prod_xyz123abc"
+}
+```
+
+### 10. PURPOSE
+This webhook event is triggered and sent whenever a new location (sub-account) is created within HighLevel.
+
+### 11. TAGS
+Webhook Events, Location, Create, Agency Level, Sub-Account

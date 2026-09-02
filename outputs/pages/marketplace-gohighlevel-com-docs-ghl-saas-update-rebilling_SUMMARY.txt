@@ -1,0 +1,55 @@
+Here's a structured summary of the API documentation for "Update Rebilling":
+
+### 1. ENDPOINT NAME:
+Update Rebilling
+
+### 2. CATEGORY:
+Saas
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/saas/update-rebilling/:companyId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/saas/update-rebilling/:companyId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+
+*   **Path Parameters:**
+    *   `companyId` (string): The ID of the company for which to update rebilling.
+
+*   **Body Parameters (application/json):**
+    *   `product` (string): The product to update rebilling for.
+        Possible values: `contentAI`, `workflow_premium_actions`, `workflow_ai`, `conversationAI`, `EmailNotification`, `whatsApp`, `reviewsAI`, `VERIFIED_CALLER_ID`, `WALLET_SALES_TAX`, `NOTIFICATION_SMS`, `EmailSmtp`, `EmailVerification`, `autoCompleteAddress`, `funnelAI`, `domainPurchase`, `Phone`, `Email`
+    *   `locationIds` (string[]): Array of location IDs to update rebilling for.
+    *   `config` (object): Configuration for rebilling settings.
+        *   `optIn` (boolean): Enable the product for the locations.
+        *   `enabled` (boolean): Enable the rebilling for the locations.
+        *   `markup` (number): Additional value to be added in terms of percentage. For example, if the product price is $100 and the markup is 5, the amount charged to will be $105.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Scheme:** Bearer (JWT format)
+*   **In:** Header (as `Authorization: Bearer <TOKEN>`)
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `201`
+*   **Structure:** Not explicitly detailed beyond the status code.
+
+### 10. PURPOSE:
+This endpoint allows for bulk updating of rebilling settings for specified locations associated with a given company.
+
+### 11. TAGS:
+Saas, Rebilling, Update, Location, Company, Product, Configuration, API, Settings
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

@@ -1,0 +1,53 @@
+Here is the structured summary of the API documentation:
+
+**1. ENDPOINT NAME:** Delete Link
+
+**2. CATEGORY:** Trigger Links (or Links)
+
+**3. HTTP METHOD:** DELETE
+
+**4. ENDPOINT URL:** `/links/:linkId`
+
+**5. FULL URL:** `https://services.leadconnectorhq.com/links/:linkId`
+
+**6. REQUIRED PARAMETERS:**
+   *   **Header Parameters:**
+       *   Version (string): API Version. Possible values: [`2021-07-28`]
+   *   **Path Parameters:**
+       *   linkId (string): Link Id
+
+**7. OPTIONAL PARAMETERS:**
+   *   Not specified in documentation
+
+**8. AUTHENTICATION:**
+   *   **Scope(s):** `links.write`
+   *   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+   *   **Token Type(s):** `Sub-Account Token`
+   *   **Scheme:** Bearer (JWT format)
+   *   **Location:** `Authorization` header
+   *   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+**9. RESPONSE FORMAT:**
+   *   **Status Code:** `201` (Successful response)
+   *   **Content Type:** `application/json`
+   *   **Schema:**
+       *   `succeded` (boolean): Indicates if the operation was successful.
+   *   **Example:**
+       ```json
+       {"succeded": true}
+       ```
+
+**10. PURPOSE:** This endpoint allows an authenticated user to delete a specific trigger link by providing its unique ID.
+
+**11. TAGS:** Trigger Links, Links, Delete, API, GoHighLevel, GHL, CRUD, Marketing, Automation.
+
+**Code Examples Availability:**
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

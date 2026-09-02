@@ -1,0 +1,87 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+List Inventory
+
+### 2. CATEGORY:
+Products (Prices Inventory)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/products/inventory`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/products/inventory`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+*   **Query Parameters:**
+    *   `altId` (string): Location Id or Agency Id
+    *   `altType` (string): Possible values: [`location`]
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   `limit` (number): The maximum number of items to be included in a single page of results (Default value: `0`)
+    *   `offset` (number): The starting index of the page, indicating the position from which the results should be retrieved (Default value: `0`)
+    *   `search` (string): Search string for Variant Search
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `products/prices.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** Bearer (JWT) in header
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `inventory` (array of objects): List of inventory items
+            *   Each object contains:
+                *   `_id` (string, required): The unique identifier for the price
+                *   `name` (string, required): Name of the price/variant
+                *   `availableQuantity` (number, required): Available quantity in inventory
+                *   `sku` (string, required): SKU for the product variant
+                *   `allowOutOfStockPurchases` (boolean, required): Whether out of stock purchases are allowed
+                *   `product` (string, required): Product ID this price belongs to
+                *   `updatedAt` (string, required): Last update timestamp
+                *   `image` (string, optional): Product image URL
+                *   `productName` (string, optional): Product name
+        *   `total` (object, required): Total count of inventory items
+            *   Contains `total` (number)
+    *   **Example (200 OK):**
+        ```json
+        {
+          "inventory": [
+            {
+              "_id": "6241712be68f7a98102ba272",
+              "name": "Medium T-shirt",
+              "availableQuantity": 50,
+              "sku": "TSHIRT-MED-001",
+              "allowOutOfStockPurchases": false,
+              "product": "6241712be68f7a98102ba270",
+              "updatedAt": "2023-12-12T09:27:42.355Z",
+              "image": "https://example.com/images/product.jpg",
+              "productName": "T-shirt"
+            }
+          ],
+          "total": {
+            "total": 100
+          }
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+The "List Inventory API allows the user to retrieve a paginated list of inventory items to fetch details for multiple items based on provided query parameters.
+
+### 11. TAGS:
+Products, Inventory, List, Retrieve, Prices, Read, Get, GHL, HighLevel, Marketplace, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for: cURL, nodejs, python, php, java, go, ruby, powershell.

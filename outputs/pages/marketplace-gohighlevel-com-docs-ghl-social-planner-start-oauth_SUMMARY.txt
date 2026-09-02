@@ -1,0 +1,70 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Starts OAuth For Oauth Account
+
+### 2. CATEGORY:
+Social Planner (Specifically within OAuth | Generic)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/oauth/:platform/start`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/oauth/:platform/start`
+
+### 6. REQUIRED PARAMETERS:
+*   **Authorization** (string): Access Token (e.g., Bearer 9c48df2694a849b6089f9d0d3513efe)
+*   **Version** (string): API Version (Possible values: `2021-07-28`)
+*   **platform** (string): Platform (Possible values: `google`, `facebook`, `instagram`, `linkedin`, `tiktok`, `tiktok-business`, `youtube`, `pinterest`)
+*   **locationId** (string): Location Id (e.g., w37swmmLbA02zgqKPpxITe2)
+*   **userId** (string): User Id (e.g., u37swmmLbA02zgqKPpxITe2)
+
+### 7. OPTIONAL PARAMETERS:
+*   **page** (string): Page (e.g., integration)
+*   **reconnect** (string): Reconnect (e.g., true)
+
+### 8. AUTHENTICATION:
+*   **Method**: Bearer Token
+*   **Token Type**: Access Token
+*   **Location**: `Authorization` header
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (2xx)**:
+    *   This API call initiates a redirect to the specified social media platform's OAuth login screen. There is no direct JSON payload for a successful HTTP response.
+    *   Upon successful user login on the OAuth provider, the `window` object will emit a `message` event. Applications should listen for this event, specifically where `e.data.page === 'social_media_posting'`.
+    *   **Event Data Response Example**:
+        ```json
+        {
+          "actionType": "close",
+          "page": "social_media_posting",
+          "platform": "facebook",
+          "placement": "placement",
+          "accountId": "658a9b6833b91e0ecb8f3958",
+          "reconnectAccounts": ["658a9b6833b91e0ecb834acd", "efd2daa9b6833b91e0ecb8f3511"]
+        }
+        ```
+*   **Error Responses**:
+    *   **400 Bad Request**:
+        ```json
+        {"statusCode":400,"message":"Bad Request"}
+        ```
+    *   **401 Unauthorized**:
+        ```json
+        {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+        ```
+    *   **422 Unprocessable Entity**:
+        ```json
+        {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+        ```
+
+### 10. PURPOSE:
+This endpoint initiates the OAuth login flow for a specified social media platform, redirecting the user to the platform's login screen and returning event data via a window message upon successful authentication.
+
+### 11. TAGS:
+Social Planner, OAuth, Authentication, Social Media, Platform Integration, Connect Account, Authorization Flow, Google, Facebook, Instagram, LinkedIn, TikTok, YouTube, Pinterest.
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`. A JavaScript sample for listening to the `window.message` event is also provided.

@@ -1,0 +1,69 @@
+Here's a structured summary of the provided documentation:
+
+### 1. ENDPOINT NAME:
+Vue 3 Store Events Migration Guide
+
+### 2. CATEGORY:
+Marketplace Modules / Custom JS
+
+### 3. HTTP METHOD:
+Not applicable (Client-side JavaScript events and subscriptions)
+
+### 4. ENDPOINT URL:
+Not applicable (This document describes client-side JavaScript functions available via `window.AppUtils.StoreEvents` and `document.addEventListener`)
+*   `window.AppUtils.StoreEvents.register()`
+*   `window.AppUtils.StoreEvents.unregister()`
+*   `document.addEventListener("routeChangeEvent", ...)`
+
+### 5. FULL URL:
+`https://marketplace.gohighlevel.com/docs/marketplace-modules/vue3-store-events/index.html`
+
+### 6. REQUIRED PARAMETERS:
+
+#### For `window.AppUtils.StoreEvents.register()`:
+*   `modules` (array of strings): A list of store module names (e.g., "auth", "user", "contacts") that the app needs to receive updates from.
+*   `callback` (function): A callback function that will be executed whenever a mutation occurs in any of the subscribed modules. It receives an object with `{ module, state, mutation }`.
+
+#### For `window.AppUtils.StoreEvents.unregister()`:
+*   `subscriptionId` (string): The unique ID returned by the `register()` call, used to identify and remove a specific subscription.
+
+#### For `document.addEventListener("routeChangeEvent", ...)`:
+*   `eventName` (string): The event name to listen for, which is `"routeChangeEvent"`.
+*   `callback` (function): A callback function that will be executed when a route change event occurs. It receives an event object (`e`) where `e.detail` contains information about the route change.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+Not applicable (Client-side integration within a marketplace app; relies on the app's existing authentication context and access within the HighLevel platform).
+
+### 9. RESPONSE FORMAT:
+
+#### For `window.AppUtils.StoreEvents.register()`:
+Returns a `subscriptionId` (string) which can be used to unregister the subscription later.
+The `callback` function provided to `register()` receives an object:
+```javascript
+{
+  module: string,      // The name of the module that was updated (e.g., "auth", "user")
+  state: object,       // The current state of the updated module (state[module])
+  mutation: object     // The mutation object that triggered the update
+}
+```
+
+#### For `window.AppUtils.StoreEvents.unregister()`:
+No direct response; it performs the action of removing the subscription.
+
+#### For `document.addEventListener("routeChangeEvent", ...)`:
+The `callback` function receives a `CustomEvent` object (`e`) where `e.detail` contains the route information.
+
+### 10. PURPOSE:
+This guide provides instructions for Marketplace app developers on how to migrate their apps to use the new `StoreEvents` API for subscribing to Vuex store changes and handling route navigation events, in preparation for the upcoming Vue 3 migration, as direct access to Vue instances will no longer be available.
+
+### 11. TAGS:
+Vue 3, Store Events, Migration Guide, Marketplace Apps, Custom JS, Client-side, JavaScript, GoHighLevel, UI Integration, State Management, Routing, AppUtils, Docusaurus
+
+### Code Examples:
+JavaScript code examples are present for:
+*   Registering for store updates using `window.AppUtils.StoreEvents.register()`.
+*   Unregistering from store updates using `window.AppUtils.StoreEvents.unregister()`.
+*   Listening for route change events using `document.addEventListener("routeChangeEvent", ...)`.

@@ -1,0 +1,235 @@
+```json
+{
+  "ENDPOINT_NAME": "Send a new message",
+  "CATEGORY": "Conversations, Messages",
+  "HTTP_METHOD": "POST",
+  "ENDPOINT_URL": "/conversations/messages",
+  "FULL_URL": "https://services.leadconnectorhq.com/conversations/messages",
+  "REQUIRED_PARAMETERS": [
+    {
+      "paramName": "Version",
+      "type": "string",
+      "location": "header",
+      "description": "API Version (Possible values: ['2021-04-15'])"
+    },
+    {
+      "paramName": "type",
+      "type": "string",
+      "location": "body",
+      "description": "Type of message being sent (Possible values: ['SMS', 'Email', 'WhatsApp', 'IG', 'FB', 'Custom', 'Live_Chat', 'InternalComment'])"
+    },
+    {
+      "paramName": "contactId",
+      "type": "string",
+      "location": "body",
+      "description": "ID of the contact receiving the message"
+    },
+    {
+      "paramName": "status",
+      "type": "string",
+      "location": "body",
+      "description": "Message status (Possible values: ['delivered', 'failed', 'pending', 'read'])"
+    }
+  ],
+  "OPTIONAL_PARAMETERS": [
+    {
+      "paramName": "appointmentId",
+      "type": "string",
+      "location": "body",
+      "description": "ID of the associated appointment"
+    },
+    {
+      "paramName": "attachments",
+      "type": "string[]",
+      "location": "body",
+      "description": "Array of attachment URLs"
+    },
+    {
+      "paramName": "emailFrom",
+      "type": "string",
+      "location": "body",
+      "description": "Email address to send from"
+    },
+    {
+      "paramName": "emailCc",
+      "type": "string[]",
+      "location": "body",
+      "description": "Array of CC email addresses"
+    },
+    {
+      "paramName": "emailBcc",
+      "type": "string[]",
+      "location": "body",
+      "description": "Array of BCC email addresses"
+    },
+    {
+      "paramName": "html",
+      "type": "string",
+      "location": "body",
+      "description": "HTML content of the message"
+    },
+    {
+      "paramName": "message",
+      "type": "string",
+      "location": "body",
+      "description": "Text content of the message. For InternalComment type, use `@username<userId>actualUserId</userId>` format to mention team members. The mentioned user IDs must also be included in the mentions array."
+    },
+    {
+      "paramName": "subject",
+      "type": "string",
+      "location": "body",
+      "description": "Subject line for email messages"
+    },
+    {
+      "paramName": "replyMessageId",
+      "type": "string",
+      "location": "body",
+      "description": "ID of message being replied to"
+    },
+    {
+      "paramName": "templateId",
+      "type": "string",
+      "location": "body",
+      "description": "ID of message template"
+    },
+    {
+      "paramName": "threadId",
+      "type": "string",
+      "location": "body",
+      "description": "ID of message thread. For email messages, this is the message ID that contains multiple email messages in the thread"
+    },
+    {
+      "paramName": "scheduledTimestamp",
+      "type": "number",
+      "location": "body",
+      "description": "UTC Timestamp (in seconds) at which the message should be scheduled"
+    },
+    {
+      "paramName": "conversationProviderId",
+      "type": "string",
+      "location": "body",
+      "description": "ID of conversation provider"
+    },
+    {
+      "paramName": "emailTo",
+      "type": "string",
+      "location": "body",
+      "description": "Email address to send to, if different from contact's primary email. This should be a valid email address associated with the contact."
+    },
+    {
+      "paramName": "emailReplyMode",
+      "type": "string",
+      "location": "body",
+      "description": "Mode for email replies (Possible values: ['reply', 'reply_all'])"
+    },
+    {
+      "paramName": "fromNumber",
+      "type": "string",
+      "location": "body",
+      "description": "Phone number used as the sender number for outbound messages"
+    },
+    {
+      "paramName": "toNumber",
+      "type": "string",
+      "location": "body",
+      "description": "Recipient phone number for outbound messages"
+    },
+    {
+      "paramName": "mentions",
+      "type": "string[]",
+      "location": "body",
+      "description": "Array of user IDs mentioned in the message. Required for InternalComment type. User IDs correspond to team members tagged with `@username<userId>id</userId>` format in the message text."
+    }
+  ],
+  "AUTHENTICATION": {
+    "requiredScopes": ["conversations/message.write"],
+    "authMethods": ["OAuth Access Token", "Private Integration Token"],
+    "tokenTypes": ["Sub-Account Token"],
+    "scheme": "bearer",
+    "bearerFormat": "JWT",
+    "in": "header (Authorization)"
+  },
+  "RESPONSE_FORMAT": {
+    "statusCode": 200,
+    "description": "Created the message",
+    "schema": {
+      "conversationId": {
+        "type": "string",
+        "required": true,
+        "description": "Conversation ID"
+      },
+      "emailMessageId": {
+        "type": "string",
+        "description": "This contains the email message id (only for Email type). Use this ID to send inbound replies to GHL to create a threaded email."
+      },
+      "messageId": {
+        "type": "string",
+        "required": true,
+        "description": "This is the main Message ID"
+      },
+      "messageIds": {
+        "type": "string[]",
+        "description": "When sending via the GMB channel, we will be returning list of `messageIds` instead of single `messageId`."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Additional response message when sending a workflow message"
+      }
+    },
+    "example": {
+      "conversationId": "ABC12h2F6uBrIkfXYazb",
+      "emailMessageId": "rnGyqh2F6uBrIkfhFo9A",
+      "messageId": "t22c6DQcTDf3MjRhwf77",
+      "messageIds": ["string"],
+      "msg": "Message queued successfully."
+    },
+    "errorResponses": [
+      {
+        "statusCode": 400,
+        "description": "Bad Request",
+        "example": {
+          "statusCode": 400,
+          "message": "Bad Request"
+        }
+      },
+      {
+        "statusCode": 401,
+        "description": "Unauthorized",
+        "example": {
+          "statusCode": 401,
+          "message": "Invalid token: access token is invalid",
+          "error": "Unauthorized"
+        }
+      }
+    ]
+  },
+  "PURPOSE": "This endpoint allows users to send a new message of various types (SMS, Email, WhatsApp, IG, FB, Custom, Live Chat, Internal Comment) to a specified contact within a conversation.",
+  "TAGS": [
+    "Conversations",
+    "Messages",
+    "Send",
+    "Message",
+    "SMS",
+    "Email",
+    "WhatsApp",
+    "Instagram",
+    "Facebook",
+    "Custom",
+    "Live Chat",
+    "Internal Comment",
+    "Communication",
+    "Outbound",
+    "API"
+  ],
+  "CODE_EXAMPLES_AVAILABLE": [
+    "curl",
+    "nodejs",
+    "python",
+    "php",
+    "java",
+    "go",
+    "ruby",
+    "powershell"
+  ]
+}
+```

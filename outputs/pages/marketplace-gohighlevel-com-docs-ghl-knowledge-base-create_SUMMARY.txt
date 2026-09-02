@@ -1,0 +1,74 @@
+Here's a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME
+Create a new FAQ inside knowledge base
+
+### 2. CATEGORY
+Knowledge Base FAQs
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/knowledge-bases/faqs`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/knowledge-bases/faqs`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters**:
+    *   `Authorization` (string): Access Token. Example: `Bearer 9c48df2694a849b6089f9d0d3513efe`
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+*   **Body Parameters**:
+    *   `locationId` (string): location ID as string. Example: `HqDZpF8GH3qvgJTmKCoL`
+    *   `question` (string): faq question as a string. Example: `What is the capital of France?`
+    *   `answer` (string): faq answer as a string. Example: `The capital of France is Paris.`
+    *   `knowledgeBaseId` (string): knowledge base ID as string. Example: `710KoEzy793Fxubft0bc`
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Authorization Header**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account. Scheme: bearer, Format: JWT.
+
+### 9. RESPONSE FORMAT
+**Status Code:** `201` (FAQ created successfully)
+**Content Type:** `application/json`
+**Structure:**
+```json
+{
+  "success": true,
+  "faq": {
+    "id": "3rzeElC1FOVY91veVBkp",
+    "question": "What is 1+2?",
+    "questionLowerCase": "what is 1+2?",
+    "answer": "3",
+    "knowledgeBaseId": "I1rITlYLJofFosIqC4Np",
+    "locationId": "qIyivCmsuEOSnyoFYEej",
+    "trainedUrlId": "688e6b6d8a1887e6d94d1475",
+    "deleted": false,
+    "createdAt": "2025-08-02T19:47:57.243Z",
+    "updatedAt": "2025-08-02T19:47:57.243Z"
+  }
+}
+```
+Other possible responses include `400 Bad Request`, `401 Unauthorized`, `422 Unprocessable Entity`, and `500 Internal Server Error`, each with a JSON structure containing `statusCode`, `message`, and sometimes `error`.
+
+### 10. PURPOSE
+This endpoint allows you to create a new FAQ entry within a specified knowledge base.
+
+### 11. TAGS
+Knowledge Base, FAQ, Create, Add, Resource, API, POST, HighLevel
+
+### 12. CODE EXAMPLES
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

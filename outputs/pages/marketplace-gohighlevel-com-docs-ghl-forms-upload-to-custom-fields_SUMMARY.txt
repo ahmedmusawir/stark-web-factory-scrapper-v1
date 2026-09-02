@@ -1,0 +1,87 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Upload files to custom fields
+
+### 2. CATEGORY:
+Forms
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/forms/upload-custom-files`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/forms/upload-custom-files`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version.
+        *   Possible values: `2021-07-28`
+
+*   **Query Parameters:**
+    *   `contactId` (string): Contact ID to upload the file to.
+    *   `locationId` (string): Location ID of the contact.
+
+*   **Body Parameters (multipart/form-data):**
+    *   Files (buffer): The files to be uploaded.
+        *   **Key format:** `<custom_field_id>_<file_id>` (where `custom_field_id` is the ID of the custom field and `file_id` is a randomly generated ID/UUID).
+        *   Supports multiple file uploads.
+        *   **File size limit:** 50 MB.
+        *   **Allowed file types:** PDF, DOCX, DOC, JPG, JPEG, PNG, GIF, CSV, XLSX, XLS, MP4, MPEG, ZIP, RAR, TXT, SVG.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `forms.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer` (JWT)
+*   **In:** `header`
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Successful response):**
+    *   Returns the updated contact object. (Schema for contact object not explicitly provided in documentation)
+
+*   **400 Bad Request:**
+    *   `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "statusCode": 400,
+          "message": "Bad Request"
+        }
+        ```
+
+*   **401 Unauthorized:**
+    *   `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "statusCode": 401,
+          "message": "Invalid token: access token is invalid",
+          "error": "Unauthorized"
+        }
+        ```
+
+### 10. PURPOSE:
+This endpoint allows users to upload one or more files to custom fields associated with a specific contact within a given location, returning the updated contact object upon successful completion.
+
+### 11. TAGS:
+Forms, Upload, Files, Custom Fields, Contacts, Location, GHL, HighLevel, Marketplace, API, Multipart, Data, Media
+
+### 12. CODE EXAMPLES:
+Code examples are available for the following languages:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

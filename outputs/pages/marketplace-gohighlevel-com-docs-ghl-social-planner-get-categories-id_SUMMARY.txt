@@ -1,0 +1,69 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get categories by id
+
+### 2. CATEGORY:
+Social Planner - Category
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/:locationId/categories/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/:locationId/categories/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Authorization` (string): Access Token
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   `id` (string): Category Id
+    *   `locationId` (string): Location Id
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**Status Code: 200 (Successful response)**
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   `success` (boolean): Success or Failure (Example: `true`)
+    *   `statusCode` (number): Status Code (Example: `200`)
+    *   `message` (string): Message (Example: `Fetched Category`)
+    *   `results` (object):
+        *   `category` (object):
+            *   `name` (string): Category Name (Example: `Primary`)
+            *   `primaryColor` (string): Color For Category (Example: `#32a852`)
+            *   `secondaryColor` (string): Secondary Color (Example: `#32a852`)
+            *   `locationId` (string): Location ID (Example: `Lx1EI6YIgQYMQi0ytFXv`)
+            *   `_id` (string): ID (Example: `Lx1EI6YIgQYMQi0ytFXv`)
+            *   `createdBy` (string): Created By User (Example: `Lx1EI6YIgQYMQi0ytFXv`)
+            *   `deleted` (boolean): Deleted Value (Example: `false`)
+            *   `message` (string): Message (Example: `Category not found` - *Note: This field appears in the successful response schema but its value suggests an error, potentially for a different scenario or a copy-paste error in the documentation's example.*)
+            *   `createdAt` (date-time): (Example: `2023-08-02T00:00:00.000Z`)
+            *   `updatedAt` (date-time): (Example: `2023-08-02T00:00:00.000Z`)
+*   **Example (JSON):**
+    ```json
+    {"success":true,"statusCode":200,"message":"Fetched Category","results":{"category":{"name":"Primary","primaryColor":"#32a852","secondaryColor":"#32a852","locationId":"Lx1EI6YIgQYMQi0ytFXv","_id":"Lx1EI6YIgQYMQi0ytFXv","createdBy":"Lx1EI6YIgQYMQi0ytFXv","deleted":false,"message":"Category not found","createdAt":"2023-08-02T00:00:00.000Z","updatedAt":"2023-08-02T00:00:00.000Z"}}}
+    ```
+**Other Responses:**
+*   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint retrieves a social media category by its unique ID for a specific location.
+
+### 11. TAGS:
+Social Planner, Category, Get, Retrieve, Read, ID, Location, API, HighLevel, Marketing, Content Management, Social Media, Resource.
+**Code Examples Availability:** Yes (cURL, nodejs, python, php, java, go, ruby, powershell)

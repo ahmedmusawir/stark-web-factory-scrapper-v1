@@ -1,0 +1,111 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME
+GET all or email/sms templates
+
+### 2. CATEGORY
+Sub-Account (Location) Templates
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/locations/:locationId/templates`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/locations/:locationId/templates`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-07-28`.
+*   **Path Parameters:**
+    *   `locationId` (string): Location Id. Example: `ve9EPM428h8vShlRW1KT`.
+*   **Query Parameters:**
+    *   `originId` (string): Origin Id. Example: `ve9EPM428h8vShlRW1KT`.
+
+### 7. OPTIONAL PARAMETERS
+*   **Query Parameters:**
+    *   `deleted` (boolean): Filters templates by deletion status. Default value: `false`.
+    *   `skip` (string): Number of records to skip for pagination. Default value: `0`. Example: `1`.
+    *   `limit` (string): Maximum number of records to return. Default value: `25`. Example: `25`.
+    *   `type` (string): Filters templates by type. Possible values: [`sms`, `email`, `whatsapp`].
+
+### 8. AUTHENTICATION
+*   **Scope(s):** `locations/templates.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT format)
+
+### 9. RESPONSE FORMAT
+*   **Successful Response (200 OK):**
+    *   Content Type: `application/json`
+    *   Schema:
+        ```json
+        {
+          "templates": [
+            {
+              "id": "string",
+              "name": "string",
+              "type": "string", // "sms" or "email"
+              "template": {
+                // If type is "sms":
+                "body": "string",
+                "attachments": [],
+                // If type is "email":
+                "subject": "string",
+                "attachments": [],
+                "html": "string"
+              },
+              "dateAdded": "string (ISO 8601)",
+              "locationId": "string",
+              "urlAttachments": [] // Specific to SMS templates in example
+            }
+          ],
+          "totalCount": "number"
+        }
+        ```
+    *   Example:
+        ```json
+        {
+          "templates": [
+            {
+              "id": "2yMwhgTNO19bpintqrap",
+              "name": "sms template",
+              "type": "sms",
+              "template": {
+                "body": "sms body",
+                "attachments": []
+              },
+              "dateAdded": "2022-01-27T12:31:19.679Z",
+              "locationId": "ve9EPM428h8vShlRW1KT",
+              "urlAttachments": []
+            },
+            {
+              "id": "2yMwhgTNO19bpintqrap",
+              "name": "email template",
+              "type": "email",
+              "dateAdded": "2022-01-27T12:31:19.679Z",
+              "template": {
+                "subject": "subject text",
+                "attachments": [],
+                "html": "<html><head><style>body{font-family: sans-serif;}</style></head><body>testing</body></html>"
+              },
+              "locationId": "ve9EPM428h8vShlRW1KT"
+            }
+          ],
+          "totalCount": 100
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE
+This endpoint allows retrieval of all available SMS, email, or WhatsApp templates for a specified sub-account location, with options for filtering by type and pagination.
+
+### 11. TAGS
+Sub-Account, Location, Template, SMS, Email, WhatsApp, Get, List, Read, API
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

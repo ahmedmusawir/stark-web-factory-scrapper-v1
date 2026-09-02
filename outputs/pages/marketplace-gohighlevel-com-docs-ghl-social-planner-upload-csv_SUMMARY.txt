@@ -1,0 +1,87 @@
+```
+## STRUCTURED API SUMMARY
+
+### 1. ENDPOINT NAME:
+Upload CSV
+
+### 2. CATEGORY:
+Social Planner (CSV)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/social-media-posting/:locationId/csv`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/:locationId/csv`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `locationId` (string): Location Id. Example: `ve9EPM428h8vShlRW1KT`
+*   **Body (multipart/form-data):**
+    *   `file` (binary): The CSV file to upload.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `socialplanner/csv.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer
+*   **Bearer Format:** JWT
+*   **In:** Header (`Authorization`)
+
+### 9. RESPONSE FORMAT:
+
+*   **201 Successful response** (`application/json`)
+    ```json
+    {
+      "success": true,
+      "statusCode": 201,
+      "message": "Uploaded CSV",
+      "results": {
+        "filePath": "omaDY3RbWtTP511e/social-import/d23d68c2-82c0-1db6e2.csv",
+        "rowsCount": 6,
+        "fileName": "CSV Import Sample - CSV Import Sample.csv"
+      }
+    }
+    ```
+*   **400 Bad Request** (`application/json`)
+    ```json
+    {
+      "statusCode": 400,
+      "message": "Bad Request"
+    }
+    ```
+*   **401 Unauthorized** (`application/json`)
+    ```json
+    {
+      "statusCode": 401,
+      "message": "Invalid token: access token is invalid",
+      "error": "Unauthorized"
+    }
+    ```
+*   **422 Unprocessable Entity** (`application/json`)
+    ```json
+    {
+      "statusCode": 422,
+      "message": ["Unprocessable Entity"],
+      "error": "Unprocessable Entity"
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint facilitates the upload of a CSV file containing social media post data to a specified location for use with the social planner.
+
+### 11. TAGS:
+Social Planner, CSV, Upload, Post, Media, File, API, Sub-Account, `socialplanner/csv.write`, Location
+
+**Code Examples Available:**
+`curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`
+```

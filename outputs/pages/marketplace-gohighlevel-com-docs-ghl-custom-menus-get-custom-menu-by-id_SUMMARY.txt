@@ -1,0 +1,75 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get Custom Menu Link
+
+### 2. CATEGORY:
+Custom menus
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/custom-menus/:customMenuId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/custom-menus/:customMenuId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   `customMenuId` (string): Unique identifier of the custom menu. Example: `62e589c1-c456-47e1-a9a7-cb8900014311`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `custom-menu-link.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Agency (OR) Private Integration Token of Agency.
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `customMenu` (object): Single Custom menu link object
+            *   `id` (string): Unique identifier for the custom menu. Example: `12345`
+            *   `icon` (object): Icon information for the menu item
+                *   `name` (string): Name of the icon. Example: `yin-yang`
+                *   `fontFamily` (string): Font family of the icon. Possible values: [`fab`, `fas`, `far`]
+            *   `title` (string): Title of the custom menu. Example: `Dashboard`
+            *   `url` (string): URL of the custom menu. Example: `/dashboard`
+            *   `order` (number): Order of the custom menu. Example: `1`
+            *   `showOnCompany` (boolean): Filter to show only agency-level menu links. When omitted, fetches both agency and sub-account menu links. Ignored if locationId is provided. Example: `true`
+            *   `showOnLocation` (boolean): Whether the menu must be displayed for sub-accounts level. Example: `true`
+            *   `showToAllLocations` (boolean): Whether the menu must be displayed to all sub-accounts. Example: `true`
+            *   `locations` (string[]): List of sub-account IDs where the menu should be shown. This list is applicable only when `showOnLocation` is true and `showToAllLocations` is false. Example: `["gfWreTIHL8pDbggBb7af","67WreTIHL8pDbggBb7ty"]`
+            *   `openMode` (string): Mode for opening the menu link. Possible values: [`iframe`, `new_tab`, `current_tab`]
+            *   `userRole` (string): Which user-roles should the menu be accessible to? Possible values: [`all`, `admin`, `user`]
+            *   `allowCamera` (boolean): Indicates if camera access is allowed for this menu. Example: `false`
+            *   `allowMicrophone` (boolean): Indicates if microphone access is allowed for this menu. Example: `false`
+    *   **Example:**
+        ```json
+        {"customMenu":{"id":"12345","icon":{"name":"yin-yang","fontFamily":"fab"},"title":"Dashboard","url":"/dashboard","order":1,"showOnCompany":true,"showOnLocation":true,"showToAllLocations":true,"locations":["gfWreTIHL8pDbggBb7af","67WreTIHL8pDbggBb7ty"],"openMode":"iframe","userRole":"all","allowCamera":false,"allowMicrophone":false}}
+        ```
+*   **Error Responses:**
+    *   `400 Bad Request`: Invalid query parameters provided.
+    *   `401 Unauthorized`: Invalid token.
+        *   Example: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `403 Forbidden`: The client does not have necessary permissions to access custom menu.
+    *   `422 Unprocessable Entity`: Unprocessable Entity.
+        *   Example: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint fetches a single custom menu based on its unique identifier, allowing clients to retrieve custom menu configurations including menu items, categories, and associated metadata.
+
+### 11. TAGS:
+Custom Menu, Menu Link, Get, Retrieve, Fetch, Configuration, Agency, Sub-account, Readonly, GHL, UI Customization
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

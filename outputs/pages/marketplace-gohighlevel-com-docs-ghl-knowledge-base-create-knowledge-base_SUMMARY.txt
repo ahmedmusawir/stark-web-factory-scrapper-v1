@@ -1,0 +1,90 @@
+```
+## STRUCTURED SUMMARY
+
+### 1. ENDPOINT NAME:
+Create a new knowledge base (max 15 knowledge bases per location)
+
+### 2. CATEGORY:
+Knowledge Base
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/knowledge-bases/`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/knowledge-bases/`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters**:
+    *   `Authorization` (string): Access Token (Example: Bearer 9c48df2694a849b6089f9d0d3513efe)
+    *   `Version` (string): API Version (Possible values: `2021-04-15`)
+*   **Body Parameters**:
+    *   `name` (string): Name of the knowledge base.
+    *   `locationId` (string): ID of the location to associate the knowledge base with.
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters**:
+    *   `description` (string): Description of the knowledge base.
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code**: `201` (Knowledge base created successfully)
+*   **Content Type**: `application/json`
+*   **Structure (Success - 201):**
+    ```json
+    {
+      "success": boolean,
+      "data": {
+        "id": string,
+        "name": string,
+        "nameLowerCase": string,
+        "locationId": string,
+        "kbMetadata": object,
+        "deleted": boolean,
+        "createdAt": string,
+        "updatedAt": string
+      }
+    }
+    ```
+*   **Structure (Bad Request - 400):**
+    ```json
+    {
+      "statusCode": number,
+      "message": string
+    }
+    ```
+*   **Structure (Unauthorized - 401):**
+    ```json
+    {
+      "statusCode": number,
+      "message": string,
+      "error": string
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint creates a new knowledge base for a specific location, with a limit of 15 knowledge bases per location.
+
+### 11. TAGS:
+Knowledge Base, Create, POST, GHL, LeadConnector, API, Location, New, Bot Training, Create Knowledge Base, Knowledge Base Management.
+
+### 12. CODE EXAMPLES:
+Code examples are available for the following languages:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
+```

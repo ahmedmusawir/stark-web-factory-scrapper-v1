@@ -1,0 +1,96 @@
+Here is the structured summary of the API documentation:
+
+---
+
+### 1. ENDPOINT NAME
+Filter Users by Email
+
+### 2. CATEGORY
+Users
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/users/search/filter-by-email`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/users/search/filter-by-email`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Body Parameters:**
+    *   `companyId` (string): Company ID to filter users.
+    *   `emails` (string[]): Array of email addresses to filter users.
+
+### 7. OPTIONAL PARAMETERS
+
+*   **Body Parameters:**
+    *   `deleted` (boolean): Filter deleted users. Default value: `false`.
+    *   `skip` (string): Number of results to be skipped before returning the result. Default value: `0`.
+    *   `limit` (string): Number of results to be limited before returning the result. Default value: `25`.
+    *   `projection` (string): Projection fields to return. Use "all" for all fields, or specify comma-separated field names. Default returns only id and email.
+
+### 8. AUTHENTICATION
+
+*   **Scope(s):** `users.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`, `Sub-Account Token`
+
+### 9. RESPONSE FORMAT
+
+**200 OK (Successful response - application/json)**
+
+An object containing:
+*   `users` (object[]): An array of user objects, each with the following fields:
+    *   `id` (string)
+    *   `name` (string)
+    *   `firstName` (string)
+    *   `lastName` (string)
+    *   `email` (string)
+    *   `phone` (string)
+    *   `extension` (string)
+    *   `permissions` (object): Contains various boolean permission flags (e.g., `campaignsEnabled`, `contactsEnabled`, `workflowsEnabled`, `opportunitiesEnabled`, `dashboardStatsEnabled`, `reviewsEnabled`, `conversationsEnabled`, `settingsEnabled`, `socialPlanner`, `bloggingEnabled`, `invoiceEnabled`, `paymentsEnabled`, `communitiesEnabled`, etc.).
+    *   `scopes` (string): A comma-separated string of scopes applicable to the user.
+    *   `roles` (object): User's roles details.
+        *   `type` (string)
+        *   `role` (string)
+        *   `locationIds` (string[])
+        *   `restrictSubAccount` (boolean)
+    *   `deleted` (boolean)
+    *   `lcPhone` (object): LC Phone Inbound Phone Numbers.
+        *   `locationId` (string)
+*   `count` (number): Total count of users found.
+
+**400 Bad Request (application/json)**
+*   `statusCode` (number): `400`
+*   `message` (string): `Bad Request`
+
+**401 Unauthorized (application/json)**
+*   `statusCode` (number): `401`
+*   `message` (string): `Invalid token: access token is invalid`
+*   `error` (string): `Unauthorized`
+
+**422 Unprocessable Entity (application/json)**
+*   `statusCode` (number): `422`
+*   `message` (string[]): `["Unprocessable Entity"]`
+*   `error` (string): `Unprocessable Entity`
+
+### 10. PURPOSE
+This endpoint allows filtering users by company ID, deleted status, and an array of email addresses, offering optional pagination and projection of specific fields in the response.
+
+### 11. TAGS
+Users, Search, Filter, Email, Company, LeadConnector, API, HighLevel, Permissions, Roles, Pagination, User Management, Readonly
+
+### 12. CODE EXAMPLES
+Code examples are available for:
+*   CURL
+*   Node.js
+*   Python
+*   PHP
+*   Java
+*   Go
+*   Ruby
+*   PowerShell

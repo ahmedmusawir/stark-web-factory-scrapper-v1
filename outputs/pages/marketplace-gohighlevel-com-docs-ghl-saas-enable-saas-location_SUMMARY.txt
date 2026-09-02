@@ -1,0 +1,57 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Enable SaaS for Sub-Account (Formerly Location)
+
+### 2. CATEGORY:
+Saas
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/saas/enable-saas/:locationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/saas/enable-saas/:locationId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+*   **Path Parameters:**
+    *   `locationId` (string): Not explicitly described, but required as part of the path.
+*   **Body Parameters:**
+    *   `companyId` (string): (Required)
+    *   `isSaaSV2` (boolean): Denotes if it is a saas v2 or v1 sub-account. (Required)
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters (with conditional requirements as noted in documentation):**
+    *   `stripeAccountId` (string): Stripe account id (Required only for SaaS V1). Example: `acct_1QDPY5FpU9DlKp7RQ8BXfywx`
+    *   `name` (string): Name of the stripe customer (Required only for SaaS V1). Example: `John Doe`
+    *   `email` (string): Email of the stripe customer (Required only for SaaS V1). Example: `john.doe@example.com`
+    *   `stripeCustomerId` (string): Stripe customer id if exists (Required only for SaaS V1). Example: `cus_1QDPY5FpU9DlKp7RQ8BXfywx`
+    *   `contactId` (string): Agency subaccount used for payment provider integration (Required Only for SaaS V2). Example: `1QDPY5FpU9DlKp7RQ8BXfywx`
+    *   `providerLocationId` (string): Agency Subaccount ID. Example: `r06mdj4OrrERzYDvsOdh`
+    *   `description` (string): Description. Example: `Description`
+    *   `saasPlanId` (string): Required only while pre-configuring saas subscription. Example: `1QDPY5FpU9DlKp7RQ8BXfywx`
+    *   `priceId` (string): Required only while pre-configuring saas subscription. Example: `price_1QDPY5FpU9DlKp7RQ8BXfywx`
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Scheme:** `Bearer`
+*   **Bearer Format:** `JWT`
+*   **Description:** Use the Access Token generated with user type as Company.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `201`
+*   **Structure:** Not specified in documentation (only the status code is listed).
+
+### 10. PURPOSE:
+This endpoint enables SaaS for a specific Sub-Account (formerly Location) based on the provided data.
+
+### 11. TAGS:
+`SaaS`, `enable`, `sub-account`, `location`, `API`, `subscription`, `payment`, `agency`, `HighLevel`
+
+### 12. CODE EXAMPLES:
+*   **Availability:** cURL example is shown. nodejs, python, php, java, go, ruby, powershell are listed as available but not displayed in the provided text.

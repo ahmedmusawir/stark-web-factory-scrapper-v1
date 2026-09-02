@@ -1,0 +1,104 @@
+Here's a structured summary of the "Update Estimate Template" API documentation:
+
+### 1. ENDPOINT NAME
+Update Estimate Template
+
+### 2. CATEGORY
+Invoice / Estimate
+
+### 3. HTTP METHOD
+PUT
+
+### 4. ENDPOINT URL
+`/invoices/estimate/template/:templateId`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/invoices/estimate/template/:templateId`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   `templateId` (string): Template Id
+*   **Body Parameters:**
+    *   `altId` (string): Location Id or Agency Id
+    *   `altType` (string): Possible values: [`location`]
+    *   `name` (string): Estimate Name
+    *   `businessDetails` (object): Business details associated with the estimate.
+    *   `currency` (string): Currency code
+    *   `items` (array[]): An array of items for the estimate. (Internal structure for request not explicitly defined, but inferred from response example to be an array of objects representing items.)
+    *   `discount` (object): Discount details for the estimate template.
+        *   `type` (string): Discount type (Possible values: [`percentage`, `fixed`])
+    *   **If `sendEstimateDetails` object is included:**
+        *   `sendEstimateDetails.altId` (string): Location Id or Agency Id
+        *   `sendEstimateDetails.altType` (string): Possible values: [`location`]
+        *   `sendEstimateDetails.action` (string): Possible values: [`sms_and_email`, `send_manually`, `email`, `sms`]
+        *   `sendEstimateDetails.liveMode` (boolean): livemode for estimate
+        *   `sendEstimateDetails.userId` (string): User Id for communication and updates.
+    *   **If `attachments` array is included:**
+        *   For each attachment object in the array:
+            *   `attachments.id` (string): Id of the file selected
+            *   `attachments.name` (string): Name of the file
+            *   `attachments.url` (string): URL of the file
+            *   `attachments.type` (string): Type of the file
+            *   `attachments.size` (number): Size of the file
+    *   **If `miscellaneousCharges` object is included:**
+        *   `miscellaneousCharges.charges` (array[]): charges for the processing fee. (Internal structure not explicitly defined, example shows `[ [ null ] ]`)
+        *   `miscellaneousCharges.paidCharges` (object[]): paid miscellaneous charges.
+            *   For each paid charge object in the array:
+                *   `miscellaneousCharges.paidCharges.name` (string): name of the processing fee
+                *   `miscellaneousCharges.paidCharges.charge` (number): charge for the processing fee
+                *   `miscellaneousCharges.paidCharges.amount` (number): amount of the processing fee
+                *   `miscellaneousCharges.paidCharges._id` (string): id of the processing fee
+
+### 7. OPTIONAL PARAMETERS
+
+*   **Body Parameters:**
+    *   `businessDetails.logoUrl` (string): Business Logo URL
+    *   `businessDetails.name` (string): Business Name
+    *   `businessDetails.phoneNo` (string): Business Phone Number
+    *   `businessDetails.address` (object): Business Address
+        *   `businessDetails.address.addressLine1` (string): Address Line 1
+        *   `businessDetails.address.addressLine2` (string): Address Line 2
+        *   `businessDetails.address.city` (string): City
+        *   `businessDetails.address.state` (string): State
+        *   `businessDetails.address.countryCode` (string): Country Code
+        *   `businessDetails.address.postalCode` (string): Postal Code
+    *   `businessDetails.website` (string): Business Website Link
+    *   `businessDetails.customValues` (string[]): Custom Values
+    *   `liveMode` (boolean): livemode for estimate (Default value: `true`)
+    *   `discount.value` (number): Discount Value (Default value: `0`)
+    *   `discount.validOnProductIds` (string[]): Product Ids on which discount is applicable (Example value shown as string: `'[ '6579751d56f60276e5bd4154' ]'`)
+    *   `termsNotes` (string): Terms notes, Also supports HTML markups
+    *   `title` (string): Title for the estimate
+    *   `automaticTaxesEnabled` (boolean): Automatic taxes enabled for the Estimate (Default value: `false`)
+    *   `meta` (object): Meta data for the estimate
+    *   `sendEstimateDetails` (object): When sending estimate directly while saving
+        *   `sendEstimateDetails.sentFrom` (object): sender details for invoice, valid only if invoice is not sent manually
+            *   `sendEstimateDetails.sentFrom.fromName` (string): Sender name to be used while sending email notification
+            *   `sendEstimateDetails.sentFrom.fromEmail` (string): Email id to be used while sending email notification
+        *   `sendEstimateDetails.estimateName` (string): estimate name
+    *   `estimateNumberPrefix` (string): Prefix for the estimate number (Default value: `EST-`)
+    *   `attachments` (object[]): attachments for the invoice
+    *   `miscellaneousCharges` (object): miscellaneous charges for the estimate
+        *   `miscellaneousCharges.collectedMiscellaneousCharges` (number): collected miscellaneous charges
+
+### 8. AUTHENTICATION
+*   **Scope(s):** `invoices/estimate.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+
+### 9. RESPONSE FORMAT
+*   **Success (200 OK):** `application/json`
+    *   Returns an object representing the updated estimate template.
+    *   **Schema Fields:** `altId`, `altType`, `_id`, `liveMode`, `deleted`, `name`, `currency`, `businessDetails` (object), `items` (array[] of objects with fields like `taxes`, `taxInclusive`, `_id`, `description`, `currency`, `productId`, `priceId`, `amount`, `qty`, `name`, `type`), `discount` (object), `title`, `estimateNumberPrefix`, `attachments` (object[]), `updatedBy`, `total`, `createdAt`, `updatedAt`, `__v`, `automaticTaxesEnabled`, `termsNotes`.
+
+### 10. PURPOSE
+This endpoint allows you to update the details of an existing estimate template.
+
+### 11. TAGS
+Estimate, Template, Update, Invoice, GHL, GoHighLevel, API, PUT, Invoices, Management, Documents, Customization
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

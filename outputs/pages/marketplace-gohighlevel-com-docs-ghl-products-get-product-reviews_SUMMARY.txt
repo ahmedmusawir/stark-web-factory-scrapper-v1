@@ -1,0 +1,92 @@
+```
+## STRUCTURED SUMMARY OF API DOCUMENTATION
+
+### 1. ENDPOINT NAME:
+Fetch Product Reviews
+
+### 2. CATEGORY:
+Products
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/products/reviews`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/products/reviews`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version
+    *   Possible values: [`2021-07-28`]
+*   **altId** (string): Location Id or Agency Id
+    *   Example: `6578278e879ad2646715ba9c`
+*   **altType** (string):
+    *   Possible values: [`location`]
+
+### 7. OPTIONAL PARAMETERS:
+*   **limit** (number): The maximum number of items to be included in a single page of results
+    *   Default value: `0`
+    *   Example: `20`
+*   **offset** (number): The starting index of the page, indicating the position from which the results should be retrieved.
+    *   Default value: `0`
+    *   Example: `0`
+*   **sortField** (string): The field upon which the sort should be applied
+    *   Possible values: [`createdAt`, `rating`]
+    *   Example: `rating`
+*   **sortOrder** (string): The order of sort which should be applied for the sortField
+    *   Possible values: [`asc`, `desc`]
+    *   Example: `desc`
+*   **rating** (number): Key to filter the ratings
+    *   Example: `4`
+*   **startDate** (string): The start date for filtering reviews
+    *   Example: `2023-01-01T00:00:00Z`
+*   **endDate** (string): The end date for filtering reviews
+    *   Example: `2023-12-31T23:59:59Z`
+*   **productId** (string): Comma-separated list of product IDs
+    *   Example: `60d21b4667d0d8992e610c88,60d21b4667d0d8992e610c89,60d21b4667d0d8992e610c8a`
+*   **storeId** (string): Comma-separated list of store IDs
+    *   Example: `60d21b4667d0d8992e610c85,60d21b4667d0d8992e610c86,60d21b4667d0d8992e610c87`
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `products.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header` (Authorization header)
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+#### 200 OK (Successful response)
+*   **Content Type**: `application/json`
+*   **Schema**:
+    *   **data** (array[]): Array of Collections (Note: Documentation states "Collections" but context is Product Reviews)
+    *   **total** (number): The total count of the collections present, which is useful to calculate the pagination (Note: Documentation states "collections" but context is Product Reviews)
+*   **Example**:
+    ```json
+    {"data":[[null]],"total":0}
+    ```
+
+#### 400 Bad Request
+*   **Schema**: `statusCode` (number), `message` (string)
+*   **Example**: `{"statusCode":400,"message":"Bad Request"}`
+
+#### 401 Unauthorized
+*   **Schema**: `statusCode` (number), `message` (string), `error` (string)
+*   **Example**: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+#### 422 Unprocessable Entity
+*   **Schema**: `statusCode` (number), `message` (string[]), `error` (string)
+*   **Example**: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+API to fetch the Product Reviews.
+
+### 11. TAGS:
+Products, Reviews, Fetch, Get, Read, Product Reviews, LeadConnector, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.
+```

@@ -1,0 +1,88 @@
+```
+## STRUCTURED API SUMMARY
+
+### 1. ENDPOINT NAME:
+OpportunityUpdate
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+N/A (This describes a webhook event payload sent *by* HighLevel, not an API endpoint to call *on* HighLevel. Webhooks are typically received via POST requests to a listener URL you configure.)
+
+### 4. ENDPOINT URL:
+N/A (This describes a webhook event payload, not a callable API endpoint.)
+
+### 5. FULL URL:
+N/A (This describes a webhook event payload, not a callable API endpoint.)
+
+### 6. REQUIRED PARAMETERS:
+Not specified in documentation. All fields listed in the "Webhook Payload Fields" section are expected to be present in the webhook payload.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation.
+
+### 8. AUTHENTICATION:
+Not specified in documentation (typically, webhook security involves signature verification or IP whitelisting configured on the receiving end).
+
+### 9. RESPONSE FORMAT:
+This documentation describes the *payload* of a webhook event sent *from* HighLevel, not a response *to* an API call.
+
+**Webhook Payload Structure (JSON):**
+```json
+{
+  "type": "string",
+  "locationId": "string",
+  "id": "string",
+  "assignedTo": "string",
+  "contactId": "string",
+  "monetaryValue": "number",
+  "name": "string",
+  "pipelineId": "string",
+  "pipelineStageId": "string",
+  "source": "string",
+  "status": "string",
+  "dateAdded": "string"
+}
+```
+
+**Example Webhook Payload:**
+```json
+{
+  "type": "OpportunityUpdate",
+  "locationId": "ve9EPM428h8vShlRW1KT",
+  "id": "wWhVuzqpRuOA1ZVWi4FC",
+  "assignedTo": "bNl8QNGXhIQJLv8eeASQ",
+  "contactId": "cJAWDskpkJHbRbhAT7bs",
+  "monetaryValue": 40,
+  "name": "Loram ipsu",
+  "pipelineId": "VDm7RPYC2GLUvdpKmBfC",
+  "pipelineStageId": "e93ba61a-53b3-45e7-985a-c7732dbcdb69",
+  "source": "Loram ipsu",
+  "status": "open",
+  "dateAdded": "2021-11-26T12:41:02.193Z"
+}
+```
+
+### WEBHOOK PAYLOAD FIELDS:
+*   `type` (string): The type of the webhook event. For this event, it is "OpportunityUpdate".
+*   `locationId` (string): The unique identifier of the location (sub-account) where the opportunity was updated.
+*   `id` (string): The unique identifier of the opportunity that was updated.
+*   `assignedTo` (string): The unique identifier of the user to whom the opportunity is assigned.
+*   `contactId` (string): The unique identifier of the contact associated with the opportunity.
+*   `monetaryValue` (number): The monetary value of the opportunity.
+*   `name` (string): The name of the opportunity.
+*   `pipelineId` (string): The unique identifier of the pipeline to which the opportunity belongs.
+*   `pipelineStageId` (string): The unique identifier of the stage within the pipeline where the opportunity currently resides. (Note: This field appears twice in the provided schema, likely a redundancy in the documentation schema definition.)
+*   `source` (string): The source from which the opportunity originated.
+*   `status` (string): The current status of the opportunity (e.g., "open").
+*   `dateAdded` (string): The date and time when the opportunity was initially added, in ISO 8601 format (e.g., "2021-11-26T12:41:02.193Z").
+
+### 10. PURPOSE:
+This webhook is called whenever an opportunity is updated within HighLevel, providing real-time data about the changes to external systems.
+
+### 11. TAGS:
+Webhook, Webhook Events, Opportunity, Update, CRM, Real-time, Event
+
+### 12. CODE EXAMPLES:
+Not specified in documentation.

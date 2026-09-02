@@ -1,0 +1,65 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME
+Uploads File to customFields
+
+### 2. CATEGORY
+Sub-Account (Formerly location) / Custom Field
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/locations/:locationId/customFields/upload`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/locations/:locationId/customFields/upload`
+
+### 6. REQUIRED PARAMETERS
+*   **Version** (string): API Version (Possible values: `2021-07-28`)
+*   **locationId** (string): The ID of the location.
+*   **id** (string): Id (Contact Id/Opportunity Id/Custom Field Id)
+*   **maxFiles** (string): Max number of files
+
+### 7. OPTIONAL PARAMETERS
+None specified in documentation
+
+### 8. AUTHENTICATION
+*   **Scope(s):** `locations/customFields.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+**Successful Response (200 OK):**
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   `uploadedFiles` (object): A key-value pair where the key is the filename and the value is the URL of the uploaded file.
+        *   Example: `{"FileName.csv":"https://highlevel-private-staging.storage.googleapis.com/location/Ar4JQgIyuzRsVuwD9RSK/custom-Field/UpZLmohmKEQYn0ymqplY/56e0d7fc-085c-4a07-9e1d-6d8fdac7e710.csv"}`
+    *   `meta` (string[]): An array of objects containing metadata for each uploaded file.
+        *   Example: `[{"fieldname":"FileName.csv","originalname":"FileName.csv","encoding":"7bit","mimetype":"text/csv","size":2061,"url":"https://highlevel-private-staging.storage.googleapis.com/location/Ar4JQgIyuzRsVuwD9RSK/custom-Field/UpZLmohmKEQYn0ymqplY/56e0d7fc-085c-4a07-9e1d-6d8fdac7e710.csv"}]`
+
+**Error Responses:**
+*   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE
+This endpoint allows users to upload files to custom fields associated with a specific location, contact, or opportunity.
+
+### 11. TAGS
+Sub-Account, Location, Custom Field, Upload, File, POST, API, Marketplace, HighLevel
+
+### 12. CODE EXAMPLES
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

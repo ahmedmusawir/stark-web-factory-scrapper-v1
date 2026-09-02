@@ -1,0 +1,312 @@
+Here's a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME
+Update an item in a queue
+
+### 2. CATEGORY
+Social Planner - Category Queue
+
+### 3. HTTP METHOD
+PUT
+
+### 4. ENDPOINT URL
+`/social-media-posting/category/queues/:queueId/items/:itemId`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/social-media-posting/category/queues/:queueId/items/:itemId`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `queueId` (string)
+    *   `itemId` (string)
+*   **Body Parameters (application/json):**
+    *   `locationId` (string): Location ID
+    *   `modifiedPostPayload` (object): Modifications to the original post
+        *   `media` (object[]): Post Media. Each object in the array requires:
+            *   `url` (string)
+        *   If `gmbPostDetails` (object) is included:
+            *   `startDate` (object): Start Date. Requires:
+                *   `startDate` (object): Start Date (nested). Requires:
+                    *   `year` (number)
+                    *   `month` (number)
+                    *   `day` (number)
+                *   `startTime` (object): Start Time. Requires:
+                    *   `hours` (number)
+                    *   `minutes` (number)
+                    *   `seconds` (number)
+            *   `endDate` (object): End Date. Requires:
+                *   `endDate` (object): End Date (nested). Requires:
+                    *   `year` (number)
+                    *   `month` (number)
+                    *   `day` (number)
+                *   `endTime` (object): End Time. Requires:
+                    *   `hours` (number)
+                    *   `minutes` (number)
+                    *   `seconds` (number)
+        *   If `linkedinPostDetails` (object) is included:
+            *   `pdfTitle` (string): Title of the PDF
+            *   `postAsPdf` (boolean): If the post is to be posted as PDF
+        *   If `pinterestPostDetails` (object) is included:
+            *   `boardIds` (object): Mapping of oauth IDs of connected accounts to board IDs
+        *   If `facebookPostDetails` (object) is included:
+            *   `type` (object): Post Type must be one of the following values: - post, story, reel
+        *   If `instagramPostDetails` (object) is included:
+            *   `type` (object): Post Type must be one of the following values: - post, story, reel
+
+### 7. OPTIONAL PARAMETERS
+*   **Body Parameters (application/json):**
+    *   `modifiedPostPayload` (object): Modifications to the original post
+        *   `accountIds` (string[]): Account Ids (OAuth only)
+        *   `summary` (string): Post Content
+        *   `media` (object[]): Post Media. Each object in the array can optionally include:
+            *   `caption` (string)
+            *   `type` (string)
+            *   `thumbnail` (string)
+            *   `defaultThumb` (string)
+            *   `id` (string)
+        *   `status` (object): Status must be one of the following values: null, in_progress, draft, failed, published, scheduled, in_review, notification_sent, deleted
+        *   `scheduleDate` (string): Schedule Date
+        *   `createdBy` (string): Created By
+        *   `followUpComment` (string): Follow Up Comment on platform. It is not allowed on Tiktok and GMB accounts.
+        *   `ogTagsDetails` (object): Og Tags Meta Data
+            *   `metaImage` (string): URL of the image that represents the content when shared on social media platforms.
+            *   `metaLink` (string): The URL of the original webpage or article that is being referenced or shared in the post.
+            *   `ogTitle` (string): The title of the content as it should appear when shared on social media platforms.
+        *   `type` (object): Post Type must be one of the following values: - post, story, reel
+        *   `postApprovalDetails` (object): Post Approval Details
+            *   `approver` (string): Approver
+            *   `requesterNote` (string): Requester Notes
+            *   `approverNote` (string): Approver Notes
+            *   `approvalStatus` (object): Approval Status must be one of the following values: pending, approved, rejected, not_required
+        *   `scheduleTimeUpdated` (boolean): if schedule datetime is updated
+        *   `tags` (string[]): Array of Tag Value
+        *   `categoryId` (string): Category Id
+        *   `tiktokPostDetails` (object): Tiktok Post Details
+            *   `privacyLevel` (object): privacy level is an enum and must be one of the following values: PUBLIC_TO_EVERYONE, MUTUAL_FOLLOW_FRIENDS, SELF_ONLY
+            *   `promoteOtherBrand` (boolean): promote other brand
+            *   `enableComment` (boolean): enable comment
+            *   `enableDuet` (boolean): enable duet
+            *   `enableStitch` (boolean): enable stitch
+            *   `videoDisclosure` (boolean): video disclosure
+            *   `promoteYourBrand` (boolean): promote your brand
+        *   `gmbPostDetails` (object): GMB Post Details
+            *   `gmbEventType` (string): gmbEventType must be one of the following values: STANDARD, EVENT, OFFER
+            *   `title` (string): Title
+            *   `offerTitle` (string): Offer Title
+            *   `termsConditions` (string): Terms Condition Url
+            *   `url` (string): Url
+            *   `couponCode` (string): Coupon Code
+            *   `redeemOnlineUrl` (string): Redeem Online Url
+            *   `actionType` (object): Action Type must be one of the following values: none, order, book, shop, learn_more, call, sign_up
+        *   `userId` (string): User ID
+        *   `pinterestPostDetails` (object): Pinterest Post Details
+            *   `title` (string): Title of the Pinterest Post
+            *   `link` (string): Link associated with the Pinterest Post
+        *   `instagramPostDetails` (object): Instagram Post Details
+            *   `collaborators` (object): Object mapping account IDs to arrays of associated usernames for collaboration. Only allowed for type 'post' and 'reels'
+        *   `youtubePostDetails` (object): Youtube Post Details
+            *   `title` (string): Title
+            *   `privacyLevel` (object): Youtube Privacy Level is an enum and must be one of the following values: private, public, unlisted
+            *   `type` (object): Youtube Post Type is an enum and must be one of the following values: video, short
+        *   `locationId` (string): Location Id (nested inside `modifiedPostPayload`, distinct from the root-level required `locationId`)
+    *   `newOrder` (number): New Order
+    *   `variations` (object[]): Variations. Each object in the array can optionally include:
+        *   `content` (string)
+        *   `mentions` (object[])
+        *   `ogTags` (object)
+            *   `metaLink` (object)
+            *   `metaImage` (object)
+            *   `ogTitle` (object)
+    *   `primaryImage` (string): Primary media URL (image)
+
+### 8. AUTHENTICATION
+Not specified in documentation for this specific endpoint. General API authorization is mentioned in the main navigation.
+
+### 9. RESPONSE FORMAT
+**200 OK - The queue item has been successfully updated.**
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "results": {
+    "message": "Queue item updated successfully",
+    "queueItem": {
+      "_id": "string",
+      "order": 0,
+      "variations": [
+        {
+          "_id": "string",
+          "content": "string",
+          "mentions": [{}],
+          "ogTags": {
+            "metaLink": "https://example.com",
+            "metaImage": "https://example.com/image.png",
+            "ogTitle": "Example Title"
+          }
+        }
+      ],
+      "primaryImage": "string",
+      "lastScheduledTime": null,
+      "queueId": "string",
+      "postId": "string",
+      "modifiedPostPayload": {
+        "_id": "61bb16833b3f2791f9715be2",
+        "source": "composer",
+        "locationId": "ve9EPM428h8vShlRW1KT",
+        "displayDate": "2023-08-02T00:00:00.000Z",
+        "createdAt": "2023-08-02T00:00:00.000Z",
+        "updatedAt": "2023-08-02T00:00:00.000Z",
+        "accountId": "w37swmmLbA02zgqKPpxITe",
+        "error": "Failed due to auth token",
+        "postId": "323534534435",
+        "publishedAt": "2021-06-22T05:32:49.463Z",
+        "accountIds": [
+          "aF3KhyL8JIuBwzK3m7Ly_iVrVJ2uoXNF0wzcBzgl5_12554616564525983496"
+        ],
+        "summary": "Sample Summary",
+        "media": [
+          {
+            "url": "https://i0wp.com/www.lifeofanarchitect.com/wp-content/uploads/2021/10/architectural-model-making-stairs.jpg",
+            "caption": "Caption 1",
+            "type": "video/mp4 or image/png",
+            "thumbnail": "https://storage.googleapis.com/test/test/media/test.jpeg",
+            "defaultThumb": "https://storage.googleapis.com/test/test/media/test.jpeg",
+            "id": "Edf3323fsfsdsd"
+          }
+        ],
+        "status": "published",
+        "createdBy": "Lx1EI6YIgQYMQi0ytFXv",
+        "type": "post",
+        "tags": [
+          "aF3KhyL8JIuBwzK3m7Ly_iVrVJ2uoXNF0wzcBzgl5_12554616564525983496"
+        ],
+        "ogTagsDetails": {
+          "metaImage": "https://wwww.lifeofanarchitect.com/wp-content/uploads/2021/10/architectural-model-making-stairs.jpg",
+          "metaLink": "https://www.yahoo.com/",
+          "ogTitle": "Yahoo | Mail, Weather, Search, Politics, News, Finance, Sports & Videos"
+        },
+        "postApprovalDetails": {
+          "approver": "iVrVJ2uoXNF0wzcBzgl5",
+          "requesterNote": "Test suggestion",
+          "approverNote": "Test suggestion",
+          "approvalStatus": "approved",
+          "approverUser": {
+            "id": "6284c43d519161e96cc09c13",
+            "title": "Mr",
+            "firstName": "Harry",
+            "lastName": "Spencer",
+            "profilePhoto": "https://storage.googleapis.com/user/kCrjKGHZQ2/profile/1dca8c-61c9-404d-a459-751fbcb.jpeg",
+            "phone": "901111119",
+            "email": "abc@xyc.com"
+          }
+        },
+        "tiktokPostDetails": {
+          "privacyLevel": "PUBLIC_TO_EVERYONE",
+          "promoteOtherBrand": true,
+          "enableComment": true,
+          "enableDuet": true,
+          "enableStitch": true,
+          "videoDisclosure": true,
+          "promoteYourBrand": true
+        },
+        "gmbPostDetails": {
+          "gmbEventType": "STANDARD",
+          "title": "Event Title",
+          "offerTitle": "Hey",
+          "startDate": {
+            "startDate": {
+              "year": 2022,
+              "month": 1,
+              "day": 1
+            },
+            "startTime": {
+              "hours": 23,
+              "minutes": 56,
+              "seconds": 34
+            }
+          },
+          "endDate": {
+            "endDate": {
+              "year": 2022,
+              "month": 1,
+              "day": 1
+            },
+            "endTime": {
+              "hours": 23,
+              "minutes": 56,
+              "seconds": 34
+            }
+          },
+          "termsConditions": "https://google.com/privacy",
+          "url": "https://google.com",
+          "couponCode": "BOGO-50",
+          "redeemOnlineUrl": "https://google.com",
+          "actionType": "book"
+        },
+        "user": {
+          "id": "6284c43d519161e96cc09c13",
+          "title": "Mr",
+          "firstName": "Harry",
+          "lastName": "Spencer",
+          "profilePhoto": "https://storage.googleapis.com/user/kCrjKGHZQ2/profile/1dca8c-61c9-404d-a459-751fbcb.jpeg",
+          "phone": "901111119",
+          "email": "abc@xyc.com"
+        },
+        "linkedinPostDetails": {
+          "pdfTitle": "test.pdf",
+          "postAsPdf": true
+        },
+        "pinterestPostDetails": {
+          "title": "My Pinterest Pin",
+          "link": "https://www.pinterest.com/",
+          "boardIds": {
+            "6887d6de1d8175813d50dab8": "boardId",
+            "682c7d1710a2fe3d805a3513": "boardId"
+          }
+        },
+        "facebookPostDetails": {
+          "type": "post"
+        },
+        "instagramPostDetails": {
+          "type": "post",
+          "collaborators": {
+            "accountId1": [
+              "username1",
+              "username2"
+            ],
+            "accountId2": [
+              "username3",
+              "username4"
+            ]
+          }
+        },
+        "youtubePostDetails": {
+          "title": "Untitled",
+          "privacyLevel": "public",
+          "type": "video"
+        },
+        "mediaOptimization": true
+      },
+      "parentPostId": "string",
+      "errors": ["INVALID_USER_ID", "PIXABAY_MEDIA"],
+      "currentVariation": 0,
+      "createdAt": "2024-12-09T13:41:21.385Z",
+      "updatedAt": "2024-12-09T13:41:21.385Z",
+      "deleted": false,
+      "locationId": "fvg1TXIiVxGcdOaL0riG"
+    }
+  },
+  "traceId": "string"
+}
+```
+
+### 10. PURPOSE
+This endpoint updates the content or variations of a specific item within a category queue.
+
+### 11. TAGS
+Social Planner, Category Queue, Update, Queue Item, Posts, Social Media, API
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

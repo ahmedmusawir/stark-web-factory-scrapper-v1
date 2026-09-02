@@ -1,0 +1,66 @@
+Here's a structured summary of the API documentation for "Bulk Enable SaaS":
+
+### 1. ENDPOINT NAME:
+Bulk Enable SaaS
+
+### 2. CATEGORY:
+Saas
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/saas-api/public-api/bulk-enable-saas/:companyId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/saas-api/public-api/bulk-enable-saas/:companyId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters**:
+    *   `Version` (string): API Version. Possible values: [`2021-04-15`]
+*   **Path Parameters**:
+    *   `companyId` (string): Company ID to enable SaaS for.
+*   **Body Parameters**:
+    *   `locationIds` (string[]): Array of location IDs to enable SaaS for.
+    *   `isSaaSV2` (boolean): Indicates if the SaaS is V2.
+    *   `actionPayload.saasPlanId` (string): SaaS plan ID (required if `actionPayload` is provided).
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters**:
+    *   `actionPayload` (object): Action payload for the bulk enable SaaS operation.
+        *   `actionPayload.priceId` (string): Price ID for the SaaS plan.
+        *   `actionPayload.stripeAccountId` (string): Stripe account ID.
+        *   `actionPayload.providerLocationId` (string): Provider location ID.
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Agency Token`
+*   **Scheme**: `bearer` (JWT) in `header` with the name `Authorization`.
+
+### 9. RESPONSE FORMAT:
+**200 OK - Bulk SaaS enable operation completed successfully**
+*   **Status Code**: `200`
+*   **Structure**:
+    ```json
+    {
+      "success": true,
+      "message": "Bulk enable SaaS operation completed successfully",
+      "bulkActionUrl": "https://example.com/bulk-enable-saas"
+    }
+    ```
+*   **Properties**:
+    *   `success` (boolean, required): Indicates if the bulk enable SaaS operation was successful.
+    *   `message` (string, required): Message indicating the bulk enable SaaS operation.
+    *   `bulkActionUrl` (string, optional): URL for the bulk enable SaaS operation.
+
+### 10. PURPOSE:
+This endpoint enables SaaS mode for multiple locations with support for both SaaS v1 and v2.
+
+### 11. TAGS:
+Saas, SaaS, bulk enable, locations, sub-account, agency, marketplace, GoHighLevel, deprecated, billing, subscription
+
+### 12. DEPRECATED STATUS:
+This endpoint is deprecated and may be replaced or removed in future versions of the API.
+
+### 13. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

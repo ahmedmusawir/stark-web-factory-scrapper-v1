@@ -1,0 +1,84 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Custom-provider marketplace app update capabilities
+
+### 2. CATEGORY:
+Payments, Custom Provider
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/payments/custom-provider/capabilities`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/payments/custom-provider/capabilities`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Body Parameters:**
+    *   `supportsSubscriptionSchedules` (boolean): Whether the marketplace app supports subscription schedules or not.
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   `companyId` (string): Company id. Mandatory if `locationId` is not provided.
+    *   `locationId` (string): Location / Sub-account id. Mandatory if `companyId` is not provided.
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `payments/custom-provider.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "success": boolean // Whether the custom provider capabilities are updated or not. true represents capabilities are updated.
+        }
+        ```
+    *   **Example:**
+        ```json
+        {"success": true}
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        ```json
+        {"statusCode": 400, "message": "Bad Request"}
+        ```
+    *   **401 Unauthorized:**
+        ```json
+        {"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}
+        ```
+    *   **422 Unprocessable Entity:**
+        ```json
+        {"statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity"}
+        ```
+
+### 10. PURPOSE:
+This endpoint allows you to toggle capabilities for a marketplace app that is tied to an OAuth client.
+
+### 11. TAGS:
+Payments, Custom Provider, Capabilities, Marketplace App, Update, OAuth, Integrations, Subscription Schedules, App Configuration, Settings
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

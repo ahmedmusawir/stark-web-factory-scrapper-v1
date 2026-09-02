@@ -1,0 +1,180 @@
+Here's a structured summary of the API documentation for "Update template":
+
+### 1. ENDPOINT NAME:
+Update template
+
+### 2. CATEGORY:
+Invoice Template Management (part of Invoices API)
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/invoices/template/:templateId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/template/:templateId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   templateId (string): Template Id
+*   **Body Parameters (application/json):**
+    *   altId (string): location Id / company Id based on altType
+    *   altType (string): Alt Type (Possible values: `location`)
+    *   name (string): Name of the template
+    *   businessDetails (object): Business Details (The object itself is required, but its direct child properties are optional within the object unless specified otherwise.)
+    *   currency (string): Currency
+    *   items (object[]): Array of invoice items
+        *   Within each `item` object:
+            *   name (string): Invoice Item Name
+            *   currency (string): Currency
+            *   amount (number): Product amount
+            *   qty (number): Product Quantity
+        *   If `taxes` array is provided within an `item`, then for each `tax` object:
+            *   _id (string)
+            *   name (string)
+            *   rate (number)
+    *   discount (object): Discount configuration. (The object itself is implicitly required as its `type` field is required.)
+        *   type (string): Discount type (Possible values: `percentage`, `fixed`)
+    *   miscellaneousCharges (object): Miscellaneous charges for the invoice. (The object itself is optional, but if present, `charges` is required.)
+        *   charges (array[]): charges for the processing fee
+        *   If `paidCharges` array is provided, then for each `paidCharge` object:
+            *   name (string)
+            *   charge (number)
+            *   amount (number)
+            *   _id (string)
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters (application/json):**
+    *   internal (boolean)
+    *   businessDetails (object):
+        *   logoUrl (string): Business Logo URL
+        *   name (string): Business Name
+        *   phoneNo (string): Business Phone Number
+        *   address (object): Business Address
+            *   addressLine1 (string): Address Line 1
+            *   addressLine2 (string): Address Line 2
+            *   city (string): City
+            *   state (string): State
+            *   countryCode (string): Country Code
+            *   postalCode (string): Postal Code
+        *   website (string): Business Website Link
+        *   customValues (string[]): Custom Values
+    *   items (object[]):
+        *   Within each `item` object:
+            *   description (string): Invoice descriptions
+            *   productId (string): Product Id
+            *   priceId (string): Price Id
+            *   taxes (object[]): Tax details
+                *   Within each `tax` object (if provided):
+                    *   calculation (string): (Possible values: `exclusive`)
+                    *   description (string)
+                    *   taxId (string)
+            *   automaticTaxCategoryId (string): Tax category id for calculating automatic tax
+            *   isSetupFeeItem (boolean): Setupfee item, only created when 1st invoice of recurring schedule is generated
+            *   type (string): Price type of the item (Possible values: `one_time`, `recurring`)
+            *   taxInclusive (boolean): true if item amount is tax inclusive (Default value: `false`)
+    *   discount (object):
+        *   value (number): Discount Value (Default value: `0`)
+        *   validOnProductIds (string[]): Product Ids on which discount is applicable
+    *   termsNotes (string)
+    *   title (string): Template title
+    *   miscellaneousCharges (object):
+        *   collectedMiscellaneousCharges (number)
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `invoices/template.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Successful response):**
+    *   Content-Type: `application/json`
+    *   **Schema:**
+        *   _id (string): Template Id
+        *   altId (string): Location Id or Agency Id
+        *   altType (string): (Possible values: `location`)
+        *   name (string): Name of the Template
+        *   businessDetails (object): Business Details
+            *   logoUrl (string): Business Logo URL
+            *   name (string): Business Name
+            *   phoneNo (string): Business Phone Number
+            *   address (object): Business Address
+                *   addressLine1 (string): Address Line 1
+                *   addressLine2 (string): Address Line 2
+                *   city (string): City
+                *   state (string): State
+                *   countryCode (string): Country Code
+                *   postalCode (string): Postal Code
+            *   website (string): Business Website Link
+            *   customValues (string[]): Custom Values
+        *   currency (string): Currency
+        *   discount (object): Discount
+            *   value (number): Discount Value (Default value: `0`)
+            *   type (string): Discount type (Possible values: `percentage`, `fixed`)
+            *   validOnProductIds (string[]): Product Ids on which discount is applicable
+        *   items (object[]): Invoice Items (Note: Schema description states `string[]`, but example and request body show `object[]` with detailed fields.)
+            *   Each item object includes: `taxes`, `_id`, `productId`, `priceId`, `currency`, `name`, `qty`, `amount`.
+        *   invoiceNumberPrefix (string): prefix for invoice number
+        *   total (number): Total Amount
+        *   createdAt (string): created at
+        *   updatedAt (string): updated at
+    *   **Example:**
+        ```json
+        {
+          "_id": "6578278e879ad2646715ba9c",
+          "altId": "6578278e879ad2646715ba9c",
+          "altType": "location",
+          "name": "New Template",
+          "businessDetails": {
+            "name": "Alex",
+            "address": {
+              "addressLine1": "9931 Beechwood",
+              "city": "St. Houston",
+              "state": "TX",
+              "countryCode": "USA",
+              "postalCode": "559-6993"
+            },
+            "phoneNo": "+1-214-559-6993",
+            "website": "www.example.com"
+          },
+          "currency": "USD",
+          "discount": { "type": "percentage", "value": 0 },
+          "items": [
+            {
+              "taxes": [],
+              "_id": "c6tZZU0rJBf30ZXx9Gli",
+              "productId": "c6tZZU0rJBf30ZXx9Gli",
+              "priceId": "c6tZZU0rJBf30ZXx9Gli",
+              "currency": "USD",
+              "name": "Macbook Pro",
+              "qty": 1,
+              "amount": 999
+            }
+          ],
+          "invoiceNumberPrefix": "INV-",
+          "total": 999,
+          "createdAt": "2023-12-12T09:27:42.355Z",
+          "updatedAt": "2023-12-12T09:27:42.355Z"
+        }
+        ```
+*   **400 Bad Request:**
+    *   `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized:**
+    *   `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:**
+    *   `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This API updates an existing invoice template by its unique template ID.
+
+### 11. TAGS:
+Invoices, Templates, Update, PUT, Invoice Template, Template Management
+
+### 12. Code Examples:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

@@ -1,0 +1,59 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Bulk Enable SaaS
+
+### 2. CATEGORY:
+Saas
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/saas/bulk-enable-saas/:companyId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/saas/bulk-enable-saas/:companyId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters**:
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+*   **Path Parameters**:
+    *   `companyId` (string): The ID of the company.
+*   **Body Parameters**:
+    *   `locationIds` (string[]): Array of location IDs to enable SaaS for.
+    *   `isSaaSV2` (boolean): Indicates if the SaaS is V2.
+    *   `saasPlanId` (string) (within `actionPayload`): SaaS plan ID.
+
+### 7. OPTIONAL PARAMETERS:
+*   **Body Parameters**:
+    *   `actionPayload` (object): Action payload for the bulk enable SaaS operation.
+        *   `priceId` (string) (within `actionPayload`): Price ID for the SaaS plan.
+        *   `stripeAccountId` (string) (within `actionPayload`): Stripe account ID.
+        *   `providerLocationId` (string) (within `actionPayload`): Provider location ID.
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Agency Token`
+*   **Scheme**: Bearer (JWT) in the `Authorization` header.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code**: `201` (Created)
+*   **Structure**: Not explicitly detailed in the documentation, but a `201` status typically indicates successful creation or processing, potentially returning a confirmation or ID in the body.
+
+### 10. PURPOSE:
+This endpoint enables SaaS mode for multiple locations with support for both SaaS v1 and v2.
+
+### 11. TAGS:
+SaaS, Enable, Bulk, Locations, Company, Agency, Subscription, API, HighLevel, Marketing, Platform
+
+### Code Examples:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

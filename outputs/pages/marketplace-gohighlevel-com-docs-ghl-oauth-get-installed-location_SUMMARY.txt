@@ -1,0 +1,86 @@
+Here's a structured summary of the API documentation for "Get Location where app is installed":
+
+---
+
+### 1. ENDPOINT NAME:
+Get Location where app is installed
+
+### 2. CATEGORY:
+OAuth 2.0
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/oauth/installedLocations`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/oauth/installedLocations`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `[2021-07-28]`
+*   **Query Parameters:**
+    *   `companyId` (string): Parameter to search by the companyId. Example: `tDtDnQdgm2LXpyiqYvZ6`
+    *   `appId` (string): Parameter to search by the appId. Example: `tDtDnQdgm2LXpyiqYvZ6`
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Query Parameters:**
+    *   `skip` (string): Parameter to skip the number installed locations. Default value: `0`. Example: `1`
+    *   `limit` (string): Parameter to limit the number installed locations. Default value: `20`. Example: `10`
+    *   `query` (string): Parameter to search for the installed location by name. Example: `location name`
+    *   `isInstalled` (boolean): Filters out location which are installed for specified app under the specified company. Example: `true`
+    *   `versionId` (string): VersionId of the app. Example: `tDtDnQdgm2LXpyiqYvZ6`
+    *   `onTrial` (boolean): Filters out locations which are installed for specified app in trial mode. Example: `true`
+    *   `planId` (string): Filters out location which are installed for specified app under the specified planId. Example:
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `oauth.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Agency (OR) Private Integration Token of Agency.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK):**
+    *   `application/json`
+    *   **Schema:**
+        *   `locations` (array of objects):
+            *   `_id` (string, required): Location ID. Example: `0IHuJvc2ofPAAA8GzTRi`
+            *   `name` (string, required): Name of the location. Example: `John Deo`
+            *   `address` (string, required): Address linked to location. Example: `47 W 13th St, New York, NY 10011, USA`
+            *   `isInstalled` (boolean): Check if the requested app is installed for following location. Example: `true`
+        *   `count` (number): Total location count under the company. Example: `1231`
+        *   `installToFutureLocations` (boolean): Boolean to control if user wants app to be automatically installed to future locations. Example: `true`
+    *   **Example:**
+        ```json
+        {"locations":[{"_id":"0IHuJvc2ofPAAA8GzTRi","name":"John Deo","address":"47 W 13th St, New York, NY 10011, USA","isInstalled":true}],"count":1231,"installToFutureLocations":true}
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        *   `application/json`
+        *   Schema: `statusCode` (number), `message` (string)
+        *   Example: `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized:**
+        *   `application/json`
+        *   Schema: `statusCode` (number), `message` (string), `error` (string)
+        *   Example: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity:**
+        *   `application/json`
+        *   Schema: `statusCode` (number), `message` (array of string), `error` (string)
+        *   Example: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This API allows you to fetch locations where an app is installed.
+
+### 11. TAGS:
+OAuth, Locations, Installed Apps, App Management, Marketplace, Read, Agency, Company, Business, Directory.
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

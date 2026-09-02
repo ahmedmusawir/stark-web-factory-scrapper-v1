@@ -1,0 +1,59 @@
+Here is a structured summary of the "Agents" API documentation:
+
+---
+
+### **1. List Agents**
+
+*   **ENDPOINT NAME:** List Agents
+*   **CATEGORY:** AI Agent Studio
+*   **HTTP METHOD:** GET (Inferred)
+*   **ENDPOINT URL:** `/agents` (Inferred from documentation slug and common API patterns)
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/agent-studio/get-agents`
+*   **REQUIRED PARAMETERS:**
+    *   `locationId` (string/UUID): The ID of the location to list agents for.
+*   **OPTIONAL PARAMETERS:**
+    *   `limit` (integer): Used for pagination to specify the maximum number of agents to return.
+    *   `offset` (integer): Used for pagination to specify the starting point for retrieving agents.
+*   **AUTHENTICATION:** Not specified for this specific endpoint, but likely inherits from overall API authentication (e.g., OAuth 2.0).
+*   **RESPONSE FORMAT:** Not specified in documentation (likely JSON, 200 OK status).
+*   **PURPOSE:** Lists all active agents for the specified location, supporting pagination.
+*   **TAGS:** AI Agent Studio, Agents, List, Get, Retrieve, Pagination, locationId
+*   **CODE EXAMPLES:** Not specified in documentation.
+
+---
+
+### **2. Get Agent**
+
+*   **ENDPOINT NAME:** Get Agent
+*   **CATEGORY:** AI Agent Studio
+*   **HTTP METHOD:** GET (Inferred)
+*   **ENDPOINT URL:** `/agents/:agentId` (Inferred from documentation slug and common API patterns)
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/agent-studio/get-agent-by-id`
+*   **REQUIRED PARAMETERS:**
+    *   `agentId` (string/UUID): The ID of the specific agent to retrieve. (Implied, typically in path)
+    *   `locationId` (string/UUID): The ID of the location the agent belongs to.
+*   **OPTIONAL PARAMETERS:** Not specified in documentation.
+*   **AUTHENTICATION:** Not specified for this specific endpoint, but likely inherits from overall API authentication (e.g., OAuth 2.0).
+*   **RESPONSE FORMAT:** Not specified in documentation (likely JSON, 200 OK status).
+*   **PURPOSE:** Retrieves a specific active agent by its ID for the specified location.
+*   **TAGS:** AI Agent Studio, Agents, Get, Retrieve, Fetch, locationId, agentId
+*   **CODE EXAMPLES:** Not specified in documentation.
+
+---
+
+### **3. Execute Agent**
+
+*   **ENDPOINT NAME:** Execute Agent
+*   **CATEGORY:** AI Agent Studio
+*   **HTTP METHOD:** POST (Inferred, as it performs an action)
+*   **ENDPOINT URL:** `/agents/execute` (Inferred from documentation slug and common API patterns)
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/agent-studio/execute-agent`
+*   **REQUIRED PARAMETERS:**
+    *   `agentId` (string/UUID): The ID of the agent to be executed. (Implied, likely in request body or path)
+    *   `locationId` (string/UUID): The ID of the location the agent belongs to, required in the request body.
+*   **OPTIONAL PARAMETERS:** Not specified in documentation.
+*   **AUTHENTICATION:** Not specified for this specific endpoint, but likely inherits from overall API authentication (e.g., OAuth 2.0).
+*   **RESPONSE FORMAT:** Non-streaming JSON response with the complete agent output (likely 200 OK status).
+*   **PURPOSE:** Executes the specified active agent for a given location and returns the complete agent output as a non-streaming JSON response.
+*   **TAGS:** AI Agent Studio, Agents, Execute, Run, Action, locationId
+*   **CODE EXAMPLES:** Not specified in documentation.

@@ -1,0 +1,106 @@
+```json
+{
+  "ENDPOINT_NAME": "Create Coupon",
+  "CATEGORY": "Payments",
+  "HTTP_METHOD": "POST",
+  "ENDPOINT_URL": "/payments/coupon",
+  "FULL_URL": "https://services.leadconnectorhq.com/payments/coupon",
+  "REQUIRED_PARAMETERS": [
+    "- Version (string): API Version (Possible values: [\"2021-07-28\"])",
+    "- altId (string): Location Id",
+    "- altType (string): Alt Type (Possible values: [\"location\"])",
+    "- name (string): Coupon Name",
+    "- code (string): Coupon Code",
+    "- discountType (string): Discount Type (Possible values: [\"percentage\", \"amount\"])",
+    "- discountValue (number): Discount Value",
+    "- startDate (string): Start date in YYYY-MM-DDTHH:mm:ssZ format",
+    "  - applyToFuturePaymentsConfig (object) (If this object is provided in the request body, the following fields are required as per documentation, though logical dependencies on 'type' should be noted):",
+    "    - type (string): Type of the config (Possible values: [\"forever\", \"fixed\"])",
+    "    - duration (number): Duration the coupon to be applied in a subscription",
+    "    - durationType (string): Type of the duration (Possible values: [\"months\"])"
+  ],
+  "OPTIONAL_PARAMETERS": [
+    "- endDate (string): End date in YYYY-MM-DDTHH:mm:ssZ format",
+    "- usageLimit (number): Max number of times coupon can be used",
+    "- productIds (string[]): Product Ids",
+    "- applyToFuturePayments (boolean): Is Coupon applicable on upcoming subscription transactions (Default value: true)",
+    "- applyToFuturePaymentsConfig (object): If coupon is applicable on upcoming subscription transactions, how many months should it be applicable for a subscription (Note: The cURL example shows this as an array of objects, but the schema defines it as a single object.)",
+    "- limitPerCustomer (boolean): Limits whether a coupon can be redeemed only once per customer. (Default value: false)"
+  ],
+  "AUTHENTICATION": {
+    "SCOPES": "payments/coupons.write",
+    "AUTH_METHODS": [
+      "OAuth Access Token",
+      "Private Integration Token"
+    ],
+    "TOKEN_TYPES": [
+      "Sub-Account Token"
+    ],
+    "BEARER_FORMAT": "JWT"
+  },
+  "RESPONSE_FORMAT": {
+    "SUCCESSFUL_RESPONSE": {
+      "STATUS_CODE": 201,
+      "CONTENT_TYPE": "application/json",
+      "STRUCTURE": {
+        "_id": "string (required, Unique MongoDB identifier for the coupon)",
+        "usageCount": "number (required, Number of times the coupon has been used)",
+        "limitPerCustomer": "number (required, Maximum number of times a customer can use this coupon (0 for unlimited))",
+        "altId": "string (required, Location Id)",
+        "altType": "string (required, Type of entity)",
+        "name": "string (required, Display name of the coupon)",
+        "code": "string (required, Redemption code for the coupon)",
+        "discountType": "string (required, Type of discount (percentage or amount))",
+        "discountValue": "number (required, Value of the discount (percentage or fixed amount))",
+        "status": "string (required, Current status of the coupon, Possible values: [\"scheduled\", \"active\", \"expired\"])",
+        "startDate": "string (required, Date when the coupon becomes active)",
+        "endDate": "string (optional, End date when the coupon expires)",
+        "applyToFuturePayments": "boolean (required, Indicates if the coupon applies to future recurring payments)",
+        "applyToFuturePaymentsConfig": {
+          "type": "string (required, Type of future payments configuration, Possible values: [\"forever\", \"fixed\"])",
+          "duration": "number (optional, Duration value for fixed type configurations)",
+          "durationType": "string (optional, Duration type for fixed configurations (e.g. months))"
+        },
+        "userId": "string (optional, User ID associated with the coupon (if applicable))",
+        "createdAt": "string (required, Creation timestamp)",
+        "updatedAt": "string (required, Last update timestamp)",
+        "traceId": "string (required, Unique identifier for tracing this API request)"
+      }
+    },
+    "ERROR_RESPONSES": [
+      {
+        "STATUS_CODE": 422,
+        "NAME": "Unprocessable Entity",
+        "CONTENT_TYPE": "application/json",
+        "STRUCTURE": {
+          "statusCode": "number",
+          "message": "string[]",
+          "error": "string"
+        }
+      }
+    ]
+  },
+  "PURPOSE": "The \"Create Coupon\" API allows you to create a new promotional coupon with customizable parameters such as discount amount, validity period, usage limits, and applicable products, to set up promotional offers and special discounts for your customers.",
+  "TAGS": [
+    "Payments",
+    "Coupons",
+    "Create",
+    "Discount",
+    "Promotional",
+    "Offer",
+    "API",
+    "Sub-Account",
+    "Marketplace"
+  ],
+  "CODE_EXAMPLES_AVAILABLE": [
+    "curl",
+    "nodejs",
+    "python",
+    "php",
+    "java",
+    "go",
+    "ruby",
+    "powershell"
+  ]
+}
+```

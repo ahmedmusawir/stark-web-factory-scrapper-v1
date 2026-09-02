@@ -1,0 +1,48 @@
+Here is a structured summary of the "App Management" API documentation:
+
+---
+
+### **Overall Section: App Management**
+
+*   **ENDPOINT NAME:** App Management
+*   **CATEGORY:** Developer Marketplace
+*   **PURPOSE:** This section provides documentation for managing applications within the HighLevel Marketplace API.
+*   **TAGS:** App Management, Marketplace, Developer, Application, API
+
+---
+
+### **Endpoint: Uninstall an application**
+
+*   **ENDPOINT NAME:** Uninstall an application
+*   **CATEGORY:** Developer Marketplace, App Management
+*   **HTTP METHOD:** DELETE (Inferred from "Uninstalls an application")
+*   **ENDPOINT URL:** Not explicitly specified in documentation (e.g., `/marketplace/apps/:appId/uninstall`). The provided URL is for the documentation page.
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/marketplace/uninstall-application` (This is the documentation URL, not the API endpoint itself).
+*   **REQUIRED PARAMETERS:**
+    *   `application ID` (string): Implicitly required to identify the application to uninstall.
+    *   `company/location context` (string/ID): Implied, as the action is "from your company or a specific location."
+*   **OPTIONAL PARAMETERS:** Not specified in documentation.
+*   **AUTHENTICATION:** Requires authentication, likely an OAuth token, to authorize the uninstallation and remove the application's access.
+*   **RESPONSE FORMAT:** Not explicitly specified in documentation (e.g., success status code, empty body, or confirmation message). The action results in the removal of access and cessation of functionalities.
+*   **PURPOSE:** Uninstalls an application from a user's company or a specific location, revoking its access and stopping all its functionalities.
+*   **TAGS:** App, Uninstall, Delete, Marketplace, Application Management, Developer, Revoke Access
+*   **Code Examples:** Not present in documentation.
+
+---
+
+### **Endpoint: Get Installer Details**
+
+*   **ENDPOINT NAME:** Get Installer Details
+*   **CATEGORY:** Developer Marketplace, App Management
+*   **HTTP METHOD:** GET (Inferred from "Fetches installer details")
+*   **ENDPOINT URL:** Not explicitly specified in documentation (e.g., `/marketplace/installer-details`). The provided URL is for the documentation page.
+*   **FULL URL:** `https://marketplace.gohighlevel.com/docs/ghl/marketplace/get-installer-details` (This is the documentation URL, not the API endpoint itself).
+*   **REQUIRED PARAMETERS:** Not specified in documentation as explicit path or query parameters; information is fetched for the authenticated user.
+*   **OPTIONAL PARAMETERS:** Not specified in documentation.
+*   **AUTHENTICATION:** Requires an authenticated user and relies on the "current OAuth token" to identify the installer.
+*   **RESPONSE FORMAT:** Returns information about the company, location, user, and installation details associated with the current OAuth token. The specific JSON structure is not detailed.
+*   **PURPOSE:** Fetches comprehensive installer details, including company, location, user, and installation information, for the user associated with the active OAuth token.
+*   **TAGS:** Installer, Details, Get, Fetch, Marketplace, Application Management, Developer, OAuth, Company, Location, User
+*   **Code Examples:** Not present in documentation.
+
+---

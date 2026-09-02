@@ -1,0 +1,83 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Starts OAuth For Facebook Account
+
+### 2. CATEGORY:
+Social Planner
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/oauth/facebook/start`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/oauth/facebook/start`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version. Possible values: `2021-07-28` (Header Parameter)
+*   **locationId** (string): Account Location Id. Example: `w37swmmLbA02zgqKPpxITe2` (Query Parameter)
+*   **userId** (string): User ID. Example: `u37swmmLbA02zgqKPpxITe2` (Query Parameter)
+
+### 7. OPTIONAL PARAMETERS:
+*   **page** (string): Facebook Page. Example: `integration` (Query Parameter)
+*   **reconnect** (string): Reconnect boolean as string. Example: `true` (Query Parameter)
+
+### 8. AUTHENTICATION:
+*   **Auth Methods:** `OAuth Access Token`, `Private Integration Token`
+*   **Token Types:** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **Location:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 Successful Interaction:** The API call initiates a redirect, navigating the user to the Facebook login OAuth screen. Upon successful login and authorization, the client-side `window.addEventListener` (listening for messages from `social_media_posting` page) will receive the following event data:
+    *   **Event Data Response Structure:**
+        *   `actionType`: string (Ex: "close")
+        *   `page`: string (Ex: "social-media-posting")
+        *   `platform`: string (Ex: "facebook")
+        *   `placement`: string (Ex: "placement")
+        *   `accountId`: string (Ex: "658a9b6833b91e0ecb8f3958")
+        *   `reconnectAccounts`: string[] (Ex: `["658a9b6833b91e0ecb834acd", "efd2daa9b6833b91e0ecb8f3511"]`)
+
+*   **400 Bad Request:**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `statusCode`: number (Example: `400`)
+        *   `message`: string (Example: `Bad Request`)
+    *   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+
+*   **401 Unauthorized:**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `statusCode`: number (Example: `401`)
+        *   `message`: string (Example: `Invalid token: access token is invalid`)
+        *   `error`: string (Example: `Unauthorized`)
+    *   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+*   **422 Unprocessable Entity:**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `statusCode`: number (Example: `422`)
+        *   `message`: string[] (Example: `["Unprocessable Entity"]`)
+        *   `error`: string (Example: `Unprocessable Entity`)
+    *   **Example:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint initiates the Facebook OAuth process for a specific user and location, redirecting the user to Facebook to grant permissions for social media posting, with the result communicated via a client-side window event.
+
+### 11. TAGS:
+Social Planner, Facebook, OAuth, Authentication, Account Connection, Social Media, Start
+
+### 12. CODE EXAMPLES:
+*   **cURL:** Available
+*   **nodejs:** Listed as an option, but no snippet provided.
+*   **python:** Listed as an option, but no snippet provided.
+*   **php:** Listed as an option, but no snippet provided.
+*   **java:** Listed as an option, but no snippet provided.
+*   **go:** Listed as an option, but no snippet provided.
+*   **ruby:** Listed as an option, but no snippet provided.
+*   **powershell:** Listed as an option, but no snippet provided.

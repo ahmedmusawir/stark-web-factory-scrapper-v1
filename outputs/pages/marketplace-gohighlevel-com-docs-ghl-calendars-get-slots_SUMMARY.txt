@@ -1,0 +1,85 @@
+Here is a structured summary of the "Get Free Slots" API documentation:
+
+### 1. ENDPOINT NAME:
+Get Free Slots
+
+### 2. CATEGORY:
+Calendars
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/calendars/:calendarId/free-slots`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/:calendarId/free-slots`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-04-15`)
+
+*   **Path Parameters:**
+    *   calendarId (string): Calendar Id
+
+*   **Query Parameters:**
+    *   startDate (number): Start Date (⚠️ Important: Date range cannot be more than 31 days)
+    *   endDate (number): End Date (⚠️ Important: Date range cannot be more than 31 days)
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Query Parameters:**
+    *   timezone (string): The timezone in which the free slots are returned
+    *   userId (string): The user for whom the free slots are returned
+    *   userIds (string[]): The users for whom the free slots are returned
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `calendars.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:** Availability map keyed by date (YYYY-MM-DD). Each date contains a `slots` array of strings (ISO 8601 format with timezone offset).
+    *   **Example:**
+        ```json
+        {
+          "2024-10-28": {
+            "slots": [
+              "2024-10-28T10:00:00-05:00",
+              "2024-10-28T11:00:00-05:00"
+            ]
+          },
+          "2024-10-29": {
+            "slots": [
+              "2024-10-29T10:00:00-05:00",
+              "2024-10-29T14:30:00-05:00"
+            ]
+          }
+        }
+        ```
+*   **Error Response (400 Bad Request):**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{ "statusCode": number, "message": string }`
+    *   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+*   **Error Response (401 Unauthorized):**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{ "statusCode": number, "message": string, "error": string }`
+    *   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint retrieves available free slots for a specific calendar within a given date range, with options to filter by timezone and specific users.
+
+### 11. TAGS:
+Calendars, Slots, Availability, Get, Readonly, Schedule, Appointments, CalendarId, Dates
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

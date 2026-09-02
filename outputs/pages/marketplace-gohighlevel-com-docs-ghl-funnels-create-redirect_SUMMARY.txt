@@ -1,0 +1,89 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Create Redirect
+
+### 2. CATEGORY:
+Funnels
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/funnels/lookup/redirect`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/funnels/lookup/redirect`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: [`2021-07-28`])
+*   **Body Parameters:**
+    *   locationId (string): Example: `6p2RxpgtMKQwO3E6IUaT`
+    *   domain (string): Example: `example.com`
+    *   path (string): Example: `/Hello`
+    *   target (string): Example: `https://www.google.com`
+    *   action (string): Possible values: [`funnel`, `website`, `url`, `all`] Example: `URL`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `funnels/redirect.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** bearer (JWT)
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `data` (object):
+            *   `id` (string): Unique identifier of the redirect. Example: `6p2RxpgtMKQwO3E6IUaT`
+            *   `locationId` (string): Identifier of the location associated with the redirect. Example: `6p2RxpgtMKQwO3E6IUaT`
+            *   `domain` (string): Domain where the redirect occurs. Example: `www.example.com`
+            *   `path` (string): Original path that will be redirected. Example: `/old-path`
+            *   `pathLowercase` (string): Lowercase version of the original path. Example: `/old-path`
+            *   `type` (string): Type of redirect (e.g., Permanent, Temporary). Example: `Permanent`
+            *   `target` (string): Target URL to which the original path will be redirected. Example: `https://www.example.com/new-path`
+            *   `action` (string): Action performed by the redirect. Example: `url`
+    *   **Example:**
+        ```json
+        {
+          "data": {
+            "id": "6p2RxpgtMKQwO3E6IUaT",
+            "locationId": "6p2RxpgtMKQwO3E6IUaT",
+            "domain": "www.example.com",
+            "path": "/old-path",
+            "pathLowercase": "/old-path",
+            "type": "Permanent",
+            "target": "https://www.example.com/new-path",
+            "action": "url"
+          }
+        }
+        ```
+
+*   **Error Response (422 Unprocessable Entity):**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `statusCode` (number): Example: `422`
+        *   `message` (string[]): Example: `["Unprocessable Entity"]`
+        *   `error` (string): Example: `Unprocessable Entity`
+    *   **Example:**
+        ```json
+        {
+          "statusCode": 422,
+          "message": ["Unprocessable Entity"],
+          "error": "Unprocessable Entity"
+        }
+        ```
+
+### 10. PURPOSE:
+The "Create Redirect" API allows adding a new URL redirect to the system, enabling the creation of URL redirects with specified details.
+
+### 11. TAGS:
+Funnels, Redirect, Create, URL, API, GoHighLevel, Marketing, Websites
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

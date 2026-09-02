@@ -1,0 +1,85 @@
+Here is a structured summary of the provided API documentation for "Get Order by ID":
+
+---
+
+### 1. ENDPOINT NAME:
+Get Order by ID
+
+### 2. CATEGORY:
+Payments
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/payments/orders/:orderId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/payments/orders/:orderId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `orderId` (string): ID of the order that needs to be returned.
+*   **Query Parameters:**
+    *   `altId` (string): AltId is the unique identifier e.g: location id.
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   `locationId` (string): LocationId is the id of the sub-account.
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `payments/orders.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Header:** `Authorization: Bearer <TOKEN>`
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema (JSON Object):**
+        *   `_id` (string): The unique identifier for the order.
+        *   `altId` (string): AltId is the unique identifier eg: location id.
+        *   `altType` (string): AltType is the type of identifier.
+        *   `contactId` (string): Contact id corresponding to the order.
+        *   `currency` (string): Currency in which order was created.
+        *   `amount` (number): Order value.
+        *   `status` (string): The status of the order (e.g., completed).
+        *   `liveMode` (boolean): Order is in live / test mode.
+        *   `createdAt` (date-time): The creation timestamp of the order.
+        *   `updatedAt` (date-time): The last update timestamp of the order.
+        *   `fulfillmentStatus` (string): Fulfillment status of the order.
+        *   `contactSnapshot` (object): Contact details of the order.
+        *   `amountSummary` (object): Amount details of the order.
+            *   `subtotal` (number): Order sub-total value.
+            *   `discount` (number): Discount value on order.
+        *   `source` (object): Source details of the order.
+            *   `type` (string): Type of source. Possible values: [`funnel`, `website`, `invoice`, `calendar`, `text2Pay`, `document_contracts`, `membership`, `mobile_app`, `communities`, `point_of_sale`, `manual`, `form`, `survey`, `payment_link`, `external`]
+            *   `subType` (string): Sub-type of source. Possible values: [`one_step_order_form`, `two_step_order_form`, `upsell`, `tap_to_pay`, `card_payment`, `store`, `contact_view`, `email_campaign`, `payments_dashboard`, `shopify`, `subscription_view`, `store_upsell`, `woocommerce`, `service`, `meeting`, `imported_csv`, `qr_code`, `saas_one_time`, `saas_subscription`]
+            *   `id` (string)
+            *   `name` (string)
+            *   `meta` (object)
+        *   `items` (string[]): Item details of the order.
+        *   `coupon` (object): Coupon details of the order.
+        *   `trackingId` (string): Tracking id of the order.
+        *   `fingerprint` (string): Fingerprint id of the order.
+        *   `meta` (object): Meta details of the order.
+        *   `markAsTest` (boolean): Is test order.
+        *   `traceId` (string): Trace id of the order.
+        *   `automaticTaxesCalculated` (boolean): Automatic taxes applied for the Order.
+        *   `taxCalculationProvider` (object): Provider name for automatic tax calculation.
+        *   `createdBy` (string): User ID who created the order.
+*   **Error Responses:**
+    *   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `422 Unprocessable Entity`: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+The "Get Order by ID" API allows to retrieve information for a specific order using its unique identifier.
+
+### 11. TAGS:
+Payments, Orders, Get, Retrieve, Order Details, By ID, Read, Single Order
+
+### 12. CODE EXAMPLES:
+Available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

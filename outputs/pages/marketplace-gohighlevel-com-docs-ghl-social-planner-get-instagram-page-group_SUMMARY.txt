@@ -1,0 +1,113 @@
+```
+### 1. ENDPOINT NAME:
+Get Instagram Professional Accounts
+
+### 2. CATEGORY:
+Social Planner
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/oauth/:locationId/instagram/accounts/:accountId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/oauth/:locationId/instagram/accounts/:accountId`
+
+### 6. REQUIRED PARAMETERS:
+*   `Version` (string): API Version (e.g., `2021-07-28`)
+*   `locationId` (string): Account Location Id (Example: `w37swmmLbA02zgqKPpxITe2`)
+*   `accountId` (string): Account Id (Example: `w37swmmLbA02zgqKPpxITe`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer
+*   **Bearer Format:** JWT
+*   **In:** Header (`Authorization` header)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+#### 200 OK (Successful response)
+*   **Content-Type:** `application/json`
+*   **Schema:**
+    ```json
+    {
+      "success": boolean,
+      "statusCode": number,
+      "message": string,
+      "results": {
+        "accounts": [
+          {
+            "id": string,
+            "name": string,
+            "avatar": string,
+            "pageId": string,
+            "isConnected": boolean
+          }
+        ]
+      }
+    }
+    ```
+*   **Example:**
+    ```json
+    {"success":true,"statusCode":200,"message":"Fetched Instagram Account","results":{"accounts":[{"id":"idu37swmmLbA02zgqKPpxITe2","name":"Insta account","avatar":"avau37swmmLbA02zgqKPpxITe2","pageId":"pidu37swmmLbA02zgqKPpxITe2","isConnected":true}]}}
+    ```
+
+#### 400 Bad Request
+*   **Content-Type:** `application/json`
+*   **Schema:**
+    ```json
+    {
+      "statusCode": number,
+      "message": string
+    }
+    ```
+*   **Example:**
+    ```json
+    {"statusCode":400,"message":"Bad Request"}
+    ```
+
+#### 401 Unauthorized
+*   **Content-Type:** `application/json`
+*   **Schema:**
+    ```json
+    {
+      "statusCode": number,
+      "message": string,
+      "error": string
+    }
+    ```
+*   **Example:**
+    ```json
+    {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+    ```
+
+#### 422 Unprocessable Entity
+*   **Content-Type:** `application/json`
+*   **Schema:**
+    ```json
+    {
+      "statusCode": number,
+      "message": string[],
+      "error": string
+    }
+    ```
+*   **Example:**
+    ```json
+    {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+    ```
+
+### 10. PURPOSE:
+This endpoint retrieves details of connected Instagram professional accounts for a given location and account.
+
+### 11. TAGS:
+Social Planner, Instagram, Accounts, Professional Accounts, Get, Retrieve, OAuth, Social Media
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.
+```

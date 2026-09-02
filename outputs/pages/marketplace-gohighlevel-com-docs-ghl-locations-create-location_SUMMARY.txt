@@ -1,0 +1,163 @@
+Here's a structured summary of the "Create Sub-Account (Formerly Location)" API documentation:
+
+### 1. ENDPOINT NAME:
+Create Sub-Account (Formerly Location)
+
+### 2. CATEGORY:
+Sub-Account (Formerly Location)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/locations/`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/locations/`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string, Header): API Version. Possible values: [`2021-07-28`]
+*   **name** (string, Body): The name for the sub-account/location.
+*   **companyId** (string, Body): Company/Agency Id.
+*   **prospectInfo.firstName** (string, Body): First name of the prospect.
+*   **prospectInfo.lastName** (string, Body): Last name of the prospect.
+*   **prospectInfo.email** (string, Body): Email of the prospect.
+*   **twilio.sid** (string, Body): SID provided by Twilio. (Required if `twilio` object is provided)
+*   **twilio.authToken** (string, Body): Auth token provided by Twilio. (Required if `twilio` object is provided)
+*   **mailgun.apiKey** (string, Body): API key provided by Mailgun. (Required if `mailgun` object is provided)
+*   **mailgun.domain** (string, Body): Domain connected with Mailgun. (Required if `mailgun` object is provided)
+
+### 7. OPTIONAL PARAMETERS:
+*   **phone** (string, Body): The phone number of the business for which sub-account is created with the appropriate country-code.
+*   **address** (string, Body): The address of the business for which sub-account is created.
+*   **city** (string, Body): The city where the business is located for which sub-account is created.
+*   **state** (string, Body): The state in which the business operates for which sub-account is created.
+*   **country** (string, Body): The 2 letter country-code in which the business is present for which sub-account is created. (See documentation for possible values)
+*   **postalCode** (string, Body): The postal code of the business for which sub-account is created.
+*   **website** (string, Body): The website of the business for which sub-account is created.
+*   **timezone** (string, Body): The timezone of the business for which sub-account is created.
+*   **prospectInfo** (object, Body): (Parent object for firstName, lastName, email, which are required if prospectInfo is present).
+*   **settings** (object, Body): The default settings for location.
+    *   **settings.allowDuplicateContact** (boolean, Body)
+    *   **settings.allowDuplicateOpportunity** (boolean, Body)
+    *   **settings.allowFacebookNameMerge** (boolean, Body)
+    *   **settings.disableContactTimezone** (boolean, Body)
+*   **social** (object, Body): The social media links for location.
+    *   **social.facebookUrl** (string, Body): Facebook URL.
+    *   **social.googlePlus** (string, Body): Googleplus URL.
+    *   **social.linkedIn** (string, Body): LinkedIn URL.
+    *   **social.foursquare** (string, Body): Foursquare URL.
+    *   **social.twitter** (string, Body): Twitter URL.
+    *   **social.yelp** (string, Body): Yelp URL.
+    *   **social.instagram** (string, Body): Instagram URL.
+    *   **social.youtube** (string, Body): YouTube URL (Doc says "Instagram URL" - likely a typo).
+    *   **social.pinterest** (string, Body): Pinterest URL (Doc says "Instagram URL" - likely a typo).
+    *   **social.blogRss** (string, Body): Blog RSS URL (Doc says "Instagram URL" - likely a typo).
+    *   **social.googlePlacesId** (string, Body): Google Business Places ID.
+*   **twilio** (object, Body): The twilio credentials for location. (Parent object for sid, authToken, which are required if twilio is present)
+*   **mailgun** (object, Body): The mailgun credentials for location. (Parent object for apiKey, domain, which are required if mailgun is present)
+*   **snapshotId** (string, Body): The snapshot ID to be loaded into the location.
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `locations.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Agency (OR) Private Integration Token of Agency.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Successful response)**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   **id** (string): Location Id.
+        *   **companyId** (string): Company/Agency Id.
+        *   **name** (string): The name for the sub-account/location.
+        *   **phone** (string): The phone number of the business for which sub-account is created.
+        *   **email** (string): The email for the sub-account/location.
+        *   **address** (string): The address of the business for which sub-account is created.
+        *   **city** (string): The city where the business is located for which sub-account is created.
+        *   **state** (string): The state in which the business operates for which sub-account is created.
+        *   **domain** (string)
+        *   **country** (string): The country in which the business is present for which sub-account is created. (See documentation for possible values)
+        *   **postalCode** (string): The postal code of the business for which sub-account is created.
+        *   **website** (string): The website of the business for which sub-account is created.
+        *   **timezone** (string): The timezone of the business for which sub-account is created.
+        *   **settings** (object): The default settings for location.
+            *   **settings.allowDuplicateContact** (boolean)
+            *   **settings.allowDuplicateOpportunity** (boolean)
+            *   **settings.allowFacebookNameMerge** (boolean)
+            *   **settings.disableContactTimezone** (boolean)
+        *   **social** (object): The social media links for location.
+            *   **social.facebookUrl** (string): Facebook URL.
+            *   **social.googlePlus** (string): Googleplus URL.
+            *   **social.linkedIn** (string): LinkedIn URL.
+            *   **social.foursquare** (string): Foursquare URL.
+            *   **social.twitter** (string): Twitter URL.
+            *   **social.yelp** (string): Yelp URL.
+            *   **social.instagram** (string): Instagram URL.
+            *   **social.youtube** (string): YouTube URL (Doc says "Instagram URL" - likely a typo).
+            *   **social.pinterest** (string): Pinterest URL (Doc says "Instagram URL" - likely a typo).
+            *   **social.blogRss** (string): Blog RSS URL (Doc says "Instagram URL" - likely a typo).
+            *   **social.googlePlacesId** (string): Google Business Places ID.
+    *   **Example:**
+        ```json
+        {
+          "id": "ve9EPM428h8vShlRW1KT",
+          "companyId": "UAXssdawIWAWD",
+          "name": "Mark Shoes",
+          "phone": "+1410039940",
+          "email": "john.doe@mail.com",
+          "address": "4th fleet street",
+          "city": "New York",
+          "state": "Illinois",
+          "domain": "test.msgsndr.com",
+          "country": "US",
+          "postalCode": "567654",
+          "website": "https://yourwebsite.com",
+          "timezone": "US/Central",
+          "settings": {
+            "allowDuplicateContact": false,
+            "allowDuplicateOpportunity": false,
+            "allowFacebookNameMerge": false,
+            "disableContactTimezone": false
+          },
+          "social": {
+            "facebookUrl": "https://www.facebook.com/",
+            "googlePlus": "https://www.googleplus.com/",
+            "linkedIn": "https://www.linkedIn.com/",
+            "foursquare": "https://www.foursquare.com/",
+            "twitter": "https://www.foutwitterrsquare.com/",
+            "yelp": "https://www.yelp.com/",
+            "instagram": "https://www.instagram.com/",
+            "youtube": "https://www.youtube.com/",
+            "pinterest": "https://www.pinterest.com/",
+            "blogRss": "https://www.blogRss.com/",
+            "googlePlacesId": "ChIJJGPdVbQTrjsRGUkefteUeFk"
+          }
+        }
+        ```
+*   **400 Bad Request**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   **statusCode** (number)
+        *   **message** (string)
+    *   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   **statusCode** (number)
+        *   **message** (string)
+        *   **error** (string)
+    *   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint creates a new Sub-Account (formerly Location) within an Agency account based on the provided business and prospect data.
+
+### 11. TAGS:
+Sub-Account, Location, Create, Business, Agency, CRM, HighLevel, API, GHL
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

@@ -1,0 +1,121 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME
+Get Surveys Submissions
+
+### 2. CATEGORY
+Surveys
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/surveys/submissions`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/surveys/submissions`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `[2021-07-28]`
+*   **Query Parameters:**
+    *   `locationId` (string): Example: `ve9EPM428h8vShlRW1KT`
+
+### 7. OPTIONAL PARAMETERS
+*   `page` (number): Page No. By default it will be 1. Default value: `1`. Example: `1`
+*   `limit` (number): Limit Per Page records count. Will allow maximum up to 100 and default will be 20. Default value: `20`. Example: `20`
+*   `surveyId` (string): Filter submission by survey id. Example: `jjusM6EOngDExnbo2DbU`
+*   `q` (string): Filter by contactId, name, email or phone no. Example: `john@deo.com`
+*   `startAt` (string): Get submission by starting of this date. By default it will be same date of last month (YYYY-MM-DD). Example: `2020-11-14`
+*   `endAt` (string): Get submission by ending of this date. By default it will be current date (YYYY-MM-DD). Example: `2020-12-14`
+
+### 8. AUTHENTICATION
+*   **Scope(s):** `surveys.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`, `Bearer Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+*   **Successful Response (200 OK):**
+    *   **Content-Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "submissions": [
+            {
+              "id": "string",
+              "contactId": "string",
+              "createdAt": "string",
+              "surveyId": "string",
+              "name": "string",
+              "email": "string",
+              "others": {
+                "__submissions_other_field__": "string",
+                "__custom_field_id__": "string",
+                "eventData": {
+                  "fbc": "string",
+                  "fbp": "string",
+                  "page": {
+                    "url": "string",
+                    "title": "string"
+                  },
+                  "type": "string",
+                  "domain": "string",
+                  "medium": "string",
+                  "source": "string",
+                  "version": "string",
+                  "adSource": "string",
+                  "mediumId": "string",
+                  "parentId": "string",
+                  "referrer": "string",
+                  "fbEventId": "string",
+                  "timestamp": "number",
+                  "parentName": "string",
+                  "fingerprint": "string",
+                  "pageVisitType": "string",
+                  "contactSessionIds": {
+                    "ids": ["string"]
+                  }
+                },
+                "fieldsOriSequance": ["string"]
+              }
+            }
+          ],
+          "meta": {
+            "total": "number",
+            "currentPage": "number",
+            "nextPage": "number | null",
+            "prevPage": "number | null"
+          }
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        ```json
+        {"statusCode":400,"message":"Bad Request"}
+        ```
+    *   **401 Unauthorized:**
+        ```json
+        {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+        ```
+    *   **422 Unprocessable Entity:**
+        ```json
+        {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+        ```
+
+### 10. PURPOSE
+This endpoint retrieves a list of survey submissions based on specified filters such as location, survey ID, contact information, and date range.
+
+### 11. TAGS
+Surveys, Submissions, Get, Retrieve, List, Read, GHL, HighLevel, API, Marketing, Forms, Data
+
+### Code Examples
+Code examples are available for:
+*   `curl`
+*   `nodejs`
+*   `python`
+*   `php`
+*   `java`
+*   `go`
+*   `ruby`
+*   `powershell`

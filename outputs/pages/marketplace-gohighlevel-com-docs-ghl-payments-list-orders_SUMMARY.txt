@@ -1,0 +1,87 @@
+```
+1. ENDPOINT NAME: List Orders
+
+2. CATEGORY: Payments (Sub-category: Orders)
+
+3. HTTP METHOD: GET
+
+4. ENDPOINT URL: /payments/orders
+
+5. FULL URL: https://services.leadconnectorhq.com/payments/orders
+
+6. REQUIRED PARAMETERS:
+   - Version (string): API Version (Possible values: `2021-07-28`)
+   - altId (string): AltId is the unique identifier e.g: location id.
+
+7. OPTIONAL PARAMETERS:
+   - locationId (string): LocationId is the id of the sub-account.
+   - status (string): Order status.
+   - paymentStatus (string): Payment Status of the Order (Possible values: `paid`, `unpaid`, `refunded`, `partially_paid`)
+   - paymentMode (string): Mode of payment.
+   - startAt (string): Starting interval of orders.
+   - endAt (string): Closing interval of orders.
+   - search (string): The name of the order for searching.
+   - contactId (string): Contact id for filtering of orders.
+   - funnelProductIds (string): Funnel product ids separated by comma.
+   - sourceId (string): Source id
+   - limit (number): The maximum number of items to be included in a single page of results (Default value: `10`)
+   - offset (number): The starting index of the page, indicating the position from which the results should be retrieved. (Default value: `0`)
+
+8. AUTHENTICATION:
+   - Required Scope(s): `payments/orders.readonly`
+   - Auth Method(s): `OAuth Access Token`, `Private Integration Token`
+   - Token Type(s): `Sub-Account Token`
+   - Scheme: `bearer`
+   - Bearer Format: `JWT`
+   - In: `header` (Authorization header)
+
+9. RESPONSE FORMAT:
+   - **Successful response (200 OK):**
+     - Content-Type: `application/json`
+     - Structure: An object containing:
+       - `data` (array of objects): An array where each object represents an order with fields such as:
+         - `_id` (string): Unique identifier for the order.
+         - `altId` (string): Unique identifier (e.g., location id).
+         - `altType` (string): Type of identifier (e.g., `location`).
+         - `contactId` (string): Contact ID.
+         - `contactName` (string): Contact name.
+         - `contactEmail` (string): Contact email.
+         - `currency` (string): Currency.
+         - `amount` (number): Order value.
+         - `subtotal` (number): Order sub-total.
+         - `discount` (number): Discount value.
+         - `status` (string): Order status (e.g., `completed`).
+         - `liveMode` (boolean): Indicates live/test mode.
+         - `totalProducts` (number): Total products in the order.
+         - `sourceType` (string): Source type of order (e.g., `funnel`).
+         - `sourceName` (string): Source name.
+         - `sourceId` (string): Source ID.
+         - `sourceMeta` (object): Meta content for the source.
+         - `couponCode` (string): Coupon code.
+         - `createdAt` (date-time): Creation timestamp.
+         - `updatedAt` (date-time): Last update timestamp.
+         - `sourceSubType` (string): Source sub-type.
+         - `fulfillmentStatus` (string): Fulfillment status.
+         - `onetimeProducts` (number): Total one-time products.
+         - `recurringProducts` (number): Total recurring products.
+         - `createdBy` (string): User ID who created the order.
+       - `totalCount` (number): Total count of orders matching the criteria.
+   - **Error responses:**
+     - `400 Bad Request`: `{ "statusCode": 400, "message": "Bad Request" }`
+     - `401 Unauthorized`: `{ "statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized" }`
+     - `422 Unprocessable Entity`: `{ "statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity" }`
+
+10. PURPOSE: This endpoint allows the retrieval of a paginated list of orders, offering extensive filtering capabilities by order name, alt type, status, payment mode, date range, source type, contact, and funnel products.
+
+11. TAGS: Payments, Orders, List, Retrieve, Get, Filter, Pagination, API, LeadConnector, HighLevel, Ecommerce, Sales
+
+12. CODE EXAMPLES:
+    - cURL
+    - Node.js
+    - Python
+    - PHP
+    - Java
+    - Go
+    - Ruby
+    - PowerShell
+```

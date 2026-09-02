@@ -1,0 +1,186 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Create Invoice Schedule
+
+### 2. CATEGORY:
+Invoice Schedules
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/invoices/schedule`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/schedule`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+
+*   **Body Parameters:**
+    *   `altId` (string): location Id / company Id based on altType
+    *   `altType` (string): Alt Type (Possible values: `location`)
+    *   `name` (string): Name for the invoice schedule
+    *   `contactDetails` (object):
+        *   `id` (string): Contact ID
+        *   `name` (string): Contact Name
+        *   `phoneNo` (string): Contact Phone Number
+        *   `email` (string): Contact Email
+    *   `schedule` (object):
+        *   `rrule` (object):
+            *   `intervalType` (string): (Possible values: `yearly`, `monthly`, `weekly`, `daily`, `hourly`, `minutely`, `secondly`)
+            *   `interval` (number):
+            *   `startDate` (string): Start date in YYYY-MM-DD format
+    *   `liveMode` (boolean):
+    *   `businessDetails` (object): (The object itself is required, but its sub-fields are optional unless specified.)
+    *   `currency` (string): Currency
+    *   `items` (object[]):
+        *   `name` (string): Invoice Item Name
+        *   `currency` (string): Currency
+        *   `amount` (number): Product amount
+        *   `qty` (number): Product Quantity
+    *   `discount` (object):
+        *   `type` (string): Discount type (Possible values: `percentage`, `fixed`)
+    *   `tipsConfiguration` (object):
+        *   `tipsPercentage` (string[]): Percentage of tips allowed
+        *   `tipsEnabled` (boolean): Tips enabled status
+    *   `lateFeesConfiguration` (object):
+        *   `enable` (boolean): Enable late fees
+        *   `value` (number): Late Fees Value
+        *   `type` (string): Late Fees Type (Possible values: `fixed`, `percentage`)
+        *   `frequency` (object):
+            *   `intervalCount` (number): Late fees interval count
+            *   `interval` (string): Late fees interval (Possible values: `minute`, `hour`, `day`, `week`, `month`, `one_time`)
+    *   `paymentMethods` (object):
+        *   `stripe` (object):
+            *   `enableBankDebitOnly` (boolean): Enable Bank Debit Only
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   `contactDetails.additionalEmails` (object[]): Secondary email addresses for the contact to be saved
+        *   `contactDetails.additionalEmails[].email` (string): required within this array
+    *   `contactDetails.companyName` (string): Contact Company Name
+    *   `contactDetails.address` (object):
+        *   `addressLine1` (string): Address Line 1
+        *   `addressLine2` (string): Address Line 2
+        *   `city` (string): City
+        *   `state` (string): State
+        *   `countryCode` (string): Country Code
+        *   `postalCode` (string): Postal Code
+    *   `contactDetails.customFields` (string[]): Custom Values
+    *   `schedule.executeAt` (string)
+    *   `schedule.rrule.startTime` (string): Start time in HH:mm:ss format
+    *   `schedule.rrule.endDate` (string): End date in YYYY-MM-DD format
+    *   `schedule.rrule.endTime` (string): End time in HH:mm:ss format
+    *   `schedule.rrule.dayOfMonth` (number): -1, 1, 2, 3, ..., 27, 28
+    *   `schedule.rrule.dayOfWeek` (string): (Possible values: `mo`, `tu`, `we`, `th`, `fr`, `sa`, `su`)
+    *   `schedule.rrule.numOfWeek` (number): -1, 1, 2, 3, 4
+    *   `schedule.rrule.monthOfYear` (string): (Possible values: `jan`, `feb`, `mar`, `apr`, `may`, `jun`, `jul`, `aug`, `sep`, `oct`, `nov`, `dec`)
+    *   `schedule.rrule.count` (number): Max number of task executions
+    *   `schedule.rrule.daysBefore` (number): Execute task number of days before
+    *   `schedule.rrule.useStartAsPrimaryUserAccepted` (boolean): Start as primary user accepted date
+    *   `schedule.rrule.endType` (string): End type like after, by, count
+    *   `businessDetails.logoUrl` (string): Business Logo URL
+    *   `businessDetails.name` (string): Business Name
+    *   `businessDetails.phoneNo` (string): Business Phone Number
+    *   `businessDetails.address` (object): Business Address
+        *   `addressLine1` (string): Address Line 1
+        *   `addressLine2` (string): Address Line 2
+        *   `city` (string): City
+        *   `state` (string): State
+        *   `countryCode` (string): Country Code
+        *   `postalCode` (string): Postal Code
+    *   `businessDetails.website` (string): Business Website Link
+    *   `businessDetails.customValues` (string[]): Custom Values
+    *   `items[].description` (string): Invoice descriptions
+    *   `items[].productId` (string): Product Id
+    *   `items[].priceId` (string): Price Id
+    *   `items[].taxes` (object[]): Tax
+        *   `_id` (string): required within this array
+        *   `name` (string): required within this array
+        *   `rate` (number): required within this array
+        *   `calculation` (string): (Possible values: `exclusive`)
+        *   `description` (string)
+        *   `taxId` (string)
+    *   `items[].automaticTaxCategoryId` (string): Tax category id for calculating automatic tax
+    *   `items[].isSetupFeeItem` (boolean): Setupfee item, only created when 1st invoice of recurring schedule is generated
+    *   `items[].type` (string): Price type of the item (Possible values: `one_time`, `recurring`)
+    *   `items[].taxInclusive` (boolean): true if item amount is tax inclusive (Default value: `false`)
+    *   `automaticTaxesEnabled` (boolean): Automatic taxes enabled for the Invoice
+    *   `discount.value` (number): Discount Value (Default value: `0`)
+    *   `discount.validOnProductIds` (string[]): Product Ids on which discount is applicable
+    *   `termsNotes` (string)
+    *   `title` (string)
+    *   `lateFeesConfiguration.grace` (object): Late Fees Grace
+        *   `intervalCount` (number): required, Late fees grace interval count
+        *   `interval` (string): required, Late fees grace interval (Possible values: `day`)
+    *   `lateFeesConfiguration.maxLateFees` (object): Max late fees payable
+        *   `type` (string): required (Possible values: `fixed`)
+        *   `value` (number): required, Max late fees to pay
+    *   `invoiceNumberPrefix` (string): prefix for invoice number
+    *   `attachments` (object[]): attachments for the invoice
+        *   `id` (string): required
+        *   `name` (string): required
+        *   `url` (string): required
+        *   `type` (string): required
+        *   `size` (number): required
+    *   `miscellaneousCharges` (object): miscellaneous charges for the invoice
+        *   `charges` (array[]): required, charges for the processing fee (Note: Example shows `[[null]]`)
+        *   `collectedMiscellaneousCharges` (number): collected miscellaneous charges
+        *   `paidCharges` (object[]): paid miscellaneous charges
+            *   `name` (string): required
+            *   `charge` (number): required
+            *   `amount` (number): required
+            *   `_id` (string): required
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `invoices/schedule.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** Bearer (JWT)
+*   **Location:** `header`
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Structure:** A JSON object representing the newly created invoice schedule. It includes:
+        *   `_id` (string): Unique identifier for the schedule.
+        *   `status` (string): Current status of the schedule (e.g., `draft`).
+        *   `liveMode` (boolean): Indicates if the schedule is in live mode.
+        *   `altId` (string): Location or Agency ID associated with the schedule.
+        *   `altType` (string): Type of altId (e.g., `location`).
+        *   `name` (string): Name of the invoice schedule.
+        *   `schedule` (object): Details of the recurrence rule (`rrule`), including `intervalType`, `interval`, `startDate`, etc.
+        *   `invoices` (object[]): An array containing details of invoices generated or associated with this schedule (each invoice object has its own `_id`, `status`, `amountPaid`, `invoiceNumber`, `currency`, `total`, `amountDue`, etc.).
+        *   `businessDetails` (object): Information about the business.
+        *   `currency` (string): The currency used.
+        *   `contactDetails` (object): Information about the contact.
+        *   `discount` (object): Discount applied.
+        *   `items` (object[]): List of products/services on the invoice.
+        *   `total` (number): Total amount.
+        *   `title` (string): Title of the invoice.
+        *   `termsNotes` (string): Terms and notes.
+        *   `compiledTermsNotes` (string): Compiled terms and notes.
+        *   `createdAt` (string): Timestamp of creation.
+        *   `updatedAt` (string): Timestamp of last update.
+    *   **Example:** A detailed JSON example demonstrating the structure is provided in the documentation.
+
+*   **Error Responses:**
+    *   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `422 Unprocessable Entity`: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This API allows users to create a new invoice schedule, defining the recurrence rules and initial invoice details.
+
+### 11. TAGS:
+Invoice, Schedule, Create, Recurring, Billing, Payment, Location, Contact, Business, Automation
+
+### 12. CODE EXAMPLES AVAILABILITY:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

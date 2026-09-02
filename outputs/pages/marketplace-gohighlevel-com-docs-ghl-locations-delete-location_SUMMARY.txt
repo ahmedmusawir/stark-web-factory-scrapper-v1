@@ -1,0 +1,72 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Delete Sub-Account (Formerly Location)
+
+### 2. CATEGORY:
+Sub-Account (Formerly Location)
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/locations/:locationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/locations/:locationId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version (Possible values: `2021-07-28`)
+*   **locationId** (string): Location Id. Example: `ve9EPM428h8vShlRW1KT`
+*   **deleteTwilioAccount** (boolean): Boolean value to indicate whether to delete Twilio Account or not
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `locations.internal-access-only`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Agency Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Agency (OR) Private Integration Token of Agency.
+
+### 9. RESPONSE FORMAT:
+
+#### Successful Response (200 OK):
+*   **Content-Type**: `application/json`
+*   **Schema**:
+    *   `success` (boolean): Success status of the API. Example: `true`
+    *   `message` (string): Success message of the API. Example: `Deleted location with id: ve9EPM428h8vShlRW1KT`
+*   **Example**:
+    ```json
+    {"success":true,"message":"Deleted location with id: ve9EPM428h8vShlRW1KT"}
+    ```
+
+#### Error Responses:
+*   **400 Bad Request**:
+    *   **Content-Type**: `application/json`
+    *   **Schema**: `statusCode` (number), `message` (string)
+    *   **Example**: `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized**:
+    *   **Content-Type**: `application/json`
+    *   **Schema**: `statusCode` (number), `message` (string), `error` (string)
+    *   **Example**: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint allows an Agency to delete a specific Sub-Account (formerly known as Location) from their system.
+
+### 11. TAGS:
+Delete, Sub-Account, Location, Agency, GHL, HighLevel, CRM, API, Account Management, Twilio
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

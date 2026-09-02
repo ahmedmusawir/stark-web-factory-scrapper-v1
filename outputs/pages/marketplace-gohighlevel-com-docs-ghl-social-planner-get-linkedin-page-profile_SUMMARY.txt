@@ -1,0 +1,90 @@
+Here's a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Get Linkedin pages and profile
+
+### 2. CATEGORY:
+Social Planner (Sub-category: Oauth | LinkedIn)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/oauth/:locationId/linkedin/accounts/:accountId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/oauth/:locationId/linkedin/accounts/:accountId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-07-28`.
+*   **Path Parameters:**
+    *   `locationId` (string): Account Location Id.
+    *   `accountId` (string): Account Id.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `200 OK`
+*   **Content Type:** `application/json`
+*   **Schema:**
+    ```json
+    {
+      "success": true,
+      "statusCode": 200,
+      "message": "Fetched LinkedIn Account",
+      "results": {
+        "pages": [
+          {
+            "id": "string",
+            "name": "string",
+            "avatar": "string",
+            "urn": "string",
+            "isConnected": true
+          }
+        ],
+        "profile": [
+          {
+            "id": "string",
+            "name": "string",
+            "avatar": "string",
+            "urn": "string",
+            "isConnected": true
+          }
+        ]
+      }
+    }
+    ```
+*   **Details:**
+    *   `success` (boolean): Indicates if the request was successful.
+    *   `statusCode` (number): HTTP status code.
+    *   `message` (string): A descriptive message about the response.
+    *   `results` (object): Contains the requested data.
+        *   `pages` (array of objects): A list of LinkedIn pages connected to the account.
+            *   `id` (string): The ID of the LinkedIn page.
+            *   `name` (string): The name of the LinkedIn page.
+            *   `avatar` (string): URL to the profile avatar of the page.
+            *   `urn` (string): The URN (Uniform Resource Name) of the page.
+            *   `isConnected` (boolean): Indicates if the page is connected to the app.
+        *   `profile` (array of objects): A list of LinkedIn personal profiles connected to the account.
+            *   `id` (string): The ID of the LinkedIn profile.
+            *   `name` (string): The name of the LinkedIn profile.
+            *   `avatar` (string): URL to the profile avatar of the profile.
+            *   `urn` (string): The URN (Uniform Resource Name) of the profile.
+            *   `isConnected` (boolean): Indicates if the profile is connected to the app.
+
+### 10. PURPOSE:
+This endpoint retrieves the connected LinkedIn pages and personal profiles associated with a specific location and account ID within the Social Planner.
+
+### 11. TAGS:
+`Social Planner`, `LinkedIn`, `OAuth`, `Account`, `Profile`, `Pages`, `GET`, `Social Media`, `Integration`
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

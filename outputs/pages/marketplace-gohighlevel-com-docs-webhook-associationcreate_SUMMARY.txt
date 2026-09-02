@@ -1,0 +1,75 @@
+Here's a structured summary of the AssociationCreate Webhook documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+AssociationCreate Webhook
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+Not applicable (This is a webhook event sent *by* the HighLevel system to a configured listener URL, not an endpoint to be called *by* a client).
+
+### 5. FULL URL:
+Not applicable (This is a webhook event sent *by* the HighLevel system to a configured listener URL, not an endpoint to be called *by* a client).
+
+### 6. REQUIRED PARAMETERS (Webhook Payload Fields):
+The webhook payload is a JSON object with the following fields, all of which are expected to be present in the received webhook:
+*   `id` (string): Unique identifier for the association.
+*   `associationType` (string): Specifies the type of association (e.g., `USER_DEFINED` or `SYSTEM_DEFINED`).
+*   `firstObjectKey` (string): Key representing the first object in the association.
+*   `firstObjectLabel` (string): Readable label for the first object.
+*   `secondObjectKey` (string): Key representing the second object in the association.
+*   `secondObjectLabel` (string): Readable label for the second object.
+*   `key` (string): Unique key assigned to the association.
+*   `locationId` (string): Identifies the location associated with the created association.
+
+### 7. OPTIONAL PARAMETERS (Webhook Payload Fields):
+Not specified in documentation (all fields in the provided payload schema are expected to be present).
+
+### 8. AUTHENTICATION:
+Not specified in documentation for receiving the webhook. (Typically, webhook security involves signature verification, which is not detailed here).
+
+### 9. RESPONSE FORMAT:
+This section describes the payload *sent by* the webhook. The *receiving server* is expected to respond with an HTTP 200 OK to acknowledge successful receipt of the webhook.
+
+**Payload Structure (JSON Object):**
+```json
+{
+  "id": "string",
+  "associationType": "string",
+  "firstObjectKey": "string",
+  "firstObjectLabel": "string",
+  "secondObjectKey": "string",
+  "secondObjectLabel": "string",
+  "key": "string",
+  "locationId": "string"
+}
+```
+
+**Example Response:**
+```json
+{
+  "id": "67ade73d1119d2ac7ad0c475",
+  "associationType": "USER_DEFINED",
+  "firstObjectKey": "custom_objects.real_estate_buyer",
+  "firstObjectLabel": "Interested Buyer",
+  "secondObjectKey": "custom_objects.property",
+  "secondObjectLabel": "Property",
+  "key": "buyer_property_interest",
+  "locationId": "eHy2cOSZxMQzQ6Yyvl8P"
+}
+```
+
+### 10. PURPOSE:
+This webhook is triggered when a new association is created between objects within HighLevel, currently supporting contact-to-contact, contact-to-custom-object, and custom-object-to-custom-object associations.
+
+### 11. TAGS:
+Webhook, Association, Create, Object, Contact, Custom Object, Event, Notification, HighLevel, Webhook Response
+
+### 12. CODE EXAMPLES:
+Only a JSON example of the webhook payload is provided; no code examples for sending or receiving the webhook in specific languages (e.g., Python, Node.js, cURL) are included.

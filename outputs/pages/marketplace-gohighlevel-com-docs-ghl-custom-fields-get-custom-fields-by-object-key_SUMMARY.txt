@@ -1,0 +1,86 @@
+Here is a structured summary of the API documentation for "Get Custom Fields By Object Key":
+
+---
+
+### 1. ENDPOINT NAME:
+Get Custom Fields By Object Key
+
+### 2. CATEGORY:
+Custom Fields V2
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/custom-fields/object-key/:objectKey`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/custom-fields/object-key/:objectKey`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+
+*   **Path Parameters:**
+    *   `objectKey` (string): Key of the Object. Must include "custom_objects." prefix for custom objects. Available on the Custom Objects details Page under settings. (Example: `custom_objects.pet`)
+
+*   **Query Parameters:**
+    *   `locationId` (string): Location Id (Example: `Location Id`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation for the request.
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s)**: `locations/customFields.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK):**
+    *   **Content Type**: `application/json`
+    *   **Schema**:
+        *   `fields` (array of objects): Custom Fields for the object.
+            *   Each field object contains:
+                *   `locationId` (string, required)
+                *   `name` (string)
+                *   `description` (string)
+                *   `placeholder` (string)
+                *   `showInForms` (boolean, required)
+                *   `options` (array of objects): Options for the field (Optional, valid only for SINGLE_OPTIONS, MULTIPLE_OPTIONS, RADIO, CHECKBOX, TEXTBOX_LIST type).
+                    *   Each option object contains: `key` (string, required), `label` (string, required), `url` (string, optional, valid only for RADIO type)
+                *   `acceptedFormats` (string): Allowed file formats for uploads. (Possible values: `.pdf`, `.docx`, `.doc`, `.jpg`, `.jpeg`, `.png`, `.gif`, `.csv`, `.xlsx`, `.xls`, `all`)
+                *   `id` (string, required): Unique identifier of the object.
+                *   `objectKey` (string, required): The key for your custom / standard object.
+                *   `dataType` (string, required): Type of field. (Possible values: `TEXT`, `LARGE_TEXT`, `NUMERICAL`, `PHONE`, `MONETORY`, `CHECKBOX`, `SINGLE_OPTIONS`, `MULTIPLE_OPTIONS`, `DATE`, `TEXTBOX_LIST`, `FILE_UPLOAD`, `RADIO`)
+                *   `parentId` (string, required): ID of the parent folder.
+                *   `fieldKey` (string, required): Field key.
+                *   `allowCustomOption` (boolean): Determines if users can add a custom option value for RADIO type fields.
+                *   `maxFileLimit` (number): Maximum file limit for uploads.
+                *   `dateAdded` (date-time, required)
+                *   `dateUpdated` (date-time, required)
+        *   `folders` (array of objects): Custom Fields folder for the object.
+            *   Each folder object contains the *same properties* as described for a `field` object.
+
+*   **Error Responses:**
+    *   `400 Bad Request`:
+        *   **Schema**: `{ "statusCode": number, "message": string }`
+        *   **Example**: `{ "statusCode": 400, "message": "Bad Request" }`
+    *   `401 Unauthorized`:
+        *   **Schema**: `{ "statusCode": number, "message": string, "error": string }`
+        *   **Example**: `{ "statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized" }`
+
+### 10. PURPOSE:
+This endpoint retrieves all custom fields and custom field folders associated with a specific object key within a given location, currently supporting Custom Objects and Company (Business).
+
+### 11. TAGS:
+Custom Fields, Custom Fields V2, Get, Retrieve, Object Key, Custom Objects, Company, Business, Readonly, Location, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

@@ -1,0 +1,88 @@
+Here is a structured summary of the API documentation for "List Agents":
+
+### STRUCTURED SUMMARY
+
+**1. ENDPOINT NAME:**
+List Agents
+
+**2. CATEGORY:**
+AI Agent Studio (Agents)
+
+**3. HTTP METHOD:**
+GET
+
+**4. ENDPOINT URL:**
+`/agent-studio/public-api/agents`
+
+**5. FULL URL:**
+`https://services.leadconnectorhq.com/agent-studio/public-api/agents`
+
+**6. REQUIRED PARAMETERS:**
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-04-15`
+*   **Query Parameters:**
+    *   locationId (string): Example: C2QujeCh8ZnC7al2InWR
+    *   limit (string): Example: 20
+    *   offset (string): Example: 0
+
+**7. OPTIONAL PARAMETERS:**
+*   **Query Parameters:**
+    *   source (string): Example: api
+
+**8. AUTHENTICATION:**
+*   **Auth Method(s):** OAuth Access Token, Private Integration Token
+*   **Token Type(s):** Sub-Account Token
+*   **Scheme:** Bearer
+*   **Bearer Format:** JWT
+*   **In:** Header (Authorization)
+
+**9. RESPONSE FORMAT:**
+**Status Code:** 200 (Agents retrieved successfully)
+**Content Type:** `application/json`
+**Schema:**
+```json
+{
+  "success": boolean,
+  "message": string,
+  "agents": [
+    {
+      "agentId": string, // Agent ID
+      "name": string,    // Agent name
+      "description": string, // Agent description
+      "locationId": string, // Location ID
+      "status": string,    // Agent status (always "active")
+      "createdAt": string, // Creation timestamp (e.g., "2024-01-15T10:30:00.000Z")
+      "updatedAt": string  // Last update timestamp (e.g., "2024-02-20T14:45:00.000Z")
+    }
+  ],
+  "pagination": {
+    "total": number,   // Total number of agents
+    "limit": number,   // Number of agents per page
+    "offset": number,  // Starting position
+    "hasMore": boolean // Whether more agents exist
+  }
+}
+```
+
+**Error Responses:**
+*   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}` (e.g., locationId is required)
+*   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+*   **500 Internal Server Error:** `{"statusCode":500,"message":"Internal Server Error"}`
+
+**10. PURPOSE:**
+This endpoint lists all active AI agents for a specified location, supporting pagination for optimal performance.
+
+**11. TAGS:**
+Agents, AI Agent Studio, List, Retrieve, Get, Pagination, Sub-Account, HighLevel, Marketing, Customer Support, AI, API
+
+**12. CODE EXAMPLES:**
+Code examples are available for:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

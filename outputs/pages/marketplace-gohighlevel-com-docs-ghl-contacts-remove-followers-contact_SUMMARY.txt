@@ -1,0 +1,59 @@
+Here is a structured summary of the API documentation for "Remove Followers":
+
+### STRUCTURED SUMMARY
+
+1.  **ENDPOINT NAME:** Remove Followers
+
+2.  **CATEGORY:** Contacts
+
+3.  **HTTP METHOD:** DELETE
+
+4.  **ENDPOINT URL:** `/contacts/:contactId/followers`
+
+5.  **FULL URL:** `https://services.leadconnectorhq.com/contacts/:contactId/followers`
+
+6.  **REQUIRED PARAMETERS:**
+    *   **Header Parameters:**
+        *   Version (string): API Version. Possible values: `2021-07-28`
+    *   **Path Parameters:**
+        *   contactId (string): Contact Id. Example: `sx6wyHhbFdRXh302Lunr`
+    *   **Body Parameters (application/json):**
+        *   followers (string[]): An array of follower IDs to be removed from the contact. Example: `["sx6wyHhbFdRXh302Lunr","sx6wyHhbFdRXh302Lunr"]`
+
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation
+
+8.  **AUTHENTICATION:**
+    *   **Scope(s):** `contacts.write`
+    *   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+    *   **Token Type(s):** `Sub-Account Token`
+    *   **Scheme:** Bearer
+    *   **Bearer Format:** JWT
+    *   **In:** Header (Authorization)
+    *   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+9.  **RESPONSE FORMAT:**
+    *   **Status Code:** `200 OK`
+    *   **Content Type:** `application/json`
+    *   **Structure:**
+        ```json
+        {
+          "followers": ["sx6wyHhbFdRXh302Lunr", "sx6wyHhbFdRXh302LLss"],
+          "followersRemoved": ["Mx6wyHhbFdRXh302Luer", "Ka6wyHhbFdRXh302LLsAm"]
+        }
+        ```
+        *   `followers` (string[]): An array of follower IDs (likely the remaining followers or all followers involved in the operation).
+        *   `followersRemoved` (string[]): An array of follower IDs that were successfully removed.
+
+10. **PURPOSE:** This endpoint allows for the removal of specified followers from an existing contact within the system.
+
+11. **TAGS:** Contacts, Followers, Remove, Delete, CRM, Contact Management, LeadConnector, HighLevel
+
+12. **CODE EXAMPLES:**
+    *   curl
+    *   nodejs
+    *   python
+    *   php
+    *   java
+    *   go
+    *   ruby
+    *   powershell

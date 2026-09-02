@@ -1,0 +1,137 @@
+Here is a structured summary of the `VoiceAiCallEnd` API documentation:
+
+## API Documentation Summary
+
+---
+
+### 1. ENDPOINT NAME
+VoiceAiCallEnd
+
+### 2. CATEGORY
+Webhook (Voice AI)
+
+### 3. HTTP METHOD
+N/A (This is a webhook event that triggers a POST request to a user-configured URL.)
+
+### 4. ENDPOINT URL
+Not applicable (User-defined callback URL)
+
+### 5. FULL URL
+Not applicable (User-defined callback URL)
+
+### 6. REQUIRED PARAMETERS (Context-specific)
+
+**For `executedCallActions` items within the main payload:**
+*   `actionType` (string, enum: "CALL_TRANSFER", "DATA_EXTRACTION", "IN_CALL_DATA_EXTRACTION", "WORKFLOW_TRIGGER", "SMS", "APPOINTMENT_BOOKING", "CUSTOM_ACTION", "KNOWLEDGE_BASE"): Type of action executed during the call.
+*   `actionName` (string): Name assigned to the executed action.
+
+**When `actionType` is `CALL_TRANSFER` (within `actionParameters` object):**
+*   `triggerPrompt` (string): The prompt that led the AI to initiate the call transfer.
+*   `transferToType` (string, enum: "number"): Specifies the type of transfer destination (currently only "number").
+*   `transferToValue` (string): The value for the transfer destination, e.g., a phone number.
+
+**When `actionType` is `DATA_EXTRACTION` (within `actionParameters` object):**
+*   `contactFieldId` (string): The ID of the contact custom field where the extracted data should be stored.
+*   `description` (string): A description of the data to be extracted.
+*   `examples` (array of string): Examples of the data format or content to aid extraction.
+*   `overwriteExistingValue` (boolean): Indicates whether to overwrite an existing value in the contact field if data is extracted.
+
+**When `actionType` is `IN_CALL_DATA_EXTRACTION` (within `actionParameters` object):**
+*   `contactFieldId` (string): The ID of the contact custom field where the extracted data should be stored.
+*   `description` (string): A description of the data to be extracted during the call.
+*   `examples` (array of string): Examples of the data format or content to aid in-call extraction.
+*   `overwriteExistingValue` (boolean): Indicates whether to overwrite an existing value in the contact field if data is extracted.
+
+**When `actionType` is `WORKFLOW_TRIGGER` (within `actionParameters` object):**
+*   `triggerPrompt` (string): The prompt that led the AI to trigger a workflow.
+*   `triggerMessage` (string): A message associated with the workflow trigger.
+*   `workflowId` (string): The ID of the workflow to be triggered.
+
+**When `actionType` is `SMS` (within `actionParameters` object):**
+*   `triggerPrompt` (string): The prompt that led the AI to send an SMS.
+*   `triggerMessage` (string): A message associated with the SMS trigger.
+*   `messageBody` (string): The content of the SMS message to be sent.
+
+**When `actionType` is `APPOINTMENT_BOOKING` (within `actionParameters` object):**
+*   `calendarId` (string): The ID of the calendar used for booking the appointment.
+*   `daysOfOfferingDates` (number): The number of days from the current date for which appointment slots are offered.
+*   `slotsPerDay` (number): The number of available booking slots per day.
+*   `hoursBetweenSlots` (number): The interval in hours between offered appointment slots.
+
+**When `actionType` is `CUSTOM_ACTION` (within `actionParameters` object):**
+*   `triggerPrompt` (string): The prompt that led the AI to execute the custom action.
+*   `apiDetails` (object): Details regarding the API call for the custom action.
+    *   `url` (string, within `apiDetails`): The URL for the API endpoint.
+    *   `method` (string, enum: "POST", "GET", within `apiDetails`): The HTTP method for the API request.
+    *   `key` (string, within `headers` array of `apiDetails`): Key for a custom header.
+    *   `value` (string, within `headers` array of `apiDetails`): Value for a custom header.
+    *   `name` (string, within `parameters` array of `apiDetails`): Name of an API parameter.
+
+**When `actionType` is `KNOWLEDGE_BASE` (within `actionParameters` object):**
+*   `triggerMessage` (string): A message associated with the knowledge base interaction.
+*   `knowledgeBaseId` (string): The ID of the knowledge base accessed.
+
+### 7. OPTIONAL PARAMETERS
+
+**Top-level payload fields:**
+*   `id` (string): Unique identifier for the Voice AI call.
+*   `locationId` (string): The unique identifier of the sub-account (location) where the call occurred.
+*   `agentId` (string): The unique identifier of the Voice AI agent involved in the call.
+*   `contactId` (string): The unique identifier of the contact (person) involved in the call.
+*   `fromNumber` (string): The phone number from which the Voice AI call originated.
+*   `createdAt` (string): The ISO timestamp when the call record was created.
+*   `duration` (number): The total duration of the call in seconds.
+*   `summary` (string): A concise summary generated for the entire call conversation.
+*   `transcript` (string): The complete transcript of the Voice AI call.
+*   `translation` (object): Contains translation details if the call was translated.
+    *   `transcript` (string, within `translation`): The translated transcript of the call.
+    *   `language` (string, within `translation`): The language of the translated transcript (e.g., "es" for Spanish).
+*   `extractedData` (object): A key-value pair object containing any data extracted during the call that doesn't map directly to a contact field.
+*   `messageId` (string): An identifier for the message associated with the call (e.g., a message in a conversation thread).
+*   `trialCall` (boolean): A flag indicating if the call was part of a trial or free usage.
+*   `executedCallActions` (array of objects): A list of actions that were executed by the Voice AI agent during the call.
+
+**Within `executedCallActions` items:**
+*   `_id` (string): Unique identifier for a specific executed action.
+*   `description` (string): A description of the executed action.
+*   `actionParameters` (object): Parameters specific to the `actionType`. The structure varies based on `actionType`.
+*   `executedAt` (string, format: date-time): The ISO timestamp when the specific action was executed.
+*   `triggerReceivedAt` (string, format: date-time): The ISO timestamp when the trigger for the action was received.
+
+**When `actionType` is `CALL_TRANSFER` (within `actionParameters` object):**
+*   `triggerMessage` (string): A message spoken by the AI before initiating the transfer.
+*   `hearWhisperMessage` (boolean): A flag indicating if a whisper message should be played to the recipient of the transfer.
+
+**When `actionType` is `CUSTOM_ACTION` (within `actionParameters` object):**
+*   `triggerMessage` (string): A message spoken by the AI when the custom action is triggered.
+*   `apiDetails` (object): Details regarding the API call for the custom action.
+    *   `authenticationRequired` (boolean, within `apiDetails`): Indicates if authentication is required for the API call.
+    *   `authenticationValue` (string, within `apiDetails`): The authentication token or value if authentication is required.
+    *   `headers` (array of objects, within `apiDetails`): An array of custom headers to be sent with the API request.
+        *   `description` (string, within `parameters` array of `apiDetails`): Description of the parameter.
+        *   `type` (string, within `parameters` array of `apiDetails`): Data type of the parameter.
+        *   `example` (string, within `parameters` array of `apiDetails`): An example value for the parameter.
+    *   `parameters` (array of objects, within `apiDetails`): An array of parameters to be sent with the API request.
+*   `selectedPaths` (array of string): JSON paths to extract specific data from the API response.
+
+**When `actionType` is `KNOWLEDGE_BASE` (within `actionParameters` object):**
+*   `triggerPrompt` (string): The prompt that led the AI to access the knowledge base.
+*   `parameters` (array of objects): An array of parameters provided to the knowledge base action.
+    *   `description` (string, within `parameters` array): Description of the parameter.
+    *   `type` (string, within `parameters` array): Data type of the parameter.
+    *   `example` (string, within `parameters` array): An example value for the parameter.
+
+### 8. AUTHENTICATION
+*   **Required Scope:** `voice-ai-dashboard.readonly` (for Sub-Account apps)
+
+### 9. RESPONSE FORMAT
+The webhook delivers a JSON payload to the configured URL. The structure of this payload is detailed in the Schema and illustrated in the Example section, containing comprehensive data about the concluded Voice AI call and any actions taken during it.
+
+### 10. PURPOSE
+This webhook is called by HighLevel whenever a Voice AI call concludes for a specific sub-account, providing a detailed summary and actions performed during the call.
+
+### 11. TAGS
+Webhook Events, Voice AI, Call End, Automation, Sub-Account, Call Data, Transcript, CRM, Data Extraction, Workflow Trigger, SMS, Appointment Booking, Custom Action, Knowledge Base.
+
+### 12. CODE EXAMPLES
+Not present in documentation.

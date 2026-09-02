@@ -1,0 +1,88 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME
+Get rebilling config for an app subscription and usage plans
+
+### 2. CATEGORY
+App Billing Management (under Developer marketplace)
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/marketplace/app/:appId/rebilling-config/location/:locationId`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/marketplace/app/:appId/rebilling-config/location/:locationId`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters**:
+    *   `Version` (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters**:
+    *   `appId` (string): ID of the app to get rebilling config
+    *   `locationId` (string): Location ID
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Scope(s)**: `oauth.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account.
+
+### 9. RESPONSE FORMAT
+
+**Status Code**: `200 OK`
+**Content Type**: `application/json`
+
+**Schema**:
+*   **`plans`** (object): The rebilling plans configuration
+    *   **`subscription`** (object[] - required): Subscription plans
+        *   `resellingAmount` (number - required): The reselling amount. Example: `0`
+        *   `baseAmount` (number - required): The base amount. Example: `0`
+        *   `planId` (string - required): The plan id. Example: `5ae000000000000000000000`
+        *   `features` (string[] - required): The features. Example: `["feature1","feature2"]`
+        *   `paymentType` (string - required): The payment type. Example: `month`
+        *   `name` (string - required): The plan name. Example: `Monthly Plan - 999`
+        *   `paymentTime` (string - required): The payment time. Example: `month`
+    *   **`usage`** (object[] - required): Usage-based plans
+        *   `productType` (string - required): The product type. Example: `workflow_action`
+        *   `productName` (string - required): The product name. Example: `Send Group iMessage`
+        *   `usageUnit` (string - required): The usage unit for the meter. Example: `action / message`
+        *   `meterId` (string - required): The meter id. Example: `680b97022b4a34420f5f9b93`
+        *   `meterName` (string - required): The meter name. Example: `Send Group iMessage`
+        *   `fixedPricePerUnit` (number - required): The fixed price per unit, applicable for fixed price type. Example: `0.01001`
+        *   `priceType` (string - required): The price type. Possible values: [`fixed`, `dynamic`]. Example: `fixed`
+        *   `minPricePerUnit` (string - required): The min price per unit, applicable for dynamic price type. Example: `0.01001`
+        *   `maxPricePerUnit` (string - required): The max price per unit, applicable for dynamic price type. Example: `0.01001`
+        *   `executionLimitPerCycle` (number - required): The execution limit per cycle. Example: `1000`
+
+**Example (auto)**:
+```json
+{"plans":{"subscription":[{"resellingAmount":0,"baseAmount":999,"planId":"5ae000000000000000000000","features":["feature1","feature2"],"paymentType":"month","name":"Monthly Plan - 999","paymentTime":"month"}],"usage":[{"productType":"workflow_action","productName":"Send Group iMessage","usageUnit":"action / message","meterId":"680b97022b4a34420f5f9b93","meterName":"Send Group iMessage","fixedPricePerUnit":0.01001,"priceType":"fixed","minPricePerUnit":"0.01001","maxPricePerUnit":"0.01001","executionLimitPerCycle":1000}]}}
+```
+
+**Error Responses**:
+*   `400 Bad Request`: Invalid request parameters or missing required data.
+*   `403 Forbidden`: The client does not have necessary permissions to access installer details.
+
+### 10. PURPOSE
+This endpoint retrieves the rebilling configuration, including subscription and usage plans, for a specific marketplace app for the authenticated sub-account.
+
+### 11. TAGS
+App Billing, Rebilling Configuration, Marketplace, Developer API, Subscription, Usage Plans, Sub-Account, GET, Payments
+
+### 12. CODE EXAMPLES
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

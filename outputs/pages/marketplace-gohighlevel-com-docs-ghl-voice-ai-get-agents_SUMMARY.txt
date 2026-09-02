@@ -1,0 +1,83 @@
+Here's a structured summary of the "List Agents" API documentation:
+
+## STRUCTURED SUMMARY
+
+### 1. ENDPOINT NAME:
+List Agents
+
+### 2. CATEGORY:
+Voice AI / Agents
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/voice-ai/agents`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/voice-ai/agents`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version. Possible values: [`2021-04-15`]
+*   **locationId** (string): Location ID
+
+### 7. OPTIONAL PARAMETERS:
+*   **page** (number): Page number starting from 1. Default value: `1`. Possible values: `>= 1` and `<= 5000`.
+*   **pageSize** (number): Number of items per page. Default value: `10`. Possible values: `>= 1` and `<= 50`.
+*   **query** (string): Query
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `voice-ai-agents.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`, `Bearer Token`
+*   **Token Type(s)**: `Sub-Account Token`
+
+### 9. RESPONSE FORMAT:
+*   **Status Code**: `200 OK`
+*   **Content Type**: `application/json`
+*   **Schema**: An object containing:
+    *   `total` (number): Total number of items (e.g., `150`)
+    *   `page` (number): Page number starting from 1 (e.g., `2`)
+    *   `pageSize` (number): Number of items per page (e.g., `10`)
+    *   `agents` (array of objects): An array of agent objects, each containing detailed information about an agent, including:
+        *   `id` (string): Unique identifier for the agent (e.g., `507f1f77bcf86cd799439011`)
+        *   `locationId` (string): Unique identifier for the location
+        *   `agentName` (string): Display name of the agent
+        *   `businessName` (string): Name of the business
+        *   `welcomeMessage` (string): Greeting message
+        *   `agentPrompt` (string): Custom instructions
+        *   `voiceId` (string): Identifier for the speech synthesis voice
+        *   `language` (string): Language code (e.g., `en-US`)
+        *   `patienceLevel` (string): Tolerance level for caller response delays (e.g., `medium`)
+        *   `maxCallDuration` (number): Maximum call duration in seconds (`>= 180` and `<= 900`)
+        *   `sendUserIdleReminders` (boolean): Whether idle reminders are enabled
+        *   `reminderAfterIdleTimeSeconds` (number): Seconds to wait before reminders (`>= 1` and `<= 20`)
+        *   `inboundNumber` (string, optional): Phone number for inbound calls
+        *   `numberPoolId` (string, optional): Identifier for number pool
+        *   `callEndWorkflowIds` (array of strings): Workflow IDs triggered on call end
+        *   `sendPostCallNotificationTo` (object): Settings for post-call notifications (`admins`, `allUsers`, `contactAssignedUser` booleans, `specificUsers` array, `customEmails` array)
+        *   `agentWorkingHours` (array of objects): Time intervals organized by day (`dayOfTheWeek`, `intervals` array with `startHour`, `endHour`, `startMinute`, `endMinute`)
+        *   `timezone` (string): IANA timezone identifier
+        *   `isAgentAsBackupDisabled` (boolean): Whether agent is excluded from backup scenarios
+        *   `translation` (object): Translation settings (`enabled` boolean, `language` string)
+        *   `actions` (array of objects): Configured actions, each with `id`, `actionType` (`CALL_TRANSFER`, `DATA_EXTRACTION`, `IN_CALL_DATA_EXTRACTION`, `WORKFLOW_TRIGGER`, `SMS`, `APPOINTMENT_BOOKING`, `CUSTOM_ACTION`, `KNOWLEDGE_BASE`), `name`, `triggerPrompt`, and `actionParameters` (a polymorphic object whose structure depends on `actionType`).
+*   **Error Responses**:
+    *   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `422 Unprocessable Entity`: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint retrieves a paginated list of Voice AI agents configured for a given location.
+
+### 11. TAGS:
+Voice AI, Agents, List, Get, Retrieve, Paginated, Location, Readonly, API, HighLevel
+
+### Code Examples:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

@@ -1,0 +1,121 @@
+Here is a structured summary of the provided API documentation for "Get User":
+
+### 1. ENDPOINT NAME:
+Get User
+
+### 2. CATEGORY:
+Users
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/users/:userId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/users/:userId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   userId (string): User Id. Example: `ve9EPM428h8vShlRW1KT`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `users.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`, `Sub-Account Token`
+*   **Scheme:** `bearer` (JWT format)
+*   **In:** `header` (as `Authorization: Bearer <TOKEN>`)
+
+### 9. RESPONSE FORMAT:
+**Status Code:** `200 OK`
+**Content Type:** `application/json`
+
+**Schema (Example fields from successful response):**
+```json
+{
+  "id": "0IHuJvc2ofPAAA8GzTRi",
+  "name": "John Deo",
+  "firstName": "John",
+  "lastName": "Deo",
+  "email": "john@deo.com",
+  "phone": "+1 808-868-8888",
+  "extension": "",
+  "permissions": {
+    "campaignsEnabled": true,
+    "campaignsReadOnly": false,
+    "contactsEnabled": true,
+    "workflowsEnabled": true,
+    "workflowsReadOnly": true,
+    "triggersEnabled": true,
+    "funnelsEnabled": true,
+    "websitesEnabled": false,
+    "opportunitiesEnabled": true,
+    "dashboardStatsEnabled": true,
+    "bulkRequestsEnabled": true,
+    "appointmentsEnabled": true,
+    "reviewsEnabled": true,
+    "onlineListingsEnabled": true,
+    "phoneCallEnabled": true,
+    "conversationsEnabled": true,
+    "assignedDataOnly": false,
+    "adwordsReportingEnabled": false,
+    "membershipEnabled": false,
+    "facebookAdsReportingEnabled": false,
+    "attributionsReportingEnabled": false,
+    "settingsEnabled": true,
+    "tagsEnabled": true,
+    "leadValueEnabled": true,
+    "marketingEnabled": true,
+    "agentReportingEnabled": true,
+    "botService": false,
+    "socialPlanner": true,
+    "bloggingEnabled": true,
+    "invoiceEnabled": true,
+    "affiliateManagerEnabled": true,
+    "contentAiEnabled": true,
+    "refundsEnabled": true,
+    "recordPaymentEnabled": true,
+    "cancelSubscriptionEnabled": true,
+    "paymentsEnabled": true,
+    "communitiesEnabled": true,
+    "exportPaymentsEnabled": true
+  },
+  "scopes": "campaigns.readonly", // Example, full list of scopes available in documentation
+  "roles": {
+    "type": "account",
+    "role": "admin",
+    "locationIds": ["ve9EPM428h8vShlRW1KT"],
+    "restrictSubAccount": "true"
+  },
+  "lcPhone": {
+    "locationId": "+1234556677"
+  }
+}
+```
+
+**Error Responses:**
+*   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+*   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   `422 Unprocessable Entity`: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint retrieves the details and permissions of a specific user within the HighLevel system.
+
+### 11. TAGS:
+Users, Get, Retrieve, Read, User Details, Permissions, OAuth, Agency, Sub-Account
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

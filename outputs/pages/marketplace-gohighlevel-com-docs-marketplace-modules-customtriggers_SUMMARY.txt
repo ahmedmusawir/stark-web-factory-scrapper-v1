@@ -1,0 +1,60 @@
+Here's a structured summary of the Marketplace Workflow Trigger documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+Marketplace Workflow Trigger Execution
+
+### 2. CATEGORY:
+Marketplace Modules, Workflows, Workflow Triggers
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/workflows-marketplace/triggers/execute/:appId/:triggerId`
+*(Where `:appId` and `:triggerId` are dynamic identifiers provided in the `targetUrl` within the Subscription URL payload.)*
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/workflows-marketplace/triggers/execute/abc/def`
+*(Example URL provided, where `abc` represents `appId` and `def` represents `triggerId`)*
+
+### 6. REQUIRED PARAMETERS:
+Parameters for the **request body (JSON payload)** sent to the trigger execution URL. The specific fields required depend on how the trigger creator configures "Filters" in the GoHighLevel marketplace UI (marking them as "Required"). The documentation provides a sample payload structure the trigger *is configured to handle*.
+
+*   **Sample Execution Payload Fields (from "Configure Trigger Data" section):**
+    *   `name` (string): e.g., "John Doe"
+    *   `age` (string): e.g., "29"
+    *   `gender` (string): e.g., "male"
+    *   `hobbies` (array of strings): e.g., `["sports", "music"]`
+    *   `address` (string): e.g., "My Address"
+    *   `country` (string): e.g., "US"
+    *   `profileType` (string): e.g., "public"
+
+### 7. OPTIONAL PARAMETERS:
+Not explicitly distinguished in the sample execution payload provided. Fields become effectively optional/required based on the trigger's filter configuration in the GoHighLevel UI.
+
+### 8. AUTHENTICATION:
+*   **For Trigger Execution Endpoint (`targetUrl`):** Not explicitly specified in the documentation. The `appId` and `triggerId` in the URL path might serve as an implicit token.
+*   **For External API Endpoints (your app's endpoints called by GoHighLevel - e.g., Subscription URL, Dynamic Filters, External Select Options):** The documentation allows adding custom `Headers` to these API calls, implying that app developers can implement their desired authentication mechanisms (e.g., API keys, OAuth tokens) within these headers.
+
+### 9. RESPONSE FORMAT:
+*   **For Trigger Execution Endpoint (`targetUrl`):** Not specified in documentation.
+*   **For `External API` (Select/Multi-Select options):**
+    *   **Status Code:** Implied successful (2xx)
+    *   **Body:**
+        ```json
+        {"options":[{"label":"Afghanistan","value":"AF"},{"label":"Åland Islands","value":"AX"}]}
+        ```
+*   **For `Dynamic` Filter API:**
+    *   **Status Code:** Implied successful (2xx)
+    *   **Body:**
+        ```json
+        {"filters":[{"field":"name","title":"Name","fieldType":"string","required":true},{"field":"gender","title":"Gender","fieldType":"select","required":true,"options":[{"label":"Male","value":"male"},{"label":"Female","value":"female"}]}]}
+        ```
+
+### 10. PURPOSE:
+This documentation outlines the process for creating and managing custom workflow triggers within the GoHighLevel Marketplace, allowing developers to define triggers that push data from external applications/APIs to initiate workflows, and configuring how GoHighLevel interacts with external services for dynamic trigger options and subscription events.
+
+### 11. TAGS:
+Marketplace Modules, Workflows, Triggers, Custom Triggers, Workflow Automation, GoHighLevel, API, Webhooks, Dynamic Filters, Workflow Execution, Subscription.

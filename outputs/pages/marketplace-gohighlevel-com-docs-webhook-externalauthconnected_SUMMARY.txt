@@ -1,0 +1,63 @@
+Here's a structured summary of the API documentation for the `EXTERNAL_AUTH_CONNECTED` webhook:
+
+### 1. ENDPOINT NAME
+EXTERNAL_AUTH_CONNECTED
+
+### 2. CATEGORY
+Webhook (Specifically related to External Authentication and App/Location/Company events)
+
+### 3. HTTP METHOD
+POST (This webhook event is *sent* by HighLevel to a configured URL via a POST request, not an endpoint to be called by a client in the traditional sense.)
+
+### 4. ENDPOINT URL
+Not applicable. This describes the payload of a webhook event that is sent *to* a dynamically configured URL.
+
+### 5. FULL URL
+Not applicable. This describes the payload of a webhook event that is sent *to* a dynamically configured URL.
+
+### 6. REQUIRED PARAMETERS
+The following parameters are required in the webhook payload:
+*   `type` (string, enum: "EXTERNAL_AUTH_CONNECTED"): The type of webhook event.
+*   `appId` (string): The ID of the app for which authentication was connected.
+*   `locationId` (string): The ID of the location for which authentication was connected.
+*   `companyId` (string): The ID of the company for which authentication was connected.
+*   `authType` (string, enum: "oauth2", "basic"): The type of authentication that was connected.
+*   `timestamp` (string, format: date-time): The timestamp when the authentication was connected.
+*   `webhookId` (string): A unique identifier for the webhook event.
+
+### 7. OPTIONAL PARAMETERS
+The following parameters are optional and are only present for OAuth2 connections:
+*   `scopes` (string): A space-separated list of scopes granted for the OAuth2 connection.
+*   `isAutoRefreshTokenEnabled` (boolean): Indicates whether auto-refresh for the OAuth2 token is enabled.
+
+### 8. AUTHENTICATION
+Not specified for receiving the webhook itself. The webhook payload describes the type of external authentication (OAuth2 or Basic) that was successfully connected *within the HighLevel platform*.
+*   **Auth Methods (for the described event):** OAuth2, Basic
+*   **Required Scopes (for the described event, if OAuth2):** Specified in the `scopes` parameter of the payload.
+
+### 9. RESPONSE FORMAT
+This documentation describes the *payload* of the webhook sent by HighLevel. A successful receipt of the webhook by the listening server would typically return an HTTP 200 OK status.
+
+**Payload Structure (JSON):**
+```json
+{
+  "type": "EXTERNAL_AUTH_CONNECTED",
+  "appId": "string",
+  "locationId": "string",
+  "companyId": "string",
+  "authType": "oauth2" | "basic",
+  "scopes": "string",                     // Optional, for OAuth2 only
+  "isAutoRefreshTokenEnabled": true | false, // Optional, for OAuth2 only
+  "timestamp": "string (date-time)",
+  "webhookId": "string"
+}
+```
+
+### 10. PURPOSE
+This endpoint describes a webhook event that is sent whenever external authentication (either OAuth2 or Basic) is successfully connected for a given app, location, or company within the HighLevel platform.
+
+### 11. TAGS
+Webhook Events
+
+### Availability of Code Examples
+JSON examples for both OAuth2 and Basic Auth External Auth Connections are present in the documentation.

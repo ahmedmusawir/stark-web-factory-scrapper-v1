@@ -1,0 +1,122 @@
+Here's a structured summary of the "Update Shipping Zone" API documentation:
+
+### 1. ENDPOINT NAME
+Update Shipping Zone
+
+### 2. CATEGORY
+Store
+
+### 3. HTTP METHOD
+PUT
+
+### 4. ENDPOINT URL
+`/store/shipping-zone/:shippingZoneId`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/store/shipping-zone/:shippingZoneId`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Path Parameters:**
+    *   `shippingZoneId` (string): ID of the item that needs to be returned.
+*   **Body Parameters (application/json):**
+    *   `altId` (string): Location Id or Agency Id.
+    *   `altType` (string): Possible values: [`location`].
+    *   `name` (string): Name of the shipping zone.
+    *   `countries` (object[]): List of countries that are available.
+        *   `countries[].code` (number): Country code. Possible values are an extensive list of country codes (e.g., `US`, `CA`, `AF`).
+
+### 7. OPTIONAL PARAMETERS
+
+*   **Body Parameters (application/json):**
+    *   `countries[].states` (object[]): List of states that are available. If states is empty, then all states are available.
+        *   `countries[].states[].code` (string): State code. Possible values are an extensive list of state codes (e.g., `AL`, `VA`, `AB`).
+
+### 8. AUTHENTICATION
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Header:** `Authorization: Bearer <TOKEN>` (Bearer format: JWT)
+
+### 9. RESPONSE FORMAT
+
+*   **200 OK - Successful response:**
+    *   **Status Code:** `200`
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+            "status": true,
+            "message": "Successfully created",
+            "data": {
+                "altId": "6578278e879ad2646715ba9c",
+                "altType": "location",
+                "name": "North zone",
+                "countries": [
+                    {
+                        "code": "US",
+                        "states": [
+                            {
+                                "code": "VA"
+                            }
+                        ]
+                    }
+                ],
+                "_id": "655b33a82209e60b6adb87a5",
+                "shippingRates": [
+                    {
+                        "altId": "6578278e879ad2646715ba9c",
+                        "altType": "location",
+                        "name": "North zone",
+                        "description": "Ships next day",
+                        "currency": "USD",
+                        "amount": 99.99,
+                        "conditionType": "price",
+                        "minCondition": 99.99,
+                        "maxCondition": 99.99,
+                        "isCarrierRate": true,
+                        "shippingCarrierId": "655b33a82209e60b6adb87a5",
+                        "percentageOfRateFee": 10.99,
+                        "shippingCarrierServices": [
+                            {
+                                "name": "Priority Mail Express International",
+                                "value": "PriorityMailExpressInternational"
+                            }
+                        ],
+                        "_id": "655b33a82209e60b6adb87a5",
+                        "shippingZoneId": "655b33a82209e60b6adb87a5",
+                        "createdAt": "2023-12-12T09:27:42.355Z",
+                        "updatedAt": "2023-12-12T09:27:42.355Z"
+                    }
+                ],
+                "createdAt": "2023-12-12T09:27:42.355Z",
+                "updatedAt": "2023-12-12T09:27:42.355Z"
+            }
+        }
+        ```
+
+*   **400 Bad Request:**
+    *   **Status Code:** `400`
+    *   **Schema:** `{"statusCode": 400, "message": "Bad Request"}`
+*   **401 Unauthorized:**
+    *   **Status Code:** `401`
+    *   **Schema:** `{"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}`
+*   **422 Unprocessable Entity:**
+    *   **Status Code:** `422`
+    *   **Schema:** `{"statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity"}`
+
+### 10. PURPOSE
+The "Update Shipping Zone" API allows updating an existing shipping zone within the system.
+
+### 11. TAGS
+Store, Shipping Zone, Update, Modify, eCommerce, Location, Countries, States, PUT
+
+### 12. CODE EXAMPLES
+Code examples are available for the following languages:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

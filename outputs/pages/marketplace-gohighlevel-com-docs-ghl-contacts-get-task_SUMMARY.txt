@@ -1,0 +1,88 @@
+Here is a structured summary of the "Get Task" API documentation:
+
+### 1. ENDPOINT NAME:
+Get Task
+
+### 2. CATEGORY:
+Contacts
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/contacts/:contactId/tasks/:taskId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/:contactId/tasks/:taskId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version. Possible values: [`2021-07-28`]
+*   **contactId** (string): Contact Id. Example: `sx6wyHhbFdRXh302LLNR`
+*   **taskId** (string): Task Id. Example: `ocQHyuzHvysMo5N5VsXc`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `contacts.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+**Successful Response (200 OK):**
+*   **Content Type**: `application/json`
+*   **Schema**:
+    *   **task** (object)
+        *   **id** (string)
+        *   **title** (string)
+        *   **body** (string)
+        *   **assignedTo** (string)
+        *   **dueDate** (string)
+        *   **completed** (boolean)
+        *   **contactId** (string)
+*   **Example**:
+    ```json
+    {
+      "task": {
+        "id": "lJpzYrWdpkC2hX6t2yue",
+        "title": "test",
+        "body": "testing",
+        "assignedTo": "tesTUcmRxWrjqzJS8EjkxNKting",
+        "dueDate": "2021-07-08T02:30:00.000Z",
+        "completed": true,
+        "contactId": "lJpzYrWdpkC2hX6t2yue"
+      }
+    }
+    ```
+
+**Error Responses:**
+*   **400 Bad Request**:
+    ```json
+    {"statusCode": 400, "message": "Bad Request"}
+    ```
+*   **401 Unauthorized**:
+    ```json
+    {"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}
+    ```
+
+### 10. PURPOSE:
+This endpoint retrieves a specific task associated with a given contact by its unique task ID.
+
+### 11. TAGS:
+Contacts, Tasks, Get, Retrieve, Read, CRM, Management, Single Task, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   CURL
+*   Node.js
+*   Python
+*   PHP
+*   Java
+*   Go
+*   Ruby
+*   PowerShell

@@ -1,0 +1,138 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Search Sub-Account (Formerly Location)
+
+### 2. CATEGORY:
+Sub-Account (Formerly Location)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/locations/search`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/locations/search`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version. Possible values: [`2021-07-28`]
+
+### 7. OPTIONAL PARAMETERS:
+*   **companyId** (string): The company/agency id on which you want to perform the search. Example: `5DP4iH6HLkQsiKESj6rh`
+*   **skip** (string): The value by which the results should be skipped. Default will be 0. Default value: `0`. Example: `1`
+*   **limit** (string): The value by which the results should be limited. Default will be 10. Default value: `10`. Example: `10`
+*   **order** (string): The order in which the results should be returned - Allowed values asc, desc. Default will be asc. Default value: `asc`. Example: `asc`
+*   **email** (string): Example: `johndoe@mail.com`
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `locations.readonly`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Agency Token`, `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Agency (OR) Private Integration Token of Agency.
+
+### 9. RESPONSE FORMAT:
+
+#### 200 Successful response (application/json)
+**Schema:**
+```json
+{
+  "locations": [
+    {
+      "id": "string",  // Location Id. Example: "ve9EPM428h8vShlRW1KT"
+      "name": "string", // The name for the sub-account/location. Example: "Mark Shoes"
+      "phone": "string", // The phone number of the business for which sub-account is created. Example: "+1410039940"
+      "email": "string", // The email for the sub-account/location. Example: "john.doe@mail.com"
+      "address": "string", // The address of the business for which sub-account is created. Example: "4th fleet street"
+      "city": "string", // The city where the business is located for which sub-account is created. Example: "New York"
+      "state": "string", // The state in which the business operates for which sub-account is created. Example: "Illinois"
+      "country": "string", // The country in which the business is present for which sub-account is created. Example: "US"
+      "postalCode": "string", // The postal code of the business for which sub-account is created. Example: "567654"
+      "website": "string", // The website of the business for which sub-account is created. Example: "https://yourwebsite.com"
+      "timezone": "string", // The timezone of the business for which sub-account is created. Example: "US/Central"
+      "settings": { // The default settings for location
+        "allowDuplicateContact": "boolean", // Example: false
+        "allowDuplicateOpportunity": "boolean", // Example: false
+        "allowFacebookNameMerge": "boolean", // Example: false
+        "disableContactTimezone": "boolean" // Example: false
+      },
+      "social": { // The social media links for location
+        "facebookUrl": "string", // Facebook URL. Example: "https://www.facebook.com/"
+        "googlePlus": "string", // Googleplus URL. Example: "https://www.googleplus.com/"
+        "linkedIn": "string", // LinkedIn URL. Example: "https://www.linkedIn.com/"
+        "foursquare": "string", // Foursquare URL. Example: "https://www.foursquare.com/"
+        "twitter": "string", // Twitter URL. Example: "https://www.foutwitterrsquare.com/"
+        "yelp": "string", // Yelp URL. Example: "https://www.yelp.com/"
+        "instagram": "string", // Instagram URL. Example: "https://www.instagram.com/"
+        "youtube": "string", // Instagram URL. Example: "https://www.youtube.com/"
+        "pinterest": "string", // Instagram URL. Example: "https://www.pinterest.com/"
+        "blogRss": "string", // Instagram URL. Example: "https://www.blogRss.com/"
+        "googlePlacesId": "string" // Google Business Places ID. Example: "ChIJJGPdVbQTrjsRGUkefteUeFk"
+      }
+    }
+  ]
+}
+```
+**Example:**
+```json
+{
+  "locations": [
+    {
+      "id": "ve9EPM428h8vShlRW1KT",
+      "name": "Mark Shoes",
+      "phone": "+1410039940",
+      "email": "john.doe@mail.com",
+      "address": "4th fleet street",
+      "city": "New York",
+      "state": "Illinois",
+      "country": "US",
+      "postalCode": "567654",
+      "website": "https://yourwebsite.com",
+      "timezone": "US/Central",
+      "settings": {
+        "allowDuplicateContact": false,
+        "allowDuplicateOpportunity": false,
+        "allowFacebookNameMerge": false,
+        "disableContactTimezone": false
+      },
+      "social": {
+        "facebookUrl": "https://www.facebook.com/",
+        "googlePlus": "https://www.googleplus.com/",
+        "linkedIn": "https://www.linkedIn.com/",
+        "foursquare": "https://www.foursquare.com/",
+        "twitter": "https://www.foutwitterrsquare.com/",
+        "yelp": "https://www.yelp.com/",
+        "instagram": "https://www.instagram.com/",
+        "youtube": "https://www.youtube.com/",
+        "pinterest": "https://www.pinterest.com/",
+        "blogRss": "https://www.blogRss.com/",
+        "googlePlacesId": "ChIJJGPdVbQTrjsRGUkefteUeFk"
+      }
+    }
+  ]
+}
+```
+
+#### Other Responses:
+*   **400 Bad Request** (application/json): `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized** (application/json): `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity** (application/json): `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows searching for Sub-Accounts (formerly Locations) based on various criteria such as company ID, pagination, order, and email.
+
+### 11. TAGS:
+Sub-Account, Location, Search, GET, Location.readonly, Agency, CRM, Business, Company
+
+### 12. CODE EXAMPLES:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

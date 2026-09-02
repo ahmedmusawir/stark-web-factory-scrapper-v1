@@ -1,0 +1,50 @@
+Here's the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Update estimate last visited at
+
+### 2. CATEGORY:
+Invoice / Estimate
+
+### 3. HTTP METHOD:
+PATCH
+
+### 4. ENDPOINT URL:
+`/invoices/estimate/stats/last-visited-at`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/estimate/stats/last-visited-at`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Body Parameters:**
+    *   `estimateId` (string): Estimate Id.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** Bearer (JWT) in header
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **200 OK:** (No explicit schema provided, implies successful update)
+*   **400 Bad Request:**
+    *   `statusCode` (number): e.g., `400`
+    *   `message` (string): e.g., `Bad Request`
+*   **401 Unauthorized:**
+    *   `statusCode` (number): e.g., `401`
+    *   `message` (string): e.g., `Invalid token: access token is invalid`
+    *   `error` (string): e.g., `Unauthorized`
+
+### 10. PURPOSE:
+API to update estimate last visited at by estimate id.
+
+### 11. TAGS:
+Invoice, Estimate, Update, Last Visited At, Stats, LeadConnector, HighLevel, CRM, API, Patch
+
+### Code Examples:
+Available for curl, nodejs, python, php, java, go, ruby, powershell.

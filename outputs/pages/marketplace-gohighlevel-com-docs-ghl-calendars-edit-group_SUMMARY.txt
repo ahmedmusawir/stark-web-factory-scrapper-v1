@@ -1,0 +1,78 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Update Group
+
+### 2. CATEGORY:
+Calendars
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/calendars/groups/:groupId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/groups/:groupId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-04-15`
+*   **Path Parameters:**
+    *   groupId (string): Group Id. Example: `ocQHyuzHvysMo5N5VsXc`
+*   **Body Parameters (application/json):**
+    *   name (string): Example: `group a`
+    *   description (string): Example: `group description`
+    *   slug (string): Example: `15-mins`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `calendars/groups.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **bearerFormat:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Successful response):**
+    ```json
+    {
+      "group": {
+        "locationId": "ocQHyuzHvysMo5N5VsXc",
+        "name": "group a",
+        "description": "group description",
+        "slug": "15-mins",
+        "isActive": true,
+        "id": "ocQHyuzHvysMo5N5VsXc"
+      }
+    }
+    ```
+*   **400 Bad Request:**
+    ```json
+    {
+      "statusCode": 400,
+      "message": "Bad Request"
+    }
+    ```
+*   **401 Unauthorized:**
+    ```json
+    {
+      "statusCode": 401,
+      "message": "Invalid token: access token is invalid",
+      "error": "Unauthorized"
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint allows you to update an existing calendar group using its unique group ID.
+
+### 11. TAGS:
+Calendars, Groups, Update, Edit, PUT, Calendar Groups, Group Management
+
+### Code Examples:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

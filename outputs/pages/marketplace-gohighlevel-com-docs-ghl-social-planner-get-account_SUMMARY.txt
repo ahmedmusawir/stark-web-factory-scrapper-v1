@@ -1,0 +1,109 @@
+Here's a structured summary of the "Get Accounts" API documentation:
+
+### 1. ENDPOINT NAME:
+Get Accounts
+
+### 2. CATEGORY:
+Social Planner (sub-category: Account)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/:locationId/accounts`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/:locationId/accounts`
+
+### 6. REQUIRED PARAMETERS:
+*   `Version` (string): API Version. Possible values: [`2021-07-28`] (Header Parameter)
+*   `locationId` (string): Location Id. Example: `ve9EPM428h8vShlRW1KT` (Path Parameter)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `socialplanner/account.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT format in header)
+
+### 9. RESPONSE FORMAT:
+**Status Code:** 200 (Successful response)
+**Content Type:** `application/json`
+
+**Schema:**
+```json
+{
+  "success": boolean,
+  "statusCode": number,
+  "message": string,
+  "results": {
+    "accounts": [
+      {
+        "id": string,
+        "oauthId": string,
+        "profileId": string,
+        "name": string,
+        "platform": string, // One of: google, facebook, instagram, linkedin, twitter, tiktok
+        "type": string,
+        "expire": string, // Date-time string
+        "isExpired": boolean,
+        "meta": object
+      }
+    ],
+    "groups": [
+      {
+        "id": string, // Group Id (required)
+        "name": string, // name of group (required)
+        "accountIds": string[] // Array of account IDs (required)
+      }
+    ]
+  }
+}
+```
+**Example (auto):**
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Fetched Accounts",
+  "results": {
+    "accounts": [
+      {
+        "id": "aF3KhyL8JIuBwzK3m7Ly_Lx1EI6YIgQYMQi0ytFXv_12554616564525983496",
+        "oauthId": "aF3KhyL8JIuBwzK3m7Ly",
+        "profileId": "aF3KhyL8JIuBwzK3m7Ly",
+        "name": "Sample Account",
+        "platform": "google",
+        "type": "location",
+        "expire": "2024-03-11T19:29:59.785Z",
+        "isExpired": false,
+        "meta": {
+          "hasGoogleUpdated": true,
+          "canDelete": true
+        }
+      }
+    ],
+    "groups": [
+      {
+        "id": "6284c43d519161e96cc09c13",
+        "name": "Primary",
+        "accountIds": [
+          "6494063f4260855c1c5776b5_mhoUgTPkz19vjF5Qu7Av_2774080328752823730"
+        ]
+      }
+    ]
+  }
+}
+```
+*Note: The documentation also lists error responses for 400 (Bad Request), 401 (Unauthorized), and 422 (Unprocessable Entity).*
+
+### 10. PURPOSE:
+This endpoint retrieves a list of connected social media accounts and associated groups for a specific location.
+
+### 11. TAGS:
+Social Planner, Account, Get, List, Read, Social Media, Groups, Platform, Location, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

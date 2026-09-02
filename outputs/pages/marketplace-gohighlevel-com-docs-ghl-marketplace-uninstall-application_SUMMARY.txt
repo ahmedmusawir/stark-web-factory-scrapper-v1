@@ -1,0 +1,89 @@
+Here is a structured summary of the API documentation for "Uninstall an application":
+
+### 1. ENDPOINT NAME:
+Uninstall an application
+
+### 2. CATEGORY:
+Developer Marketplace / App Management
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/marketplace/app/:appId/installations`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/marketplace/app/:appId/installations`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `appId` (string): The application id which is to be uninstalled.
+*   **Body Parameters (Body is required, individual fields conditionally required):**
+    *   `companyId` (string): The company id from which the application is to be uninstalled. Required if an Agency Token is passed. It will uninstall the application from the agency as well as all sub-accounts.
+    *   `locationId` (string): The location id from which the application is to be uninstalled. Required if a Sub-Account Token is passed. It will uninstall the application from that location only.
+    *   `reason` (string): The reason for uninstalling the application. Required if you are uninstalling the application as a developer.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation (All body parameters are conditionally required based on token type or uninstaller role).
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `oauth.write`
+*   **Auth Method(s):** `OAuth Access Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Success):**
+    ```json
+    {
+      "success": true
+    }
+    ```
+    *   **Schema:** `success` (boolean) - The status of the uninstallation of the application.
+*   **400 Bad Request:**
+    ```json
+    {
+      "statusCode": 400,
+      "message": "Bad Request"
+    }
+    ```
+*   **401 Unauthorized:**
+    ```json
+    {
+      "statusCode": 401,
+      "message": "Invalid token: access token is invalid",
+      "error": "Unauthorized"
+    }
+    ```
+*   **422 Unprocessable Entity:**
+    ```json
+    {
+      "statusCode": 422,
+      "message": ["Unprocessable Entity"],
+      "error": "Unprocessable Entity"
+    }
+    ```
+
+### 10. PURPOSE:
+Uninstalls an application from a company or a specific location, removing its access and stopping all functionalities.
+
+### 11. TAGS:
+Application, Uninstall, Delete, Marketplace, App Management, Developer, API, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

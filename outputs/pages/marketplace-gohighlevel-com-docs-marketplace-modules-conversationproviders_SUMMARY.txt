@@ -1,0 +1,71 @@
+**ENDPOINT NAME:** Conversation Providers (Marketplace Module Integration Guide)
+
+**CATEGORY:** Marketplace Modules
+
+**HTTP METHOD:**
+*   **For HighLevel to Custom Provider (Webhooks):** POST
+*   **For Custom Provider to HighLevel (APIs):** POST (for adding messages/calls), PUT (for updating message status)
+
+**ENDPOINT URL:**
+This document describes the configuration of a custom provider and its interaction with multiple HighLevel APIs and webhooks.
+*   **Custom Provider's `Delivery URL`:** User-defined endpoint for HighLevel to send outbound webhook events.
+*   **HighLevel API - Add an Inbound Message:** `/ghl/conversations/add-an-inbound-message`
+*   **HighLevel API - Add an External Outbound Call:** `/ghl/conversations/add-an-outbound-message`
+*   **HighLevel API - Update Message Status:** `/ghl/conversations/update-message-status`
+
+**FULL URL:**
+*   **HighLevel API - Add an Inbound Message:** `https://marketplace.gohighlevel.com/docs/ghl/conversations/add-an-inbound-message`
+*   **HighLevel API - Add an External Outbound Call:** `https://marketplace.gohighlevel.com/docs/ghl/conversations/add-an-outbound-message`
+*   **HighLevel API - Update Message Status:** `https://marketplace.gohighlevel.com/docs/ghl/conversations/update-message-status`
+*   **Custom Provider's `Delivery URL`:** Not applicable (user-defined)
+
+**REQUIRED PARAMETERS:**
+
+**For Configuring a Conversation Provider in HighLevel Marketplace UI:**
+*   **Name** (string): A user-defined name for the conversation provider.
+*   **Type** (enum: SMS, Email, Call): The communication channel type the provider will handle.
+*   **Delivery URL** (URL): The endpoint where HighLevel will send webhook events for outbound messages.
+
+**For HighLevel API - Add an Inbound Message (from Custom Provider to HighLevel):**
+*   **type** (enum: SMS, Email, Call): The type of inbound message.
+*   **For SMS (new conversation channel) & Call providers:** `conversationProviderId` (string): The unique ID of your custom conversation provider.
+*   **For Call providers:** A `call object payload` (object) with call details, including a `from` phone number that matches an existing contact.
+
+**For HighLevel API - Add an External Outbound Call (from Custom Provider to HighLevel):**
+*   **to** (phone number): The recipient's phone number, which must match an existing contact.
+*   A `call object payload` (object) with outbound call details.
+*   `conversationProviderId` (string): The unique ID of your custom conversation provider (implied).
+
+**For HighLevel API - Update Message Status (from Custom Provider to HighLevel):**
+*   **messageId** (string): The ID of the message to update.
+*   **status** (string): The new status of the message (e.g., "delivered", "read", "failed").
+
+**OPTIONAL PARAMETERS:**
+
+**For Configuring a Conversation Provider in HighLevel Marketplace UI:**
+*   **Is this a Custom Conversation Provider** (boolean): Checkbox to indicate if it's an additional, custom conversation channel (required for "SMS (Add new conversation channel)" and "Email Provider (extra)").
+*   **Conversations Tab - Always show this Conversation Provider** (boolean): Checkbox to display a dedicated tab for the provider in the conversations window.
+*   **Alias** (string): A custom name for the provider as displayed in the conversations tab.
+*   **Logo** (URL): An image URL for the provider's logo.
+
+**For HighLevel API - Add an Inbound Message (from Custom Provider to HighLevel):**
+*   **For Email (extra) providers:** `altId` (string): An alternative ID used for conversation threading; replies will include `replyToAltId`.
+*   **For SMS (replace default SMS provider) & Email (replace default Email provider):** `conversationProviderId` (string) is **not required**.
+
+**AUTHENTICATION:**
+*   **Required Scopes:**
+    *   `conversations/message.write`: For outbound message webhook events, adding inbound messages, adding external outbound call logs, uploading attachments, updating message statuses.
+    *   `conversations.readonly`: For querying conversations APIs.
+    *   `conversations.write`: For creating/updating/deleting conversations.
+    *   `contacts.readonly`: For reading contact information.
+    *   `contacts.write`: For creating/updating contacts.
+    *   `conversations/message.readonly`: For recordings/transcriptions and outbound message webhook events.
+*   **Authentication Method:** OAuth 2.0 (as indicated by the "Auth section" in Marketplace application creation and linked OAuth documentation).
+*   **Token Type:** Not specified directly, but generally an Access Token obtained via OAuth flow.
+*   **Note:** Only the conversation provider's marketplace application token can update the status of its messages.
+
+**RESPONSE FORMAT:** Not specified in documentation for any of the described interactions or configurations.
+
+**PURPOSE:** HighLevel provides custom conversation providers within marketplace applications to enable developers to create custom SMS, Email, and Call communication channels that integrate directly with the HighLevel platform.
+
+**TAGS:** Marketplace Module, Conversation Providers, Custom SMS, Custom Email, Custom Call, Webhooks, Inbound Messages, Outbound Messages, Message Status, API Integration, Communication Channels, OAuth, Scopes, Provider Configuration

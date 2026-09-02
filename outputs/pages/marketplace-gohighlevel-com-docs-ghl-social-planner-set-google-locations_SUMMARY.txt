@@ -1,0 +1,114 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Set google business locations
+
+### 2. CATEGORY:
+Social Planner (under OAuth | Google)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/social-media-posting/oauth/:locationId/google/locations/:accountId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/oauth/:locationId/google/locations/:accountId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   `locationId` (string): Account Location Id (Example: `w37swmmLbA02zgqKPpxITe2`)
+    *   `accountId` (string): Account Id (Example: `w37swmmLbA02zgqKPpxITe`)
+*   **Body Parameters (within `location` object):**
+    *   `location.name` (string): Location name
+    *   `location.title` (string): Location title
+*   **Body Parameters (within `account` object):**
+    *   `account.name` (string): Account name identifier
+    *   `account.accountName` (string): Display name of the account
+    *   `account.type` (string): Type of the account
+    *   `account.verificationState` (string): State of account verification
+    *   `account.vettedState` (string): Vetting state of the account
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters (within `location` object):**
+    *   `location.storeCode` (string): Store code
+    *   `location.storefrontAddress` (object): Storefront address details (empty object shown in example)
+    *   `location.metadata` (object): Additional metadata (empty object shown in example)
+    *   `location.maxLocation` (boolean): Whether this is a max location
+    *   `location.isVerified` (boolean): Whether the location is verified
+    *   `location.isConnected` (boolean): Whether the location is connected
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header (`Authorization: Bearer <TOKEN>`)
+
+### 9. RESPONSE FORMAT:
+
+*   **Status Code:** `201 Created`
+*   **Content Type:** `application/json`
+*   **Structure:**
+    ```json
+    {
+      "success": true,
+      "statusCode": 201,
+      "message": "Added Google Business Account",
+      "results": {
+        "_id": "65f2d989a4f2f1e5322c3856",
+        "oAuthId": "u37swmmLbA02zgqKPpxITe2",
+        "oldId": "u37swmmLbA02zgqKPpxITe2",
+        "locationId": "u37swmmLbA02zgqKPpxITe2",
+        "originId": "u37swmmLbA02zgqKPpxITe2",
+        "platform": "google",
+        "type": "location",
+        "name": "Account Name",
+        "avatar": "u37swmmLbA02zgqKPpxITe2",
+        "meta": {
+          "pageId": "u37swmmLbA02zgqKPpxITe2",
+          "page": {
+            "id": "u37swmmLbA02zgqKPpxITe2",
+            "name": "Account Name",
+            "avatar": "u37swmmLbA02zgqKPpxITe2"
+          },
+          "storeCode": "122",
+          "isVerified": "true",
+          "verified": true,
+          "protected": true,
+          "locationId": "u37swmmLbA02zgqKPpxITe2",
+          "accountId": "u37swmmLbA02zgqKPpxITe2",
+          "openId": "u37swmmLbA02zgqKPpxITe2",
+          "urn": "u37swmmLbA02zgqKPpxITe2",
+          "username": "testUser",
+          "storefrontAddress": {
+            "regionCode": "30021",
+            "languageCode": "E001",
+            "postalCode": "1221",
+            "administrativeArea": "Down Town",
+            "locality": "Louis Street",
+            "addressLines": [
+              "207",
+              "county"
+            ]
+          }
+        },
+        "active": true,
+        "deleted": true,
+        "createdAt": "2024-03-14T11:03:37.015Z",
+        "updatedAt": "2024-03-14T11:03:37.015Z"
+      }
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint allows an application to set or update the details for a specific Google Business location associated with a HighLevel sub-account.
+
+### 11. TAGS:
+Social Planner, Google, Business Locations, OAuth, POST, Location, Account, Social Media, Integration
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

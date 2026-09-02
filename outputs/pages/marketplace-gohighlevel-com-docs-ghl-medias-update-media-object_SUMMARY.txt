@@ -1,0 +1,59 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Update File/ Folder
+
+### 2. CATEGORY:
+Media Storage (Medias)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/medias/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/medias/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version (string):** API Version. Possible values: [`2021-07-28`]
+*   **id (string):** Unique identifier of the file or folder to update. Example: `686f9817f0d3165be9fbcef6`
+*   **name (string):** New name for the file or folder. Example: `Updated File Name.pdf`
+*   **altType (string):** Type of entity that owns the file or folder. Possible values: [`location`]. Example: `location`
+*   **altId (string):** Location identifier that owns the file or folder. Example: `sx6wyHhbFdRXh302LLNR`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `200`
+*   **Content Type:** `application/json`
+*   **Schema/Example:**
+    ```json
+    {
+      "updated": true,
+      "traceId": "33a641a2-c4a6-4123-aa82-c5b84f1a14ee"
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint updates a single file or folder by its unique identifier.
+
+### 11. TAGS:
+Media Storage, Medias, Update, File, Folder, Content, HighLevel, API, GHL
+
+### 12. CODE EXAMPLES:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

@@ -1,0 +1,55 @@
+Here is the structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Delete Opportunity
+
+### 2. CATEGORY:
+Opportunities
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/opportunities/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/opportunities/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   `Version` (string): API Version. Possible values: `2021-07-28`. (Header Parameter)
+*   `id` (string): Opportunity Id. Example: `yWQobCRIhRguQtD2llvk`. (Path Parameter)
+
+### 7. OPTIONAL PARAMETERS:
+None specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `opportunities.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**Successful Response (200 OK):**
+*   **Content Type**: `application/json`
+*   **Schema**:
+    ```json
+    {
+      "succeded": boolean
+    }
+    ```
+*   **Example**:
+    ```json
+    {"succeded":true}
+    ```
+
+### 10. PURPOSE:
+This endpoint is used to delete a specific opportunity by its ID.
+
+### 11. TAGS:
+Opportunities, Delete, CRM, Opportunity Management, GoHighLevel, LeadConnector, API, Resource Deletion
+
+**Code Examples Availability:**
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

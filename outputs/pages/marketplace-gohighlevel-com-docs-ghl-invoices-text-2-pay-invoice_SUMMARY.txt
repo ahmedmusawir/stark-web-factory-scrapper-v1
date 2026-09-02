@@ -1,0 +1,165 @@
+Here's a structured summary of the "Create & Send" Text2Pay Invoice API endpoint:
+
+### 1. ENDPOINT NAME
+Create & Send
+
+### 2. CATEGORY
+Invoice (Sub-category: Text2Pay)
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/invoices/text2pay`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/invoices/text2pay`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: [`2021-07-28`]
+
+*   **Body Parameters:**
+    *   altId (string): location Id / company Id based on altType
+    *   altType (string): Alt Type. Possible values: [`location`]
+    *   name (string): Invoice Name
+    *   currency (string): Currency code
+    *   items (object[]): An array of items for the invoice.
+        *   name (string): Invoice Item Name
+        *   currency (string): Currency
+        *   amount (number): Product amount
+        *   qty (number): Product Quantity
+    *   contactDetails (object): Contact information to send the invoice to.
+        *   id (string): Contact ID
+        *   name (string): Contact Name
+        *   phoneNo (string): Contact Phone Number
+        *   email (string): Contact Email
+    *   issueDate (string): Issue date in YYYY-MM-DD format
+    *   sentTo (object):
+        *   email (string[]): Email Address
+    *   liveMode (boolean):
+    *   action (string): create invoice in draft mode or send mode. Possible values: [`draft`, `send`]
+    *   userId (string): id of user generating invoice
+
+### 7. OPTIONAL PARAMETERS
+
+*   **Body Parameters:**
+    *   items (object[] - fields nested within required `items` array):
+        *   description (string): Invoice descriptions
+        *   productId (string): Product Id
+        *   priceId (string): Price Id
+        *   taxes (object[]): Tax. If provided, the following fields are required for each tax object: `_id` (string), `name` (string), `rate` (number).
+            *   calculation (string): Possible values: [`exclusive`]
+            *   description (string):
+            *   taxId (string):
+        *   automaticTaxCategoryId (string): Tax category id for calculating automatic tax
+        *   isSetupFeeItem (boolean): Setupfee item, only created when 1st invoice of recurring schedule is generated
+        *   type (string): Price type of the item. Possible values: [`one_time`, `recurring`]
+        *   taxInclusive (boolean): true if item amount is tax inclusive. Default value: `false`
+    *   termsNotes (string): Terms notes, Also supports HTML markups
+    *   title (string): Title for the invoice
+    *   contactDetails (object - fields nested within required `contactDetails` object):
+        *   additionalEmails (object[]): Secondary email addresses for the contact to be saved. If provided, `email` (string) is required for each email object.
+        *   companyName (string): Contact Company Name
+        *   address (object):
+            *   addressLine1 (string): Address Line 1
+            *   addressLine2 (string): Address Line 2
+            *   city (string): City
+            *   state (string): State
+            *   countryCode (string): Country Code
+            *   postalCode (string): Postal Code
+        *   customFields (string[]): Custom Values
+    *   invoiceNumber (string): Invoice Number
+    *   dueDate (string): Due date in YYYY-MM-DD format
+    *   sentTo (object - fields nested within required `sentTo` object):
+        *   emailCc (string[]): cc to be kept in any sent out emails
+        *   emailBcc (string[]): bcc to be kept in any sent out emails
+        *   phoneNo (string[]): Contact Phone Number
+    *   automaticTaxesEnabled (boolean): Automatic taxes enabled for the Invoice
+    *   paymentSchedule (object): split invoice into payment schedule summing up to full invoice amount. If provided, the following fields are required: `type` (string, Possible values: [`fixed`, `percentage`]), `schedules` (string[]).
+    *   lateFeesConfiguration (object): late fees configuration. If provided, the following fields are required: `enable` (boolean), `value` (number), `type` (string, Possible values: [`fixed`, `percentage`]), `frequency` (object).
+        *   frequency (object - nested in `lateFeesConfiguration`): If `lateFeesConfiguration` is provided, `frequency` is required, and within `frequency`, `intervalCount` (number) and `interval` (string, Possible values: [`minute`, `hour`, `day`, `week`, `month`, `one_time`]) are required.
+        *   grace (object - nested in `lateFeesConfiguration`): Late Fees Grace. If provided, the following fields are required: `intervalCount` (number), `interval` (string, Possible values: [`day`]).
+        *   maxLateFees (object - nested in `lateFeesConfiguration`): Max late fees payable. If provided, the following fields are required: `type` (string, Possible values: [`fixed`]), `value` (number).
+    *   tipsConfiguration (object): tips configuration for the invoice. If provided, the following fields are required: `tipsPercentage` (string[]), `tipsEnabled` (boolean).
+    *   invoiceNumberPrefix (string): prefix for invoice number
+    *   paymentMethods (object): Payment Methods for Invoices. If provided, `stripe` (object) is required.
+        *   stripe (object - nested in `paymentMethods`): If `paymentMethods` is provided, `stripe` is required, and within `stripe`, `enableBankDebitOnly` (boolean) is required.
+    *   attachments (object[]): attachments for the invoice. If provided, the following fields are required for each attachment object: `id` (string), `name` (string), `url` (string), `type` (string), `size` (number).
+    *   miscellaneousCharges (object): miscellaneous charges for the invoice. If provided, `charges` (array[]) is required.
+        *   collectedMiscellaneousCharges (number): collected miscellaneous charges
+        *   paidCharges (object[] - nested in `miscellaneousCharges`): If provided, the following fields are required for each paid charge object: `name` (string), `charge` (number), `amount` (number), `_id` (string).
+    *   id (string): id of invoice to update. If skipped, a new invoice will be created
+    *   includeTermsNote (boolean): include terms & notes with receipts
+    *   discount (object):
+        *   value (number): Discount Value. Default value: `0`
+        *   type (string): Discount type. Possible values: [`percentage`, `fixed`]. Default value: `percentage`
+        *   validOnProductIds (string[]): Product Ids on which discount is applicable
+    *   businessDetails (object):
+        *   logoUrl (string): Business Logo URL
+        *   name (string): Business Name
+        *   phoneNo (string): Business Phone Number
+        *   address (object): Business Address
+            *   addressLine1 (string): Address Line 1
+            *   addressLine2 (string): Address Line 2
+            *   city (string): City
+            *   state (string): State
+            *   countryCode (string): Country Code
+            *   postalCode (string): Postal Code
+        *   website (string): Business Website Link
+        *   customValues (string[]): Custom Values
+
+### 8. AUTHENTICATION
+
+*   Required scopes: `invoices.write`
+*   Auth methods: `OAuth Access Token`, `Private Integration Token`
+*   Token types: `Sub-Account Token`
+*   Scheme: `bearer`
+*   Bearer Format: `JWT`
+*   In: `header`
+
+### 9. RESPONSE FORMAT
+
+*   **Status Code:** 200 OK
+*   **Content Type:** `application/json`
+*   **Structure:**
+    ```json
+    {
+      "invoice": {
+        "_id": "string",
+        "status": "string",
+        "liveMode": boolean,
+        "amountPaid": number,
+        "altId": "string",
+        "altType": "string",
+        "name": "string",
+        "businessDetails": object,
+        "invoiceNumber": "number",
+        "currency": "string",
+        "contactDetails": object,
+        "issueDate": "YYYY-MM-DD",
+        "dueDate": "YYYY-MM-DD",
+        "discount": object,
+        "invoiceItems": string[],
+        "total": number,
+        "title": "string",
+        "amountDue": number,
+        "createdAt": "string (ISO 8601 date-time)",
+        "updatedAt": "string (ISO 8601 date-time)",
+        "automaticTaxesEnabled": boolean,
+        "automaticTaxesCalculated": boolean,
+        "paymentSchedule": object
+      },
+      "invoiceUrl": "string"
+    }
+    ```
+
+### 10. PURPOSE
+This API allows for the creation or updating of a Text2Pay invoice within the HighLevel platform.
+
+### 11. TAGS
+`Invoice`, `Text2Pay`, `Create`, `Update`, `Payments`, `Sub-Account`, `Finance`, `Transaction`, `Billing`
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

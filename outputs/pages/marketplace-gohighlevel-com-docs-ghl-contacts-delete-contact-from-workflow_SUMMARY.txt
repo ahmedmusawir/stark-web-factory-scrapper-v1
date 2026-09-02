@@ -1,0 +1,60 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Delete Contact from Workflow
+
+### 2. CATEGORY:
+Contacts (specifically Workflow)
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/contacts/:contactId/workflow/:workflowId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/:contactId/workflow/:workflowId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   contactId (string): Contact Id (Example: `sx6wyHhbFdRXh302LLNR`)
+    *   workflowId (string): Workflow Id (Example: `sx6wyHhbFdRXh302LLNR`)
+*   **Body Parameters:**
+    *   eventStartTime (string): (Example: `2021-06-23T03:30:00+01:00`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `contacts.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+
+### 9. RESPONSE FORMAT:
+
+*   **Status Code:** 200 (Successful response)
+*   **Content Type:** `application/json`
+*   **Schema:**
+    ```json
+    {
+      "succeded": true
+    }
+    ```
+*   **Example:**
+    ```json
+    {"succeded":true}
+    ```
+
+### 10. PURPOSE:
+This endpoint is used to remove a specific contact from a designated workflow within the HighLevel system.
+
+### 11. TAGS:
+Contacts, Workflow, Delete, Remove, Automation, CRM, HighLevel API
+
+### Code Examples Availability:
+cURL, nodejs, python, php, java, go, ruby, powershell examples are available in the documentation.

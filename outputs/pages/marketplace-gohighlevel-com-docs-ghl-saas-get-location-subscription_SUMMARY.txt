@@ -1,0 +1,68 @@
+```json
+{
+  "ENDPOINT_NAME": "Get Location Subscription Details",
+  "CATEGORY": "Saas",
+  "HTTP_METHOD": "GET",
+  "ENDPOINT_URL": "/saas/get-saas-subscription/:locationId",
+  "FULL_URL": "https://services.leadconnectorhq.com/saas/get-saas-subscription/:locationId",
+  "REQUIRED_PARAMETERS": [
+    {
+      "paramName": "Version",
+      "type": "string",
+      "location": "header",
+      "description": "API Version. Possible values: [`2021-04-15`]"
+    },
+    {
+      "paramName": "locationId",
+      "type": "string",
+      "location": "path",
+      "description": "Unique identifier for the location."
+    },
+    {
+      "paramName": "companyId",
+      "type": "string",
+      "location": "query",
+      "description": "Unique identifier for the company."
+    }
+  ],
+  "OPTIONAL_PARAMETERS": "Not specified in documentation",
+  "AUTHENTICATION": {
+    "authMethods": [
+      "OAuth Access Token",
+      "Private Integration Token"
+    ],
+    "tokenTypes": [
+      "Agency Token"
+    ],
+    "bearerFormat": "JWT",
+    "in": "header",
+    "description": "Use the Access Token generated with user type as Company"
+  },
+  "RESPONSE_FORMAT": {
+    "statusCode": "200",
+    "structure": "Not explicitly detailed, but implies a successful retrieval of subscription details."
+  },
+  "PURPOSE": "This endpoint fetches subscription details for a specific location from its metadata.",
+  "TAGS": [
+    "Saas",
+    "subscription",
+    "location",
+    "details",
+    "get",
+    "API",
+    "GoHighLevel",
+    "marketplace",
+    "agency"
+  ],
+  "CODE_EXAMPLES_AVAILABILITY": {
+    "curl": "Available",
+    "nodejs": "Tab available, but example not shown in provided documentation",
+    "python": "Tab available, but example not shown in provided documentation",
+    "php": "Tab available, but example not shown in provided documentation",
+    "java": "Tab available, but example not shown in provided documentation",
+    "go": "Tab available, but example not shown in provided documentation",
+    "ruby": "Tab available, but example not shown in provided documentation",
+    "powershell": "Tab available, but example not shown in provided documentation"
+  }
+}
+```

@@ -1,0 +1,67 @@
+### Structured Summary: HighLevel API 2.0 - OAuth 2.0 Flow
+
+1.  **ENDPOINT NAME**: OAuth 2.0 Flow
+
+2.  **CATEGORY**: Authorization
+
+3.  **HTTP METHOD**: POST (for token exchange and generation)
+
+4.  **ENDPOINT URL**:
+    *   `/oauth/token` (for initial access token generation from authorization code, and for refreshing tokens)
+    *   `/oauth/locationToken` (for generating a sub-account/location token from an agency token)
+
+5.  **FULL URL**:
+    *   `https://services.leadconnectorhq.com/oauth/token`
+    *   `https://services.leadconnectorhq.com/oauth/locationToken`
+
+6.  **REQUIRED PARAMETERS**:
+
+    *   **For Exchanging Authorization Code for Access Token (`POST /oauth/token` with `grant_type: authorization_code`)**:
+        *   `client_id` (string): Your application's client ID.
+        *   `client_secret` (string): Your application's client secret.
+        *   `grant_type` (string): Must be `"authorization_code"`.
+        *   `code` (string): The authorization code received from the redirect URL.
+        *   `user_type` (string): The type of user installing the app. Example payload shows `"Company"`.
+        *   `redirect_uri` (string): The redirect URL configured for your app.
+
+    *   **For Refreshing Access Token (`POST /oauth/token` with `grant_type: refresh_token`)**:
+        *   `client_id` (string): Your application's client ID.
+        *   `client_secret` (string): Your application's client secret.
+        *   `grant_type` (string): Must be `"refresh_token"`.
+        *   `refresh_token` (string): The refresh token obtained during the previous token exchange.
+        *   `user_type` (string): The type of user associated with the token. Example payload shows `"Company"`.
+        *   `redirect_uri` (string): The redirect URL configured for your app.
+
+    *   **For Creating Sub-Account Token from Agency Token (`POST /oauth/locationToken`)**:
+        *   `companyId` (string): The ID of the company (agency).
+        *   `locationId` (string): The ID of the sub-account (location) for which the token is requested.
+
+7.  **OPTIONAL PARAMETERS**: Not specified in documentation for the API calls.
+
+8.  **AUTHENTICATION**:
+    *   **Method**: OAuth 2.0 Authorization Code Grant Flow.
+    *   **Client Credentials**: `client_id` and `client_secret` are required for token exchange requests.
+    *   **Tokens**: Bearer tokens are used for API calls. An Agency-level Access Token is required in the `Authorization` header to generate a Sub-Account token.
+    *   **Scopes**: Scopes define the level of access an app will have and are configured during app registration. The token response includes the granted scopes.
+
+9.  **RESPONSE FORMAT**:
+    *   **Status Code**: Typically 200 OK for successful token generation/refresh.
+    *   **Structure**: JSON object containing:
+        *   `access_token` (string): The JWT bearer token for API access.
+        *   `token_type` (string): Always `"Bearer"`.
+        *   `expires_in` (integer): Lifetime of the access token in seconds (approx. 24 hours).
+        *   `refresh_token` (string): A new refresh token (for `grant_type: refresh_token` requests) or the initial refresh token (for `grant_type: authorization_code` requests). Valid for up to one year or until used.
+        *   `scope` (string): Space-separated list of scopes granted to the token.
+        *   `refreshTokenId` (string): Unique ID for the refresh token.
+        *   `userType` (string): Indicates whether the token is for an `"Agency"` or `"Location"`.
+        *   `companyId` (string): The ID of the company (agency) associated with the token.
+        *   `locationId` (string, for Location tokens): The ID of the sub-account associated with the token.
+        *   `userId` (string): The user ID who initiated the installation/token generation.
+        *   `isBulkInstallation` (boolean, for Company/Agency tokens): Indicates if it's a bulk installation.
+        *   `traceId` (string, for Location tokens): A unique trace ID for the request.
+
+10. **PURPOSE**: This documentation outlines the HighLevel OAuth 2.0 Authorization Code Grant flow, enabling client applications to securely obtain delegated access to user resources on the HighLevel platform without sharing user passwords.
+
+11. **TAGS**: Authorization, OAuth 2.0, Token, Access Token, Refresh Token, Authentication, API Access, HighLevel, Developer, App Integration, Agency Token, Location Token.
+
+**Code Examples**: cURL examples are present for all token-related API calls.

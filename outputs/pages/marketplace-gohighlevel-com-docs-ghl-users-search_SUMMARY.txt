@@ -1,0 +1,33 @@
+Here's a structured summary of the provided API documentation for the "Search" endpoint under "Users":
+
+### STRUCTURED SUMMARY
+
+1.  **ENDPOINT NAME:** Search (Users)
+
+2.  **CATEGORY:** Users
+
+3.  **HTTP METHOD:** GET (Inferred for search and filter operations; not explicitly stated on this overview page, but typical for data retrieval.)
+
+4.  **ENDPOINT URL:**
+    *   **Base Search Concept:** `/users/search` (Inferred from the documentation structure and page title, actual API path may vary slightly for sub-endpoints.)
+    *   **Sub-endpoints referenced:**
+        *   `/users/search-users` (for general search)
+        *   `/users/filter-users-by-email` (for filtering by email)
+
+5.  **FULL URL:** `https://marketplace.gohighlevel.com/api/v2/users/search` (Inferred, assuming `/api/v2` based on "Highlevel API 2.0" in the header, and `/users/search` as the logical path for this functionality).
+
+6.  **REQUIRED PARAMETERS:** Not specified in this documentation overview.
+
+7.  **OPTIONAL PARAMETERS:**
+    (Parameters described for the sub-endpoint "Filter Users by Email")
+    *   `companyId` (type not specified): Filter users by their company ID.
+    *   `deletedStatus` (type not specified): Filter users by their deleted status.
+    *   `emailArray` (type not specified, implied array of strings): Filter users by an array of email addresses.
+
+8.  **AUTHENTICATION:** Not explicitly specified on this page. Based on the overall Highlevel API documentation, OAuth 2.0 is the expected authentication method. Relevant scopes for user data access (e.g., `users.read`) would likely be required.
+
+9.  **RESPONSE FORMAT:** Not specified in this documentation overview. Typically, successful responses for search operations return a JSON array of user objects.
+
+10. **PURPOSE:** This page serves as an index and overview for the Highlevel API's user search functionalities, linking to detailed documentation for searching all users and filtering users by specific criteria like email, company ID, and deleted status.
+
+11. **TAGS:** Users, Search, Filter, Retrieve, Email, Company, Deleted Status, API 2.0, Highlevel.

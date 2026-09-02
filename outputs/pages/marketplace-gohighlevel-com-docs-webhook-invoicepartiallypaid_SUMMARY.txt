@@ -1,0 +1,89 @@
+Here's a structured summary of the API documentation for the "InvoicePartiallyPaid" webhook:
+
+### 1. ENDPOINT NAME
+InvoicePartiallyPaid (Webhook Event)
+
+### 2. CATEGORY
+Webhook (Specifically, Invoice Webhooks)
+
+### 3. HTTP METHOD
+Not applicable. This is a webhook event that HighLevel *sends* to a registered listener endpoint, not an endpoint that a client *calls*.
+
+### 4. ENDPOINT URL
+Not applicable. This describes the structure of the payload for the `InvoicePartiallyPaid` webhook event.
+
+### 5. FULL URL
+https://marketplace.gohighlevel.com/docs/webhook/InvoicePartiallyPaid/index.html
+
+### 6. REQUIRED PARAMETERS
+The following parameters are included in the webhook payload:
+
+*   **_id** (string): Unique identifier for the invoice.
+*   **status** (string): The current status of the invoice (e.g., "partially_paid").
+*   **liveMode** (boolean): Indicates if the event occurred in live mode.
+*   **amountPaid** (number): The amount that has been paid towards the invoice.
+*   **altId** (string): Alternative identifier, often referring to the location ID.
+*   **altType** (string): The type of the alternative ID (e.g., "location").
+*   **name** (string): Name associated with the invoice.
+*   **businessDetails** (object): Details of the business.
+    *   **businessDetails.name** (string): Name of the business.
+    *   **businessDetails.address** (string): Address of the business.
+    *   **businessDetails.phoneNo** (string): Phone number of the business.
+    *   **businessDetails.website** (string): Website of the business.
+    *   **businessDetails.logoUrl** (string): URL of the business logo.
+    *   **businessDetails.customValues** (array of string): Custom values associated with the business.
+*   **invoiceNumber** (string): The invoice number.
+*   **currency** (string): The currency of the invoice (e.g., "USD").
+*   **contactDetails** (object): Details of the contact associated with the invoice.
+    *   **contactDetails.id** (string): Unique identifier for the contact.
+    *   **contactDetails.phoneNo** (string): Phone number of the contact.
+    *   **contactDetails.email** (string): Email of the contact.
+    *   **contactDetails.customFields** (array of string): Custom fields for the contact.
+    *   **contactDetails.name** (string): Name of the contact.
+    *   **contactDetails.address** (object): Address of the contact.
+        *   **contactDetails.address.countryCode** (string): Country code.
+        *   **contactDetails.address.addressLine1** (string): First line of the address.
+        *   **contactDetails.address.addressLine2** (string): Second line of the address.
+        *   **contactDetails.address.city** (string): City.
+        *   **contactDetails.address.state** (string): State.
+        *   **contactDetails.address.postalCode** (string): Postal code.
+    *   **contactDetails.additionalEmails** (array of objects): Additional email addresses for the contact.
+        *   **contactDetails.additionalEmails.email** (string): An additional email address.
+    *   **contactDetails.companyName** (string): Company name of the contact.
+*   **issueDate** (string): Date when the invoice was issued (ISO 8601 format).
+*   **dueDate** (string): Date when the invoice is due (ISO 8601 format).
+*   **discount** (object): Discount applied to the invoice.
+    *   **discount.type** (string): Type of discount (e.g., "percentage").
+    *   **discount.value** (number): Value of the discount.
+*   **invoiceItems** (array of objects): List of items on the invoice.
+    *   **invoiceItems.taxes** (array): Taxes applied to the item.
+    *   **invoiceItems._id** (string): Unique identifier for the invoice item.
+    *   **invoiceItems.productId** (string): ID of the associated product.
+    *   **invoiceItems.priceId** (string): ID of the associated price.
+    *   **invoiceItems.currency** (string): Currency of the item.
+    *   **invoiceItems.name** (string): Name of the item.
+    *   **invoiceItems.qty** (number): Quantity of the item.
+    *   **invoiceItems.amount** (number): Amount of the item.
+*   **total** (number): Total amount of the invoice.
+*   **title** (string): Title of the invoice.
+*   **amountDue** (number): Remaining amount due on the invoice.
+*   **createdAt** (string): Timestamp when the invoice was created (ISO 8601 format).
+*   **updatedAt** (string): Timestamp when the invoice was last updated (ISO 8601 format).
+*   **totalSummary** (object): Summary of the total amounts.
+    *   **totalSummary.subTotal** (number): Subtotal before discounts/taxes.
+    *   **totalSummary.discount** (number): Total discount applied.
+
+### 7. OPTIONAL PARAMETERS
+Not explicitly specified in documentation; all parameters in the schema are assumed to be part of the webhook payload.
+
+### 8. AUTHENTICATION
+Not specified in documentation for receiving the webhook. Typically, webhooks are secured by a shared secret or signature for verification by the receiving application, rather than client-side authentication.
+
+### 9. RESPONSE FORMAT
+Not applicable for this webhook. The expectation is for the receiving server to respond with a `200 OK` status code to acknowledge receipt of the event. The payload structure for the *event itself* is provided in the "Schema" and "Example" sections.
+
+### 10. PURPOSE
+This webhook is called whenever an invoice associated with a HighLevel account receives a partial payment, providing updated details about the invoice, including the amount paid and remaining amount due.
+
+### 11. TAGS
+Webhook, Webhook Events, Invoice, Payment, Partially Paid, Financial, Event, Notification

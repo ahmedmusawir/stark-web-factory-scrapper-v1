@@ -1,0 +1,90 @@
+```
+1. ENDPOINT NAME: Get crawling status for the latest operation
+
+2. CATEGORY: Knowledge Base (Web Crawler)
+
+3. HTTP METHOD: GET
+
+4. ENDPOINT URL: /knowledge-bases/crawler/status
+
+5. FULL URL: https://services.leadconnectorhq.com/knowledge-bases/crawler/status
+
+6. REQUIRED PARAMETERS:
+   - Authorization (string): Access Token
+   - Version (string): API Version (Possible values: [`2021-04-15`])
+   - locationId (string): Location ID as string
+   - operationId (string): operation id as string
+   - knowledgeBaseId (string): knowledge base id
+
+7. OPTIONAL PARAMETERS: Not specified in documentation
+
+8. AUTHENTICATION:
+   - Auth Method(s): OAuth Access Token, Private Integration Token
+   - Token Type(s): Sub-Account Token
+   - Authorization Header: Bearer token (JWT format)
+
+9. RESPONSE FORMAT:
+   - **200 OK (Operation status fetched successfully)**
+     - Content-Type: `application/json`
+     - Schema:
+       ```json
+       {
+         "success": true,
+         "data": {
+           "aggregate": [
+             {
+               "_id": "Failed", // Possible values: [`Pending`, `Processing`, `Successful`, `Failed`, `Existing`, `Restricted`, `Cancelled`, `Aborted`, `Training`]
+               "records": [
+                 {
+                   "url": "https://developer.mozilla.org/en-US/blog/rss.xml",
+                   "id": "688e41118a188704914d13c0",
+                   "title": "JavaScript Temporal is coming | MDN Blog",
+                   "error": {
+                     "stack": "HttpException: Failed to fetch HTML content   at getHtml (...)",
+                     "response": "Failed to fetch HTML content",
+                     "status": 500,
+                     "options": null,
+                     "message": "Failed to fetch HTML content",
+                     "name": "HttpException"
+                   }
+                 }
+               ]
+             }
+           ],
+           "operationDetails": {
+             "discoveredUrlsCount": 66,
+             "trainedUrlsCount": 0,
+             "_id": "688e410c8a18870ecf4d13bb",
+             "locationId": "nnAzVJqSv6PJ1p6zrhvC",
+             "status": "Pending", // Possible values: [`Pending`, `Processing`, `Successful`, `Failed`, `Existing`, `Restricted`, `Cancelled`, `Aborted`, `Training`]
+             "url": "https://developer.mozilla.org/en-US/blog/",
+             "mode": "Path", // Possible values: [`Exact`, `Path`, `Domain`]
+             "knowledgeBaseId": "CCNPhKqSCkTOG8O7dtbq",
+             "createdAt": "2025-08-02T16:47:08.182Z",
+             "updatedAt": "2025-08-02T16:48:43.635Z",
+             "__v": 0,
+             "robotsFileData": "User-agent: *\nSitemap: https://developer.mozilla.org/sitemap.xml\nDisallow: /api/"
+           }
+         }
+       }
+       ```
+   - **400 Bad Request**
+   - **401 Unauthorized**
+   - **422 Unprocessable Entity**
+   - **500 Internal Server Error**
+   - Examples provided for all status codes.
+
+10. PURPOSE: This endpoint retrieves the crawling status for the most recent web crawling operation associated with a specific knowledge base.
+
+11. TAGS: Knowledge Base, Web Crawler, Crawling Status, Operation Status, GET, Status, Discovery, Training, GHL API
+
+12. CODE EXAMPLES:
+    - cURL: Available
+    - nodejs: Available
+    - python: Available
+    - php: Available
+    - java: Available
+    - go: Available
+    - ruby: Available
+    - powershell: Available
+```

@@ -1,0 +1,65 @@
+Here is a structured summary of the provided API documentation:
+
+### API Documentation Summary
+
+1.  **ENDPOINT NAME:** Attach Twitter profile
+
+2.  **CATEGORY:** Social Planner / Oauth | Twitter
+
+3.  **HTTP METHOD:** POST
+
+4.  **ENDPOINT URL:** `/social-media-posting/oauth/:locationId/twitter/accounts/:accountId`
+
+5.  **FULL URL:** `https://services.leadconnectorhq.com/social-media-posting/oauth/:locationId/twitter/accounts/:accountId`
+
+6.  **REQUIRED PARAMETERS:**
+    *   **Header Parameters:**
+        *   Version (string): API Version. Possible values: `2021-07-28`
+    *   **Path Parameters:**
+        *   locationId (string): Account Location Id (Example: `w37swmmLbA02zgqKPpxITe2`)
+        *   accountId (string): Account Id (Example: `w37swmmLbA02zgqKPpxITe`)
+    *   **Body Parameters:** (The entire body is marked as required; individual fields within are assumed required based on the schema and examples.)
+        *   originId (string): Example: `244405****11687`
+        *   name (string): Example: `JOHN_DEO`
+        *   username (string): Example: `user_name`
+        *   avatar (string)
+        *   protected (boolean): Example: `true`
+        *   verified (boolean): Example: `true`
+        *   companyId (string): Company ID (Example: `sdfdsfdsfEWEsdfsdsW32dd`)
+
+7.  **OPTIONAL PARAMETERS:** Not specified in documentation
+
+8.  **AUTHENTICATION:** Token-based (implied by "Invalid token: access token is invalid" in 401 response). Specific scopes not mentioned.
+
+9.  **RESPONSE FORMAT:**
+    *   **Successful Response (201 Created):**
+        *   `success` (boolean): `true`
+        *   `statusCode` (number): `201`
+        *   `message` (string): `Added Twitter Account`
+        *   `results` (object):
+            *   `_id` (string)
+            *   `oAuthId` (string)
+            *   `oldId` (string)
+            *   `locationId` (string)
+            *   `originId` (string)
+            *   `platform` (string): `twitter`
+            *   `type` (string): `profile`
+            *   `name` (string)
+            *   `avatar` (string)
+            *   `meta` (object): Contains various Twitter-related metadata (e.g., `pageId`, `page` object, `storeCode`, `isVerified`, `verified`, `protected`, `locationId`, `accountId`, `openId`, `urn`, `username`, `storefrontAddress` object)
+            *   `active` (boolean)
+            *   `deleted` (boolean)
+            *   `createdAt` (date-time)
+            *   `updatedAt` (date-time)
+    *   **Error Responses:**
+        *   400 Bad Request: `{"statusCode":400,"message":"Bad Request"}`
+        *   401 Unauthorized: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+        *   422 Unprocessable Entity: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+10. **PURPOSE:** This endpoint allows users to attach a Twitter profile to a specific location (sub-account) within the HighLevel platform.
+    *   **Important Note:** This endpoint is deprecated. As of December 4, 2024, X (formerly Twitter) is no longer supported by this feature.
+
+11. **TAGS:** Social Planner, Twitter, Profile, Account, Attach, OAuth, API, Deprecated, Social Media.
+
+**Code Examples Availability:**
+Code examples are available for curl, nodejs, python, php, java, go, ruby, and powershell.

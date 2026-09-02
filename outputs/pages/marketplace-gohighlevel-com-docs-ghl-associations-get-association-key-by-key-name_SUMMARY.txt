@@ -1,0 +1,80 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get association key by key name
+
+### 2. CATEGORY:
+Associations
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/associations/key/:key_name`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/associations/key/:key_name`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version (Possible values: `2021-07-28`)
+*   **key_name** (string): The name of the association key to retrieve.
+*   **locationId** (string): The ID of the sub-account/location.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `associations.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Details:** Use an Access Token generated with user type as Sub-Account OR a Private Integration Token of a Sub-Account. Authentication scheme is Bearer (JWT) in the request header.
+
+### 9. RESPONSE FORMAT:
+
+**200 OK - Successful response**
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   `locationId` (string, required): Example: `string`
+    *   `id` (string, required): Example: `ve9EPM428h8vShlRW1KT`
+    *   `key` (string, required): First Objects Association Label (custom_objects.children). Example: `student`
+    *   `firstObjectLabel` (object, required): First Objects Association Label (custom_objects.children). Example: `student`
+    *   `firstObjectKey` (object, required): First Objects Key. Example: `custom_objects.children`
+    *   `secondObjectLabel` (object, required): Second Object Association Label (contact). Example: `Teacher`
+    *   `secondObjectKey` (object, required): Second Objects Key. Example: `contact`
+    *   `associationType` (object, required): Association Type can be USER_DEFINED or SYSTEM_DEFINED. Example: `USER_DEFINED`
+*   **Example:**
+    ```json
+    {
+      "locationId": "string",
+      "id": "ve9EPM428h8vShlRW1KT",
+      "key": "student",
+      "firstObjectLabel": "student",
+      "firstObjectKey": "custom_objects.children",
+      "secondObjectLabel": "Teacher",
+      "secondObjectKey": "contact",
+      "associationType": "USER_DEFINED"
+    }
+    ```
+
+**Error Responses:**
+*   **400 Bad Request:**
+    ```json
+    {"statusCode":400,"message":"Bad Request"}
+    ```
+*   **401 Unauthorized:**
+    ```json
+    {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+    ```
+*   **422 Unprocessable Entity:**
+    ```json
+    {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+    ```
+
+### 10. PURPOSE:
+This API allows you to retrieve standard or user-defined association details by providing its key name.
+
+### 11. TAGS:
+Associations, Get, Key, Retrieve, Association Key, Standard Association, User-defined Association
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

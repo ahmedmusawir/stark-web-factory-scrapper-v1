@@ -1,0 +1,228 @@
+[Skip to main content](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#__docusaurus_skipToContent_fallback)
+[![HighLevel Logo](https://marketplace.gohighlevel.com/docs/img/highlevel.png)](https://marketplace.gohighlevel.com/docs/)[Highlevel API 2.0](https://marketplace.gohighlevel.com/docs/oauth/GettingStarted)
+[Sign In](https://marketplace.gohighlevel.com/login)
+  * [AI Agents Contest - Guide](https://marketplace.gohighlevel.com/docs/other/AIAgentsGettingStarted)
+  * [Getting Started](https://marketplace.gohighlevel.com/docs/oauth/GettingStarted)
+  * [Authorization](https://marketplace.gohighlevel.com/docs/Authorization/authorization_doc)
+  * [SDK Overview](https://marketplace.gohighlevel.com/docs/sdk/GettingStartedSDK)
+  * [External Billing](https://marketplace.gohighlevel.com/docs/oauth/Billing)
+  * [External Authentication](https://marketplace.gohighlevel.com/docs/oauth/ExternalAuthentication)
+  * [User Context in Marketplace Apps](https://marketplace.gohighlevel.com/docs/other/user-context-marketplace-apps)
+  * [MCP Server](https://marketplace.gohighlevel.com/docs/other/mcp)
+  * [Marketplace Modules](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Marketplace Policies](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Changelog](https://marketplace.gohighlevel.com/docs/Changelog)
+  * [Country List](https://marketplace.gohighlevel.com/docs/oauth/country)
+  * [FAQs](https://marketplace.gohighlevel.com/docs/oauth/Faqs)
+  * [OAuth 2.0](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Business](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Calendars](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Campaigns](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Companies](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Contacts](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Objects](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Associations](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Custom Fields V2](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Conversations](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Courses](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Email](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Forms](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Invoice](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Trigger Links](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Sub-Account (Formerly location)](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Media Storage](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Developer marketplace](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Blogs](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Funnels](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Opportunities](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Payments](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Products](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Saas](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Snapshots](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Social Planner](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Surveys](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Users](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Workflows](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [LC Email](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Custom menus](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Voice AI](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Proposals](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Knowledge Base](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Conversation AI](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Phone System](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Store](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [AI Agent Studio](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html)
+  * [Webhook Integration Guide](https://marketplace.gohighlevel.com/docs/webhook/WebhookIntegrationGuide)
+  * [Webhook Logs Dashboard](https://marketplace.gohighlevel.com/docs/webhook/WebhookLogsDashboard)
+  * [Webhook](https://marketplace.gohighlevel.com/docs/category/webhook)
+    * [AppInstall](https://marketplace.gohighlevel.com/docs/webhook/AppInstall)
+    * [AppointmentCreate](https://marketplace.gohighlevel.com/docs/webhook/AppointmentCreate)
+    * [AppointmentDelete](https://marketplace.gohighlevel.com/docs/webhook/AppointmentDelete)
+    * [AppointmentUpdate](https://marketplace.gohighlevel.com/docs/webhook/AppointmentUpdate)
+    * [AppUninstall](https://marketplace.gohighlevel.com/docs/webhook/AppUninstall)
+    * [AssociationCreate](https://marketplace.gohighlevel.com/docs/webhook/AssociationCreate)
+    * [AssociationDelete](https://marketplace.gohighlevel.com/docs/webhook/AssociationDelete)
+    * [AssociationUpdate](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate)
+    * [CampaignStatusUpdate](https://marketplace.gohighlevel.com/docs/webhook/CampaignStatusUpdate)
+    * [ContactCreate](https://marketplace.gohighlevel.com/docs/webhook/ContactCreate)
+    * [ContactDelete](https://marketplace.gohighlevel.com/docs/webhook/ContactDelete)
+    * [ContactUpdate](https://marketplace.gohighlevel.com/docs/webhook/ContactUpdate)
+    * [ContactDndUpdate](https://marketplace.gohighlevel.com/docs/webhook/ContactDndUpdate)
+    * [ContactTagUpdate](https://marketplace.gohighlevel.com/docs/webhook/ContactTagUpdate)
+    * [ConversationUnreadWebhook](https://marketplace.gohighlevel.com/docs/webhook/ConversationUnreadWebhook)
+    * [ExternalAuthConnected](https://marketplace.gohighlevel.com/docs/webhook/ExternalAuthConnected)
+    * [InboundMessage](https://marketplace.gohighlevel.com/docs/webhook/InboundMessage)
+    * [InvoiceCreate](https://marketplace.gohighlevel.com/docs/webhook/InvoiceCreate)
+    * [InvoiceDelete](https://marketplace.gohighlevel.com/docs/webhook/InvoiceDelete)
+    * [InvoicePaid](https://marketplace.gohighlevel.com/docs/webhook/InvoicePaid)
+    * [InvoicePartiallyPaid](https://marketplace.gohighlevel.com/docs/webhook/InvoicePartiallyPaid)
+    * [InvoiceSent](https://marketplace.gohighlevel.com/docs/webhook/InvoiceSent)
+    * [InvoiceUpdate](https://marketplace.gohighlevel.com/docs/webhook/InvoiceUpdate)
+    * [InvoiceVoid](https://marketplace.gohighlevel.com/docs/webhook/InvoiceVoid)
+    * [LCEmailStats](https://marketplace.gohighlevel.com/docs/webhook/LCEmailStats)
+    * [LocationCreate](https://marketplace.gohighlevel.com/docs/webhook/LocationCreate)
+    * [LocationUpdate](https://marketplace.gohighlevel.com/docs/webhook/LocationUpdate)
+    * [NoteCreate](https://marketplace.gohighlevel.com/docs/webhook/NoteCreate)
+    * [NoteDelete](https://marketplace.gohighlevel.com/docs/webhook/NoteDelete)
+    * [NoteUpdate](https://marketplace.gohighlevel.com/docs/webhook/NoteUpdate)
+    * [ObjectSchemaCreate](https://marketplace.gohighlevel.com/docs/webhook/ObjectSchemaCreate)
+    * [ObjectSchemaUpdate](https://marketplace.gohighlevel.com/docs/webhook/ObjectSchemaUpdate)
+    * [OpportunityAssignedToUpdate](https://marketplace.gohighlevel.com/docs/webhook/OpportunityAssignedToUpdate)
+    * [OpportunityCreate](https://marketplace.gohighlevel.com/docs/webhook/OpportunityCreate)
+    * [OpportunityDelete](https://marketplace.gohighlevel.com/docs/webhook/OpportunityDelete)
+    * [OpportunityMonetaryValueUpdate](https://marketplace.gohighlevel.com/docs/webhook/OpportunityMonetaryValueUpdate)
+    * [OpportunityStageUpdate](https://marketplace.gohighlevel.com/docs/webhook/OpportunityStageUpdate)
+    * [OpportunityStatusUpdate](https://marketplace.gohighlevel.com/docs/webhook/OpportunityStatusUpdate)
+    * [OpportunityUpdate](https://marketplace.gohighlevel.com/docs/webhook/OpportunityUpdate)
+    * [OrderCreate](https://marketplace.gohighlevel.com/docs/webhook/OrderCreate)
+    * [OrderStatusUpdate](https://marketplace.gohighlevel.com/docs/webhook/OrderStatusUpdate)
+    * [OutboundMessage](https://marketplace.gohighlevel.com/docs/webhook/OutboundMessage)
+    * [PlanChange](https://marketplace.gohighlevel.com/docs/webhook/PlanChange)
+    * [PriceCreate](https://marketplace.gohighlevel.com/docs/webhook/PriceCreate)
+    * [PriceDelete](https://marketplace.gohighlevel.com/docs/webhook/PriceDelete)
+    * [PriceUpdate](https://marketplace.gohighlevel.com/docs/webhook/PriceUpdate)
+    * [ProductCreate](https://marketplace.gohighlevel.com/docs/webhook/ProductCreate)
+    * [ProductDelete](https://marketplace.gohighlevel.com/docs/webhook/ProductDelete)
+    * [ProductUpdate](https://marketplace.gohighlevel.com/docs/webhook/ProductUpdate)
+    * [ProviderOutboundMessage](https://marketplace.gohighlevel.com/docs/webhook/ProviderOutboundMessage)
+    * [RecordCreate](https://marketplace.gohighlevel.com/docs/webhook/RecordCreate)
+    * [RecordDelete](https://marketplace.gohighlevel.com/docs/webhook/RecordDelete)
+    * [RecordUpdate](https://marketplace.gohighlevel.com/docs/webhook/RecordUpdate)
+    * [RelationCreate](https://marketplace.gohighlevel.com/docs/webhook/RelationCreate)
+    * [RelationDelete](https://marketplace.gohighlevel.com/docs/webhook/RelationDelete)
+    * [SaaSPlanCreate](https://marketplace.gohighlevel.com/docs/webhook/SaaSPlanCreate)
+    * [TaskComplete](https://marketplace.gohighlevel.com/docs/webhook/TaskComplete)
+    * [TaskCreate](https://marketplace.gohighlevel.com/docs/webhook/TaskCreate)
+    * [TaskDelete](https://marketplace.gohighlevel.com/docs/webhook/TaskDelete)
+    * [UserCreate](https://marketplace.gohighlevel.com/docs/webhook/UserCreate)
+    * [VoiceAiCallEnd](https://marketplace.gohighlevel.com/docs/webhook/VoiceAiCallEnd)
+    * [UserDelete](https://marketplace.gohighlevel.com/docs/webhook/UserDelete)
+    * [UserUpdate](https://marketplace.gohighlevel.com/docs/webhook/UserUpdate)
+
+
+  * [](https://marketplace.gohighlevel.com/docs/)
+  * [Webhook](https://marketplace.gohighlevel.com/docs/category/webhook)
+  * AssociationUpdate
+
+
+On this page
+# Association Updated
+## Overview[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#overview "Direct link to Overview")
+This webhook response is triggered when a new association is updated between objects, such as linking contacts to custom objects. Currently, only contact-to-contact , contact to custom object and custom object to custom object associations are supported. There are plans to expand support for additional associations in the future.
+For example, in a real estate system, a company may want to associate potential buyers with specific properties. In this case:
+  * The **first object** (buyer) would be a custom object representing the interested person.
+  * The **second object** (property) would be a custom object representing the real estate listing.
+  * The **association label** might be "Interested Buyer," indicating that the buyer has shown interest in the property.
+  * The system could store multiple buyers per property (many-to-many relationship), allowing for flexible tracking of interest.
+
+
+## Schema[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#schema "Direct link to Schema")
+The webhook response follows the JSON schema below:
+```
+{"type":"object","properties":{"id":{"type":"string"},"associationType":{"type":"string"},"firstObjectKey":{"type":"string"},"firstObjectLabel":{"type":"string"},"firstObjectToSecondObjectCardinality":{"type":"string"},"secondObjectKey":{"type":"string"},"secondObjectLabel":{"type":"string"},"secondObjectToFirstObjectCardinality":{"type":"string"},"key":{"type":"string"},"locationId":{"type":"string"}}}
+```
+
+## Field Descriptions[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#field-descriptions "Direct link to Field Descriptions")
+### `id`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#id "Direct link to id")
+  * Type: `string`
+  * Unique identifier for the association.
+
+
+### `associationType`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#associationtype "Direct link to associationtype")
+  * Type: `string`
+  * Specifies the type of association (e.g., `USER_DEFINED` or `SYSTEM_DEFINED`).
+
+
+### `firstObjectKey`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#firstobjectkey "Direct link to firstobjectkey")
+  * Type: `string`
+  * Key representing the first object in the association.
+
+
+### `firstObjectLabel`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#firstobjectlabel "Direct link to firstobjectlabel")
+  * Type: `string`
+  * Human-readable label for the first object.
+
+
+### `firstObjectToSecondObjectCardinality`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#firstobjecttosecondobjectcardinality "Direct link to firstobjecttosecondobjectcardinality")
+  * Type: `string`
+  * Indicates the relationship between the first and second object (e.g., `MANY_TO_MANY`).
+
+
+### `secondObjectKey`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#secondobjectkey "Direct link to secondobjectkey")
+  * Type: `string`
+  * Key representing the second object in the association.
+
+
+### `secondObjectLabel`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#secondobjectlabel "Direct link to secondobjectlabel")
+  * Type: `string`
+  * Human-readable label for the second object.
+
+
+### `secondObjectToFirstObjectCardinality`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#secondobjecttofirstobjectcardinality "Direct link to secondobjecttofirstobjectcardinality")
+  * Type: `string`
+  * Defines the reverse relationship between objects.
+
+
+### `key`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#key "Direct link to key")
+  * Type: `string`
+  * Unique key assigned to the association.
+
+
+### `locationId`[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#locationid "Direct link to locationid")
+  * Type: `string`
+  * Identifies the location associated with the created association.
+
+
+## Example Response[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#example-response "Direct link to Example Response")
+```
+{"id":"67ade73d1119d2ac7ad0c475","associationType":"USER_DEFINED","firstObjectKey":"custom_objects.real_estate_buyer","firstObjectLabel":"Interested Buyer","firstObjectToSecondObjectCardinality":"MANY_TO_MANY","secondObjectKey":"custom_objects.property","secondObjectLabel":"Property","secondObjectToFirstObjectCardinality":"MANY_TO_MANY","key":"buyer_property_interest","locationId":"eHy2cOSZxMQzQ6Yyvl8P"}
+```
+
+## Additional Notes[​](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#additional-notes "Direct link to Additional Notes")
+  * Ensure that your webhook listener is capable of processing `POST` requests.
+  * The `firstObjectKey` and `secondObjectKey` help define relationships between entities.
+  * The `traceId` is useful for debugging and logging purposes.
+
+
+## Share your feedback
+★★★★★
+**Tags:**
+  * [Webhook Response](https://marketplace.gohighlevel.com/docs/tags/webhook-response)
+
+
+[PreviousAssociationDelete](https://marketplace.gohighlevel.com/docs/webhook/AssociationDelete)[NextCampaignStatusUpdate](https://marketplace.gohighlevel.com/docs/webhook/CampaignStatusUpdate)
+  * [Overview](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#overview)
+  * [Schema](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#schema)
+  * [Field Descriptions](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#field-descriptions)
+    * [`id`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#id)
+    * [`associationType`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#associationtype)
+    * [`firstObjectKey`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#firstobjectkey)
+    * [`firstObjectLabel`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#firstobjectlabel)
+    * [`firstObjectToSecondObjectCardinality`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#firstobjecttosecondobjectcardinality)
+    * [`secondObjectKey`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#secondobjectkey)
+    * [`secondObjectLabel`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#secondobjectlabel)
+    * [`secondObjectToFirstObjectCardinality`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#secondobjecttofirstobjectcardinality)
+    * [`key`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#key)
+    * [`locationId`](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#locationid)
+  * [Example Response](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#example-response)
+  * [Additional Notes](https://marketplace.gohighlevel.com/docs/webhook/AssociationUpdate/index.html#additional-notes)

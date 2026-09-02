@@ -1,0 +1,91 @@
+Here's a structured summary of the "Update Record" API documentation:
+
+### 1. ENDPOINT NAME:
+Update Record
+
+### 2. CATEGORY:
+Objects (Custom/Standard)
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/objects/:schemaKey/records/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/objects/:schemaKey/records/:id`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `schemaKey` (string): The key of the Custom Object / Standard Object Schema. For custom objects, the key must include the “custom_objects.” prefix, while standard objects use their respective object keys. Example: `custom_objects.pet` or `business.email`
+    *   `id` (string): id of the record to be updated. Example: `632c34b4c9b7da3358ac9891`
+*   **Query Parameters:**
+    *   `locationId` (string): Not explicitly described, but marked as required.
+*   **Body:**
+    *   `object` (object): An object containing the properties and fields of the record to be updated. This can include `owner`, `followers`, and `properties` (which itself is an object of key-value pairs representing the fields).
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation (all listed parameters are required).
+
+### 8. AUTHENTICATION:
+*   Auth Method(s): `OAuth Access Token`, `Private Integration Token`
+*   Token Type(s): `Sub-Account Token`
+*   Scheme: `Bearer` (JWT)
+*   In: `header` (Authorization header)
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Successful response)**
+    *   Content Type: `application/json`
+    *   Schema:
+        *   `record` (object)
+            *   `id` (string, required): id of the record. Example: `661c06b4ffde146bdb469442`
+            *   `owner` (string[], required): Owner (User's id). Limited to 1. Only supported with custom objects. Example: `["sx6wyHhbFdRXh302Lunr"]`
+            *   `followers` (string[], required): Follower (User's ids). Limited to 10. Example: `["sx6wyHhbFdRXh302Lunr","v5cEPM428h8vShlRW1KT"]`
+            *   `properties` (object, required): Properties of the record (Note: Schema shows type as "string", but example clearly shows a JSON object). Example: `{"customer_number":1424,"ticket_name":"Customer not able login", ...}`
+            *   `dateAdded` (date-time, required): Date and time when the object was added.
+            *   `dateUpdated` (date-time, required): Date and time when the object was last updated.
+    *   Example:
+        ```json
+        {
+          "record": {
+            "id": "661c06b4ffde146bdb469442",
+            "owner": ["sx6wyHhbFdRXh302Lunr"],
+            "followers": ["sx6wyHhbFdRXh302Lunr","v5cEPM428h8vShlRW1KT"],
+            "properties": {
+              "customer_number": 1424,
+              "ticket_name": "Customer not able login",
+              "phone_number": "+917000000000",
+              "money": {"currency": "default", "value": 100},
+              "type_of_ticket": "doubt",
+              "section_of_app": ["contacts", "smartlist"],
+              "recieved_on": "2024-07-11",
+              "my_files": [{"url": "---url_of_file---"}],
+              "my_textbox_list.option_a": "Value 1",
+              "my_textbox_list.option_b": "Value 2"
+            },
+            "dateAdded": "2024-07-29T15:51:28.071Z",
+            "dateUpdated": "2024-07-29T15:51:28.071Z"
+          }
+        }
+        ```
+*   **400 Bad Request**
+    *   Content Type: `application/json`
+    *   Schema: `statusCode` (number), `message` (string)
+    *   Example: `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized**
+    *   Content Type: `application/json`
+    *   Schema: `statusCode` (number), `message` (string), `error` (string)
+    *   Example: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint is used to update an existing Custom Object Record or Standard Object Record (e.g., business object) by its ID.
+
+### 11. TAGS:
+`Objects`, `Records`, `Update`, `Custom Objects`, `Standard Objects`, `PUT`, `GHL`, `HighLevel API`, `CRM`
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

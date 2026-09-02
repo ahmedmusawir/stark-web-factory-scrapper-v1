@@ -1,0 +1,60 @@
+```
+## STRUCTURED SUMMARY OF APP INSTALL WEBHOOK DOCUMENTATION
+
+### 1. ENDPOINT NAME
+AppInstall
+
+### 2. CATEGORY
+Webhook
+
+### 3. HTTP METHOD
+N/A (Webhook Event - HighLevel sends this event to a configured listener endpoint, which typically receives it via a POST request.)
+
+### 4. ENDPOINT URL
+N/A (This documentation describes the payload of a webhook event, not an API endpoint to be called by a client.)
+
+### 5. FULL URL
+N/A
+
+### 6. REQUIRED PARAMETERS
+These parameters are consistently present in all provided examples for the webhook payload.
+-   **type** (string): The type of event. Value is always "INSTALL".
+-   **appId** (string): The unique identifier of the installed app.
+-   **companyId** (string): The unique identifier of the company (agency or sub-account) where the app is installed.
+    *Note: The documentation states "The User ID and Company ID may be available when a new token is generated. In case of app installation via future locations, you may not get these fields." However, `companyId` is present in all provided examples.*
+-   **planId** (string): The unique identifier of the plan associated with the app installation.
+-   **trial** (object): An object containing details about the trial period for the app.
+    -   **onTrial** (boolean): Indicates if the app is currently on a trial.
+    -   **trialDuration** (number): The duration of the trial in days.
+    -   **trialStartDate** (ISO 8601 Date string): The start date and time of the trial.
+
+### 7. OPTIONAL PARAMETERS
+These parameters are conditionally present in the webhook payload, depending on whether the app is installed at the location level or agency level, and other specific conditions.
+-   **locationId** (string): The unique identifier of the sub-account (formerly location) where the app is installed.
+    *Present for Location Level App Installs, absent for Agency Level App Installs.*
+-   **userId** (string): The unique identifier of the user who performed the app installation.
+    *Present for Location Level App Installs, absent for Agency Level App Installs.*
+-   **isWhitelabelCompany** (boolean): Indicates whether the company where the app is installed is a whitelabel company.
+    *Present for Location Level App Installs.*
+-   **whitelabelDetails** (object): An object containing details about the company's whitelabel setup.
+    *Present for Location Level App Installs if `isWhitelabelCompany` is true. Will be an empty object (`{}`) if `isWhitelabelCompany` is false.*
+    -   **domain** (string): The whitelabel domain of the company.
+    -   **logoUrl** (string): The URL of the whitelabel logo.
+-   **companyName** (string): The name of the company where the app is installed.
+    *Present for Location Level App Installs.*
+
+### 8. AUTHENTICATION
+Not specified in documentation for receiving the webhook. External applications typically validate the webhook's authenticity using a shared secret and signature verification.
+
+### 9. RESPONSE FORMAT
+N/A (This documentation describes the payload *sent by* HighLevel for a webhook event. An external listener would typically respond with an HTTP 2xx status code (e.g., 200 OK) to acknowledge receipt of the webhook.)
+
+### 10. PURPOSE
+This webhook is called by HighLevel whenever an app is installed within a HighLevel account, providing details about the installation.
+
+### 11. TAGS
+Webhook Events, App Install, Installation, Marketplace, App, Company, Location, Trial, Whitelabel
+
+### AVAILABILITY OF CODE EXAMPLES
+No code examples (e.g., Python, Node, cURL) are present for *triggering* or *receiving* this webhook. Only JSON schema and example JSON payloads are provided.
+```

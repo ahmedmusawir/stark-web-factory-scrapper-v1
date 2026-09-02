@@ -1,0 +1,62 @@
+```
+## STRUCTURED API SUMMARY
+
+### 1. ENDPOINT NAME:
+Add Followers
+
+### 2. CATEGORY:
+Opportunities
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/opportunities/:id/followers`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/opportunities/:id/followers`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `id` (string): Opportunity Id. Example: `sx6wyHhbFdRXh302Lunr`
+*   **Body Parameters (application/json):**
+    *   `followers` (string[]): An array of follower IDs to be added to the opportunity. Example: `["sx6wyHhbFdRXh302Lunr","sx6wyHhbFdRXh302Lunr"]`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `opportunities.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer` (JWT format)
+*   **Location:** `header` (as `Authorization: Bearer <TOKEN>`)
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (201 Created) - application/json:**
+    *   **Schema:**
+        *   `followers` (string[]): An array of all current follower IDs for the opportunity. Example: `["sx6wyHhbFdRXh302Lunr","sx6wyHhbFdRXh302LLss"]`
+        *   `followersAdded` (string[]): An array of the follower IDs that were successfully added in this request. Example: `["Mx6wyHhbFdRXh302Luer","Ka6wyHhbFdRXh302LLsAm"]`
+    *   **Example:**
+        ```json
+        {
+          "followers": ["sx6wyHhbFdRXh302Lunr", "sx6wyHhbFdRXh302LLss"],
+          "followersAdded": ["Mx6wyHhbFdRXh302Luer", "Ka6wyHhbFdRXh302LLsAm"]
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows adding one or more users as followers to a specific opportunity within a sub-account.
+
+### 11. TAGS:
+Opportunities, Followers, Add, Update, CRM, Sales, Lead Management, HighLevel API
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.
+```

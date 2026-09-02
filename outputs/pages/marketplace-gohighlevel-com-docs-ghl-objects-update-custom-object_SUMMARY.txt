@@ -1,0 +1,75 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Update Object Schema By Key / Id
+
+### 2. CATEGORY:
+Objects
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/objects/:key`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/objects/:key`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `key` (string): Key of the custom or standard object. For custom objects, the key must include the prefix “custom_objects.”. This key can be found on the Object Details page under Settings in the UI. Example: `custom_objects.pet`
+*   **Body Parameters (application/json):**
+    *   `labels` (object): This is how your custom object will be displayed.
+        *   `singular` (string): Singular name of the custom object. Example: `Car`
+        *   `plural` (string): Plural name of the custom object. Example: `Cars`
+    *   `locationId` (string): Location ID. Example: `632c34b4c9b7da3358ac9891`
+    *   `searchableProperties` (string[]): Searchable Fields: Provide the field key of your object that you want to search on, using the format (custom_object.<object_name>.<field_key>). Example: `["custom_objects.mad.mad","custom_objects.mad.record_1","custom_objects.mad.nn"]`
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters (application/json):**
+    *   `description` (string, nullable): Pet Object's description. Example: `These are non vaccinated pets`
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s)**: `objects/schema.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header` (Authorization)
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK):**
+    *   **Content Type**: `application/json`
+    *   **Schema**: An object containing a top-level `object` key.
+        *   `object` (object):
+            *   `id` (string): ID of the custom / standard object schema. Example: `661c06b4ffde146bdb469442`
+            *   `standard` (boolean): `false` for custom objects, `true` for standard objects. Example: `false`
+            *   `key` (string): Key used to refer to the custom / standard Object internally. Example: `custom_objects.pet`
+            *   `labels` (object):
+                *   `singular` (string): Singular name of the custom object. Example: `Pet`
+                *   `plural` (string): Plural name of the custom object. Example: `Pets`
+            *   `description` (string): Custom / Standard Object Descriptions. Example: `These are non vaccinated pets`
+            *   `locationId` (string): Location's ID. Example: `Q9DT3OAqEXDLYuob1G32`
+            *   `primaryDisplayProperty` (string): Primary property for the custom / standard Object, used for UI rendering. Example: `custom_objects.pet.name`
+            *   `dateAdded` (date-time): Date and time when the object was added.
+            *   `dateUpdated` (date-time): Date and time when the object was last updated.
+            *   `type` (string): Object's Type. Example: `The Object type can either USER_DEFINED or SYSTEM_DEFINED`
+*   **Error Responses:**
+    *   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `422 Unprocessable Entity`: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows developers to update the schema of an existing custom object or modify the searchable fields for standard objects like contacts, opportunities, and businesses within a HighLevel location.
+
+### 11. TAGS:
+Objects, Schema, Update, Custom Object, Standard Object, Modify, Configuration, HighLevel API, LeadConnector
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

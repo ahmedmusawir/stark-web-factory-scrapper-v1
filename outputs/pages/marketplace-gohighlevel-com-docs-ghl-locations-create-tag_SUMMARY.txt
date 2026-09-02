@@ -1,0 +1,89 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME
+Create Tag
+
+### 2. CATEGORY
+Sub-Account Tags (also Location Tags)
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/locations/:locationId/tags`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/locations/:locationId/tags`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   `locationId` (string): Location Id. Example: `ve9EPM428h8vShlRW1KT`
+*   **Body Parameters (application/json):**
+    *   `name` (string): Tag name. Example: `Tag`
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Scope(s):** `locations/tags.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT
+**Successful Response (200 OK):**
+Content Type: `application/json`
+Schema:
+```json
+{
+  "tag": {
+    "name": "string",
+    "locationId": "string",
+    "id": "string"
+  }
+}
+```
+Example:
+```json
+{
+  "tag": {
+    "name": "minim aliquip anim",
+    "locationId": "ve9EPM428h8vShlRW1KT",
+    "id": "flGwEuzsfJOia1i1ikRN"
+  }
+}
+```
+
+**Error Responses:**
+*   **400 Bad Request:**
+    ```json
+    {"statusCode":400,"message":"Bad Request"}
+    ```
+*   **401 Unauthorized:**
+    ```json
+    {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+    ```
+*   **422 Unprocessable Entity:**
+    ```json
+    {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+    ```
+
+### 10. PURPOSE
+This endpoint allows you to create a new tag within a specified sub-account (formerly location).
+
+### 11. TAGS
+Sub-Account, Location, Tag, Create, POST, API, HighLevel, Marketing, CRM
+
+### 12. CODE EXAMPLES
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

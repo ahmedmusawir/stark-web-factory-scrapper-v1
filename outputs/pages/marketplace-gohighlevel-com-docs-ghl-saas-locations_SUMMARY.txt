@@ -1,0 +1,49 @@
+Here is a structured summary of the provided API documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+Get locations by stripeId with companyId
+
+### 2. CATEGORY:
+SaaS
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/saas/locations`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/saas/locations`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-04-15`)
+*   **Query Parameters:**
+    *   `customerId` (string): Not explicitly described, but implied to be a Stripe Customer ID.
+    *   `subscriptionId` (string): Not explicitly described, but implied to be a Stripe Subscription ID.
+    *   `companyId` (string): Not explicitly described.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Header:** `Authorization: Bearer <TOKEN>` (Bearer scheme, JWT format, `user type as Company`)
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** `200`
+*   **Structure:** Not explicitly detailed in the documentation beyond the status code.
+
+### 10. PURPOSE:
+This endpoint is used to retrieve locations based on a provided Stripe Customer ID or Stripe Subscription ID, in conjunction with a Company ID.
+
+### 11. TAGS:
+SaaS, Locations, Stripe, Customer, Subscription, Company, Get, Retrieve, API
+
+---
+**Code Examples Availability:**
+*   **Languages listed:** curl, nodejs, python, php, java, go, ruby, powershell
+*   **Example provided for:** curl

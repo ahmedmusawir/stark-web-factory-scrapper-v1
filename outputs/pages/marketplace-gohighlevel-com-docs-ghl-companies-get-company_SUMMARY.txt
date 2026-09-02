@@ -1,0 +1,119 @@
+Here's a structured summary of the API documentation:
+
+### API Documentation Summary
+
+**1. ENDPOINT NAME:** Get Company
+
+**2. CATEGORY:** Companies
+
+**3. HTTP METHOD:** GET
+
+**4. ENDPOINT URL:** `/companies/:companyId`
+
+**5. FULL URL:** `https://services.leadconnectorhq.com/companies/:companyId`
+
+**6. REQUIRED PARAMETERS:**
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-07-28`
+*   **Path Parameters:**
+    *   `companyId` (string): The unique identifier of the company. Example: `ve9EPM428h8vShlRW1KT`
+
+**7. OPTIONAL PARAMETERS:**
+*   Not specified in documentation
+
+**8. AUTHENTICATION:**
+*   **Scope(s):** `companies.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+
+**9. RESPONSE FORMAT:**
+*   **Status Code:** `200 OK`
+*   **Content Type:** `application/json`
+*   **Schema (Successful Response - 200):**
+    *   `company` (object):
+        *   `id` (string): Example: `seD4PfOuKoVMLkEZqohJ`
+        *   `name` (string): Example: `Tesla inc`
+        *   `email` (string): Example: `john@deo.com`
+        *   `logoUrl` (string): Example: `https://firebasestorage.googleapis.com/v0/b/highlevel-staging.appspot.com/o/companyPhotos%2F5DP4iH6HLkQsiKESj6rh.gif?alt=media&token=2aec9720-59a7-46af-a187-d4a2774ee873`
+        *   `phone` (string): Example: `+1202-555-0107`
+        *   `website` (string): Example: `https://www.tesla.com`
+        *   `domain` (string): Example: `https://app.myawesomedomain.com`
+        *   `spareDomain` (string): Example: `link.msgsndr.com`
+        *   `privacyPolicy` (string): Example: `https://app.gohighlevel.com/privacy_policy`
+        *   `termsConditions` (string): Example: `https://app.gohighlevel.com/terms-of-service`
+        *   `address` (string): Example: `3500 Deer Creek Road`
+        *   `city` (string): Example: `Palo Alto`
+        *   `postalCode` (string): Example: `94304`
+        *   `country` (string): Example: `US`
+        *   `state` (string): Example: `CA`
+        *   `timezone` (string): Example: `US/Central`
+        *   `relationshipNumber` (string): Example: `x-xxx-xxx`
+        *   `subdomain` (string): Example: `https://app.myawesomedomain.com/subdomain`
+        *   `plan` (number): Example: `1`
+        *   `currency` (string): Example: (empty string)
+        *   `customerType` (string): Example: `agency`
+        *   `termsOfServiceVersion` (string): Example: `06/01/2022`
+        *   `termsOfServiceAcceptedBy` (string): Example: `SDfdf355Dfggdee`
+        *   `twilioTrialMode` (boolean): Example: `true`
+        *   `twilioFreeCredits` (number): Example: `100`
+        *   `termsOfServiceAcceptedDate` (string): Example: (empty string)
+        *   `privacyPolicyVersion` (string): Example: `06/01/2022`
+        *   `privacyPolicyAcceptedBy` (string): Example: `SDfdf355Dfggdee`
+        *   `privacyPolicyAcceptedDate` (string): Example: (empty string)
+        *   `affiliatePolicyVersion` (string): Example: `06/01/2022`
+        *   `affiliatePolicyAcceptedBy` (string): Example: `SDfdf355Dfggdee`
+        *   `affiliatePolicyAcceptedDate` (string): Example: (empty string)
+        *   `isReselling` (boolean): Example: `true`
+        *   `onboardingInfo` (object):
+            *   `pending` (boolean, required): Example: `true`
+            *   `haveWebsite` (boolean): Example: (empty string)
+            *   `websiteUrl` (string): Example: (empty string)
+            *   `industryServed` (string): Example: (empty string)
+            *   `customerCount` (string): Example: (empty string)
+            *   `tools` (string[]): Example: (empty array)
+            *   `location` (boolean): Example: (empty string)
+            *   `conversationDemo` (boolean): Example: (empty string)
+            *   `locationId` (string): Example: (empty string)
+            *   `snapshotId` (string): Example: (empty string)
+            *   `planId` (string): Selected agency plan unique plan Id. Example: `plan_EOi37NLV12u68i`
+            *   `affiliateSignup` (boolean): Set to true if it is from affiliate. Example: `true`
+            *   `hasJoinedKickoffCall` (boolean): Set to true if user joined onboarding call. Example: `true`
+            *   `kickoffActionTaken` (boolean): Set to true if user joined onboarding call. Example: `true`
+            *   `hasJoinedImplementationCall` (boolean): Set to true if user joined implementation call. Example: `true`
+            *   `version` (string): This helps in A/B tracking of onboarding flow. Example: `1`
+            *   `metaData` (object): metaData for onboarding. Example: `true`
+        *   `upgradeEnabledForClients` (boolean): Flag to set if upgrade plan is enabled. Example: `true`
+        *   `cancelEnabledForClients` (boolean): Flag to set if cancel plan is enabled. Example: `true`
+        *   `autoSuspendEnabled` (boolean): Flag to set if auto suspend is enabled. Example: `true`
+        *   `saasSettings` (object): Saas Settings. Example: `{"agencyDashboardVisibleTo":"string","stripeConnectInitiatedBy":"string"}`
+        *   `stripeConnectId` (string): Example: (empty string)
+        *   `enableDepreciatedFeatures` (boolean): Example: `true`
+        *   `premiumUpgraded` (boolean): If you want to enable / disable Priority Support for any agency. Default value is `false`. Example: `false`
+        *   `status` (string): Example: `active-trial`
+        *   `locationCount` (number): Example: `10`
+        *   `disableEmailService` (boolean): Example: `false`
+        *   `referralId` (string): Example: `john-doe-21`
+        *   `isEnterpriseAccount` (boolean): Example: `true`
+        *   `businessNiche` (string): The business niche in which the agency is operating. Example: `Accounting School`
+        *   `businessCategory` (string): Business category. Example: `Automotive`
+        *   `businessAffinityGroup` (string): The affinity group of the agency. Example: `Vehicle Dealerships`
+        *   `isSandboxAccount` (boolean): Example: `true`
+        *   `enableNewSubAccountDefaultData` (boolean): Flag to determine if new sub-accounts should use default data. Example: `false`
+*   **Error Responses:**
+    *   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+    *   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   `422 Unprocessable Entity`: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+**10. PURPOSE:** This endpoint retrieves the detailed information of a specific company (agency) using its unique company ID.
+
+**11. TAGS:** Companies, Get, Retrieve, Company details, Agency, Readonly
+
+**12. CODE EXAMPLES:**
+*   cURL (available)
+*   nodejs (listed as tab)
+*   python (listed as tab)
+*   php (listed as tab)
+*   java (listed as tab)
+*   go (listed as tab)
+*   ruby (listed as tab)
+*   powershell (listed as tab)

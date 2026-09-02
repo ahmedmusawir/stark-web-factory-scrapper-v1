@@ -1,0 +1,43 @@
+Here is a structured summary of the Plan Change webhook documentation:
+
+### 1. ENDPOINT NAME:
+Plan Change
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+Not applicable (This describes a webhook event payload sent *by* HighLevel. When HighLevel sends this webhook, it typically uses a `POST` request to the subscriber's configured URL.)
+
+### 4. ENDPOINT URL:
+Not applicable (This is a webhook event notification; HighLevel sends this payload to a subscriber's configured URL, not an endpoint you call.)
+
+### 5. FULL URL:
+Not applicable (This is a webhook event notification; HighLevel sends this payload to a subscriber's configured URL.)
+
+### 6. REQUIRED PARAMETERS:
+*   `type` (string): The type of webhook event.
+*   `appId` (string): The unique identifier of the app for which the plan changed.
+*   `locationId` (string): The unique identifier of the location (sub-account) where the plan change occurred.
+*   `companyId` (string): The unique identifier of the company associated with the plan change.
+*   `userId` (string): The unique identifier of the user who initiated the plan change.
+*   `currentPlanId` (string): The unique identifier of the plan before the change.
+*   `newPlanId` (string): The unique identifier of the new plan after the change.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation. All fields listed in the schema appear to be part of the standard payload.
+
+### 8. AUTHENTICATION:
+Not specified for the webhook payload itself. For marketplace app installation and webhook subscription, authentication (e.g., OAuth 2.0 or API key authentication) would typically be required to set up the webhook. The receiving endpoint for this webhook should implement its own security measures (e.g., verifying a signature or secret key if provided by HighLevel, though not mentioned in this document).
+
+### 9. RESPONSE FORMAT:
+Not applicable (This documentation describes the *request payload* sent by HighLevel for the webhook. The receiving server is expected to return a 2xx HTTP status code to acknowledge receipt.)
+
+### 10. PURPOSE:
+This webhook is called whenever a user changes the plan for a paid app within the HighLevel platform.
+
+### 11. TAGS:
+Webhook Events
+
+### Availability of Code Examples:
+A JSON schema and an example JSON payload are provided for the webhook request body. No code examples (Python, Node, cURL) for integrating or receiving the webhook are provided.

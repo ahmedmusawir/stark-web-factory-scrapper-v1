@@ -1,0 +1,79 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get Last Snapshot Push
+
+### 2. CATEGORY:
+Snapshots
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/snapshots/snapshot-status/:snapshotId/location/:locationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/snapshots/snapshot-status/:snapshotId/location/:locationId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string, Header Parameter): API Version. Possible values: `['2021-07-28']`.
+*   **snapshotId** (string, Path Parameter): Example: `39It2BFz7EkNaNBALPif`
+*   **locationId** (string, Path Parameter): Example: `IIRGHCgxSINdPT79M75P`
+*   **companyId** (string, Query Parameter): Example: `5D112kQsiKESj6rash`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Agency Token`
+*   **Description:** Use the Access Token generated with user type as Agency (OR) Personal Integration Token from Agency.
+*   **Scheme:** Bearer (JWT) in header.
+
+### 9. RESPONSE FORMAT:
+
+#### 200 OK (Successful response)
+*   **Content Type:** `application/json`
+*   **Schema:**
+    ```json
+    {
+      "data": {
+        "id": "string",         // Document id (Example: 1eM2UgkfaECOYyUdCo9Pa)
+        "locationId": "string", // Sub-account id (Example: BrKClvyvdxhJ9Mxz2pzQ)
+        "status": "string",     // Status of snapshot push (Example: processing)
+        "completed": "string[]",// List of completed assets (Example: ['forms', 'surveys', 'funnels', 'workflows'])
+        "pending": "string[]"   // List of pending assets (Example: ['custom_fields','custom_values','tags'])
+      }
+    }
+    ```
+*   **Example:**
+    ```json
+    {
+      "data": {
+        "id": "1eM2UgkfaECOYyUdCo9Pa",
+        "locationId": "BrKClvyvdxhJ9Mxz2pzQ",
+        "status": "processing",
+        "completed": "['forms', 'surveys', 'funnels', 'workflows']",
+        "pending": "['custom_fields','custom_values','tags']"
+      }
+    }
+    ```
+
+#### 400 Bad Request
+*   **Content Type:** `application/json`
+*   **Schema:** `{"statusCode": number, "message": string}`
+*   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+
+#### 401 Unauthorized
+*   **Content Type:** `application/json`
+*   **Schema:** `{"statusCode": number, "message": string, "error": string}`
+*   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint retrieves the latest snapshot push status for a given location ID and snapshot ID.
+
+### 11. TAGS:
+Snapshots, Get, Status, Push, Location, Agency, API, Data, Migration, Sync
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

@@ -1,0 +1,88 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME
+Get transcription by Message ID
+
+### 2. CATEGORY
+Conversations (specifically, Messages within Conversations)
+
+### 3. HTTP METHOD
+GET
+
+### 4. ENDPOINT URL
+`/conversations/locations/:locationId/messages/:messageId/transcription`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/conversations/locations/:locationId/messages/:messageId/transcription`
+
+### 6. REQUIRED PARAMETERS
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+*   **Path Parameters:**
+    *   `locationId` (string): Location ID as string. Example: `tDtDnQdgm2LXpyiqYvZ6`
+    *   `messageId` (string): Message ID as string. Example: `tDtDnQdgm2LXpyiqYvZ6`
+
+### 7. OPTIONAL PARAMETERS
+Not specified in documentation
+
+### 8. AUTHENTICATION
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `Bearer` (JWT)
+*   **In:** `header`
+
+### 9. RESPONSE FORMAT
+
+*   **200 OK (application/json)**
+    *   **Description:** Gives the attached recording transcription to the message.
+    *   **Schema:**
+        *   `mediaChannel` (number, required): Media channel describes the user interaction channel. Example: `1`
+        *   `sentenceIndex` (number, required): Index of the sentence in the transcription. Example: `1`
+        *   `startTime` (number, required): Start time of the sentence in milliseconds. Example: `34`
+        *   `endTime` (number, required): End time of the sentence in milliseconds. Example: `45`
+        *   `transcript` (string, required): Transcript of the sentence. Example: `This call may be recorded for quality assurance purposes.`
+        *   `confidence` (number, required): Confidence of the transcription. Example: `0.5`
+    *   **Example:**
+        ```json
+        {
+          "mediaChannel": "1",
+          "sentenceIndex": "1",
+          "startTime": "34",
+          "endTime": "45",
+          "transcript": "This call may be recorded for quality assurance purposes.",
+          "confidence": "0.5"
+        }
+        ```
+*   **400 Bad Request (application/json)**
+    *   **Schema:**
+        *   `statusCode` (number): Example: `400`
+        *   `message` (string): Example: `Bad Request`
+    *   **Example:**
+        ```json
+        {
+          "statusCode": 400,
+          "message": "Bad Request"
+        }
+        ```
+*   **401 Unauthorized (application/json)**
+    *   **Schema:**
+        *   `statusCode` (number): Example: `401`
+        *   `message` (string): Example: `Invalid token: access token is invalid`
+        *   `error` (string): Example: `Unauthorized`
+    *   **Example:**
+        ```json
+        {
+          "statusCode": 401,
+          "message": "Invalid token: access token is invalid",
+          "error": "Unauthorized"
+        }
+        ```
+
+### 10. PURPOSE
+This endpoint retrieves the recording transcription for a specific message by its message ID.
+
+### 11. TAGS
+Conversations, Messages, Transcription, Recording, Message ID, GET, HighLevel API
+
+### Code Examples Availability
+`curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`

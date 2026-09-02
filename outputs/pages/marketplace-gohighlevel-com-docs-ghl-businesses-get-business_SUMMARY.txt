@@ -1,0 +1,91 @@
+```
+## STRUCTURED API DOCUMENTATION SUMMARY
+
+### 1. ENDPOINT NAME:
+Get Business
+
+### 2. CATEGORY:
+Business
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+/businesses/:businessId
+
+### 5. FULL URL:
+https://services.leadconnectorhq.com/businesses/:businessId
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version. Possible values: [`2021-07-28`] (Header Parameter)
+*   **businessId** (string): Example: `5DP4iH6HLkQsiKESj6rh` (Path Parameter)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `businesses.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+**200 OK (Successful response)**
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   **business** (object): Business Response
+        *   **id** (string, required): Business Id. Example: `63771dcac1116f0e21de8e12`
+        *   **name** (string, required): Business Name. Example: `Microsoft`
+        *   **phone** (string): phone number
+        *   **email** (string): email. Example: `abc@microsoft.com`
+        *   **website** (string): website. Example: `microsoft.com`
+        *   **address** (string): address
+        *   **city** (string): city
+        *   **description** (string): description
+        *   **state** (string): state
+        *   **postalCode** (string): postal code
+        *   **country** (string): country. Example: `united states`
+        *   **updatedBy** (object): updated By
+        *   **locationId** (string, required): locaitonId
+        *   **createdBy** (object): Created By
+        *   **createdAt** (date-time): Creation Time
+        *   **updatedAt** (date-time): Last updation time
+*   **Example:**
+    ```json
+    {"business":{"id":"63771dcac1116f0e21de8e12","name":"Microsoft","phone":"string","email":"abc@microsoft.com","website":"microsoft.com","address":"string","city":"string","description":"string","state":"string","postalCode":"string","country":"united states","updatedBy":{},"locationId":"string","createdBy":{},"createdAt":"2024-07-29T15:51:28.071Z","updatedAt":"2024-07-29T15:51:28.071Z"}}
+    ```
+
+**400 Bad Request**
+*   **Content Type:** `application/json`
+*   **Schema:** `statusCode` (number), `message` (string)
+*   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+
+**401 Unauthorized**
+*   **Content Type:** `application/json`
+*   **Schema:** `statusCode` (number), `message` (string), `error` (string)
+*   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+**422 Unprocessable Entity**
+*   **Content Type:** `application/json`
+*   **Schema:** `statusCode` (number), `message` (string[]), `error` (string)
+*   **Example:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint retrieves the details of a specific business by its ID.
+
+### 11. TAGS:
+Business, Retrieve, Get, Read, Businesses, ID, API 2.0
+
+### Code Examples Availability:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
+```

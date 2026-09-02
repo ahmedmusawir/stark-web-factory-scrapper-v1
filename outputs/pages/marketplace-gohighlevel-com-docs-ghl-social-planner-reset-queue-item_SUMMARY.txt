@@ -1,0 +1,192 @@
+Here's a structured summary of the API documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+Reset an item in a queue
+
+### 2. CATEGORY:
+Social Planner, Category Queue
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/social-media-posting/category/queues/:queueId/items/:itemId/reset`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/category/queues/:queueId/items/:itemId/reset`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `queueId` (string)
+    *   `itemId` (string)
+*   **Body Parameters (application/json):**
+    *   `locationId` (string): Location ID. Example: `609e126a1c4ae1001291e1b5`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+Implied token-based authentication (e.g., OAuth 2.0 Bearer Token) as indicated by the 401 Unauthorized response: "Invalid token: access token is invalid". Specific scopes or detailed authentication methods are not explicitly mentioned.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK):**
+    *   Content-Type: `application/json`
+    *   Structure:
+        ```json
+        {
+          "success": true,
+          "statusCode": 200,
+          "results": {
+            "message": "Queue item reset successfully",
+            "queueItem": {
+              "_id": "string",
+              "order": 0,
+              "variations": [
+                {
+                  "_id": "string",
+                  "content": "string",
+                  "mentions": [{}],
+                  "ogTags": {
+                    "metaLink": "https://example.com",
+                    "metaImage": "https://example.com/image.png",
+                    "ogTitle": "Example Title"
+                  }
+                }
+              ],
+              "primaryImage": "string",
+              "postId": "string",
+              "post": {
+                "_id": "61bb16833b3f2791f9715be2",
+                "source": "composer",
+                "locationId": "ve9EPM428h8vShlRW1KT",
+                "platform": "google",
+                "displayDate": "2023-08-02T00:00:00.000Z",
+                "createdAt": "2023-08-02T00:00:00.000Z",
+                "updatedAt": "2023-08-02T00:00:00.000Z",
+                "accountId": "w37swmmLbA02zgqKPpxITe",
+                "error": "Failed due to auth token",
+                "postId": "323534534435",
+                "publishedAt": "2021-06-22T05:32:49.463Z",
+                "accountIds": ["aF3KhyL8JIuBwzK3m7Ly_iVrVJ2uoXNF0wzcBzgl5_12554616564525983496"],
+                "summary": "Sample Summary",
+                "media": [
+                  {
+                    "url": "https://i0.wp.com/www.lifeofanarchitect.com/wp-content/uploads/2021/10/architectural-model-making-stairs.jpg",
+                    "caption": "Caption 1",
+                    "type": "video/mp4 or image/png",
+                    "thumbnail": "https://storage.googleapis.com/test/test/media/test.jpeg",
+                    "defaultThumb": "https://storage.googleapis.com/test/test/media/test.jpeg",
+                    "id": "Edf3323fsfsdsd"
+                  }
+                ],
+                "status": "published",
+                "createdBy": "Lx1EI6YIgQYMQi0ytFXv",
+                "type": "post",
+                "tags": ["aF3KhyL8JIuBwzK3m7Ly_iVrVJ2uoXNF0wzcBzgl5_12554616564525983496"],
+                "ogTagsDetails": {
+                  "metaImage": "https://wwww.lifeofanarchitect.com/wp-content/uploads/2021/10/architectural-model-making-stairs.jpg",
+                  "metaLink": "https://www.yahoo.com/",
+                  "ogTitle": "Yahoo | Mail, Weather, Search, Politics, News, Finance, Sports & Videos"
+                },
+                "postApprovalDetails": {
+                  "approver": "iVrVJ2uoXNF0wzcBzgl5",
+                  "requesterNote": "Test suggestion",
+                  "approverNote": "Test suggestion",
+                  "approvalStatus": "approved",
+                  "approverUser": {
+                    "id": "6284c43d519161e96cc09c13",
+                    "title": "Mr",
+                    "firstName": "Harry",
+                    "lastName": "Spencer",
+                    "profilePhoto": "https://storage.googleapis.com/user/kCrjKGHZQ2/profile/1dca8c-61c9-404d-a459-751fbcb.jpeg",
+                    "phone": "901111119",
+                    "email": "abc@xyc.com"
+                  }
+                },
+                "tiktokPostDetails": {
+                  "privacyLevel": "PUBLIC_TO_EVERYONE",
+                  "promoteOtherBrand": true,
+                  "enableComment": true,
+                  "enableDuet": true,
+                  "enableStitch": true,
+                  "videoDisclosure": true,
+                  "promoteYourBrand": true
+                },
+                "gmbPostDetails": {
+                  "gmbEventType": "STANDARD",
+                  "title": "Event Title",
+                  "offerTitle": "Hey",
+                  "startDate": {
+                    "startDate": { "year": 2022, "month": 1, "day": 1 },
+                    "startTime": { "hours": 23, "minutes": 56, "seconds": 34 }
+                  },
+                  "endDate": {
+                    "endDate": { "year": 2022, "month": 1, "day": 1 },
+                    "endTime": { "hours": 23, "minutes": 56, "seconds": 34 }
+                  },
+                  "termsConditions": "https://google.com/privacy",
+                  "url": "https://google.com",
+                  "couponCode": "BOGO-50",
+                  "redeemOnlineUrl": "https://google.com",
+                  "actionType": "book"
+                },
+                "user": {
+                  "id": "6284c43d519161e96cc09c13",
+                  "title": "Mr",
+                  "firstName": "Harry",
+                  "lastName": "Spencer",
+                  "profilePhoto": "https://storage.googleapis.com/user/kCrjKGHZQ2/profile/1dca8c-61c9-404d-a459-751fbcb.jpeg",
+                  "phone": "901111119",
+                  "email": "abc@xyc.com"
+                },
+                "linkedinPostDetails": { "pdfTitle": "test.pdf", "postAsPdf": true },
+                "pinterestPostDetails": {
+                  "title": "My Pinterest Pin",
+                  "link": "https://www.pinterest.com/",
+                  "boardIds": { "6887d6de1d8175813d50dab8": "boardId", "682c7d1710a2fe3d805a3513": "boardId" }
+                },
+                "facebookPostDetails": { "type": "post" },
+                "instagramPostDetails": {
+                  "type": "post",
+                  "collaborators": {
+                    "accountId1": ["username1", "username2"],
+                    "accountId2": ["username3", "username4"]
+                  }
+                },
+                "youtubePostDetails": { "title": "Untitled", "privacyLevel": "public", "type": "video" },
+                "mediaOptimization": true
+              },
+              "errors": ["INVALID_USER_ID", "PIXABAY_MEDIA"],
+              "currentVariation": 0
+            }
+          },
+          "traceId": "string"
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        *   `statusCode`: 400
+        *   `message`: "Bad Request"
+    *   **401 Unauthorized:**
+        *   `statusCode`: 401
+        *   `message`: "Invalid token: access token is invalid"
+        *   `error`: "Unauthorized"
+    *   **422 Unprocessable Entity:**
+        *   `statusCode`: 422
+        *   `message`: ["Unprocessable Entity"]
+        *   `error`: "Unprocessable Entity"
+
+### 10. PURPOSE:
+Resets a specific queue item in a category queue to its original state, discarding any modifications made.
+
+### 11. TAGS:
+Social Planner, Category Queue, Reset, Queue Item, Social Media, Post, Content Management, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

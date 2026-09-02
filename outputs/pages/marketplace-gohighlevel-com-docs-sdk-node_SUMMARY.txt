@@ -1,0 +1,60 @@
+Here is the structured summary of the provided API documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+HighLevel Node.js SDK
+
+### 2. CATEGORY:
+SDK Overview (specifically Node.js SDK)
+
+### 3. HTTP METHOD:
+Not specified in documentation (The SDK wraps various REST endpoints, which would use different HTTP methods.)
+
+### 4. ENDPOINT URL:
+Not specified in documentation (The documentation describes SDK methods like `highLevel.contacts.searchContactsAdvanced()` which map to underlying REST endpoints, but the specific URL paths are not detailed for a single endpoint.)
+
+### 5. FULL URL:
+Not specified in documentation
+
+### 6. REQUIRED PARAMETERS:
+
+*   **For `HighLevel` SDK Client Initialization:**
+    *   `clientId` (string): Your OAuth client ID (e.g., `process.env.HIGHLEVEL_CLIENT_ID`).
+    *   `clientSecret` (string): Your OAuth client secret (e.g., `process.env.HIGHLEVEL_CLIENT_SECRET`).
+
+*   **For `highLevel.contacts.searchContactsAdvanced` example method:**
+    *   `locationId` (string): The unique identifier for the location/sub-account where contacts should be searched.
+
+*   **For `MongoDBSessionStorage` (as an optional `sessionStorage` provider):**
+    *   `dbUrl` (string): The connection URL for the MongoDB database (e.g., `'mongodb://localhost:27017'`).
+    *   `dbName` (string): The name of the database to be used for storing sessions (e.g., `'ghl_sessions'`).
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **For `HighLevel` SDK Client Initialization:**
+    *   `sessionStorage` (object): An object implementing the session storage interface to persist tokens. If not provided, tokens are stored in memory. (Example given: `MongoDBSessionStorage` instance).
+
+*   **For `highLevel.contacts.searchContactsAdvanced` example method:**
+    *   `pageLimit` (number): The maximum number of results to return per page. (Example given: `5`).
+
+### 8. AUTHENTICATION:
+*   **Method:** OAuth 2.0 (requires `clientId` and `clientSecret`). Also supports Point-in-Time (PIT) tokens.
+*   **Handling:** The SDK provides automatic OAuth handling, including token rotation and refreshing expired access tokens on demand.
+*   **Storage:** Tokens can be stored in memory (default) or persisted using a custom storage adapter (e.g., Redis, MongoDB, SQL).
+
+### 9. RESPONSE FORMAT:
+*   **`highLevel.contacts.searchContactsAdvanced`:** The example shows `console.log(response)`, implying a structured data response (likely JSON) containing search results, but the specific format or fields are not detailed.
+*   **Webhook Middleware (`app.post('/api/webhooks/ghl')`):** The example response from the *application's webhook handler* is `res.json({ok:true});`, indicating a simple JSON acknowledgment.
+
+### 10. PURPOSE:
+The `@gohighlevel/api-client` package is the official Node.js SDK for HighLevel, providing a typed, promise-based interface to interact with all HighLevel REST endpoints, offering features like automatic OAuth, token rotation, retries, and consistent error handling.
+
+### 11. TAGS:
+Node.js, SDK, API Client, HighLevel, OAuth, Token Management, Webhooks, API Calls, Installation, JavaScript, TypeScript, MongoDB, Contacts, Search, Session Storage.
+
+---
+**Code Examples Availability:**
+*   Node.js (JavaScript)
+*   Node.js (TypeScript)
+*   Installation examples for npm, yarn, and pnpm.

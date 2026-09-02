@@ -1,0 +1,64 @@
+Here's a structured summary of the provided documentation:
+
+1.  **ENDPOINT NAME:** Custom JS Wrapper Functions
+
+2.  **CATEGORY:** Marketplace Modules / Custom JS
+
+3.  **HTTP METHOD:** Not applicable (These are client-side JavaScript utility functions, not traditional HTTP API endpoints.)
+
+4.  **ENDPOINT URL:** Not applicable (These are client-side JavaScript utility functions, not traditional HTTP API endpoints.)
+
+5.  **FULL URL:** Not applicable (These are client-side JavaScript utility functions, not traditional HTTP API endpoints.)
+
+6.  **REQUIRED PARAMETERS:**
+    *   **AppUtils.Storage.setData:**
+        *   key (string): The key under which to store the data.
+        *   value (any): The data to be stored.
+    *   **AppUtils.Storage.getData:**
+        *   key (string): The key of the data to retrieve.
+    *   **AppUtils.Storage.setCookie:**
+        *   key (string): The key for the cookie.
+        *   value (any): The value to store in the cookie.
+    *   **AppUtils.Storage.getCookie:**
+        *   key (string): The key of the cookie to retrieve.
+    *   **window.addEventListener('routeLoaded', callback):**
+        *   callback (function): The function to execute when the 'routeLoaded' event is emitted.
+    *   **window.addEventListener('routeChangeEvent', callback):**
+        *   callback (function): The function to execute when the 'routeChangeEvent' event is emitted.
+    *   **AppUtils.RouteHelper.navigate:**
+        *   options (INavigationOptions object): An object specifying navigation details.
+
+7.  **OPTIONAL PARAMETERS:**
+    *   **AppUtils.Storage.setCookie:**
+        *   expiryInHours (number): The expiration time for the cookie, up to 2 days (48 hours).
+    *   **INavigationOptions object for AppUtils.RouteHelper.navigate:**
+        *   name (string): The name of the route to navigate to.
+        *   path (string): The path of the route to navigate to.
+        *   params (Record<string, string>): Route parameters.
+        *   query (Record<string, string>): Query parameters for the route.
+        *   replace (boolean): If true, replaces the current entry in the history stack.
+        *   append (boolean): If true, appends the route (behavior not fully detailed, but typically for nested routes).
+
+8.  **AUTHENTICATION:**
+    *   These functions operate within the context of an authenticated HighLevel application. No explicit scopes or authentication methods are mentioned as required for these specific client-side utility calls, as they are part of the platform's SDK for custom scripts.
+
+9.  **RESPONSE FORMAT:**
+    *   **AppUtils.Storage.setData(key, value):** Awaited, implies successful storage.
+    *   **AppUtils.Storage.getData(key):** Returns the stored `value` (any type).
+    *   **AppUtils.Storage.setCookie(key, value, expiryInHours):** Awaited, implies successful cookie setting.
+    *   **AppUtils.Storage.getCookie(key):** Returns the cookie `value` (string).
+    *   **window.addEventListener:** The `callback` function will receive event objects.
+        *   'routeLoaded': `Event` object.
+        *   'routeChangeEvent': `Event` object.
+    *   **AppUtils.RouteHelper.navigate:** Awaited, implies successful navigation.
+    *   **AppUtils.RouteHelper.getCurrentRoute():** Returns an object: `{fullPath, name, params, path, query}`.
+    *   **AppUtils.Utilities.getCurrentUser():** Returns an object: `{id, name, firstName, lastName, email, type, role}`.
+    *   **AppUtils.Utilities.getCurrentLocation():** Returns an object: `{id, name, address: {address, city, country}}`.
+    *   **AppUtils.Utilities.getCompany():** Returns an object: `{id, name}`.
+
+10. **PURPOSE:** This documentation describes a set of client-side JavaScript wrapper functions provided by HighLevel to enable custom scripts to manage local storage and cookies, listen to application events, control in-app routing, and retrieve contextual user, location, and company information.
+
+11. **TAGS:** Custom JS, Marketplace Modules, Wrapper Functions, Local Storage, Cookies, Events, Routing, Navigation, User Info, Location Info, Company Info, Utilities, Client-side, SDK, Docusaurus.
+
+**Code Examples:**
+Code examples are present in JavaScript for each wrapper function.

@@ -1,0 +1,62 @@
+## Structured API Summary: ProductCreate Webhook
+
+### 1. ENDPOINT NAME:
+ProductCreate
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+The webhook *sends* a payload via an HTTP POST request to the configured listener URL. The HTTP method for *triggering* it is an internal platform event.
+
+### 4. ENDPOINT URL:
+Not applicable for triggering directly via an API endpoint. This is a webhook event. The documentation refers to `https://marketplace.gohighlevel.com/docs/webhook/ProductCreate`. The actual URL where the webhook payload is *sent* would be a URL configured by the user/developer within the HighLevel platform to receive this specific event.
+
+### 5. FULL URL:
+Documentation URL: `https://marketplace.gohighlevel.com/docs/webhook/ProductCreate/index.html`
+(The actual webhook payload recipient URL is user-defined and not specified here.)
+
+### 6. REQUIRED PARAMETERS:
+This section describes the fields present in the **payload** sent by the `ProductCreate` webhook. The documentation does not explicitly distinguish between required and optional fields within the webhook payload, but all fields listed in the schema are typically included when the event occurs.
+
+*   **_id** (string): The unique identifier of the product.
+*   **description** (string): A description of the product.
+*   **variants** (array of objects): An array of product variants.
+    *   **id** (string): The unique identifier of the variant.
+    *   **name** (string): The name of the variant (e.g., "Size").
+    *   **options** (array of objects): An array of options for the variant.
+        *   **id** (string): The unique identifier of the option (e.g., "h4z7u0im2q8").
+        *   **name** (string): The name of the option (e.g., "XL").
+*   **medias** (array of objects): An array of media associated with the product.
+    *   **id** (string): The unique identifier of the media item.
+    *   **title** (string): The title of the media item.
+    *   **url** (string): The URL to the media asset.
+    *   **type** (string): The type of media (e.g., "image").
+    *   **isFeatured** (boolean): Indicates if the media item is featured.
+*   **locationId** (string): The unique identifier of the location (sub-account) where the product was created.
+*   **name** (string): The name of the product.
+*   **productType** (string): The type of product (e.g., "PHYSICAL").
+*   **availableInStore** (boolean): Indicates if the product is available in the store.
+*   **userId** (string): The unique identifier of the user who created the product.
+*   **createdAt** (string): The ISO 8601 timestamp when the product was created.
+*   **updatedAt** (string): The ISO 8601 timestamp when the product was last updated.
+*   **statementDescriptor** (string): A descriptor for bank statements related to the product.
+*   **image** (string): The URL of the main product image.
+
+### 7. OPTIONAL PARAMETERS:
+Not explicitly specified in documentation. All parameters listed in the schema are part of the webhook payload.
+
+### 8. AUTHENTICATION:
+Not specified in documentation for this specific webhook. Webhooks typically rely on shared secrets or IP whitelisting for verification by the receiving server.
+
+### 9. RESPONSE FORMAT:
+The webhook *sends* a JSON payload to the configured endpoint. The expected response from the receiving server is typically an HTTP status code (e.g., `200 OK`) to acknowledge receipt of the payload. The webhook itself does not return a response to an API call.
+
+### 10. PURPOSE:
+This webhook is triggered and sends a payload containing product details whenever a new product is created within the HighLevel platform.
+
+### 11. TAGS:
+Webhook Events, Product, Create, Product Creation, HighLevel API
+
+### Code Examples:
+No code examples (e.g., cURL, Python, Node.js) are present in this documentation page.

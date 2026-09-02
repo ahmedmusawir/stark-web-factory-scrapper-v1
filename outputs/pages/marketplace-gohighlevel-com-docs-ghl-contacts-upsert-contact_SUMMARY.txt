@@ -1,0 +1,100 @@
+Here's a structured summary of the API documentation for "Upsert Contact":
+
+### 1. ENDPOINT NAME:
+Upsert Contact
+
+### 2. CATEGORY:
+Contacts
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/contacts/upsert`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/upsert`
+
+### 6. REQUIRED PARAMETERS:
+*   `Version` (string) in Header: API Version (Possible values: `2021-07-28`)
+*   `locationId` (string) in Body: The ID of the location/sub-account where the contact will be upserted.
+*   `dndSettings.Call.status` (string) in Body: Status for Call DND. (Possible values: `active`, `inactive`, `permanent`)
+*   `dndSettings.Email.status` (string) in Body: Status for Email DND. (Possible values: `active`, `inactive`, `permanent`)
+*   `dndSettings.SMS.status` (string) in Body: Status for SMS DND. (Possible values: `active`, `inactive`, `permanent`)
+*   `dndSettings.WhatsApp.status` (string) in Body: Status for WhatsApp DND. (Possible values: `active`, `inactive`, `permanent`)
+*   `dndSettings.GMB.status` (string) in Body: Status for GMB DND. (Possible values: `active`, `inactive`, `permanent`)
+*   `dndSettings.FB.status` (string) in Body: Status for FB DND. (Possible values: `active`, `inactive`, `permanent`)
+*   `inboundDndSettings.all.status` (string) in Body: Status for all inbound DND settings. (Possible values: `active`, `inactive`)
+*   `customFields[].id` (string) in Body: The ID of the custom field.
+
+### 7. OPTIONAL PARAMETERS:
+*   `firstName` (string, nullable) in Body: The first name of the contact.
+*   `lastName` (string, nullable) in Body: The last name of the contact.
+*   `name` (string, nullable) in Body: The full name of the contact.
+*   `email` (string, nullable) in Body: The email address of the contact.
+*   `gender` (string) in Body: The gender of the contact.
+*   `phone` (string, nullable) in Body: The phone number of the contact.
+*   `address1` (string, nullable) in Body: The first line of the contact's address.
+*   `city` (string, nullable) in Body: The city of the contact's address.
+*   `state` (string, nullable) in Body: The state of the contact's address.
+*   `postalCode` (string) in Body: The postal code of the contact's address.
+*   `website` (string, nullable) in Body: The website URL associated with the contact.
+*   `timezone` (string, nullable) in Body: The timezone of the contact (e.g., `America/Chihuahua`).
+*   `dnd` (boolean) in Body: Do Not Disturb status for the contact.
+*   `dndSettings.Call.message` (string) in Body: Message for Call DND.
+*   `dndSettings.Call.code` (string) in Body: Code for Call DND.
+*   `dndSettings.Email.message` (string) in Body: Message for Email DND.
+*   `dndSettings.Email.code` (string) in Body: Code for Email DND.
+*   `dndSettings.SMS.message` (string) in Body: Message for SMS DND.
+*   `dndSettings.SMS.code` (string) in Body: Code for SMS DND.
+*   `dndSettings.WhatsApp.message` (string) in Body: Message for WhatsApp DND.
+*   `dndSettings.WhatsApp.code` (string) in Body: Code for WhatsApp DND.
+*   `dndSettings.GMB.message` (string) in Body: Message for GMB DND.
+*   `dndSettings.GMB.code` (string) in Body: Code for GMB DND.
+*   `dndSettings.FB.message` (string) in Body: Message for FB DND.
+*   `dndSettings.FB.code` (string) in Body: Code for FB DND.
+*   `inboundDndSettings.all.message` (string) in Body: Message for all inbound DND settings.
+*   `tags` (string[]) in Body: An array of tags to associate with the contact. (This field will overwrite all current tags.)
+*   `customFields[].key` (string) in Body: The key/name of the custom field.
+*   `customFields[].field_value` (string | object | string[] | number) in Body: The value of the custom field, type varies based on custom field type (e.g., string for text, number for numeric, array for multi-select, object for file).
+*   `source` (string) in Body: The source of the contact.
+*   `dateOfBirth` (object, nullable) in Body: The birth date of the contact. Supported formats: YYYY/MM/DD, MM/DD/YYYY, YYYY-MM-DD, MM-DD-YYYY, YYYY.MM.DD, MM.DD.YYYY, YYYY_MM_DD, MM_DD_YYYY.
+*   `country` (string) in Body: The country of the contact.
+*   `companyName` (string, nullable) in Body: The company name associated with the contact.
+*   `assignedTo` (string) in Body: The User's Id to whom the contact is assigned.
+*   `createNewIfDuplicateAllowed` (boolean) in Body: Controls whether to create a new contact or update an existing duplicate. Defaults to `false`.
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `contacts.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **200 OK (Successful response)**
+    *   **Content-Type**: `application/json`
+    *   **Body**: An object containing:
+        *   `new` (boolean): Indicates if a new contact was created (`true`) or an existing one updated (`false`).
+        *   `contact` (object): The upserted contact object with details like `id`, `name`, `locationId`, `firstName`, `lastName`, `email`, `phone`, `dndSettings`, `tags`, `customFields`, `attributionSource`, etc.
+        *   `traceId` (string)
+*   **400 Bad Request**
+    *   **Content-Type**: `application/json`
+    *   **Body**: `{ "statusCode": 400, "message": "Bad Request" }`
+*   **401 Unauthorized**
+    *   **Content-Type**: `application/json`
+    *   **Body**: `{ "statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized" }`
+*   **422 Unprocessable Entity**
+    *   **Content-Type**: `application/json`
+    *   **Body**: `{ "statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity" }`
+
+### 10. PURPOSE:
+This endpoint creates a new contact or updates an existing one based on the location's "Allow Duplicate Contact" setting (which prioritizes identification by email or phone) and provided contact details.
+
+### 11. TAGS:
+Contacts, Upsert, Create Contact, Update Contact, CRM, HighLevel API, Contact Management
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

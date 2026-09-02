@@ -1,0 +1,66 @@
+Here's a structured summary of the API documentation for the `SaaSPlanCreate` webhook:
+
+### 1. ENDPOINT NAME:
+SaaS Plan Created
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+Webhook Trigger (This event triggers a POST request from HighLevel to a pre-configured URL you provide.)
+
+### 4. ENDPOINT URL:
+Not applicable (This documentation describes the payload of a webhook event, not an API endpoint to call.)
+
+### 5. FULL URL:
+Not applicable
+
+### 6. REQUIRED PARAMETERS:
+(These are the fields present in the webhook payload, marked as required by the provided JSON schema for the SaaS plan object.)
+
+*   **planId** (string): Unique identifier for the plan.
+*   **title** (string): Human-readable name of the plan.
+*   **description** (string): Detailed description of the plan.
+*   **saasProducts** (array[string]): Array of product features included in this plan (e.g., "2-way-text-messaging", "crm", "email-marketing").
+*   **addOns** (array[string]): Array of additional services or features available as add-ons.
+*   **planLevel** (number): Numeric level indicating the tier of the plan (e.g., 1 for basic, 2 for professional, 3 for enterprise).
+*   **trialPeriod** (number): Duration of the free trial period in days. Set to 0 if no trial is offered.
+*   **prices** (array[object]): Array of pricing options for different billing intervals.
+    *   **id** (string): Unique identifier for the price (usually Stripe price ID).
+    *   **billingInterval** (string): Billing frequency ("month", "year", etc.).
+    *   **active** (boolean): Whether this price is currently active.
+    *   **amount** (number): Price amount in cents (e.g., 29700 = $297.00).
+    *   **currency** (string): Currency code (e.g., "usd").
+    *   **symbol** (string): Currency symbol (e.g., "$").
+*   **categoryId** (string): Identifier linking the plan to a specific category or grouping.
+*   **snapshotId** (string): Identifier for the plan snapshot, used for versioning or backup purposes.
+*   **productId** (string): Identifier for the associated product in the billing system (usually Stripe product ID).
+*   **isSaaSV2** (boolean): Flag indicating whether this plan uses the newer SaaS V2 architecture.
+*   **createdAt** (string, ISO 8601 date-time): Timestamp when the plan was initially created.
+*   **updatedAt** (string, ISO 8601 date-time): Timestamp when the plan was last modified.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation (All fields explicitly defined in the provided schema are marked as required).
+
+**Additional Webhook Payload Fields (Observed in Example Response / Additional Notes - required/optional status not explicitly stated for these specific fields in the provided schema snippet):**
+
+*   **type** (string): Indicates the type of webhook event, e.g., "SaasPlanCreate".
+*   **companyId** (string): Unique identifier for the company associated with the event.
+*   **appId** (string): Unique identifier for the application.
+*   **versionId** (string): Version identifier for the application/event.
+*   **description** (string): A general description for the webhook event (top-level, distinct from the plan's description).
+*   **userLimit** (number): User limit associated with the plan.
+*   **contactLimit** (number): Contact limit associated with the plan.
+*   **traceId** (string): Can be used for debugging and correlating events across your system.
+
+### 8. AUTHENTICATION:
+Not specified in documentation (Webhooks commonly use secret keys or signatures for payload verification, but specific methods are not detailed here).
+
+### 9. RESPONSE FORMAT:
+JSON. The webhook sends a JSON object as its payload. The structure includes metadata about the event and a comprehensive object detailing the newly created SaaS plan.
+
+### 10. PURPOSE:
+This webhook response is triggered when a new SaaS subscription plan is created in the system, providing comprehensive information about the plan including its features, pricing tiers, and configuration details.
+
+### 11. TAGS:
+Webhook Events

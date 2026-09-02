@@ -1,0 +1,76 @@
+```
+## STRUCTURED API SUMMARY
+
+### 1. ENDPOINT NAME:
+Disable Group
+
+### 2. CATEGORY:
+Calendars
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/calendars/groups/:groupId/status`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/groups/:groupId/status`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version. Possible values: `2021-04-15`. (Header Parameter)
+*   **groupId** (string): Group Id. Example: `ocQHyuzHvysMo5N5VsXc`. (Path Parameter)
+*   **isActive** (boolean): Is Active? Example: `true`. (Body Parameter)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `calendars/groups.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK - Successful response**:
+    ```json
+    {
+      "success": true
+    }
+    ```
+*   **400 Bad Request**:
+    ```json
+    {
+      "statusCode": 400,
+      "message": "Bad Request"
+    }
+    ```
+*   **401 Unauthorized**:
+    ```json
+    {
+      "statusCode": 401,
+      "message": "Invalid token: access token is invalid",
+      "error": "Unauthorized"
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint is used to change the active status of a specific calendar group (either enable or disable it) within a sub-account.
+
+### 11. TAGS:
+Calendars, Calendar Groups, Group Management, Update Status, Disable, Enable, PUT, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
+```

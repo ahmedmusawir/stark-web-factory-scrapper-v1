@@ -1,0 +1,100 @@
+Here's a structured summary of the API documentation for "Get Blocked Slots":
+
+### 1. ENDPOINT NAME:
+Get Blocked Slots
+
+### 2. CATEGORY:
+Calendars / Calendar Events
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/calendars/blocked-slots`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/blocked-slots`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-04-15`)
+*   **Query Parameters:**
+    *   locationId (string): Location Id
+    *   startTime (string): Start Time (in millis)
+    *   endTime (string): End Time (in millis)
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   userId (string): User Id - Owner of an appointment. Either of userId, groupId or calendarId is required.
+    *   calendarId (string): Either of calendarId, userId or groupId is required.
+    *   groupId (string): Either of groupId, calendarId or userId is required.
+    *(Note: While individually optional, at least one of `userId`, `calendarId`, or `groupId` must be provided.)*
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `calendars/events.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+
+### 9. RESPONSE FORMAT:
+*   **Status Code:** 200 OK
+*   **Content Type:** `application/json`
+*   **Schema (Successful Response - 200):**
+    ```json
+    {
+      "events": [
+        {
+          "id": "string",                 // required
+          "address": "string",
+          "title": "string",              // required
+          "calendarId": "string",         // required
+          "locationId": "string",         // required
+          "contactId": "string",          // required
+          "groupId": "string",            // required
+          "appointmentStatus": "string",  // required
+          "assignedUserId": "string",     // required
+          "users": ["string"],            // required
+          "notes": "string",
+          "description": "string",
+          "isRecurring": "boolean",
+          "rrule": "string",
+          "startTime": "object",          // required (e.g., "2023-09-25T16:00:00+05:30")
+          "endTime": "object",            // required (e.g., "2023-09-25T16:00:00+05:30")
+          "dateAdded": "object",          // required (e.g., "2023-09-25T16:00:00+05:30")
+          "dateUpdated": "object",        // required (e.g., "2023-09-25T16:00:00+05:30")
+          "assignedResources": ["string"],
+          "createdBy": {
+            "userId": "string",
+            "source": "string"            // required
+          },
+          "masterEventId": "string"
+        }
+      ]
+    }
+    ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        ```json
+        {"statusCode": 400, "message": "Bad Request"}
+        ```
+    *   **401 Unauthorized:**
+        ```json
+        {"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}
+        ```
+
+### 10. PURPOSE:
+Retrieves a list of blocked time slots (calendar events) from a specified calendar, user, or group within a given time range and location.
+
+### 11. TAGS:
+Calendars, Calendar Events, Blocked Slots, Get, Read, Appointments, Scheduling, Events
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   Node.js
+*   Python
+*   PHP
+*   Java
+*   Go
+*   Ruby
+*   Powershell

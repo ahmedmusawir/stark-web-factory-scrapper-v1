@@ -1,0 +1,89 @@
+Here is a structured summary of the API documentation for "Update notification":
+
+1.  **ENDPOINT NAME:** Update notification
+
+2.  **CATEGORY:** Calendars
+
+3.  **HTTP METHOD:** PUT
+
+4.  **ENDPOINT URL:** `/calendars/:calendarId/notifications/:notificationId`
+
+5.  **FULL URL:** `https://services.leadconnectorhq.com/calendars/:calendarId/notifications/:notificationId`
+
+6.  **REQUIRED PARAMETERS:**
+    *   **Header Parameters:**
+        *   `Version` (string): API Version. Possible values: [`2021-04-15`]
+    *   **Path Parameters:**
+        *   `calendarId` (string)
+        *   `notificationId` (string)
+    *   **Body:** The request body itself is explicitly stated as `required`, but individual fields within the body are not explicitly marked as `required` by the documentation.
+
+7.  **OPTIONAL PARAMETERS:**
+    *   **Body Parameters:**
+        *   `receiverType` (string): Notification recipient type. Possible values: [`contact`, `guest`, `assignedUser`, `emails`, `phoneNumbers`]
+        *   `additionalEmailIds` (string[]): Additional email addresses to receive notifications. Example: `["example1@email.com","example2@email.com"]`
+        *   `additionalPhoneNumbers` (string[]): Additional phone numbers to receive notifications. Example: `["+919876744444","+919876744445"]`
+        *   `selectedUsers` (string[]): selected user for in-App notification
+        *   `channel` (string): Notification channel. Possible values: [`email`, `inApp`, `sms`, `whatsapp`]
+        *   `notificationType` (string): Notification type. Possible values: [`booked`, `confirmation`, `cancellation`, `reminder`, `followup`, `reschedule`]
+        *   `isActive` (boolean): Is the notification active. Default value: `true`
+        *   `deleted` (boolean): Marks the notification as deleted (soft delete). Default value: `false`
+        *   `templateId` (string): Template ID for email notification
+        *   `body` (string): Body for email notification. Not necessary for in-App notification
+        *   `subject` (string): Subject for email notification. Not necessary for in-App notification
+        *   `afterTime` (object[]): Specifies the time after which the follow-up notification should be sent. This is not required for other notification types.
+            *   `timeOffset` (number)
+            *   `unit` (string)
+        *   `beforeTime` (object[]): Specifies the time before which the reminder notification should be sent. This is not required for other notification types.
+            *   `timeOffset` (number)
+            *   `unit` (string)
+        *   `fromAddress` (string): From address for email notification
+        *   `fromNumber` (string): from number for sms notification
+        *   `fromName` (string): From name for email/sms notification
+
+8.  **AUTHENTICATION:**
+    *   **Scope(s):** `calendars/events.write`
+    *   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+    *   **Token Type(s):** `Sub-Account Token`
+    *   **Scheme:** `bearer`
+    *   **Bearer Format:** `JWT`
+    *   **In:** `header` (named `Authorization`)
+
+9.  **RESPONSE FORMAT:**
+    *   **200 OK (Successful response)**
+        *   `Content-Type`: `application/json`
+        *   **Schema:**
+            ```json
+            {
+              "message": "string"
+            }
+            ```
+        *   **Example:** `{"message":"string"}`
+    *   **400 Bad Request**
+        *   `Content-Type`: `application/json`
+        *   **Schema:**
+            ```json
+            {
+              "statusCode": number,
+              "message": "string"
+            }
+            ```
+        *   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized**
+        *   `Content-Type`: `application/json`
+        *   **Schema:**
+            ```json
+            {
+              "statusCode": number,
+              "message": "string",
+              "error": "string"
+            }
+            ```
+        *   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+
+10. **PURPOSE:** This endpoint updates an existing event notification for a specific calendar by its ID.
+
+11. **TAGS:** Calendars, Notification, Update, Event, PUT, Sub-Account, CRM, API
+
+12. **Code Examples:**
+    Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`. (Only the `curl` example is fully detailed in the provided documentation snippet.)

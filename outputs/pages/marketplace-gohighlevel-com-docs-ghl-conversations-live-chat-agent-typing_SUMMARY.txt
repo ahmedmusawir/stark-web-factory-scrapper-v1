@@ -1,0 +1,70 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Agent/Ai-Bot is typing a message indicator for live chat
+
+### 2. CATEGORY:
+Conversations, Live Chat, Providers
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/conversations/providers/live-chat/typing`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversations/providers/live-chat/typing`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`.
+*   **Body Parameters:**
+    *   `locationId` (string): Location Id.
+    *   `isTyping` (string): Typing status (e.g., `true`).
+    *   `visitorId` (string): Unique ID assigned to each Live chat visitor.
+    *   `conversationId` (string): Conversation Id.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s)**: `conversations/livechat.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `bearer`
+*   **Bearer Format**: `JWT`
+*   **In**: `header`
+*   **Description**: Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (201 - Show typing indicator for live chat):**
+    ```json
+    {
+      "success": true
+    }
+    ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        ```json
+        {"statusCode":400,"message":"Bad Request"}
+        ```
+    *   **401 Unauthorized:**
+        ```json
+        {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+        ```
+    *   **422 Unprocessable Entity:**
+        ```json
+        {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+        ```
+
+### 10. PURPOSE:
+This endpoint is called by an Agent or AI-Bot to send an indicator that they are currently typing a message in a live chat conversation.
+
+### 11. TAGS:
+Conversations, Live Chat, Typing Indicator, Agent, AI-Bot, Providers, Messages, Communication, POST
+
+**Code Examples Availability:**
+cURL, nodejs, python, php, java, go, ruby, powershell

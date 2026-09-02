@@ -1,0 +1,174 @@
+```
+## STRUCTURED API SUMMARY
+
+### 1. ENDPOINT NAME:
+Update Action
+
+### 2. CATEGORY:
+Conversation AI
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/conversation-ai/agents/:agentId/actions/:actionId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversation-ai/agents/:agentId/actions/:actionId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `2021-04-15`
+
+*   **Path Parameters:**
+    *   `actionId` (string): The unique identifier of the action ID Attached to the agent
+    *   `agentId` (string): Not specified in documentation (description for agentId is missing, but it's a path parameter)
+
+*   **Body Parameters (Common):**
+    *   `type` (string): Type of action. Possible values: [`triggerWorkflow`, `updateContactField`, `appointmentBooking`, `stopBot`, `humanHandOver`, `advancedFollowup`, `transferBot`]
+    *   `name` (string): Name of the action.
+    *   `details` (object): Action-specific details. The structure depends on the `type` field. (One of the DTOs below will be required based on the `type`.)
+
+*   **Body Parameters (Specific to `details` object based on `type`):**
+
+    *   **If `type` is `triggerWorkflow` (using `triggerWorkflowDto`):**
+        *   `workflowIds` (string[]): Array of workflow IDs to trigger
+        *   `triggerCondition` (string): Condition that triggers the workflow
+
+    *   **If `type` is `updateContactField` (using `updateContactFieldDto`):**
+        *   `contactFieldId` (string): ID of the contact field in Contacts Table
+        *   `description` (string): Description of the contact field in Contacts Table
+
+    *   **If `type` is `appointmentBooking` (using `appointmentBookingDto`):**
+        *   `calendarId` (string): Calendar ID for appointment booking
+        *   `onlySendLink` (boolean): If true, only sends the appointment link without booking
+        *   `triggerWorkflow` (boolean): Whether to trigger a workflow after booking (cannot be true when onlySendLink is true)
+        *   `sleepAfterBooking` (boolean): Whether to put the agent to sleep after booking (cannot be true when onlySendLink is true)
+        *   `transferBot` (boolean): Whether to transfer to another agent after booking (cannot be true when onlySendLink is true)
+        *   `rescheduleEnabled` (boolean): Whether to allow appointment rescheduling (cannot be true when onlySendLink is true)
+        *   `cancelEnabled` (boolean): Whether to allow appointment cancellation (cannot be true when onlySendLink is true)
+        *   `workflowIds` (string[]): Required when `triggerWorkflow` is true.
+        *   `sleepTimeUnit` (string): Required when `sleepAfterBooking` is true. Possible values: [`days`, `hours`, `minutes`]
+        *   `sleepTime` (number): Required when `sleepAfterBooking` is true.
+        *   `transferAgent` (string): Required when `transferBot` is true.
+
+    *   **If `type` is `stopBot` (using `stopBotDto`):**
+        *   `stopBotDetectionType` (string): Type of stop bot detection - Goodbye or Custom. Possible values: [`Goodbye`, `Custom`]
+        *   `stopBotTriggerCondition` (string): Condition that triggers stopping the bot
+        *   `reactivateEnabled` (boolean): Whether the bot can be reactivated after being stopped
+        *   `enabled` (boolean): Whether this action is enabled for the agent
+        *   `stopBotExamples` (string[]): Example phrases that trigger stop bot action (minimum 2 required)
+        *   `finalMessage` (string): Final message sent when stopping the bot
+        *   `sleepTimeUnit` (string): Required when `reactivateEnabled` is true. Possible values: [`days`, `hours`, `minutes`]
+        *   `sleepTime` (number): Required when `reactivateEnabled` is true.
+
+    *   **If `type` is `humanHandOver` (using `humanHandOverDto`):**
+        *   `enabled` (boolean): Whether human handover action is enabled
+        *   `triggerCondition` (string): Condition that triggers human handover
+        *   `reactivateEnabled` (boolean): Whether the agent can be reactivated after handover
+        *   `finalMessage` (string): Final message sent when handing over to human
+        *   `handoverType` (string): Type of human handover detection. Possible values: [`contactRequest`, `lackOfInformation`, `failedToResolveIssue`, `custom`]
+        *   `examples` (string[]): Required when `handoverType` is `custom` or `contactRequest`.
+        *   `sleepTimeUnit` (string): Required when `reactivateEnabled` is true. Possible values: [`days`, `hours`, `minutes`]
+        *   `sleepTime` (number): Required when `reactivateEnabled` is true.
+
+    *   **If `type` is `advancedFollowup` (using `advancedFollowupDto`):**
+        *   `enabled` (boolean): Whether advanced followup is enabled
+        *   `scenarioId` (string): ID of the followup scenario. Possible values: [`contactStoppedReplying`, `contactIsBusy`, `contactRequested`]
+        *   `followupSequence` (object[]): Sequence of followup actions to perform. Each object in this array requires:
+            *   `id` (number): Unique identifier for this followup step
+            *   `followupTimeUnit` (string): Time unit for followup delay. Possible values: [`days`, `hours`, `minutes`]
+            *   `followupTime` (number): Time duration before followup (max: 60 minutes, 24 hours, or 180 days depending on unit)
+        *   `dynamicChannelSwitching` (boolean): Whether to dynamically switch channels for followups (part of `followupSettings`)
+        *   `workingHours` (object[]): If `followUpHours` is true, each object in this array requires:
+            *   `dayOfTheWeek` (number): Day of the week (0=Sunday, 1=Monday, etc.)
+            *   `intervals` (object[]): Time intervals for this day. Each object in this array requires:
+                *   `startHour` (number): Start hour (24-hour format)
+                *   `startMinute` (number): Start minute
+                *   `endHour` (number): End hour (24-hour format)
+                *   `endMinute` (number): End minute
+
+    *   **If `type` is `transferBot` (using `transferBotDto`):**
+        *   `transferBotType` (string): Type of transfer - Default or Custom. Possible values: [`Default`, `Custom`]
+        *   `transferToBot` (string): ID of the bot/agent to transfer to
+        *   `enabled` (boolean): Whether this transfer action is enabled
+        *   `transferBotTriggerCondition` (string): Required for `Custom` type.
+        *   `transferBotExamples` (string[]): Required for `Custom` type (minimum 2).
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters (Specific to `details` object based on `type`):**
+
+    *   **If `type` is `triggerWorkflow` (using `triggerWorkflowDto`):**
+        *   `triggerMessage` (string): Optional message to send when triggering the workflow
+
+    *   **If `type` is `updateContactField` (using `updateContactFieldDto`):**
+        *   `contactUpdateExamples` (string[]): Contact update examples in Contacts Table. Default: `[]`
+        *   `actionId` (string): Optional action ID reference
+
+    *   **If `type` is `stopBot` (using `stopBotDto`):**
+        *   `tags` (string[]): Tags to apply when stopping the bot
+
+    *   **If `type` is `humanHandOver` (using `humanHandOverDto`):**
+        *   `assignToUserId` (string): ID of the user to assign the conversation to
+        *   `skipAssignToUser` (boolean): Whether to skip assigning to a specific user
+        *   `createTask` (boolean): Whether to create a task when handing over
+        *   `tags` (string[]): Tags to apply during handover
+
+    *   **If `type` is `advancedFollowup` (using `advancedFollowupDto`):**
+        *   `followupSequence` (object[]):
+            *   `aiEnabledMessage` (boolean): Whether to use AI to generate the followup message. Default: `true`
+            *   `triggerWorkflow` (boolean): Whether to trigger a workflow during this followup. Default: `false`
+            *   `customMessage` (string): Custom message to send (when `aiEnabledMessage` is false)
+            *   `workflowId` (string): Workflow ID to trigger (when `triggerWorkflow` is true)
+            *   `contactRequested` (boolean): Whether contact was requested in this followup
+        *   `followupSettings` (object): Additional settings for followup behavior
+            *   `followUpHours` (boolean): Whether to respect working hours for followups
+            *   `workingHours` (object[]): Working hours configuration for followups (if `followUpHours` is true)
+            *   `timezoneToUse` (string): Timezone to use for followups, contact or location. Possible values: [`contact`, `business`]
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `conversation-ai.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (application/json):**
+    ```json
+    {
+        "data": {
+            "id": "actionId123",
+            "name": "Trigger Workflow",
+            "type": "triggerWorkflow",
+            "agentId": "agentId123",
+            "details": {
+                // Structure depends on the action type, matching the request DTO
+                "workflowIds": ["workflow123", "workflow456"],
+                "triggerCondition": "When user requests appointment",
+                "triggerMessage": "Workflow triggered successfully"
+            }
+        },
+        "success": true
+    }
+    ```
+    The `details` object structure in the response mirrors the DTO used in the request body for the given `type`.
+
+### 10. PURPOSE:
+This endpoint updates an existing action's configuration, including its name, description, trigger conditions, and behavior settings, for a specific Conversation AI agent.
+
+### 11. TAGS:
+Conversation AI, Actions, Update, Agent, Configuration, Trigger Workflow, Contact Field, Appointment Booking, Stop Bot, Human Handover, Advanced Followup, Transfer Bot, PUT
+
+### 12. CODE EXAMPLES:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
+```

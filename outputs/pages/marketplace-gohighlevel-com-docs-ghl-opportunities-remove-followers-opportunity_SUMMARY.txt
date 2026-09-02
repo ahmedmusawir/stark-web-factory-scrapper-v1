@@ -1,0 +1,69 @@
+Here's a structured summary of the API documentation for "Remove Followers":
+
+### STRUCTURED SUMMARY
+
+1.  **ENDPOINT NAME:** Remove Followers
+
+2.  **CATEGORY:** Opportunities
+
+3.  **HTTP METHOD:** DELETE
+
+4.  **ENDPOINT URL:** `/opportunities/:id/followers`
+
+5.  **FULL URL:** `https://services.leadconnectorhq.com/opportunities/:id/followers`
+
+6.  **REQUIRED PARAMETERS:**
+    *   **Header:**
+        *   Version (string): API Version. Possible values: `2021-07-28`
+    *   **Path:**
+        *   id (string): Opportunity Id. Example: `sx6wyHhbFdRXh302Lunr`
+    *   **Body (application/json):**
+        *   followers (string[]): An array of follower IDs to remove. Example: `["sx6wyHhbFdRXh302Lunr", "sx6wyHhbFdRXh302Lunr"]`
+
+7.  **OPTIONAL PARAMETERS:**
+    *   Not specified in documentation
+
+8.  **AUTHENTICATION:**
+    *   **Scope(s):** `opportunities.write`
+    *   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+    *   **Token Type(s):** `Sub-Account Token`
+    *   **Scheme:** Bearer (JWT)
+    *   **In:** Header (Authorization: Bearer `<TOKEN>`)
+    *   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+9.  **RESPONSE FORMAT:**
+    *   **200 OK (application/json):**
+        *   **Schema:**
+            *   `followers` (string[]): An array of current follower IDs on the opportunity (likely remaining followers after removal). Example: `["sx6wyHhbFdRXh302Lunr","sx6wyHhbFdRXh302LLss"]`
+            *   `followersRemoved` (string[]): An array of follower IDs that were successfully removed. Example: `["Mx6wyHhbFdRXh302Luer","Ka6wyHhbFdRXh302LLsAm"]`
+        *   **Example:**
+            ```json
+            {
+              "followers": ["sx6wyHhbFdRXh302Lunr", "sx6wyHhbFdRXh302LLss"],
+              "followersRemoved": ["Mx6wyHhbFdRXh302Luer", "Ka6wyHhbFdRXh302LLsAm"]
+            }
+            ```
+    *   **400 Bad Request (application/json):**
+        *   **Schema:** `statusCode` (number), `message` (string)
+        *   **Example:** `{"statusCode":400,"message":"Bad Request"}`
+    *   **401 Unauthorized (application/json):**
+        *   **Schema:** `statusCode` (number), `message` (string), `error` (string)
+        *   **Example:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+    *   **422 Unprocessable Entity (application/json):**
+        *   **Schema:** `statusCode` (number), `message` (string[]), `error` (string)
+        *   **Example:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+10. **PURPOSE:** This endpoint allows an authenticated application to remove one or more specified followers from a particular opportunity within a sub-account.
+
+11. **TAGS:** Opportunities, Followers, Remove, Delete, CRM, Sales, LeadConnector, GoHighLevel, API
+
+**Code Example Availability:**
+Code examples are provided for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

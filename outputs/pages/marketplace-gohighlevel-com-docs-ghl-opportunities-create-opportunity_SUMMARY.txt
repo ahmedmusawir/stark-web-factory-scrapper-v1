@@ -1,0 +1,107 @@
+Here's a structured summary of the "Create Opportunity" API documentation:
+
+### 1. ENDPOINT NAME
+Create Opportunity
+
+### 2. CATEGORY
+Opportunities
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/opportunities/`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/opportunities/`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+
+*   **Body Parameters:**
+    *   `pipelineId` (string): pipeline Id
+    *   `locationId` (string): The ID of the sub-account (formerly location)
+    *   `name` (string): Name of the opportunity
+    *   `status` (string): Status of the opportunity. Possible values: [`open`, `won`, `lost`, `abandoned`, `all`]
+    *   `contactId` (string): The ID of the contact associated with the opportunity.
+
+### 7. OPTIONAL PARAMETERS
+
+*   **Body Parameters:**
+    *   `pipelineStageId` (string): The ID of the pipeline stage
+    *   `monetaryValue` (number): The monetary value of the opportunity
+    *   `assignedTo` (string): The user ID to whom the opportunity is assigned
+    *   `customFields` (object[]): An array of custom field objects to add to the opportunity.
+        *   Each object in `customFields` requires:
+            *   `id` (string): Pass either `id` or `key` of the custom field. (Required if `key` is not provided)
+            *   `key` (string): Pass either `id` or `key` of the custom field. (Required if `id` is not provided)
+            *   `field_value` (string | string[] | object): The value for the custom field. The type depends on the custom field definition.
+
+### 8. AUTHENTICATION
+
+*   **Scope(s):** `opportunities.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **Location:** In the `Authorization` header
+
+### 9. RESPONSE FORMAT
+
+*   **Status Code:** `201` (Successful response)
+*   **Content Type:** `application/json`
+*   **Structure:**
+    ```json
+    {
+      "opportunity": {
+        "id": "string",
+        "name": "string",
+        "monetaryValue": "number",
+        "pipelineId": "string",
+        "pipelineStageId": "string",
+        "assignedTo": "string",
+        "status": "string",
+        "source": "string",
+        "lastStatusChangeAt": "string",
+        "lastStageChangeAt": "string",
+        "lastActionDate": "string",
+        "indexVersion": "string",
+        "createdAt": "string",
+        "updatedAt": "string",
+        "contactId": "string",
+        "locationId": "string",
+        "contact": {
+          "id": "string",
+          "name": "string",
+          "companyName": "string",
+          "email": "string",
+          "phone": "string",
+          "tags": ["string"]
+        },
+        "notes": ["string"],
+        "tasks": ["string"],
+        "calendarEvents": ["string"],
+        "customFields": [
+          {
+            "id": "string",
+            "fieldValue": "string | object | string[] | object[]" // Can be various types
+          }
+        ],
+        "followers": [[]]
+      }
+    }
+    ```
+*   **Error Responses:**
+    *   `400 Bad Request`: `{ "statusCode": 400, "message": "Bad Request" }`
+    *   `401 Unauthorized`: `{ "statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized" }`
+    *   `422 Unprocessable Entity`: `{ "statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity" }`
+
+### 10. PURPOSE
+This endpoint allows users to create a new opportunity within a specified location and pipeline for a contact, optionally assigning a monetary value, stage, and custom field values.
+
+### 11. TAGS
+Opportunities, Create, CRM, Sales, Pipeline, Contact, GoHighLevel, GHL, API
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

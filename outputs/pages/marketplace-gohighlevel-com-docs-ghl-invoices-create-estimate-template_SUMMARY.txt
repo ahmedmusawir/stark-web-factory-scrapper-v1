@@ -1,0 +1,134 @@
+Here is a structured summary of the API documentation for "Create Estimate Template":
+
+### 1. ENDPOINT NAME
+Create Estimate Template
+
+### 2. CATEGORY
+Invoice > Estimate
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/invoices/estimate/template`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/invoices/estimate/template`
+
+### 6. REQUIRED PARAMETERS
+
+**Header Parameters:**
+*   **Version** (string): API Version. Possible values: `2021-07-28`
+
+**Body Parameters:**
+*   **altId** (string): Location Id or Agency Id
+*   **altType** (string): Possible values: [`location`]
+*   **name** (string): Estimate Name
+*   **businessDetails** (object): Business details.
+    *   *Note: While `businessDetails` object itself is required, its sub-fields are not explicitly marked as required in the request body schema, but are typically expected. See Optional Parameters for details on sub-fields.*
+*   **currency** (string): Currency code
+*   **items** (array[]): An array of items for the estimate.
+    *   *Note: The structure of the objects within this array is not explicitly detailed in the request parameters but is shown in the response schema. Items typically have properties like `name`, `qty`, `amount`, `productId`, etc.*
+*   **discount** (object): Discount details.
+    *   **type** (string): Discount type. Possible values: [`percentage`, `fixed`]
+*   **miscellaneousCharges** (object): Miscellaneous charges for the estimate.
+    *   **charges** (array[]): Charges for the processing fee.
+    *   **paidCharges** (object[]): Paid miscellaneous charges.
+        *   **name** (string): Name of the processing fee
+        *   **charge** (number): Charge for the processing fee
+        *   **amount** (number): Amount of the processing fee
+        *   **_id** (string): ID of the processing fee
+*   **sendEstimateDetails** (object): Details for sending the estimate directly while saving.
+    *   **altId** (string): Location Id or Agency Id
+    *   **altType** (string): Possible values: [`location`]
+    *   **action** (string): Action to take for sending. Possible values: [`sms_and_email`, `send_manually`, `email`, `sms`]
+    *   **liveMode** (boolean): Livemode for estimate
+    *   **userId** (string): User ID corresponding to an authorized personnel (employee ID or agency ID) for communications.
+
+### 7. OPTIONAL PARAMETERS
+
+**Body Parameters:**
+*   **businessDetails** (object): Business details.
+    *   **logoUrl** (string): Business Logo URL
+    *   **name** (string): Business Name
+    *   **phoneNo** (string): Business Phone Number
+    *   **address** (object): Business Address
+        *   **addressLine1** (string): Address Line 1
+        *   **addressLine2** (string): Address Line 2
+        *   **city** (string): City
+        *   **state** (string): State
+        *   **countryCode** (string): Country Code
+        *   **postalCode** (string): Postal Code
+    *   **website** (string): Business Website Link
+    *   **customValues** (string[]): Custom Values
+*   **liveMode** (boolean): Livemode for estimate. Default value: `true`
+*   **discount** (object): Discount details.
+    *   **value** (number): Discount Value. Default value: `0`
+    *   **validOnProductIds** (string[]): Product IDs on which discount is applicable
+*   **termsNotes** (string): Terms notes, also supports HTML markups
+*   **title** (string): Title for the estimate
+*   **automaticTaxesEnabled** (boolean): Automatic taxes enabled for the Estimate. Default value: `false`
+*   **meta** (object): Meta data for the estimate
+*   **sendEstimateDetails** (object): When sending estimate directly while saving.
+    *   **sentFrom** (object): Sender details for invoice, valid only if invoice is not sent manually.
+        *   **fromName** (string): Sender name to be used while sending email notification
+        *   **fromEmail** (string): Email ID to be used while sending email notification
+    *   **estimateName** (string): Estimate name
+*   **estimateNumberPrefix** (string): Prefix for the estimate number. Default value: `EST-`
+*   **attachments** (object[]): Attachments for the invoice.
+    *   **id** (string): ID of the file selected
+    *   **name** (string): Name of the file
+    *   **url** (string): URL of the file
+    *   **type** (string): Type of the file
+    *   **size** (number): Size of the file
+*   **miscellaneousCharges** (object): Miscellaneous charges for the estimate.
+    *   **collectedMiscellaneousCharges** (number): Collected miscellaneous charges
+
+### 8. AUTHENTICATION
+*   **Scope(s)**: `invoices/estimate.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`, `Agency Token`
+
+### 9. RESPONSE FORMAT
+**Successful Response (201 Created):**
+*   **Status Code**: `201`
+*   **Description**: Successfully created
+*   **Content Type**: `application/json`
+*   **Schema**: An object containing the details of the newly created estimate template, including:
+    *   `altId` (string)
+    *   `altType` (string)
+    *   `_id` (string)
+    *   `liveMode` (boolean)
+    *   `deleted` (boolean)
+    *   `name` (string)
+    *   `currency` (string)
+    *   `businessDetails` (object) with sub-fields like `logoUrl`, `name`, `address`, `phoneNo`, `website`, `customValues`
+    *   `items` (array) of item objects (e.g., `_id`, `name`, `amount`, `qty`, `currency`, `taxes`, `taxInclusive`, `productId`, `priceId`, `type`, `description`)
+    *   `discount` (object) with `value` and `type`
+    *   `title` (string)
+    *   `estimateNumberPrefix` (string)
+    *   `attachments` (array) of file objects
+    *   `updatedBy` (string)
+    *   `total` (number)
+    *   `createdAt` (date-time)
+    *   `updatedAt` (date-time)
+    *   `__v` (number)
+    *   `automaticTaxesEnabled` (boolean)
+    *   `termsNotes` (string)
+
+**Error Responses:**
+*   **400 Bad Request**:
+    *   Schema: `{"statusCode": 400, "message": "Bad Request"}`
+*   **401 Unauthorized**:
+    *   Schema: `{"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}`
+*   **422 Unprocessable Entity**:
+    *   Schema: `{"statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity"}`
+
+### 10. PURPOSE
+This endpoint allows you to create a new estimate template within the HighLevel platform.
+
+### 11. TAGS
+`Invoice`, `Estimate`, `Template`, `Create`, `POST`, `GHL`, `LeadConnector`, `API`
+
+### Code Examples
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`. The `curl` example is fully provided in the documentation.

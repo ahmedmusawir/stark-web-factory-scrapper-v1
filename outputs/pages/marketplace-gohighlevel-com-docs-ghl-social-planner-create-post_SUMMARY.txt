@@ -1,0 +1,197 @@
+## STRUCTURED SUMMARY FOR API ENDPOINT
+
+### 1. ENDPOINT NAME:
+Create post
+
+### 2. CATEGORY:
+Social Planner
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/social-media-posting/:locationId/posts`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/:locationId/posts`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+
+*   **Path Parameters:**
+    *   `locationId` (string): Location Id. Example: `ve9EPM428h8vShlRW1KT`
+
+*   **Body Parameters:**
+    *   `accountIds` (string[]): Account Ids. Example: `["aF3KhyL8JIuBwzK3m7Ly_iVrVJ2uoXNF0wzcBzgl5_12554616564525983496"]`
+    *   `media.url` (string): URL of the media. Example: `https://i0.wp.com/...stairs.jpg`
+    *   `type` (object): Post Type. Must be one of the following values: `post`, `story`, `reel`. Example: `post`
+    *   `gmbPostDetails.userId` (string): User ID. Example: `sdfdsfdsfEWEsdfsdsW32dd`
+    *   `gmbPostDetails.startDate.startDate.year` (number): Start Date Year. Example: `2022`
+    *   `gmbPostDetails.startDate.startDate.month` (number): Start Date Month. Example: `1`
+    *   `gmbPostDetails.startDate.startDate.day` (number): Start Date Day. Example: `1`
+    *   `gmbPostDetails.startDate.startTime.hours` (number): Start Time Hours. Example: `23`
+    *   `gmbPostDetails.startDate.startTime.minutes` (number): Start Time Minutes. Example: `56`
+    *   `gmbPostDetails.startDate.startTime.seconds` (number): Start Time Seconds. Example: `34`
+    *   `gmbPostDetails.endDate.endDate.year` (number): End Date Year. Example: `2022`
+    *   `gmbPostDetails.endDate.endDate.month` (number): End Date Month. Example: `1`
+    *   `gmbPostDetails.endDate.endDate.day` (number): End Date Day. Example: `1`
+    *   `gmbPostDetails.endDate.endTime.hours` (number): End Time Hours. Example: `23`
+    *   `gmbPostDetails.endDate.endTime.minutes` (number): End Time Minutes. Example: `56`
+    *   `gmbPostDetails.endDate.endTime.seconds` (number): End Time Seconds. Example: `34`
+    *   `linkedinPostDetails.pdfTitle` (string): Title of the PDF. Example: `test.pdf`
+    *   `linkedinPostDetails.postAsPdf` (boolean): If the post is to be posted as PDF. Example: `true`
+    *   `pinterestPostDetails.boardIds` (object): Mapping of oauth IDs of connected accounts to board IDs.
+    *   `facebookPostDetails.type` (object): Post Type. Must be one of the following values: `post`, `story`, `reel`. Example: `post`
+    *   `instagramPostDetails.type` (object): Post Type. Must be one of the following values: `post`, `story`, `reel`. Example: `post`
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   `summary` (string): Post Content. Example: `Hello World`
+    *   `media` (object[]): Post Media Data.
+        *   `caption` (string): Example: `Caption 1`
+        *   `type` (string): Example: `video/mp4 or image/png`
+        *   `thumbnail` (string): Example: `https://storage.googleapis.com/test/test/media/test.jpeg`
+        *   `defaultThumb` (string): Example: `https://storage.googleapis.com/test/test/media/test.jpeg`
+        *   `id` (string): Example: `Edf3323fsfsdsd`
+    *   `status` (object): Status must be one of the following values: `null`, `in_progress`, `draft`, `failed`, `published`, `scheduled`, `in_review`, `notification_sent`, `deleted`. Example: `draft`
+    *   `scheduleDate` (string): Schedule Date
+    *   `createdBy` (string): Created By
+    *   `followUpComment` (string): Follow Up Comment on platform. Example: `First comment`
+    *   `ogTagsDetails` (object): Og Tags Meta Data
+        *   `metaImage` (string): URL of the image. Example: `https://wwww.lifeofanarchitect.com/...stairs.jpg`
+        *   `metaLink` (string): The URL of the original webpage. Example: `https://www.yahoo.com/`
+        *   `ogTitle` (string): The title of the content. Example: `Yahoo | Mail, Weather, Search, Politics, News, Finance, Sports & Videos`
+    *   `postApprovalDetails` (object): Post Approval Details
+        *   `approver` (string): Approver. Example: `iVrVJ2uoXNF0wzcBzgl5`
+        *   `requesterNote` (string): Requester Notes. Example: `Test suggestion`
+        *   `approverNote` (string): Approver Notes. Example: `Test suggestion`
+        *   `approvalStatus` (object): Approval Status must be one of the following values: `pending`, `approved`, `rejected`, `not_required`. Example: `approved`
+    *   `scheduleTimeUpdated` (boolean): if schedule datetime is updated. Example: `true`
+    *   `tags` (string[]): Array of Tag Value. Example: `["65f151c99bc2bf3aaf970d72"]`
+    *   `categoryId` (string): Category Id. Example: `65f151c99bc2bf3aaf970d72`
+    *   `tiktokPostDetails` (object): Tiktok Post Details
+        *   `privacyLevel` (object): privacy level is an enum and must be one of the following values: `PUBLIC_TO_EVERYONE`, `MUTUAL_FOLLOW_FRIENDS`, `SELF_ONLY`. Example: `PUBLIC_TO_EVERYONE`
+        *   `promoteOtherBrand` (boolean): promote other brand. Example: `true`
+        *   `enableComment` (boolean): enable comment. Example: `true`
+        *   `enableDuet` (boolean): enable duet. Example: `true`
+        *   `enableStitch` (boolean): enable stitch. Example: `true`
+        *   `videoDisclosure` (boolean): video disclosure. Example: `true`
+        *   `promoteYourBrand` (boolean): promote your brand. Example: `true`
+    *   `gmbPostDetails` (object): GMB Post Details
+        *   `gmbEventType` (string): gmbEventType must be one of the following values: `STANDARD`, `EVENT`, `OFFER`. Example: `STANDARD`
+        *   `title` (string): Title. Example: `Event Title`
+        *   `offerTitle` (string): Offer Title. Example: `Hey`
+        *   `termsConditions` (string): Terms Condition Url. Example: `https://google.com/privacy`
+        *   `url` (string): Url. Example: `https://google.com`
+        *   `couponCode` (string): Coupon Code. Example: `BOGO-50`
+        *   `redeemOnlineUrl` (string): Redeem Online Url. Example: `https://google.com`
+        *   `actionType` (object): Action Type must be one of the following values: `none`, `order`, `book`, `shop`, `learn_more`, `call`, `sign_up`. Example: `book`
+    *   `pinterestPostDetails.title` (string): Title of the Pinterest Post. Example: `My Pinterest Pin`
+    *   `pinterestPostDetails.link` (string): Link associated with the Pinterest Post. Example: `https://www.pinterest.com/`
+    *   `instagramPostDetails.collaborators` (object): Object mapping account IDs to arrays of associated usernames for collaboration. Example: `{"accountId1":["username1","username2"],"accountId2":["username3","username4"]}`
+    *   `youtubePostDetails` (object): Youtube Post Details
+        *   `title` (string): Title. Example: `Untitled`
+        *   `privacyLevel` (object): Youtube Privacy Level is an enum and must be one of the following values: `private`, `public`, `unlisted`. Example: `public`
+        *   `type` (object): Youtube Post Type is an enum and must be one of the following values: `video`, `short`. Example: `video`
+    *   `mediaOptimization` (boolean): Pass this parameter to optimize the image media. Example: `true`
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `socialplanner/post.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+
+### 9. RESPONSE FORMAT:
+
+*   **Status Code:** `201` (Successful response)
+*   **Content Type:** `application/json`
+*   **Structure:**
+    ```json
+    {
+      "success": true,
+      "statusCode": 201,
+      "message": "Created Post",
+      "results": {
+        "post": {
+          "_id": "61bb16833b3f2791f9715be2",
+          "source": "composer",
+          "locationId": "ve9EPM428h8vShlRW1KT",
+          "platform": "google",
+          "displayDate": "2023-08-02T00:00:00.000Z",
+          "createdAt": "2023-08-02T00:00:00.000Z",
+          "updatedAt": "2023-08-02T00:00:00.000Z",
+          "accountId": "w37swmmLbA02zgqKPpxITe",
+          "error": "Failed due to auth token",
+          "postId": "323534534435",
+          "publishedAt": "2021-06-22T05:32:49.463Z",
+          "accountIds": ["aF3KhyL8JIuBwzK3m7Ly_iVrVJ2uoXNF0wzcBzgl5_12554616564525983496"],
+          "summary": "Sample Summary",
+          "media": [
+            {
+              "url": "https://i0.wp.com/...stairs.jpg",
+              "caption": "Caption 1",
+              "type": "video/mp4 or image/png",
+              "thumbnail": "https://storage.googleapis.com/test/test/media/test.jpeg",
+              "defaultThumb": "https://storage.googleapis.com/test/test/media/test.jpeg",
+              "id": "Edf3323fsfsdsd"
+            }
+          ],
+          "status": "published",
+          "createdBy": "Lx1EI6YIgQYMQi0ytFXv",
+          "type": "post",
+          "tags": ["aF3KhyL8JIuBwzK3m7Ly_iVrVJ2uoXNF0wzcBzgl5_12554616564525983496"],
+          "ogTagsDetails": {
+            "metaImage": "https://wwww.lifeofanarchitect.com/...stairs.jpg",
+            "metaLink": "https://www.yahoo.com/",
+            "ogTitle": "Yahoo | Mail, Weather, Search, Politics, News, Finance, Sports & Videos"
+          },
+          "postApprovalDetails": {
+            "approver": "iVrVJ2uoXNF0wzcBzgl5",
+            "requesterNote": "Test suggestion",
+            "approverNote": "Test suggestion",
+            "approvalStatus": "approved",
+            "approverUser": {
+              "id": "6284c43d519161e96cc09c13",
+              "title": "Mr",
+              "firstName": "Harry",
+              "lastName": "Spencer",
+              "profilePhoto": "https://storage.googleapis.com/user/kCrjKGHZQ2/profile/1dca8c-61c9-404d-a459-751fbcb.jpeg",
+              "phone": "901111119",
+              "email": "abc@xyc.com"
+            }
+          },
+          "tiktokPostDetails": { /* ... details ... */ },
+          "gmbPostDetails": { /* ... details ... */ },
+          "user": { /* ... details ... */ },
+          "linkedinPostDetails": { /* ... details ... */ },
+          "pinterestPostDetails": { /* ... details ... */ },
+          "facebookPostDetails": { /* ... details ... */ },
+          "instagramPostDetails": { /* ... details ... */ },
+          "youtubePostDetails": { /* ... details ... */ },
+          "mediaOptimization": true
+        }
+      }
+    }
+    ```
+
+### 10. PURPOSE:
+This endpoint allows users to create social media posts for all supported platforms, enabling customized content per channel by specifying platform-specific details.
+
+### 11. TAGS:
+Social Planner, Post, Create, Social Media, HighLevel, API, Marketing, Content Creation, GMB, Facebook, Instagram, LinkedIn, Pinterest, TikTok, YouTube
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

@@ -1,0 +1,49 @@
+Here is a structured summary of the provided documentation, optimized for search and retrieval:
+
+---
+
+### 1. ENDPOINT NAME:
+Webhook Logs Dashboard
+
+### 2. CATEGORY:
+Webhook Monitoring / Developer Tools
+
+### 3. HTTP METHOD:
+Not applicable (This documentation describes a UI dashboard, not a programmatic API endpoint for log retrieval). The dashboard itself is accessed via a web browser, typically using a GET request for the page.
+
+### 4. ENDPOINT URL:
+`/app-settings/{your-app-id}/dashboard/logs` (This is the URL pattern for the dashboard UI, not a programmatic API endpoint)
+
+### 5. FULL URL:
+`https://marketplace.gohighlevel.com/app-settings/{your-app-id}/dashboard/logs`
+
+### 6. REQUIRED PARAMETERS:
+*   `your-app-id` (string): The unique identifier for your application. This is a path segment required to access the dashboard for a specific app.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation for programmatic API access. The dashboard UI offers the following filtering and display options:
+*   **Date & Time Filters**: Allows selection of date and time ranges (up to 30 days retention).
+*   **Timezone**: Users can change the displayed timezone.
+*   **Global Search Bar**: Searches by Webhook ID or partial/full key-value pairs within webhook payloads.
+*   **Event Name Filter**:
+    *   **Sort A-Z/Z-A**: Sorts event names alphabetically.
+    *   **Filter by Condition**: `Text contains`, `Text does not contain`, `Text starts with`, `Text ends with`, `Text is exactly`.
+    *   **Filter by Values**: Checkbox selection for specific event names (e.g., `ContactCreate`, `INSTALL`).
+*   **Status Code Filter**:
+    *   **Filter By Success**: Shows webhooks with 2xx status codes.
+    *   **Filter By Failure**: Shows webhooks with non-2xx status codes (3xx, 4xx, 5xx).
+    *   **Filter by Specific Status Codes**: Checkbox selection for individual status codes (e.g., `200`, `404`, `500`).
+*   **Rows Per Page**: `10`, `20`, `50` rows per page for the logs table.
+*   **Pagination Controls**: Navigation between pages of logs.
+
+### 8. AUTHENTICATION:
+User authentication is required to access the Application Dashboard and subsequently the Webhook Logs Dashboard UI. This is typically managed via a "Sign In" process to the HighLevel platform. Specific API scopes or token types for programmatic access to the logs via an API are not detailed in this document.
+
+### 9. RESPONSE FORMAT:
+Not applicable (This documentation describes a web UI dashboard). The response is a rendered web page displaying webhook logs in a table format, with interactive filters, statistics cards, and a modal for detailed webhook information (including the JSON payload).
+
+### 10. PURPOSE:
+The Webhook Logs Dashboard provides comprehensive monitoring and troubleshooting capabilities for webhook deliveries in your marketplace application through a user interface.
+
+### 11. TAGS:
+Webhook, Logs, Dashboard, Monitoring, Troubleshooting, UI, Developer Tools, Debugging, Events, Status Codes, Payload, HighLevel, Marketplace, Application.

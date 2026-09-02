@@ -1,0 +1,64 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Delete Agent
+
+### 2. CATEGORY:
+Voice AI Agents
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/voice-ai/agents/:agentId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/voice-ai/agents/:agentId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version (Possible values: `2021-04-15`)
+*   **agentId** (string): Unique agent identifier (Example: `507f1f77bcf86cd799439011`)
+*   **locationId** (string): Location ID (Example: `LOC123456789ABCDEF`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `voice-ai-agents.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **Location:** Header (`Authorization: Bearer <TOKEN>`)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+*   **204 No Content:** Agent deleted successfully.
+*   **400 Bad Request:**
+    *   `application/json`
+    *   Schema: `{"statusCode": number, "message": string}`
+    *   Example: `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized:**
+    *   `application/json`
+    *   Schema: `{"statusCode": number, "message": string, "error": string}`
+    *   Example: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:**
+    *   `application/json`
+    *   Schema: `{"statusCode": number, "message": string[], "error": string}`
+    *   Example: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows users to delete a voice AI agent and all its associated configurations.
+
+### 11. TAGS:
+Voice AI, Agent, Delete, Configuration, API, HighLevel, CRM, Automation, Management, CRUD, `voice-ai-agents.write`
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

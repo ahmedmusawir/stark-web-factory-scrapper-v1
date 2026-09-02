@@ -1,0 +1,65 @@
+Here's a structured summary of the API documentation for "Delete Notification":
+
+---
+
+### 1. ENDPOINT NAME:
+Delete Notification
+
+### 2. CATEGORY:
+Calendars (specifically Calendar Notifications)
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/calendars/:calendarId/notifications/:notificationId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/:calendarId/notifications/:notificationId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-04-15`)
+*   **Path Parameters:**
+    *   `calendarId` (string): Not specified further in documentation.
+    *   `notificationId` (string): Not specified further in documentation.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `calendars/events.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer` (bearerFormat: JWT)
+*   **In:** `header` (Header Name: `Authorization`)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**Status Code:** `200 OK`
+**Content Type:** `application/json`
+**Schema:**
+```json
+{
+  "message": "string"
+}
+```
+**Example:**
+`{"message":"string"}` (Result of delete/update operation)
+
+### 10. PURPOSE:
+This endpoint is used to delete a specific calendar notification for a given calendar ID and notification ID.
+
+### 11. TAGS:
+Calendars, Calendar Notifications, Delete, Notification, Event, API, HighLevel, CRM
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

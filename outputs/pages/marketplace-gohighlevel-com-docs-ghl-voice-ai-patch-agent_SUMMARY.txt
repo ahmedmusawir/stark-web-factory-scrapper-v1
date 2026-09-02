@@ -1,0 +1,105 @@
+Here's a structured summary of the API documentation for the "Patch Agent" endpoint:
+
+### 1. ENDPOINT NAME
+Patch Agent
+
+### 2. CATEGORY
+Voice AI - Agents
+
+### 3. HTTP METHOD
+PATCH
+
+### 4. ENDPOINT URL
+`/voice-ai/agents/:agentId`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/voice-ai/agents/:agentId`
+
+### 6. REQUIRED PARAMETERS
+-   **Version** (string): API Version. Possible values: [`2021-04-15`]
+-   **agentId** (string): Unique agent identifier. Example: `507f1f77bcf86cd799439011`
+-   **locationId** (string): Location ID. Example: `LOC123456789ABCDEF`
+-   **sendPostCallNotificationTo.admins** (boolean): Enables post-call notifications to all admin users in the location. Default: `true`
+-   **sendPostCallNotificationTo.allUsers** (boolean): Enables post-call notifications to all users in the location. Default: `false`
+-   **sendPostCallNotificationTo.contactAssignedUser** (boolean): Enables post-call notifications to the user assigned to the contact. Default: `false`
+-   **sendPostCallNotificationTo.specificUsers** (string[]): Array of specific user IDs to receive post-call notifications. Default: `[]`
+-   **sendPostCallNotificationTo.customEmails** (string[]): Array of custom email addresses to receive post-call notifications. Default: `[]`
+-   **agentWorkingHours[].dayOfTheWeek** (number): Day of the week for this working hours configuration (Monday=1 to Sunday=7). Possible values: [`1`, `2`, `3`, `4`, `5`, `6`, `7`]
+-   **agentWorkingHours[].intervals** (object[]): Array of time intervals when the agent is available on this day.
+-   **agentWorkingHours[].intervals[].startHour** (number): Starting hour of the working interval in 24-hour format (0-23). Possible values: `<= 23`
+-   **agentWorkingHours[].intervals[].endHour** (number): Ending hour of the working interval in 24-hour format (0-23). Possible values: `<= 23`
+-   **agentWorkingHours[].intervals[].startMinute** (number): Starting minute of the working interval (0-59). Possible values: `<= 59`
+-   **agentWorkingHours[].intervals[].endMinute** (number): Ending minute of the working interval (0-59). Possible values: `<= 59`
+-   **translation.enabled** (boolean): Enables language translation for agent conversations. Default: `false`
+
+### 7. OPTIONAL PARAMETERS
+-   **agentName** (string): Display name for the voice AI agent, between 1-40 characters. Possible values: `non-empty` and `<= 40 characters`. Default: "My Agent {random 3 digit number}"
+-   **businessName** (string): Name of the business this agent represents. Possible values: `non-empty`. Default: Uses location name
+-   **welcomeMessage** (string): Initial greeting spoken when the agent answers calls. Possible values: `non-empty` and `<= 190 characters`. Default: Auto generated
+-   **agentPrompt** (string): Custom instructions defining the agent's behavior and personality. Default: Basic prompt generated automatically
+-   **voiceId** (string): Identifier for the speech synthesis voice from available voice options. Default: Auto generated
+-   **language** (VoiceAILanguage string): Language code for the agent's speech and understanding. Possible values: [`en-US`, `pt-BR`, `es`, `fr`, `de`, `it`, `nl-NL`, `multi`]. Default: "en-US"
+-   **patienceLevel** (PatienceLevel string): Tolerance level for caller response delays. Possible values: [`low`, `medium`, `high`]. Default: "high"
+-   **maxCallDuration** (number): Maximum call duration in seconds, between 180-900 (3-15 minutes). Possible values: `>= 180` and `<= 900`. Default: 300 seconds (5 minutes)
+-   **sendUserIdleReminders** (boolean): Enables automatic reminders when callers are silent. Default: `true`
+-   **reminderAfterIdleTimeSeconds** (number): Seconds to wait before sending idle reminders, between 1-20. Possible values: `>= 1` and `<= 20`. Default: 8 seconds
+-   **inboundNumber** (string): Phone number for receiving inbound calls to this agent. Default: `null`
+-   **numberPoolId** (string): Identifier for the number pool managing phone number allocation. Default: `null`
+-   **callEndWorkflowIds** (string[]): Array of workflow IDs to trigger automatically when calls end. Possible values: `<= 10`. Default: `[]`
+-   **sendPostCallNotificationTo** (object): Configuration for post-call email notifications to various recipients. Default: `[]` (If this object is included, all its sub-fields listed under REQUIRED PARAMETERS become required).
+-   **agentWorkingHours** (object[]): Time intervals defining when the agent accepts calls, organized by day of week. Default: `[]` (available 24/7) (If this array is included, all its sub-fields listed under REQUIRED PARAMETERS become required).
+-   **timezone** (string): IANA timezone identifier affecting working hours and scheduling. Possible values: Value must match regular expression `^[A-Za-z_]+/[A-Za-z_]+$`. Default: Location timezone
+-   **isAgentAsBackupDisabled** (boolean): Prevents this agent from being used as a fallback option. Default: `false` (Available as backup agent)
+-   **translation** (object): Language translation settings including enablement flag and target language code. Rules: (1) `translation.enabled` can only be `true` if the agent's `language` is not `en-US`; (2) when enabled, `translation.language` must be either the agent's `language` or `en-US`. Default: `false` (If this object is included, its sub-field `enabled` is required).
+-   **translation.language** (string): Target language code for translation (e.g., "es" for Spanish, "fr" for French). **Conditional:** Required if `translation.enabled` is `true`.
+
+### 8. AUTHENTICATION
+-   **Scope(s)**: `voice-ai-agents.write`
+-   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+-   **Token Type(s)**: `Sub-Account Token`
+
+### 9. RESPONSE FORMAT (200 OK)
+-   **Status Code**: `200`
+-   **Structure**: JSON object representing the updated agent details:
+    -   **id** (string): Unique identifier for the created agent
+    -   **locationId** (string): Unique identifier for the location where this agent operates
+    -   **agentName** (string): Display name of the voice AI agent
+    -   **businessName** (string): Name of the business this agent represents
+    -   **welcomeMessage** (string): Greeting message spoken when the agent answers calls
+    -   **agentPrompt** (string): Custom instructions defining the agent's behavior
+    -   **voiceId** (string): Identifier for the speech synthesis voice being used
+    -   **language** (string): Language code for the agent's speech and understanding
+    -   **patienceLevel** (string): Current tolerance level for caller response delays
+    -   **maxCallDuration** (number): Maximum call duration in seconds, between 180-900
+    -   **sendUserIdleReminders** (boolean): Indicates whether automatic idle reminders are enabled
+    -   **reminderAfterIdleTimeSeconds** (number): Seconds to wait before sending idle reminders, between 1-20
+    -   **inboundNumber** (string): Phone number for receiving inbound calls
+    -   **numberPoolId** (string): Identifier for the number pool managing this agent's phone allocation
+    -   **callEndWorkflowIds** (string[]): Array of workflow IDs triggered automatically when calls end
+    -   **sendPostCallNotificationTo** (object): Current post-call notification settings including recipient configuration
+        -   **admins** (boolean): Send notifications to admins
+        -   **allUsers** (boolean): Send notifications to all users
+        -   **contactAssignedUser** (boolean): Send notifications to contact assigned user
+        -   **specificUsers** (string[]): Specific user IDs to notify
+        -   **customEmails** (string[]): Custom email addresses to notify
+    -   **agentWorkingHours** (object[]): Time intervals when the agent accepts calls, organized by day of week
+        -   **dayOfTheWeek** (number): Day of the week for this working hours configuration (Monday=1 to Sunday=7)
+        -   **intervals** (object[]): Array of time intervals when the agent is available on this day
+            -   **startHour** (number): Starting hour of the working interval in 24-hour format (0-23)
+            -   **endHour** (number): Ending hour of the working interval in 24-hour format (0-23)
+            -   **startMinute** (number): Starting minute of the working interval (0-59)
+            -   **endMinute** (number): Ending minute of the working interval (0-59)
+    -   **timezone** (string): IANA timezone identifier for working hours and scheduling
+    -   **isAgentAsBackupDisabled** (boolean): Indicates whether this agent is excluded from backup scenarios
+    -   **translation** (object): Current language translation settings including enablement status and target language
+        -   **enabled** (boolean): Whether translation is enabled
+        -   **language** (string): Translation language code
+
+### 10. PURPOSE
+Partially update an existing voice AI agent.
+
+### 11. TAGS
+Voice AI, Agents, Update, Patch, AI Agent, LeadConnector, HighLevel, CRM, Automation
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

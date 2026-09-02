@@ -1,0 +1,66 @@
+Here is the structured summary of the API documentation for "Get Installer Details":
+
+### 1. ENDPOINT NAME:
+Get Installer Details
+
+### 2. CATEGORY:
+Developer Marketplace > App Management
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/marketplace/app/:appId/installations`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/marketplace/app/:appId/installations`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version. Possible values: [`2021-07-28`]
+*   **appId** (string): ID of the app to get installer details
+
+### 7. OPTIONAL PARAMETERS:
+None specified in documentation.
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `marketplace-installer-details.readonly`
+*   **Auth Method(s):** `OAuth Access Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+**200 OK - Successfully retrieved installer details.**
+*   **Content Type:** `application/json`
+*   **Schema:**
+    *   **installationDetails** (object): Installation details
+        *   **companyId** (string, required): Company ID (Example: `company123`)
+        *   **locationId** (string): Location ID (if applicable) (Example: `location123`)
+        *   **companyName** (string, required): Company name (Example: `Example Company`)
+        *   **companyEmail** (string, nullable): Company email. Will be null for sub-account installations due to PII concerns. (Example: `contact@example.com`)
+        *   **companyOwnerFullName** (string, nullable): Company owner full name. Will be null for sub-account installations due to PII concerns. (Example: `John Doe`)
+        *   **userId** (string, required): User ID who installed the app (Example: `user123`)
+        *   **isWhitelabelCompany** (boolean, required): Whether the company is a whitelabel company (Example: `false`)
+        *   **companyHighLevelPlan** (string, nullable): Company plan. Will be null for sub-account installations due to business sensitivity. (Example: `agency_monthly_497`)
+        *   **marketplaceAppPlanId** (string): Marketplace app plan ID for paid apps (Example: `plan123`)
+        *   **whitelabelDetails** (object, only present if `isWhitelabelCompany` is true): Whitelabel details
+            *   **domain** (string, required): Domain of the whitelabel company (Example: `example.com`)
+            *   **logoUrl** (string, required): Logo URL of the whitelabel company (Example: `https://example.com/logo.png`)
+*   **Example (auto):**
+    ```json
+    {"installationDetails":{"companyId":"company123","locationId":"location123","companyName":"Example Company","companyEmail":"contact@example.com","companyOwnerFullName":"John Doe","userId":"user123","isWhitelabelCompany":false,"companyHighLevelPlan":"agency_monthly_497","marketplaceAppPlanId":"plan123","whitelabelDetails":{"domain":"example.com","logoUrl":"https://example.com/logo.png"}}}
+    ```
+**400 Bad Request:** Invalid request parameters or missing required data.
+**403 Forbidden:** The client does not have necessary permissions to access installer details.
+
+### 10. PURPOSE:
+This endpoint fetches installer details for the authenticated user, returning information about the company, location, user, and installation details associated with the current OAuth token.
+
+### 11. TAGS:
+Developer marketplace, App Management, Installer Details, Installation, Company, Location, User, OAuth, Whitelabel, API, GET, Details
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

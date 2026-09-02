@@ -1,0 +1,65 @@
+Here is a structured summary of the provided API documentation for "Transactions":
+
+---
+
+### ENDPOINT NAME: Transactions
+
+### CATEGORY: Payments
+
+### HTTP METHOD:
+This documentation page describes two distinct API endpoints:
+
+*   **For List Transactions:** GET (Implied by "retrieve a paginated list")
+*   **For Get Transaction by ID:** GET (Implied by "retrieve information for a specific transaction")
+
+### ENDPOINT URL:
+This documentation page describes two distinct API endpoints:
+
+*   **For List Transactions:** `/payments/transactions` (Deduced from context, common REST API pattern)
+*   **For Get Transaction by ID:** `/payments/transactions/:transactionId` (Deduced from context, common REST API pattern)
+
+### FULL URL:
+Not specified in documentation for the API endpoints. (The documentation URL is `https://marketplace.gohighlevel.com/docs/ghl/payments/transactions/index.html`)
+
+### REQUIRED PARAMETERS:
+This documentation page describes two distinct API endpoints:
+
+**For List Transactions:**
+*   Not explicitly stated as required in the provided description, but pagination parameters are necessary for effective use.
+
+**For Get Transaction by ID:**
+*   `transactionId` (string): The unique identifier of the transaction. (This is a path parameter)
+
+### OPTIONAL PARAMETERS:
+This documentation page describes two distinct API endpoints:
+
+**For List Transactions:**
+*   `name` (string): Filters transactions based on their name.
+*   `alt type` (string): Filters transactions by an alternative type.
+*   `transaction status` (string): Filters transactions by their status.
+*   `payment mode` (string): Filters transactions by payment mode.
+*   `date range` (string/date_range): Filters transactions within a specified date range.
+*   `type of source` (string): Filters transactions by their source type.
+*   `contact` (string): Filters transactions by an associated contact.
+*   `subscription id` (string): Filters transactions by a subscription identifier.
+*   `entity id` (string): Filters transactions by an entity identifier.
+*   `pagination query parameters` (number/string): Parameters used for pagination (e.g., `limit`, `offset`, `page`, as implied by "paginate through the list using the provided query parameters").
+
+**For Get Transaction by ID:**
+*   Not specified in documentation.
+
+### AUTHENTICATION:
+Not specified in documentation.
+
+### RESPONSE FORMAT:
+Not specified in documentation.
+
+### PURPOSE:
+This page serves as an overview for the Payments Transactions module, providing access to documentation for retrieving transaction information.
+*   **List Transactions:** Retrieves a paginated list of transactions, with options to filter by various criteria such as name, status, payment mode, date range, and associated IDs.
+*   **Get Transaction by ID:** Retrieves detailed information for a specific transaction using its unique identifier.
+
+### TAGS:
+Payments, Transactions, List, Retrieve, Get, Filter, Pagination, Orders, Subscriptions, Financial, API
+
+---

@@ -1,0 +1,75 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+List templates
+
+### 2. CATEGORY:
+Proposals / Templates
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/proposals/templates`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/proposals/templates`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version (Possible values: `2021-07-28`)
+*   **Query Parameters:**
+    *   `locationId` (string): Location Id
+
+### 7. OPTIONAL PARAMETERS:
+*   **Query Parameters:**
+    *   `dateFrom` (string): Date start from (ISO 8601)
+    *   `dateTo` (string): Date to (ISO 8601)
+    *   `type` (string): Comma-separated template types. Valid values: proposal, estimate, contentLibrary
+    *   `name` (string): Template Name
+    *   `isPublicDocument` (boolean): If the docForm is a DocForm
+    *   `userId` (string): User Id, required when isPublicDocument is true
+    *   `limit` (string): Limit
+    *   `skip` (string): Skip
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** Bearer (JWT)
+*   **In:** Header (`Authorization: Bearer <TOKEN>`)
+
+### 9. RESPONSE FORMAT:
+*   **200 OK - Templates fetched successfully**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `data`: object[] (Array of templates)
+            *   Each template object contains:
+                *   `_id` (string, required): Template ID
+                *   `deleted` (boolean, required): Whether the template is deleted
+                *   `version` (number, required): Template version
+                *   `name` (string, required): Template name
+                *   `locationId` (string, required): Location ID
+                *   `type` (string, required): Template type (Possible values: `proposal`, `estimate`, `contentLibrary`)
+                *   `updatedBy` (string, required): User ID who last updated the template
+                *   `isPublicDocument` (boolean, required): Whether the template is a public document
+                *   `createdAt` (string, required): Template creation date
+                *   `updatedAt` (string, required): Template last update date
+                *   `id` (string, required): Template ID (alias for _id)
+                *   `documentCount` (number, optional): Document count (only present when `isPublicDocument` is true)
+                *   `docFormUrl` (string, optional): Document form URL (only present when `isPublicDocument` is true)
+        *   `total` (number, required): Total number of templates
+        *   `traceId` (string, optional): Trace ID for request tracking
+*   **400 Bad Request - Unprocessable Entity**
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `statusCode` (number)
+        *   `message` (string)
+
+### 10. PURPOSE:
+This endpoint retrieves a list of document contract templates for a specified location, with optional filtering capabilities.
+
+### 11. TAGS:
+Proposals, Templates, Documents, Contracts, List, Retrieve, GET, Location, Agency, Sub-Account
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

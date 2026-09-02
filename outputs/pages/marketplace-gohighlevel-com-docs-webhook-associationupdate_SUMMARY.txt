@@ -1,0 +1,53 @@
+Here's a structured summary of the provided API documentation for the "Association Updated" webhook:
+
+---
+
+### 1. ENDPOINT NAME:
+Association Updated
+
+### 2. CATEGORY:
+Webhook
+
+### 3. HTTP METHOD:
+POST (This webhook sends a POST request to the configured listener URL.)
+
+### 4. ENDPOINT URL:
+N/A (This is a webhook event sent by the GoHighLevel system, not an API endpoint to call.)
+
+### 5. FULL URL:
+N/A (This is a webhook event sent by the GoHighLevel system, not an API endpoint to call.)
+
+### 6. REQUIRED PARAMETERS (Payload Fields):
+The webhook payload is a JSON object with the following fields:
+*   `id` (string): Unique identifier for the association.
+*   `associationType` (string): Specifies the type of association (e.g., `USER_DEFINED` or `SYSTEM_DEFINED`).
+*   `firstObjectKey` (string): Key representing the first object in the association.
+*   `firstObjectLabel` (string): Human-readable label for the first object.
+*   `firstObjectToSecondObjectCardinality` (string): Indicates the relationship between the first and second object (e.g., `MANY_TO_MANY`).
+*   `secondObjectKey` (string): Key representing the second object in the association.
+*   `secondObjectLabel` (string): Human-readable label for the second object.
+*   `secondObjectToFirstObjectCardinality` (string): Defines the reverse relationship between objects.
+*   `key` (string): Unique key assigned to the association.
+*   `locationId` (string): Identifies the location associated with the created association.
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation (All fields in the schema appear to be included in the payload.)
+
+### 8. AUTHENTICATION:
+Not specified in documentation (Typical webhook security mechanisms like secret keys or signature verification for the listener are not mentioned.)
+
+### 9. RESPONSE FORMAT:
+The GoHighLevel system sends a JSON payload to the configured webhook listener. The listener is expected to process this payload and typically respond with a `200 OK` status code to acknowledge receipt.
+
+**Example Payload:**
+```json
+{"id":"67ade73d1119d2ac7ad0c475","associationType":"USER_DEFINED","firstObjectKey":"custom_objects.real_estate_buyer","firstObjectLabel":"Interested Buyer","firstObjectToSecondObjectCardinality":"MANY_TO_MANY","secondObjectKey":"custom_objects.property","secondObjectLabel":"Property","secondObjectToFirstObjectCardinality":"MANY_TO_MANY","key":"buyer_property_interest","locationId":"eHy2cOSZxMQzQ6Yyvl8P"}
+```
+
+### 10. PURPOSE:
+This webhook is triggered when an association between objects, such as linking contacts to custom objects or custom objects to custom objects, is updated, notifying subscribed applications of the change.
+
+### 11. TAGS:
+Webhook, Webhook Response, Association, Update, Objects, Custom Objects, Contacts, Data Relationship
+
+---

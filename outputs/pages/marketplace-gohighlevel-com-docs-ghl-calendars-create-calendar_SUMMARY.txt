@@ -1,0 +1,146 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Create Calendar
+
+### 2. CATEGORY:
+Calendars
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/calendars/`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/calendars/`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-04-15`]
+
+*   **Body Parameters (application/json):**
+    *   `isActive` (boolean): Should the created calendar be active or draft. Default value: `true`
+    *   `locationId` (string)
+    *   `name` (string)
+    *   `teamMembers` (object[]): An array representing team members. *Note: Team members are functionally required for calendars of type: Round Robin, Collective, Class, Service. Personal calendar must have exactly one team member.*
+        *   `userId` (string)
+        *   `locationConfigurations` (object[]): Meeting location configuration for event calendar. *Note: Multiple locations are allowed only when one team member is selected. For Class booking and Collective calendars, only one location configuration is allowed for each team member.*
+            *   `kind` (string): Type of meeting location. `zoom_conference`, `google_conference`, `ms_teams_conference` are not supported in event calendar type. Possible values: [`custom`, `zoom_conference`, `google_conference`, `inbound_call`, `outbound_call`, `physical`, `booker`, `ms_teams_conference`]
+    *   `openHours` (object[]): This is only to set the standard availability.
+        *   `daysOfTheWeek` (number[]): Possible values: `<= 6`
+        *   `hours` (object[]):
+            *   `openHour` (number): Possible values: `<= 23`
+            *   `openMinute` (number): Possible values: `<= 60`
+            *   `closeHour` (number): Possible values: `<= 23`
+            *   `closeMinute` (number): Possible values: `<= 60`
+    *   `lookBusyConfig` (object): Look Busy Configuration
+        *   `enabled` (boolean): Apply Look Busy. Default value: `false`
+        *   `LookBusyPercentage` (number): Percentage of slots that will be hidden
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters (application/json):**
+    *   `notifications` (object[]): 🚨 Deprecated! Please use 'Calendar Notifications APIs' instead.
+        *   `type` (string): Calendar Notification. Possible values: [`email`]. Default value: `email`
+        *   `shouldSendToContact` (boolean)
+        *   `shouldSendToGuest` (boolean)
+        *   `shouldSendToUser` (boolean)
+        *   `shouldSendToSelectedUsers` (boolean)
+        *   `selectedUsers` (string): Comma separated emails
+    *   `groupId` (string): Group Id
+    *   `teamMembers` (object[]): (If provided)
+        *   `priority` (number): Possible values: [`0`, `0.5`, `1`]. Default value: `0.5`
+        *   `isPrimary` (boolean): Marks a user as primary. *Note: This property is required in case of collective booking calendars. Only one user can be primary.*
+        *   `locationConfigurations` (object[]): (If provided)
+            *   `location` (string): Address for meeting location. Not applicable on "zoom_conference", "google_conference" and "ms_teams_conference" kind.
+    *   `eventType` (string): Possible values: [`RoundRobin_OptimizeForAvailability`, `RoundRobin_OptimizeForEqualDistribution`]. Default value: `RoundRobin_OptimizeForAvailability`
+    *   `description` (string)
+    *   `slug` (string)
+    *   `widgetSlug` (string)
+    *   `calendarType` (string): Possible values: [`round_robin`, `event`, `class_booking`, `collective`, `service_booking`, `personal`]
+    *   `widgetType` (string): Calendar widget type. Choose "default" for "neo" and "classic" for "classic" layout. Possible values: [`default`, `classic`]. Default value: `classic`
+    *   `eventTitle` (string): Default value: `{{contact.name}}`
+    *   `eventColor` (string): Default value: `#039be5`
+    *   `locationConfigurations` (object[]): Meeting location configuration for event calendar (root level)
+        *   `kind` (string): Type of meeting location. `zoom_conference`, `google_conference`, `ms_teams_conference` are not supported in event calendar type. Possible values: [`custom`, `zoom_conference`, `google_conference`, `inbound_call`, `outbound_call`, `physical`, `booker`, `ms_teams_conference`]
+        *   `location` (string): Address for meeting location. Not applicable on "zoom_conference", "google_conference" and "ms_teams_conference" kind.
+    *   `slotDuration` (number): This controls the duration of the meeting. Default value: `30`
+    *   `slotDurationUnit` (string): Unit for slot duration. Possible values: [`mins`, `hours`]
+    *   `slotInterval` (number): Slot interval reflects the amount of time between booking slots. Default value: `30`
+    *   `slotIntervalUnit` (string): Unit for slot interval. Possible values: [`mins`, `hours`]
+    *   `slotBuffer` (number): Additional time after an appointment.
+    *   `slotBufferUnit` (string): Unit for slot buffer. Possible values: [`mins`, `hours`]
+    *   `preBuffer` (number): Additional time before an appointment.
+    *   `preBufferUnit` (string): Unit for pre-buffer. Possible values: [`mins`, `hours`]
+    *   `appoinmentPerSlot` (number): Maximum bookings per slot (per user) or seats for Class Booking. Default value: `1`
+    *   `appoinmentPerDay` (number): Number of appointments that can be booked for a given day.
+    *   `allowBookingAfter` (number): Minimum scheduling notice for events.
+    *   `allowBookingAfterUnit` (string): Unit for minimum scheduling notice. Possible values: [`hours`, `days`, `weeks`, `months`]
+    *   `allowBookingFor` (number): Minimum number of days/weeks/months to allow booking events.
+    *   `allowBookingForUnit` (string): Unit for controlling the duration for which booking is allowed. Possible values: [`days`, `weeks`, `months`]
+    *   `enableRecurring` (boolean): Enable recurring appointments. *Note: Only one member should be added in the calendar to enable this.* Default value: `false`
+    *   `recurring` (object):
+        *   `freq` (string): Possible values: [`DAILY`, `WEEKLY`, `MONTHLY`]
+        *   `count` (number): Number of recurrences. Possible values: `<= 24`
+        *   `bookingOption` (string): Controls what to do if a recurring slot is unavailable. Possible values: [`skip`, `continue`, `book_next`]
+        *   `bookingOverlapDefaultStatus` (string): Controls what to do if a recurring slot is unavailable. Possible values: [`confirmed`, `new`]
+    *   `formId` (string)
+    *   `stickyContact` (boolean)
+    *   `isLivePaymentMode` (boolean)
+    *   `autoConfirm` (boolean): Default value: `true`
+    *   `shouldSendAlertEmailsToAssignedMember` (boolean)
+    *   `alertEmail` (string)
+    *   `googleInvitationEmails` (boolean): Default value: `false`
+    *   `allowReschedule` (boolean): Default value: `true`
+    *   `allowCancellation` (boolean): Default value: `true`
+    *   `shouldAssignContactToTeamMember` (boolean)
+    *   `shouldSkipAssigningContactForExisting` (boolean)
+    *   `notes` (string)
+    *   `pixelId` (string)
+    *   `formSubmitType` (string): Possible values: [`RedirectURL`, `ThankYouMessage`]. Default value: `ThankYouMessage`
+    *   `formSubmitRedirectURL` (string)
+    *   `formSubmitThanksMessage` (string)
+    *   `availabilityType` (number): Determines which availability type to consider: `1` (Only custom), `0` (Only open hours), `null` (Both custom and open hours). Possible values: [`0`, `1`]
+    *   `availabilities` (object[]): To set custom availability.
+        *   `date` (string): Date string in format `<YYYY-MM-DD in local timezone>T00:00:00.000Z`.
+        *   `hours` (object[]):
+            *   `openHour` (number): Possible values: `<= 23`
+            *   `openMinute` (number): Possible values: `<= 60`
+            *   `closeHour` (number): Possible values: `<= 23`
+            *   `closeMinute` (number): Possible values: `<= 60`
+        *   `deleted` (boolean): Default value: `false`
+    *   `guestType` (string): Possible values: [`count_only`, `collect_detail`]
+    *   `consentLabel` (string)
+    *   `calendarCoverImage` (string)
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `calendars.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header` (e.g., `Authorization: Bearer <TOKEN>`)
+
+### 9. RESPONSE FORMAT:
+*   **Successful Response (200 OK):**
+    *   **Content Type:** `application/json`
+    *   **Schema:** An object containing a `calendar` object.
+        *   `calendar` (object): Represents the newly created calendar. It includes all the properties sent in the request (both required and optional), along with a required `id` (string) for the new calendar.
+            *   Example properties: `isActive` (boolean), `locationId` (string), `name` (string), `id` (string), `teamMembers` (array), `openHours` (array), etc.
+*   **Bad Request (400):**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{ "statusCode": number, "message": string }`
+*   **Unauthorized (401):**
+    *   **Content Type:** `application/json`
+    *   **Schema:** `{ "statusCode": number, "message": string, "error": string }`
+
+### 10. PURPOSE:
+This endpoint allows an authenticated application to create a new calendar in a specified location within the HighLevel system.
+
+### 11. TAGS:
+Calendars, Create, New Calendar, Scheduling, Appointment, Booking, POST, LeadConnector, HighLevel, API, Sub-Account.
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

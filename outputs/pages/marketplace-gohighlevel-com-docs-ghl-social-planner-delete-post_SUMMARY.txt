@@ -1,0 +1,77 @@
+Here is a structured summary of the provided API documentation:
+
+---
+
+### 1. ENDPOINT NAME:
+Delete Post
+
+### 2. CATEGORY:
+Social Planner
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/social-media-posting/:locationId/posts/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/:locationId/posts/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   locationId (string): Location Id (Example: `ve9EPM428h8vShlRW1KT`)
+    *   id (string): Post Id (Example: `65fac446d599990d1313c1dd`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `Bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+
+### 9. RESPONSE FORMAT:
+**Successful response (HTTP 200 application/json):**
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Deleted Post",
+  "results": {
+    "postId": "string"
+  }
+}
+```
+*   `success` (boolean): `true`
+*   `statusCode` (number): `200`
+*   `message` (string): `Deleted Post`
+*   `results` (object):
+    *   `postId` (string): ID of the deleted post
+
+**Error Responses:**
+*   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint is used to delete a specific social media post by its ID within a given location.
+
+### 11. TAGS:
+Social Planner, Post, Delete, Social Media, HighLevel API, GHL, Marketing, Content Management
+
+### 12. CODE EXAMPLES:
+Code examples are available for the following languages:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
+
+---

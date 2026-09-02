@@ -1,0 +1,112 @@
+Here's a structured summary of the "Create Record" API documentation:
+
+### 1. ENDPOINT NAME:
+Create Record
+
+### 2. CATEGORY:
+Objects (specifically Records)
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/objects/:schemaKey/records`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/objects/:schemaKey/records`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   - Version (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   - schemaKey (string): The key of the Custom Object / Standard Object Schema. For custom objects, the key must include the “custom_objects.” prefix, while standard objects use their respective object keys. This information is available on the Custom Objects Details page under Settings.
+        *   *Example*: `custom_objects.pet` or `business.email`
+*   **Body Parameters:**
+    *   - Body (object): The request body is required.
+        *   *Note*: While the entire body is required, the specific fields within it are not explicitly marked as 'required' for the request. However, for creating a meaningful record, fields like `properties` are generally expected. The cURL example shows an empty object `{}`.
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters (Implied based on response structure, not explicitly marked as optional for request):**
+    *   - properties (object): The properties/fields of the record to be created. Its structure should match the schema of the custom object.
+        *   *Example*: `{"customer_number":1424,"ticket_name":"Customer not able login", ...}`
+    *   - owner (string[]): Owner (User's id). Limited to 1 for now. Only Supported with custom objects.
+        *   *Example*: `["sx6wyHhbFdRXh302Lunr"]`
+    *   - followers (string[]): Follower (User's ids). Limited to 10 for now.
+        *   *Example*: `["sx6wyHhbFdRXh302Lunr","v5cEPM428h8vShlRW1KT"]`
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `objects/record.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** bearer (JWT)
+*   **In:** header (Authorization header)
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (201 Created):**
+    *   **Content-Type:** `application/json`
+    *   **Structure:** An object containing a `record` object.
+        ```json
+        {
+          "record": {
+            "id": "string",
+            "owner": ["string"],
+            "followers": ["string"],
+            "properties": { /* object based on example */ },
+            "dateAdded": "date-time",
+            "dateUpdated": "date-time"
+          }
+        }
+        ```
+    *   **Example:**
+        ```json
+        {
+          "record": {
+            "id": "661c06b4ffde146bdb469442",
+            "owner": ["sx6wyHhbFdRXh302Lunr"],
+            "followers": ["sx6wyHhbFdRXh302Lunr", "v5cEPM428h8vShlRW1KT"],
+            "properties": {
+              "customer_number": 1424,
+              "ticket_name": "Customer not able login",
+              "phone_number": "+917000000000",
+              "money": {
+                "currency": "default",
+                "value": 100
+              },
+              "type_of_ticket": "doubt",
+              "section_of_app": ["contacts", "smartlist"],
+              "recieved_on": "2024-07-11",
+              "my_files": [{"url": "---url_of_file---"}],
+              "my_textbox_list.option_a": "Value 1",
+              "my_textbox_list.option_b": "Value 2"
+            },
+            "dateAdded": "2024-07-29T15:51:28.071Z",
+            "dateUpdated": "2024-07-29T15:51:28.071Z"
+          }
+        }
+        ```
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        *   `{"statusCode": 400, "message": "Bad Request"}`
+    *   **401 Unauthorized:**
+        *   `{"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}`
+
+### 10. PURPOSE:
+This endpoint allows you to create a record for a specified Custom Object or Standard Object Schema.
+
+### 11. TAGS:
+Objects, Records, Create, Custom Object, Standard Object, Business, Data, API, CRM
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   curl
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

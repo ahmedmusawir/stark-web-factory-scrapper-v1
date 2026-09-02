@@ -1,0 +1,63 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Delete Agent
+
+### 2. CATEGORY:
+Conversation AI
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/conversation-ai/agents/:agentId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversation-ai/agents/:agentId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Version** (string): API Version. Possible values: [`2021-04-15`]
+*   **agentId** (string): Conversations AI agent id. Example: `EmployeeId123`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `conversation-ai.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`, `Bearer Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**200 OK (Successful response)**
+*   **Content Type:** `application/json`
+*   **Schema:**
+    ```json
+    {
+      "success": true,
+      "id": "emp_123"
+    }
+    ```
+*   **Description:** Indicates if the agent was deleted successfully, along with the unique identifier of the deleted agent.
+
+**Possible Error Responses:**
+*   **400 Bad Request:** `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized:** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint permanently deletes an AI agent, and this action cannot be undone, removing all associated configurations and conversation history.
+
+### 11. TAGS:
+Conversation AI, Agent, Delete, AI Agent, AI, GHL, HighLevel, API, `conversation-ai.write`
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

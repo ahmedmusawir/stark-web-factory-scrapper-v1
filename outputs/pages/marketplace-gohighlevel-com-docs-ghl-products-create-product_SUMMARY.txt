@@ -1,0 +1,100 @@
+Here's a structured summary of the "Create Product" API documentation:
+
+### 1. ENDPOINT NAME
+Create Product
+
+### 2. CATEGORY
+Products
+
+### 3. HTTP METHOD
+POST
+
+### 4. ENDPOINT URL
+`/products/`
+
+### 5. FULL URL
+`https://services.leadconnectorhq.com/products/`
+
+### 6. REQUIRED PARAMETERS
+
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: `2021-07-28`
+
+*   **Body Parameters:**
+    *   name (string): The name of the product.
+    *   locationId (string): The unique identifier for the location.
+    *   productType (string): The type of product. Possible values: [`DIGITAL`, `PHYSICAL`, `SERVICE`, `PHYSICAL/DIGITAL`]
+    *   **medias** (object[]): An array of medias for the product.
+        *   id (string): The unique identifier for the media.
+        *   url (string): The URL where the media file is stored.
+        *   type (string): The type of the media file (e.g., image, video will be supporting soon). Possible values: [`image`, `video`]
+    *   **variants** (object[]): An array of variants for the product.
+        *   id (string): A unique identifier for the variant.
+        *   name (string): The name of the variant.
+        *   **options** (object[]): An array of options for the variant.
+            *   id (string): The unique identifier for the option.
+            *   name (string): The name of the option.
+    *   **label** (object) - *Required if `isLabelEnabled` is `true`*:
+        *   title (string): The content for the product label.
+
+### 7. OPTIONAL PARAMETERS
+
+*   **Body Parameters:**
+    *   description (string): A brief description of the product.
+    *   image (string): The URL for the product image.
+    *   statementDescriptor (string): The statement descriptor for the product.
+    *   availableInStore (boolean): Indicates whether the product is available in-store.
+    *   **medias** (object[]): An array of medias for the product.
+        *   title (string): The title of the media file.
+        *   isFeatured (boolean): Indicates whether the media is featured.
+        *   priceIds (array[]): Mongo ObjectIds of the prices for which the media is assigned.
+    *   collectionIds (string[]): An array of category Ids for the product.
+    *   isTaxesEnabled (boolean): Are there any taxes attached to the product. If this is true, taxes array cannot be empty. (Default value: `false`)
+    *   taxes (string[]): List of ids of Taxes attached to the Product. If taxes are passed, isTaxesEnabled should be true.
+    *   automaticTaxCategoryId (string): Tax category ID for Automatic taxes calculation.
+    *   isLabelEnabled (boolean): Is the product label enabled. If this is true, label object cannot be empty. (Default value: `false`)
+    *   **label** (object) - *If `isLabelEnabled` is `true`*:
+        *   startDate (string): Start date in YYYY-MM-DDTHH:mm:ssZ format.
+        *   endDate (string): Start date in YYYY-MM-DDTHH:mm:ssZ format.
+    *   slug (string): The slug using which the product navigation will be handled.
+    *   **seo** (object): SEO data for the product that will be displayed in the preview.
+        *   title (string): SEO title.
+        *   description (string): SEO description.
+    *   taxInclusive (boolean): Whether the taxes should be included in the purchase price. (Default value: `false`)
+
+### 8. AUTHENTICATION
+
+*   **Scope(s):** `products.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+
+### 9. RESPONSE FORMAT
+
+*   **Status Code:** `201 Created`
+*   **Structure:** A JSON object representing the newly created product.
+    *   `_id` (string): The unique identifier for the product.
+    *   `description` (string): Product description.
+    *   `variants` (object[]): An array of variants with their `id`, `name`, and `options` (each with `id` and `name`).
+    *   `locationId` (string): The unique identifier for the location.
+    *   `name` (string): The name of the product.
+    *   `productType` (string): The type of the product (e.g., PHYSICAL).
+    *   `availableInStore` (boolean): Indicates whether the product is available in-store.
+    *   `createdAt` (date-time): The creation timestamp of the product.
+    *   `updatedAt` (date-time): The last update timestamp of the product.
+    *   `statementDescriptor` (string): The statement descriptor for the product.
+    *   `image` (string): The URL for the product image.
+    *   `collectionIds` (string[]): An array of category Ids for the product.
+    *   `isTaxesEnabled` (boolean): Whether taxes are enabled for the product.
+    *   `taxes` (string[]): An array of IDs of Taxes attached to the Product.
+    *   `automaticTaxCategoryId` (string): Tax category ID for Automatic taxes calculation.
+    *   `label` (object): Product label details with `title`, `startDate`, `endDate`.
+    *   `slug` (string): The slug of the product.
+
+### 10. PURPOSE
+This API endpoint allows adding a new product to the system by providing its details in the request payload.
+
+### 11. TAGS
+Products, Create, Add, Product Management, E-commerce, Inventory, HighLevel, API, GHL
+
+### 12. CODE EXAMPLES
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

@@ -1,0 +1,92 @@
+```
+## STRUCTURED SUMMARY OF API DOCUMENTATION
+
+### 1. ENDPOINT NAME:
+Get Store Settings
+
+### 2. CATEGORY:
+Store Settings
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/store/store-setting`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/store/store-setting`
+
+### 6. REQUIRED PARAMETERS:
+*   **altId** (string): Location Id or Agency Id
+*   **altType** (string): Possible values: [`location`]
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`
+*   **Scheme**: `Bearer` (JWT format)
+*   **In**: `header` (Authorization header)
+
+### 9. RESPONSE FORMAT:
+**200 OK - Successful response** (`application/json`)
+*   **status** (boolean, required): Status of api action (e.g., `true`)
+*   **message** (string): Success message (e.g., `Successfully created`)
+*   **data** (object): Shipping carrier data
+    *   **altId** (string, required): Location Id or Agency Id (e.g., `6578278e879ad2646715ba9c`)
+    *   **altType** (string, required): Possible values: [`location`]
+    *   **shippingOrigin** (object, required): Shipping origin address
+        *   **name** (string, required): Name of the store / company (e.g., `ABC Store`)
+        *   **country** (number, required): Country code (e.g., `US` - *Note: Type is number, but example and possible values suggest string*)
+        *   **state** (string): State code (e.g., `VA`)
+        *   **city** (string, required): City name (e.g., `Tokyo`)
+        *   **street1** (string, required): Street address line 1 (e.g., `Street 1`)
+        *   **street2** (string): Street address line 2 (e.g., `Street 2`)
+        *   **zip** (string, required): Zip code (e.g., `674561`)
+        *   **phone** (string): Business Phone Number (e.g., `+1-214-559-6993`)
+        *   **email** (string): Email (e.g., `john@deo.com`)
+    *   **storeOrderNotification** (object): Store order notification email
+        *   **enabled** (boolean, required): Store order notification enabled (e.g., `true`)
+        *   **subject** (string, required): Store order email subject (e.g., `Your order is placed !`)
+        *   **emailTemplateId** (string, required): Email Template Id (e.g., `6788d542f0462ffd6bc29bb9`)
+        *   **defaultEmailTemplateId** (string, required): Default Email Template Id (e.g., `6788d542f0462ffd6bc29bb9`)
+    *   **storeOrderFulfillmentNotification** (object): Store order fulfillment notification email
+        *   **enabled** (boolean, required): Store order fulfillment notification enabled (e.g., `true`)
+        *   **subject** (string, required): Store order fulfillment email subject (e.g., `Order fulfilled`)
+        *   **emailTemplateId** (string, required): Email Template Id (e.g., `6788d542f0462ffd6bc29bb9`)
+        *   **defaultEmailTemplateId** (string, required): Default Email Template Id (e.g., `6788d542f0462ffd6bc29bb9`)
+    *   **_id** (string, required): The unique identifier for the settings. (e.g., `655b33a82209e60b6adb87a5`)
+    *   **createdAt** (string, required): created at (e.g., `2023-12-12T09:27:42.355Z`)
+    *   **updatedAt** (string, required): updated at (e.g., `2023-12-12T09:27:42.355Z`)
+
+**400 Bad Request** (`application/json`)
+*   **statusCode** (number): Example: `400`
+*   **message** (string): Example: `Bad Request`
+
+**401 Unauthorized** (`application/json`)
+*   **statusCode** (number): Example: `401`
+*   **message** (string): Example: `Invalid token: access token is invalid`
+*   **error** (string): Example: `Unauthorized`
+
+**422 Unprocessable Entity** (`application/json`)
+*   **statusCode** (number): Example: `422`
+*   **message** (string[]): Example: `["Unprocessable Entity"]`
+*   **error** (string): Example: `Unprocessable Entity`
+
+### 10. PURPOSE:
+This endpoint retrieves store settings based on the provided `altId` (Location Id or Agency Id) and `altType`.
+
+### 11. TAGS:
+Store, Settings, Get, Retrieve, Store Settings, Location, Agency, Read, Configuration, Ecommerce
+
+### 12. CODE EXAMPLES:
+*   cURL: Available
+*   nodejs: Available
+*   python: Available
+*   php: Available
+*   java: Available
+*   go: Available
+*   ruby: Available
+*   powershell: Available
+```

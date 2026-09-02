@@ -1,0 +1,90 @@
+Here's a structured summary of the "Get Tiktok Business profile" API documentation:
+
+### 1. ENDPOINT NAME:
+Get Tiktok Business profile
+
+### 2. CATEGORY:
+Social Planner (Oauth | Tiktok)
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/social-media-posting/oauth/:locationId/tiktok-business/accounts/:accountId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/social-media-posting/oauth/:locationId/tiktok-business/accounts/:accountId`
+
+### 6. REQUIRED PARAMETERS:
+*   `Version` (string, Header): API Version (Possible values: `2021-07-28`)
+*   `locationId` (string, Path): Account Location Id (Example: `w37swmmLbA02zgqKPpxITe2`)
+*   `accountId` (string, Path): Account Id (Example: `w37swmmLbA02zgqKPpxITe`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT)
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+**Status Code:** `200` (Successful response)
+**Content Type:** `application/json`
+
+```json
+{
+  "success": true,
+  "statusCode": 201,
+  "message": "Fetched Tiktok Business Account",
+  "results": {
+    "profile": [
+      {
+        "id": "w37swmmLbA02zgqKPpxITe",
+        "name": "Account Name",
+        "username": "User_name",
+        "avatar": "w37swmmLbA02zgqKPpxITe",
+        "verified": true,
+        "isConnected": true,
+        "type": "BUSINESS"
+      }
+    ]
+  }
+}
+```
+**Schema Details:**
+*   `success` (boolean): Success or Failure (Example: `true`)
+*   `statusCode` (number): Status Code (Example: `201`)
+*   `message` (string): Message (Example: `Fetched Tiktok Business Account`)
+*   `results` (object): Requested Results
+    *   `profile` (array of objects): Tiktok Business Profile
+        *   `id` (string): Id (Example: `w37swmmLbA02zgqKPpxITe`)
+        *   `name` (string): Name of account (Example: `Account Name`)
+        *   `username` (string): Username of account (Example: `User_name`)
+        *   `avatar` (string): Avatar of profile account (Example: `w37swmmLbA02zgqKPpxITe`)
+        *   `verified` (boolean): Is verified (Example: `true`)
+        *   `isConnected` (boolean): Is connected (Example: `true`)
+        *   `type` (object): Tiktok Account Type must be one of the following values: business, profile (Example: `BUSINESS`)
+
+**Other Responses:**
+*   `400 Bad Request`: `{"statusCode":400,"message":"Bad Request"}`
+*   `401 Unauthorized`: `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   `422 Unprocessable Entity`: `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint retrieves the business profile details for a connected TikTok Business account associated with a specific location and account ID.
+
+### 11. TAGS:
+Social Planner, TikTok, Business Profile, Account, Get, Read, OAuth, Profile Retrieval
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

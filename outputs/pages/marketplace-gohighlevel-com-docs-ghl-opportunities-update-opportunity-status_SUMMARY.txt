@@ -1,0 +1,100 @@
+Here's a structured summary of the API documentation for "Update Opportunity Status":
+
+### 1. ENDPOINT NAME:
+Update Opportunity Status
+
+### 2. CATEGORY:
+Opportunities
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/opportunities/:id/status`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/opportunities/:id/status`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+
+*   **Path Parameters:**
+    *   `id` (string): Opportunity Id. Example: `yWQobCRIhRguQtD2llvk`
+
+*   **Body Parameters (application/json):**
+    *   `status` (string): The new status for the opportunity. Possible values: [`open`, `won`, `lost`, `abandoned`, `all`]
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `opportunities.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 Successful Response:**
+    *   **Status Code:** `200`
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "succeded": boolean
+        }
+        ```
+    *   **Example:** `{"succeded": true}`
+
+*   **400 Bad Request:**
+    *   **Status Code:** `400`
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "statusCode": number,
+          "message": string
+        }
+        ```
+    *   **Example:** `{"statusCode": 400, "message": "Bad Request"}`
+
+*   **401 Unauthorized:**
+    *   **Status Code:** `401`
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "statusCode": number,
+          "message": string,
+          "error": string
+        }
+        ```
+    *   **Example:** `{"statusCode": 401, "message": "Invalid token: access token is invalid", "error": "Unauthorized"}`
+
+*   **422 Unprocessable Entity:**
+    *   **Status Code:** `422`
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        ```json
+        {
+          "statusCode": number,
+          "message": string[],
+          "error": string
+        }
+        ```
+    *   **Example:** `{"statusCode": 422, "message": ["Unprocessable Entity"], "error": "Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows you to update the status (e.g., open, won, lost, abandoned) of a specific opportunity within HighLevel.
+
+### 11. TAGS:
+Opportunities, Update, Status, CRM, Pipeline, Lead Management, HighLevel API
+
+### 12. CODE EXAMPLES:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

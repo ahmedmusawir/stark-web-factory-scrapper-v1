@@ -1,0 +1,131 @@
+Here's a structured summary of the API documentation for "Update Shipping Rate":
+
+### 1. ENDPOINT NAME:
+Update Shipping Rate
+
+### 2. CATEGORY:
+Store (specifically Shipping Zone Rates)
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/store/shipping-zone/:shippingZoneId/shipping-rate/:shippingRateId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/store/shipping-zone/:shippingZoneId/shipping-rate/:shippingRateId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Path Parameters:**
+    *   shippingZoneId (string): ID of the shipping zone
+    *   shippingRateId (string): ID of the shipping rate that needs to be returned
+*   **Body Parameters:**
+    *   altId (string): Location Id or Agency Id
+    *   altType (string): Possible values: [`location`]
+    *   name (string): Name of the shipping zone
+    *   currency (string): The currency of the amount of the rate / handling fee
+    *   amount (number): The amount of the shipping rate if it is normal rate (0 means free). Fixed Handling fee if it is a carrier rate (it will add to the carrier rate).
+    *   conditionType (string): Type of condition to provide the conditional pricing. Possible values: [`none`, `price`, `weight`]
+    *   minCondition (number): Minimum condition for applying this price. set 0 or null if there is no minimum
+    *   maxCondition (number): Maximum condition for applying this price. set 0 or null if there is no maximum
+    *   shippingCarrierId (string): Shipping carrier id
+    *   shippingCarrierServices (object[]): An array of items
+        *   name (string): Name of the shipping carrier service
+        *   value (string): Value of the shipping carrier service
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters:**
+    *   description (string): Delivery description
+    *   isCarrierRate (boolean): is this a carrier rate
+    *   percentageOfRateFee (number): Percentage of rate fee if it is a carrier rate.
+
+### 8. AUTHENTICATION:
+
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** `Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.`
+
+### 9. RESPONSE FORMAT:
+
+*   **Status Code:** `200 OK`
+*   **Content Type:** `application/json`
+*   **Structure:**
+    ```json
+    {
+      "status": boolean,
+      "message": string,
+      "data": {
+        "altId": string,
+        "altType": string, // Example: "location"
+        "name": string, // Example: "North zone"
+        "description": string, // Example: "Ships next day"
+        "currency": string, // Example: "USD"
+        "amount": number, // Example: 99.99
+        "conditionType": string, // Example: "price"
+        "minCondition": number, // Example: 99.99
+        "maxCondition": number, // Example: 99.99
+        "isCarrierRate": boolean, // Example: true
+        "shippingCarrierId": string, // Example: "655b33a82209e60b6adb87a5"
+        "percentageOfRateFee": number, // Example: 10.99
+        "shippingCarrierServices": [
+          {
+            "name": string, // Example: "Priority Mail Express International"
+            "value": string // Example: "PriorityMailExpressInternational"
+          }
+        ],
+        "_id": string, // The unique identifier for the product. (Note: Documentation says "product", likely refers to shipping rate)
+        "shippingZoneId": string, // The unique identifier for the shipping zone.
+        "createdAt": string, // Example: "2023-12-12T09:27:42.355Z"
+        "updatedAt": string // Example: "2023-12-12T09:27:42.355Z"
+      }
+    }
+    ```
+*   **Example (200 OK):**
+    ```json
+    {
+      "status": true,
+      "message": "Successfully created",
+      "data": {
+        "altId": "6578278e879ad2646715ba9c",
+        "altType": "location",
+        "name": "North zone",
+        "description": "Ships next day",
+        "currency": "USD",
+        "amount": 99.99,
+        "conditionType": "price",
+        "minCondition": 99.99,
+        "maxCondition": 99.99,
+        "isCarrierRate": true,
+        "shippingCarrierId": "655b33a82209e60b6adb87a5",
+        "percentageOfRateFee": 10.99,
+        "shippingCarrierServices": [
+          {
+            "name": "Priority Mail Express International",
+            "value": "PriorityMailExpressInternational"
+          }
+        ],
+        "_id": "655b33a82209e60b6adb87a5",
+        "shippingZoneId": "655b33a82209e60b6adb87a5",
+        "createdAt": "2023-12-12T09:27:42.355Z",
+        "updatedAt": "2023-12-12T09:27:42.355Z"
+      }
+    }
+    ```
+*   **Error Responses:**
+    *   `400 Bad Request`
+    *   `401 Unauthorized`
+    *   `422 Unprocessable Entity`
+
+### 10. PURPOSE:
+The "update Shipping Rate" API allows update a shipping rate to the system.
+
+### 11. TAGS:
+Store, Shipping, Shipping Rate, Update, E-commerce, Zone Rates, Carrier Rates, GoHighLevel, LeadConnector
+
+### 12. Code Examples:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

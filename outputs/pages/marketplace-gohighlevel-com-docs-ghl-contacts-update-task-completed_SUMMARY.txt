@@ -1,0 +1,78 @@
+Here is a structured summary of the API documentation for "Update Task Completed":
+
+### 1. ENDPOINT NAME:
+Update Task Completed
+
+### 2. CATEGORY:
+Contacts (specifically, Tasks within Contacts)
+
+### 3. HTTP METHOD:
+PUT
+
+### 4. ENDPOINT URL:
+`/contacts/:contactId/tasks/:taskId/completed`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/:contactId/tasks/:taskId/completed`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+*   **Path Parameters:**
+    *   `contactId` (string): Contact Id. Example: `sx6wyHhbFdRXh302LLNR`
+    *   `taskId` (string): Task Id. Example: `ocQHyuzHvysMo5N5VsXc`
+*   **Body Parameters (application/json):**
+    *   `completed` (boolean): Indicates whether the task is completed. Example: `true`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `contacts.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT format) in `Authorization` header.
+
+### 9. RESPONSE FORMAT:
+
+**200 Successful response (application/json):**
+```json
+{
+  "task": {
+    "id": "string",
+    "title": "string",
+    "body": "string",
+    "assignedTo": "string",
+    "dueDate": "string (ISO 8601 datetime)",
+    "completed": "boolean",
+    "contactId": "string"
+  }
+}
+```
+*Example:*
+```json
+{"task":{"id":"lJpzYrWdpkC2hX6t2yue","title":"test","body":"testing","assignedTo":"tesTUcmRxWrjqzJS8EjkxNKting","dueDate":"2021-07-08T02:30:00.000Z","completed":true,"contactId":"lJpzYrWdpkC2hX6t2yue"}}
+```
+
+**Other Responses:**
+*   **400 Bad Request (application/json):**
+    ```json
+    {"statusCode":400,"message":"Bad Request"}
+    ```
+*   **401 Unauthorized (application/json):**
+    ```json
+    {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+    ```
+*   **422 Unprocessable Entity (application/json):**
+    ```json
+    {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+    ```
+
+### 10. PURPOSE:
+This endpoint allows you to update the completion status of a specific task associated with a contact.
+
+### 11. TAGS:
+Contacts, Tasks, Update, Complete Task, HighLevel API, LeadConnector, Task Management
+
+### Availability of Code Examples:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

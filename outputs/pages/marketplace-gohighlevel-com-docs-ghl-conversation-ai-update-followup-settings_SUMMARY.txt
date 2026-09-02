@@ -1,0 +1,92 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Update Followup Settings
+
+### 2. CATEGORY:
+Conversation AI Actions
+
+### 3. HTTP METHOD:
+PATCH
+
+### 4. ENDPOINT URL:
+`/conversation-ai/agents/:agentId/followup-settings`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversation-ai/agents/:agentId/followup-settings`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   Version (string): API Version. Possible values: [`2021-04-15`]
+*   **Path Parameters:**
+    *   agentId (string): The unique identifier for the agent.
+*   **Body Parameters (`application/json`):**
+    *   actionIds (string[]): Array of unique identifiers for the actions to update. Example: `["edxcfghbnjkimd"]`
+    *   followupSettings (object): Additional settings for followup behavior.
+        *   dynamicChannelSwitching (boolean): Whether to dynamically switch channels for followups. Default value: `true`
+
+### 7. OPTIONAL PARAMETERS:
+
+*   **Body Parameters (`application/json`):**
+    *   followupSettings.followUpHours (boolean): Whether to respect working hours for followups. Example: `true`
+    *   followupSettings.workingHours (object[]): Working hours configuration for followups.
+        *   dayOfTheWeek (number): Day of the week (0=Sunday, 1=Monday, etc.). Example: `1`
+        *   intervals (object[]): Time intervals for this day.
+            *   startHour (number): Start hour (24-hour format). Example: `9`
+            *   startMinute (number): Start minute. Example: `0`
+            *   endHour (number): End hour (24-hour format). Example: `17`
+            *   endMinute (number): End minute. Example: `30`
+    *   followupSettings.timezoneToUse (string): Timezone to use for followups, contact or location. Possible values: [`contact`, `business`]
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `conversation-ai.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 Success:**
+    *   **Status Code:** 200
+    *   **Content Type:** `application/json`
+    *   **Schema:**
+        *   `data` (object): Updated action details.
+            *   `id` (string, required): Unique identifier for the action. Example: `actionId123`
+            *   `name` (string, required): Name of the action. Example: `Trigger Workflow`
+            *   `type` (string, required): Type of the action. Possible values: [`triggerWorkflow`, `updateContactField`, `appointmentBooking`, `stopBot`, `humanHandOver`, `advancedFollowup`, `transferBot`]. Example: `triggerWorkflow`
+            *   `agentId` (string): Agent ID where the action belongs. Example: `agentId123`
+            *   `details` (object, required): Action-specific details. The structure depends on the action type (e.g., `triggerWorkflowDto`, `updateContactFieldDto`, etc.).
+            *   `success` (boolean, required): Success status of the request. Example: `true`
+    *   **Example (auto):**
+        ```json
+        {"data":{"id":"actionId123","name":"Trigger Workflow","type":"triggerWorkflow","agentId":"agentId123","details":{"workflowIds":["workflow123","workflow456"],"triggerCondition":"When user requests appointment","triggerMessage":"Workflow triggered successfully"}},"success":true}
+        ```
+*   **400 Bad Request:**
+    *   **Status Code:** 400
+    *   **Content Type:** `application/json`
+    *   **Schema:** `statusCode` (number), `message` (string)
+    *   **Example (auto):** `{"statusCode":400,"message":"Bad Request"}`
+*   **401 Unauthorized:**
+    *   **Status Code:** 401
+    *   **Content Type:** `application/json`
+    *   **Schema:** `statusCode` (number), `message` (string), `error` (string)
+    *   **Example (auto):** `{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}`
+*   **422 Unprocessable Entity:**
+    *   **Status Code:** 422
+    *   **Content Type:** `application/json`
+    *   **Schema:** `statusCode` (number), `message` (string[]), `error` (string)
+    *   **Example (auto):** `{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}`
+
+### 10. PURPOSE:
+This endpoint allows you to update the followup settings for one or more specified actions associated with a Conversation AI agent.
+
+### 11. TAGS:
+Conversation AI, Actions, Followup Settings, Update, PATCH, Agent, AI Agent, Communication, Scheduling, Working Hours, Timezone.
+
+### 12. Code Examples:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

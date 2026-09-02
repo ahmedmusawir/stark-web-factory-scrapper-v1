@@ -1,0 +1,71 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Add Contact to Workflow
+
+### 2. CATEGORY:
+Contacts
+
+### 3. HTTP METHOD:
+POST
+
+### 4. ENDPOINT URL:
+`/contacts/:contactId/workflow/:workflowId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/contacts/:contactId/workflow/:workflowId`
+
+### 6. REQUIRED PARAMETERS:
+
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: [`2021-07-28`]
+
+*   **Path Parameters:**
+    *   `contactId` (string): Contact Id. Example: `sx6wyHhbFdRXh302LLNR`
+    *   `workflowId` (string): Workflow Id. Example: `sx6wyHhbFdRXh302LLNR`
+
+*   **Body Parameters (application/json):**
+    *   `eventStartTime` (string): The start time for the event in the workflow. Example: `2021-06-23T03:30:00+01:00`
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+
+*   **Scope(s):** `contacts.write`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** Bearer (JWT format) in the `Authorization` header.
+
+### 9. RESPONSE FORMAT:
+
+*   **200 OK (Successful response):**
+    ```json
+    {"succeded": true}
+    ```
+    *   Schema:
+        *   `succeded` (boolean): Indicates if the operation was successful. Example: `true`
+
+*   **400 Bad Request:**
+    ```json
+    {"statusCode":400,"message":"Bad Request"}
+    ```
+
+*   **401 Unauthorized:**
+    ```json
+    {"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+    ```
+
+*   **422 Unprocessable Entity:**
+    ```json
+    {"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+    ```
+
+### 10. PURPOSE:
+This endpoint adds a specified contact to a designated workflow within the HighLevel platform, potentially initiating automated processes for that contact.
+
+### 11. TAGS:
+Contacts, Workflow, Add, Create, CRM, Automation, HighLevel, Marketing, API
+
+### Code Examples:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`. A `curl` example is explicitly provided.

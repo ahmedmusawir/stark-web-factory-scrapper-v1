@@ -1,0 +1,234 @@
+[Skip to main content](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html#__docusaurus_skipToContent_fallback)
+[![HighLevel Logo](https://marketplace.gohighlevel.com/docs/img/highlevel.png)](https://marketplace.gohighlevel.com/docs/)[Highlevel API 2.0](https://marketplace.gohighlevel.com/docs/oauth/GettingStarted)
+[Sign In](https://marketplace.gohighlevel.com/login)
+  * [AI Agents Contest - Guide](https://marketplace.gohighlevel.com/docs/other/AIAgentsGettingStarted)
+  * [Getting Started](https://marketplace.gohighlevel.com/docs/oauth/GettingStarted)
+  * [Authorization](https://marketplace.gohighlevel.com/docs/Authorization/authorization_doc)
+  * [SDK Overview](https://marketplace.gohighlevel.com/docs/sdk/GettingStartedSDK)
+  * [External Billing](https://marketplace.gohighlevel.com/docs/oauth/Billing)
+  * [External Authentication](https://marketplace.gohighlevel.com/docs/oauth/ExternalAuthentication)
+  * [User Context in Marketplace Apps](https://marketplace.gohighlevel.com/docs/other/user-context-marketplace-apps)
+  * [MCP Server](https://marketplace.gohighlevel.com/docs/other/mcp)
+  * [Marketplace Modules](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Marketplace Policies](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Changelog](https://marketplace.gohighlevel.com/docs/Changelog)
+  * [Country List](https://marketplace.gohighlevel.com/docs/oauth/country)
+  * [FAQs](https://marketplace.gohighlevel.com/docs/oauth/Faqs)
+  * [OAuth 2.0](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Business](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Calendars](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Campaigns](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Companies](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Contacts](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+    * [Introduction](https://marketplace.gohighlevel.com/docs/ghl/contacts/contacts-api)
+    * [Contacts](https://marketplace.gohighlevel.com/docs/ghl/contacts/contacts)
+    * [Tasks](https://marketplace.gohighlevel.com/docs/ghl/contacts/tasks)
+    * [Appointments](https://marketplace.gohighlevel.com/docs/ghl/contacts/appointments)
+    * [Tags](https://marketplace.gohighlevel.com/docs/ghl/contacts/tags)
+    * [Notes](https://marketplace.gohighlevel.com/docs/ghl/contacts/notes)
+    * [Campaigns](https://marketplace.gohighlevel.com/docs/ghl/contacts/campaigns)
+      * [Add Contact to Campaign](https://marketplace.gohighlevel.com/docs/ghl/contacts/add-contact-to-campaign)
+      * [Remove Contact From Campaign](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign)
+      * [Remove Contact From Every Campaign](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-every-campaign)
+    * [Workflow](https://marketplace.gohighlevel.com/docs/ghl/contacts/workflow)
+    * [Bulk](https://marketplace.gohighlevel.com/docs/ghl/contacts/bulk)
+    * [Search](https://marketplace.gohighlevel.com/docs/ghl/contacts/search)
+    * [Followers](https://marketplace.gohighlevel.com/docs/ghl/contacts/followers)
+  * [Objects](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Associations](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Custom Fields V2](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Conversations](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Courses](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Email](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Forms](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Invoice](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Trigger Links](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Sub-Account (Formerly location)](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Media Storage](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Developer marketplace](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Blogs](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Funnels](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Opportunities](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Payments](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Products](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Saas](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Snapshots](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Social Planner](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Surveys](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Users](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Workflows](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [LC Email](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Custom menus](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Voice AI](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Proposals](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Knowledge Base](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Conversation AI](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Phone System](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Store](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [AI Agent Studio](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html)
+  * [Webhook Integration Guide](https://marketplace.gohighlevel.com/docs/webhook/WebhookIntegrationGuide)
+  * [Webhook Logs Dashboard](https://marketplace.gohighlevel.com/docs/webhook/WebhookLogsDashboard)
+  * [Webhook](https://marketplace.gohighlevel.com/docs/category/webhook)
+
+
+  * [](https://marketplace.gohighlevel.com/docs/)
+  * Contacts
+  * [Campaigns](https://marketplace.gohighlevel.com/docs/ghl/contacts/campaigns)
+  * Remove Contact From Campaign
+
+
+# Remove Contact From Campaign
+```
+DELETE 
+## https://services.leadconnectorhq.com/contacts/:contactId/campaigns/:campaignId
+
+```
+
+Remove Contact From Campaign
+### Requirements
+#### Scope(s)
+`contacts.write`
+#### Auth Method(s)
+`OAuth Access Token``Private Integration Token`
+#### Token Type(s)
+`Sub-Account Token`
+## Request[​](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html#request "Direct link to Request")
+### Header Parameters
+**Version** stringrequired
+**Possible values:** [`2021-07-28`]
+API Version
+
+
+### Path Parameters
+**contactId** stringrequired
+Contact Id
+Example: 3bZD1nQzbul0MCancbQD
+**campaignId** stringrequired
+Campaigns Id
+Example: Y2I9XM7aO1hncuSOlc9L
+
+
+## Responses[​](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-campaign/index.html#responses "Direct link to Responses")
+  * 200
+  * 400
+  * 401
+  * 422
+
+
+Successful response 
+  * application/json
+
+
+  * Schema
+  * Example (auto)
+
+
+**Schema**
+**succeded** boolean
+Example:`true`
+
+
+```
+{"succeded":true}
+```
+
+Bad Request 
+  * application/json
+
+
+  * Schema
+  * Example (auto)
+
+
+**Schema**
+**statusCode** number
+Example:`400`
+**message** string
+Example:`Bad Request`
+
+
+```
+{"statusCode":400,"message":"Bad Request"}
+```
+
+Unauthorized 
+  * application/json
+
+
+  * Schema
+  * Example (auto)
+
+
+**Schema**
+**statusCode** number
+Example:`401`
+**message** string
+Example:`Invalid token: access token is invalid`
+**error** string
+Example:`Unauthorized`
+
+
+```
+{"statusCode":401,"message":"Invalid token: access token is invalid","error":"Unauthorized"}
+```
+
+Unprocessable Entity 
+  * application/json
+
+
+  * Schema
+  * Example (auto)
+
+
+**Schema**
+**statusCode** number
+Example:`422`
+**message** string[]
+Example:`["Unprocessable Entity"]`
+**error** string
+Example:`Unprocessable Entity`
+
+
+```
+{"statusCode":422,"message":["Unprocessable Entity"],"error":"Unprocessable Entity"}
+```
+
+## Share your feedback
+★★★★★
+#### Authorization: Authorization
+```
+**name:** Authorization[](https://marketplace.gohighlevel.com/docs/ghl/contacts/contacts-api#authentication)**type: **http**scopes: **contacts.write**scheme: **bearer**bearerFormat: **JWT**in: **header**description: **Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+```
+
+  * curl
+  * nodejs
+  * python
+  * php
+  * java
+  * go
+  * ruby
+  * powershell
+
+
+  * CURL
+
+
+```
+curl -L -X DELETE 'https://services.leadconnectorhq.com/contacts/:contactId/campaigns/:campaignId' \-H 'Accept: application/json' \-H 'Authorization: Bearer <TOKEN>'
+```
+
+Request Collapse all
+Base URL
+Edit
+https://services.leadconnectorhq.com
+Auth
+Bearer Token
+Parameters
+contactId — pathrequired
+campaignId — pathrequired
+Version — headerrequired
+---2021-07-28
+Send API Request
+ResponseClear
+Click the `Send API Request` button above and see the response here!
+[PreviousAdd Contact to Campaign](https://marketplace.gohighlevel.com/docs/ghl/contacts/add-contact-to-campaign)[NextRemove Contact From Every Campaign](https://marketplace.gohighlevel.com/docs/ghl/contacts/remove-contact-from-every-campaign)

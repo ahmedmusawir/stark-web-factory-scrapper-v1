@@ -1,0 +1,86 @@
+Here is a structured summary of the API documentation for "Get Agent":
+
+### 1. ENDPOINT NAME:
+Get Agent
+
+### 2. CATEGORY:
+Conversation AI Agents
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/conversation-ai/agents/:agentId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversation-ai/agents/:agentId`
+
+### 6. REQUIRED PARAMETERS:
+*   **agentId** (string): Conversations AI agent id
+*   **Version** (string): API Version (Possible values: `2021-04-15`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `conversation-ai.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** bearer (JWT format)
+
+### 9. RESPONSE FORMAT:
+**Status Code:** `200`
+**Content Type:** `application/json`
+
+**Schema:**
+*   **id** (string, required): Unique identifier for the agent.
+*   **name** (string, required): Name of the agent.
+*   **businessName** (string): Name of the business the agent represents.
+*   **mode** (string, required): Current operating mode of the agent. (Possible values: `off`, `suggestive`, `auto-pilot`)
+*   **channels** (string[], required): Communication channels the agent operates on. (Possible values: `IG`, `FB`, `SMS`, `WebChat`, `WhatsApp`, `Live_Chat`)
+*   **waitTime** (number, required): Wait time before agent responds.
+*   **waitTimeUnit** (string, required): Unit for wait time. (Possible values: `minutes`, `seconds`)
+*   **sleepEnabled** (boolean, required): Indicates if sleep functionality is enabled.
+*   **sleepTime** (number): Duration of sleep period.
+*   **sleepTimeUnit** (string): Unit of sleep time. (Possible values: `hours`, `minutes`, `seconds`)
+*   **actions** (object[], required): List of actions associated with this agent.
+    *   **id** (string, required): Unique identifier for the action.
+    *   **type** (string, required): type of action. (Possible values: `triggerWorkflow`, `updateContactField`, `appointmentBooking`, `stopBot`, `humanHandOver`, `advancedFollowup`, `transferBot`)
+*   **isPrimary** (boolean, required): Indicates if this agent is a primary agent.
+*   **autoPilotMaxMessages** (number, required): Maximum number of messages in auto-pilot mode before requiring human intervention.
+*   **goal** (string): The goal of the agent.
+*   **personality** (string): Personality traits of the agent.
+*   **instructions** (string): Instructions for the agent.
+*   **knowledgeBaseIds** (string[]): Array of knowledge base IDs associated with this agent.
+
+**Example (200 OK):**
+```json
+{
+  "id": "emp_123",
+  "name": "John Doe",
+  "businessName": "Tech Corp",
+  "mode": "auto-pilot",
+  "channels": ["SMS", "Live_Chat"],
+  "waitTime": 30,
+  "waitTimeUnit": "seconds",
+  "sleepEnabled": false,
+  "sleepTime": 2,
+  "sleepTimeUnit": "hours",
+  "actions": [{"id": "actionId123", "type": "triggerWorkflow"}],
+  "isPrimary": false,
+  "autoPilotMaxMessages": 25,
+  "goal": "Assist customers with inquiries",
+  "personality": "Friendly and helpful",
+  "instructions": "Provide excellent customer service",
+  "knowledgeBaseIds": ["kb_123", "kb_456"]
+}
+```
+
+### 10. PURPOSE:
+Retrieves a specific AI agent by its ID, returning its complete configuration including name, status, actions, and settings.
+
+### 11. TAGS:
+Conversation AI, Agents, Get Agent, Retrieve Agent, Read Agent, AI, Configuration
+
+### 12. CODE EXAMPLES:
+Code examples are available for: `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, `powershell`.

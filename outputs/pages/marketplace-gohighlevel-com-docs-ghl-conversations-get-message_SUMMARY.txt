@@ -1,0 +1,121 @@
+Here's a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Get message by message id
+
+### 2. CATEGORY:
+Conversations
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/conversations/messages/:id`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/conversations/messages/:id`
+
+### 6. REQUIRED PARAMETERS:
+*   `id` (path parameter, string): The unique identifier of the message to retrieve. (Implicit from URL structure, not explicitly listed in parameters table but essential)
+*   `Version` (header parameter, string): API Version. Possible values: [`2021-04-15`]
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `conversations/message.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+
+### 9. RESPONSE FORMAT:
+**200 OK - application/json**
+Returns a Message object for the given ID.
+
+**Schema:**
+*   `id` (string, required): Example: `ve9EPM428h8vShlRW1KT`
+*   `altId` (string): Alternative identifier for the message. Example: `msg_123456789`
+*   `type` (number, required): Example: `1`
+*   `messageType` (string, required): Type of the message as a string. Possible values: [`TYPE_CALL`, `TYPE_SMS`, `TYPE_EMAIL`, `TYPE_SMS_REVIEW_REQUEST`, `TYPE_WEBCHAT`, `TYPE_SMS_NO_SHOW_REQUEST`, `TYPE_CAMPAIGN_SMS`, `TYPE_CAMPAIGN_CALL`, `TYPE_CAMPAIGN_EMAIL`, `TYPE_CAMPAIGN_VOICEMAIL`, `TYPE_FACEBOOK`, `TYPE_CAMPAIGN_FACEBOOK`, `TYPE_CAMPAIGN_MANUAL_CALL`, `TYPE_CAMPAIGN_MANUAL_SMS`, `TYPE_GMB`, `TYPE_CAMPAIGN_GMB`, `TYPE_REVIEW`, `TYPE_INSTAGRAM`, `TYPE_WHATSAPP`, `TYPE_CUSTOM_SMS`, `TYPE_CUSTOM_EMAIL`, `TYPE_CUSTOM_PROVIDER_SMS`, `TYPE_CUSTOM_PROVIDER_EMAIL`, `TYPE_IVR_CALL`, `TYPE_ACTIVITY_CONTACT`, `TYPE_ACTIVITY_INVOICE`, `TYPE_ACTIVITY_PAYMENT`, `TYPE_ACTIVITY_OPPORTUNITY`, `TYPE_LIVE_CHAT`, `TYPE_LIVE_CHAT_INFO_MESSAGE`, `TYPE_ACTIVITY_APPOINTMENT`, `TYPE_FACEBOOK_COMMENT`, `TYPE_INSTAGRAM_COMMENT`, `TYPE_CUSTOM_CALL`, `TYPE_INTERNAL_COMMENT`, `TYPE_ACTIVITY_EMPLOYEE_ACTION_LOG`]. Example: `SMS`
+*   `locationId` (string, required): Example: `ve9EPM428h8vShlRW1KT`
+*   `contactId` (string, required): Example: `ve9EPM428h8vShlRW1KT`
+*   `conversationId` (string, required): Example: `ve9EPM428h8vShlRW1KT`
+*   `dateAdded` (string, required): Example: `2024-03-27T18:13:49.000Z`
+*   `body` (string): Example: `Hi there`
+*   `direction` (string, required): Possible values: [`inbound`, `outbound`]
+*   `status` (string): Possible values: [`connected`, `delivered`, `failed`, `opened`, `pending`, `read`, `scheduled`, `sent`, `undelivered`, `clicked`, `opt_out`]
+*   `contentType` (string, required): Example: `text/plain`
+*   `attachments` (string[]): An array of attachment URLs. Empty for Call and Voicemails.
+*   `meta` (object):
+    *   `callDuration` (string): Call duration in seconds. Example: `120`
+    *   `callStatus` (string): Call status. Possible values: [`pending`, `completed`, `answered`, `busy`, `no-answer`, `failed`, `canceled`, `voicemail`]. Example: `completed`
+    *   `email` (object): Meta for message type 3 (email), contains `messageIds` (list of email message IDs). Example: `{"email":{"messageIds":["ve9EPM428kjkvShlRW1KT","ve9EPs1028kjkvShlRW1KT"]}}`
+    *   `ig` (object): Meta for message type 18 (instagram), contains `page_id` and `page_name`. Example: `{"ig":{"page_id":"1234567890","page_name":"Instagram Page"}}`
+    *   `fb` (object): Meta for message type 11 (facebook), contains `page_id` and `page_name`. Example: `{"fb":{"page_id":"1234567890","page_name":"Facebook Page"}}`
+*   `source` (string): Message source. Possible values: [`workflow`, `bulk_actions`, `campaign`, `api`, `app`]
+*   `userId` (string): User Id. Example: `ve9EPM428kjkvShlRW1KT`
+*   `conversationProviderId` (string): Conversation Provider Id. Example: `ve9EPM428kjkvShlRW1KT`
+*   `chatWidgetId` (string): Chat Widget Id. Example: `67b0cc8cf14b19d85ace7s35`
+
+**Example 200 Response:**
+```json
+{
+  "id": "ve9EPM428h8vShlRW1KT",
+  "altId": "msg_123456789",
+  "type": 1,
+  "messageType": "SMS",
+  "locationId": "ve9EPM428h8vShlRW1KT",
+  "contactId": "ve9EPM428h8vShlRW1KT",
+  "conversationId": "ve9EPM428h8vShlRW1KT",
+  "dateAdded": "2024-03-27T18:13:49.000Z",
+  "body": "Hi there",
+  "direction": "inbound",
+  "status": "connected",
+  "contentType": "text/plain",
+  "attachments": [
+    "string"
+  ],
+  "meta": {
+    "callDuration": 120,
+    "callStatus": "completed",
+    "email": {
+      "email": {
+        "messageIds": [
+          "ve9EPM428kjkvShlRW1KT",
+          "ve9EPs1028kjkvShlRW1KT"
+        ]
+      }
+    },
+    "ig": {
+      "ig": {
+        "page_id": "1234567890",
+        "page_name": "Instagram Page"
+      }
+    },
+    "fb": {
+      "fb": {
+        "page_id": "1234567890",
+        "page_name": "Facebook Page"
+      }
+    }
+  },
+  "source": "workflow",
+  "userId": "ve9EPM428kjkvShlRW1KT",
+  "conversationProviderId": "ve9EPM428kjkvShlRW1KT",
+  "chatWidgetId": "67b0cc8cf14b19d85ace7s35"
+}
+```
+
+**400 Bad Request - application/json**
+Schema: `statusCode` (number, e.g., 400), `message` (string, e.g., "Bad Request")
+
+**401 Unauthorized - application/json**
+Schema: `statusCode` (number, e.g., 401), `message` (string, e.g., "Invalid token: access token is invalid"), `error` (string, e.g., "Unauthorized")
+
+### 10. PURPOSE:
+This endpoint allows retrieval of a single message's details using its unique message ID.
+
+### 11. TAGS:
+Conversations, Messages, Get, Retrieve, Read, Message ID, Communication
+
+### Code Examples:
+Code examples are available for `curl`, `nodejs`, `python`, `php`, `java`, `go`, `ruby`, and `powershell`.

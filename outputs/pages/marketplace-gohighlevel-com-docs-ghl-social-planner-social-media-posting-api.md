@@ -1,0 +1,104 @@
+[Skip to main content](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html#__docusaurus_skipToContent_fallback)
+[![HighLevel Logo](https://marketplace.gohighlevel.com/docs/img/highlevel.png)](https://marketplace.gohighlevel.com/docs/)[Highlevel API 2.0](https://marketplace.gohighlevel.com/docs/oauth/GettingStarted)
+[Sign In](https://marketplace.gohighlevel.com/login)
+  * [AI Agents Contest - Guide](https://marketplace.gohighlevel.com/docs/other/AIAgentsGettingStarted)
+  * [Getting Started](https://marketplace.gohighlevel.com/docs/oauth/GettingStarted)
+  * [Authorization](https://marketplace.gohighlevel.com/docs/Authorization/authorization_doc)
+  * [SDK Overview](https://marketplace.gohighlevel.com/docs/sdk/GettingStartedSDK)
+  * [External Billing](https://marketplace.gohighlevel.com/docs/oauth/Billing)
+  * [External Authentication](https://marketplace.gohighlevel.com/docs/oauth/ExternalAuthentication)
+  * [User Context in Marketplace Apps](https://marketplace.gohighlevel.com/docs/other/user-context-marketplace-apps)
+  * [MCP Server](https://marketplace.gohighlevel.com/docs/other/mcp)
+  * [Marketplace Modules](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Marketplace Policies](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Changelog](https://marketplace.gohighlevel.com/docs/Changelog)
+  * [Country List](https://marketplace.gohighlevel.com/docs/oauth/country)
+  * [FAQs](https://marketplace.gohighlevel.com/docs/oauth/Faqs)
+  * [OAuth 2.0](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Business](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Calendars](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Campaigns](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Companies](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Contacts](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Objects](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Associations](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Custom Fields V2](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Conversations](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Courses](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Email](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Forms](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Invoice](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Trigger Links](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Sub-Account (Formerly location)](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Media Storage](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Developer marketplace](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Blogs](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Funnels](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Opportunities](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Payments](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Products](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Saas](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Snapshots](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Social Planner](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+    * [Introduction](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api)
+    * [Oauth | Google](https://marketplace.gohighlevel.com/docs/ghl/social-planner/oauth-google)
+    * [Post](https://marketplace.gohighlevel.com/docs/ghl/social-planner/post)
+    * [Account](https://marketplace.gohighlevel.com/docs/ghl/social-planner/account)
+    * [Oauth | Facebook](https://marketplace.gohighlevel.com/docs/ghl/social-planner/oauth-facebook)
+    * [Oauth | Instagram](https://marketplace.gohighlevel.com/docs/ghl/social-planner/oauth-instagram)
+    * [Oauth | LinkedIn](https://marketplace.gohighlevel.com/docs/ghl/social-planner/oauth-linked-in)
+    * [Oauth | Twitter](https://marketplace.gohighlevel.com/docs/ghl/social-planner/oauth-twitter)
+    * [CSV](https://marketplace.gohighlevel.com/docs/ghl/social-planner/csv)
+    * [Oauth | Tiktok](https://marketplace.gohighlevel.com/docs/ghl/social-planner/oauth-tiktok)
+    * [OAuth | Generic](https://marketplace.gohighlevel.com/docs/ghl/social-planner/o-auth-generic)
+    * [Category](https://marketplace.gohighlevel.com/docs/ghl/social-planner/category)
+    * [Tag](https://marketplace.gohighlevel.com/docs/ghl/social-planner/tag)
+    * [Statistics](https://marketplace.gohighlevel.com/docs/ghl/social-planner/statistics)
+    * [Category Queue](https://marketplace.gohighlevel.com/docs/ghl/social-planner/category-queue)
+  * [Surveys](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Users](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Workflows](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [LC Email](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Custom menus](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Voice AI](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Proposals](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Knowledge Base](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Conversation AI](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Phone System](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Store](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [AI Agent Studio](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html)
+  * [Webhook Integration Guide](https://marketplace.gohighlevel.com/docs/webhook/WebhookIntegrationGuide)
+  * [Webhook Logs Dashboard](https://marketplace.gohighlevel.com/docs/webhook/WebhookLogsDashboard)
+  * [Webhook](https://marketplace.gohighlevel.com/docs/category/webhook)
+
+
+  * [](https://marketplace.gohighlevel.com/docs/)
+  * Social Planner
+  * Introduction
+
+
+Version: 1.0
+# Social Media Posting API
+Documentation for Social Media Posting API
+## Authentication[​](https://marketplace.gohighlevel.com/docs/ghl/social-planner/social-media-posting-api/index.html#authentication "Direct link to Authentication")
+  * HTTP: Bearer Auth
+  * HTTP: Bearer Auth
+  * HTTP: Bearer Auth
+
+
+Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+Security Scheme Type:| http  
+---|---  
+HTTP Authorization Scheme:| bearer  
+Bearer format:| JWT  
+Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+Security Scheme Type:| http  
+---|---  
+HTTP Authorization Scheme:| bearer  
+Bearer format:| JWT  
+Use the Access Token generated with user type as Agency (OR) Private Integration Token of Agency.
+Security Scheme Type:| http  
+---|---  
+HTTP Authorization Scheme:| bearer  
+Bearer format:| JWT  
+[PreviousGet Last Snapshot Push](https://marketplace.gohighlevel.com/docs/ghl/snapshots/get-latest-snapshot-push)[NextOauth | Google](https://marketplace.gohighlevel.com/docs/ghl/social-planner/oauth-google)

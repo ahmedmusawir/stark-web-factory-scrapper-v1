@@ -1,0 +1,104 @@
+Here is a structured summary of the provided API documentation:
+
+### 1. ENDPOINT NAME:
+Get all objects for a location
+
+### 2. CATEGORY:
+Objects
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/objects/`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/objects/`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   `Version` (string): API Version. Possible values: `[2021-07-28]`
+*   **Query Parameters:**
+    *   `locationId` (string): location id
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `objects/schema.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`
+*   **Scheme:** `bearer`
+*   **Bearer Format:** `JWT`
+*   **In:** `header`
+*   **Description:** Use the Access Token generated with user type as Sub-Account (OR) Private Integration Token of Sub-Account.
+
+### 9. RESPONSE FORMAT:
+
+*   **Successful Response (200 OK)**
+    *   **Content-Type:** `application/json`
+    *   **Schema:** An object containing an `objects` array. Each item in the `objects` array represents an object schema and has the following properties:
+        *   `id` (string): ID of the custom / standard object schema.
+        *   `standard` (boolean): `false` for custom objects, `true` for standard objects (like contacts and opportunities).
+        *   `key` (string): Internal key used to refer to the custom / standard Object (lowercase + underscore_separated).
+        *   `labels` (object):
+            *   `singular` (string): Singular name of the custom object.
+            *   `plural` (string): Plural name of the custom object.
+        *   `description` (string, optional): Custom / Standard Object Descriptions.
+        *   `locationId` (string): Location's ID.
+        *   `primaryDisplayProperty` (string): Primary property for the custom / standard Object, used for UI rendering.
+        *   `dateAdded` (date-time): Date and time when the object was added.
+        *   `dateUpdated` (date-time): Date and time when the object was last updated.
+        *   `type` (string): Object's Type (e.g., `USER_DEFINED` or `SYSTEM_DEFINED`).
+    *   **Example:**
+        ```json
+        {
+          "objects": [
+            {
+              "id": "661c06b4ffde146bdb469442",
+              "standard": false,
+              "key": "custom_objects.pet",
+              "labels": {
+                "singular": "Pet",
+                "plural": "Pets"
+              },
+              "description": "These are non vaccinated pets",
+              "locationId": "Q9DT3OAqEXDLYuob1G32",
+              "primaryDisplayProperty": "custom_objects.pet.name",
+              "dateAdded": "2024-07-29T15:51:28.071Z",
+              "dateUpdated": "2024-07-29T15:51:28.071Z",
+              "type": "The Object type can either USER_DEFINED or SYSTEM_DEFINED"
+            }
+          ]
+        }
+        ```
+
+*   **Error Responses:**
+    *   **400 Bad Request:**
+        *   `statusCode` (number): `400`
+        *   `message` (string): `Bad Request`
+    *   **401 Unauthorized:**
+        *   `statusCode` (number): `401`
+        *   `message` (string): `Invalid token: access token is invalid`
+        *   `error` (string): `Unauthorized`
+    *   **422 Unprocessable Entity:**
+        *   `statusCode` (number): `422`
+        *   `message` (string[]): `["Unprocessable Entity"]`
+        *   `error` (string): `Unprocessable Entity`
+
+### 10. PURPOSE:
+This endpoint retrieves all standard and custom object schemas (such as contact, opportunity, business, and custom objects) configured for a specific location ID.
+
+### 11. TAGS:
+Objects, Schema, Get, Retrieve, Location, Custom Objects, Standard Objects, API
+
+### 12. CODE EXAMPLES:
+Code examples are available for the following languages/tools:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell

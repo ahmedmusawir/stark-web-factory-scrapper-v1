@@ -1,0 +1,54 @@
+Here is a structured summary of the API documentation:
+
+### 1. ENDPOINT NAME:
+Delete Price by ID for a Product
+
+### 2. CATEGORY:
+Products / Prices
+
+### 3. HTTP METHOD:
+DELETE
+
+### 4. ENDPOINT URL:
+`/products/:productId/price/:priceId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/products/:productId/price/:priceId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters**:
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters**:
+    *   productId (string): ID of the product that needs to be used
+    *   priceId (string): ID of the price that needs to be returned
+*   **Query Parameters**:
+    *   locationId (string): location Id
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s)**: `products/prices.write`
+*   **Auth Method(s)**: `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s)**: `Sub-Account Token`, `Agency Token`
+*   **Scheme**: Bearer (JWT)
+*   **In**: Header (Authorization)
+
+### 9. RESPONSE FORMAT (200 Success):
+*   **Status Code**: `200`
+*   **Content Type**: `application/json`
+*   **Schema**:
+    *   `status` (boolean): returns true if the price is successfully deleted
+*   **Example**:
+    ```json
+    {"status": true}
+    ```
+
+### 10. PURPOSE:
+This API allows deleting a specific price associated with a particular product using its unique identifier, effectively removing a price from the system.
+
+### 11. TAGS:
+Products, Prices, Delete, Remove, Product Price, Inventory, eCommerce, API, HighLevel
+
+### 12. CODE EXAMPLES:
+Code examples are available for: cURL, nodejs, python, php, java, go, ruby, powershell.

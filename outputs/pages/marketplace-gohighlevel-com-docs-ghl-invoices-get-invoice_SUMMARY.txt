@@ -1,0 +1,102 @@
+Here is a structured summary of the "Get invoice" API documentation:
+
+### 1. ENDPOINT NAME:
+Get invoice
+
+### 2. CATEGORY:
+Invoice
+
+### 3. HTTP METHOD:
+GET
+
+### 4. ENDPOINT URL:
+`/invoices/:invoiceId`
+
+### 5. FULL URL:
+`https://services.leadconnectorhq.com/invoices/:invoiceId`
+
+### 6. REQUIRED PARAMETERS:
+*   **Header Parameters:**
+    *   Version (string): API Version (Possible values: `2021-07-28`)
+*   **Path Parameters:**
+    *   invoiceId (string): Invoice Id (Example: `6578278e879ad2646715ba9c`)
+*   **Query Parameters:**
+    *   altId (string): location Id / company Id based on altType (Example: `6578278e879ad2646715ba9c`)
+    *   altType (string): Alt Type (Possible values: `location`) (Example: `location`)
+
+### 7. OPTIONAL PARAMETERS:
+Not specified in documentation
+
+### 8. AUTHENTICATION:
+*   **Scope(s):** `invoices.readonly`
+*   **Auth Method(s):** `OAuth Access Token`, `Private Integration Token`
+*   **Token Type(s):** `Sub-Account Token`, `Agency Token`
+*   **Scheme:** Bearer (JWT)
+
+### 9. RESPONSE FORMAT:
+**Status Code:** 200 OK
+**Content Type:** `application/json`
+
+**Schema:**
+*   `_id` (string, required): Invoice Id
+*   `status` (string, required): Invoice Status (Possible values: `draft`, `sent`, `payment_processing`, `paid`, `void`, `partially_paid`)
+*   `liveMode` (boolean, required): Live Mode
+*   `amountPaid` (number, required): Amount Paid
+*   `altId` (string, required): Location Id or Agency Id
+*   `altType` (string, required): (Possible values: `location`)
+*   `name` (string, required): Name of the invoice
+*   `businessDetails` (object, required): Business Details (contains `name`, `address` (object), `phoneNo`, `website`)
+*   `invoiceNumber` (number, required): Invoice Number
+*   `currency` (string, required): Currency
+*   `contactDetails` (object, required): Contact Details (contains `id`, `phoneNo`, `email`, `customFields` (array), `name`, `address` (object))
+*   `issueDate` (string, required): Issue date in YYYY-MM-DD format
+*   `dueDate` (string, required): Due date in YYYY-MM-DD format
+*   `discount` (object, optional): Discount (contains `type`, `value`)
+*   `invoiceItems` (array of strings, required): Invoice Items (array of objects, each containing `taxes` (array), `_id`, `productId`, `priceId`, `currency`, `name`, `qty`, `amount`)
+*   `total` (number, required): Total Amount
+*   `title` (string, required): Title
+*   `amountDue` (number, required): Total Amount Due
+*   `createdAt` (string, required): Created at (ISO 8601 format)
+*   `updatedAt` (string, required): Updated at (ISO 8601 format)
+*   `automaticTaxesEnabled` (boolean, optional): Automatic taxes enabled for the Invoice
+*   `automaticTaxesCalculated` (boolean, optional): Is Automatic taxes calculated for the Invoice items
+*   `paymentSchedule` (object, optional): split invoice into payment schedule summing up to full invoice amount
+*   `totalSummary` (object, required):
+    *   `subTotal` (number, required)
+    *   `discount` (number, required)
+    *   `tax` (number, required)
+*   `remindersConfiguration` (object, optional): Reminders Configuration (contains `reminderExecutionDetailsList` (object), `reminderSettings` (object))
+    *   `reminderSettings` (object, required): Reminder settings
+        *   `defaultEmailTemplateId` (string, required): default template Id of reminder
+        *   `reminders` (array of objects, required): List of reminders
+            *   `enabled` (boolean, required): Flag indicating if the reminder is enabled or not
+            *   `emailTemplate` (string, required): Email template to be used for sending reminders
+            *   `smsTemplate` (string, required): SMS template to be used for sending reminders
+            *   `emailSubject` (string, required): Subject of the reminder
+            *   `reminderId` (string, required): Unique identifier for the reminder
+            *   `reminderName` (string, required): Name of the reminder
+            *   `reminderTime` (string, required): Time condition for the reminder (Possible values: `before`, `after`)
+            *   `intervalType` (string, required): Interval type for the reminder (Possible values: `yearly`, `monthly`, `weekly`, `daily`, `hourly`, `minutely`, `secondly`)
+            *   `maxReminders` (number, required): Maximum number of reminders that can be sent
+            *   `reminderInvoiceCondition` (string, required): Condition for sending the reminder (Possible values: `invoice_sent`, `invoice_overdue`)
+            *   `reminderNumber` (number, required): frequency gap of the reminder to execute
+            *   `startTime` (string, optional): Business Hour Start Time
+            *   `endTime` (string, optional): Business Hour End Time
+            *   `timezone` (string, optional): Timezone at which reminder will be sent
+
+### 10. PURPOSE:
+This API endpoint retrieves details of a specific invoice using its ID.
+
+### 11. TAGS:
+Invoice, Get, Retrieve, Read, Details, Payments, GHL, CRM
+
+### 12. CODE EXAMPLES:
+Code examples are available for:
+*   cURL
+*   nodejs
+*   python
+*   php
+*   java
+*   go
+*   ruby
+*   powershell
