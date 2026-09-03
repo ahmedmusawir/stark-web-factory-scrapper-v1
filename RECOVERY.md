@@ -1,5 +1,5 @@
 # Recovery State
 
-Last action: PHASE C1 (Cleanup + Functional Baseline) — CP4 delivered 2026-09-02 15:50 on branch `phase-c1-cleanup`. CP1–CP3 committed by Tony; CP4 (README.md, RUN_NOTES.md, session state) awaiting Tony's commit + merge review.
-Pending: Tony's CP4 commit and merge decision. Nothing awaiting Claudy.
-Next step: after merge, next phase starts from `RUN_NOTES.md` (baseline commands) + session file. Later-phase findings recorded in `agent_docs/RESPONSES/response_2026-09-02_144500_cp3-code-tests-live.md` §Findings (fit_markdown needs a content filter; discovery/crawler filename handoff; stale runtime banner in crawler.py; CHANGELOG.md/KIP_REGISTRY.md still absent).
+Last action: PHASE C1 (Cleanup + Functional Baseline) COMPLETE and MERGED to `main` at d80b1ff (2026-09-02). Repo is a clean discover → crawl engine: pyenv 3.12.3 + venv + pinned requirements, 6 pytest smoke tests green, baseline proven against cyberizegroup.com (194 URLs discovered, 5/5 pages crawled).
+Pending: NONE. Awaiting Tony's Phase C2 brief.
+Next step: read `agent_docs/SESSIONS/session_2026-09-03.md` (handoff) → `RUN_NOTES.md` (exact working commands) → CP3 findings in `agent_docs/RESPONSES/response_2026-09-02_144500_cp3-code-tests-live.md`. Then Plan Mode for whatever C2 is. Standing rulings from C1: git is Operator-only (Claudy runs zero git commands, reports checkpoints); identity-grep exempts agent_docs/ + CLAUDE.md; no Poetry.
