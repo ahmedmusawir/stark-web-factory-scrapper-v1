@@ -139,3 +139,25 @@ def test_import_from_foreign_cwd_creates_no_directory(tmp_path):
     code = f"import sys; sys.path.insert(0, {str(REPO_ROOT)!r}); import smart_crawler.crawler"
     subprocess.run([sys.executable, "-c", code], cwd=tmp_path, check=True)
     assert list(tmp_path.iterdir()) == []
+
+
+def test_empty_input_writes_truthful_summary_without_crawling(sandbox, tmp_path, monkeypatch, capsys):
+    """AC-21: a valid `[]` input is a run — zero crawls, summary written, stale records gone."""
+    empty = tmp_path / "empty.json"
+    empty.write_text("[]")
+    crawler.SUMMARY_PATH.write_text(json.dumps({"pages": [{"url": "https://example.com/stale"}]}))
+
+    async def no_crawl(urls):
+        pytest.fail("run() must not be called for empty input")
+
+    monkeypatch.setattr(crawler, "run", no_crawl)
+    monkeypatch.setattr(sys, "argv", ["crawler", "--input", str(empty)])
+    crawler.main()  # the real application path
+
+    summary = json.loads(crawler.SUMMARY_PATH.read_text())
+    assert set(summary) == {"started_at", "finished_at", "crawl4ai_version", "pause_range_s", "pages"}
+    assert summary["pages"] == []
+    assert summary["crawl4ai_version"] and summary["pause_range_s"] == [2, 5]
+    assert summary["started_at"] and summary["finished_at"]
+    assert "No URLs found" in capsys.readouterr().out
+    assert list(crawler.PAGE_DIR.iterdir()) == []

@@ -241,7 +241,10 @@ def main() -> None:
     urls = list(load_urls(args.input, args.limit))
 
     if not urls:
-        print("⚠️  No URLs found in file")
+        # Still a run: write a truthful summary (pages=[]) so no stale prior-run file survives.
+        print("⚠️  No URLs found in file — nothing to crawl")
+        now = utc_now()
+        print(f"🧾 Summary: {write_summary([], now, now)}")
         return
 
     PAGE_DIR.mkdir(parents=True, exist_ok=True)
