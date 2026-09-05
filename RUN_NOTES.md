@@ -73,7 +73,7 @@ CP4 (this file, README rewrite, session state) is committed by the Operator afte
 
 ## bim000 — Stage prep + controlled upgrade (2026-09-05)
 
-Branch `web-factory-p1-bim000`. Module docs: `agent_docs/ACTION/web-factory-p1-bim000/`. Reports: `agent_docs/RESPONSES/response_2026-09-05_123610_bim000-stage1-upgrade.md` (Stage 1), `response_<ts>_bim000-stage2-prep.md` (Stage 2).
+Branch `web-factory-p1-bim000`. Module docs: `agent_docs/ACTION/web-factory-p1-bim000/`. Reports: `agent_docs/RESPONSES/response_2026-09-05_123610_bim000-stage1-upgrade.md` (Stage 1), `response_<ts>_bim000-stage2-complete.md` (Stage 2).
 
 ### Stage 1 — crawl4ai 0.6.3 → 0.9.3 (committed 600d181)
 
