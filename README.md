@@ -1,6 +1,6 @@
 # Stark Web Recon — scraper v1
 
-Discovery-and-crawl engine for Stark Industries web recon. Point it at a site, it enumerates the site's pages (sitemap or homepage links), then crawls each page with [crawl4ai](https://github.com/unclecode/crawl4ai) and writes one markdown file per page to `outputs/pages/`. That markdown is the raw material for later analysis phases. Nothing else lives here yet — this is the Phase C1 functional baseline.
+Discovery-and-crawl engine for Stark Industries web recon. Point it at a site, it enumerates the site's pages (sitemap or homepage links), then crawls each page with [crawl4ai](https://github.com/unclecode/crawl4ai) and writes one markdown file per page to `outputs/pages/`. That markdown is the raw material for later analysis phases. Nothing else lives here yet — Phase C1 baseline plus the bim000 stage prep (see `CHANGELOG.md`).
 
 ## Setup
 
@@ -22,27 +22,29 @@ venv/bin/pip install -r requirements-lock.txt
 
 ## Run
 
-All commands run from the repo root using the module form (`python -m ...`). Running the scripts by file path does not work.
+Two commands, from the repo root, module form (`python -m ...`; running the files by path does not work). No manual step between them.
 
-**1. Discover pages** — writes `outputs/discovered_pages.json`. Interactive menu: `1` = sitemap.xml, `2` = homepage `<a>` links.
+**1. Discover pages** — writes `outputs/discovered_pages.json` (anchored to the repo root whatever your CWD). Interactive menu: `1` = sitemap.xml, `2` = homepage `<a>` links.
 
 ```bash
 venv/bin/python -m discover_site.discover https://example.com/
 ```
 
-**2. Select what to crawl** — the crawler reads `outputs/discovered_pages_final.json`. Copy or subset the discovery output into that file, e.g. the first 5 URLs:
+**2. Crawl** — reads `outputs/discovered_pages.json` and writes one `.md` per URL into `outputs/pages/`, plus `outputs/run_summary.json`. No prompt.
 
 ```bash
-venv/bin/python -c "import json;d=json.load(open('outputs/discovered_pages.json'))[:5];json.dump(d,open('outputs/discovered_pages_final.json','w'),indent=2)"
+venv/bin/python -m smart_crawler.crawler                 # all discovered URLs
+venv/bin/python -m smart_crawler.crawler --limit 10      # first 10 only
+venv/bin/python -m smart_crawler.crawler --input other.json --limit 3
 ```
 
-**3. Crawl** — one `.md` per URL into `outputs/pages/`. Asks for a `y` confirmation before starting.
+Behaviour:
 
-```bash
-venv/bin/python -m smart_crawler.crawler
-```
-
-`discover_site/smart_discover.py` is an alternative discoverer for JavaScript sidebar-navigation doc sites (expands nested menus with Playwright); it is not used in the baseline run.
+- One page at a time, with a random 2–5 s pause between pages (each pause is printed).
+- One status line per page. A page with `status_code >= 400`, or that crawl4ai reports as `success=False`, is **failed** and no `.md` is written for it. 403 and 429 are recorded as `blocked`; three consecutive blocked pages stop the run (exit code 2).
+- `outputs/run_summary.json`: `{started_at, finished_at, crawl4ai_version, pause_range_s, pages: [{url, status, ok, elapsed_s, error}]}` — written on every run, including an early stop.
+- Identity: one complete Chrome-shaped user agent (defined once in `discover_site/sitemap_utils.py`) is sent by the crawler's browser and by every discovery request via a shared `requests.Session`. No stealth, no navigator patching.
+- Content: crawl4ai's `raw_markdown` (full page including nav) — `fit_markdown` needs a content filter that is not configured yet.
 
 ## Tests
 
@@ -50,15 +52,16 @@ venv/bin/python -m smart_crawler.crawler
 venv/bin/pytest
 ```
 
-Pure-logic smoke tests only (URL filtering, sitemap parsing with stubbed HTTP). No network, no env vars.
+Offline only — no network, no browser, no env vars. URL filtering, sitemap parsing with the HTTP session stubbed, and crawler behaviour (status handling, blocked-stop, pacing, `--limit`/`--input`, import side effects) with crawl4ai results stubbed.
 
 ## Layout
 
 ```
-discover_site/   discover.py (sitemap / homepage-link discovery), smart_discover.py, sitemap_utils.py
+discover_site/   discover.py (sitemap / homepage-link discovery), sitemap_utils.py (sitemap parsing, shared UA + Session)
 smart_crawler/   crawler.py (crawl4ai batch crawler)
-tests/           pytest smoke tests
-outputs/         run artifacts (gitignored except .gitkeep)
+tests/           pytest (offline): test_discover.py, test_sitemap_utils.py, test_crawler.py
+outputs/         run artifacts: discovered_pages.json, run_summary.json, pages/*.md (gitignored except .gitkeep)
 agent_docs/      Claude Code session protocol files
-RUN_NOTES.md     exact commands + verification record for the C1 baseline
+RUN_NOTES.md     exact commands + verification record (C1 baseline, bim000)
+CHANGELOG.md     doc/playbook change log
 ```

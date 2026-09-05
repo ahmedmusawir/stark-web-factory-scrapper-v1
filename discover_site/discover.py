@@ -1,4 +1,3 @@
-import sys
 import json
 import argparse
 from pathlib import Path
@@ -7,7 +6,7 @@ from urllib.parse import urlparse, urljoin
 import requests
 from bs4 import BeautifulSoup
 
-from discover_site.sitemap_utils import fetch_sitemap_urls
+from discover_site.sitemap_utils import SESSION, fetch_sitemap_urls
 
 # Anchor to the repo root so the script works from any CWD (run as: python -m discover_site.discover <url>)
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -29,7 +28,7 @@ def extract_internal_links(base_url):
     print(f"[INFO] Crawling homepage: {base_url}")
 
     try:
-        res = requests.get(base_url, timeout=10)
+        res = SESSION.get(base_url, timeout=10)
         res.raise_for_status()
     except requests.RequestException as e:
         print(f"[ERROR] Failed to fetch {base_url}: {e}")

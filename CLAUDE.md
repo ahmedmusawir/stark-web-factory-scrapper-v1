@@ -302,7 +302,8 @@ project root/
     ├── SESSIONS/
     │   └── session_YYYY-MM-DD.md
     └── RESPONSES/
-        └── response_YYYY-MM-DD_HHMMSS_slug.md
+        ├── response_YYYY-MM-DD_HHMMSS_slug.md
+        └── OLD/                 ← archived responses, Director-managed
 ```
 
 | Artifact          | Path                                             | Written when                      |
@@ -310,6 +311,7 @@ project root/
 | Recovery state    | `RECOVERY.md` (root)                             | After every plan completion       |
 | Session log       | `agent_docs/SESSIONS/session_YYYY-MM-DD.md`      | Session start + every transition  |
 | Response artifact | `agent_docs/RESPONSES/response_<ts>_<slug>.md`   | Before printing any artifact      |
+| Archived responses | `agent_docs/RESPONSES/OLD/`                      | Director moves closed-module responses here |
 | KIP registry      | `agent_docs/KIP_REGISTRY.md`                     | When a trap is found or retired   |
 
 **Why RECOVERY.md stays at root:** it is the file Tony opens first after a crash. Burying
