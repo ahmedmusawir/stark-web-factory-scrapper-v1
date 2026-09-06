@@ -177,7 +177,7 @@ def test_empty_input_writes_truthful_summary_without_crawling(sandbox, tmp_path,
 
 def _one_url_input(tmp_path):
     f = tmp_path / "in" / "one.json"
-    f.parent.mkdir()
+    f.parent.mkdir(exist_ok=True)
     f.write_text(json.dumps([{"url": "https://example.com/a"}]))
     return f
 
@@ -652,3 +652,69 @@ def test_ac51_stage_log_contents(sandbox, monkeypatch):
         assert len(matching) == 1 and p["outcome"] in matching[0]
     assert sum("stop rule" in line for line in log) == 1
     assert "run end" in log[-1]
+
+
+# ---------------------------------------------------------------------------
+# bim001 — chunk 5: hardening (AC-10 end-to-end, AC-12, AC-60, AC-61/62 source checks, AC-63 complete)
+# ---------------------------------------------------------------------------
+import ast
+
+SOURCE_PATH = REPO_ROOT / "smart_crawler" / "crawler.py"
+
+
+def test_ac10_run_folder_layout_end_to_end(sandbox, monkeypatch):
+    results = [_result(200, html="<p>a</p>"), _result(403, success=False, raw=""), _result(200, html="<p>c</p>")]
+    code, run_dir = _main(sandbox, monkeypatch, results, _urls(3), project="CyberizeGroup")
+    assert code == 0
+    assert run_dir.parent == sandbox.dir / "CyberizeGroup" / "runs"
+    assert sorted(p.name for p in run_dir.iterdir()) == ["absences.json", "html", "manifest.json", "stage_log.txt"]
+    assert sorted(p.name for p in (run_dir / "html").iterdir()) == ["example-com-p0.html", "example-com-p2.html"]
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}Z", run_dir.name)
+
+
+def test_ac12_no_mkdir_at_module_level():
+    tree = ast.parse(SOURCE_PATH.read_text())
+    top_level_calls = [node for node in tree.body if isinstance(node, ast.Expr) and isinstance(node.value, ast.Call)]
+    assert top_level_calls == []  # nothing is *called* at import time, mkdir or otherwise
+    for line in SOURCE_PATH.read_text().splitlines():
+        if "mkdir" in line:
+            assert line.startswith((" ", "\t")), line  # every mkdir is indented, i.e. inside a function body
+
+
+def test_ac60_run_summary_contract_unchanged_via_main(sandbox, monkeypatch):
+    results = [_result(200, html="<p>a</p>"), _result(500, success=False, raw="")]
+    code, _ = _main(sandbox, monkeypatch, results, _urls(2))
+    summary = json.loads(crawler.SUMMARY_PATH.read_text())
+    assert sorted(summary) == ["crawl4ai_version", "finished_at", "pages", "pause_range_s", "started_at"]
+    for page in summary["pages"]:
+        assert sorted(page) == ["elapsed_s", "error", "ok", "status", "url"]
+    assert crawler.SUMMARY_PATH.name == "run_summary.json" and crawler.SUMMARY_PATH.parent == sandbox.dir
+
+
+def test_ac61_62_bim000_code_and_config_literals_unchanged():
+    src = SOURCE_PATH.read_text()
+    for literal in ("wait_for_images=True", "delay_before_return_html=3.0", "page_timeout=90000", "CacheMode.BYPASS"):
+        assert src.count(literal) == 1, literal
+    assert "PAUSE_RANGE_S = (2, 5)" in src and "random.uniform(*PAUSE_RANGE_S)" in src
+    assert src.count("def slugify") == 1 and src.count("def save_markdown") == 1
+    body = src[src.index("def save_markdown"):src.index("def write_summary")]
+    assert 'out_path = PAGE_DIR / f"{name}.md"' in body and "write_text(markdown" in body
+
+
+def test_ac63_exit_codes_complete(sandbox, monkeypatch, tmp_path):
+    # normal -> 0
+    code, _ = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")], _urls(1))
+    assert code == 0
+    # 3 consecutive blocked -> 2
+    code, _ = _main(sandbox, monkeypatch, [_result(429, success=False, raw="")] * 3, _urls(3))
+    assert code == 2
+    # input file missing (valid project) -> 1
+    assert _run_main(monkeypatch, ["--project", "Proj", "--input", str(tmp_path / "missing.json")]) == 1
+    # --limit 0 -> argparse 2
+    with pytest.raises(SystemExit) as exc:
+        crawler.parse_args(["--project", "Proj", "--limit", "0"])
+    assert exc.value.code == 2
+    # missing / invalid project -> 2
+    src = _one_url_input(tmp_path)
+    assert _run_main(monkeypatch, ["--input", str(src)]) == 2
+    assert _run_main(monkeypatch, ["--project", "bad name", "--input", str(src)]) == 2
