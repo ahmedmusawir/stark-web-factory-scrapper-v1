@@ -2,9 +2,11 @@
 """
 Batch crawler — one markdown file per discovered URL, via crawl4ai.
 
-Run (from repo root): python -m smart_crawler.crawler [--input PATH] [--limit N]
+Run (from repo root): python -m smart_crawler.crawler --project NAME [--input PATH] [--limit N]
 Reads outputs/discovered_pages.json (override with --input PATH, cap with --limit N),
-writes outputs/pages/<slug>.md and outputs/run_summary.json.
+writes outputs/pages/<slug>.md and outputs/run_summary.json (bim000 contract, unchanged), and
+the bim001 run folder outputs/<project>/runs/<run_id>/{html/, manifest.json, absences.json, stage_log.txt}.
+`--project NAME` is required (validated at runtime, no default).
 
 Pages are fetched one at a time with a random 2-5 s pause between them. A page is
 failed when status_code >= 400 or the library reports success=False; failed pages
@@ -112,20 +114,23 @@ async def crawl_page(crawler: "AsyncWebCrawler", url: str) -> dict:
 
     started = asyncio.get_event_loop().time()
     record = {"url": url, "status": None, "ok": False, "elapsed_s": 0.0, "error": None}
-    markdown = ""
+    # Transport-only keys (popped by crawl_all before the record reaches run_summary.json):
+    #   markdown - bim000 content; html - bim001 raw HTML (None when the result has none);
+    #   fetched  - True once the status/success gate is passed, i.e. the server answered usefully.
+    not_fetched = {"markdown": "", "html": None, "fetched": False}
 
     try:
         result = await crawler.arun(url=url, config=run_config)
     except Exception as e:
         record["error"] = f"exception: {e}"
         record["elapsed_s"] = round(asyncio.get_event_loop().time() - started, 1)
-        return {**record, "markdown": ""}
+        return {**record, **not_fetched}
 
     record["elapsed_s"] = round(asyncio.get_event_loop().time() - started, 1)
 
     if not result:
         record["error"] = "no result object"
-        return {**record, "markdown": ""}
+        return {**record, **not_fetched}
 
     status = getattr(result, "status_code", None)
     success = bool(getattr(result, "success", False))
@@ -133,17 +138,22 @@ async def crawl_page(crawler: "AsyncWebCrawler", url: str) -> dict:
 
     if status in BLOCKED_STATUSES:
         record["error"] = "blocked"
-        return {**record, "markdown": ""}
+        return {**record, **not_fetched}
 
     if (status is not None and status >= 400) or not success:
         # crawl4ai 0.9.x sets error_message (e.g. "Blocked by anti-bot protection: ...")
         record["error"] = getattr(result, "error_message", None) or f"HTTP {status}"
-        return {**record, "markdown": ""}
+        return {**record, **not_fetched}
+
+    # Fetched. Raw HTML is captured independently of markdown (AC-27); guarded because stubs
+    # and future library versions may lack the attribute (AC-26 -> "unsupported").
+    html = getattr(result, "html", None) or None
+    fetched = {"html": html, "fetched": True}
 
     md = getattr(result, "markdown", None)
     if md is None:
         record["error"] = "no markdown in result"
-        return {**record, "markdown": ""}
+        return {**record, "markdown": "", **fetched}
 
     # Prefer fit_markdown when present; fall back to raw_markdown (no content filter configured yet)
     fit_md = getattr(md, "fit_markdown", "") or ""
@@ -151,10 +161,10 @@ async def crawl_page(crawler: "AsyncWebCrawler", url: str) -> dict:
     markdown = (fit_md or raw_md).strip()
     if not markdown:
         record["error"] = "empty markdown"
-        return {**record, "markdown": ""}
+        return {**record, "markdown": "", **fetched}
 
     record["ok"] = True
-    return {**record, "markdown": markdown}
+    return {**record, "markdown": markdown, **fetched}
 
 
 def save_markdown(url: str, markdown: str) -> Path | None:
@@ -347,11 +357,46 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     return args
 
 
-async def crawl_all(urls: Sequence[str], crawler: "AsyncWebCrawler") -> tuple[list[dict], bool]:
+def record_capture(run: RunFolder, page: dict, url: str, html: str | None, fetched: bool,
+                   md_saved: bool) -> dict:
+    """bim001: decide the page's outcome, save its HTML if captured, and record it in the run folder.
+
+    blocked (403/429) > failed (fetch failed) > unsupported (fetched, no html) > captured / write failure.
+    md_file names the markdown file bim000 actually wrote (I-2 ruling), or None.
+    """
+    base = slugify(url.replace("https://", "").replace("http://", ""))
+    md_file = f"pages/{base}.md" if md_saved else None
+    html_file = html_bytes = None
+    slug = base
+
+    if page["error"] == "blocked":
+        outcome, reason = "blocked", "blocked"
+    elif not fetched:
+        outcome, reason = "failed", page["error"] or "fetch failed"
+    elif not html:
+        outcome, reason = "unsupported", "no html in result"
+    else:
+        slug = run.allocate_slug(base)
+        try:
+            html_file, html_bytes = run.save_html(slug, html)
+            outcome, reason = "captured", None
+        except Exception as e:  # AC-28: a write failure is a failure, not a crash
+            outcome, reason = "failed", f"write failed: {e}"
+
+    entry = run.record_page(page, slug=slug, outcome=outcome, reason=reason,
+                            html_file=html_file, html_bytes=html_bytes, md_file=md_file)
+    run.log(f"{outcome} {url}" + (f" ({reason})" if reason and outcome != "blocked" else ""))
+    return entry
+
+
+async def crawl_all(urls: Sequence[str], crawler: "AsyncWebCrawler",
+                    run: RunFolder | None = None) -> tuple[list[dict], bool]:
     """Crawl URLs sequentially with an already-open crawler.
 
     Returns (page records, stopped_early). Stops after MAX_CONSECUTIVE_BLOCKED
     consecutive 403/429 pages. Prints one status line per page.
+    bim001: when `run` is given, each page's raw HTML is captured into the run folder
+    and recorded in its manifest; without it, behavior is exactly bim000.
     """
     pages: list[dict] = []
     consecutive_blocked = 0
@@ -364,6 +409,9 @@ async def crawl_all(urls: Sequence[str], crawler: "AsyncWebCrawler") -> tuple[li
             await asyncio.sleep(pause)
         page = await crawl_page(crawler, url)
         markdown = page.pop("markdown")
+        html = page.pop("html")
+        fetched = page.pop("fetched")
+        saved = None
 
         if page["ok"]:
             consecutive_blocked = 0
@@ -381,20 +429,24 @@ async def crawl_all(urls: Sequence[str], crawler: "AsyncWebCrawler") -> tuple[li
             else:
                 consecutive_blocked = 0
 
+        if run is not None:
+            record_capture(run, page, url, html, fetched, md_saved=saved is not None)
         pages.append(page)
 
         if consecutive_blocked >= MAX_CONSECUTIVE_BLOCKED:
             print(f"\n⛔ {MAX_CONSECUTIVE_BLOCKED} consecutive blocked pages (403/429) — stopping run. "
                   f"{total - i} URL(s) not attempted.")
+            if run is not None:
+                run.log(f"stop rule: {MAX_CONSECUTIVE_BLOCKED} consecutive blocked pages, {total - i} URL(s) not attempted")
             return pages, True
 
     return pages, False
 
 
-async def run(urls: Sequence[str]) -> tuple[list[dict], bool]:
+async def run(urls: Sequence[str], run_folder: RunFolder | None = None) -> tuple[list[dict], bool]:
     browser_config = BrowserConfig(headless=True, user_agent=USER_AGENT)
     async with AsyncWebCrawler(config=browser_config) as crawler:
-        return await crawl_all(urls, crawler)
+        return await crawl_all(urls, crawler, run_folder)
 
 
 def main() -> None:
@@ -406,13 +458,33 @@ def main() -> None:
         print_project_usage(problem, args.project)
         sys.exit(2)
 
-    urls = list(load_urls(args.input, args.limit))
+    all_urls = read_urls(args.input)                       # input_total counts everything (AC-33)
+    urls = all_urls[:args.limit] if args.limit is not None else all_urls
+    command = "python -m smart_crawler.crawler " + " ".join(sys.argv[1:])   # canonical form (I-4)
+
+    # bim001: the run folder exists on every path that gets past validation (AC-13, AC-37).
+    run_folder = RunFolder(args.project, utc_now()).create()
+    started_at = run_folder.started_at                     # create() may have moved to the next second (I-3)
+    run_folder.log(f"run start project={args.project} run_id={run_folder.run_id} input_total={len(all_urls)} limit={args.limit}")
+
+    def close_run(pages: list[dict], finished_at: str, stopped_early: bool) -> tuple[Path, Path]:
+        summary_path = write_summary(pages, started_at, finished_at)
+        manifest_path = run_folder.write_manifest(
+            command=command, input_path=args.input.resolve(), input_total=len(all_urls),
+            limit=args.limit, input_hosts=input_hosts(all_urls),
+            finished_at=finished_at, stopped_early=stopped_early)
+        absences = build_absences(run_folder.pages, urls, all_urls)
+        run_folder.write_absences(absences)
+        captured = sum(1 for p in run_folder.pages if p["outcome"] == "captured")
+        run_folder.log(f"run end captured={captured} absent={len(absences)} stopped_early={stopped_early}")
+        return summary_path, manifest_path
 
     if not urls:
         # Still a run: write a truthful summary (pages=[]) so no stale prior-run file survives.
         print("⚠️  No URLs found in file — nothing to crawl")
-        now = utc_now()
-        print(f"🧾 Summary: {write_summary([], now, now)}")
+        summary_path, manifest_path = close_run([], utc_now(), False)
+        print(f"🧾 Summary: {summary_path}")
+        print(f"📁 Run folder: {run_folder.dir}")
         return
 
     PAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -422,9 +494,11 @@ def main() -> None:
     print("\n" + "=" * 80)
     print(f"Batch crawler — crawl4ai {version}")
     print("=" * 80)
-    print(f"\nReady to crawl {len(urls)} URL(s)")
+    print(f"\nProject: {args.project}   run_id: {run_folder.run_id}")
+    print(f"Ready to crawl {len(urls)} of {len(all_urls)} URL(s)")
     print(f"From: {args.input}")
-    print(f"To:   {PAGE_DIR}")
+    print(f"To:   {PAGE_DIR}  (markdown)")
+    print(f"      {run_folder.dir}  (html/, manifest.json, absences.json, stage_log.txt)")
     print(f"Pause between pages: {PAUSE_RANGE_S[0]}-{PAUSE_RANGE_S[1]} s (random)")
     print(f"Estimated time: ~{est_min:.1f} min")
 
@@ -435,22 +509,24 @@ def main() -> None:
         print(f"  ... and {len(urls) - 5} more")
     print()
 
-    started_at = utc_now()
-    pages, stopped_early = asyncio.run(run(urls))
-    finished_at = utc_now()
-    summary_path = write_summary(pages, started_at, finished_at)
+    pages, stopped_early = asyncio.run(run(urls, run_folder))
+    summary_path, manifest_path = close_run(pages, utc_now(), stopped_early)
 
     successful = sum(1 for p in pages if p["ok"])
     failed = len(pages) - successful
     blocked = sum(1 for p in pages if p["error"] == "blocked")
+    captured = sum(1 for p in run_folder.pages if p["outcome"] == "captured")
 
     print("\n" + "="*80)
     print("✅ CRAWL COMPLETE" if not stopped_early else "⛔ CRAWL STOPPED EARLY")
     print("="*80)
     print(f"✅ Successful: {successful}")
     print(f"❌ Failed: {failed}  (blocked: {blocked})")
-    print(f"📁 Files saved to: {PAGE_DIR}")
+    print(f"🧾 HTML captured: {captured} of {len(pages)} attempted; {len(all_urls) - len(pages)} not attempted")
+    print(f"📁 Markdown: {PAGE_DIR}")
+    print(f"📁 Run folder: {run_folder.dir}")
     print(f"🧾 Summary: {summary_path}")
+    print(f"🧾 Manifest: {manifest_path}")
 
     if successful > 0:
         saved = [PAGE_DIR / f"{slugify(p['url'].replace('https://','').replace('http://',''))}.md" for p in pages if p["ok"]]

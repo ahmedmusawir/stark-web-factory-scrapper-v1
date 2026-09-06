@@ -14,14 +14,18 @@ from discover_site import sitemap_utils
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
-def _result(status, success=True, raw="body " * 200, error=None):
-    """Shape of what crawl4ai 0.9.x arun() hands back, reduced to the fields the crawler reads."""
-    return types.SimpleNamespace(
+def _result(status, success=True, raw="body " * 200, error=None, html=None):
+    """Shape of what crawl4ai 0.9.x arun() hands back, reduced to the fields the crawler reads.
+    bim001 AC-71(c): `html` is optional; the attribute is set only when provided (absent by default)."""
+    result = types.SimpleNamespace(
         status_code=status,
         success=success,
         error_message=error,
         markdown=types.SimpleNamespace(fit_markdown="", raw_markdown=raw),
     )
+    if html is not None:
+        result.html = html
+    return result
 
 
 class FakeCrawler:
@@ -31,7 +35,10 @@ class FakeCrawler:
 
     async def arun(self, url, config=None):
         self.calls.append(url)
-        return self._results.pop(0)
+        result = self._results.pop(0)
+        if isinstance(result, Exception):  # bim001 tests: simulate arun raising
+            raise result
+        return result
 
 
 @pytest.fixture
@@ -39,6 +46,7 @@ def sandbox(tmp_path, monkeypatch):
     """Redirect outputs to tmp and make pacing instant."""
     monkeypatch.setattr(crawler, "PAGE_DIR", tmp_path / "pages")
     monkeypatch.setattr(crawler, "SUMMARY_PATH", tmp_path / "run_summary.json")
+    monkeypatch.setattr(crawler, "RUN_ROOT", tmp_path)  # bim001 AC-71(a): run folders land in tmp
     crawler.PAGE_DIR.mkdir()
     sleeps = []
 
@@ -385,3 +393,262 @@ def test_ac50_stage_log_lines_start_with_timestamp(tmp_path):
     for line in lines:
         assert re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}", line), line
     assert lines[0].endswith("run start project=Proj run_id=2026-09-06T14-30-00Z") and lines[-1].endswith("run end")
+
+
+# ---------------------------------------------------------------------------
+# bim001 — chunk 3: capture in the crawl loop (AC-20, 22, 24, 25, 26, 27, 28)
+# ---------------------------------------------------------------------------
+
+def _crawl(sandbox, results, urls=None, project="Proj"):
+    rf = crawler.RunFolder(project, STARTED, root=sandbox.dir / "runs").create()
+    urls = urls or _urls(len(results))
+    pages, stopped = asyncio.run(crawler.crawl_all(urls, FakeCrawler(results), run=rf))
+    return rf, pages, stopped
+
+
+def test_ac20_captured_for_successful_fetch(sandbox):
+    rf, pages, _ = _crawl(sandbox, [_result(200, html="<html>a</html>"), _result(200, html="<html>b</html>")])
+    assert [e["outcome"] for e in rf.pages] == ["captured", "captured"]
+    for e in rf.pages:
+        assert (rf.dir / e["html_file"]).exists() and e["html_file"] == f"html/{e['slug']}.html"
+        assert e["html_bytes"] == (rf.dir / e["html_file"]).stat().st_size and e["reason"] is None
+        assert e["md_file"] == f"pages/{e['slug']}.md" and (crawler.PAGE_DIR / f"{e['slug']}.md").exists()
+    assert [p["ok"] for p in pages] == [True, True]
+
+
+def test_ac22_html_stem_equals_md_stem(sandbox):
+    rf, _, _ = _crawl(sandbox, [_result(200, html="<p>x</p>")], urls=["https://example.com/About-Us/"])
+    html_stem = Path(rf.pages[0]["html_file"]).stem
+    md_stem = next(crawler.PAGE_DIR.iterdir()).stem
+    assert html_stem == md_stem == crawler.slugify("example.com/About-Us/") == "example-com-about-us"
+    source = (REPO_ROOT / "smart_crawler" / "crawler.py").read_text()
+    assert source.count("def slugify") == 1
+
+
+def test_ac24_blocked_no_html(sandbox):
+    rf, pages, _ = _crawl(sandbox, [_result(403, success=False, raw="", html="<html>blocked page</html>")])
+    assert rf.pages[0]["outcome"] == "blocked" and rf.pages[0]["reason"] == "blocked"
+    assert rf.pages[0]["html_file"] is None and list(rf.html_dir.iterdir()) == []
+    assert pages[0]["error"] == "blocked"
+
+
+def test_ac25_failed_and_exception_no_html(sandbox):
+    rf, pages, _ = _crawl(sandbox, [_result(500, success=False, raw="", html="<html>err</html>"),
+                                    RuntimeError("boom")])
+    assert [e["outcome"] for e in rf.pages] == ["failed", "failed"]
+    assert rf.pages[0]["reason"] == "HTTP 500"
+    assert rf.pages[1]["reason"].startswith("exception:") and "boom" in rf.pages[1]["reason"]
+    assert list(rf.html_dir.iterdir()) == [] and all(e["html_file"] is None for e in rf.pages)
+    assert pages[1]["error"].startswith("exception:")
+
+
+def test_ac26_unsupported_when_html_absent(sandbox):
+    stub = _result(200)  # no html attribute at all
+    assert not hasattr(stub, "html")
+    rf, pages, _ = _crawl(sandbox, [stub])
+    assert rf.pages[0]["outcome"] == "unsupported" and "html" in rf.pages[0]["reason"]
+    assert rf.pages[0]["html_file"] is None and list(rf.html_dir.iterdir()) == []
+    assert pages[0]["ok"] is True  # markdown side untouched
+
+
+def test_ac27_html_independent_of_markdown(sandbox):
+    rf, pages, _ = _crawl(sandbox, [_result(200, raw="", html="<p>x</p>")])
+    assert rf.pages[0]["outcome"] == "captured" and (rf.dir / rf.pages[0]["html_file"]).read_text() == "<p>x</p>"
+    assert pages[0]["ok"] is False and pages[0]["error"] == "empty markdown"  # bim000 behavior preserved
+    assert rf.pages[0]["ok"] is False and rf.pages[0]["error"] == "empty markdown"
+    assert rf.pages[0]["md_file"] is None and list(crawler.PAGE_DIR.iterdir()) == []
+
+
+def test_ac28_write_failure_is_failure_not_crash(sandbox, monkeypatch):
+    rf = crawler.RunFolder("Proj", STARTED, root=sandbox.dir / "runs").create()
+    real_save = rf.save_html
+    calls = []
+
+    def flaky_save(slug, html):
+        calls.append(slug)
+        if len(calls) == 1:
+            raise OSError("disk full")
+        return real_save(slug, html)
+
+    monkeypatch.setattr(rf, "save_html", flaky_save)
+    pages, stopped = asyncio.run(crawler.crawl_all(_urls(2), FakeCrawler([_result(200, html="<p>1</p>"), _result(200, html="<p>2</p>")]), run=rf))
+    assert stopped is False and len(pages) == 2
+    assert rf.pages[0]["outcome"] == "failed" and "write" in rf.pages[0]["reason"] and rf.pages[0]["html_file"] is None
+    assert rf.pages[1]["outcome"] == "captured"
+    assert [p["ok"] for p in pages] == [True, True]  # run_summary unaffected by the HTML write failure
+
+
+# ---------------------------------------------------------------------------
+# bim001 — chunk 4: main() wired (AC-07, 13, 14, 32, 33, 35, 36, 37, 41, 42, 43, 51)
+# ---------------------------------------------------------------------------
+
+class FakeBrowser:
+    """Stands in for crawl4ai.AsyncWebCrawler: constructed with config=..., used as `async with`."""
+
+    def __init__(self, results):
+        self.fake = FakeCrawler(results)
+
+    def __call__(self, config=None):
+        return self
+
+    async def __aenter__(self):
+        return self.fake
+
+    async def __aexit__(self, *exc):
+        return False
+
+
+def _main(sandbox, monkeypatch, results, urls, extra=(), project="Proj"):
+    """Drive the real main(): input json in tmp, argv patched, browser faked. Returns (exit_code, run_dir)."""
+    src = sandbox.dir / "in" / "input.json"
+    src.parent.mkdir(exist_ok=True)
+    src.write_text(json.dumps([{"url": u} for u in urls]))
+    monkeypatch.setattr(crawler, "AsyncWebCrawler", FakeBrowser(results))
+    monkeypatch.setattr(sys, "argv", ["crawler", "--project", project, "--input", str(src), *extra])
+    try:
+        crawler.main()
+        code = 0
+    except SystemExit as exc:
+        code = exc.code
+    runs = sorted((sandbox.dir / project / "runs").iterdir()) if (sandbox.dir / project / "runs").exists() else []
+    return code, (runs[-1] if runs else None)
+
+
+def _load(run_dir):
+    return (json.loads((run_dir / "manifest.json").read_text()),
+            json.loads((run_dir / "absences.json").read_text()),
+            (run_dir / "stage_log.txt").read_text().splitlines())
+
+
+def test_ac07_project_case_preserved(sandbox, monkeypatch):
+    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")], _urls(1), project="CyberizeGroup")
+    assert code == 0 and run_dir.parent.parent.name == "CyberizeGroup"
+    assert (sandbox.dir / "CyberizeGroup").is_dir() and not (sandbox.dir / "cyberizegroup").exists()
+
+
+def test_ac13_empty_input_creates_run_folder(sandbox, monkeypatch):
+    monkeypatch.setattr(crawler, "run", lambda *a, **k: pytest.fail("run() must not be called"))
+    code, run_dir = _main(sandbox, monkeypatch, [], [], project="CyberizeGroup")
+    assert code == 0 and run_dir is not None
+    manifest, absences, log = _load(run_dir)
+    assert sorted(p.name for p in run_dir.iterdir()) == ["absences.json", "html", "manifest.json", "stage_log.txt"]
+    assert list((run_dir / "html").iterdir()) == []
+    assert manifest["pages"] == [] and manifest["input_total"] == 0 and absences == [] and len(log) >= 1
+    summary = json.loads(crawler.SUMMARY_PATH.read_text())
+    assert summary["pages"] == [] and set(summary) == {"started_at", "finished_at", "crawl4ai_version", "pause_range_s", "pages"}
+
+
+def test_ac14_two_runs_two_folders(sandbox, monkeypatch):
+    code1, run1 = _main(sandbox, monkeypatch, [_result(200, html="<p>1</p>")], _urls(1))
+    first_bytes = (run1 / "manifest.json").read_bytes()
+    code2, run2 = _main(sandbox, monkeypatch, [_result(200, html="<p>2</p>")], _urls(1))
+    assert code1 == code2 == 0 and run1 != run2
+    assert (run1 / "manifest.json").read_bytes() == first_bytes
+    assert len(list((sandbox.dir / "Proj" / "runs").iterdir())) == 2
+
+
+def test_ac32_manifest_identity_values(sandbox, monkeypatch):
+    urls = ["https://b.example.com/x", "https://a.example.com/y", "https://b.example.com/z"]
+    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")] * 3, urls, extra=["--limit", "2"], project="CyberizeGroup")
+    manifest, _, _ = _load(run_dir)
+    assert manifest["project_name"] == "CyberizeGroup"
+    assert manifest["run_id"] == run_dir.name
+    assert manifest["run_dir"] == f"outputs/CyberizeGroup/runs/{run_dir.name}" and not manifest["run_dir"].endswith("/")
+    assert manifest["command"].startswith("python -m smart_crawler.crawler") and "--project CyberizeGroup" in manifest["command"] and "--limit 2" in manifest["command"]
+    assert manifest["input_path"] == str((sandbox.dir / "in" / "input.json").resolve())
+    assert manifest["input_hosts"] == ["a.example.com", "b.example.com"]
+    assert manifest["summary_path"] == "outputs/run_summary.json"
+
+
+def test_ac33_manifest_counts(sandbox, monkeypatch):
+    # 6 inputs, --limit 5, stop rule after 3 blocked -> attempted 3
+    results = [_result(429, success=False, raw="")] * 3
+    code, run_dir = _main(sandbox, monkeypatch, results, _urls(6), extra=["--limit", "5"])
+    manifest, _, _ = _load(run_dir)
+    assert code == 2 and manifest["input_total"] == 6 and manifest["limit"] == 5 and len(manifest["pages"]) == 3
+    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")] * 2, _urls(2))
+    manifest, _, _ = _load(run_dir)
+    assert manifest["input_total"] == 2 and manifest["limit"] is None and len(manifest["pages"]) == 2
+
+
+def test_ac35_page_values_match_run_summary(sandbox, monkeypatch):
+    results = [_result(200, html="<p>ok</p>"), _result(403, success=False, raw=""), _result(200), _result(200, raw="", html="<p>nomd</p>")]
+    code, run_dir = _main(sandbox, monkeypatch, results, _urls(4))
+    manifest, _, _ = _load(run_dir)
+    summary = json.loads(crawler.SUMMARY_PATH.read_text())
+    for m, s in zip(manifest["pages"], summary["pages"]):
+        assert {k: m[k] for k in ("url", "status", "ok", "elapsed_s", "error")} == s
+        assert m["outcome"] in {"captured", "blocked", "failed", "unsupported"}
+        if m["outcome"] == "captured":
+            assert m["html_file"] == f"html/{m['slug']}.html" and m["reason"] is None
+            assert m["html_bytes"] == (run_dir / m["html_file"]).stat().st_size
+        else:
+            assert m["html_file"] is None and m["html_bytes"] is None and m["reason"]
+    assert [m["outcome"] for m in manifest["pages"]] == ["captured", "blocked", "unsupported", "captured"]
+    assert [m["md_file"] for m in manifest["pages"]] == ["pages/example-com-p0.md", None, "pages/example-com-p2.md", None]
+
+
+def test_ac36_timestamps_identical(sandbox, monkeypatch):
+    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")], _urls(1))
+    manifest, _, _ = _load(run_dir)
+    summary = json.loads(crawler.SUMMARY_PATH.read_text())
+    assert manifest["started_at"] == summary["started_at"] and manifest["finished_at"] == summary["finished_at"]
+    assert crawler.make_run_id(manifest["started_at"]) == manifest["run_id"]
+
+
+def test_ac37_manifest_on_early_stop_exit_2(sandbox, monkeypatch):
+    results = [_result(200, html="<p>x</p>")] + [_result(429, success=False, raw="")] * 3
+    code, run_dir = _main(sandbox, monkeypatch, results, _urls(6))
+    manifest, absences, log = _load(run_dir)
+    assert code == 2 and manifest["stopped_early"] is True and len(manifest["pages"]) == 4
+    assert any("stop rule" in line for line in log)
+    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")], _urls(1))
+    manifest, _, _ = _load(run_dir)
+    assert code == 0 and manifest["stopped_early"] is False
+
+
+def test_ac41_absences_completeness_and_order(sandbox, monkeypatch):
+    # inputs p0..p7, limit 6; p0 captured, p1 failed, p2 unsupported, p3 p4 p5 blocked -> stop; p6 p7 limit
+    results = [_result(200, html="<p>x</p>"), _result(500, success=False, raw=""), _result(200),
+               _result(403, success=False, raw=""), _result(429, success=False, raw=""), _result(403, success=False, raw="")]
+    code, run_dir = _main(sandbox, monkeypatch, results, _urls(8), extra=["--limit", "6"])
+    manifest, absences, _ = _load(run_dir)
+    captured = {p["url"] for p in manifest["pages"] if p["outcome"] == "captured"}
+    absent = {e["url"] for e in absences}
+    assert captured == {"https://example.com/p0"} and captured.isdisjoint(absent)
+    assert captured | absent == set(_urls(8))
+    assert [e["url"] for e in absences] == _urls(8)[1:]  # attempted-and-absent in attempt order, then skipped in input order
+    assert [e["outcome"] for e in absences] == ["failed", "unsupported", "blocked", "blocked", "blocked", "skipped", "skipped"]
+
+
+def test_ac42_skipped_reasons_limit_and_stop_rule(sandbox, monkeypatch):
+    results = [_result(429, success=False, raw="")] * 3
+    code, run_dir = _main(sandbox, monkeypatch, results, _urls(7), extra=["--limit", "5"])
+    _, absences, _ = _load(run_dir)
+    by_url = {e["url"]: e for e in absences}
+    assert by_url["https://example.com/p3"] == {"url": "https://example.com/p3", "outcome": "skipped", "reason": "stop_rule"}
+    assert by_url["https://example.com/p4"]["reason"] == "stop_rule"
+    assert by_url["https://example.com/p5"]["reason"] == "limit" and by_url["https://example.com/p6"]["reason"] == "limit"
+    assert len(absences) == 7
+
+
+def test_ac43_absence_reason_matches_manifest(sandbox, monkeypatch):
+    results = [_result(500, success=False, raw=""), _result(200), _result(403, success=False, raw=""), _result(200, html="<p>x</p>")]
+    code, run_dir = _main(sandbox, monkeypatch, results, _urls(4))
+    manifest, absences, _ = _load(run_dir)
+    reasons = {p["url"]: p["reason"] for p in manifest["pages"]}
+    for e in absences:
+        assert e["outcome"] in {"blocked", "failed", "unsupported"} and e["reason"] == reasons[e["url"]]
+    assert len(absences) == 3
+
+
+def test_ac51_stage_log_contents(sandbox, monkeypatch):
+    results = [_result(200, html="<p>x</p>"), _result(500, success=False, raw="")] + [_result(429, success=False, raw="")] * 3
+    code, run_dir = _main(sandbox, monkeypatch, results, _urls(6), project="CyberizeGroup")
+    manifest, _, log = _load(run_dir)
+    assert "run start" in log[0] and "CyberizeGroup" in log[0] and manifest["run_id"] in log[0]
+    for p in manifest["pages"]:
+        matching = [line for line in log if p["url"] in line]
+        assert len(matching) == 1 and p["outcome"] in matching[0]
+    assert sum("stop rule" in line for line in log) == 1
+    assert "run end" in log[-1]
