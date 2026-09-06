@@ -257,3 +257,131 @@ def test_ac63_exit_codes_missing_input_and_project(sandbox, tmp_path, monkeypatc
     with pytest.raises(SystemExit) as exc:
         crawler.load_urls(bad, 3)
     assert exc.value.code == 1
+
+
+# ---------------------------------------------------------------------------
+# bim001 — chunk 2: RunFolder (AC-10, 21, 23, 30, 31, 34, 40, 50)
+# ---------------------------------------------------------------------------
+import re
+
+STARTED = "2026-09-06T14:30:00+00:00"
+
+
+def _folder(tmp_path, project="Proj"):
+    return crawler.RunFolder(project, STARTED, root=tmp_path).create()
+
+
+def _rec(url, status=200, ok=True, elapsed=1.0, error=None):
+    return {"url": url, "status": status, "ok": ok, "elapsed_s": elapsed, "error": error}
+
+
+def _finish(rf, **kw):
+    args = dict(command="python -m smart_crawler.crawler --project Proj", input_path=Path("/in.json"),
+                input_total=0, limit=None, input_hosts=[], finished_at=STARTED, stopped_early=False)
+    args.update(kw)
+    return rf.write_manifest(**args)
+
+
+def test_ac10_run_folder_layout_exact(tmp_path):
+    rf = _folder(tmp_path)
+    rf.log("run start project=Proj run_id=" + rf.run_id)
+    _finish(rf)
+    rf.write_absences([])
+    assert rf.dir == tmp_path / "Proj" / "runs" / "2026-09-06T14-30-00Z"
+    assert sorted(p.name for p in rf.dir.iterdir()) == ["absences.json", "html", "manifest.json", "stage_log.txt"]
+    assert rf.html_dir.is_dir() and list(rf.html_dir.iterdir()) == []
+    assert rf.run_dir_rel == "outputs/Proj/runs/2026-09-06T14-30-00Z"
+
+
+def test_ac21_html_byte_for_byte(tmp_path):
+    rf = _folder(tmp_path)
+    html = "<html><body>É &amp; ok</body></html>"
+    rel, n = rf.save_html("page", html)
+    data = (rf.dir / rel).read_bytes()
+    assert data == html.encode("utf-8") and n == len(data) == 37  # É is 2 bytes in UTF-8
+    html2 = "a\r\n b  \n"
+    rel2, _ = rf.save_html("crlf", html2)
+    assert (rf.dir / rel2).read_bytes() == html2.encode("utf-8")  # no newline/whitespace normalisation
+
+
+def test_ac23_collision_suffix(tmp_path):
+    rf = _folder(tmp_path)
+    urls = ["https://example.com/x/", "https://example.com/x", "https://EXAMPLE.com/X"]
+    base = crawler.slugify("example.com/x")
+    written = []
+    for i, u in enumerate(urls):
+        slug = rf.allocate_slug(crawler.slugify(u.replace("https://", "")))
+        rel, _ = rf.save_html(slug, f"<p>{i}</p>")
+        rf.record_page(_rec(u), slug=slug, outcome="captured", html_file=rel, html_bytes=8)
+        written.append(rel)
+    assert written == [f"html/{base}.html", f"html/{base}-2.html", f"html/{base}-3.html"]
+    assert sorted(p.name for p in rf.html_dir.iterdir()) == sorted(Path(w).name for w in written)
+    assert [(rf.dir / w).read_text() for w in written] == ["<p>0</p>", "<p>1</p>", "<p>2</p>"]
+    assert [p["html_file"] for p in rf.pages] == written and [p["url"] for p in rf.pages] == urls
+    with pytest.raises(FileExistsError):
+        rf.save_html(base, "dup")  # never overwrite
+
+
+def test_ac30_manifest_top_level_keys_exact(tmp_path):
+    rf = _folder(tmp_path)
+    manifest = json.loads(_finish(rf).read_text())
+    assert sorted(manifest) == [
+        "access_rung", "command", "crawl4ai_version", "delay_before_return_html_s",
+        "fallbacks_fired", "finished_at", "input_hosts", "input_path", "input_total",
+        "limit", "page_timeout_ms", "pages", "pause_range_s", "playwright_version",
+        "project_name", "python_version", "run_dir", "run_id", "schema",
+        "started_at", "stopped_early", "summary_path", "wait_for_images"]
+    assert len(manifest) == 23
+
+
+def test_ac31_manifest_fixed_values(tmp_path):
+    m = json.loads(_finish(_folder(tmp_path)).read_text())
+    assert m["schema"] == "bim001-manifest-v1" and m["access_rung"] == "a" and m["fallbacks_fired"] == []
+    assert m["wait_for_images"] is True and m["delay_before_return_html_s"] == 3.0
+    assert m["page_timeout_ms"] == 90000 and m["pause_range_s"] == [2, 5]
+    assert m["crawl4ai_version"] == "0.9.3" and m["playwright_version"] == "1.52.0"
+    assert m["python_version"].startswith("3.12")
+    assert m["summary_path"] == "outputs/run_summary.json"
+
+
+def test_ac34_manifest_page_keys_exact(tmp_path):
+    rf = _folder(tmp_path)
+    rf.record_page(_rec("https://example.com/a"), slug="example-com-a", outcome="captured",
+                   html_file="html/example-com-a.html", html_bytes=10, md_file="pages/example-com-a.md")
+    rf.record_page(_rec("https://example.com/b", 403, False, 0.5, "blocked"), slug="example-com-b",
+                   outcome="blocked", reason="blocked")
+    m = json.loads(_finish(rf).read_text())
+    for entry in m["pages"]:
+        assert sorted(entry) == ["elapsed_s", "error", "html_bytes", "html_file", "md_file", "ok",
+                                 "outcome", "reason", "slug", "status", "url"]
+    assert m["pages"][1]["html_file"] is None and m["pages"][1]["html_bytes"] is None
+    with pytest.raises(AssertionError):
+        rf.record_page(_rec("https://example.com/c"), slug="c", outcome="weird")
+
+
+def test_ac40_absences_shape(tmp_path):
+    rf = _folder(tmp_path)
+    rf.record_page(_rec("https://example.com/a"), slug="a", outcome="captured", html_file="html/a.html", html_bytes=1)
+    rf.record_page(_rec("https://example.com/b", 500, False, 0.5, "HTTP 500"), slug="b", outcome="failed", reason="HTTP 500")
+    absences = crawler.build_absences(rf.pages, attempted=["https://example.com/a", "https://example.com/b"],
+                                      all_urls=["https://example.com/a", "https://example.com/b", "https://example.com/c"])
+    path = rf.write_absences(absences)
+    loaded = json.loads(path.read_text())
+    assert isinstance(loaded, list) and len(loaded) == 2
+    for e in loaded:
+        assert sorted(e) == ["outcome", "reason", "url"]
+        assert e["outcome"] in {"blocked", "failed", "unsupported", "skipped"}
+    assert loaded[0] == {"url": "https://example.com/b", "outcome": "failed", "reason": "HTTP 500"}
+    assert loaded[1] == {"url": "https://example.com/c", "outcome": "skipped", "reason": "limit"}
+
+
+def test_ac50_stage_log_lines_start_with_timestamp(tmp_path):
+    rf = _folder(tmp_path)
+    rf.log("run start project=Proj run_id=" + rf.run_id)
+    rf.log("captured https://example.com/a")
+    rf.log("run end")
+    lines = (rf.dir / "stage_log.txt").read_text(encoding="utf-8").splitlines()
+    assert len(lines) == 3
+    for line in lines:
+        assert re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}", line), line
+    assert lines[0].endswith("run start project=Proj run_id=2026-09-06T14-30-00Z") and lines[-1].endswith("run end")

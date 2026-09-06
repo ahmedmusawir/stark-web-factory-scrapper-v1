@@ -23,6 +23,7 @@ Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark
 - **bim000 test amendments (AC-71), listed as made:**
   - (b) `tests/test_crawler.py::test_empty_input_writes_truthful_summary_without_crawling` — argv gains `--project TestProj`; assertions unchanged. (chunk 1)
 - **Chunk 1:** `smart_crawler/crawler.py` — `--project` flag (optional to argparse, validated in `main()` before any input read, mkdir or browser; missing/invalid → stderr usage + exit 2); `read_urls()` split out of `load_urls()` (behavior preserved); `RUN_ROOT` constant; `make_run_id()`. 7 new tests (`test_ac01…`, `ac02`, `ac03_04_05`, `ac06`, `ac08`, `ac11`, `ac63`).
+- **Chunk 2:** `smart_crawler/crawler.py` — `RunFolder` class (`create` with same-second wait, `log`, `allocate_slug` -2/-3, `save_html` byte-for-byte + never-overwrite, `record_page` 11 keys, `write_manifest` 23 keys, `write_absences`), `build_absences()`, `input_hosts()`. Not yet wired into `main()`. 8 new tests (ac10, 21, 23, 30, 31, 34, 40, 50).
 - **Reason:** web-factory-p1-bim001 brief; plan `agent_docs/RESPONSES/BIM001_plan_2026-09-06.md` approved 2026-09-06. No pin changes.
 
 ## 2026-09-05 — [CC] Claude Code — bim000 QA close (Gate Q PASS)

@@ -20,11 +20,14 @@ import argparse
 import asyncio
 import importlib.metadata
 import json
+import platform
 import random
 import re
 import sys
+import time
 from datetime import datetime, timezone
 from typing import Sequence
+from urllib.parse import urlparse
 
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
@@ -178,6 +181,129 @@ def write_summary(pages: list[dict], started_at: str, finished_at: str) -> Path:
     SUMMARY_PATH.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     return SUMMARY_PATH
 
+
+
+# ---------------------------------------------------------------------------
+# bim001 — run folder: outputs/<project>/runs/<run_id>/{html/, manifest.json, absences.json, stage_log.txt}
+# ---------------------------------------------------------------------------
+
+MANIFEST_SCHEMA = "bim001-manifest-v1"
+ACCESS_RUNG = "a"          # plain headless fetch, no stealth (Stealth ruling)
+OUTCOMES = ("captured", "blocked", "failed", "unsupported")
+
+
+class RunFolder:
+    """One crawl run's evidence folder. Nothing touches the filesystem until create()."""
+
+    def __init__(self, project: str, started_at: str, root: Path | None = None):
+        self.project = project
+        self.root = root if root is not None else RUN_ROOT
+        self.pages: list[dict] = []          # manifest page entries, attempt order
+        self._slug_counts: dict[str, int] = {}
+        self._set_started(started_at)
+
+    def _set_started(self, started_at: str) -> None:
+        self.started_at = started_at
+        self.run_id = make_run_id(started_at)
+        self.dir = self.root / self.project / "runs" / self.run_id
+        self.html_dir = self.dir / "html"
+
+    @property
+    def run_dir_rel(self) -> str:
+        return f"outputs/{self.project}/runs/{self.run_id}"
+
+    def create(self) -> "RunFolder":
+        """Create the folder. If a run with this run_id already exists (same second),
+        wait for the clock to move and take the next second (I-3 ruling: never share a folder)."""
+        while self.dir.exists():
+            time.sleep(0.2)
+            self._set_started(utc_now())
+        self.html_dir.mkdir(parents=True)
+        return self
+
+    def log(self, line: str) -> None:
+        with (self.dir / "stage_log.txt").open("a", encoding="utf-8") as fh:
+            fh.write(f"{utc_now()} {line}\n")
+
+    def allocate_slug(self, base: str) -> str:
+        """First use -> base; later uses in the same run -> base-2, base-3, ... (R4)."""
+        n = self._slug_counts.get(base, 0) + 1
+        self._slug_counts[base] = n
+        return base if n == 1 else f"{base}-{n}"
+
+    def save_html(self, slug: str, html: str) -> tuple[str, int]:
+        """Write html byte-for-byte (utf-8) to html/<slug>.html. Returns (relative file, byte count)."""
+        data = html.encode("utf-8")
+        target = self.html_dir / f"{slug}.html"
+        if target.exists():
+            raise FileExistsError(f"refusing to overwrite {target.name}")
+        target.write_bytes(data)
+        return f"html/{slug}.html", len(data)
+
+    def record_page(self, record: dict, *, slug: str, outcome: str, reason: str | None = None,
+                    html_file: str | None = None, html_bytes: int | None = None,
+                    md_file: str | None = None) -> dict:
+        """Manifest entry: the run_summary record's five values verbatim + six bim001 fields."""
+        assert outcome in OUTCOMES, outcome
+        entry = {
+            "url": record["url"], "status": record["status"], "ok": record["ok"],
+            "elapsed_s": record["elapsed_s"], "error": record["error"],
+            "slug": slug, "outcome": outcome, "reason": reason,
+            "html_file": html_file, "html_bytes": html_bytes, "md_file": md_file,
+        }
+        self.pages.append(entry)
+        return entry
+
+    def write_manifest(self, *, command: str, input_path: Path, input_total: int, limit: int | None,
+                       input_hosts: list[str], finished_at: str, stopped_early: bool) -> Path:
+        manifest = {
+            "schema": MANIFEST_SCHEMA,
+            "project_name": self.project,
+            "run_id": self.run_id,
+            "run_dir": self.run_dir_rel,
+            "started_at": self.started_at,
+            "finished_at": finished_at,
+            "command": command,
+            "input_path": str(input_path),
+            "input_total": input_total,
+            "limit": limit,
+            "input_hosts": input_hosts,
+            "access_rung": ACCESS_RUNG,
+            "fallbacks_fired": [],
+            "stopped_early": stopped_early,
+            "crawl4ai_version": importlib.metadata.version("crawl4ai"),
+            "playwright_version": importlib.metadata.version("playwright"),  # metadata lookup only (I-1 ruling)
+            "python_version": platform.python_version(),
+            # Mirrors of the CrawlerRunConfig literals in crawl_page (kept literal there for AC-62).
+            "wait_for_images": True,
+            "delay_before_return_html_s": 3.0,
+            "page_timeout_ms": 90000,
+            "pause_range_s": list(PAUSE_RANGE_S),
+            "summary_path": "outputs/run_summary.json",
+            "pages": self.pages,
+        }
+        assert len(manifest) == 23, len(manifest)
+        path = self.dir / "manifest.json"
+        path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+        return path
+
+    def write_absences(self, absences: list[dict]) -> Path:
+        path = self.dir / "absences.json"
+        path.write_text(json.dumps(absences, indent=2), encoding="utf-8")
+        return path
+
+
+def build_absences(pages: list[dict], attempted: Sequence[str], all_urls: Sequence[str]) -> list[dict]:
+    """Every input URL not captured: attempted-and-absent first (attempt order), then skipped (input order)."""
+    absences = [{"url": p["url"], "outcome": p["outcome"], "reason": p["reason"]}
+                for p in pages if p["outcome"] != "captured"]
+    absences += [{"url": u, "outcome": "skipped", "reason": "stop_rule"} for u in attempted[len(pages):]]
+    absences += [{"url": u, "outcome": "skipped", "reason": "limit"} for u in all_urls[len(attempted):]]
+    return absences
+
+
+def input_hosts(urls: Sequence[str]) -> list[str]:
+    return sorted({urlparse(u).netloc for u in urls})
 
 # ---------------------------------------------------------------------------
 # CLI
