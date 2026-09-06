@@ -18,6 +18,13 @@ Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark
 - **Added:** `CHANGELOG.md` — this file.
 - **Reason:** web-factory-p1-bim000 brief §3 (F3 handoff fix, status validation, pacing, identity, F4 truth, R-B retire, paths, hygiene, docs).
 
+## 2026-09-06 — [CC] Claude Code — bim001 Raw HTML Capture (in progress)
+
+- **bim000 test amendments (AC-71), listed as made:**
+  - (b) `tests/test_crawler.py::test_empty_input_writes_truthful_summary_without_crawling` — argv gains `--project TestProj`; assertions unchanged. (chunk 1)
+- **Chunk 1:** `smart_crawler/crawler.py` — `--project` flag (optional to argparse, validated in `main()` before any input read, mkdir or browser; missing/invalid → stderr usage + exit 2); `read_urls()` split out of `load_urls()` (behavior preserved); `RUN_ROOT` constant; `make_run_id()`. 7 new tests (`test_ac01…`, `ac02`, `ac03_04_05`, `ac06`, `ac08`, `ac11`, `ac63`).
+- **Reason:** web-factory-p1-bim001 brief; plan `agent_docs/RESPONSES/BIM001_plan_2026-09-06.md` approved 2026-09-06. No pin changes.
+
 ## 2026-09-05 — [CC] Claude Code — bim000 QA close (Gate Q PASS)
 
 - **Updated:** `smart_crawler/crawler.py` — AC-21 fix: empty `[]` input now writes `run_summary.json` (pages=[]) instead of returning early (dcfb1ea).

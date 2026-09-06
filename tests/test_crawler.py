@@ -151,7 +151,7 @@ def test_empty_input_writes_truthful_summary_without_crawling(sandbox, tmp_path,
         pytest.fail("run() must not be called for empty input")
 
     monkeypatch.setattr(crawler, "run", no_crawl)
-    monkeypatch.setattr(sys, "argv", ["crawler", "--input", str(empty)])
+    monkeypatch.setattr(sys, "argv", ["crawler", "--project", "TestProj", "--input", str(empty)])  # bim001 AC-71(b)
     crawler.main()  # the real application path
 
     summary = json.loads(crawler.SUMMARY_PATH.read_text())
@@ -161,3 +161,99 @@ def test_empty_input_writes_truthful_summary_without_crawling(sandbox, tmp_path,
     assert summary["started_at"] and summary["finished_at"]
     assert "No URLs found" in capsys.readouterr().out
     assert list(crawler.PAGE_DIR.iterdir()) == []
+
+
+# ---------------------------------------------------------------------------
+# bim001 — chunk 1: CLI + project identity (AC-01..08, AC-11, AC-63 partial)
+# ---------------------------------------------------------------------------
+
+def _one_url_input(tmp_path):
+    f = tmp_path / "in" / "one.json"
+    f.parent.mkdir()
+    f.write_text(json.dumps([{"url": "https://example.com/a"}]))
+    return f
+
+
+def _run_main(monkeypatch, argv):
+    monkeypatch.setattr(sys, "argv", ["crawler", *argv])
+    with pytest.raises(SystemExit) as exc:
+        crawler.main()
+    return exc.value.code
+
+
+def test_ac01_project_flag_optional_to_parser(capsys):
+    args = crawler.parse_args(["--limit", "3"])  # no --project: parser does not complain
+    assert args.project is None and args.limit == 3
+    with pytest.raises(SystemExit) as exc:
+        crawler.parse_args(["--help"])
+    assert exc.value.code == 0
+    assert "--project" in capsys.readouterr().out
+
+
+def test_ac02_missing_project_refuses_before_crawl(sandbox, tmp_path, monkeypatch):
+    src = _one_url_input(tmp_path)
+    monkeypatch.setattr(crawler, "AsyncWebCrawler", lambda *a, **k: pytest.fail("browser constructed"))
+    monkeypatch.setattr(crawler, "read_urls", lambda p: pytest.fail("input read before validation"))
+    before = sorted(p.relative_to(tmp_path) for p in tmp_path.rglob("*"))
+    assert _run_main(monkeypatch, ["--input", str(src)]) == 2
+    after = sorted(p.relative_to(tmp_path) for p in tmp_path.rglob("*"))
+    assert before == after  # nothing created under the (redirected) outputs root
+
+
+def test_ac03_04_05_missing_project_message_lines(sandbox, tmp_path, monkeypatch, capsys):
+    src = _one_url_input(tmp_path)
+    assert _run_main(monkeypatch, ["--input", str(src)]) == 2
+    out = capsys.readouterr()
+    text = out.out + out.err
+    assert "--project is required" in text
+    assert "python -m smart_crawler.crawler --project CyberizeGroup --limit 10" in text
+    assert "python -m smart_crawler.crawler --help" in text
+
+
+@pytest.mark.parametrize("bad", ["Cyberize Group", "../x"])
+def test_ac06_invalid_project_space_and_dotdot(sandbox, tmp_path, monkeypatch, capsys, bad):
+    src = _one_url_input(tmp_path)
+    before = sorted(tmp_path.rglob("*"))
+    assert _run_main(monkeypatch, ["--project", bad, "--input", str(src)]) == 2
+    text = "".join(capsys.readouterr())
+    assert "--project is invalid" in text
+    assert "python -m smart_crawler.crawler --project CyberizeGroup --limit 10" in text
+    assert "python -m smart_crawler.crawler --help" in text
+    assert sorted(tmp_path.rglob("*")) == before
+    assert crawler.validate_project("CyberizeGroup") is None
+    assert crawler.validate_project("a" * 64) is None and crawler.validate_project("a" * 65) == "invalid"
+
+
+def test_ac08_help_and_limit_zero_preserved(capsys):
+    with pytest.raises(SystemExit) as exc:
+        crawler.parse_args(["--help"])
+    assert exc.value.code == 0
+    out = capsys.readouterr().out
+    assert "--input" in out and "--limit" in out
+    with pytest.raises(SystemExit) as exc:
+        crawler.parse_args(["--limit", "0"])
+    assert exc.value.code == 2
+    assert "--limit must be >= 1" in capsys.readouterr().err
+
+
+def test_ac11_run_id_format_matches_started_at():
+    import re
+    started = "2026-09-06T14:30:00+00:00"
+    run_id = crawler.make_run_id(started)
+    assert run_id == "2026-09-06T14-30-00Z"
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}Z", run_id)
+    assert run_id[:10] == started[:10] and run_id[11:19].replace("-", ":") == started[11:19]
+
+
+def test_ac63_exit_codes_missing_input_and_project(sandbox, tmp_path, monkeypatch):
+    # input file missing (valid project) -> exit 1, as bim000
+    assert _run_main(monkeypatch, ["--project", "TestProj", "--input", str(tmp_path / "nope.json")]) == 1
+    # read_urls / load_urls preserve bim000 error behaviour
+    with pytest.raises(SystemExit) as exc:
+        crawler.read_urls(tmp_path / "nope.json")
+    assert exc.value.code == 1
+    bad = tmp_path / "bad.json"
+    bad.write_text("{not json")
+    with pytest.raises(SystemExit) as exc:
+        crawler.load_urls(bad, 3)
+    assert exc.value.code == 1

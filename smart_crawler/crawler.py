@@ -40,6 +40,13 @@ OUTPUT_DIR = REPO_ROOT / "outputs"
 PAGE_DIR = OUTPUT_DIR / "pages"
 SUMMARY_PATH = OUTPUT_DIR / "run_summary.json"
 DEFAULT_INPUT = OUTPUT_DIR / "discovered_pages.json"
+# bim001: run folders live under RUN_ROOT / <project> / runs / <run_id>. Tests redirect RUN_ROOT.
+RUN_ROOT = OUTPUT_DIR
+
+# bim001: explicit project identity (R3-A). Validated in main(), not by argparse.
+PROJECT_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$")
+CANONICAL_EXAMPLE = "python -m smart_crawler.crawler --project CyberizeGroup --limit 10"
+HELP_HINT = "python -m smart_crawler.crawler --help"
 
 BLOCKED_STATUSES = {403, 429}
 MAX_CONSECUTIVE_BLOCKED = 3
@@ -56,6 +63,31 @@ def slugify(text: str) -> str:
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def make_run_id(started_at: str) -> str:
+    """'2026-09-06T14:30:00+00:00' -> '2026-09-06T14-30-00Z' (filesystem-safe, same instant)."""
+    return started_at[:19].replace(":", "-") + "Z"
+
+
+def validate_project(name: str | None) -> str | None:
+    """Return None if the project name is acceptable, else 'required' or 'invalid'."""
+    if name is None:
+        return "required"
+    if not PROJECT_RE.match(name):
+        return "invalid"
+    return None
+
+
+def print_project_usage(kind: str, value: str | None) -> None:
+    """Corrective usage for a missing/invalid --project (AC-03/04/05/06). Goes to stderr."""
+    if kind == "required":
+        print("❌ --project is required. Name the project this run belongs to.", file=sys.stderr)
+    else:
+        print(f"❌ --project is invalid: {value!r}. Allowed: letters, digits, '-' and '_'; "
+              "1-64 characters; must start with a letter or digit.", file=sys.stderr)
+    print(f"   Example: {CANONICAL_EXAMPLE}", file=sys.stderr)
+    print(f"   Help:    {HELP_HINT}", file=sys.stderr)
 
 
 # ---------------------------------------------------------------------------
@@ -151,8 +183,8 @@ def write_summary(pages: list[dict], started_at: str, finished_at: str) -> Path:
 # CLI
 # ---------------------------------------------------------------------------
 
-def load_urls(path: Path, limit: int | None = None) -> Sequence[str]:
-    """Load URLs from the discovery JSON; keep only the first `limit` if given."""
+def read_urls(path: Path) -> list[str]:
+    """Read every URL from the discovery JSON (dicts with "url" or bare strings). Exits 1 on error."""
     if not path.exists():
         print(f"❌ File not found: {path}")
         print("   Run discovery first: python -m discover_site.discover <url>")
@@ -160,7 +192,7 @@ def load_urls(path: Path, limit: int | None = None) -> Sequence[str]:
 
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
-        urls = [d["url"] if isinstance(d, dict) else str(d) for d in data if d]
+        return [d["url"] if isinstance(d, dict) else str(d) for d in data if d]
     except json.JSONDecodeError as e:
         print(f"❌ JSON decode error: {e}")
         sys.exit(1)
@@ -168,13 +200,17 @@ def load_urls(path: Path, limit: int | None = None) -> Sequence[str]:
         print(f"❌ Error loading URLs: {e}")
         sys.exit(1)
 
-    if limit is not None:
-        urls = urls[:limit]
-    return urls
+
+def load_urls(path: Path, limit: int | None = None) -> Sequence[str]:
+    """Load URLs from the discovery JSON; keep only the first `limit` if given."""
+    urls = read_urls(path)
+    return urls[:limit] if limit is not None else urls
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Crawl discovered pages to markdown")
+    parser = argparse.ArgumentParser(description="Crawl discovered pages to markdown + raw HTML")
+    parser.add_argument("--project", default=None,
+                        help="project name this run belongs to (required; validated at runtime)")
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT,
                         help=f"discovery JSON to read (default: {DEFAULT_INPUT})")
     parser.add_argument("--limit", type=int, default=None,
@@ -238,6 +274,12 @@ async def run(urls: Sequence[str]) -> tuple[list[dict], bool]:
 def main() -> None:
     """Main entry point."""
     args = parse_args()
+
+    problem = validate_project(args.project)
+    if problem:
+        print_project_usage(problem, args.project)
+        sys.exit(2)
+
     urls = list(load_urls(args.input, args.limit))
 
     if not urls:
