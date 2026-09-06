@@ -1,0 +1,116 @@
+probe_normal exit 0 duration 1.2937
+probe_empty exit 0 duration 1.1801
+probe_limit exit 0 duration 1.3982
+probe_stop exit 2 duration 1.372
+probe_mixed exit 0 duration 1.4825
+probe_collision exit 0 duration 1.304
+probe_write_failure exit 0 duration 1.2806
+probe_port exit 0 duration 1.2952
+probe_empty_html exit 0 duration 1.2762
+probe_missing_project_seam exit 2 duration 1.135
+probe_two_runs exit 0 duration 1.3085
+probe_two_runs_second exit 0 duration 1.2114
+{
+  "normal": {
+    "exit": 0,
+    "false_checks": [],
+    "observations": []
+  },
+  "empty": {
+    "exit": 0,
+    "false_checks": [],
+    "observations": []
+  },
+  "limit": {
+    "exit": 0,
+    "false_checks": [],
+    "observations": []
+  },
+  "stop": {
+    "exit": 2,
+    "false_checks": [],
+    "observations": []
+  },
+  "mixed": {
+    "exit": 0,
+    "false_checks": [],
+    "observations": []
+  },
+  "collision": {
+    "exit": 0,
+    "false_checks": [
+      "literal_md_equation"
+    ],
+    "observations": [
+      {
+        "ac": "35",
+        "url": "https://example.invalid/x",
+        "slug": "example-invalid-x-2",
+        "actual_md_file": "pages/example-invalid-x.md",
+        "literal_expected": "pages/example-invalid-x-2.md"
+      },
+      {
+        "ac": "35",
+        "url": "http://example.invalid/x",
+        "slug": "example-invalid-x-3",
+        "actual_md_file": "pages/example-invalid-x.md",
+        "literal_expected": "pages/example-invalid-x-3.md"
+      }
+    ]
+  },
+  "write_failure": {
+    "exit": 0,
+    "false_checks": [],
+    "observations": []
+  },
+  "port": {
+    "exit": 0,
+    "false_checks": [
+      "literal_input_hosts"
+    ],
+    "observations": [
+      {
+        "ac": "32",
+        "actual": [
+          "example.invalid",
+          "example.invalid:8443"
+        ],
+        "literal_expected": [
+          "example.invalid"
+        ]
+      }
+    ]
+  },
+  "empty_html": {
+    "exit": 0,
+    "false_checks": [],
+    "observations": [
+      {
+        "ac": "20",
+        "html_attribute_present": true,
+        "html_value": "",
+        "status": 200,
+        "success": true,
+        "actual_outcome": "unsupported",
+        "reason": "no html in result",
+        "html_files": [],
+        "literal_presence_file_exists": false
+      }
+    ]
+  },
+  "missing_project_seam": {
+    "exit": 2,
+    "false_checks": [],
+    "observations": []
+  },
+  "two_runs": {
+    "exit": 0,
+    "false_checks": [],
+    "observations": []
+  },
+  "two_runs_second": {
+    "exit": 0,
+    "false_checks": [],
+    "observations": []
+  }
+}

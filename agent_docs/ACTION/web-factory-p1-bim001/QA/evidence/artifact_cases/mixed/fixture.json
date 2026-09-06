@@ -1,0 +1,42 @@
+{
+  "urls": [
+    "https://example.invalid/page0",
+    "https://example.invalid/page1",
+    "https://example.invalid/page2",
+    "https://example.invalid/page3",
+    "https://example.invalid/page4",
+    "https://example.invalid/page5",
+    "https://example.invalid/page6"
+  ],
+  "results": [
+    {
+      "html": "<p>ok</p>"
+    },
+    {
+      "status": 403,
+      "success": false,
+      "html": "<p>block</p>"
+    },
+    {
+      "status": 500,
+      "success": false,
+      "html": "<p>fail</p>"
+    },
+    {
+      "exception": "QA arun exception"
+    },
+    {
+      "status": 200,
+      "success": true
+    },
+    {
+      "html": "<p>x</p>",
+      "markdown": ""
+    },
+    {
+      "status": 200,
+      "success": false,
+      "html": "<p>not successful</p>"
+    }
+  ]
+}

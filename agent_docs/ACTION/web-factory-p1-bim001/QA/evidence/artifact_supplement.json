@@ -1,0 +1,138 @@
+{
+  "normal": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true
+    },
+    "actual_outcomes": [
+      "captured",
+      "captured"
+    ],
+    "html_files": [
+      "example-invalid-page0.html",
+      "example-invalid-page1.html"
+    ]
+  },
+  "empty": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true
+    },
+    "actual_outcomes": [],
+    "html_files": []
+  },
+  "limit": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true
+    },
+    "actual_outcomes": [
+      "captured",
+      "captured"
+    ],
+    "html_files": [
+      "example-invalid-page0.html",
+      "example-invalid-page1.html"
+    ]
+  },
+  "stop": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true
+    },
+    "actual_outcomes": [
+      "blocked",
+      "blocked",
+      "blocked"
+    ],
+    "html_files": []
+  },
+  "mixed": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true,
+      "http500_no_html": true,
+      "exception_prefix": true,
+      "missing_html_reason": true,
+      "empty_markdown_independence": true
+    },
+    "actual_outcomes": [
+      "captured",
+      "blocked",
+      "failed",
+      "failed",
+      "unsupported",
+      "captured",
+      "failed"
+    ],
+    "html_files": [
+      "example-invalid-page0.html",
+      "example-invalid-page5.html"
+    ]
+  },
+  "collision": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true
+    },
+    "actual_outcomes": [
+      "captured",
+      "captured",
+      "captured"
+    ],
+    "html_files": [
+      "example-invalid-x-2.html",
+      "example-invalid-x-3.html",
+      "example-invalid-x.html"
+    ]
+  },
+  "write_failure": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true
+    },
+    "actual_outcomes": [
+      "failed",
+      "captured"
+    ],
+    "html_files": [
+      "example-invalid-page1.html"
+    ]
+  },
+  "port": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true
+    },
+    "actual_outcomes": [
+      "captured",
+      "captured"
+    ],
+    "html_files": [
+      "example-invalid-8443-port.html",
+      "example-invalid-plain.html"
+    ]
+  },
+  "empty_html": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true
+    },
+    "actual_outcomes": [
+      "unsupported"
+    ],
+    "html_files": []
+  },
+  "two_runs": {
+    "checks": {
+      "expected_outcomes": true,
+      "no_unmapped_html": true
+    },
+    "actual_outcomes": [
+      "captured"
+    ],
+    "html_files": [
+      "example-invalid-page0.html"
+    ]
+  }
+}

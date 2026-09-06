@@ -1,0 +1,50 @@
+
+================================================================================
+Batch crawler — crawl4ai 0.9.3
+================================================================================
+
+Project: CyberizeGroup   run_id: 2026-09-06T09-00-45Z
+Ready to crawl 7 of 7 URL(s)
+From: /home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/web-factory-p1-bim001/QA/evidence/artifact_cases/mixed/input.json
+To:   /home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/web-factory-p1-bim001/QA/evidence/artifact_cases/mixed/outputs/pages  (markdown)
+      /home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/web-factory-p1-bim001/QA/evidence/artifact_cases/mixed/outputs/CyberizeGroup/runs/2026-09-06T09-00-45Z  (html/, manifest.json, absences.json, stage_log.txt)
+Pause between pages: 2-5 s (random)
+Estimated time: ~1.2 min
+
+First 5 URLs:
+  • https://example.invalid/page0
+  • https://example.invalid/page1
+  • https://example.invalid/page2
+  • https://example.invalid/page3
+  • https://example.invalid/page4
+  ... and 2 more
+
+[1/7] 200 ok 0.0s https://example.invalid/page0 -> example-invalid-page0.md (10 chars)
+⏸ pause 4.1s
+[2/7] 403 BLOCKED 0.0s https://example.invalid/page1 — blocked
+⏸ pause 4.9s
+[3/7] 500 FAILED 0.0s https://example.invalid/page2 — HTTP 500
+⏸ pause 3.3s
+[4/7] None FAILED 0.0s https://example.invalid/page3 — exception: QA arun exception
+⏸ pause 3.2s
+[5/7] 200 ok 0.0s https://example.invalid/page4 -> example-invalid-page4.md (10 chars)
+⏸ pause 2.5s
+[6/7] 200 FAILED 0.0s https://example.invalid/page5 — empty markdown
+⏸ pause 3.4s
+[7/7] 200 FAILED 0.0s https://example.invalid/page6 — HTTP 200
+
+================================================================================
+✅ CRAWL COMPLETE
+================================================================================
+✅ Successful: 2
+❌ Failed: 5  (blocked: 1)
+🧾 HTML captured: 2 of 7 attempted; 0 not attempted
+📁 Markdown: /home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/web-factory-p1-bim001/QA/evidence/artifact_cases/mixed/outputs/pages
+📁 Run folder: /home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/web-factory-p1-bim001/QA/evidence/artifact_cases/mixed/outputs/CyberizeGroup/runs/2026-09-06T09-00-45Z
+🧾 Summary: /home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/web-factory-p1-bim001/QA/evidence/artifact_cases/mixed/outputs/run_summary.json
+🧾 Manifest: /home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/web-factory-p1-bim001/QA/evidence/artifact_cases/mixed/outputs/CyberizeGroup/runs/2026-09-06T09-00-45Z/manifest.json
+
+📊 Quality Stats:
+   Total size: 0.0 MB
+   Average per file: 0.0 KB
+   Success rate: 28.6%

@@ -1,0 +1,71 @@
+1: # Session Log: 2026-09-06
+2: 
+3: ## Project Context
+4: 
+5: - **Project:** stark-web-factory-scrapper-v1 (Stark Web Factory Phase 1 — discover + crawl engine)
+6: - **Tool:** Claude Code (Claudy, Engineer)
+7: - **Goal:** bim001 (Raw HTML Capture) handed off; awaiting P1 Plan Mode prompt.
+8: 
+9: ## Starting State
+10: 
+11: - **Branch:** `web-factory-p1-bim001` (Director-created, checked out). HEAD 57a0f59 "bim000 close out". Working tree clean. Other branches: `main`, `qa/web-factory-p1-bim000`, `web-factory-p1-bim000`.
+12: - **Last Working Feature:** BIM-000 certified at 81099ee — `python -m discover_site.discover <url>` → `python -m smart_crawler.crawler [--limit N] [--input PATH]` on crawl4ai 0.9.3; status validation; every-run `outputs/run_summary.json`; 2–5 s pacing; Chrome/140 UA via shared Session. `venv/bin/pytest -q` → 14 passed (fresh, 11:04 today).
+13: - **Known Issues / deferred:** F1 fit_markdown content filter (deferred); `wait_for_images=True` retained (bim001 note); `agent_docs/KIP_REGISTRY.md` + `agent_docs/SKILLS/README.md` still absent/empty (separate hygiene pass, out of bim000 scope); module `web-factory-p1-bim000/CLAUDE.md` "Current stage" line is Director-owned and still reads Stage 1.
+14: - **Standing rulings:** git Operator-only; agent_docs subfolders UPPER CASE; RESPONSES/OLD = Director archive; every substantive reply logged to RESPONSES/ and printed identically; report names say what they are; no stealth; pins frozen at crawl4ai 0.9.3 / playwright 1.52.0; LiteLLM tolerated never imported.
+15: 
+16: ## Session Progress
+17: 
+18: ### [11:04] — SESSION START
+19: 
+20: **Task:** Step 0. Read RECOVERY.md (BIM-000 CLOSED), git read-only (new branch `web-factory-p1-bim001`, close-out committed 57a0f59, tree clean, `venv.bak/` gone), pytest 14 passed, KIP_REGISTRY absent (known gap). No `agent_docs/ACTION/web-factory-p1-bim001/` folder yet. Created this file.
+21: **Status:** Awaiting Tony's bim001 brief / module folder.
+22: 
+23: ### [11:07] — READ-ONLY: pre-bim001 read
+24: 
+25: **Task:** Tony's read-only brief — crawler/discovery function map, result.html availability, run_summary keys, exit codes, outputs layout, 14-test map + markdown-move blast radius, smallest change-set paragraph for raw-HTML-per-run + manifest.
+26: **Output:** `agent_docs/RECON/READ_pre-bim001_2026-09-06.md`. Branch `web-factory-p1-bim001` @ 57a0f59 confirmed. pytest 14 passed. No edits to source, no installs, no network, no mutating git.
+27: **Status:** Stopped. Awaiting bim001 module folder / brief.
+28: 
+29: ### [12:13] — MODULE HANDOFF: web-factory-p1-bim001 (Raw HTML Capture)
+30: 
+31: **Task:** read `agent_docs/ACTION/web-factory-p1-bim001/` in order (CLAUDE.md → BRIEF → ACCEPTANCE_SPEC → PROMPTS → my READ → bim000 retro carry-in). Frozen folder, not edited.
+32: **Understanding:** `agent_docs/RESPONSES/BIM001_handoff-read_2026-09-06.md`. Reports for this module use `BIM001_<stage>_<date>.md` naming.
+33: **Status:** Awaiting P1 (Plan Mode) from the Director.
+34: 
+35: ### [12:25] — PENDING_APPROVAL: bim001 P1 build plan
+36: 
+37: **Task:** P1 Plan Mode — AC map, run-root constant, input_total mechanism, html transport + unsupported, collision suffix, --project failure text, AC-71 amendments, 6 chunks, red flags.
+38: **Plan:** `agent_docs/RESPONSES/BIM001_plan_2026-09-06.md`. Branch `web-factory-p1-bim001` @ 57a0f59 (== main). No edits/installs/network.
+39: **Rulings requested:** §I-1 `playwright` token (AC-31 vs AC-92); §I-3 run_id same-second wait; §I-2 md_file under collision; §I-4 command reconstruction.
+40: **Status:** APPROVED (12:30). Rulings: I-1 accept metadata hit (erratum at QA); I-2 record file actually written; I-3 run_id wait confirmed; I-4 accept. P2 chunk 1 started.
+41: **Chunk 1 ready to stage (12:30):** crawler.py (--project, validate_project, print_project_usage, read_urls split, RUN_ROOT, make_run_id, validation-first main), test_crawler.py (+7 ac tests, AC-71b amendment to test 8), CHANGELOG.md (bim001 section opened, amendment listed). `pytest -q` → 22 passed in 2.51s.
+42: **Chunk 6 ready to stage (13:20):** docs — README Run section (--project, canonical line, run-folder layout, outcomes, exit codes), RUN_NOTES bim001 section (canonical line, two-file state, negative CLI checks, pins), CHANGELOG bim001 entry closed (summary + 'no pin changes'). Architect nit applied: mislabeled AC-13 line dropped from chunk 5 report. No code touched. `pytest -q` → 54 passed in 7.58s. (Chunk 5 committed at 88c1ebf.) All 6 chunks done → P3 next.
+43: **Chunk 5 ready to stage (13:11):** hardening — 5 contract tests, import sweep clean, spec greps preview all green except the accepted AC-92 metadata hit. `pytest -q` → 54 passed in 7.68s. (Chunks 3+4 committed at e19f247.)
+44: **Chunk 4 ready to stage (13:01):** main() wired (run folder on all paths, close_run, absences, manifest), run() threads RunFolder, sandbox AC-71(a); 12 tests. `pytest -q` → 49 passed in 5.73s. NOTE: HEAD still e777e4e (chunk 2) — chunk 3 not visible as committed; flagged to Director.
+45: **Chunk 3 ready to stage (12:53):** crawl_page html/fetched transport keys; record_capture outcome ladder; crawl_all(run=); stub amendment AC-71(c); 7 tests. save_markdown byte-identical to main; AC-62 literals 1 each. `pytest -q` → 37 passed in 2.96s. (Chunk 2 committed by Director at e777e4e.)
+46: **Chunk 2 ready to stage (12:48):** RunFolder + build_absences + input_hosts (pure, unwired); 8 tests. One test-literal fix (37 bytes, my miscount). `pytest -q` → 30 passed in 2.67s.
+47: 
+48: ### [13:33] — COMPLETE: bim001 P3 — regression, smoke, completion report
+49: 
+50: **Task:** P3 on HEAD ed57cc3 (all 6 chunks committed). Steps 1–7 executed literally. Report: `agent_docs/RESPONSES/BIM001_complete_2026-09-06.md`.
+51: **Results:** pytest 54 passed (root + /tmp); pins unchanged, pip check clean; AC-92 1 accepted hit; surface per AC-90; negative CLI probes a–d as specified, outputs/ unchanged; live smoke `--project CyberizeGroup --limit 10` exit 0, 10/10 captured, manifest 23/11 keys, 184 limit absences, 12-line stage log, run_summary.json unchanged. run_id 2026-09-06T07-30-16Z.
+52: **Stumble:** first smoke attempt used bare `python` (no crawl4ai) → import error in 0.2 s, no network, nothing created; re-run with venv/bin/python.
+53: **Git:** read-only only. Awaiting Director commit → qa branch → SOL/Cody.
+54: 
+55: ## Lessons Learned
+56: 
+57: - The P3 prompt says `python -m …`; in this shell `python` is the bare pyenv interpreter. Always invoke `venv/bin/python` for anything that imports crawl4ai. Cost: one instant, network-free failed attempt.
+58: 
+59: ## End of Session State
+60: 
+61: - **Working:** bim001 built: `discover` → `crawler --project NAME [--limit N]` → outputs/<project>/runs/<run_id>/{html/, manifest.json, absences.json, stage_log.txt} + unchanged run_summary.json + markdown. 54 tests green. Live 10/10 captured.
+62: - **Broken:** nothing known.
+63: - **Next Steps:** Director commits P3 artifacts → creates qa/web-factory-p1-bim001 → SOL/Cody Gate Q → close-out (BIM001_RETROSPECTIVE.md after PASS).
+64: 
+65: ## Files Changed This Session
+66: 
+67: - `agent_docs/SESSIONS/session_2026-09-06.md` — created (this file)
+68: - `agent_docs/RECON/READ_pre-bim001_2026-09-06.md` — pre-bim001 read (Director later moved it to RECON/OLD/)
+69: - `smart_crawler/crawler.py`, `tests/test_crawler.py`, `README.md`, `RUN_NOTES.md`, `CHANGELOG.md` — bim001 chunks 1–6 (committed af7c423 … ed57cc3)
+70: - `agent_docs/RESPONSES/BIM001_handoff-read_…`, `BIM001_plan_…`, `BIM001_chunk1…6_…`, `BIM001_complete_2026-09-06.md`
+71: - `RECOVERY.md` — updated at P3 close

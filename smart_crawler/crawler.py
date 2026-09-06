@@ -313,7 +313,8 @@ def build_absences(pages: list[dict], attempted: Sequence[str], all_urls: Sequen
 
 
 def input_hosts(urls: Sequence[str]) -> list[str]:
-    return sorted({urlparse(u).netloc for u in urls})
+    """Sorted unique hostnames of the input URLs (hostname, not netloc: no ports; None skipped)."""
+    return sorted({h for h in (urlparse(u).hostname for u in urls) if h})
 
 # ---------------------------------------------------------------------------
 # CLI

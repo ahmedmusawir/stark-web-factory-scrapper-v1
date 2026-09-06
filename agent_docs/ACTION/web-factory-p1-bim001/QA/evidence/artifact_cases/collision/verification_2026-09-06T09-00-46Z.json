@@ -1,0 +1,78 @@
+{
+  "checks": {
+    "layout": true,
+    "manifest_keys": true,
+    "page_keys": true,
+    "summary_keys": true,
+    "fixed_values": true,
+    "project": true,
+    "run_id": true,
+    "run_dir": true,
+    "command": true,
+    "input_path": true,
+    "summary_path": true,
+    "counts": true,
+    "literal_input_hosts": true,
+    "timestamps": true,
+    "stopped_exit": true,
+    "summary_values": true,
+    "page_values_except_md_equation": true,
+    "html_exact_bytes": true,
+    "literal_md_equation": false,
+    "absences_exact_content_order_reasons": true,
+    "absences_shape": true,
+    "absences_complete_disjoint": true,
+    "log_timestamp": true,
+    "log_start_end": true,
+    "log_attempts": true,
+    "log_stop": true,
+    "log_line_count": true,
+    "no_network_attempts": true,
+    "collision_exact_three_files": true,
+    "three_writes": true,
+    "manifest_url_mapping": true,
+    "markdown_legacy_overwrite": true
+  },
+  "observations": [
+    {
+      "ac": "35",
+      "url": "https://example.invalid/x",
+      "slug": "example-invalid-x-2",
+      "actual_md_file": "pages/example-invalid-x.md",
+      "literal_expected": "pages/example-invalid-x-2.md"
+    },
+    {
+      "ac": "35",
+      "url": "http://example.invalid/x",
+      "slug": "example-invalid-x-3",
+      "actual_md_file": "pages/example-invalid-x.md",
+      "literal_expected": "pages/example-invalid-x-3.md"
+    }
+  ],
+  "html": [
+    {
+      "url": "https://example.invalid/x/",
+      "html_file": "html/example-invalid-x.html",
+      "bytes": 15,
+      "sha256": "a233229af6809af7076a9e2eec9f697ef21dc46dc65e05a2ed22712c0ec282f4",
+      "exact_utf8": true,
+      "hex": "3c703e666972737420c3893c2f703e"
+    },
+    {
+      "url": "https://example.invalid/x",
+      "html_file": "html/example-invalid-x-2.html",
+      "bytes": 15,
+      "sha256": "00ee4696947e62507aa04307a32501ca0bc8a5619ecfc3397db6b06032a9de7a",
+      "exact_utf8": true,
+      "hex": "3c703e7365636f6e640d0a3c2f703e"
+    },
+    {
+      "url": "http://example.invalid/x",
+      "html_file": "html/example-invalid-x-3.html",
+      "bytes": 12,
+      "sha256": "9cfdf8baf09c4e7865d75ab2a825f52791feef703ac891710bb3418708042dff",
+      "exact_utf8": true,
+      "hex": "3c703e74686972643c2f703e"
+    }
+  ]
+}

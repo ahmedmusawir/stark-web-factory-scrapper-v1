@@ -1,0 +1,55 @@
+{
+  "schema": "bim001-manifest-v1",
+  "project_name": "Proj",
+  "run_id": "2026-09-06T14-30-00Z",
+  "run_dir": "outputs/Proj/runs/2026-09-06T14-30-00Z",
+  "started_at": "2026-09-06T14:30:00+00:00",
+  "finished_at": "2026-09-06T14:30:00+00:00",
+  "command": "python -m smart_crawler.crawler --project Proj",
+  "input_path": "/in.json",
+  "input_total": 0,
+  "limit": null,
+  "input_hosts": [],
+  "access_rung": "a",
+  "fallbacks_fired": [],
+  "stopped_early": false,
+  "crawl4ai_version": "0.9.3",
+  "playwright_version": "1.52.0",
+  "python_version": "3.12.3",
+  "wait_for_images": true,
+  "delay_before_return_html_s": 3.0,
+  "page_timeout_ms": 90000,
+  "pause_range_s": [
+    2,
+    5
+  ],
+  "summary_path": "outputs/run_summary.json",
+  "pages": [
+    {
+      "url": "https://example.com/a",
+      "status": 200,
+      "ok": true,
+      "elapsed_s": 1.0,
+      "error": null,
+      "slug": "example-com-a",
+      "outcome": "captured",
+      "reason": null,
+      "html_file": "html/example-com-a.html",
+      "html_bytes": 10,
+      "md_file": "pages/example-com-a.md"
+    },
+    {
+      "url": "https://example.com/b",
+      "status": 403,
+      "ok": false,
+      "elapsed_s": 0.5,
+      "error": "blocked",
+      "slug": "example-com-b",
+      "outcome": "blocked",
+      "reason": "blocked",
+      "html_file": null,
+      "html_bytes": null,
+      "md_file": null
+    }
+  ]
+}

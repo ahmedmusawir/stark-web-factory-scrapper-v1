@@ -1,0 +1,140 @@
+{
+  "save_markdown_source_equal": true,
+  "imports": [
+    "from pathlib import Path",
+    "import argparse",
+    "import asyncio",
+    "import importlib.metadata",
+    "import json",
+    "import platform",
+    "import random",
+    "import re",
+    "import sys",
+    "import time",
+    "from datetime import datetime, timezone",
+    "from typing import Sequence",
+    "from urllib.parse import urlparse",
+    "from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode",
+    "from discover_site.sitemap_utils import USER_AGENT"
+  ],
+  "mkdir_calls": [
+    {
+      "line": 190,
+      "function_ancestors": [
+        "write_summary"
+      ]
+    },
+    {
+      "line": 490,
+      "function_ancestors": [
+        "main"
+      ]
+    },
+    {
+      "line": 231,
+      "function_ancestors": [
+        "create"
+      ]
+    }
+  ],
+  "baseline_assertions": [
+    {
+      "file": "tests/test_crawler.py",
+      "name": "test_403_and_500_write_no_file_and_are_recorded",
+      "line": 65,
+      "count": 10,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_crawler.py",
+      "name": "test_three_consecutive_429_stop_the_run",
+      "line": 87,
+      "count": 5,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_crawler.py",
+      "name": "test_blocked_counter_resets_on_success",
+      "line": 97,
+      "count": 1,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_crawler.py",
+      "name": "test_pause_between_pages_not_before_first",
+      "line": 108,
+      "count": 2,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_crawler.py",
+      "name": "test_limit_and_input_flags",
+      "line": 115,
+      "count": 4,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_crawler.py",
+      "name": "test_session_user_agent_on_sitemap_calls",
+      "line": 127,
+      "count": 5,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_crawler.py",
+      "name": "test_import_from_foreign_cwd_creates_no_directory",
+      "line": 146,
+      "count": 1,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_crawler.py",
+      "name": "test_empty_input_writes_truthful_summary_without_crawling",
+      "line": 152,
+      "count": 6,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_discover.py",
+      "name": "test_is_valid_link_rejects_empty_mailto_tel_and_fragments",
+      "line": 7,
+      "count": 5,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_discover.py",
+      "name": "test_is_valid_link_accepts_relative_and_same_domain_only",
+      "line": 15,
+      "count": 3,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_discover.py",
+      "name": "test_normalize_link_strips_fragment_and_query_and_resolves_relative",
+      "line": 21,
+      "count": 2,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_sitemap_utils.py",
+      "name": "test_flat_sitemap_returns_all_locs",
+      "line": 25,
+      "count": 1,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_sitemap_utils.py",
+      "name": "test_sitemap_index_follows_child_sitemaps",
+      "line": 33,
+      "count": 1,
+      "exact_equal": true
+    },
+    {
+      "file": "tests/test_sitemap_utils.py",
+      "name": "test_unparseable_sitemap_returns_empty",
+      "line": 41,
+      "count": 1,
+      "exact_equal": true
+    }
+  ]
+}

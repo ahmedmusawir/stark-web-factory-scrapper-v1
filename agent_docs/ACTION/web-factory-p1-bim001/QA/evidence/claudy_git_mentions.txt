@@ -1,0 +1,19 @@
+agent_docs/RESPONSES/BIM001_chunk1_2026-09-06.md:9: - **AC-71(b) amendment, pulled forward from chunk 4:** `test_empty_input_writes_truthful_summary_without_crawling` argv gains `--project TestProj` because validation-first made it exit 2. Assertions untouched (`git diff main -- tests/` shows no removed `assert`).
+agent_docs/RESPONSES/BIM001_chunk2_2026-09-06.md:20: `grep -n mkdir` → lines 180 (`write_summary`), 221 (`RunFolder.create`), 418 (`main`) — all inside functions. AC-92 grep → 1 hit, line 275, the metadata lookup (I-1 accepted; erratum at QA). `git diff main -- tests/` → no removed `assert`.
+agent_docs/RESPONSES/BIM001_chunk3_2026-09-06.md:20: `git diff main -- tests/` → no removed `assert`. `save_markdown` body diff vs `main` → identical. AC-62 greps → 1 each. AC-92 → still the single accepted metadata hit.
+agent_docs/RESPONSES/BIM001_chunk4_2026-09-06.md:6: **Git note for the Director.** `git log -1` shows `e777e4e 6sep2026 - bim001 chunk 2 done`; `record_capture` (chunk 3) is not in HEAD's `crawler.py`. Either chunk 3's commit did not land or it is on another ref. The working tree carries chunks 3 + 4 together; the diff stat below is therefore against the chunk 2 commit. Not a blocker for me; please check before staging chunk 4.
+agent_docs/RESPONSES/BIM001_chunk4_2026-09-06.md:15: **diff stat (against HEAD = chunk 2 commit, so chunk 3 is included):**
+agent_docs/RESPONSES/BIM001_chunk4_2026-09-06.md:22: `git diff main -- tests/` → no removed `assert`. `grep -n mkdir` → lines 190, 231, 490, all inside functions.
+agent_docs/RESPONSES/BIM001_chunk4_2026-09-06.md:24: **To do:** Director checks the chunk 3 commit state, then stages chunk 4. On "next" → chunk 5 (hardening: spec greps, ac63 complete, ac10/12/60/61/62 end-to-end, dead-code check).
+agent_docs/RESPONSES/BIM001_chunk5_2026-09-06.md:15: - AC-90 surface (`git diff --name-only main`, non-agent_docs) → `CHANGELOG.md`, `smart_crawler/crawler.py`, `tests/test_crawler.py`; requirements/.env.example diff → 0
+agent_docs/RESPONSES/BIM001_complete_2026-09-06.md:18: | HEAD | `git log -1 --oneline` | `ed57cc3 6sep2026 - bim001 chunk 6 done` |
+agent_docs/RESPONSES/BIM001_complete_2026-09-06.md:19: | tree | `git status --short` | clean |
+agent_docs/RESPONSES/BIM001_complete_2026-09-06.md:25: | 4 | `git diff --name-only main` (non-agent_docs) | `CHANGELOG.md`, `README.md`, `RUN_NOTES.md`, `smart_crawler/crawler.py`, `tests/test_crawler.py`; plus `agent_docs/**` (Director archive moves + reports). `discover_site/`, `requirements*` untouched. |
+agent_docs/RESPONSES/BIM001_complete_2026-09-06.md:105: | 70 | PASS | 14 bim000 test names present and passing; `git diff main -- tests/` shows 0 removed `assert` lines |
+agent_docs/RESPONSES/BIM001_complete_2026-09-06.md:116: | 93 | PASS | `git log main..HEAD --format=%an` → Director only; Claudy ran read-only git only |
+agent_docs/RESPONSES/BIM001_complete_2026-09-06.md:126: 1. Commit the P3 artifacts: this report, `agent_docs/SESSIONS/session_2026-09-06.md`, `RECOVERY.md`. (Run artifacts under `outputs/` are gitignored.)
+agent_docs/RESPONSES/BIM001_handoff-read_2026-09-06.md:18: **Status:** waiting for P1. No edits, no installs, no network, no mutating git.
+agent_docs/RESPONSES/BIM001_plan_2026-09-06.md:7: 4. Six commit-sized chunks, each ending green; tests are written alongside the code in each chunk, not as a separate scaffold chunk.
+agent_docs/RESPONSES/BIM001_plan_2026-09-06.md:10: **Status:** PENDING_APPROVAL · **Branch:** `web-factory-p1-bim001` @ `57a0f59` (== `main`; EVIDENCE `git rev-parse main`, `merge-base --is-ancestor`). Read-only git. No edits, installs or network in this prompt.
+agent_docs/RESPONSES/BIM001_plan_2026-09-06.md:57: | 61 | C | `save_markdown` untouched | — | `git diff main -- smart_crawler/crawler.py` |
+agent_docs/RESPONSES/BIM001_plan_2026-09-06.md:64: | 90/91/92/93 | — | surface, pins, imports, git author | — | P3 commands |

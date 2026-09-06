@@ -1,0 +1,96 @@
+{
+  "schema": "bim001-manifest-v1",
+  "project_name": "CyberizeGroup",
+  "run_id": "2026-09-06T09-01-26Z",
+  "run_dir": "outputs/CyberizeGroup/runs/2026-09-06T09-01-26Z",
+  "started_at": "2026-09-06T09:01:26+00:00",
+  "finished_at": "2026-09-06T09:01:26+00:00",
+  "command": "python -m smart_crawler.crawler --project CyberizeGroup --input /home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/web-factory-p1-bim001/QA/evidence/pytest_tmp_regression_tmp/test_ac51_stage_log_contents0/in/input.json",
+  "input_path": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/web-factory-p1-bim001/QA/evidence/pytest_tmp_regression_tmp/test_ac51_stage_log_contents0/in/input.json",
+  "input_total": 6,
+  "limit": null,
+  "input_hosts": [
+    "example.com"
+  ],
+  "access_rung": "a",
+  "fallbacks_fired": [],
+  "stopped_early": true,
+  "crawl4ai_version": "0.9.3",
+  "playwright_version": "1.52.0",
+  "python_version": "3.12.3",
+  "wait_for_images": true,
+  "delay_before_return_html_s": 3.0,
+  "page_timeout_ms": 90000,
+  "pause_range_s": [
+    2,
+    5
+  ],
+  "summary_path": "outputs/run_summary.json",
+  "pages": [
+    {
+      "url": "https://example.com/p0",
+      "status": 200,
+      "ok": true,
+      "elapsed_s": 0.0,
+      "error": null,
+      "slug": "example-com-p0",
+      "outcome": "captured",
+      "reason": null,
+      "html_file": "html/example-com-p0.html",
+      "html_bytes": 8,
+      "md_file": "pages/example-com-p0.md"
+    },
+    {
+      "url": "https://example.com/p1",
+      "status": 500,
+      "ok": false,
+      "elapsed_s": 0.0,
+      "error": "HTTP 500",
+      "slug": "example-com-p1",
+      "outcome": "failed",
+      "reason": "HTTP 500",
+      "html_file": null,
+      "html_bytes": null,
+      "md_file": null
+    },
+    {
+      "url": "https://example.com/p2",
+      "status": 429,
+      "ok": false,
+      "elapsed_s": 0.0,
+      "error": "blocked",
+      "slug": "example-com-p2",
+      "outcome": "blocked",
+      "reason": "blocked",
+      "html_file": null,
+      "html_bytes": null,
+      "md_file": null
+    },
+    {
+      "url": "https://example.com/p3",
+      "status": 429,
+      "ok": false,
+      "elapsed_s": 0.0,
+      "error": "blocked",
+      "slug": "example-com-p3",
+      "outcome": "blocked",
+      "reason": "blocked",
+      "html_file": null,
+      "html_bytes": null,
+      "md_file": null
+    },
+    {
+      "url": "https://example.com/p4",
+      "status": 429,
+      "ok": false,
+      "elapsed_s": 0.0,
+      "error": "blocked",
+      "slug": "example-com-p4",
+      "outcome": "blocked",
+      "reason": "blocked",
+      "html_file": null,
+      "html_bytes": null,
+      "md_file": null
+    }
+  ]
+}

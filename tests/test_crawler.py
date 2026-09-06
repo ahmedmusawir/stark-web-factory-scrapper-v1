@@ -35,10 +35,7 @@ class FakeCrawler:
 
     async def arun(self, url, config=None):
         self.calls.append(url)
-        result = self._results.pop(0)
-        if isinstance(result, Exception):  # bim001 tests: simulate arun raising
-            raise result
-        return result
+        return self._results.pop(0)
 
 
 @pytest.fixture
@@ -399,10 +396,21 @@ def test_ac50_stage_log_lines_start_with_timestamp(tmp_path):
 # bim001 — chunk 3: capture in the crawl loop (AC-20, 22, 24, 25, 26, 27, 28)
 # ---------------------------------------------------------------------------
 
-def _crawl(sandbox, results, urls=None, project="Proj"):
+class RaisingFakeCrawler(FakeCrawler):
+    """bim001-only test infrastructure: like FakeCrawler, but an Exception instance in the
+    results list is raised from arun() instead of returned (simulates a crawl4ai failure)."""
+
+    async def arun(self, url, config=None):
+        result = await super().arun(url, config)
+        if isinstance(result, Exception):
+            raise result
+        return result
+
+
+def _crawl(sandbox, results, urls=None, project="Proj", crawler_cls=FakeCrawler):
     rf = crawler.RunFolder(project, STARTED, root=sandbox.dir / "runs").create()
     urls = urls or _urls(len(results))
-    pages, stopped = asyncio.run(crawler.crawl_all(urls, FakeCrawler(results), run=rf))
+    pages, stopped = asyncio.run(crawler.crawl_all(urls, crawler_cls(results), run=rf))
     return rf, pages, stopped
 
 
@@ -434,7 +442,7 @@ def test_ac24_blocked_no_html(sandbox):
 
 def test_ac25_failed_and_exception_no_html(sandbox):
     rf, pages, _ = _crawl(sandbox, [_result(500, success=False, raw="", html="<html>err</html>"),
-                                    RuntimeError("boom")])
+                                    RuntimeError("boom")], crawler_cls=RaisingFakeCrawler)
     assert [e["outcome"] for e in rf.pages] == ["failed", "failed"]
     assert rf.pages[0]["reason"] == "HTTP 500"
     assert rf.pages[1]["reason"].startswith("exception:") and "boom" in rf.pages[1]["reason"]
@@ -548,15 +556,19 @@ def test_ac14_two_runs_two_folders(sandbox, monkeypatch):
 
 
 def test_ac32_manifest_identity_values(sandbox, monkeypatch):
-    urls = ["https://b.example.com/x", "https://a.example.com/y", "https://b.example.com/z"]
-    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")] * 3, urls, extra=["--limit", "2"], project="CyberizeGroup")
+    urls = ["https://b.example.com/x", "https://a.example.com/y", "https://b.example.com/z",
+            "https://example.invalid:8443/port", "https://example.invalid/plain"]
+    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")] * 5, urls, extra=["--limit", "2"], project="CyberizeGroup")
     manifest, _, _ = _load(run_dir)
     assert manifest["project_name"] == "CyberizeGroup"
     assert manifest["run_id"] == run_dir.name
     assert manifest["run_dir"] == f"outputs/CyberizeGroup/runs/{run_dir.name}" and not manifest["run_dir"].endswith("/")
     assert manifest["command"].startswith("python -m smart_crawler.crawler") and "--project CyberizeGroup" in manifest["command"] and "--limit 2" in manifest["command"]
     assert manifest["input_path"] == str((sandbox.dir / "in" / "input.json").resolve())
-    assert manifest["input_hosts"] == ["a.example.com", "b.example.com"]
+    assert manifest["input_hosts"] == ["a.example.com", "b.example.com", "example.invalid"]  # hostnames only
+    assert "example.invalid:8443" not in manifest["input_hosts"]
+    assert crawler.input_hosts(["https://example.invalid:8443/port", "https://example.invalid/plain"]) == ["example.invalid"]
+    assert crawler.input_hosts(["not a url", "https://x.invalid/"]) == ["x.invalid"]  # None hostnames skipped
     assert manifest["summary_path"] == "outputs/run_summary.json"
 
 

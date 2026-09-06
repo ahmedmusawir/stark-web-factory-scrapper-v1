@@ -1,0 +1,468 @@
+===== agent_docs/RESPONSES/BIM001_chunk1_2026-09-06.md =====
+# BIM001 — Chunk 1 report — CLI + input split — 2026-09-06
+
+**Plain language (3 lines).**
+The crawler now has a `--project` flag that argparse accepts but `main()` validates first: missing or malformed → three-line corrective usage on stderr and exit 2, before any input is read, any folder made, or any browser started. `load_urls` was split so a new `read_urls` returns the full list (needed later for `input_total`), with `load_urls` behaving exactly as before. A `RUN_ROOT` constant and a `make_run_id` helper are in place for the run folder work in chunks 2–4; nothing creates folders yet.
+
+**What changed (file:function).**
+- `smart_crawler/crawler.py` — constants `RUN_ROOT = OUTPUT_DIR`, `PROJECT_RE`, `CANONICAL_EXAMPLE`, `HELP_HINT`; new `make_run_id`, `validate_project`, `print_project_usage`, `read_urls`; `load_urls` now `read_urls` + slice (same inputs, outputs, exit codes); `parse_args` +`--project` (default `None`); `main()` validates the project immediately after `parse_args` and exits 2 on `required`/`invalid`. Description string gains "+ raw HTML". No other function touched (`save_markdown`, `write_summary`, `crawl_page`, `crawl_all`, `run` unchanged).
+- `tests/test_crawler.py` — 7 new tests: `test_ac01_project_flag_optional_to_parser`, `test_ac02_missing_project_refuses_before_crawl` (browser + `read_urls` patched to fail; tmp tree unchanged), `test_ac03_04_05_missing_project_message_lines`, `test_ac06_invalid_project_space_and_dotdot` (parametrized ×2; also 64/65-char boundary), `test_ac08_help_and_limit_zero_preserved`, `test_ac11_run_id_format_matches_started_at`, `test_ac63_exit_codes_missing_input_and_project`.
+- **AC-71(b) amendment, pulled forward from chunk 4:** `test_empty_input_writes_truthful_summary_without_crawling` argv gains `--project TestProj` because validation-first made it exit 2. Assertions untouched (`git diff main -- tests/` shows no removed `assert`).
+- `CHANGELOG.md` — bim001 section opened; the amendment is listed by test name as the rules require.
+
+**pytest:** `venv/bin/pytest -q` → `22 passed in 2.56s` (14 bim000 + 8 new items; `ac06` is parametrized ×2).
+
+**diff stat:**
+```
+ CHANGELOG.md             |  7 ++++
+ smart_crawler/crawler.py | 56 +++++++++++++++++++++++----
+ tests/test_crawler.py    | 98 +++++++++++++++++++++++++++++++++++++++++++++++-
+ 3 files changed, 153 insertions(+), 8 deletions(-)
+```
+`grep -n mkdir smart_crawler/crawler.py` → lines 177 (`write_summary`) and 292 (`main`) only, both inside functions.
+
+**To do:** Director stages chunk 1. On "next" → chunk 2 (RunFolder class, pure + tmp-tested).
+
+**chunk 1 ready to stage**
+
+===== agent_docs/RESPONSES/BIM001_chunk2_2026-09-06.md =====
+# BIM001 — Chunk 2 report — RunFolder — 2026-09-06
+
+**Plain language (3 lines).**
+The run-folder machinery now exists as one class plus two helpers: it creates `outputs/<project>/runs/<run_id>/html/`, appends timestamped stage-log lines, hands out `-2`/`-3` slugs on collision, writes HTML byte-for-byte and refuses to overwrite, and writes the 23-key manifest and the absences list. It is not called from `main()` yet, so the live crawler behaves exactly as bim000 until chunk 4. One test constant was wrong on the first run (I counted `É` as one byte; it is two) — fixed in the test, no code change.
+
+**What changed (file:function).**
+- `smart_crawler/crawler.py` — new `RunFolder` (`__init__`, `_set_started`, `run_dir_rel`, `create` with the I-3 same-second wait, `log`, `allocate_slug`, `save_html`, `record_page`, `write_manifest`, `write_absences`), new `build_absences()`, new `input_hosts()`; constants `MANIFEST_SCHEMA`, `ACCESS_RUNG`, `OUTCOMES`; imports `platform`, `time`, `urlparse`. `playwright_version` comes from `importlib.metadata` — the one accepted AC-92 hit (I-1). The three run-config mirrors are literals with a comment (AC-62). No existing function touched.
+- `tests/test_crawler.py` — 8 new tests: `test_ac10_run_folder_layout_exact`, `test_ac21_html_byte_for_byte` (also CRLF/whitespace untouched), `test_ac23_collision_suffix` (3 URLs → `<slug>.html`, `-2`, `-3`, 3 distinct bodies, manifest maps each URL, overwrite raises), `test_ac30_manifest_top_level_keys_exact`, `test_ac31_manifest_fixed_values`, `test_ac34_manifest_page_keys_exact`, `test_ac40_absences_shape`, `test_ac50_stage_log_lines_start_with_timestamp`.
+- `CHANGELOG.md` — chunk 2 line added under the open bim001 entry.
+
+**pytest:** `venv/bin/pytest -q` → `30 passed in 2.67s`.
+
+**diff stat:**
+```
+ CHANGELOG.md             |   1 +
+ smart_crawler/crawler.py | 126 ++++++++++++++++++++++++++++++++++++++++++++++
+ tests/test_crawler.py    | 128 +++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 255 insertions(+)
+```
+`grep -n mkdir` → lines 180 (`write_summary`), 221 (`RunFolder.create`), 418 (`main`) — all inside functions. AC-92 grep → 1 hit, line 275, the metadata lookup (I-1 accepted; erratum at QA). `git diff main -- tests/` → no removed `assert`.
+
+**To do:** Director stages chunk 2. On "next" → chunk 3 (capture in the crawl loop: `crawl_page` html/fetched, `crawl_all` outcome ladder, stub amendment AC-71c).
+
+**chunk 2 ready to stage**
+
+===== agent_docs/RESPONSES/BIM001_chunk3_2026-09-06.md =====
+# BIM001 — Chunk 3 report — capture in the crawl loop — 2026-09-06
+
+**Plain language (3 lines).**
+The crawl loop can now capture raw HTML: `crawl_page` carries the page's `html` (guarded, may be absent) and a `fetched` flag out alongside the markdown, and `crawl_all` accepts an optional run folder — when given, every attempted page is classified (blocked / failed / unsupported / captured), its HTML saved byte-for-byte under a collision-safe slug, and a manifest entry plus a stage-log line recorded. Without a run folder the loop behaves exactly as bim000, which is what the 14 old tests still exercise. `main()` does not pass a run folder yet — that is chunk 4 — so the live command is still pure bim000.
+
+**What changed (file:function).**
+- `smart_crawler/crawler.py` — `crawl_page`: every return now includes `html` (`getattr(result, "html", None)`) and `fetched`; the record dict is unchanged. New `record_capture(run, page, url, html, fetched, md_saved)`: outcome ladder, `allocate_slug` only for captured pages, `save_html` in a try/except (AC-28), `md_file` = the markdown file bim000 actually wrote (I-2), one stage-log line per page. `crawl_all(urls, crawler, run=None)`: pops the three transport keys before `pages.append` (AC-60), calls `record_capture` when `run` is given, logs `stop rule` on early stop. Untouched: `save_markdown` (body byte-identical to `main`, verified by diff), `write_summary`, `run`, `main`, all `CrawlerRunConfig` literals (each grep = 1).
+- `tests/test_crawler.py` — **AC-71(c) amendment:** `_result()` gains optional `html=None`, attribute set only when provided; `FakeCrawler.arun` raises when handed an Exception (helper only, no bim000 test changes). 7 new tests: `test_ac20_captured_for_successful_fetch`, `test_ac22_html_stem_equals_md_stem` (also `def slugify` count = 1 from source), `test_ac24_blocked_no_html`, `test_ac25_failed_and_exception_no_html`, `test_ac26_unsupported_when_html_absent`, `test_ac27_html_independent_of_markdown`, `test_ac28_write_failure_is_failure_not_crash`.
+- `CHANGELOG.md` — chunk 3 line; AC-71(c) listed by test/helper name.
+
+**pytest:** `venv/bin/pytest -q` → `37 passed in 2.96s`.
+
+**diff stat:**
+```
+ CHANGELOG.md             |  2 +
+ smart_crawler/crawler.py | 68 ++++++++++++++++++++++++++++-----
+ tests/test_crawler.py    | 98 ++++++++++++++++++++++++++++++++++++++++++++++--
+ 3 files changed, 155 insertions(+), 13 deletions(-)
+```
+`git diff main -- tests/` → no removed `assert`. `save_markdown` body diff vs `main` → identical. AC-62 greps → 1 each. AC-92 → still the single accepted metadata hit.
+
+**To do:** Director stages chunk 3. On "next" → chunk 4 (wire `main()`: run folder, empty input, counts/hosts, absences, manifest on all paths; sandbox amendment AC-71a).
+
+**chunk 3 ready to stage**
+
+===== agent_docs/RESPONSES/BIM001_chunk4_2026-09-06.md =====
+# BIM001 — Chunk 4 report — main() wired — 2026-09-06
+
+**Plain language (3 lines).**
+The crawler now produces the bim001 run folder end to end: after `--project` validation and input read, `main()` creates `outputs/<project>/runs/<run_id>/`, logs `run start`, crawls (or takes the empty-input branch), then writes `run_summary.json` exactly as bim000 did, plus `manifest.json`, `absences.json` and the closing `run end` line — on normal completion, on empty input, and on the 3-consecutive-blocked stop (manifest first, then exit 2). The sandbox fixture now redirects the run root to tmp (the last of the three permitted bim000 test amendments). Offline tests drive the real `main()` with a fake browser, so the whole path is exercised without network.
+
+**Git note for the Director.** `git log -1` shows `e777e4e 6sep2026 - bim001 chunk 2 done`; `record_capture` (chunk 3) is not in HEAD's `crawler.py`. Either chunk 3's commit did not land or it is on another ref. The working tree carries chunks 3 + 4 together; the diff stat below is therefore against the chunk 2 commit. Not a blocker for me; please check before staging chunk 4.
+
+**What changed (file:function).**
+- `smart_crawler/crawler.py` — `run(urls, run_folder=None)` passes the RunFolder into `crawl_all`. `main()`: `read_urls` for the full list, slice by `--limit`, `command` reconstructed as `python -m smart_crawler.crawler <argv[1:]>` (I-4), `RunFolder(...).create()` immediately after input read (I-3 wait honoured; `started_at` taken from the folder), `run start` log line, inner `close_run(pages, finished_at, stopped_early)` that writes summary → manifest → absences → `run end` with identical timestamps for summary and manifest (AC-36); empty-input branch uses `close_run([], …)` (AC-13); banner shows project / run_id / run folder; totals line adds HTML captured / not attempted; `sys.exit(2)` still last. Module docstring updated. Untouched: `save_markdown`, `write_summary`, `crawl_page`, run-config literals, `load_urls`.
+- `tests/test_crawler.py` — **AC-71(a):** `sandbox` fixture adds `monkeypatch.setattr(crawler, "RUN_ROOT", tmp_path)`. New helpers `FakeBrowser` (stands in for `AsyncWebCrawler`), `_main()`, `_load()`. 12 new tests: `test_ac07_project_case_preserved`, `test_ac13_empty_input_creates_run_folder`, `test_ac14_two_runs_two_folders` (exercises the same-second wait), `test_ac32_manifest_identity_values`, `test_ac33_manifest_counts`, `test_ac35_page_values_match_run_summary`, `test_ac36_timestamps_identical`, `test_ac37_manifest_on_early_stop_exit_2`, `test_ac41_absences_completeness_and_order`, `test_ac42_skipped_reasons_limit_and_stop_rule`, `test_ac43_absence_reason_matches_manifest`, `test_ac51_stage_log_contents`.
+- `CHANGELOG.md` — chunk 4 line; AC-71(a) listed. All three permitted amendments are now listed (a, b, c).
+
+**pytest:** `venv/bin/pytest -q` → `49 passed in 5.73s` (14 bim000 + 35 bim001 items; the ~6 s is the deliberate same-second wait in ac14/ac33/ac37).
+
+**diff stat (against HEAD = chunk 2 commit, so chunk 3 is included):**
+```
+ CHANGELOG.md             |   4 +
+ smart_crawler/crawler.py | 122 +++++++++++++++++----
+ tests/test_crawler.py    | 275 ++++++++++++++++++++++++++++++++++++++++++++++-
+ 3 files changed, 374 insertions(+), 27 deletions(-)
+```
+`git diff main -- tests/` → no removed `assert`. `grep -n mkdir` → lines 190, 231, 490, all inside functions.
+
+**To do:** Director checks the chunk 3 commit state, then stages chunk 4. On "next" → chunk 5 (hardening: spec greps, ac63 complete, ac10/12/60/61/62 end-to-end, dead-code check).
+
+**chunk 4 ready to stage**
+
+===== agent_docs/RESPONSES/BIM001_chunk5_2026-09-06.md =====
+# BIM001 — Chunk 5 report — hardening — 2026-09-06
+
+**Plain language (3 lines).**
+No product behavior changed in this chunk. Five tests now pin the contract points QA will grep for — run-folder layout end to end, nothing called at import time (checked via the AST, not just a grep), the untouched `run_summary.json` key sets through the real `main()`, the bim000 run-config literals and `save_markdown` body, and the complete exit-code matrix (0 / 1 / 2 on every path). An import-usage sweep found every import in `crawler.py` used and `load_urls` still legitimately alive as the bim000 API. The one failure on the first run was my test helper creating a folder twice; fixed in the helper.
+
+**What changed (file:function).**
+- `tests/test_crawler.py` — 5 new tests: `test_ac10_run_folder_layout_end_to_end`, `test_ac12_no_mkdir_at_module_level`, `test_ac60_run_summary_contract_unchanged_via_main`, `test_ac61_62_bim000_code_and_config_literals_unchanged`, `test_ac63_exit_codes_complete`. Helper `_one_url_input`: `mkdir(exist_ok=True)`.
+- `CHANGELOG.md` — chunk 5 line.
+- `smart_crawler/crawler.py` — **not touched** in this chunk.
+
+**pytest:** `venv/bin/pytest -q` → `54 passed in 7.68s` (14 bim000 + 40 bim001 items; AC-72 minimum 14 met more than twice over; AC-73 N ≥ 28 met).
+
+**Spec greps, preview of P3 (all read-only):**
+- AC-22 `def slugify` → 1 · AC-62 four literals → 1 each · AC-70 removed bim000 asserts → 0
+- AC-90 surface (`git diff --name-only main`, non-agent_docs) → `CHANGELOG.md`, `smart_crawler/crawler.py`, `tests/test_crawler.py`; requirements/.env.example diff → 0
+- AC-91 `pip freeze` vs lock → 0 diff lines; `pip check` → No broken requirements found
+- AC-92 → 1 hit, `crawler.py:285` metadata lookup (I-1 accepted; erratum at QA)
+- AC-93 authors main..HEAD → Director only
+- `--help` shows `--project`, `--input`, `--limit`
+
+**diff stat:**
+```
+ CHANGELOG.md          |  1 +
+ tests/test_crawler.py | 68 ++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 68 insertions(+), 1 deletion(-)
+```
+
+**To do:** Director stages chunk 5. On "next" → chunk 6, docs (README two-command section with `--project`, RUN_NOTES bim001 section + two-file-state sentence, CHANGELOG close of the bim001 entry incl. "no pin changes").
+
+**chunk 5 ready to stage**
+
+===== agent_docs/RESPONSES/BIM001_chunk6_2026-09-06.md =====
+# BIM001 — Chunk 6 report — docs — 2026-09-06
+
+**Plain language (3 lines).**
+The three docs now tell the truth about bim001: the README's Run section shows the required `--project`, the canonical command, the run-folder layout, the four outcomes and the exit codes; RUN_NOTES gains a bim001 section with the same canonical command, what a run leaves behind, the two-file-state sentence, the negative CLI checks and the no-pin-change statement; the CHANGELOG bim001 entry is closed with a one-bullet summary. No code was touched, so the suite is unchanged at 54. The Architect's nit is applied: the mislabeled "AC-13" grep line is removed from the chunk 5 report (bim001's AC-13 is the empty-input run folder; the `discovered_pages_final` grep was bim000's AC-13).
+
+**What changed (file:section).**
+- `README.md` — "## Run": step 2 now requires `--project`, shows the exact line `python -m smart_crawler.crawler --project CyberizeGroup --limit 10`, the run-folder tree, outcome definitions, the unchanged bim000 behaviour bullets (with the two-file-state pointer), and an exit-code line. "## Tests" and "## Layout" updated for the run folder and the `test_acNN_` naming. Intro line updated.
+- `RUN_NOTES.md` — new "## bim001 — Raw HTML Capture (2026-09-06)": canonical command block, what a run leaves behind, **two-file state** ("`manifest.json` is the run record from bim001 onward; `run_summary.json` is the frozen bim000 contract retained for compatibility"), negative CLI checks, pins (no change; I-1 metadata note), pointer to the P3 transcript.
+- `CHANGELOG.md` — bim001 entry title finalised; chunk 6 line; summary bullet naming `--project` flag, run folder layout, HTML capture, manifest, absences, stage log, the three AC-71 amendments (a/b/c), 40 new tests, and "no pin changes".
+- `agent_docs/RESPONSES/BIM001_chunk5_2026-09-06.md` — nit: AC-13 line dropped.
+
+**Checks (read-only):** AC-80 canonical line → README 1, RUN_NOTES 1, missing-project error output 1 (probe exited 2 and created nothing under `outputs/`). AC-81 sentence present. AC-82 entry mentions every required item. `smart_crawler/` and `tests/` diff → empty.
+
+**pytest:** `venv/bin/pytest -q` → `54 passed in 7.58s`.
+
+**diff stat:**
+```
+ CHANGELOG.md |  6 ++++--
+ README.md    | 41 +++++++++++++++++++++++++++++------------
+ RUN_NOTES.md | 34 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 67 insertions(+), 14 deletions(-)
+```
+
+**To do:** Director stages chunk 6. All six chunks are then committed → hand me **P3** (regression from root and `/tmp`, pins, greps, negative CLI probes, live capped smoke, completion report).
+
+**chunk 6 ready to stage**
+
+===== agent_docs/RESPONSES/BIM001_complete_2026-09-06.md =====
+# BIM001 — Completion report (P3) — Raw HTML Capture — 2026-09-06
+
+**Plain language (5 lines).**
+1. bim001 is built, all six chunks committed by the Director; HEAD `ed57cc3 6sep2026 - bim001 chunk 6 done`, tree clean.
+2. Regression: 54 tests pass from the repo root and from `/tmp` (14 bim000 unchanged + 40 bim001). Pins untouched; `pip freeze` equals the lock; `pip check` clean.
+3. Live capped smoke `--project CyberizeGroup --limit 10`: exit 0, 10 of 10 pages captured as raw HTML (all start with `<!DOCTYPE html>`), manifest 23 keys / 11 per page, 184 `skipped/limit` absences, 12-line stage log, `run_summary.json` still exactly bim000's shape.
+4. Negative CLI probes behave as specified: missing/invalid `--project` → exit 2 with the three usage lines; `--limit 0` → exit 2; `--help` → exit 0; nothing created under `outputs/`.
+5. Two accepted deviations, no spec edits: AC-92 shows one hit (the `playwright` metadata lookup, ruling I-1) and AC-35 `md_file` records the file actually written (ruling I-2). One P3 stumble on my side: the first smoke attempt used the bare `python` (no crawl4ai) and died on import in 0.2 s — no network, nothing created; re-run with `venv/bin/python`.
+
+**Not a verdict.** SOL owns Gate Q. This report maps evidence.
+
+---
+
+## Environment (P3 steps 1–5, literal results)
+
+| Step | Command | Result |
+|---|---|---|
+| HEAD | `git log -1 --oneline` | `ed57cc3 6sep2026 - bim001 chunk 6 done` |
+| tree | `git status --short` | clean |
+| 1 | `venv/bin/pytest -q` (repo root) | `54 passed in 7.22s` |
+| 1 | from `/tmp`, `PYTHONPATH=<repo> venv/bin/pytest -q <repo>/tests` | `54 passed in 7.64s` |
+| 2 | `venv/bin/pip freeze \| diff - requirements-lock.txt` | no output |
+| 2 | `venv/bin/pip check` | `No broken requirements found.` |
+| 3 | `grep -rn "litellm\|playwright\|google.generativeai\|genai" smart_crawler/ discover_site/` | **1 hit**: `smart_crawler/crawler.py:285` `importlib.metadata.version("playwright")` (I-1 accepted; erratum) |
+| 4 | `git diff --name-only main` (non-agent_docs) | `CHANGELOG.md`, `README.md`, `RUN_NOTES.md`, `smart_crawler/crawler.py`, `tests/test_crawler.py`; plus `agent_docs/**` (Director archive moves + reports). `discover_site/`, `requirements*` untouched. |
+| 5a | `venv/bin/python -m smart_crawler.crawler --input outputs/discovered_pages.json` | stderr: `❌ --project is required. Name the project this run belongs to.` / `   Example: python -m smart_crawler.crawler --project CyberizeGroup --limit 10` / `   Help:    python -m smart_crawler.crawler --help` — **exit 2** |
+| 5b | `… --project "Cyberize Group" --limit 1` | stderr: `❌ --project is invalid: 'Cyberize Group'. Allowed: letters, digits, '-' and '_'; 1-64 characters; must start with a letter or digit.` + same Example/Help lines — **exit 2** |
+| 5c | `… --project CyberizeGroup --limit 0` | `crawler.py: error: --limit must be >= 1` — **exit 2** |
+| 5d | `… --help` | usage with `--project`, `--input`, `--limit` — **exit 0** |
+| 5 | `find outputs \| md5sum` before == after a–d | unchanged (`discovered_pages.json pages run_summary.json`) |
+
+## Live smoke (P3 step 6) — network permitted for this step only
+
+`venv/bin/python -m smart_crawler.crawler --project CyberizeGroup --limit 10` on the existing `outputs/discovered_pages.json` (194 URLs). Start 2026-09-06 13:30:15 +06 (07:30:15 UTC), **exit 0, 100.6 s wall**. Console excerpt:
+
+```
+Project: CyberizeGroup   run_id: 2026-09-06T07-30-16Z
+Ready to crawl 10 of 194 URL(s)
+[1/10] 200 ok 12.0s https://cyberizegroup.com/blog/ -> cyberizegroup-com-blog.md (15,380 chars)
+⏸ pause 3.5s
+… (10 status lines, 9 pauses: 3.5, 4.9, 4.7, 2.6, 2.9, 2.9, 2.6, 3.6, 2.6 s)
+[10/10] 200 ok 6.4s https://cyberizegroup.com/ppc-agency-checklist/ -> cyberizegroup-com-ppc-agency-checklist.md (29,642 chars)
+✅ CRAWL COMPLETE   ✅ Successful: 10   ❌ Failed: 0 (blocked: 0)
+🧾 HTML captured: 10 of 10 attempted; 184 not attempted
+```
+
+Run folder `outputs/CyberizeGroup/runs/2026-09-06T07-30-16Z/`: `absences.json`, `html/` (10 files), `manifest.json`, `stage_log.txt` — nothing else.
+
+manifest (pages collapsed): `schema bim001-manifest-v1` · `project_name CyberizeGroup` · `run_id 2026-09-06T07-30-16Z` · `run_dir outputs/CyberizeGroup/runs/2026-09-06T07-30-16Z` · `started_at 2026-09-06T07:30:16+00:00` · `finished_at 2026-09-06T07:31:56+00:00` · `command python -m smart_crawler.crawler --project CyberizeGroup --limit 10` · `input_path /home/moose/python/stark-web-factory-scrapper-v1/outputs/discovered_pages.json` · `input_total 194` · `limit 10` · `input_hosts ["cyberizegroup.com"]` · `access_rung a` · `fallbacks_fired []` · `stopped_early false` · `crawl4ai_version 0.9.3` · `playwright_version 1.52.0` · `python_version 3.12.3` · `wait_for_images true` · `delay_before_return_html_s 3.0` · `page_timeout_ms 90000` · `pause_range_s [2, 5]` · `summary_path outputs/run_summary.json` · **23 keys; 10 pages × 11 keys; outcomes captured 10 / blocked 0 / failed 0 / unsupported 0.** html_bytes: 600508, 380959, 455168, 378924, 426987, 400636, 394609, 424103, 424583, 445474.
+
+absences.json: **184 entries, all `{"outcome": "skipped", "reason": "limit"}`**, first: `https://cyberizegroup.com/unlock-the-benefits-of-working-with-a-ppc-agency/`.
+
+stage_log.txt (12 lines): `2026-09-06T07:30:16+00:00 run start project=CyberizeGroup run_id=2026-09-06T07-30-16Z input_total=194 limit=10` · `…07:30:29 captured https://cyberizegroup.com/blog/` · … · `2026-09-06T07:31:56+00:00 run end captured=10 absent=184 stopped_early=False`.
+
+One captured page: `html/cyberizegroup-com-5-foundational-principles-for-online-success.html` — `wc -c` **426987**, `head -c 40` `<!DOCTYPE html><html lang="en-US"><head>`, manifest `html_bytes` **426987**. All 10 files start with `<!DOCTYPE` (case-insensitive check).
+
+Step 7 — `outputs/run_summary.json`: top-level `['crawl4ai_version', 'finished_at', 'pages', 'pause_range_s', 'started_at']`; per-page `['elapsed_s', 'error', 'ok', 'status', 'url']`; 10 pages, all status 200; `started_at`/`finished_at` identical to the manifest; `run_id` matches the regex and `started_at`.
+
+---
+
+## AC-by-AC (Check as written → evidence)
+
+| AC | Result | Evidence |
+|---|---|---|
+| 01 | PASS | `--help` exit 0 contains `--project` (5d); `parse_args(["--limit","3"])` returns — `test_ac01_…` |
+| 02 | PASS | 5a exit 2; browser + input read not reached — `test_ac02_…` (patches fail if called; tmp tree unchanged); `outputs/` md5 unchanged |
+| 03 | PASS | 5a output contains `--project is required` |
+| 04 | PASS | 5a/5b output contains `python -m smart_crawler.crawler --project CyberizeGroup --limit 10` |
+| 05 | PASS | 5a/5b output contains `python -m smart_crawler.crawler --help` |
+| 06 | PASS | 5b exit 2 `--project is invalid` + Example/Help; `../x` → `test_ac06_…` (parametrized); nothing under `outputs/` |
+| 07 | PASS | smoke created `outputs/CyberizeGroup/` (case preserved); `test_ac07_…` |
+| 08 | PASS | 5d shows `--input`, `--limit`; 5c argparse error exit 2 — `test_ac08_…` |
+| 10 | PASS | `find` listing: exactly `html/`, `manifest.json`, `stage_log.txt`, `absences.json` in RUN_DIR — `test_ac10_…` ×2 |
+| 11 | PASS | `2026-09-06T07-30-16Z` matches regex; == `started_at` instant — `test_ac11_…` |
+| 12 | PASS | bim000 test 7 unchanged and passing; `grep -n mkdir` → lines 190, 231, 490 all indented (function bodies); `test_ac12_…` (AST: no top-level call) |
+| 13 | PASS | `test_ac13_empty_input_creates_run_folder` (RUN_DIR with empty `html/`, `pages==[]`, `input_total==0`, `absences==[]`, non-empty log; `run_summary.json` written) |
+| 14 | PASS | `test_ac14_two_runs_two_folders` (distinct run_ids via the same-second wait; first manifest bytes unchanged) |
+| 20 | PASS | smoke: 10/10 captured with files present — `test_ac20_…` |
+| 21 | PASS | unit: bytes == `html.encode("utf-8")`, 37 bytes, CRLF preserved — `test_ac21_…`; live: 426987 == manifest `html_bytes` |
+| 22 | PASS | html stem == md stem (`cyberizegroup-com-blog`); `grep -c "def slugify"` → 1 — `test_ac22_…` |
+| 23 | PASS | `test_ac23_collision_suffix` (`<slug>.html`, `-2`, `-3`, three bodies, manifest maps each URL, overwrite raises) |
+| 24 | PASS | `test_ac24_blocked_no_html` |
+| 25 | PASS | `test_ac25_failed_and_exception_no_html` (`HTTP 500`; reason starts `exception:`) |
+| 26 | PASS | `test_ac26_unsupported_when_html_absent` (no `html` attr → `unsupported`, reason contains `html`, no AttributeError) |
+| 27 | PASS | `test_ac27_html_independent_of_markdown` (captured; `ok False` `empty markdown` preserved) |
+| 28 | PASS | `test_ac28_write_failure_is_failure_not_crash` (`write failed: disk full`; run continues) |
+| 30 | PASS | live manifest 23 keys, exact list — `test_ac30_…` |
+| 31 | PASS | live values above — `test_ac31_…` |
+| 32 | PASS | live: `project_name`, `run_id`==folder, `run_dir` posix no trailing slash, `command` starts `python -m smart_crawler.crawler`, resolved `input_path`, `input_hosts`, `summary_path` — `test_ac32_…` |
+| 33 | PASS | live `input_total 194`, `limit 10`, `len(pages) 10`; stop-rule truncation — `test_ac33_…` |
+| 34 | PASS | live 11 page keys, exact list — `test_ac34_…` |
+| 35 | PASS WITH NOTE | values identical to `run_summary.json`; captured/non-captured field rules — `test_ac35_…`. **Note (I-2):** `md_file` records the markdown file bim000 actually wrote (`pages/<base-slug>.md`); under a slug collision the suffixed `slug` and `md_file` stem differ by design (R1 vs R4). Not reproducible on the live site. |
+| 36 | PASS | live `started_at`/`finished_at` identical in both files — `test_ac36_…` |
+| 37 | PASS | normal (live), empty (ac13), early stop → manifest + `stopped_early True` + exit 2 — `test_ac37_…` |
+| 40 | PASS | live 184 entries, keys `outcome/reason/url` — `test_ac40_…` |
+| 41 | PASS | live: 10 captured + 184 absent = 194 input, disjoint — `test_ac41_…` (order: attempted-absent then skipped) |
+| 42 | PASS | `test_ac42_…` (`limit` vs `stop_rule`); live 184 × `limit` |
+| 43 | PASS | `test_ac43_…` |
+| 50 | PASS | live 12 lines, each starts `YYYY-MM-DDTHH:MM:SS` — `test_ac50_…` |
+| 51 | PASS | live first line `run start … CyberizeGroup … 2026-09-06T07-30-16Z`, one line per URL with `captured`, last `run end`; stop-rule line — `test_ac51_…` |
+| 60 | PASS | step 7 key sets; bim000 tests 1 & 8 asserts unmodified — `test_ac60_…` |
+| 61 | PASS | `save_markdown` body byte-identical to `main` (diff of function text); `test_ac61_62_…` |
+| 62 | PASS | `wait_for_images=True`, `delay_before_return_html=3.0`, `page_timeout=90000`, `CacheMode.BYPASS` → 1 hit each; `random.uniform(*PAUSE_RANGE_S)` with `(2, 5)` |
+| 63 | PASS | 5a/5b/5c exits; missing input → 1, normal → 0, stop rule → 2 — `test_ac63_…` ×2 |
+| 70 | PASS | 14 bim000 test names present and passing; `git diff main -- tests/` shows 0 removed `assert` lines |
+| 71 | PASS | exactly (a) sandbox `RUN_ROOT`, (b) test 8 argv `--project TestProj`, (c) `_result` optional `html` — each listed by name in `CHANGELOG.md`. (`FakeCrawler.arun` also raises on Exception instances — helper-only, no bim000 test touched; noted for SOL.) |
+| 72 | PASS | 40 new `test_acNN_*` items covering every named AC (min 14) |
+| 73 | PASS | 54 passed from root and `/tmp`; 0 failed; ≥ 28 |
+| 74 | PASS | exit 0; 10 pages, 10 captured (≥ 9); all files start `<!DOCTYPE`; absences = 0 non-captured + 184 `skipped/limit` (194 − 10) |
+| 80 | PASS | canonical line in `README.md` (1), `RUN_NOTES.md` (1), error output (5a) |
+| 81 | PASS | `RUN_NOTES.md` two-file-state sentence |
+| 82 | PASS | `CHANGELOG.md` bim001 entry: flag, run folder layout, HTML capture, manifest, absences, stage log, amendments a/b/c, "no pin changes" |
+| 90 | PASS | surface = `smart_crawler/crawler.py`, `tests/test_crawler.py`, `README.md`, `RUN_NOTES.md`, `CHANGELOG.md`, `agent_docs/**`; nothing under `discover_site/`; `requirements*` unchanged |
+| 91 | PASS | freeze == lock; `pip check` clean |
+| 92 | PASS WITH NOTE (erratum) | 1 hit: `crawler.py:285` `importlib.metadata.version("playwright")` — metadata string, no import, no Playwright code (I-1 accepted) |
+| 93 | PASS | `git log main..HEAD --format=%an` → Director only; Claudy ran read-only git only |
+
+**ACs not met literally, with reason (spec not edited):** AC-92 (metadata token; I-1) · AC-35 `md_file` under collision (I-2). Both pre-ruled; QA to record errata.
+
+## Numbers
+
+Tests 14 → 54 (+40, all `test_acNN_*`). Smoke: run_id `2026-09-06T07-30-16Z`, 10 attempted, 10 captured, 0 absent-attempted, 184 skipped (limit), 100.6 s, HTML 378,924–600,508 bytes per page (3.6 MB total). Pins unchanged (crawl4ai 0.9.3, playwright 1.52.0).
+
+## To do — Director
+
+1. Commit the P3 artifacts: this report, `agent_docs/SESSIONS/session_2026-09-06.md`, `RECOVERY.md`. (Run artifacts under `outputs/` are gitignored.)
+2. Create `qa/web-factory-p1-bim001` and hand to SOL/Cody; Cody's artifacts → `agent_docs/ACTION/web-factory-p1-bim001/QA/`.
+3. Errata for QA to record: AC-92 (I-1), AC-35 (I-2). Optional note: bim001 CLAUDE.md §2.5 and P1 cite `agent_docs/RECON/READ_pre-bim001_2026-09-06.md`; the file now lives at `agent_docs/RECON/OLD/…` after the archive move.
+
+===== agent_docs/RESPONSES/BIM001_handoff-read_2026-09-06.md =====
+# BIM001 — Handoff read — 2026-09-06
+
+**Plain language:** I read the bim001 module folder in its prescribed order. bim001 adds raw HTML capture to the crawler: a required `--project` flag, a per-run folder under `outputs/<project>/runs/<run_id>/` holding `html/*.html`, `manifest.json`, `absences.json`, `stage_log.txt`. bim000's markdown output and `run_summary.json` stay byte-identical. Only `smart_crawler/crawler.py`, `tests/`, and the three docs may change. Nothing is pending from me until the Director hands P1 (Plan Mode).
+
+**Read (in order):** `CLAUDE.md` → `BIM001_BRIEF.md` → `BIM001_ACCEPTANCE_SPEC.md` (AC-01…AC-93, grading rule J-16: literal Check wins) → `BIM001_CLAUDY_PROMPTS.md` (P1 plan / P2 build in chunks / P3 regression+smoke+report) → my `READ_pre-bim001_2026-09-06.md` → `BIM000_RETROSPECTIVE.md` §Carry into bim001. Folder frozen; not edited. Branch `web-factory-p1-bim001` @ 57a0f59.
+
+**What I take as fixed (closed rulings):** R1 markdown KEEP · R2 manifest is truth, `run_summary.json` unchanged · R3-A explicit `--project`, validated in `main()`, no default, exit 2 with corrective usage · R4 `-2/-3` collision suffix, never overwrite · R5 timing untouched · F1 · R-A · R-D · no stealth · no Playwright code of ours.
+
+**Things I already see that the P1 plan must answer (not answering them now):**
+- AC-33/41/42 need `input_total` and limit-skipped URLs while test 5 pins `load_urls(path, limit)` behavior — mechanism to propose in P1.C.
+- AC-26: stub results have no `html` → `getattr` guard → outcome `unsupported`.
+- AC-27: HTML capture independent of markdown; `run_summary.json` `ok` keeps bim000 meaning.
+- AC-71: only three permitted amendments to bim000 tests (sandbox redirects run root; `main()`-invoking test gains `--project`; stub gains optional `html`).
+- AC-30/34: 23 manifest keys / 11 per-page keys, exact.
+- AC-12: no mkdir at import; AC-13: empty input still creates the run folder.
+- Reports go to `agent_docs/RESPONSES/BIM001_<stage>_<date>.md` (module convention, differs from the bim000 `response_<ts>_` pattern).
+
+**Status:** waiting for P1. No edits, no installs, no network, no mutating git.
+
+===== agent_docs/RESPONSES/BIM001_plan_2026-09-06.md =====
+# BIM001 — Build plan (P1) — 2026-09-06
+
+**Plain language (5 lines).**
+1. bim001 teaches the crawler to save each fetched page's raw HTML into a per-run folder, with a manifest, an absences list and a stage log — and to refuse to run without an explicit `--project` name.
+2. Everything bim000 certified stays as it is: markdown files, `run_summary.json`, timing, identity, exit codes, all 14 tests.
+3. One code file changes (`smart_crawler/crawler.py`), one test file grows (`tests/test_crawler.py`), three docs get a bim001 section.
+4. Six commit-sized chunks, each ending green; tests are written alongside the code in each chunk, not as a separate scaffold chunk.
+5. Four spec items cannot be met literally as written (playwright token vs AC-92, `md_file` under collision, run_id second-granularity, `command` reconstruction) — flagged in §I for a ruling, spec untouched.
+
+**Status:** PENDING_APPROVAL · **Branch:** `web-factory-p1-bim001` @ `57a0f59` (== `main`; EVIDENCE `git rev-parse main`, `merge-base --is-ancestor`). Read-only git. No edits, installs or network in this prompt.
+**Working tree note:** the Director's archive moves (`agent_docs/RECON/OLD/`, `agent_docs/RESPONSES/OLD/*` for bim000 artifacts, new `agent_docs/RECON/README.md`) are uncommitted; per standing ruling I ignore OLD/. Not a blocker.
+**Evidence base:** `agent_docs/RECON/READ_pre-bim001_2026-09-06.md` — **now at `agent_docs/RECON/OLD/READ_pre-bim001_2026-09-06.md`** after the Director's RECON reorganisation (uncommitted); the module `CLAUDE.md` §2 item 5 and P1 still cite the old path. Not moved back by me; flagging. Line numbers below refer to `crawler.py` as it is at HEAD.
+
+---
+
+## A. AC → file / function / test map
+
+Files: **C** = `smart_crawler/crawler.py`, **T** = `tests/test_crawler.py`, **R** = `README.md`, **N** = `RUN_NOTES.md`, **L** = `CHANGELOG.md`. "new" = new function; "chg" = existing function changed; "—" = no code, checked by grep/command.
+
+| AC | File | Function | New/chg | Test that proves it |
+|---|---|---|---|---|
+| 01 | C | `parse_args` (+`--project`, default `None`) | chg | `test_ac01_project_flag_optional_to_parser` |
+| 02 | C | `main` → `validate_project` before `read_urls`/mkdir; `run` patched | new+chg | `test_ac02_missing_project_refuses_before_crawl` |
+| 03/04/05 | C | `print_project_usage(kind, value)` | new | `test_ac03_04_05_missing_project_message_lines` |
+| 06 | C | `validate_project` (`PROJECT_RE`) + `print_project_usage("invalid")` | new | `test_ac06_invalid_project_space_and_dotdot` |
+| 07 | C | `RunFolder.__init__` (`RUN_ROOT / project / "runs" / run_id`, case preserved) | new | `test_ac07_project_case_preserved` |
+| 08 | C | `parse_args` unchanged otherwise | — | `test_ac08_help_and_limit_zero_preserved` (+ bim000 test 5) |
+| 10 | C | `RunFolder.create()` (html/), `write_manifest`, `write_absences`, `log` | new | `test_ac10_run_folder_layout_exact` |
+| 11 | C | `make_run_id(started_at)` | new | `test_ac11_run_id_format_matches_started_at` |
+| 12 | C | module level: `RUN_ROOT` constant only | — | bim000 test 7 unchanged + `grep -n mkdir` |
+| 13 | C | `main` empty branch → creates folder, writes manifest/absences/log + `write_summary` | chg | `test_ac13_empty_input_creates_run_folder` |
+| 14 | C | `make_run_id` + `RunFolder.create()` (exists → wait to next second) | new | `test_ac14_two_runs_two_folders` |
+| 20 | C | `crawl_all` (capture branch) → `RunFolder.save_html` | chg/new | `test_ac20_captured_for_successful_fetch` |
+| 21 | C | `RunFolder.save_html` (`write_bytes(html.encode("utf-8"))`) | new | `test_ac21_html_byte_for_byte` |
+| 22 | C | reuse `slugify` (unchanged) | — | `test_ac22_html_stem_equals_md_stem` + `grep -c "def slugify"` |
+| 23 | C | `RunFolder.allocate_slug(base)` | new | `test_ac23_collision_suffix` |
+| 24 | C | `crawl_all` outcome logic (`error == "blocked"`) | chg | `test_ac24_blocked_no_html` |
+| 25 | C | `crawl_all` outcome logic (`fetched is False`) | chg | `test_ac25_failed_and_exception_no_html` |
+| 26 | C | `crawl_page` (`getattr(result, "html", None)`) + outcome `unsupported` | chg | `test_ac26_unsupported_when_html_absent` |
+| 27 | C | `crawl_page` (`fetched=True` even when markdown empty) + `crawl_all` | chg | `test_ac27_html_independent_of_markdown` |
+| 28 | C | `crawl_all` try/except around `save_html` → `failed`, reason `write ...` | chg | `test_ac28_write_failure_is_failure_not_crash` |
+| 30 | C | `RunFolder.write_manifest` | new | `test_ac30_manifest_top_level_keys_exact` |
+| 31 | C | `write_manifest` fixed values | new | `test_ac31_manifest_fixed_values` |
+| 32 | C | `write_manifest` identity values (`command`, `input_path`, `input_hosts`, …) | new | `test_ac32_manifest_identity_values` |
+| 33 | C | `main` (`input_total = len(all_urls)`, `limit`, `len(pages)`) | chg | `test_ac33_manifest_counts` |
+| 34 | C | `RunFolder.record_page` | new | `test_ac34_manifest_page_keys_exact` |
+| 35 | C | `record_page` (same record dict as `run_summary`, plus html fields) | new | `test_ac35_page_values_match_run_summary` |
+| 36 | C | `main` passes the same `started_at`/`finished_at` strings to both writers | chg | `test_ac36_timestamps_identical` |
+| 37 | C | `main` (normal / empty / stopped-early all reach `write_manifest`) | chg | `test_ac37_manifest_on_early_stop_exit_2` (+ ac13) |
+| 40 | C | `RunFolder.write_absences` | new | `test_ac40_absences_shape` |
+| 41 | C | `build_absences(pages, attempted, all_urls)` | new | `test_ac41_absences_completeness_and_order` |
+| 42 | C | `build_absences` (`limit` vs `stop_rule`) | new | `test_ac42_skipped_reasons_limit_and_stop_rule` |
+| 43 | C | `build_absences` (reason copied from page entry) | new | `test_ac43_absence_reason_matches_manifest` |
+| 50 | C | `RunFolder.log(line)` (prefix `utc_now()`) | new | `test_ac50_stage_log_lines_start_with_timestamp` |
+| 51 | C | `main`/`crawl_all` log calls: `run start`, per-URL, `stop rule`, `run end` | chg | `test_ac51_stage_log_contents` |
+| 60 | C | `write_summary` unchanged; `crawl_all` pops `html`/`fetched` before appending | — | bim000 tests 1 & 8 unmodified |
+| 61 | C | `save_markdown` untouched | — | `git diff main -- smart_crawler/crawler.py` |
+| 62 | C | `crawl_page` `CrawlerRunConfig` literals untouched | — | greps in spec |
+| 63 | C | `load_urls`/`read_urls` exit 1; argparse exit 2; stop rule exit 2; project exit 2 | chg | `test_ac63_exit_codes` |
+| 70/71 | T | `sandbox` (+`RUN_ROOT`), test 8 argv (+`--project`), `_result` (+optional `html`) | chg | all 14 bim000 tests by name |
+| 72/73 | T | ≥ 14 new `test_acNN_*` | new | `pytest -q` ≥ 28 |
+| 74 | — | live smoke (P3 only) | — | P3 evidence |
+| 80/81/82 | R, N, L | docs chunk | — | `grep -c` per spec |
+| 90/91/92/93 | — | surface, pins, imports, git author | — | P3 commands |
+
+## B. Run-root constant; no mkdir at import
+
+- **`RUN_ROOT = OUTPUT_DIR`** (module level, line ~42 area, next to `PAGE_DIR`/`SUMMARY_PATH`). Run folder = `RUN_ROOT / project / "runs" / run_id`. It equals `OUTPUT_DIR` in production so the layout is `outputs/<project>/runs/<run_id>/` (AC-10); tests redirect `crawler.RUN_ROOT = tmp_path` (AC-71a) so nothing lands in the real `outputs/`.
+- The manifest's `run_dir` string (AC-32) is built from parts — `f"outputs/{project}/runs/{run_id}"` — not from the filesystem path, so it reads correctly even when `RUN_ROOT` is redirected in tests.
+- **No `mkdir` at import.** Module level defines constants only (as today, `crawler.py:36-46`). `RunFolder.create()` does `run_dir.mkdir(parents=True)` + `(run_dir/"html").mkdir()` and is called from `main()` only. Every `mkdir` hit in `grep -n mkdir` will be inside a function body (AC-12). bim000 test 7 stays unchanged.
+
+## C. `input_total` and limit-skipped URLs without changing `load_urls`' tested behavior
+
+- Split the body of `load_urls` (`crawler.py:154-173`) into a new **`read_urls(path) -> list[str]`** that holds the existing missing-file / bad-JSON / other-error `sys.exit(1)` logic and the dict-or-string normalisation (lines 156-169 verbatim). `load_urls(path, limit)` becomes `urls = read_urls(path); return urls[:limit] if limit is not None else urls`. Same inputs, same outputs, same exit codes — **test 5 (`test_limit_and_input_flags`) is untouched and stays green** because its four calls (`load_urls(custom, 3)`, `load_urls(custom, None)`, default path, `--limit 0`) exercise exactly the preserved behavior. `load_urls` remains in the module as the bim000 API.
+- `main()` calls `all_urls = read_urls(args.input)` once, then `urls = all_urls[:args.limit] if args.limit else all_urls`. `input_total = len(all_urls)` (AC-33). Limit-skipped = `all_urls[len(urls):]` → absences `skipped / "limit"`. Stop-rule-skipped = `urls[len(pages):]` (URLs inside the limit that were never attempted because `crawl_all` returned early) → `skipped / "stop_rule"` (AC-42). `input_hosts = sorted({urlparse(u).netloc for u in all_urls})` (AC-32, A4).
+
+## D. `crawl_page` returns html alongside markdown; `getattr` guard → `unsupported`
+
+- `crawl_page` (`crawler.py:65-122`) keeps its record dict `{url, status, ok, elapsed_s, error}` **unchanged**. It gains two transport-only keys in the returned dict next to `"markdown"`: **`"html"`** = `getattr(result, "html", None)` (read right after `success`, line ~97; `None` when the attribute is absent — the stubs, or a future library change) and **`"fetched"`** = `True` once the status/success gate at lines 99-106 has been passed, `False` on exception / no result / blocked / failed. Every early return includes `"html": None, "fetched": False`.
+- `crawl_all` (`188-229`) pops all three transport keys before `pages.append(page)` (today it pops only `"markdown"`, line 204), so `run_summary.json` per-page keys remain exactly the five (AC-60; bim000 tests 1 and 8 key-set asserts untouched).
+- Outcome classification in `crawl_all`, only when a `RunFolder` is passed (`run` parameter, default `None` → bim000 behavior, bim000 tests call `crawl_all(urls, fake)` unchanged):
+  - `error == "blocked"` → **blocked**, reason `"blocked"`.
+  - `fetched is False` → **failed**, reason = `error` (`"exception: …"` satisfies AC-25; `"HTTP 500"`; library `error_message`).
+  - `fetched and not html` → **unsupported**, reason `"no html in result"` (contains `html`, AC-26; no `AttributeError` because of `getattr`).
+  - `fetched and html` → `save_html` → **captured** (`html_file`, `html_bytes`, `reason None`); if the write raises → **failed**, reason `f"write failed: {e}"` (contains `write`, AC-28), run continues, exit code unaffected.
+  - AC-27: a fetched page with empty markdown is `ok=False, error="empty markdown"` in the record (bim000, unchanged) **and** `captured` in the manifest, because capture keys off `fetched`/`html`, not `ok`.
+
+## E. Collision suffix and URL → file mapping
+
+- `RunFolder.allocate_slug(base)`: an in-run `dict[str, int]` counter. First use of `base` → `base`, counter 1. Each later use → counter += 1 → `f"{base}-{counter}"` (`slug-2.html`, `slug-3.html`, …). Never overwrites: the filename is decided before writing and each name is unique within the run (AC-23). Only captured pages allocate (a blocked page never consumes a suffix); non-captured pages record the plain base slug as `slug` (see §I-2).
+- Mapping recorded in `manifest.json["pages"][i]`: `url`, `slug` (suffix included), `html_file = f"html/{slug}.html"`, `html_bytes`; and in `absences.json` for the rest (AC-35, AC-41). The stage log line also names the URL and outcome (AC-51).
+
+## F. Missing / invalid `--project` path — exact text
+
+Order in `main()`: `args = parse_args()` → **`validate_project(args.project)`** → (only if valid) `read_urls` → `RunFolder.create()` → … No `mkdir`, no `read_urls`, no `AsyncWebCrawler` before validation (AC-02: "no browser, no file under outputs/"). `PROJECT_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$")` (AC-06; verified: `CyberizeGroup` ✓, `Cyberize Group` ✗, `../x` ✗). Output goes to **stderr**, then `sys.exit(2)`.
+
+Missing (`args.project is None`):
+```
+❌ --project is required. Name the project this run belongs to.
+   Example: python -m smart_crawler.crawler --project CyberizeGroup --limit 10
+   Help:    python -m smart_crawler.crawler --help
+```
+Invalid (regex miss), value quoted verbatim:
+```
+❌ --project is invalid: 'Cyberize Group'. Allowed: letters, digits, '-' and '_'; 1-64 characters; must start with a letter or digit.
+   Example: python -m smart_crawler.crawler --project CyberizeGroup --limit 10
+   Help:    python -m smart_crawler.crawler --help
+```
+Substrings satisfied literally: `--project is required` (AC-03), `python -m smart_crawler.crawler --project CyberizeGroup --limit 10` (AC-04/80), `python -m smart_crawler.crawler --help` (AC-05), `--project is invalid` (AC-06). argparse `--help` untouched; `--limit 0` still argparse-errors (AC-08).
+
+## G. bim000 test amendments (against AC-71) — three, exactly the permitted ones
+
+| bim000 test / fixture | Amendment | AC-71 clause |
+|---|---|---|
+| `sandbox` fixture (`test_crawler.py:37-50`) | add `monkeypatch.setattr(crawler, "RUN_ROOT", tmp_path)` | (a) |
+| `test_empty_input_writes_truthful_summary_without_crawling` (144-163) | argv becomes `["crawler", "--project", "TestProj", "--input", str(empty)]` — **assertions unchanged** (summary keys, `pages == []`, "No URLs found", `PAGE_DIR` empty; the run folder lands under `RUN_ROOT`, not `PAGE_DIR`) | (b) |
+| `_result()` stub (17-24) | new optional parameter `html=None`; the `html` attribute is **set only when provided**, so the default stub still has no `html` attribute (AC-26 needs that) | (c) |
+
+No other bim000 test changes. Tests 1–7 and 9–14 are byte-identical. Each amendment listed by name in `CHANGELOG.md` (AC-71/82).
+
+## H. Chunks (6), each ends with `venv/bin/pytest -q` green — tests written with the code in each chunk (not a tests-first scaffold; the spec's checks are already the test list)
+
+1. **CLI + input split.** `parse_args(--project)`, `PROJECT_RE`, `validate_project`, `print_project_usage`, `read_urls` split (load_urls preserved), `RUN_ROOT` constant, `make_run_id`. `main()` gains validation-first ordering; nothing else in main changes yet. Tests: ac01, ac02, ac03_04_05, ac06, ac08, ac11, ac63 (partial). Expect 14 + 7 = 21.
+2. **RunFolder.** `RunFolder` class: `create`, `log`, `allocate_slug`, `save_html`, `record_page`, `write_manifest` (23 keys), `write_absences`; `build_absences`. Pure, tmp-tested, not yet wired into `main()`. Tests: ac10, ac21, ac23, ac30, ac31, ac34, ac40, ac50. Expect ~29.
+3. **Capture in the crawl loop.** `crawl_page` (+`html`, +`fetched`), `crawl_all` (+optional `run`, outcome ladder, write-failure handling, stage-log lines). Stub amendment (AC-71c). Tests: ac20, ac24, ac25, ac26, ac27, ac28, ac22. Expect ~36.
+4. **Wire `main()`.** Run folder creation, empty-input branch, `input_total`/`limit`/hosts, absences (`limit`, `stop_rule`), manifest on all three exit paths, `run_summary.json` untouched, exit codes. Sandbox + test-8 amendments (AC-71a/b). Tests: ac07, ac13, ac14, ac32, ac33, ac35, ac36, ac37, ac41, ac42, ac43, ac51. Expect ~48.
+5. **Hardening pass.** Spec greps run locally (AC-12, 22, 60, 61, 62, 92); an offline end-to-end test through `main()` with `run` patched (`test_ac10_…` full layout, `test_ac63_exit_codes` complete); dead-code check; docstring truth. No new behavior. Expect count unchanged or +2.
+6. **Docs.** `README.md` (canonical command, run-folder layout, `--project`), `RUN_NOTES.md` (bim001 section, two-file-state sentence, canonical command), `CHANGELOG.md` (bim001 entry: flag, layout, capture, manifest, absences, stage log, the three AC-71 amendments by test name, "no pin changes"). No code.
+
+Then P3: regression from root and `/tmp`, pins, greps, negative CLI probes, live smoke, completion report.
+
+## I. Red flags — spec items I cannot meet literally as written (spec not edited; for QA erratum / Director ruling)
+
+1. **AC-31 vs AC-92 — the token `playwright`.** AC-31 requires `manifest.playwright_version == "1.52.0"`. The only truthful source is `importlib.metadata.version("playwright")`, which puts the literal `playwright` into `crawler.py`; AC-92's grep (`playwright` in `smart_crawler/`) then returns 1 hit. Today the count is 0. I will use the metadata lookup (no import of Playwright, no Playwright code — the CLAUDE.md rule's intent) and report the single hit. Ruling wanted: accept the metadata-string hit, or drop/hard-code the value (hard-coding would lie the moment the pin moves).
+2. **AC-35 `md_file` under collision (R1 vs R4).** bim000's `save_markdown` writes `pages/<base-slug>.md` and overwrites on collision (R1: unchanged). The manifest `slug` carries the `-2` suffix (R4). AC-35 says `md_file` is `"pages/<slug>.md"` — with the suffixed slug that names a file that does not exist. I will record the file actually written (`pages/<base-slug>.md`), which is truthful; the literal check differs only for colliding URLs. The live smoke has no collisions, so this is unit-level only.
+3. **AC-11/AC-14 run_id granularity.** `run_id` is `started_at` to the second. Two runs starting in the same second would share a folder and violate AC-14. Mitigation: `RunFolder.create()` checks existence and, if the folder already exists, waits until the clock passes to the next second and recomputes `started_at`/`run_id` — keeps the regex and the "same instant as `started_at`" property. Cost ≤ 1 s, only in that case. Alternative would be a suffix, which breaks the AC-11 regex. Confirm the mitigation is acceptable.
+4. **AC-32 `command` reconstruction.** Under `python -m`, `sys.argv[0]` is the script path, not `python -m smart_crawler.crawler`. I will emit `"python -m smart_crawler.crawler " + " ".join(sys.argv[1:])` — the canonical invocation form the spec asks for, not the raw argv[0]. Values with spaces (e.g. an invalid project name) never reach the manifest because validation exits first. Flagging because it is a reconstruction, not a verbatim capture.
+5. **AC-74 assumption (INFERENCE, live only).** "Each captured file starts with `<!DOCTYPE` or `<html`" depends on crawl4ai's `result.html` being Playwright's `page.content()`, which normally begins with `<!DOCTYPE html>`. I cannot verify offline; if a page fails this, it is a P3 finding, not something bim001 code should paper over (byte-for-byte rule).
+6. **AC-62 keeps literals in `CrawlerRunConfig`.** To satisfy the greps (`wait_for_images=True` → 1 hit etc.) I will **not** hoist those values to constants; the manifest duplicates them as literals (`"wait_for_images": True`, `"delay_before_return_html_s": 3.0`, `"page_timeout_ms": 90000`) with a comment. Two copies of three numbers is the price of the grep-shaped AC; noting it, not asking for a change.
+
+## Chunk list
+
+1. CLI + input split — `parse_args`, `validate_project`, `print_project_usage`, `read_urls`/`load_urls`, `RUN_ROOT`, `make_run_id`; tests ac01/02/03_04_05/06/08/11/63.
+2. RunFolder — `create/log/allocate_slug/save_html/record_page/write_manifest/write_absences`, `build_absences`; tests ac10/21/23/30/31/34/40/50.
+3. Capture in the crawl loop — `crawl_page` html+fetched, `crawl_all` outcome ladder + logging; stub amendment; tests ac20/22/24/25/26/27/28.
+4. Wire `main()` — run folder, empty input, counts/hosts, absences, manifest on all paths, exit codes; sandbox + test-8 amendments; tests ac07/13/14/32/33/35/36/37/41/42/43/51.
+5. Hardening — spec greps, end-to-end offline `main()` test, ac63 complete, dead-code check.
+6. Docs — README, RUN_NOTES, CHANGELOG.
+
+→ Awaiting Director approval. Please rule on §I-1 (playwright token) and confirm §I-3 (run_id wait) before P2.
