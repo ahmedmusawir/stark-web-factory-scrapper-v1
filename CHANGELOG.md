@@ -17,3 +17,11 @@ Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark
 - **Updated:** `agent_docs/SESSIONS/session_2026-09-02.md`, `session_2026-09-03.md` — stale `RESPONSES/` paths repointed to `RESPONSES/OLD/`.
 - **Added:** `CHANGELOG.md` — this file.
 - **Reason:** web-factory-p1-bim000 brief §3 (F3 handoff fix, status validation, pacing, identity, F4 truth, R-B retire, paths, hygiene, docs).
+
+## 2026-09-05 — [CC] Claude Code — bim000 QA close (Gate Q PASS)
+
+- **Updated:** `smart_crawler/crawler.py` — AC-21 fix: empty `[]` input now writes `run_summary.json` (pages=[]) instead of returning early (dcfb1ea).
+- **Updated:** `tests/test_crawler.py` — regression test for the empty-input run; suite 14 passed.
+- **Added:** `agent_docs/ACTION/web-factory-p1-bim000/BIM000_RETROSPECTIVE.md`, `agent_docs/RESPONSES/QA_GATEQ_VERDICT_web-factory-p1-bim000_2026-09-05.md` — close-out records.
+- **Updated:** `RECOVERY.md`, `RUN_NOTES.md`, `agent_docs/SESSIONS/session_2026-09-05.md` — CLOSED state, certified SHA `81099ee`.
+- **Reason:** Cody PRE-Q found AC-21; SOL ruled surgical rework; Cody retest PASS; SOL Gate Q PASS on `qa/web-factory-p1-bim000` @ 81099ee.

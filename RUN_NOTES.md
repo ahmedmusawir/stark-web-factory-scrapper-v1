@@ -73,7 +73,7 @@ CP4 (this file, README rewrite, session state) is committed by the Operator afte
 
 ## bim000 — Stage prep + controlled upgrade (2026-09-05)
 
-Branch `web-factory-p1-bim000`. Module docs: `agent_docs/ACTION/web-factory-p1-bim000/`. Reports: `agent_docs/RESPONSES/response_2026-09-05_123610_bim000-stage1-upgrade.md` (Stage 1), `response_<ts>_bim000-stage2-complete.md` (Stage 2).
+Branch `web-factory-p1-bim000`. Module docs: `agent_docs/ACTION/web-factory-p1-bim000/`. Reports: `agent_docs/RESPONSES/response_2026-09-05_123610_bim000-stage1-upgrade.md` (Stage 1), `response_2026-09-05_131346_bim000-stage2-complete.md` (Stage 2), `response_2026-09-05_160321_bim000-ac21-rework.md` (AC-21 fix), `QA_PREQ_web-factory-p1-bim000_2026-09-05.md` + `response_2026-09-05_161757_bim000-ac21-cody-retest.md` (QA).
 
 ### Stage 1 — crawl4ai 0.6.3 → 0.9.3 (committed 600d181)
 
@@ -126,3 +126,16 @@ Ready to crawl 10 URL(s) ... Pause between pages: 2-5 s (random) ... Estimated t
 [10/10] 200 ok 5.3s https://cyberizegroup.com/ppc-agency-checklist/ -> cyberizegroup-com-ppc-agency-checklist.md (29,642 chars)
 ```
 `outputs/run_summary.json`: 10 pages, all `status: 200`, `ok: true`, `error: null`; `crawl4ai_version: "0.9.3"`, `pause_range_s: [2, 5]`. Nine pause lines, all within 2–5 s. Running discovery from `/tmp` (with the repo on `PYTHONPATH` so the module resolves) still writes to the repo's `outputs/` and nothing under `/tmp`.
+
+### Final certified result — SOL Gate Q PASS (2026-09-05)
+
+Certified: branch `qa/web-factory-p1-bim000`, SHA `81099eedb0b7072ceaa8ee20ebaf336466a369bb`.
+
+| Item | Result |
+|---|---|
+| Crawl4AI pin | `crawl4ai==0.9.3` (from 0.6.3); playwright 1.52.0 unchanged; lock 98 lines == `pip freeze`; `pip check` clean |
+| Discovery | `python -m discover_site.discover https://cyberizegroup.com` → 194 URLs, 4 GETs, <1 s |
+| 10-page smoke | `python -m smart_crawler.crawler --limit 10` → 10/10 HTTP 200, 9 pauses in 2–5 s, `run_summary.json` all 200 (Claudy 13:09; Cody independently 08:59 UTC) |
+| Regression | `venv/bin/pytest -q` → **14 passed** (6 C1 + 7 Stage 2 + 1 AC-21) |
+| AC-21 empty input | `--input <file containing []>` → zero crawls, exit 0, `run_summary.json` rewritten with `pages: []` and full metadata (regression test `test_empty_input_writes_truthful_summary_without_crawling`) |
+| QA | Cody PRE-Q found AC-21 → fixed dcfb1ea → Cody retest PASS → SOL Gate Q PASS; AC-10/41/45 PASS WITH NOTE, AC-52 PASS WITH SPEC/DOCTRINE NOTE |
