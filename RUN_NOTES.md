@@ -139,3 +139,37 @@ Certified: branch `qa/web-factory-p1-bim000`, SHA `81099eedb0b7072ceaa8ee20ebaf3
 | Regression | `venv/bin/pytest -q` → **14 passed** (6 C1 + 7 Stage 2 + 1 AC-21) |
 | AC-21 empty input | `--input <file containing []>` → zero crawls, exit 0, `run_summary.json` rewritten with `pages: []` and full metadata (regression test `test_empty_input_writes_truthful_summary_without_crawling`) |
 | QA | Cody PRE-Q found AC-21 → fixed dcfb1ea → Cody retest PASS → SOL Gate Q PASS; AC-10/41/45 PASS WITH NOTE, AC-52 PASS WITH SPEC/DOCTRINE NOTE |
+
+## bim001 — Raw HTML Capture (2026-09-06)
+
+Branch `web-factory-p1-bim001` off `main` @ 57a0f59 (bim000 close). Module docs: `agent_docs/ACTION/web-factory-p1-bim001/`. Reports: `agent_docs/RESPONSES/BIM001_plan_2026-09-06.md`, `BIM001_chunk1…6_2026-09-06.md`, `BIM001_complete_2026-09-06.md` (P3).
+
+### Canonical command
+
+```bash
+printf '1\n' | venv/bin/python -m discover_site.discover https://cyberizegroup.com
+python -m smart_crawler.crawler --project CyberizeGroup --limit 10
+venv/bin/pytest -q                              # 54 passed (14 bim000 + 40 bim001)
+```
+
+### What a run leaves behind
+
+- `outputs/run_summary.json` — the frozen bim000 contract, retained for compatibility: same path, same five top-level keys, same five per-page keys, same values.
+- `outputs/<project>/runs/<run_id>/` — the bim001 run folder: `html/<slug>.html` (raw HTML byte-for-byte, collision suffix `-2`, `-3`), `manifest.json`, `absences.json`, `stage_log.txt`.
+
+**Two-file state:** `manifest.json` is the run record from bim001 onward; `run_summary.json` is the frozen bim000 contract retained for compatibility and queued for retirement in a later module (bim004 or later). Until then both are written on every run, with identical `started_at` / `finished_at` and identical per-page `url/status/ok/elapsed_s/error` values.
+
+### Negative CLI checks (offline)
+
+```bash
+venv/bin/python -m smart_crawler.crawler --input outputs/discovered_pages.json     # no --project → exit 2, "--project is required" + example + --help pointer
+venv/bin/python -m smart_crawler.crawler --project "Cyberize Group" --limit 1       # exit 2, "--project is invalid"
+venv/bin/python -m smart_crawler.crawler --project CyberizeGroup --limit 0          # exit 2, argparse "--limit must be >= 1" (bim000)
+```
+None of these creates anything under `outputs/`.
+
+### Pins
+
+No pin changes in bim001: `crawl4ai==0.9.3`, `playwright==1.52.0`; `requirements-lock.txt` byte-identical to bim000 close. `manifest.json` records `playwright_version` via `importlib.metadata` (metadata lookup only, no Playwright code of ours — accepted I-1 ruling, erratum recorded at QA against AC-92).
+
+Live smoke transcript: see `BIM001_complete_2026-09-06.md` (P3).

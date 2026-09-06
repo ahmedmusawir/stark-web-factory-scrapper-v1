@@ -18,7 +18,7 @@ Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark
 - **Added:** `CHANGELOG.md` — this file.
 - **Reason:** web-factory-p1-bim000 brief §3 (F3 handoff fix, status validation, pacing, identity, F4 truth, R-B retire, paths, hygiene, docs).
 
-## 2026-09-06 — [CC] Claude Code — bim001 Raw HTML Capture (in progress)
+## 2026-09-06 — [CC] Claude Code — bim001 Raw HTML Capture
 
 - **bim000 test amendments (AC-71), listed as made:**
   - (a) `tests/test_crawler.py::sandbox` fixture — additionally redirects `crawler.RUN_ROOT` to `tmp_path`. (chunk 4)
@@ -29,7 +29,9 @@ Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark
 - **Chunk 3:** `smart_crawler/crawler.py` — `crawl_page` returns transport keys `html` (guarded `getattr`) and `fetched` alongside `markdown`; `crawl_all(urls, crawler, run=None)` pops all three before the record reaches `run_summary.json`, and when a `RunFolder` is given calls new `record_capture()` (outcome ladder blocked > failed > unsupported > captured; write failure → `failed`, reason `write failed: …`; stage-log line per page; `stop rule` log line). `save_markdown`, `write_summary`, run-config literals untouched. 7 new tests (ac20, 22, 24, 25, 26, 27, 28).
 - **Chunk 4:** `smart_crawler/crawler.py` — `main()` wired: validate → `read_urls` (all) → slice by `--limit` → `RunFolder.create()` on every path past validation → `run start` log → crawl (or empty-input branch) → `close_run()` writes `run_summary.json` (unchanged contract), `manifest.json` (counts, hosts, command, resolved input path, `stopped_early`), `absences.json` (`limit` / `stop_rule` skips), `run end` log; exit 2 on early stop after the manifest is written. `run()` threads the RunFolder. Banner shows project, run_id and run folder. 12 new tests (ac07, 13, 14, 32, 33, 35, 36, 37, 41, 42, 43, 51).
 - **Chunk 5 (hardening, no behavior change):** 5 source/contract tests — `test_ac10_run_folder_layout_end_to_end`, `test_ac12_no_mkdir_at_module_level` (AST: nothing called at import), `test_ac60_run_summary_contract_unchanged_via_main`, `test_ac61_62_bim000_code_and_config_literals_unchanged`, `test_ac63_exit_codes_complete`. Import-usage sweep: every import used; `load_urls` retained as bim000 API (used by tests). One test-helper fix (`_one_url_input` mkdir exist_ok).
-- **Reason:** web-factory-p1-bim001 brief; plan `agent_docs/RESPONSES/BIM001_plan_2026-09-06.md` approved 2026-09-06. No pin changes.
+- **Chunk 6 (docs):** `README.md` — Run section rewritten: `--project` required, canonical command `python -m smart_crawler.crawler --project CyberizeGroup --limit 10`, run-folder layout, outcomes, exit codes; Layout/Tests updated. `RUN_NOTES.md` — bim001 section: canonical command, what a run leaves behind, two-file state (manifest.json = run record from bim001 onward; run_summary.json = frozen bim000 contract kept for compatibility), negative CLI checks, pins.
+- **Summary of bim001 (for the reader who skips the chunks):** `--project` flag (validated at runtime, exit 2 with corrective usage) · run folder `outputs/<project>/runs/<run_id>/` created in `main()` only · raw HTML capture `html/<slug>.html`, byte-for-byte, `-2`/`-3` collision suffix · `manifest.json` (23 keys, 11 per page) · `absences.json` (blocked / failed / unsupported / skipped with `limit` / `stop_rule`) · stage log `stage_log.txt` · permitted bim000 test amendments (a) sandbox `RUN_ROOT`, (b) test 8 argv `--project`, (c) stub optional `html` · 40 new `test_acNN_*` tests, suite 54 passed · **no pin changes** (`requirements-lock.txt` byte-identical).
+- **Reason:** web-factory-p1-bim001 brief; plan `agent_docs/RESPONSES/BIM001_plan_2026-09-06.md` approved 2026-09-06.
 
 ## 2026-09-05 — [CC] Claude Code — bim000 QA close (Gate Q PASS)
 
