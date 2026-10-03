@@ -1,0 +1,456 @@
+{
+  "background-and-refusal": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/background-and-refusal.json",
+    "intentional_dispatches": 2,
+    "stop_reason": "http_429",
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": []
+  },
+  "challenge-sticky": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/challenge-sticky.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "cf_mitigated_challenge",
+    "command_attempts": 1,
+    "unique_fetch_ids_resolved": 1,
+    "errors": []
+  },
+  "cors-failure": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/cors-failure.json",
+    "intentional_dispatches": 2,
+    "stop_reason": "network_error",
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "deadline-gap": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/deadline-gap.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "wall_clock_limit_before_gap",
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "defensive-canceled-other-error": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/defensive-canceled-other-error.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "interception_error:RuntimeError",
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": [
+      {
+        "request_id": "interception-job-7.0",
+        "network_id": "457157.4",
+        "classification": "incidental",
+        "command": "Fetch.continueRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Unexpected protocol fault.",
+        "confirmed_canceled": true,
+        "supported_incidental": false
+      }
+    ]
+  },
+  "defensive-canceled-unresolved": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/defensive-canceled-unresolved.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "interception_error:RuntimeError",
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": [
+      {
+        "request_id": "interception-job-7.0",
+        "network_id": "457303.4",
+        "classification": "unresolved",
+        "command": "Fetch.continueRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": false
+      }
+    ]
+  },
+  "defensive-cleanup-primary": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/defensive-cleanup-primary.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "fixture_original_stop",
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": [
+      {
+        "request_id": "interception-job-7.0",
+        "network_id": "457373.4",
+        "classification": "incidental",
+        "command": "Fetch.failRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.failRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": false
+      }
+    ]
+  },
+  "defensive-unexplained-invalid-id": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/defensive-unexplained-invalid-id.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "interception_error:RuntimeError",
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": [
+      {
+        "request_id": "interception-job-7.0",
+        "network_id": "457077.4",
+        "classification": "incidental",
+        "command": "Fetch.continueRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+        "confirmed_canceled": false,
+        "supported_incidental": false
+      }
+    ]
+  },
+  "denied-redirect-denial": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/denied-redirect-denial.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "redirect_out_of_scope",
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "document-deadline": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/document-deadline.json",
+    "intentional_dispatches": 2,
+    "stop_reason": "document_deadline",
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "document-duplicate": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/document-duplicate.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "ambiguous_intentional_request",
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "duplicate-event-late-resolution": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/duplicate-event-late-resolution.json",
+    "intentional_dispatches": 2,
+    "stop_reason": null,
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": []
+  },
+  "fetch-redirect-head": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/fetch-redirect-head.json",
+    "intentional_dispatches": 4,
+    "stop_reason": null,
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": []
+  },
+  "fixture-egress": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/fixture-egress.json",
+    "intentional_dispatches": 1,
+    "stop_reason": null,
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "forbidden-sticky": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/forbidden-sticky.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "http_403",
+    "command_attempts": 1,
+    "unique_fetch_ids_resolved": 1,
+    "errors": []
+  },
+  "foreign-session-rejected": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/foreign-session-rejected.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "interception_session_mismatch",
+    "command_attempts": 1,
+    "unique_fetch_ids_resolved": 1,
+    "errors": []
+  },
+  "head-redirect-refusal": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/head-redirect-refusal.json",
+    "intentional_dispatches": 4,
+    "stop_reason": "http_429",
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": []
+  },
+  "hop-bound-4": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/hop-bound-4.json",
+    "intentional_dispatches": 6,
+    "stop_reason": null,
+    "command_attempts": 6,
+    "unique_fetch_ids_resolved": 6,
+    "errors": []
+  },
+  "hop-bound-5": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/hop-bound-5.json",
+    "intentional_dispatches": 6,
+    "stop_reason": "redirect_loop",
+    "command_attempts": 7,
+    "unique_fetch_ids_resolved": 7,
+    "errors": []
+  },
+  "incidental-sticky-prevention": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/incidental-sticky-prevention.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "fixture_forced_stop",
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "loop-denial": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/loop-denial.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "redirect_loop",
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "native-cancel-during-capture": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/native-cancel-during-capture.json",
+    "intentional_dispatches": 2,
+    "stop_reason": null,
+    "command_attempts": 5,
+    "unique_fetch_ids_resolved": 5,
+    "errors": [
+      {
+        "request_id": "interception-job-7.0",
+        "network_id": "457437.4",
+        "classification": "incidental",
+        "command": "Fetch.continueRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": true
+      }
+    ]
+  },
+  "native-frame-cancellation": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/native-frame-cancellation.json",
+    "intentional_dispatches": 2,
+    "stop_reason": null,
+    "command_attempts": 5,
+    "unique_fetch_ids_resolved": 5,
+    "errors": [
+      {
+        "request_id": "interception-job-7.0",
+        "network_id": "AE3AA59D842FF2D8963FDDE56B57D85F",
+        "classification": "incidental",
+        "command": "Fetch.continueRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": true
+      }
+    ]
+  },
+  "native-incidental-cancellation": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/native-incidental-cancellation.json",
+    "intentional_dispatches": 3,
+    "stop_reason": null,
+    "command_attempts": 6,
+    "unique_fetch_ids_resolved": 6,
+    "errors": [
+      {
+        "request_id": "interception-job-9.0",
+        "network_id": "456559.5",
+        "classification": "incidental",
+        "command": "Fetch.continueRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": true
+      }
+    ]
+  },
+  "native-intentional-cancel-GET": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/native-intentional-cancel-GET.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "browser_read_failed",
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": [
+      {
+        "request_id": "interception-job-7.0",
+        "network_id": "456804.4",
+        "classification": "intentional",
+        "command": "Fetch.failRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.failRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": false
+      }
+    ]
+  },
+  "native-intentional-cancel-HEAD": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/native-intentional-cancel-HEAD.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "browser_read_failed",
+    "command_attempts": 4,
+    "unique_fetch_ids_resolved": 4,
+    "errors": [
+      {
+        "request_id": "interception-job-7.0",
+        "network_id": "456871.4",
+        "classification": "intentional",
+        "command": "Fetch.failRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.failRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": false
+      }
+    ]
+  },
+  "native-intentional-cancel-document": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/native-intentional-cancel-document.json",
+    "intentional_dispatches": 0,
+    "stop_reason": "inactive_operation",
+    "command_attempts": 1,
+    "unique_fetch_ids_resolved": 1,
+    "errors": [
+      {
+        "request_id": "interception-job-1.0",
+        "network_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+        "classification": "intentional",
+        "command": "Fetch.failRequest",
+        "detail": "CDPSession.send: Protocol error (Fetch.failRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": false
+      }
+    ]
+  },
+  "operation-cap": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/operation-cap.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "operation_limit",
+    "command_attempts": 1,
+    "unique_fetch_ids_resolved": 1,
+    "errors": []
+  },
+  "popup-source-control": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/popup-source-control.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "unexpected_top_level_page",
+    "command_attempts": 1,
+    "unique_fetch_ids_resolved": 1,
+    "errors": []
+  },
+  "read-fault-duplicate": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/read-fault-duplicate.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "ambiguous_intentional_request",
+    "command_attempts": 3,
+    "unique_fetch_ids_resolved": 3,
+    "errors": [
+      {
+        "request_id": "interception-job-3.0",
+        "network_id": "458108.2",
+        "classification": "intentional",
+        "command": "Fetch.failRequest",
+        "detail": "CDPSession.send: Target page, context or browser has been closed",
+        "confirmed_canceled": false,
+        "supported_incidental": false
+      }
+    ]
+  },
+  "read-fault-missing-initiator": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/read-fault-missing-initiator.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "ambiguous_request_identity",
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "read-race-fetch-GET": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/read-race-fetch-GET.json",
+    "intentional_dispatches": 2,
+    "stop_reason": null,
+    "command_attempts": 3,
+    "unique_fetch_ids_resolved": 3,
+    "errors": []
+  },
+  "read-race-fetch-HEAD": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/read-race-fetch-HEAD.json",
+    "intentional_dispatches": 2,
+    "stop_reason": null,
+    "command_attempts": 3,
+    "unique_fetch_ids_resolved": 3,
+    "errors": []
+  },
+  "read-race-xhr-GET": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/read-race-xhr-GET.json",
+    "intentional_dispatches": 2,
+    "stop_reason": null,
+    "command_attempts": 3,
+    "unique_fetch_ids_resolved": 3,
+    "errors": []
+  },
+  "read-race-xhr-HEAD": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/read-race-xhr-HEAD.json",
+    "intentional_dispatches": 2,
+    "stop_reason": null,
+    "command_attempts": 3,
+    "unique_fetch_ids_resolved": 3,
+    "errors": []
+  },
+  "redirect-and-fidelity": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/redirect-and-fidelity.json",
+    "intentional_dispatches": 3,
+    "stop_reason": null,
+    "command_attempts": 3,
+    "unique_fetch_ids_resolved": 3,
+    "errors": []
+  },
+  "response-cap": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/response-cap.json",
+    "intentional_dispatches": 2,
+    "stop_reason": "response_limit",
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "same-url-fetch": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/same-url-fetch.json",
+    "intentional_dispatches": 1,
+    "stop_reason": null,
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "same-url-image": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/same-url-image.json",
+    "intentional_dispatches": 1,
+    "stop_reason": null,
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "same-url-stylesheet": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/same-url-stylesheet.json",
+    "intentional_dispatches": 1,
+    "stop_reason": null,
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "same-url-xhr": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/same-url-xhr.json",
+    "intentional_dispatches": 1,
+    "stop_reason": null,
+    "command_attempts": 2,
+    "unique_fetch_ids_resolved": 2,
+    "errors": []
+  },
+  "soft-challenge-sticky": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/soft-challenge-sticky.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "explicit_block_document",
+    "command_attempts": 1,
+    "unique_fetch_ids_resolved": 1,
+    "errors": []
+  },
+  "worker-source-control": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls/worker-source-control.json",
+    "intentional_dispatches": 1,
+    "stop_reason": "uncontrolled_service_worker",
+    "command_attempts": 1,
+    "unique_fetch_ids_resolved": 1,
+    "errors": []
+  }
+}

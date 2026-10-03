@@ -1,0 +1,410 @@
+{
+  "status": "STOPPED / CHK INCOMPLETE \u2014 interception_error:Error",
+  "mission": "ONE authorized replacement CHK Capture-only smoke; attempt consumed",
+  "branch": "wf-scrapper-abm",
+  "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+  "candidate_commit": "PENDING Tony; dirty/untracked implementation",
+  "source_inventory_sha256": "3e629379a1295ca0a76c636ab2dc361ffdb449fdf2bdc9ae10ebc5a43af6e2d5",
+  "source_entries": 58,
+  "source_differences": [],
+  "source_unchanged_during_run": true,
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "recon_pipeline",
+    "--project",
+    "CyberizeGroup",
+    "--url",
+    "https://cyberizegroup.com",
+    "--limit",
+    "10",
+    "--skip-prepare",
+    "--no-media-head",
+    "--max-operations",
+    "120",
+    "--max-seconds",
+    "1800",
+    "--max-bytes",
+    "100000000",
+    "--max-aggregate-bytes",
+    "100000000"
+  ],
+  "started_at": "2026-10-03T07:39:19.830051+00:00",
+  "finished_at": "2026-10-03T07:39:35.848397+00:00",
+  "elapsed_s": 16.018350943981204,
+  "exit_code": 2,
+  "stop_reason": "interception_error:Error",
+  "exact_control_error": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+  "error_request_attribution": "Unavailable: control_error event does not retain a Fetch/network request ID. Adjacent concurrent events do not establish which request failed. No root cause assigned.",
+  "raw_run": "outputs/CyberizeGroup/runs/2026-10-03T07-39-21Z",
+  "manifest_sha256": "5c39de8bf6c29bd97cc1bc056b28658c8de206abfbfccc747ff38d4874a85e21",
+  "counts": {
+    "routes": 0,
+    "captured": 0,
+    "blocked": 0,
+    "failed": 0,
+    "unsupported": 0,
+    "skipped": 0,
+    "rest_objects": 0,
+    "rest_mapped_routes": 0,
+    "media_items": 0
+  },
+  "streams": {
+    "discovery": "failed",
+    "html": "partial",
+    "rest": "skipped",
+    "media": "skipped",
+    "screenshots": "empty"
+  },
+  "intentional_dispatches": 1,
+  "document_slots_used": 1,
+  "successful_route_captures": 0,
+  "main_document_observed_status": 200,
+  "bootstrap_evidence": {
+    "path": "discovery/bootstrap-failed.html",
+    "bytes": 402358,
+    "sha256": "bb85dbb190b9379a726e29197f443d9a09478db0b46ff32071cec7209f6fd411",
+    "outcome": "failed_bootstrap; available partial HTML, not successful content"
+  },
+  "discovery": "No robots or sitemap dispatch; zero known routes is not an empty-site finding",
+  "rest": {
+    "intentional_reads": 0,
+    "objects": 0,
+    "collections_skipped": [
+      "pages",
+      "posts",
+      "media",
+      "categories",
+      "tags",
+      "users"
+    ],
+    "reason": "stop_rule"
+  },
+  "media": "No intentional HEAD; --no-media-head, collection not reached; rendering resources separately observed",
+  "observed_browser_request_events": 66,
+  "browser_resource_counts": [
+    {
+      "host": "api.usercentrics.eu",
+      "resource_type": "fetch",
+      "count": 2
+    },
+    {
+      "host": "app.usercentrics.eu",
+      "resource_type": "image",
+      "count": 1
+    },
+    {
+      "host": "app.usercentrics.eu",
+      "resource_type": "script",
+      "count": 3
+    },
+    {
+      "host": "backend.leadconnectorhq.com",
+      "resource_type": "fetch",
+      "count": 1
+    },
+    {
+      "host": "cyberizegroup.com",
+      "resource_type": "document",
+      "count": 1
+    },
+    {
+      "host": "cyberizegroup.com",
+      "resource_type": "image",
+      "count": 14
+    },
+    {
+      "host": "cyberizegroup.com",
+      "resource_type": "script",
+      "count": 20
+    },
+    {
+      "host": "cyberizegroup.com",
+      "resource_type": "stylesheet",
+      "count": 4
+    },
+    {
+      "host": "cyberizegroup.mystagingwebsite.com",
+      "resource_type": "image",
+      "count": 2
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "resource_type": "stylesheet",
+      "count": 6
+    },
+    {
+      "host": "fonts.gstatic.com",
+      "resource_type": "font",
+      "count": 3
+    },
+    {
+      "host": "link.cyberizegroup.com",
+      "resource_type": "script",
+      "count": 1
+    },
+    {
+      "host": "pixel.wp.com",
+      "resource_type": "image",
+      "count": 1
+    },
+    {
+      "host": "privacy-proxy-server.usercentrics.eu",
+      "resource_type": "image",
+      "count": 1
+    },
+    {
+      "host": "privacy-proxy.usercentrics.eu",
+      "resource_type": "fetch",
+      "count": 1
+    },
+    {
+      "host": "privacy-proxy.usercentrics.eu",
+      "resource_type": "script",
+      "count": 1
+    },
+    {
+      "host": "secure.gaug.es",
+      "resource_type": "script",
+      "count": 1
+    },
+    {
+      "host": "stats.wp.com",
+      "resource_type": "script",
+      "count": 1
+    },
+    {
+      "host": "termageddon.ams3.cdn.digitaloceanspaces.com",
+      "resource_type": "fetch",
+      "count": 1
+    },
+    {
+      "host": "www.google.com",
+      "resource_type": "document",
+      "count": 1
+    }
+  ],
+  "observed_response_statuses": {
+    "200": 57
+  },
+  "observed_refusals_or_challenges": [],
+  "traffic_caveat": "Browser request events include intercepted/prevented/in-flight traffic; not a completed HTTP-transfer count. Resources already in flight may finish after stop.",
+  "pacing": {
+    "configured_gap_after_completion_s": 5,
+    "intentional_dispatch_gaps_available": 0,
+    "verdict": "Not exercised across operations: only one dispatch; no claim of live pacing proof",
+    "first_dispatch_preceding_completion": null,
+    "background_resources_paced": false
+  },
+  "same_url_classification": {
+    "recurred": false,
+    "observed": "Same-root Stylesheet GET classified incidental at line245 and returned HTTP200 at line249; no ambiguous_intentional_request stop."
+  },
+  "event_excerpt": {
+    "source": "outputs/CyberizeGroup/runs/2026-10-03T07-39-21Z/stage_log.txt",
+    "sha256": "e6f2c1300f3a89ab06d0f57649290d1ddc31bd2f39fefa0e7e8805b8c525e121",
+    "redaction": "Only root URL, stop and protocol error events; headers and all other resource URLs omitted",
+    "events": [
+      {
+        "source_line": 5,
+        "event": "request_classified",
+        "monotonic": 370175.584640143,
+        "url": "https://cyberizegroup.com/",
+        "method": "GET",
+        "classification": "intentional",
+        "initiator_script_id": null,
+        "network_resource_type": "Document",
+        "operation_id": "op-1",
+        "request_id": "interception-job-1.0",
+        "network_id": "F2DB8A6A3EDA8CB660C240C1157CAE6C",
+        "resource_type": "Document",
+        "frame_id": "076BC5963AF40CE811873E93EA044838",
+        "predecessor": null
+      },
+      {
+        "source_line": 7,
+        "event": "intentional_dispatch",
+        "monotonic": 370175.585689185,
+        "url": "https://cyberizegroup.com/",
+        "method": "GET",
+        "kind": "document",
+        "ordinal": 1,
+        "operation_id": "op-1",
+        "request_id": "interception-job-1.0",
+        "network_id": "F2DB8A6A3EDA8CB660C240C1157CAE6C",
+        "resource_type": "Document",
+        "frame_id": "076BC5963AF40CE811873E93EA044838",
+        "predecessor": null,
+        "preceding_completion": null
+      },
+      {
+        "source_line": 9,
+        "event": "browser_response",
+        "monotonic": 370176.934926789,
+        "url": "https://cyberizegroup.com/",
+        "status": 200,
+        "resource_type": "document"
+      },
+      {
+        "source_line": 245,
+        "event": "request_classified",
+        "monotonic": 370179.128836182,
+        "url": "https://cyberizegroup.com/",
+        "method": "GET",
+        "classification": "incidental",
+        "initiator_script_id": null,
+        "network_resource_type": null,
+        "operation_id": "op-1",
+        "request_id": "interception-job-75.0",
+        "network_id": "450225.70",
+        "resource_type": "Stylesheet",
+        "frame_id": "076BC5963AF40CE811873E93EA044838",
+        "predecessor": null
+      },
+      {
+        "source_line": 249,
+        "event": "browser_response",
+        "monotonic": 370179.270071483,
+        "url": "https://cyberizegroup.com/",
+        "status": 200,
+        "resource_type": "stylesheet"
+      },
+      {
+        "source_line": 368,
+        "event": "stop",
+        "monotonic": 370180.695576541,
+        "reason": "interception_error:Error"
+      },
+      {
+        "source_line": 369,
+        "event": "control_error",
+        "monotonic": 370180.696685534,
+        "error": "Error",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId."
+      }
+    ]
+  },
+  "reader_validation": {
+    "command": [
+      "venv/bin/python",
+      "-m",
+      "prepare.reader",
+      "--raw",
+      "/home/moose/python/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-03T07-39-21Z"
+    ],
+    "started_at": "2026-10-03T07:41:44.644661+00:00",
+    "elapsed_s": 0.07906401401851326,
+    "exit_code": 0,
+    "result": "VALID RAW: 0 route outcomes; Prepare construction is a separate stage",
+    "stderr_present": false,
+    "raw_unchanged": true,
+    "purpose": "Existing C6 read-only raw adapter/validator only; no Prepare construction or network."
+  },
+  "preservation": {
+    "checked_files": 5136,
+    "missing": [],
+    "changed": [],
+    "baseline_gzip": "preservation-baseline.json.gz",
+    "baseline_sha256": "4b12a432e59204ba8b7c9682face865ef9022ca8c9301f510642d2d6e0d07da3",
+    "earlier_failed_smoke": "outputs/CyberizeGroup/runs/2026-10-02T16-14-53Z",
+    "old_run_unchanged": true
+  },
+  "limits": {
+    "intentional_dispatches": 120,
+    "document_slots_including_bootstrap": 10,
+    "seconds_including_finalization": 1800,
+    "aggregate_persisted_bytes": 100000000,
+    "raw_write_ceiling": 97000000,
+    "recorder_and_evidence_reserve": 3000000,
+    "decoded_response_cap": 10485760,
+    "document_deadline_s": 180,
+    "read_deadline_s": 30,
+    "finalization_reserve_s": 30
+  },
+  "persisted_bytes": {
+    "raw": 565073,
+    "new_evidence_directory": 839303,
+    "temporary_evidence_and_helpers": 1319450,
+    "report_bytes": 5842,
+    "aggregate": 2743698,
+    "external": 2178625,
+    "aggregate_limit": 100000000,
+    "external_reserve": 3000000,
+    "exclusions": "Pre-existing source/evidence, runtime/dependency caches; no raw bytes or new mission evidence excluded."
+  },
+  "evidence_hashes": {
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/chk-replacement/2026-10-03_073838Z/preflight.json": "a685c1d34e69dd38f1010a30aa52dd416a722d85ed17b5b0cc4a3c8ad4221bf2",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/chk-replacement/2026-10-03_073838Z/smoke/result.json": "13f0121b777ad5da15bc8f86c3a6239d89af92c59529869fe88f7f23367b3952",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/chk-replacement/2026-10-03_073838Z/reader-validation.json": "2cc8714017bcfcf9a76e64359d2652a61d943f4ed18bed900760f86ce4aef421",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/chk-replacement/2026-10-03_073838Z/raw-inventory.json": "d6916752512e7dd8e576ff3bc626686026bf4585932e244e2f1f140dd7dc57f7",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/chk-replacement/2026-10-03_073838Z/preservation-result.json": "77d195331350394c4ed4dc50ea4f25e278f07bd468fcf14e3b69c58c7e621332"
+  },
+  "raw_file_inventory": {
+    "absences.json": {
+      "bytes": 1200,
+      "sha256": "43edc799b457d1d643d3c8668572bb697e2adb84bb28d3f6849a46766acae5c6"
+    },
+    "discovery/bootstrap-failed.html": {
+      "bytes": 402358,
+      "sha256": "bb85dbb190b9379a726e29197f443d9a09478db0b46ff32071cec7209f6fd411"
+    },
+    "discovery/routes.json": {
+      "bytes": 442,
+      "sha256": "7947bff3e7ccc16fc07c9bbf8e4b70182436e0b55862e1f9dce37e494b72914f"
+    },
+    "manifest.json": {
+      "bytes": 5513,
+      "sha256": "5c39de8bf6c29bd97cc1bc056b28658c8de206abfbfccc747ff38d4874a85e21"
+    },
+    "media/inventory.json": {
+      "bytes": 143,
+      "sha256": "1940af42a7d2afdd2359205ea10c58bda158f605e866ae17ad5e5d4334cbf657"
+    },
+    "rest/index.json": {
+      "bytes": 1335,
+      "sha256": "9c2840ef845f66fcdead23bca117d4146288ce16edf4889c458a43b0e80b8848"
+    },
+    "rest/map.json": {
+      "bytes": 110,
+      "sha256": "802d3f9eb0ae4e5b901eb91576ea8446f918af7ebe3bcf0bd33ee6765e1ac2ef"
+    },
+    "screenshots/README.md": {
+      "bytes": 334,
+      "sha256": "5de8cb8f05b00ce3305eb8f2c4a0f6fd3a77f82466b2a395d4f5d3adda891f39"
+    },
+    "source_identity.json": {
+      "bytes": 13255,
+      "sha256": "74c1f1856585edeca7fea7cc6accde4b7d89d8fad27e0a3997ede33028dca350"
+    },
+    "stage_log.txt": {
+      "bytes": 140383,
+      "sha256": "e6f2c1300f3a89ab06d0f57649290d1ddc31bd2f39fefa0e7e8805b8c525e121"
+    }
+  },
+  "prepare": "ON HOLD. Skill INSIDE this repo, followed by Cody/Claudy/Opy using documented Ditto lessons; Python supports parsing/validation. ABM amendment required before future Prepare work. No P1\u2013P6/E1/E2 under old plan.",
+  "independent_qa": "NOT RUN",
+  "next": "Review the Invalid InterceptionId failure and explicit request-attribution gap. No retry, extra probe or repair was authorized by this smoke mission. Tony controls further live allocations/Git; Prepare architecture awaits ABM amendment.",
+  "temporary_artifacts": [
+    {
+      "path": "/tmp/abm_chk_replacement_preservation.json",
+      "bytes": 1296226,
+      "sha256": "4b12a432e59204ba8b7c9682face865ef9022ca8c9301f510642d2d6e0d07da3"
+    },
+    {
+      "path": "/tmp/chk_replacement_preflight.py",
+      "bytes": 6706,
+      "sha256": "6202e19add2e95e5e25985d8bd301165d6d517b356e18ced995cd2e14b730c36"
+    },
+    {
+      "path": "/tmp/abm_chk_replacement_evidence",
+      "bytes": 126,
+      "sha256": "681ac7a9d3d05299143b0ec2f3ac30dee4d56bb4292b41b2e0a26f95bfea3a8d"
+    },
+    {
+      "path": "/tmp/chk_replacement_report.py",
+      "bytes": 16392,
+      "sha256": "6682bc3ef6abac218bb7b87451c67ece0c825fba48a06cdcdce8b256ed4a4f97"
+    }
+  ],
+  "budget_accounting_note": "Original preflight projection omitted the temporary preservation inventory and helper files. This final accounting includes them; the actual external evidence fits the 3 MB reserve and aggregate fits 100 MB. The run stopped before storage limits were approached."
+}

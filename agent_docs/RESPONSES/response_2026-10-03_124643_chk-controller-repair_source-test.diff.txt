@@ -1,0 +1,639 @@
+--- pre-repair/smart_crawler/browser_session.py
++++ repaired/smart_crawler/browser_session.py
+@@ -5,6 +5,7 @@
+ """
+ import asyncio
+ import hashlib
++import json
+ from pathlib import Path
+ import platform
+ import time
+@@ -62,6 +63,10 @@
+     url: str
+     method: str
+     kind: str
++    operation_id: str | None = None
++    script_id: str | None = None
++    context_id: int | None = None
++    initial_claimed: bool = False
+     chain: list = field(default_factory=list)
+     requests: dict = field(default_factory=dict)
+     finished: dict = field(default_factory=dict)
+@@ -96,6 +101,8 @@
+         self.lock = asyncio.Lock()
+         self.session_id = 'abm-' + str(time.time_ns())
+         self.runtime = {}
++        self.operation_sequence = 0
++        self.network_requests = {}
+ 
+     def event(self, event_name, **values):
+         row = {'event':event_name, 'monotonic':time.monotonic(), **values}
+@@ -224,15 +231,20 @@
+         self.cdp.on('Network.requestWillBeSent', self.network_request)
+         self.cdp.on('Network.loadingFinished', self.network_finished)
+         self.cdp.on('Network.dataReceived', self.network_data)
+-        self.cdp.on('Network.loadingFailed', lambda p:self.event('cdp_loading_failed', request_id=p['requestId']))
+-        self.cdp.on('Network.responseReceived', lambda p:self.event('cdp_response_headers',
+-            request_id=p['requestId'],url=p['response']['url'],status=p['response']['status']))
++        self.cdp.on('Network.loadingFailed', self.network_failed)
++        self.cdp.on('Network.responseReceived', self.network_response)
+         await self.cdp.send('Network.enable')
+         await self.cdp.send('Fetch.enable', {'patterns':[{'urlPattern':'*','requestStage':'Request'}]})
+         self.event('controls_installed', transport='Chromium CDP Fetch.requestPaused')
+         return page
+ 
+     def network_request(self, params):
++        frames = params.get('initiator', {}).get('stack', {}).get('callFrames', [])
++        identity = {'network_id': params['requestId'], 'frame_id': params.get('frameId'),
++                    'resource_type': params.get('type'), 'loader_id': params.get('loaderId'),
++                    'initiator_type': params.get('initiator', {}).get('type'),
++                    'initiator_script_id': frames[0].get('scriptId') if frames else None}
++        self.network_requests[(params['requestId'], params['request']['url'])] = identity
+         redirect = params.get('redirectResponse')
+         # Chromium marks redirect completion on the Network redirect transition.
+         # Installed Playwright crNetworkManager.js:255-261,395-402 derives
+@@ -252,7 +264,7 @@
+         self.event('cdp_request_will_be_sent', request_id=params['requestId'],
+                    url=params['request']['url'], redirect_from=redirect['url'] if redirect else None,
+                    redirect_status=redirect['status'] if redirect else None,
+-                   browser_timestamp=params['timestamp'])
++                   browser_timestamp=params['timestamp'], **identity)
+ 
+     def network_data(self, params):
+         if self.op and self.op.kind == 'document' and params['requestId'] in getattr(self.op,'network_ids',{}):
+@@ -272,53 +284,110 @@
+                 # retained native observation. Do not emit a second annotation
+                 # whose presence depends on Python operation-cleanup timing.
+ 
+-    def relevant(self, request):
+-        if not self.op:
+-            return False
+-        try:
+-            frame = request.frame
+-        except Exception:
+-            return False
+-        if frame != self.page.main_frame:
+-            return False
+-        return request.url in [self.op.url, *self.op.chain] and request.method == self.op.method and (
+-            request.is_navigation_request() if self.op.kind == 'document' else request.resource_type in ('fetch','xhr'))
++    def network_operation(self, network_id):
++        # Same admission IDs govern status, refusal, failure and completion.
++        if self.op and network_id in getattr(self.op, 'network_ids', {}):
++            return self.op
++        return None
++
++    def network_failed(self, params):
++        self.event('cdp_loading_failed', request_id=params['requestId'])
++        op = self.network_operation(params['requestId'])
++        if op:
++            op.error = op.error or 'network_error'
++
++    def network_response(self, params):
++        response = params['response']
++        headers = {k.lower(): v for k, v in response.get('headers', {}).items()
++                   if k.lower() in HEADER_ALLOWLIST}
++        self.event('cdp_response_headers', request_id=params['requestId'],
++                   url=response['url'], status=response['status'])
++        op = self.network_operation(params['requestId'])
++        if op:
++            op.status = int(response['status'])
++            op.final_url = response['url']
++            op.response_headers = headers
++            reason = challenge_reason(op.status, headers, '')
++            if reason:
++                self.stop(reason)
++                self.spawn(self.page.close())
+ 
+     def request_seen(self, request):
+         host = urlsplit(request.url).hostname
+         self.resources[(host, request.resource_type)] += 1
++        # Public Playwright Request exposes no CDP network ID. This is a resource
++        # observation only; never infer coordinator identity from URL/frame here.
+         self.event('browser_request', url=request.url, method=request.method, resource_type=request.resource_type)
+-        if self.relevant(request):
+-            old = self.op.requests.get(request.url)
+-            if old is not None and old is not request:
+-                self.stop('ambiguous_intentional_request')
+-            self.op.requests[request.url] = request
+ 
+     def request_finished(self, request):
+         self.event('browser_request_finished', url=request.url, resource_type=request.resource_type)
+-        if self.op and self.op.requests.get(request.url) is request:
+-            self.op.finished[request.url] = time.monotonic()
+-            # browser_request_finished above is unconditional. Redirect proof
+-            # emits its explicit correlated boundary in paused(), not here.
+ 
+     def request_failed(self, request):
+         self.event('browser_request_failed', url=request.url, resource_type=request.resource_type)
+-        if self.op and self.op.requests.get(request.url) is request:
+-            self.op.error = self.op.error or 'network_error'
+ 
+     def response_seen(self, response):
+         self.statuses[response.status] += 1
+         headers = {k:v for k,v in response.headers.items() if k.lower() in HEADER_ALLOWLIST}
+         self.event('browser_response', url=response.url, status=response.status, headers=headers,
+                    resource_type=response.request.resource_type)
+-        if self.relevant(response.request):
+-            self.op.status = response.status
+-            self.op.final_url = response.url
+-            self.op.response_headers = headers
+-            reason = challenge_reason(response.status, headers, '')
+-            if reason:
+-                self.stop(reason)
+-                self.spawn(self.page.close())
++
++    async def request_identity(self, params, op):
++        """Join the paused Fetch request to native Network evidence before dispatch."""
++        network_id = params.get('networkId')
++        url = params['request']['url']
++        deadline = min(op.started + self.bounds.read_seconds,
++                       self.started + self.bounds.seconds - self.bounds.finalization_reserve)
++        while network_id and (network_id, url) not in self.network_requests:
++            if self.stop_reason or time.monotonic() >= deadline:
++                break
++            await asyncio.sleep(.001)
++        identity = self.network_requests.get((network_id, url))
++        # Installed Chromium reports window.fetch as XHR in Fetch.requestPaused
++        # and Fetch in Network.requestWillBeSent. Preserve both native types.
++        compatible = identity and (identity['resource_type'] == params['resourceType'] or
++                                   (params['resourceType'], identity['resource_type']) == ('XHR', 'Fetch'))
++        if not compatible or identity['frame_id'] != params.get('frameId'):
++            self.stop('ambiguous_request_identity')
++            raise CollectionStopped(self.stop_reason)
++        return identity
++
++    async def admission_kind(self, params, op):
++        parent = params.get('redirectedRequestId')
++        if not op:
++            return 'incidental', None
++        resource = params['resourceType']
++        frame = params.get('frameId')
++        expected_resources = ('Document',) if op.kind == 'document' else ('Fetch', 'XHR')
++        related = parent in getattr(op, 'fetch_ids', {})
++        matches = params['request']['url'] == op.url and params['request']['method'] == op.method
++        if not related and not matches:
++            return 'incidental', None
++        if resource not in expected_resources or frame != self.main_frame:
++            if related:
++                self.stop('ambiguous_redirect_identity')
++                raise CollectionStopped(self.stop_reason)
++            return 'incidental', None
++        identity = await self.request_identity(params, op)
++        if related:
++            predecessor = op.fetch_ids[parent]
++            if op.network_ids.get(identity['network_id']) != predecessor:
++                self.stop('ambiguous_redirect_identity')
++                raise CollectionStopped(self.stop_reason)
++            return 'intentional', identity
++        if op.kind == 'read':
++            script = identity['initiator_script_id']
++            if not script or not op.script_id:
++                self.stop('ambiguous_request_identity')
++                raise CollectionStopped(self.stop_reason)
++            if script != op.script_id:
++                return 'incidental', identity
++            if identity['resource_type'] != 'Fetch':
++                self.stop('ambiguous_request_identity')
++                raise CollectionStopped(self.stop_reason)
++        elif identity['initiator_type'] != 'other' or not identity['loader_id'] or identity['loader_id'] != identity['network_id']:
++            self.stop('ambiguous_document_identity')
++            raise CollectionStopped(self.stop_reason)
++        return 'intentional', identity
+ 
+     async def paused(self, params):
+         rid = params['requestId']
+@@ -327,14 +396,21 @@
+         op = self.op
+         parent = params.get('redirectedRequestId')
+         main = params['resourceType'] == 'Document' and params['frameId'] == self.main_frame
+-        intended = bool(op and ((url == op.url and method == op.method and not op.chain) or
+-                                 parent in getattr(op,'fetch_ids',{})))
++        classification = 'unresolved'
++        details = {'operation_id': op.operation_id if op else None, 'request_id': rid,
++                   'network_id': params.get('networkId'), 'resource_type': params['resourceType'],
++                   'frame_id': params.get('frameId'), 'predecessor': parent}
+         try:
++            classification, identity = await self.admission_kind(params, op)
++            intended = classification == 'intentional'
++            self.event('request_classified', url=url, method=method, classification=classification,
++                       initiator_script_id=identity.get('initiator_script_id') if identity else None,
++                       network_resource_type=identity.get('resource_type') if identity else None, **details)
+             if self.loopback_only and urlsplit(url).scheme in ('http','https') and urlsplit(url).hostname != '127.0.0.1':
+                 # F-05/07 contain external public resource markup. Test egress
+                 # prevention is incidental; it does not claim document refusal.
+                 if not intended and not main:
+-                    self.event('fixture_resource_prevented', url=url, request_id=rid)
++                    self.event('incidental_prevented', url=url, reason='fixture_egress', **details)
+                     await self.cdp.send('Fetch.failRequest', {'requestId':rid,'errorReason':'Aborted'})
+                     return
+             if self.stop_reason:
+@@ -345,13 +421,15 @@
+             if not intended:
+                 await self.cdp.send('Fetch.continueRequest', {'requestId':rid})
+                 return
+-            self.event('intentional_intercepted', url=url, request_id=rid, predecessor=parent)
++            self.event('intentional_intercepted', url=url, **details)
+             if not self.scoped(url):
+                 op.error = 'redirect_out_of_scope'
+                 raise CollectionStopped(op.error)
+-            if not parent and getattr(op,'fetch_ids',{}):
++            if not parent and op.initial_claimed:
+                 self.stop('ambiguous_intentional_request')
+                 raise CollectionStopped(self.stop_reason)
++            if not parent:
++                op.initial_claimed = True
+             if parent:
+                 predecessor = op.fetch_ids[parent]
+                 if url in [op.url, *op.chain] or len(op.chain) >= 5:
+@@ -391,12 +469,12 @@
+                 op.network_ids[params["networkId"]] = url
+             self.dispatches += 1
+             self.event('intentional_dispatch', url=url, method=method, kind=op.kind, ordinal=self.dispatches,
+-                       request_id=rid, preceding_completion=op.finished.get(op.fetch_ids.get(parent)) if parent else self.last_completion)
++                       **details, preceding_completion=op.finished.get(op.fetch_ids.get(parent)) if parent else self.last_completion)
+             await self.cdp.send('Fetch.continueRequest', {'requestId':rid})
+         except CollectionStopped as exc:
+-            if op:
++            if op and classification != 'incidental':
+                 op.error = op.error or str(exc)
+-            self.event('intentional_prevented', url=url, reason=str(exc))
++            self.event(classification+'_prevented', url=url, reason=str(exc), **details)
+             await self.cdp.send('Fetch.failRequest', {'requestId':rid,'errorReason':'Aborted'})
+         except Exception as exc:
+             self.stop('interception_error:'+type(exc).__name__)
+@@ -435,8 +513,8 @@
+                 self.stop('document_limit')
+                 raise CollectionStopped(self.stop_reason)
+             self.documents += 1
+-            self.op = Operation(url,'GET','document')
+-            self.event('operation_start', url=url, deadline=time.monotonic()+self.timeout(self.bounds.document_seconds))
++            self.op = self.new_operation(url,'GET','document')
++            self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=time.monotonic()+self.timeout(self.bounds.document_seconds))
+             try:
+                 record = await asyncio.wait_for(crawl_page(self.crawler,url,session_id=self.session_id),
+                                                 timeout=self.timeout(self.bounds.document_seconds))
+@@ -456,8 +534,43 @@
+                 raise CollectionStopped(self.stop_reason)
+             finally:
+                 self.last_completion = time.monotonic()
+-                self.event('operation_complete', url=url, kind='document', error=self.op.error)
++                self.event('operation_complete', url=url, kind='document', operation_id=self.op.operation_id, error=self.op.error)
+                 self.op = None
++
++    def new_operation(self, url, method, kind):
++        self.operation_sequence += 1
++        return Operation(url, method, kind, operation_id=f'op-{self.operation_sequence}')
++
++    async def correlated_read(self, expression):
++        await self.cdp.send('Runtime.enable')
++        world = await self.cdp.send('Page.createIsolatedWorld', {
++            'frameId': self.main_frame, 'worldName': 'abm-read-identity',
++            'grantUniveralAccess': False})
++        op = self.op
++        op.context_id = world['executionContextId']
++        compiled = await self.cdp.send('Runtime.compileScript', {
++            'expression': expression, 'sourceURL': 'abm-coordinator-read',
++            'persistScript': True, 'executionContextId': op.context_id})
++        op.script_id = compiled.get('scriptId')
++        if not op.script_id:
++            self.stop('read_script_identity_unavailable')
++            raise CollectionStopped(self.stop_reason)
++        self.event('read_identity_bound', operation_id=op.operation_id, script_id=op.script_id,
++                   context_id=op.context_id, frame_id=self.main_frame,
++                   execution_world='same-frame isolated world', universal_access=False)
++        remote = await self.run_read_script(op)
++        if not getattr(op, 'network_ids', {}) or self.stop_reason:
++            raise CollectionStopped(self.stop_reason or 'read_request_uncorrelated')
++        if 'exceptionDetails' in remote or 'value' not in remote.get('result', {}):
++            raise CollectionStopped('browser_read_failed')
++        return remote['result']['value']
++
++    async def run_read_script(self, op):
++        # The native initiator's top scriptId must match the compiled script, not
++        # its spoofable sourceURL. Nothing is added to HTTP headers or URLs.
++        return await self.cdp.send('Runtime.runScript', {
++            'scriptId': op.script_id, 'executionContextId': op.context_id,
++            'awaitPromise': True, 'returnByValue': True})
+ 
+     async def read(self, url, method='GET'):
+         if method not in ('GET','HEAD'):
+@@ -468,11 +581,13 @@
+                 raise CollectionStopped('browser_session_not_bootstrapped')
+             if not self.scoped(url):
+                 raise CollectionStopped('off_scope')
+-            self.op = Operation(url,method,'read')
+-            self.event('operation_start', url=url, deadline=time.monotonic()+self.timeout(self.bounds.read_seconds))
++            self.op = self.new_operation(url,method,'read')
++            self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=time.monotonic()+self.timeout(self.bounds.read_seconds))
+             try:
+                 read_timeout=self.timeout(self.bounds.read_seconds)
+-                result = await asyncio.wait_for(self.page.evaluate('''async ({url,method,cap,timeout}) => {
++                args = {'url':url,'method':method,'cap':self.bounds.response_bytes,
++                        'timeout':max(1,int(read_timeout*1000)-100)}
++                expression = '(' + '''async ({url,method,cap,timeout}) => {
+                     const ctl = new AbortController(); const timer=setTimeout(()=>ctl.abort(),timeout);
+                     let chunks=[], count=0;
+                     try {
+@@ -488,8 +603,8 @@
+                         return {status:r.status,url:r.url,chunks,bytes:count,incomplete:false};
+                     } catch(e) { return {chunks,bytes:count,incomplete:true,error:e.name}; }
+                     finally { clearTimeout(timer); }
+-                }''', {'url':url,'method':method,'cap':self.bounds.response_bytes,
+-                        'timeout':max(1,int(read_timeout*1000)-100)}), read_timeout)
++                }''' + ')(' + json.dumps(args) + ')'
++                result = await asyncio.wait_for(self.correlated_read(expression), read_timeout)
+                 body = bytes(x for chunk in result.pop('chunks') for x in chunk)
+                 result.update(body=body,sha256=hashlib.sha256(body).hexdigest(),headers=dict(self.op.response_headers),
+                               redirect_chain=list(self.op.chain),transport='Chromium same-page window.fetch / Response.body.getReader',
+@@ -509,5 +624,5 @@
+                         'evidence_gap':'browser read interrupted before available chunks returned'}
+             finally:
+                 self.last_completion = time.monotonic()
+-                self.event('operation_complete', url=url, kind='read', error=self.op.error)
++                self.event('operation_complete', url=url, kind='read', operation_id=self.op.operation_id, error=self.op.error)
+                 self.op = None
+--- pre-repair/tests/fixture_server.py
++++ repaired/tests/fixture_server.py
+@@ -14,6 +14,7 @@
+ @contextmanager
+ def fixture_server(*, mode=None, port=0, variant="complete"):
+     timeline=[]
++    identity_reads={}
+     class Handler(BaseHTTPRequestHandler):
+         protocol_version='HTTP/1.1'
+         def log_message(self,*args):
+@@ -24,6 +25,8 @@
+             self.rfile.read(int(self.headers.get('Content-Length','0')))
+             self.respond(204,b'',{})
+         def do_HEAD(self):
++            if self.path=='/read-identity':
++                return self.identity_read()
+             if mode=='pipeline' and self.path=='/image.png':
+                 return self.respond(200,b'',{'Content-Type':'image/png','Content-Length':str(len(fixture_png()))})
+             if self.path=='/redirect':
+@@ -32,6 +35,25 @@
+                 return self.respond(429,b'',{'Retry-After':'42'})
+             self.respond(200,b'',{'Content-Type':'image/png','Content-Length':'4096'})
+         def do_GET(self):
++            if self.path=='/read-identity':
++                return self.identity_read()
++            if self.path.startswith('/identity/'):
++                kind=self.path.rsplit('/',1)[-1]
++                dest=self.headers.get('Sec-Fetch-Dest')
++                if dest=='style':
++                    return self.respond(200,b'body { color: black; }',{'Content-Type':'text/css'})
++                if dest=='image':
++                    return self.respond(200,fixture_png(),{'Content-Type':'image/png'})
++                if dest!='document':
++                    return self.respond(200,b'ordinary background response',{'Content-Type':'text/plain'})
++                scripts={
++                    'stylesheet': "let r=document.createElement('link');r.rel='stylesheet';r.href=location.href;document.head.append(r);",
++                    'image': "let r=new Image();r.src=location.href;document.body.append(r);",
++                    'fetch': "fetch(location.href);",
++                    'xhr': "let r=new XMLHttpRequest();r.open('GET',location.href);r.send();",
++                }
++                body=ARTICLE.replace(b'</body>',('<script>'+scripts.get(kind,'')+'</script></body>').encode())
++                return self.respond(200,body,{'Content-Type':'text/html'})
+             if self.path.startswith('/hang'):
+                 return self.respond(200,ARTICLE,{'Content-Type':'text/html'},delay=45)
+             if self.path.startswith('/persistence-cap'):
+@@ -95,8 +117,14 @@
+                 self.respond(200,b'a'*4096,{})
+             else:
+                 self.respond(200,ARTICLE,{'Content-Type':'text/html'})
++        def identity_read(self):
++            count=identity_reads.get(self.command,0)+1;identity_reads[self.command]=count
++            # Distinguish page-generated refusal from coordinator success using
++            # fixture order, never an identification header/query on the request.
++            self.respond(403 if count==1 else 200,b'' if self.command=='HEAD' else b'coordinator response',
++                         {'Content-Type':'text/plain'})
+         def respond(self,status,body,headers,delay=0):
+-            self.emit('request_received',user_agent=self.headers.get('User-Agent'))
++            self.emit('request_received',user_agent=self.headers.get('User-Agent'),resource_destination=self.headers.get('Sec-Fetch-Dest'))
+             self.send_response(status)
+             if 'Content-Length' not in headers: self.send_header('Content-Length',str(len(body)))
+             for k,v in headers.items(): self.send_header(k,v)
+--- pre-repair/tests/test_browser_controls.py
++++ repaired/tests/test_browser_controls.py
+@@ -266,6 +266,6 @@
+                 async with session:
+                     record=await session.capture(origin+'/offscope-resource')
+                     assert record['ok'] and session.stop_reason is None and session.dispatches==1
+-                    assert any(e['event'] in ('fixture_resource_prevented','external_test_request_prevented') for e in session.events)
++                    assert any((e['event']=='incidental_prevented' and e['reason']=='fixture_egress') or e['event']=='external_test_request_prevented' for e in session.events)
+             finally:retain(tmp_path,'fixture-egress',session,timeline)
+         asyncio.run(exercise())
+--- /dev/null
++++ repaired/tests/test_request_identity.py
+@@ -0,0 +1,140 @@
++"""CHK scoped repair: actual Chromium request identity, no live targets."""
++import asyncio
++import pytest
++from smart_crawler.browser_session import BrowserSession, Bounds
++from fixture_server import fixture_server
++from test_browser_controls import retain
++
++
++@pytest.mark.parametrize('kind',['stylesheet','image','fetch','xhr'])
++def test_same_url_document_background_is_incidental(tmp_path,kind):
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            session=BrowserSession(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++                                   runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with session:
++                    result=await session.capture(origin+'/identity/'+kind)
++                    assert result['ok'] and session.stop_reason is None, session.stop_reason
++                    assert session.dispatches==1
++                    requests=[e for e in session.events if e['event']=='browser_request']
++                    assert any(e['resource_type']==kind for e in requests)
++                    assert len([e for e in timeline if e['event']=='request_received'])==2
++            finally:retain(tmp_path,'same-url-'+kind,session,timeline)
++        asyncio.run(exercise())
++
++
++@pytest.mark.parametrize('method',['GET','HEAD'])
++@pytest.mark.parametrize('background',['fetch','xhr'])
++def test_read_cannot_be_impersonated(tmp_path,method,background):
++    class RacingPage(BrowserSession):
++        async def run_read_script(self,op):
++            # Same URL/method/main-frame; spoofed sourceURL is NOT a scriptId.
++            js='''async ([url,method,kind]) => {
++              if(kind==='fetch') return (await fetch(url,{method})).status;
++              return await new Promise(resolve=>{let x=new XMLHttpRequest();
++                x.open(method,url); x.onload=()=>resolve(x.status);x.send();});
++            }\n//# sourceURL=abm-coordinator-read'''
++            assert await self.page.evaluate(js,[op.url,op.method,background])==403
++            assert self.stop_reason is None
++            return await super().run_read_script(op)
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            session=RacingPage(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++                                runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with session:
++                    assert (await session.capture(origin+'/article/'))['ok']
++                    response=await session.read(origin+'/read-identity',method)
++                    assert response['status']==200 and not response['incomplete'],response.get('error')
++                    assert response['body']==(b'' if method=='HEAD' else b'coordinator response')
++                    assert not session.stop_reason and session.dispatches==2
++                    rows=[e for e in session.events if e['event']=='request_classified' and e['url']==origin+'/read-identity']
++                    assert [e['classification'] for e in rows]==['incidental','intentional']
++                    assert rows[0]['initiator_script_id']!=rows[1]['initiator_script_id']
++                    assert rows[0]['frame_id']==rows[1]['frame_id']==session.main_frame
++                    if background=='fetch':
++                        assert rows[0]['resource_type']==rows[1]['resource_type']
++                        assert rows[0]['network_resource_type']==rows[1]['network_resource_type']=='Fetch'
++                    assert len([e for e in timeline if e['event']=='request_received'])==3
++            finally:retain(tmp_path,f'read-race-{background}-{method}',session,timeline)
++        asyncio.run(exercise())
++
++
++@pytest.mark.parametrize('fault',['duplicate','missing-initiator'])
++def test_read_duplicate_and_ambiguity_stop_before_dispatch(tmp_path,fault):
++    class FaultSession(BrowserSession):
++        def network_request(self,p):
++            super().network_request(p)
++            if fault=='missing-initiator' and self.op and self.op.kind=='read':
++                # Native event preserved; explicitly injected observation loss.
++                self.network_requests[(p['requestId'],p['request']['url'])]['initiator_script_id']=None
++                self.event('fixture_identity_fault',fault=fault,network_id=p['requestId'])
++        async def correlated_read(self,expression):
++            if fault=='duplicate':
++                # Both actual fetches originate in the SAME compiled script.
++                expression=expression.replace('const r=await window.fetch',
++                    "const extra=window.fetch(url,{method,signal:ctl.signal}).catch(()=>null); const r=await window.fetch")
++            return await super().correlated_read(expression)
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            session=FaultSession(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++                                  runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with session:
++                    assert (await session.capture(origin+'/article/'))['ok']
++                    response=await session.read(origin+'/data')
++                    expected='ambiguous_intentional_request' if fault=='duplicate' else 'ambiguous_request_identity'
++                    assert response['incomplete'] and session.stop_reason==expected,response.get('error')
++                    assert session.dispatches==1 # Only bootstrap; reads held at five-second gap.
++                    assert not any(e['path']=='/data' for e in timeline)
++                    assert any(e['event']==('intentional_prevented' if fault=='duplicate' else 'unresolved_prevented') for e in session.events)
++            finally:retain(tmp_path,'read-fault-'+fault,session,timeline)
++        asyncio.run(exercise())
++
++
++def test_genuine_second_document_is_prevented(tmp_path):
++    class DuplicateDocument(BrowserSession):
++        async def after_goto(self,page,response=None,**kwargs):
++            await super().after_goto(page,response,**kwargs)
++            try:
++                await page.goto(self.op.url,timeout=10000)
++            except Exception:
++                pass
++            return page
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            session=DuplicateDocument(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++                                       runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with session:
++                    result=await session.capture(origin+'/article/')
++                    assert not result['ok'] and session.stop_reason=='ambiguous_intentional_request'
++                    assert session.dispatches==1
++                    assert len([e for e in timeline if e['event']=='request_received'])==1
++                    denied=[e for e in session.events if e['event']=='intentional_prevented']
++                    assert denied and denied[0]['resource_type']=='Document'
++            finally:retain(tmp_path,'document-duplicate',session,timeline)
++        asyncio.run(exercise())
++
++
++def test_sticky_stop_names_incidental_prevention(tmp_path):
++    class StopBeforeStyle(BrowserSession):
++        async def paused(self,params):
++            if params['resourceType']=='Stylesheet':
++                self.stop('fixture_forced_stop')
++            await super().paused(params)
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            session=StopBeforeStyle(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++                                    runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with session:
++                    result=await session.capture(origin+'/identity/stylesheet')
++                    assert not result['ok'] and session.stop_reason=='fixture_forced_stop'
++                    assert session.dispatches==1
++                    assert len([e for e in timeline if e['event']=='request_received'])==1
++                    assert any(e['event']=='incidental_prevented' and e['resource_type']=='Stylesheet' for e in session.events)
++                    assert not any(e['event']=='intentional_prevented' for e in session.events)
++            finally:retain(tmp_path,'incidental-sticky-prevention',session,timeline)
++        asyncio.run(exercise())
+--- pre-repair/tests/snapshot_compare.py
++++ repaired/tests/snapshot_compare.py
+@@ -117,6 +117,17 @@
+     assert [e['url'] for e in dispatch]==expected_urls
+     assert [e['method'] for e in dispatch]==['GET']*17+['HEAD']
+     assert [e['ordinal'] for e in dispatch]==list(range(1,19))
++    main_frame=dispatch[0]['frame_id']
++    bindings={e['operation_id']:e for e in events if e['event']=='read_identity_bound'}
++    for d in dispatch:
++        row=next(e for e in events if e['event']=='request_classified' and e['request_id']==d['request_id'])
++        assert row['classification']=='intentional' and row['operation_id']==d['operation_id']
++        assert row['network_id']==d['network_id'] and row['frame_id']==main_frame
++        if d['kind']=='read':
++            binding=bindings[d['operation_id']]
++            assert binding['frame_id']==main_frame and not binding['universal_access']
++            assert row['network_resource_type']=='Fetch' and row['initiator_script_id']==binding['script_id']
++        else:assert row['resource_type']==row['network_resource_type']=='Document'
+     for d in dispatch[1:]:assert d['monotonic']-d['preceding_completion']>=5
+     assert not any(e['event'] in ('stop','control_error','intentional_prevented') for e in events)
+     if server is not None:
+@@ -148,14 +159,30 @@
+     for line in raw.bytes('stage_log.txt').decode().splitlines():
+         if ' browser ' in line:events.append(json.loads(line.split(' browser ',1)[1]))
+         else:other.append(line)
+-    names={};seen={}
++    names={};seen={};frames={};scripts={};contexts={}
++    def bind(mapping, native, label):
++        if native and native not in mapping: mapping[native]=label
+     for event in events:
+-        if event['event'] in ('cdp_request_will_be_sent','intentional_intercepted','fixture_resource_prevented'):
++        if event['event'] in ('cdp_request_will_be_sent','request_classified','intentional_intercepted','incidental_prevented'):
+             channel='network' if event['event'].startswith('cdp') else 'fetch'
+-            key=(channel,event['url']);seen[key]=seen.get(key,0)+1
+-            names[event['request_id']]=f'{channel}:{event["url"]}#{seen[key]}'
++            key=(channel,event['url'])
++            if event['request_id'] not in names:
++                seen[key]=seen.get(key,0)+1
++                names[event['request_id']]=f'{channel}:{event["url"]}#{seen[key]}'
++            if event.get('frame_id'):
++                label='main' if event.get('resource_type')=='Document' and event.get('operation_id') else event['url']
++                bind(frames,event['frame_id'],'frame:'+label)
++        if event['event']=='read_identity_bound':
++            bind(scripts,event['script_id'],'script:'+event['operation_id'])
++            bind(contexts,event['context_id'],'context:'+event['operation_id'])
++    for event in events:
++        # Native ids for prevented incidental requests may have no Network event.
++        if event.get('network_id') and event['network_id'] not in names:
++            names[event['network_id']]='network-unobserved:'+event['url']
++        if event.get('initiator_script_id'):
++            bind(scripts,event['initiator_script_id'],'incidental-script:'+event.get('url','session'))
+     timing={'monotonic','browser_timestamp','preceding_completion','completed','predecessor_completed','deadline','seconds'}
+-    identity={'request_id','network_id','predecessor_request_id','correlated_next_request_id','predecessor'}
++    identity={'request_id','network_id','loader_id','predecessor_request_id','correlated_next_request_id','predecessor'}
+     channels={}
+     for event in events:
+         row={}
+@@ -164,8 +191,12 @@
+                 assert value is None or isinstance(value,(int,float))
+                 row[key]=None if value is None else '<measured timing validated separately>'
+             elif key in identity:
+-                assert value is None or value in names,(key,value)
+-                row[key]=names.get(value) if value else None
++                assert not value or value in names,(key,value)
++                row[key]=names.get(value) if value else value
++            elif key in ('frame_id','script_id','initiator_script_id','context_id'):
++                mapping=frames if key=='frame_id' else contexts if key=='context_id' else scripts
++                assert value is None or value in mapping,(key,value)
++                row[key]=mapping.get(value) if value is not None else None
+             else:row[key]=value
+         family='cdp' if event['event'].startswith('cdp_') else 'browser' if event['event'].startswith('browser_') else 'coordinator'
+         # Independent resources may race. Keep every event and per-resource order.

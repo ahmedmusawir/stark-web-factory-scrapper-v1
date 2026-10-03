@@ -1,0 +1,21 @@
+{
+  "initial_affected_source": "33d98f085f43fbfadf53114b32fd3a90c97059d4de078a4889681d036868020a",
+  "failed_regression_source": "80d57166d54707df9228ad5d918c4c836b7b7551fcba6b16794abf156c838251",
+  "final_source": "92ccc13172b95e18c2c949aebb4397686b5cdb92e7445ade465a4dd47fa04a70",
+  "changes_since_initial_affected": [
+    "smart_crawler/browser_session.py",
+    "tests/test_interception_lifecycle.py",
+    "tests/snapshot_compare.py",
+    "tests/fixture_server.py"
+  ],
+  "reasons": [
+    "Correct snapshot lifecycle count from fixture-defined resources",
+    "Preserve partial read bytes when native failure arrives before result handoff",
+    "Add native streaming fixture and event-order proof; correct fixture abort timer after headers"
+  ],
+  "historical_failures_preserved": [
+    "capture-helper",
+    "regression-final",
+    "handoff-race-fixed"
+  ]
+}

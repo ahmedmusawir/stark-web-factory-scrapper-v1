@@ -1,20 +1,8 @@
 #!/usr/bin/env python3
-"""
-Batch crawler — one markdown file per discovered URL, via crawl4ai.
+"""Serial Crawl4AI capture into an immutable Raw Recon Package v2.
 
-Run (from repo root): python -m smart_crawler.crawler --project NAME [--input PATH] [--limit N]
-Reads outputs/discovered_pages.json (override with --input PATH, cap with --limit N),
-writes outputs/pages/<slug>.md and outputs/run_summary.json (bim000 contract, unchanged), and
-the bim001 run folder outputs/<project>/runs/<run_id>/{html/, manifest.json, absences.json, stage_log.txt}.
-`--project NAME` is required (validated at runtime, no default).
-
-Pages are fetched one at a time with a random 2-5 s pause between them. A page is
-failed when status_code >= 400 or the library reports success=False; failed pages
-are recorded in run_summary.json and never written as content. 403/429 count as
-"blocked"; three consecutive blocked pages stop the run.
-
-Output is crawl4ai's raw_markdown (full page incl. nav) unless fit_markdown is
-non-empty; no content filter is configured yet, so expect raw_markdown (deferred).
+Legacy shared Markdown and run_summary outputs are retired (R8/E-01).
+A browser session supplies controlled access when used by the pipeline.
 """
 
 from pathlib import Path
@@ -23,7 +11,9 @@ import asyncio
 import importlib.metadata
 import json
 import platform
-import random
+import random  # retained compatibility for existing test harness; not used for pacing
+import hashlib
+import subprocess
 import re
 import sys
 import time
@@ -54,8 +44,8 @@ CANONICAL_EXAMPLE = "python -m smart_crawler.crawler --project CyberizeGroup --l
 HELP_HINT = "python -m smart_crawler.crawler --help"
 
 BLOCKED_STATUSES = {403, 429}
-MAX_CONSECUTIVE_BLOCKED = 3
-PAUSE_RANGE_S = (2, 5)  # uniform random pause between pages, seconds
+MAX_CONSECUTIVE_BLOCKED = 1
+PAUSE_RANGE_S = (5, 5)  # E-05: minimum gap AFTER completion, never random
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -99,7 +89,7 @@ def print_project_usage(kind: str, value: str | None) -> None:
 # Core crawl helpers
 # ---------------------------------------------------------------------------
 
-async def crawl_page(crawler: "AsyncWebCrawler", url: str) -> dict:
+async def crawl_page(crawler: "AsyncWebCrawler", url: str, *, session_id: str | None = None) -> dict:
     """Crawl one URL. Returns a page record for run_summary plus the markdown (if ok).
 
     Failure rules: status_code >= 400, or result.success False, is a failed page.
@@ -110,8 +100,12 @@ async def crawl_page(crawler: "AsyncWebCrawler", url: str) -> dict:
         page_timeout=90000,              # 90 seconds
         delay_before_return_html=3.0,    # Wait 3s after page load
         wait_for_images=True,            # Wait for all images
+        session_id=session_id,
+        max_retries=0,
+        fallback_fetch_function=None,
     )
 
+    fetched_at = utc_now()
     started = asyncio.get_event_loop().time()
     record = {"url": url, "status": None, "ok": False, "elapsed_s": 0.0, "error": None}
     # Transport-only keys (popped by crawl_all before the record reaches run_summary.json):
@@ -132,7 +126,7 @@ async def crawl_page(crawler: "AsyncWebCrawler", url: str) -> dict:
         record["error"] = "no result object"
         return {**record, **not_fetched}
 
-    status = getattr(result, "status_code", None)
+    status = getattr(result, "redirected_status_code", None) or getattr(result, "status_code", None)
     success = bool(getattr(result, "success", False))
     record["status"] = status
 
@@ -140,66 +134,36 @@ async def crawl_page(crawler: "AsyncWebCrawler", url: str) -> dict:
         record["error"] = "blocked"
         return {**record, **not_fetched}
 
-    if (status is not None and status >= 400) or not success:
+    if (status is not None and not 200 <= status < 300) or not success:
         # crawl4ai 0.9.x sets error_message (e.g. "Blocked by anti-bot protection: ...")
         record["error"] = getattr(result, "error_message", None) or f"HTTP {status}"
         return {**record, **not_fetched}
 
-    # Fetched. Raw HTML is captured independently of markdown (AC-27); guarded because stubs
-    # and future library versions may lack the attribute (AC-26 -> "unsupported").
-    html = getattr(result, "html", None) or None
-    fetched = {"html": html, "fetched": True}
-
+    html = getattr(result, "html", None)
+    record["final_url"] = getattr(result, "redirected_url", None) or url
+    record["redirect_chain"] = []
+    record["fetched_at"] = fetched_at
+    record["ok"] = bool(html)
+    record["error"] = None if html else "no_html_attr" if html is None else "empty_body"
+    # Preserve the diagnostic return API; product output never writes this Markdown.
     md = getattr(result, "markdown", None)
-    if md is None:
-        record["error"] = "no markdown in result"
-        return {**record, "markdown": "", **fetched}
-
-    # Prefer fit_markdown when present; fall back to raw_markdown (no content filter configured yet)
-    fit_md = getattr(md, "fit_markdown", "") or ""
-    raw_md = getattr(md, "raw_markdown", "") or ""
-    markdown = (fit_md or raw_md).strip()
-    if not markdown:
-        record["error"] = "empty markdown"
-        return {**record, "markdown": "", **fetched}
-
-    record["ok"] = True
-    return {**record, "markdown": markdown, **fetched}
+    markdown = (getattr(md, "fit_markdown", "") or getattr(md, "raw_markdown", "") or "").strip()
+    return {**record, "markdown": markdown, "html": html, "fetched": True}
 
 
-def save_markdown(url: str, markdown: str) -> Path | None:
-    """Write one page's markdown to PAGE_DIR/<slug>.md."""
-    name = slugify(url.replace("https://", "").replace("http://", ""))
-    out_path = PAGE_DIR / f"{name}.md"
-    try:
-        out_path.write_text(markdown, encoding="utf-8")
-        return out_path
-    except Exception as e:
-        print(f"❌ Error writing file: {e}")
-        return None
+def save_markdown(*args, **kwargs):
+    """Retired product surface (R8/E-01); historical outputs are never overwritten."""
+    raise RuntimeError("shared Markdown output retired; use raw run HTML")
 
 
-def write_summary(pages: list[dict], started_at: str, finished_at: str) -> Path:
-    summary = {
-        "started_at": started_at,
-        "finished_at": finished_at,
-        "crawl4ai_version": importlib.metadata.version("crawl4ai"),
-        "pause_range_s": list(PAUSE_RANGE_S),
-        "pages": pages,
-    }
-    SUMMARY_PATH.parent.mkdir(parents=True, exist_ok=True)
-    SUMMARY_PATH.write_text(json.dumps(summary, indent=2), encoding="utf-8")
-    return SUMMARY_PATH
+def write_summary(*args, **kwargs):
+    """Retired product surface (R8/E-01)."""
+    raise RuntimeError("shared run_summary output retired; use manifest.json")
 
 
-
-# ---------------------------------------------------------------------------
-# bim001 — run folder: outputs/<project>/runs/<run_id>/{html/, manifest.json, absences.json, stage_log.txt}
-# ---------------------------------------------------------------------------
-
-MANIFEST_SCHEMA = "bim001-manifest-v1"
+MANIFEST_SCHEMA = "abm-raw-v2"
 ACCESS_RUNG = "a"          # plain headless fetch, no stealth (Stealth ruling)
-OUTCOMES = ("captured", "blocked", "failed", "unsupported")
+OUTCOMES = ("captured", "blocked", "failed", "unsupported", "skipped")
 
 
 class RunFolder:
@@ -208,6 +172,9 @@ class RunFolder:
     def __init__(self, project: str, started_at: str, root: Path | None = None):
         self.project = project
         self.root = root if root is not None else RUN_ROOT
+        self.max_bytes = 100_000_000
+        self.metadata_reserve = 5_000_000
+        self.limit_hit = False
         self.pages: list[dict] = []          # manifest page entries, attempt order
         self._slug_counts: dict[str, int] = {}
         self._set_started(started_at)
@@ -229,11 +196,30 @@ class RunFolder:
             time.sleep(0.2)
             self._set_started(utc_now())
         self.html_dir.mkdir(parents=True)
+        for folder in ("discovery", "rest/responses", "rest/objects", "media", "screenshots"):
+            (self.dir / folder).mkdir(parents=True, exist_ok=True)
+        self.absences = []
+        self.routes = None
+        self.rest_index = {"schema": "abm-rest-index-v1", "transport": None,
+            "collections": [{"type": x, "status": "skipped", "response_refs": [],
+                             "per_page": 100, "total": None, "total_pages": None,
+                             "fetched_objects": 0} for x in ("pages", "posts", "media", "categories", "tags", "users")],
+            "responses": [], "objects": [], "fields_requested": "all; no _fields filter",
+            "absences_file": "../absences.json"}
+        self.rest_map = None
+        self.media = {"schema": "abm-media-v1", "items": [],
+                      "counts": {"items": 0, "internal": 0, "external": 0, "staging_domain": 0}}
+        self.streams = {"discovery": "partial", "html": "partial", "rest": "skipped",
+                        "media": "skipped", "screenshots": "empty"}
         return self
 
-    def log(self, line: str) -> None:
+    def log(self, line: str, *, finalization=False) -> None:
+        data = f"{utc_now()} {line}\n"
+        if self.persisted_bytes() + len(data.encode()) > self.max_bytes - (0 if finalization else self.metadata_reserve):
+            self.limit_hit = True
+            raise BufferError("persisted_log_limit")
         with (self.dir / "stage_log.txt").open("a", encoding="utf-8") as fh:
-            fh.write(f"{utc_now()} {line}\n")
+            fh.write(data)
 
     def allocate_slug(self, base: str) -> str:
         """First use -> base; later uses in the same run -> base-2, base-3, ... (R4)."""
@@ -241,13 +227,30 @@ class RunFolder:
         self._slug_counts[base] = n
         return base if n == 1 else f"{base}-{n}"
 
+    def persisted_bytes(self):
+        return sum(p.stat().st_size for p in self.dir.rglob("*") if p.is_file())
+
+    def save_bytes(self, rel, data, *, finalization=False):
+        """Exclusive bounded write; reserve metadata capacity before collection writes."""
+        path = self.dir / rel
+        if not path.resolve().is_relative_to(self.dir.resolve()):
+            raise ValueError("write escapes run")
+        ceiling = self.max_bytes if finalization else self.max_bytes - self.metadata_reserve
+        if self.persisted_bytes() + len(data) > ceiling:
+            self.limit_hit = True
+            raise BufferError("persisted_byte_limit")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("xb") as fh:
+            fh.write(data)
+        return path
+
     def save_html(self, slug: str, html: str) -> tuple[str, int]:
         """Write html byte-for-byte (utf-8) to html/<slug>.html. Returns (relative file, byte count)."""
         data = html.encode("utf-8")
         target = self.html_dir / f"{slug}.html"
         if target.exists():
             raise FileExistsError(f"refusing to overwrite {target.name}")
-        target.write_bytes(data)
+        self.save_bytes(f"html/{slug}.html", data)
         return f"html/{slug}.html", len(data)
 
     def record_page(self, record: dict, *, slug: str, outcome: str, reason: str | None = None,
@@ -256,59 +259,97 @@ class RunFolder:
         """Manifest entry: the run_summary record's five values verbatim + six bim001 fields."""
         assert outcome in OUTCOMES, outcome
         entry = {
-            "url": record["url"], "status": record["status"], "ok": record["ok"],
-            "elapsed_s": record["elapsed_s"], "error": record["error"],
-            "slug": slug, "outcome": outcome, "reason": reason,
-            "html_file": html_file, "html_bytes": html_bytes, "md_file": md_file,
+            "url": record["url"], "input_url": record.get("input_url", record["url"]),
+            "final_url": record.get("final_url", record["url"] if record.get("status") else None),
+            "redirect_chain": record.get("redirect_chain", []), "slug": slug,
+            "status": record["status"], "outcome": outcome, "reason": reason,
+            "fetched_at": record.get("fetched_at", self.started_at if record.get("status") else None),
+            "elapsed_s": record["elapsed_s"], "retries": 0,
+            "html_file": html_file, "block_file": record.get("block_file"),
+            "html_bytes": html_bytes,
+            "sha256": hashlib.sha256((self.dir / html_file).read_bytes()).hexdigest()
+                      if html_file and (self.dir / html_file).is_file() else None,
+            "rest_ref": None, "rest_outcome": "rest_unavailable",
         }
         self.pages.append(entry)
         return entry
 
+    def write_json(self, rel, value):
+        data = (json.dumps(value, indent=2, ensure_ascii=False, allow_nan=False) + "\n").encode("utf-8")
+        return self.save_bytes(rel, data, finalization=True)
+
     def write_manifest(self, *, command: str, input_path: Path, input_total: int, limit: int | None,
                        input_hosts: list[str], finished_at: str, stopped_early: bool) -> Path:
+        # Local input path is an invocation detail, never an absolute authored reference.
+        try:
+            commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT,
+                                             text=True, stderr=subprocess.DEVNULL).strip()
+        except (OSError, subprocess.CalledProcessError):
+            commit = "unknown"
+        counts = {"routes": len(self.pages), **{o: sum(p["outcome"] == o for p in self.pages) for o in OUTCOMES},
+                  "rest_objects": len(self.rest_index["objects"]),
+                  "rest_mapped_routes": sum(p["rest_outcome"] == "mapped" for p in self.pages),
+                  "media_items": len(self.media["items"])}
+        self.streams["html"] = "complete" if counts["captured"] == counts["routes"] and not stopped_early else "partial"
         manifest = {
-            "schema": MANIFEST_SCHEMA,
-            "project_name": self.project,
-            "run_id": self.run_id,
-            "run_dir": self.run_dir_rel,
-            "started_at": self.started_at,
-            "finished_at": finished_at,
-            "command": command,
-            "input_path": str(input_path),
-            "input_total": input_total,
-            "limit": limit,
-            "input_hosts": input_hosts,
-            "access_rung": ACCESS_RUNG,
-            "fallbacks_fired": [],
-            "stopped_early": stopped_early,
-            "crawl4ai_version": importlib.metadata.version("crawl4ai"),
-            "playwright_version": importlib.metadata.version("playwright"),  # metadata lookup only (I-1 ruling)
-            "python_version": platform.python_version(),
-            # Mirrors of the CrawlerRunConfig literals in crawl_page (kept literal there for AC-62).
-            "wait_for_images": True,
-            "delay_before_return_html_s": 3.0,
-            "page_timeout_ms": 90000,
-            "pause_range_s": list(PAUSE_RANGE_S),
-            "summary_path": "outputs/run_summary.json",
-            "pages": self.pages,
+            "schema": MANIFEST_SCHEMA, "project_name": self.project, "run_id": self.run_id,
+            "started_at": self.started_at, "finished_at": finished_at,
+            "command": f"python -m smart_crawler.crawler --project {self.project}" + (f" --limit {limit}" if limit else ""),
+            "input": {"url": self.pages[0]["input_url"] if self.pages else None, "mode": "routes", "limit": limit},
+            "scope": {"hosts_allowed": input_hosts, "redirect_max_hops": 5, "robots_policy": "recorded_not_enforced"},
+            "access": {"rung": ACCESS_RUNG, "user_agent": USER_AGENT,
+                       "operation_gap_after_completion_s": 5.0, "retry_max": 0,
+                       "stop_on_first_intentional_refusal": True, "automatic_restart": False,
+                       "background_resources_paced": False, "page_timeout_ms": 90000,
+                       "delay_before_return_html_s": 3.0, "wait_for_images": True,
+                       "cache_mode": "BYPASS", "headless": True,
+                       "discovery_rest_transport": "chromium_page_window_fetch"},
+            "versions": {"python": platform.python_version(),
+                         **{n: importlib.metadata.version(n) for n in ("crawl4ai", "playwright", "requests")},
+                         "tool_commit": commit},
+            "streams": self.streams, "counts": counts, "stopped_early": stopped_early,
+            "fallbacks_fired": [], "pages": self.pages,
         }
-        assert len(manifest) == 23, len(manifest)
-        path = self.dir / "manifest.json"
-        path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-        return path
+        for key, value in getattr(self, "manifest_extra", {}).items():
+            if isinstance(value, dict) and isinstance(manifest.get(key), dict):
+                manifest[key].update(value)
+            else:
+                manifest[key] = value
+        authored = []
+        for path in sorted((self.dir / 'screenshots').rglob('*')):
+            if path.is_file() and path.name != 'README.md':
+                if path.is_symlink() or not path.resolve().is_relative_to(self.dir.resolve()):
+                    raise ValueError('authored screenshot escapes run')
+                authored.append({'file':path.relative_to(self.dir).as_posix(),
+                                 'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+                                 'bytes':path.stat().st_size, 'authored_by':'Director'})
+        if authored:
+            self.streams['screenshots'] = 'authored'
+            manifest['screenshots'] = authored
+        routes = self.routes or {"schema": "abm-routes-v1", "mode": "routes", "sitemap_url_used": None,
+            "sources": [], "routes": [{"url": p["url"], "input_urls": [p["input_url"]], "aliases": [],
+                                       "source_file": None, "lastmod": None} for p in self.pages],
+            "dropped": [], "counts": {"loc_total": input_total, "routes": len(self.pages), "dropped": 0}}
+        rest_map = self.rest_map or {"schema": "abm-rest-map-v1",
+            "by_route": {p["url"]: {"outcome": "rest_unavailable", "reason": "not_collected"} for p in self.pages},
+            "unrouted_objects": [], "content_rendered_empty": []}
+        for rel, obj in (("discovery/routes.json", routes), ("rest/index.json", self.rest_index),
+                         ("rest/map.json", rest_map), ("media/inventory.json", self.media)):
+            self.write_json(rel, obj)
+        self.save_bytes("screenshots/README.md", b'Director-authored evidence slot. Drop screenshots here. The tool writes only this README into this folder; screenshot bytes are Director-authored. Files here are listed in `manifest.streams.screenshots` as `authored` with their sha256; if empty, `absences.json` carries `stream: screenshots, outcome: skipped, reason: none_supplied`.\n', finalization=True)
+        return self.write_json("manifest.json", manifest)
 
     def write_absences(self, absences: list[dict]) -> Path:
-        path = self.dir / "absences.json"
-        path.write_text(json.dumps(absences, indent=2), encoding="utf-8")
-        return path
+        return self.write_json("absences.json", absences)
 
 
 def build_absences(pages: list[dict], attempted: Sequence[str], all_urls: Sequence[str]) -> list[dict]:
-    """Every input URL not captured: attempted-and-absent first (attempt order), then skipped (input order)."""
-    absences = [{"url": p["url"], "outcome": p["outcome"], "reason": p["reason"]}
-                for p in pages if p["outcome"] != "captured"]
-    absences += [{"url": u, "outcome": "skipped", "reason": "stop_rule"} for u in attempted[len(pages):]]
-    absences += [{"url": u, "outcome": "skipped", "reason": "limit"} for u in all_urls[len(attempted):]]
+    absences = [{"stream": "html", "ref": p["url"], "outcome": p["outcome"],
+                 "reason": p["reason"], "at": utc_now()} for p in pages if p["outcome"] != "captured"]
+    known = {p["url"] for p in pages}
+    absences += [{"stream": "html", "ref": u, "outcome": "skipped",
+                  "reason": "stop_rule" if u in attempted else "limit", "at": utc_now()}
+                 for u in all_urls if u not in known]
     return absences
 
 
@@ -329,6 +370,8 @@ def read_urls(path: Path) -> list[str]:
 
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
+        if isinstance(data, dict) and data.get("schema") == "abm-routes-v1":
+            data = data["routes"]
         return [d["url"] if isinstance(d, dict) else str(d) for d in data if d]
     except json.JSONDecodeError as e:
         print(f"❌ JSON decode error: {e}")
@@ -349,105 +392,122 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--project", default=None,
                         help="project name this run belongs to (required; validated at runtime)")
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT,
-                        help=f"discovery JSON to read (default: {DEFAULT_INPUT})")
+                        help="explicit legacy URL JSON; otherwise use latest project discovery/routes.json")
     parser.add_argument("--limit", type=int, default=None,
                         help="crawl only the first N URLs (default: all)")
-    args = parser.parse_args(argv)
+    parser.add_argument("--max-bytes", type=int, default=100_000_000,
+                        help="persisted raw ceiling; includes reserved final metadata")
+    parser.add_argument("--routes", type=Path, help="explicit discovery/routes.json")
+    supplied=list(argv) if argv is not None else sys.argv[1:]
+    args = parser.parse_args(supplied)
+    args.input_explicit=any(x=='--input' or x.startswith('--input=') for x in supplied)
+    if args.max_bytes < 6_000_000:
+        parser.error("--max-bytes must be >= 6000000 to reserve final metadata")
+    if args.routes:
+        args.input = args.routes
     if args.limit is not None and args.limit < 1:
         parser.error("--limit must be >= 1")
     return args
 
 
+def resolve_routes_input(args):
+    """Preserve explicit legacy --input while defaulting the entry point to v2."""
+    if args.routes or args.input_explicit:
+        return args.input
+    available=sorted((RUN_ROOT/args.project/'runs').glob('*/discovery/routes.json'))
+    if not available:
+        print('No discovery/routes.json for --project '+args.project+'. Run the Capture pipeline first or supply --routes.',file=sys.stderr)
+        raise SystemExit(1)
+    return available[-1]
+
+
 def record_capture(run: RunFolder, page: dict, url: str, html: str | None, fetched: bool,
-                   md_saved: bool) -> dict:
-    """bim001: decide the page's outcome, save its HTML if captured, and record it in the run folder.
-
-    blocked (403/429) > failed (fetch failed) > unsupported (fetched, no html) > captured / write failure.
-    md_file names the markdown file bim000 actually wrote (I-2 ruling), or None.
-    """
+                   md_saved: bool = False) -> dict:
+    """HTML capture is independent of Markdown. E-01/R8, E-09 route accounting."""
     base = slugify(url.replace("https://", "").replace("http://", ""))
-    md_file = f"pages/{base}.md" if md_saved else None
     html_file = html_bytes = None
-    slug = base
-
+    slug = run.allocate_slug(base)
     if page["error"] == "blocked":
         outcome, reason = "blocked", "blocked"
+    elif page["error"] == "redirect_out_of_scope":
+        outcome, reason = "unsupported", "redirect_out_of_scope"
     elif not fetched:
         outcome, reason = "failed", page["error"] or "fetch failed"
     elif not html:
-        outcome, reason = "unsupported", "no html in result"
+        outcome, reason = "unsupported", "no_html_attr" if html is None else "empty_body"
     else:
-        slug = run.allocate_slug(base)
         try:
             html_file, html_bytes = run.save_html(slug, html)
             outcome, reason = "captured", None
-        except Exception as e:  # AC-28: a write failure is a failure, not a crash
-            outcome, reason = "failed", f"write failed: {e}"
-
+        except Exception as exc:
+            outcome, reason = "failed", f"write failed: {exc}"
+    if outcome == "blocked":
+        body = page.pop("block_html", None)
+        if body:
+            folder = run.html_dir / "_blocked"
+            folder.mkdir(exist_ok=True)
+            path = folder / (slug + ".html")
+            run.save_bytes(path.relative_to(run.dir), body.encode("utf-8"))
+            page["block_file"] = path.relative_to(run.dir).as_posix()
+            run.log(f"html block_evidence {page['block_file']} sha256={hashlib.sha256(path.read_bytes()).hexdigest()}")
+        else:
+            run.log(f"html block_evidence_unavailable {url} browser interrupted before body retention")
     entry = run.record_page(page, slug=slug, outcome=outcome, reason=reason,
-                            html_file=html_file, html_bytes=html_bytes, md_file=md_file)
-    run.log(f"{outcome} {url}" + (f" ({reason})" if reason and outcome != "blocked" else ""))
+                            html_file=html_file, html_bytes=html_bytes)
+    run.log(f"html intentional {outcome} {url}" + (f" ({reason})" if reason else ""))
     return entry
 
 
 async def crawl_all(urls: Sequence[str], crawler: "AsyncWebCrawler",
-                    run: RunFolder | None = None) -> tuple[list[dict], bool]:
-    """Crawl URLs sequentially with an already-open crawler.
-
-    Returns (page records, stopped_early). Stops after MAX_CONSECUTIVE_BLOCKED
-    consecutive 403/429 pages. Prints one status line per page.
-    bim001: when `run` is given, each page's raw HTML is captured into the run folder
-    and recorded in its manifest; without it, behavior is exactly bim000.
-    """
-    pages: list[dict] = []
-    consecutive_blocked = 0
-    total = len(urls)
-
-    for i, url in enumerate(urls, 1):
-        if i > 1:
-            pause = random.uniform(*PAUSE_RANGE_S)
-            print(f"⏸ pause {pause:.1f}s")
-            await asyncio.sleep(pause)
-        page = await crawl_page(crawler, url)
-        markdown = page.pop("markdown")
-        html = page.pop("html")
-        fetched = page.pop("fetched")
-        saved = None
-
-        if page["ok"]:
-            consecutive_blocked = 0
-            saved = save_markdown(url, markdown)
-            if saved is None:
-                page["ok"] = False
-                page["error"] = "write failed"
-            print(f"[{i}/{total}] {page['status']} ok {page['elapsed_s']}s {url}"
-                  + (f" -> {saved.name} ({len(markdown):,} chars)" if saved else ""))
+                    run: RunFolder | None = None, *, session=None) -> tuple[list[dict], bool]:
+    """One attempt per document. First refusal stops; later outcomes are skipped."""
+    pages = []
+    stopped = False
+    for i, url in enumerate(urls):
+        if stopped:
+            if run:
+                run.record_page({"url": url, "status": None, "elapsed_s": 0},
+                                slug=run.allocate_slug(slugify(url.replace("https://", "").replace("http://", ""))),
+                                outcome="skipped", reason="stop_rule")
+            continue
+        if i and session is None:
+            if run:
+                run.log("access pause 5.0s after operation completion")
+            await asyncio.sleep(5.0)
+        if session is not None:
+            from smart_crawler.browser_session import CollectionStopped
+            try:
+                page = await session.capture(url)
+            except CollectionStopped as exc:
+                stopped = True
+                if run:
+                    run.record_page({"url":url,"status":None,"elapsed_s":0},
+                                    slug=run.allocate_slug(slugify(url.replace("https://", "").replace("http://", ""))),
+                                    outcome="skipped",reason="stop_rule")
+                    run.log(f"access stop {exc}")
+                continue
         else:
-            label = "BLOCKED" if page["error"] == "blocked" else "FAILED"
-            print(f"[{i}/{total}] {page['status']} {label} {page['elapsed_s']}s {url} — {page['error']}")
-            if page["error"] == "blocked":
-                consecutive_blocked += 1
-            else:
-                consecutive_blocked = 0
-
-        if run is not None:
-            record_capture(run, page, url, html, fetched, md_saved=saved is not None)
+            page = await crawl_page(crawler, url)
+        html, fetched = page.pop("html"), page.pop("fetched")
+        page.pop("markdown")
+        if run:
+            record_capture(run, page, url, html, fetched)
         pages.append(page)
-
-        if consecutive_blocked >= MAX_CONSECUTIVE_BLOCKED:
-            print(f"\n⛔ {MAX_CONSECUTIVE_BLOCKED} consecutive blocked pages (403/429) — stopping run. "
-                  f"{total - i} URL(s) not attempted.")
-            if run is not None:
-                run.log(f"stop rule: {MAX_CONSECUTIVE_BLOCKED} consecutive blocked pages, {total - i} URL(s) not attempted")
-            return pages, True
-
-    return pages, False
+        if session is not None:
+            session.last_completion = time.monotonic()
+        if page["error"] == "blocked" or (session is not None and session.stop_reason) or (run is not None and run.limit_hit):
+            stopped = True
+            print("First intentional refusal — stopping run")
+            if run:
+                run.log("access stop rule: first intentional refusal")
+    return pages, stopped
 
 
 async def run(urls: Sequence[str], run_folder: RunFolder | None = None) -> tuple[list[dict], bool]:
-    browser_config = BrowserConfig(headless=True, user_agent=USER_AGENT)
-    async with AsyncWebCrawler(config=browser_config) as crawler:
-        return await crawl_all(urls, crawler, run_folder)
+    from smart_crawler.browser_session import BrowserSession
+    # Stage C3: explicit routes run through the same controlled session as discovery.
+    async with BrowserSession(urls[0], log=lambda row: run_folder.log("browser " + json.dumps(row)) if run_folder else None) as session:
+        return await crawl_all(urls, session.crawler, run_folder, session=session)
 
 
 def main() -> None:
@@ -459,84 +519,46 @@ def main() -> None:
         print_project_usage(problem, args.project)
         sys.exit(2)
 
+    args.input=resolve_routes_input(args)
     all_urls = read_urls(args.input)                       # input_total counts everything (AC-33)
     urls = all_urls[:args.limit] if args.limit is not None else all_urls
-    command = "python -m smart_crawler.crawler " + " ".join(sys.argv[1:])   # canonical form (I-4)
-
-    # bim001: the run folder exists on every path that gets past validation (AC-13, AC-37).
     run_folder = RunFolder(args.project, utc_now()).create()
-    started_at = run_folder.started_at                     # create() may have moved to the next second (I-3)
+    run_folder.max_bytes = args.max_bytes
     run_folder.log(f"run start project={args.project} run_id={run_folder.run_id} input_total={len(all_urls)} limit={args.limit}")
-
-    def close_run(pages: list[dict], finished_at: str, stopped_early: bool) -> tuple[Path, Path]:
-        summary_path = write_summary(pages, started_at, finished_at)
-        manifest_path = run_folder.write_manifest(
-            command=command, input_path=args.input.resolve(), input_total=len(all_urls),
-            limit=args.limit, input_hosts=input_hosts(all_urls),
-            finished_at=finished_at, stopped_early=stopped_early)
-        absences = build_absences(run_folder.pages, urls, all_urls)
-        run_folder.write_absences(absences)
-        captured = sum(1 for p in run_folder.pages if p["outcome"] == "captured")
-        run_folder.log(f"run end captured={captured} absent={len(absences)} stopped_early={stopped_early}")
-        return summary_path, manifest_path
-
-    if not urls:
-        # Still a run: write a truthful summary (pages=[]) so no stale prior-run file survives.
-        print("⚠️  No URLs found in file — nothing to crawl")
-        summary_path, manifest_path = close_run([], utc_now(), False)
-        print(f"🧾 Summary: {summary_path}")
-        print(f"📁 Run folder: {run_folder.dir}")
-        return
-
-    PAGE_DIR.mkdir(parents=True, exist_ok=True)
-    version = importlib.metadata.version("crawl4ai")
-    est_min = len(urls) * (7 + sum(PAUSE_RANGE_S) / 2) / 60  # ~7 s/page observed + mean pause
-
-    print("\n" + "=" * 80)
-    print(f"Batch crawler — crawl4ai {version}")
-    print("=" * 80)
-    print(f"\nProject: {args.project}   run_id: {run_folder.run_id}")
-    print(f"Ready to crawl {len(urls)} of {len(all_urls)} URL(s)")
-    print(f"From: {args.input}")
-    print(f"To:   {PAGE_DIR}  (markdown)")
-    print(f"      {run_folder.dir}  (html/, manifest.json, absences.json, stage_log.txt)")
-    print(f"Pause between pages: {PAUSE_RANGE_S[0]}-{PAUSE_RANGE_S[1]} s (random)")
-    print(f"Estimated time: ~{est_min:.1f} min")
-
-    print("\nFirst 5 URLs:")
-    for u in urls[:5]:
-        print(f"  • {u}")
-    if len(urls) > 5:
-        print(f"  ... and {len(urls) - 5} more")
-    print()
-
-    pages, stopped_early = asyncio.run(run(urls, run_folder))
-    summary_path, manifest_path = close_run(pages, utc_now(), stopped_early)
-
-    successful = sum(1 for p in pages if p["ok"])
-    failed = len(pages) - successful
-    blocked = sum(1 for p in pages if p["error"] == "blocked")
-    captured = sum(1 for p in run_folder.pages if p["outcome"] == "captured")
-
-    print("\n" + "="*80)
-    print("✅ CRAWL COMPLETE" if not stopped_early else "⛔ CRAWL STOPPED EARLY")
-    print("="*80)
-    print(f"✅ Successful: {successful}")
-    print(f"❌ Failed: {failed}  (blocked: {blocked})")
-    print(f"🧾 HTML captured: {captured} of {len(pages)} attempted; {len(all_urls) - len(pages)} not attempted")
-    print(f"📁 Markdown: {PAGE_DIR}")
-    print(f"📁 Run folder: {run_folder.dir}")
-    print(f"🧾 Summary: {summary_path}")
-    print(f"🧾 Manifest: {manifest_path}")
-
-    if successful > 0:
-        saved = [PAGE_DIR / f"{slugify(p['url'].replace('https://','').replace('http://',''))}.md" for p in pages if p["ok"]]
-        total_size = sum(p.stat().st_size for p in saved if p.exists())
-        print(f"\n📊 Quality Stats:")
-        print(f"   Total size: {total_size / 1024 / 1024:.1f} MB")
-        print(f"   Average per file: {total_size / successful / 1024:.1f} KB")
-        print(f"   Success rate: {(successful / len(urls)) * 100:.1f}%")
-
+    stopped_early = False
+    interrupted = False
+    if urls:
+        try:
+            _, stopped_early = asyncio.run(run(urls, run_folder))
+        except KeyboardInterrupt:
+            interrupted = stopped_early = True
+            run_folder.log("access SIGINT: finalizing preserved partial evidence")
+            completed = {p["url"] for p in run_folder.pages}
+            for url in urls:
+                if url not in completed:
+                    run_folder.record_page({"url":url,"status":None,"elapsed_s":0},
+                        slug=run_folder.allocate_slug(slugify(url.replace("https://", "").replace("http://", ""))),
+                        outcome="skipped",reason="stop_rule")
+    else:
+        print("No URLs found — empty raw run")
+    for url in all_urls[len(urls):]:
+        run_folder.record_page({"url": url, "status": None, "elapsed_s": 0},
+            slug=run_folder.allocate_slug(slugify(url.replace("https://", "").replace("http://", ""))),
+            outcome="skipped", reason="limit")
+    absent = build_absences(run_folder.pages, urls, all_urls)
+    absent += [{"stream": stream, "ref": ref, "outcome": "skipped", "reason": reason, "at": utc_now()}
+               for stream, ref, reason in [("discovery", "robots.txt", "not_collected"),
+                  *[("rest", x, "not_collected") for x in ("pages", "posts", "media", "categories", "tags", "users")],
+                  ("media", "inventory", "not_collected"), ("screenshots", "screenshots", "none_supplied")]]
+    run_folder.write_absences(absent)
+    from smart_crawler.browser_session import BrowserSession
+    allowed=sorted(BrowserSession(all_urls[0]).hosts) if all_urls else []
+    run_folder.write_manifest(command="", input_path=args.input, input_total=len(all_urls), limit=args.limit,
+                              input_hosts=allowed, finished_at=utc_now(), stopped_early=stopped_early)
+    run_folder.log(f"run end captured={sum(p['outcome'] == 'captured' for p in run_folder.pages)} stopped_early={stopped_early}")
+    print(f"Raw run: {run_folder.dir}")
+    if interrupted:
+        sys.exit(130)
     if stopped_early:
         sys.exit(2)
 

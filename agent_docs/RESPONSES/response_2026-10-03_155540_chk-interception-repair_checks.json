@@ -1,0 +1,831 @@
+{
+  "schema": "abm-local-interception-repair-handoff-v1",
+  "status": "LOCAL_REPAIR_VERIFIED_LIVE_CHK_INCOMPLETE",
+  "prepared_at": "2026-10-03T09:55:40.020195+00:00",
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c",
+    "python": "3.12.3",
+    "packages": {
+      "crawl4ai": "0.9.3",
+      "playwright": "1.52.0",
+      "pytest": "8.3.5",
+      "requests": "2.32.3"
+    }
+  },
+  "repo": "/home/moose/python/stark-web-factory-scrapper-v1",
+  "branch": "wf-scrapper-abm",
+  "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+  "candidate_commit": "PENDING Tony",
+  "source_inventory_sha256": "92ccc13172b95e18c2c949aebb4397686b5cdb92e7445ade465a4dd47fa04a70",
+  "source_inventory_path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/regression-confirmed/source-before.json",
+  "controller_sha256": "3fc7229b978817a7569348eee2948201fc6737710c7c64f7116725216f1a956e",
+  "changed_source_hashes": {
+    "smart_crawler/browser_session.py": {
+      "sha256": "3fc7229b978817a7569348eee2948201fc6737710c7c64f7116725216f1a956e",
+      "bytes": 41496,
+      "mode": 436,
+      "symlink": null
+    },
+    "tests/fixture_server.py": {
+      "sha256": "6de61d6a8cf3d1163652f0ab2b873396cd7e721e4ebad7410f3a2552c5e2ff34",
+      "bytes": 15638,
+      "mode": 436,
+      "symlink": null
+    },
+    "tests/test_interception_lifecycle.py": {
+      "sha256": "4098d141b992395bbf564fe27b5b56cdc892c6117313277d560e879e7f66c1a3",
+      "bytes": 18590,
+      "mode": 436,
+      "symlink": null
+    },
+    "tests/snapshot_compare.py": {
+      "sha256": "c291a4af0628a25d757638ac70d18cd03cfcde6de89a904b89f997fbb114fabd",
+      "bytes": 18146,
+      "mode": 436,
+      "symlink": null
+    }
+  },
+  "source_changes": {
+    "baseline": "reviewed smoke 3e629379a1295ca0a76c636ab2dc361ffdb449fdf2bdc9ae10ebc5a43af6e2d5",
+    "final": "regression-confirmed/source-before.json",
+    "changed": [
+      "smart_crawler/browser_session.py",
+      "tests/fixture_server.py",
+      "tests/snapshot_compare.py",
+      "tests/test_interception_lifecycle.py"
+    ],
+    "out_of_scope_changes": []
+  },
+  "source_transition": {
+    "initial_affected_source": "33d98f085f43fbfadf53114b32fd3a90c97059d4de078a4889681d036868020a",
+    "failed_regression_source": "80d57166d54707df9228ad5d918c4c836b7b7551fcba6b16794abf156c838251",
+    "final_source": "92ccc13172b95e18c2c949aebb4397686b5cdb92e7445ade465a4dd47fa04a70",
+    "changes_since_initial_affected": [
+      "smart_crawler/browser_session.py",
+      "tests/test_interception_lifecycle.py",
+      "tests/snapshot_compare.py",
+      "tests/fixture_server.py"
+    ],
+    "reasons": [
+      "Correct snapshot lifecycle count from fixture-defined resources",
+      "Preserve partial read bytes when native failure arrives before result handoff",
+      "Add native streaming fixture and event-order proof; correct fixture abort timer after headers"
+    ],
+    "historical_failures_preserved": [
+      "capture-helper",
+      "regression-final",
+      "handoff-race-fixed"
+    ]
+  },
+  "commands": {
+    "before-fix-native": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_interception_lifecycle.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:14:07.491445+00:00",
+      "finished_at": "2026-10-03T09:14:21.434177+00:00",
+      "elapsed_s": 13.942721556988545,
+      "exit_code": 1,
+      "command_log_bytes": 5610,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "b7073b9a50f7ef8d5708f0ab8832d0a7ad8ffabbe458402a6eff7807aa22604d",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/before-fix-native",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "before-fix-native"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/before-fix-controls"
+      },
+      "result_file_sha256": "fbfa7812ac5816e5937d92c36692dfe19b34d262b48b887fa31f111742e0019e"
+    },
+    "cancel-fixed": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_interception_lifecycle.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:15:42.877132+00:00",
+      "finished_at": "2026-10-03T09:16:00.324098+00:00",
+      "elapsed_s": 17.446948553959373,
+      "exit_code": 0,
+      "command_log_bytes": 99,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "22332ead7c08c6d555f52279456b906d65b6ecac86709b4b0759673e7ad0b7ec",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/cancel-fixed",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "cancel-fixed"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/cancel-fixed-controls"
+      },
+      "result_file_sha256": "a2a102d7116055c8f16ba9ef63b69be408fbfb9ad1833107fbdeaee385fd9aed"
+    },
+    "lifecycle-local": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_interception_lifecycle.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:17:18.089115+00:00",
+      "finished_at": "2026-10-03T09:18:34.497294+00:00",
+      "elapsed_s": 76.40817442396656,
+      "exit_code": 0,
+      "command_log_bytes": 110,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "a592de7630d0770fc8f1adcd788250942a0a3e50d01d94027e5bb96df30b97c3",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/lifecycle-local",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "lifecycle-local"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/lifecycle-controls"
+      },
+      "result_file_sha256": "8649f57ffa83ed5a52005a5e9f09fa8f8af692fc0a02bd38f598667e12c51ab5"
+    },
+    "affected-final": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_interception_lifecycle.py",
+        "tests/test_request_identity.py",
+        "tests/test_browser_controls.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:19:26.322739+00:00",
+      "finished_at": "2026-10-03T09:25:35.962661+00:00",
+      "elapsed_s": 369.6399608820211,
+      "exit_code": 0,
+      "command_log_bytes": 111,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "33d98f085f43fbfadf53114b32fd3a90c97059d4de078a4889681d036868020a",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 51,
+        "failed": 0,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "affected-final"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/affected-final-controls"
+      },
+      "result_file_sha256": "2d45cfd2c5b43372c9161558719806c0399a0ff949217cebc06c37bc455f5f94"
+    },
+    "capture-helper": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_capture_pipeline.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:20:29.012269+00:00",
+      "finished_at": "2026-10-03T09:22:23.000056+00:00",
+      "elapsed_s": 113.98778118402697,
+      "exit_code": 1,
+      "command_log_bytes": 12753,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "33d98f085f43fbfadf53114b32fd3a90c97059d4de078a4889681d036868020a",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/capture-helper",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "capture-helper"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/capture-helper-controls"
+      },
+      "result_file_sha256": "1ec0b88fd4604172e05284b8d4bffb4c27a42343c972e99d8e539d2b86b5516f"
+    },
+    "capture-helper-fixed": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_capture_pipeline.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:26:04.409936+00:00",
+      "finished_at": "2026-10-03T09:28:05.574372+00:00",
+      "elapsed_s": 121.16443113901187,
+      "exit_code": 0,
+      "command_log_bytes": 110,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "80d57166d54707df9228ad5d918c4c836b7b7551fcba6b16794abf156c838251",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/capture-helper-fixed",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "capture-helper-fixed"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/capture-helper-fixed-controls"
+      },
+      "result_file_sha256": "a284e2aa2e0715a6f22fd1702c8c3ca9e2fd654cd66380978ff11e80c65bb2b7"
+    },
+    "regression-final": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:28:20.002834+00:00",
+      "finished_at": "2026-10-03T09:37:31.894489+00:00",
+      "elapsed_s": 551.8916441569454,
+      "exit_code": 1,
+      "command_log_bytes": 3431,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "80d57166d54707df9228ad5d918c4c836b7b7551fcba6b16794abf156c838251",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 156,
+        "failed": 1,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/regression-final",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "regression-final"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/regression-final-controls"
+      },
+      "result_file_sha256": "c2d0dd714b6e0d116a2a63ee178933790646f9186eabf702fbcb987ed76a4c22"
+    },
+    "handoff-race-fixed": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_interception_lifecycle.py",
+        "tests/test_browser_controls.py::test_real_decoded_cap_preserves_partial_and_stops",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:38:59.807254+00:00",
+      "finished_at": "2026-10-03T09:40:57.398127+00:00",
+      "elapsed_s": 117.59085822303314,
+      "exit_code": 1,
+      "command_log_bytes": 5037,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "b38862c145d7a6701cd53e5ed738393e17f66efbe230a043f736947dafeec4e1",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 16,
+        "failed": 1,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/handoff-race-fixed",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "handoff-race-fixed"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/handoff-race-controls"
+      },
+      "result_file_sha256": "fe1b679a60ec6852f221245054722b4e7b53eb9e1412812c555e74f818d7eb62"
+    },
+    "handoff-confirmed": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_interception_lifecycle.py",
+        "tests/test_browser_controls.py::test_real_decoded_cap_preserves_partial_and_stops",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:41:21.839319+00:00",
+      "finished_at": "2026-10-03T09:43:19.114595+00:00",
+      "elapsed_s": 117.27527212403947,
+      "exit_code": 0,
+      "command_log_bytes": 111,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "92ccc13172b95e18c2c949aebb4397686b5cdb92e7445ade465a4dd47fa04a70",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/handoff-confirmed",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "handoff-confirmed"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/handoff-confirmed-controls"
+      },
+      "result_file_sha256": "f98087523f4a5492beef42a99518324644729bfc50b452704b011628050d333a"
+    },
+    "regression-confirmed": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T09:43:44.423139+00:00",
+      "finished_at": "2026-10-03T09:53:20.932678+00:00",
+      "elapsed_s": 576.5095374259981,
+      "exit_code": 0,
+      "command_log_bytes": 272,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "92ccc13172b95e18c2c949aebb4397686b5cdb92e7445ade465a4dd47fa04a70",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 159,
+        "failed": 0,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/regression-confirmed",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "regression-confirmed"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/regression-confirmed-controls"
+      },
+      "result_file_sha256": "72974bc75ad3e1758b3044bef2cdee1d815be9c6fde0f7367fc4e77d558f5933"
+    },
+    "snapshot-final": {
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/regression-confirmed-controls/complete-raw"
+      ],
+      "started_at": "2026-10-03T09:53:31.763082+00:00",
+      "finished_at": "2026-10-03T09:55:28.749275+00:00",
+      "elapsed_s": 116.98619286098983,
+      "exit_code": 0,
+      "command_log_bytes": 283,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "92ccc13172b95e18c2c949aebb4397686b5cdb92e7445ade465a4dd47fa04a70",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 0,
+        "failed": 0,
+        "skipped": 0
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/snapshot-final",
+      "recorder": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/check_runner.py",
+        "snapshot-final"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/snapshot-final-controls"
+      },
+      "result_file_sha256": "7cfa0b9fb104d13d101dc07a79934c86c485ca489dc4497a66a2353f9436bd86"
+    }
+  },
+  "totals": {
+    "affected_passed": 17,
+    "full_regression_passed": 159,
+    "capture_comparison": {
+      "full_canonical_comparison": "PASS",
+      "files": 231,
+      "normalization": "page elapsed; measured protocol times; correlated protocol IDs; independent resource channels; derived metadata byte-count/hash edges only"
+    },
+    "live_target_requests": 0,
+    "independent_qa": "NOT RUN"
+  },
+  "preservation": {
+    "checked_files": 5167,
+    "changed": [],
+    "missing": [],
+    "status": "PASS"
+  },
+  "proof_index": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/proof-index-confirmed.json",
+  "mechanism_analysis": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-repair/2026-10-03_091337Z/mechanism-analysis.json",
+  "native_excerpt": {
+    "native-incidental-cancellation": {
+      "stop_reason": null,
+      "dispatches": 3,
+      "events": [
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377495.528778008,
+          "request_id": "465177.2",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377495.524307,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Fetch"
+        },
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377503.796369776,
+          "request_id": "465177.5",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377503.795353,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Fetch"
+        },
+        {
+          "event": "fixture_native_cancellation",
+          "monotonic": 377503.796376267,
+          "request_id": "interception-job-9.0",
+          "network_id": "465177.5",
+          "frame_id": "5E31B60D0C0C02BDD2EA5656C8801375",
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED"
+        },
+        {
+          "event": "interception_command_error",
+          "monotonic": 377503.80084423,
+          "operation_id": null,
+          "request_id": "interception-job-9.0",
+          "network_id": "465177.5",
+          "resource_type": "XHR",
+          "frame_id": "5E31B60D0C0C02BDD2EA5656C8801375",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "incidental",
+          "state": "error",
+          "error": "Error",
+          "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+          "confirmed_canceled": true,
+          "supported_incidental": true
+        },
+        {
+          "event": "interception_incidental_canceled",
+          "monotonic": 377503.800850313,
+          "operation_id": null,
+          "request_id": "interception-job-9.0",
+          "network_id": "465177.5",
+          "resource_type": "XHR",
+          "frame_id": "5E31B60D0C0C02BDD2EA5656C8801375",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "incidental",
+          "state": "canceled"
+        }
+      ]
+    },
+    "native-frame-cancellation": {
+      "stop_reason": null,
+      "dispatches": 2,
+      "events": [
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377510.692413804,
+          "request_id": "465256.2",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377510.689706,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Fetch"
+        },
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377513.895131346,
+          "request_id": "BD99A6323B9B95FFF3FEDB321E7F231D",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377513.893044,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Document"
+        },
+        {
+          "event": "fixture_native_cancellation",
+          "monotonic": 377513.895137818,
+          "request_id": "interception-job-7.0",
+          "network_id": "BD99A6323B9B95FFF3FEDB321E7F231D",
+          "frame_id": "B0AFA2DE73C224A97FD8677138D4A72E",
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED"
+        },
+        {
+          "event": "interception_command_error",
+          "monotonic": 377513.904016162,
+          "operation_id": null,
+          "request_id": "interception-job-7.0",
+          "network_id": "BD99A6323B9B95FFF3FEDB321E7F231D",
+          "resource_type": "Document",
+          "frame_id": "B0AFA2DE73C224A97FD8677138D4A72E",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "incidental",
+          "state": "error",
+          "error": "Error",
+          "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+          "confirmed_canceled": true,
+          "supported_incidental": true
+        },
+        {
+          "event": "interception_incidental_canceled",
+          "monotonic": 377513.904023089,
+          "operation_id": null,
+          "request_id": "interception-job-7.0",
+          "network_id": "BD99A6323B9B95FFF3FEDB321E7F231D",
+          "resource_type": "Document",
+          "frame_id": "B0AFA2DE73C224A97FD8677138D4A72E",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "incidental",
+          "state": "canceled"
+        }
+      ]
+    },
+    "native-cancel-during-capture": {
+      "stop_reason": null,
+      "dispatches": 2,
+      "events": [
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377569.638183927,
+          "request_id": "465964.2",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377569.625208,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Fetch"
+        },
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377569.640240782,
+          "request_id": "465964.4",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377569.639235,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Fetch"
+        },
+        {
+          "event": "fixture_native_cancellation",
+          "monotonic": 377569.640248399,
+          "request_id": "interception-job-7.0",
+          "network_id": "465964.4",
+          "frame_id": "F609F0B3C786E05689B533AE92642C0D",
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED"
+        },
+        {
+          "event": "interception_command_error",
+          "monotonic": 377569.6454469,
+          "operation_id": "op-1",
+          "request_id": "interception-job-7.0",
+          "network_id": "465964.4",
+          "resource_type": "XHR",
+          "frame_id": "F609F0B3C786E05689B533AE92642C0D",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "incidental",
+          "state": "error",
+          "error": "Error",
+          "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+          "confirmed_canceled": true,
+          "supported_incidental": true
+        },
+        {
+          "event": "interception_incidental_canceled",
+          "monotonic": 377569.645453408,
+          "operation_id": "op-1",
+          "request_id": "interception-job-7.0",
+          "network_id": "465964.4",
+          "resource_type": "XHR",
+          "frame_id": "F609F0B3C786E05689B533AE92642C0D",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "incidental",
+          "state": "canceled"
+        }
+      ]
+    },
+    "native-read-handoff-response-cap": {
+      "stop_reason": "response_limit",
+      "dispatches": 2,
+      "events": [
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377579.664700987,
+          "request_id": "466028.2",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377579.661892,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Fetch"
+        },
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377587.884574355,
+          "request_id": "466028.4",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377587.881653,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Fetch"
+        },
+        {
+          "event": "fixture_native_failure_before_result",
+          "monotonic": 377587.884662694,
+          "network_id": "466028.4"
+        }
+      ]
+    },
+    "native-read-handoff-intentional-abort": {
+      "stop_reason": "AbortError",
+      "dispatches": 2,
+      "events": [
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377590.017818282,
+          "request_id": "466115.2",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377590.004228,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Fetch"
+        },
+        {
+          "event": "cdp_loading_failed",
+          "monotonic": 377598.614850757,
+          "request_id": "466115.4",
+          "session": "page-cdp-1",
+          "browser_timestamp": 377598.604993,
+          "canceled": true,
+          "error_text": "net::ERR_ABORTED",
+          "blocked_reason": null,
+          "resource_type": "Fetch"
+        },
+        {
+          "event": "fixture_native_failure_before_result",
+          "monotonic": 377598.614984,
+          "network_id": "466115.4"
+        }
+      ]
+    }
+  },
+  "remaining_gaps": [
+    "Original live failing request is unidentified; no live-cause attribution",
+    "Replacement CHK allocation consumed and incomplete; no new live allocation authorized",
+    "Prepare ON HOLD for agent-skill ABM amendment",
+    "Independent QA and candidate commit pending"
+  ],
+  "attachments": {
+    "agent_docs/RESPONSES/response_2026-10-03_155540_chk-interception-repair.md": {
+      "sha256": "3804ca576e95a14e9a210afb73692a832425101070a2c28868f9347a62df488f",
+      "bytes": 7754
+    },
+    "agent_docs/RESPONSES/response_2026-10-03_155540_chk-interception-repair_source-test.diff.txt": {
+      "sha256": "d62796dd3472b5f2d70c5932faf7343b277ead5bf9b7f85e4e5ee456fcfba9db",
+      "bytes": 38137
+    },
+    "agent_docs/RESPONSES/response_2026-10-03_155540_chk-interception-repair_browser_session.py.txt": {
+      "sha256": "3fc7229b978817a7569348eee2948201fc6737710c7c64f7116725216f1a956e",
+      "bytes": 41496
+    }
+  }
+}

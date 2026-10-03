@@ -2,6 +2,19 @@
 
 Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark manual edit. Newest first.
 
+## 2026-10-02 — Cody — JARVIS rulings / BUILD_READBACK 1.2
+
+- Applied prospective M-01–M-04 dispositions and E-13–E-19; canonical lock setup documented without changing dependencies/installing; complete/partial fixture bindings and integrity-first snapshots; shared CHK smoke; precise leak scanner boundary; C6 reader; authored/source boundary checks.
+- Inspected actual product/tests/installed source read-only; BUILD_READBACK names APIs, unproven controls, exact certified-test rewrites, proposed live bounds and source-to-commit QA evidence binding. Updated QA/QAM/entries/recovery consistently.
+- No product/test changes, product tests, installs, live requests, independent QA, Git mutations or deletion. AWAITING BUILD_READBACK REVIEW AND TONY'S BUILD APPROVAL.
+
+## 2026-10-02 — Cody — ABM 1.1 / QAM documentation amendment
+
+- JARVIS Architect amendment under Tony’s delegated authority: browser-session discovery/REST, complementary sources, five-second completion pacing, no retries/switching, first intentional refusal stop, scoped redirects/media and demonstrated image-wait settings.
+- Corrected response-byte versus derivative provenance, route accounting, valid-partial handling and mailto embed count. Preserved 48 ACs/24 groups and historical carry-ins; added E-05–E-12 with current provenance, not old Director approvals.
+- Added module/QAM entries, independent Q1/Lead decision/Q2 workflow and instruction-driven handoffs; Tony cleanup accepted before final Gate Q; updated recovery/records/QA plan. Open architectural decisions remain in ABM_AMENDMENT_1_1.md.
+- Documentation only: no product/test/dependency edits, tests, live requests, installs, Git mutations or deletion. No BUILD_READBACK/C1. Awaiting JARVIS review.
+
 ## 2026-09-05 — [CC] Claude Code — bim000 Stage prep + controlled upgrade
 
 - **Updated:** `requirements.txt`, `requirements-lock.txt` — crawl4ai 0.6.3 → 0.9.3 (exact pin; lock regenerated, 98 lines). Stage 1, committed 600d181.
@@ -42,3 +55,34 @@ Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark
 - **Added:** `agent_docs/ACTION/web-factory-p1-bim000/BIM000_RETROSPECTIVE.md`, `agent_docs/RESPONSES/QA_GATEQ_VERDICT_web-factory-p1-bim000_2026-09-05.md` — close-out records.
 - **Updated:** `RECOVERY.md`, `RUN_NOTES.md`, `agent_docs/SESSIONS/session_2026-09-05.md` — CLOSED state, certified SHA `81099ee`.
 - **Reason:** Cody PRE-Q found AC-21; SOL ruled surgical rework; Cody retest PASS; SOL Gate Q PASS on `qa/web-factory-p1-bim000` @ 81099ee.
+
+## 2026-10-02_135008Z — Cody Engineer / ABM launch
+
+- Recorded Director GO and JARVIS E-20/E-21 prospectively in current module/QA/QAM entry documents, journal and recovery. Preserve prior records and dirty work. Product implementation begins under approved BUILD_READBACK; QA pending.
+
+## 2026-10-02 — Cody / C1 raw v2
+
+- Implemented raw v2 and validator; R8/E-01 retire shared Markdown/summary outputs without touching old files. E-05 first-refusal/no-retry five-second policy; E-09 all-route accounting.
+- 29 authorized existing-test rewrites are individually documented with errata; exact names in agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/build/2026-10-02_135008Z/C1-rewrites.json; 19 unrelated certified functions retain behavior. C2 transport rewrites pending. Static independent validator positives/negatives added. 63 engineering tests passed; QA NOT RUN.
+
+## 2026-10-02 — Cody / C2 browser discovery
+
+- Replaced requests discovery with explicit owned Chromium reads; canonical identity and typed discovery outcomes. E-06/E-05 authorize remaining five certified transport/query rewrites; all 34 readback-enumerated rewrites now recorded.
+- Implemented E-20 correlated Chromium redirect transition and E-21 cf-mitigated allowlist/detector cases. Initial real browser proof passed; full C3 controls pending. 72 engineering tests green; QA NOT RUN.
+
+## 2026-10-02 — Cody / C3–C4
+
+- Implemented browser admission, correlated redirect completion, shared pacing, explicit challenge/refusal stops, background separation, caps and partial finalization. Real Chromium loopback tests plus SIGINT/raw-limit tests.
+- Implemented REST archived responses and indexed exact-value derivatives, pagination/route mapping/optional absences; no root enumeration/field filtering/client fallback. Declared fixture facts and typed raw validation checks. 101 engineering tests pass; independent QA NOT RUN.
+
+## Web Recon ABM 1.2 — C5/C6 engineering implementation (2026-10-02)
+
+- Added received-media inventory and scoped browser HEAD (E-07), with off-scope retrieval explicitly untested.
+- Added bounded Capture orchestration, owned Chromium process watchdog, partial finalization, source/runtime identity and the minimal C6 read-only reader (E-17).
+- Retained Director-authored screenshot bytes with hashes; the tool writes only the slot README (E-07).
+- Added complete F-09, corrupt F-10 and valid two-loss F-12 readers, real-worker budget/interrupt proofs and fact-bound snapshot comparisons (E-14).
+- Shared Markdown/run_summary remain retired (R8/E-01); existing history is preserved. No Prepare construction or independent QA completion claimed at this milestone.
+
+## 2026-10-02 — Cody engineering checkpoint
+
+C1–C6 Capture/minimal raw reader implemented with 131 passing engineering tests and paired fixture comparison. CHK live failed on a same-URL incidental stylesheet classified as intentional; one dispatch, partial evidence retained. No Prepare/E2/QA completion claim. RECOVERY, ledger and QAM record BLOCKED; exact source and defect packaged for review.

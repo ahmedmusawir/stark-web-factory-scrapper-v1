@@ -1,0 +1,6 @@
+{"utc": "2026-10-01T14:57:36.388170+00:00", "event": "coordinator_start", "local_only": true, "gap_s": 15, "max_requests": 6, "transfer_limit_s": 3, "body_ceiling": 2097152}
+{"utc": "2026-10-01T14:57:36.388511+00:00", "event": "request_dispatch", "sequence": 1, "url": "http://127.0.0.1:38093/delay", "client": "curl"}
+{"utc": "2026-10-01T14:57:36.700211+00:00", "event": "request_complete", "sequence": 1, "status": 200, "validation": {"expected": "xml", "passed": true, "reason": "expected_payload_valid", "xml_root": "{http://www.sitemaps.org/schemas/sitemap/0.9}sitemapindex", "xml_children": 1}, "body_bytes": 169}
+{"utc": "2026-10-01T14:57:36.700383+00:00", "event": "shared_pacing_wait", "seconds": 14.999200104997726}
+{"utc": "2026-10-01T14:57:51.700382+00:00", "event": "request_dispatch", "sequence": 2, "url": "http://127.0.0.1:38093/ok", "client": "python"}
+{"utc": "2026-10-01T14:57:51.995385+00:00", "event": "request_complete", "sequence": 2, "status": 200, "validation": {"expected": "xml", "passed": true, "reason": "expected_payload_valid", "xml_root": "{http://www.sitemaps.org/schemas/sitemap/0.9}sitemapindex", "xml_children": 1}, "body_bytes": 169}

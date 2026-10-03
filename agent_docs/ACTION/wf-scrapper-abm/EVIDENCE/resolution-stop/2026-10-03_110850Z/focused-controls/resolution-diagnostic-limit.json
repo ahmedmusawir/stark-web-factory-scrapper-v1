@@ -1,0 +1,29 @@
+{
+  "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+  "case": "resolution-diagnostic-limit",
+  "calls": [
+    {
+      "command": "Fetch.failRequest",
+      "args": {
+        "requestId": "fixture-fetch-1",
+        "errorReason": "Aborted"
+      }
+    }
+  ],
+  "returned": [
+    false,
+    false,
+    false
+  ],
+  "stop_reason": "interception_evidence_limit",
+  "closing": false,
+  "entry_state": "resolved",
+  "entry_command": "Fetch.failRequest",
+  "events": [
+    {
+      "event": "stop",
+      "monotonic": 382818.811344331,
+      "reason": "interception_evidence_limit"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "browser_events": [
+    {
+      "event": "operation_start",
+      "monotonic": 382889.557647154,
+      "url": "http://127.0.0.1:33597/challenge",
+      "operation_id": "op-1",
+      "deadline": 382943.997294643
+    },
+    {
+      "event": "controls_installed",
+      "monotonic": 382890.748821465,
+      "transport": "Chromium CDP Fetch.requestPaused"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 382890.756493288,
+      "request_id": "D83361B960B25E57185BD151D325D588",
+      "url": "http://127.0.0.1:33597/challenge",
+      "redirect_from": null,
+      "redirect_status": null,
+      "browser_timestamp": 382890.755282,
+      "network_id": "D83361B960B25E57185BD151D325D588",
+      "frame_id": "B756DF85EF6E1073AD1FD6F2C55162DE",
+      "resource_type": "Document",
+      "loader_id": "D83361B960B25E57185BD151D325D588",
+      "initiator_type": "other",
+      "initiator_script_id": null
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 382890.757562508,
+      "url": "http://127.0.0.1:33597/challenge",
+      "method": "GET",
+      "classification": "intentional",
+      "initiator_script_id": null,
+      "network_resource_type": "Document",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D83361B960B25E57185BD151D325D588",
+      "resource_type": "Document",
+      "frame_id": "B756DF85EF6E1073AD1FD6F2C55162DE",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "intentional_intercepted",
+      "monotonic": 382890.757590118,
+      "url": "http://127.0.0.1:33597/challenge",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D83361B960B25E57185BD151D325D588",
+      "resource_type": "Document",
+      "frame_id": "B756DF85EF6E1073AD1FD6F2C55162DE",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "intentional_dispatch",
+      "monotonic": 382890.75760655,
+      "url": "http://127.0.0.1:33597/challenge",
+      "method": "GET",
+      "kind": "document",
+      "ordinal": 1,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D83361B960B25E57185BD151D325D588",
+      "resource_type": "Document",
+      "frame_id": "B756DF85EF6E1073AD1FD6F2C55162DE",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "preceding_completion": null
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 382890.757614063,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D83361B960B25E57185BD151D325D588",
+      "resource_type": "Document",
+      "frame_id": "B756DF85EF6E1073AD1FD6F2C55162DE",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 382890.762877333,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D83361B960B25E57185BD151D325D588",
+      "resource_type": "Document",
+      "frame_id": "B756DF85EF6E1073AD1FD6F2C55162DE",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 382890.767573655,
+      "url": "http://127.0.0.1:33597/challenge",
+      "method": "GET",
+      "resource_type": "document"
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 382890.785402913,
+      "url": "http://127.0.0.1:33597/challenge",
+      "status": 200,
+      "headers": {
+        "content-length": "76",
+        "content-type": "text/html",
+        "cf-mitigated": "challenge"
+      },
+      "resource_type": "document"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 382890.785575644,
+      "request_id": "D83361B960B25E57185BD151D325D588",
+      "url": "http://127.0.0.1:33597/challenge",
+      "status": 200
+    },
+    {
+      "event": "stop",
+      "monotonic": 382890.785584114,
+      "reason": "cf_mitigated_challenge"
+    },
+    {
+      "event": "interception_frame_navigated",
+      "monotonic": 382890.792115527,
+      "session": "page-cdp-1",
+      "frame_id": "B756DF85EF6E1073AD1FD6F2C55162DE",
+      "loader_id": "D83361B960B25E57185BD151D325D588"
+    },
+    {
+      "event": "interception_page_closed",
+      "monotonic": 382890.80227071,
+      "session": "page-cdp-1",
+      "cleanup": false
+    },
+    {
+      "event": "operation_complete",
+      "monotonic": 382890.811637833,
+      "url": "http://127.0.0.1:33597/challenge",
+      "kind": "document",
+      "operation_id": "op-1",
+      "error": null
+    }
+  ],
+  "server_events": [
+    {
+      "event": "request_received",
+      "path": "/challenge",
+      "method": "GET",
+      "monotonic": 382890.779877324,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "document"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/challenge",
+      "method": "GET",
+      "monotonic": 382890.780279398,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/challenge",
+      "method": "GET",
+      "monotonic": 382890.780303145,
+      "bytes": 76
+    }
+  ],
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+  },
+  "dispatches": 1,
+  "stop_reason": "cf_mitigated_challenge"
+}

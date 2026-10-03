@@ -1,0 +1,219 @@
+{
+  "browser_events": [
+    {
+      "event": "operation_start",
+      "monotonic": 364279.282244962,
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "operation_id": "op-1",
+      "deadline": 364333.39309767104
+    },
+    {
+      "event": "controls_installed",
+      "monotonic": 364281.197166502,
+      "transport": "Chromium CDP Fetch.requestPaused"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 364281.209856179,
+      "request_id": "238FE0737B026C90CA46D935953E0E59",
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "redirect_from": null,
+      "redirect_status": null,
+      "browser_timestamp": 364281.207304,
+      "network_id": "238FE0737B026C90CA46D935953E0E59",
+      "frame_id": "B795EE1F6DE2A1749A229D3110E5E8DB",
+      "resource_type": "Document",
+      "loader_id": "238FE0737B026C90CA46D935953E0E59",
+      "initiator_type": "other",
+      "initiator_script_id": null
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 364281.211948091,
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "method": "GET",
+      "classification": "intentional",
+      "initiator_script_id": null,
+      "network_resource_type": "Document",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "238FE0737B026C90CA46D935953E0E59",
+      "resource_type": "Document",
+      "frame_id": "B795EE1F6DE2A1749A229D3110E5E8DB",
+      "predecessor": null
+    },
+    {
+      "event": "intentional_intercepted",
+      "monotonic": 364281.211998716,
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "238FE0737B026C90CA46D935953E0E59",
+      "resource_type": "Document",
+      "frame_id": "B795EE1F6DE2A1749A229D3110E5E8DB",
+      "predecessor": null
+    },
+    {
+      "event": "intentional_dispatch",
+      "monotonic": 364281.212038859,
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "method": "GET",
+      "kind": "document",
+      "ordinal": 1,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "238FE0737B026C90CA46D935953E0E59",
+      "resource_type": "Document",
+      "frame_id": "B795EE1F6DE2A1749A229D3110E5E8DB",
+      "predecessor": null,
+      "preceding_completion": null
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 364281.227800992,
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "method": "GET",
+      "resource_type": "document"
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 364281.251415367,
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "status": 200,
+      "headers": {
+        "content-length": "3660",
+        "content-type": "text/html"
+      },
+      "resource_type": "document"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 364281.251589649,
+      "request_id": "238FE0737B026C90CA46D935953E0E59",
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "status": 200
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 364281.272753454,
+      "url": "https://outside.invalid/image.png",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-3.0",
+      "network_id": "442438.2",
+      "resource_type": "Image",
+      "frame_id": "B795EE1F6DE2A1749A229D3110E5E8DB",
+      "predecessor": null
+    },
+    {
+      "event": "incidental_prevented",
+      "monotonic": 364281.27278506,
+      "url": "https://outside.invalid/image.png",
+      "reason": "fixture_egress",
+      "operation_id": "op-1",
+      "request_id": "interception-job-3.0",
+      "network_id": "442438.2",
+      "resource_type": "Image",
+      "frame_id": "B795EE1F6DE2A1749A229D3110E5E8DB",
+      "predecessor": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 364281.288276137,
+      "request_id": "442438.2",
+      "url": "https://outside.invalid/image.png",
+      "redirect_from": null,
+      "redirect_status": null,
+      "browser_timestamp": 364281.264251,
+      "network_id": "442438.2",
+      "frame_id": "B795EE1F6DE2A1749A229D3110E5E8DB",
+      "resource_type": "Image",
+      "loader_id": "238FE0737B026C90CA46D935953E0E59",
+      "initiator_type": "parser",
+      "initiator_script_id": null
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 364281.288431408,
+      "request_id": "238FE0737B026C90CA46D935953E0E59",
+      "browser_timestamp": 364281.250504
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 364281.291125928,
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "resource_type": "document"
+    },
+    {
+      "event": "cdp_loading_failed",
+      "monotonic": 364281.313517583,
+      "request_id": "442438.2"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 364281.31534908,
+      "url": "https://outside.invalid/image.png",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request_failed",
+      "monotonic": 364281.315528531,
+      "url": "https://outside.invalid/image.png",
+      "resource_type": "image"
+    },
+    {
+      "event": "operation_complete",
+      "monotonic": 364284.575689855,
+      "url": "http://127.0.0.1:33007/offscope-resource",
+      "kind": "document",
+      "operation_id": "op-1",
+      "error": null
+    }
+  ],
+  "server_events": [
+    {
+      "event": "request_received",
+      "path": "/offscope-resource",
+      "method": "GET",
+      "monotonic": 364281.239975761,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "document"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/offscope-resource",
+      "method": "GET",
+      "monotonic": 364281.240124488,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/offscope-resource",
+      "method": "GET",
+      "monotonic": 364281.24014483,
+      "bytes": 3660
+    }
+  ],
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+  },
+  "dispatches": 1,
+  "stop_reason": null
+}

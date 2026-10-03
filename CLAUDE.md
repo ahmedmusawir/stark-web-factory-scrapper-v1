@@ -6,6 +6,12 @@
 
 ---
 
+## Active Web Recon module / seat override
+
+For `agent_docs/ACTION/wf-scrapper-abm/`, read [module AGENTS](agent_docs/ACTION/wf-scrapper-abm/AGENTS.md) and [RECOVERY](RECOVERY.md) first. Current seats: Tony Stark Director, JARVIS Architect, Cody Engineer. Independent QA enters through [QAM](agent_docs/ACTION/wf-scrapper-abm/QAM/README.md) in a separate session; Cody’s engineering session cannot self-certify. This module-specific assignment supersedes the generic “Tony is the architect” wording below for this campaign only.
+
+Tony’s DIRECTOR GO authorizes implementation of approved BUILD_READBACK, C1–C6 → CHK → P1–P6 → E1–E2. Module launch E-20/E-21 bind redirect completion and cf-mitigated evidence. Engineering checks are authorized; live allocations are conditional on passing local gates. Independent QA remains separate. Tony alone owns Git mutations and destructive cleanup. Current state: ENGINEERING BLOCKED AT CHK; see RECOVERY.md. One live attempt stopped on a control failure; no automatic retry or advancement.
+
 ## Role Definition
 
 You are a **senior software engineer** embedded in an agentic coding workflow. You write,

@@ -1,48 +1,31 @@
-# CLAUDE.md — wf-scrapper-abm
-## Engineer front door. Read this first, every session. Static; never carries state.
+# Web Recon ABM — Engineer entry
 
-**Module:** `wf-scrapper-abm` — Scrapper ABM: finish Capture, add Prepare, produce the Architect Data Pack
-**Program:** Stark Web Factory · experiment "one ABM, long campaigns" (CJ-008)
-**Repo:** `~/python/stark-web-factory-scrapper-v1` · **Branch:** `wf-scrapper-abm` (Director-owned; QA later on `qa/wf-scrapper-abm`)
-**This folder:** `agent_docs/ACTION/wf-scrapper-abm/` — contract files are frozen at handoff; evidence lanes append (`EVIDENCE/`, `ENGINEERING_LOG.md`, `ABM_LEDGER.md` engineer columns, `QA/`).
+## Current checkpoint — ENGINEERING BLOCKED AT CHK
 
-## Who you are
+Updated 2026-10-02T16:23:48.546151+00:00. C1–C6 Capture/minimal-reader implementation exists; final local regression **131 passed**, paired full **231-file** fixture comparison passed on the launched source. CHK's single live attempt exited 2 after **one intentional dispatch**: `ambiguous_intentional_request`. Root document returned 200; a same-URL GET stylesheet was misclassified as a duplicate intentional request. No observed 403/429 or explicit challenge. This is a failed control and incomplete smoke, not successful capture. No retry, restart, extra diagnostic or E2 run is authorized by the remaining ceiling. P1–P6/E1/E2 NOT STARTED; independent QA NOT RUN.
 
-**Claudy, Engineer seat.** One Plan Mode readback of the whole campaign, one Director approval, then you build continuously through every task without asking for a new instruction per step. You write code, tests, fixtures, docs, evidence, and log entries. You never run mutating git. You never touch cloud. You install nothing beyond P0 (Director-approved) and nothing new is ever added to `requirements.txt`.
+Evidence: `EVIDENCE/build/2026-10-02_135008Z/CHK-live-smoke/`, `blocker-review/root-event-excerpt.json`, `live-allocation-03-chk-stopped.json`; partial raw `outputs/CyberizeGroup/runs/2026-10-02T16-14-53Z/`. Base HEAD remains `3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f` on `wf-scrapper-abm`, plus dirty/untracked source. Test/live source inventory SHA-256 `9875be4856c180ed97ccc25e4edc6fbf8f6cf41cfa0be59369920693dcda71df`; no completed candidate commit. The review package includes an exact launched-source snapshot and separate current checkpoint docs.
 
-**Other seats:** Director Tony (git, cloud, approvals, merges, risk) · Architect Fable (authored this pack; erratum authority; not a per-task approver) · QA Lead SOL and executor Cody (enter only at `qa/wf-scrapper-abm`) · Reviewers Astra + a fresh Fable session (after QA).
+**Next decision:** JARVIS reviews the admission-classification defect and required local proof; Tony decides any replacement smoke allocation. Preserve the stopped run. Do not proceed past CHK or relaunch on resume. Tony alone handles Git mutations/destructive actions. Review report: `agent_docs/RESPONSES/response_2026-10-02_222348_abm-engineering-blocker.md` (sibling ZIP). QA candidate/plan/Executor session/SOL certification remain PENDING.
 
-## Read order
 
-1. This file.
-2. `ABM_BRIEF.md` — goal, what exists, what this adds, out of scope.
-3. `ABM_RULING_SHEET.md` — eight closed rulings. Do not reopen.
-4. `ABM_CONTRACTS.md` — raw v2 and pack v1 schemas, rules, paths. The spine.
-5. `ABM_ACCEPTANCE_SPEC.md` — 48 ACs with bound checks, fixtures F-01…F-14, canonical commands, B7 questions, errata lane.
-6. `ABM_BUILD_INSTRUCTIONS.md` — surfaces, ordered tasks C1→E2, checkpoint, stop and resume, prompts P0 and P1.
-7. `ABM_LEDGER.md` — your engineer columns.
-8. `ABM_EXECUTION_RECORDS.md` — templates for the engineering log, checkpoint, completion report.
-9. `REFERENCES/` — Engineer playbook snapshot; QA and RRM playbooks for later seats; 10x Lab campaign map and kickoff; Plan §5/§6 source extract.
+## Director GO — implementation launch (2026-10-02)
 
-## Rules that bind you
+Tony explicitly authorized the approved BUILD_READBACK campaign C1–C6 → CHK → P1–P6 → E1–E2; JARVIS approved the architecture with E-20/E-21 below. Current authority: **IMPLEMENTATION AUTHORIZED**; the active task and results are in RECOVERY.md and ENGINEERING_LOG.md. This supersedes prior readback-only/build-approval stops prospectively. Independent QA remains NOT RUN. No install, dependency change, fallback HTTP client, direct Playwright import, security bypass, Git mutation, destructive action or deployment.
 
-- **Plan Mode once.** P1 readback → Director says "Build approved. Go." → you run C1…E2. No per-task approvals.
-- **Evidence never edited; nothing invented.** Raw bytes as received; derived records labeled `observed | inferred | absent | recommendation` with provenance.
-- **No absolute paths in any JSON. No new dependencies. No stealth. No Playwright code of ours. No LLM or paid API. No media byte downloads. No network in tests except 127.0.0.1.**
-- **Regression is default:** `venv/bin/pytest -q` after every task; surface greps at each stage close.
-- **Checkpoint discipline (AC-045):** engineering log entry per task, `RECOVERY.md` at every task boundary, ledger rows updated with evidence paths. A new session resumes from `RECOVERY.md`; it never repeats a live run "to be sure".
-- **Errata, not guesses (J-20/J-21).** Ambiguity or a contract-vs-evidence conflict → log it, stop, request an erratum. Never change a schema silently. Pre-ruled deviations are already in the spec's errata lane (E-01…E-04).
-- **Live runs:** only those named in the instructions (P0 smoke, CHK smoke, E2 two full runs), on `cyberizegroup.com`, within Contracts §1.4 limits. Two consecutive stop-rule exits → stop and report.
-- **Git:** read-only inspection allowed (`status`, `log`, `diff`, `rev-parse`). Every log entry ends with the uncommitted paths. Director commits.
-- **Reports** go to `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/` and `ENGINEERING_LOG.md`; session logs and `RECOVERY.md` per root protocol.
+**E-20 — redirect completion.** Use browser-observed predecessor request completion, correlated with the next intercepted redirect request. Hold the next hop before dispatch until ≥5 seconds after that completion; repeat scope, deadline and budget checks. Headers alone are insufficient. No requirement to retrieve a redirect body or prove delivery of server bytes the browser did not consume. Preserve delayed-response fixtures and exact browser/server timelines. Unproved completion/pre-dispatch control blocks live work. AC-005/006/010/016/041/042; T-04/05/07/11/22.
 
-## Rulings already made (do not reopen)
+**E-21 — challenge evidence.** Retain `cf-mitigated` in the response-header allowlist with Content-Type, Location, Retry-After, X-ac, X-WP-Total, X-WP-TotalPages and Content-Length. Continue excluding cookies, credentials and authorization headers. Test positive and false-positive challenges. AC-005/010/011/016/017/041; T-04/07/08/11/22.
 
-R1 identity/branch `wf-scrapper-abm` · R2 Ditto lessons from Plan §6 · R3 `prepare/` in-repo + single invocation · R4 Zorin, two full runs, `outputs/` gitignored, pack ships with raw · R5 cold-read by fresh Fable before Gate Q · R6 REST probe approved (global requests) · R7 task zero approved · R8 `abm-raw-v2`, markdown and `run_summary.json` retired · plus Phase 1 standing: F1 defer, LiteLLM transitive tolerated, `GEMINI_API_KEY` placeholder stays, no stealth, polite rung (a).
+Provenance: **JARVIS Architect ruling under Tony's delegated authority**, recorded prospectively by Cody. Earlier approval/QA states remain historical. These mechanisms are approved for implementation and real Chromium loopback proof, not yet verified.
 
-## Trigger lines from the Director
+Conditional live allocation: one CHK Capture smoke (`--limit 10 --skip-prepare --no-media-head`), maximum 120 intentional dispatches, 1800 seconds, 100,000,000 persisted bytes and ten document slots including bootstrap. E2: two full attempts, each maximum 1200 intentional dispatches, 7200 seconds, 150,000,000 raw bytes and 500,000,000 aggregate run/pack/evidence bytes. B starts ≥1 hour after A finishes successfully. Count redirect hops; count background events separately; count bootstrap once and reuse matching capture. Retain BUILD_READBACK §6 per-operation 180s document/30s read limits, 10 MiB decoded cap and 30s finalization reserve within the ceiling. First intentional 403/429/challenge blocks all remaining live allocations. No retry/restart/extra diagnostic or increased budget. SOL decides candidate-bound QA reuse.
 
-- "Run P0." → `ABM_BUILD_INSTRUCTIONS.md` §6 P0.
-- "Run P1." → §6 P1 readback, then stop.
-- "Build approved. Go." → C1 through E2, continuous.
-- "Resume." → §5 resume rule.
+No per-task reapproval is required when prerequisites pass. Live work remains conditional on local gates. Maintain factual engineering evidence/source hashes, ledger/log and recovery; future tasks stay pending. Tony alone handles Git and deletion. Prior documentation-session claims below describe their historical pass, not current authority.
+
+## Preserved pre-launch documentation checkpoint (superseded by Director GO above)
+
+
+Revision 1.2 · 2026-10-02. Read and follow [AGENTS.md](AGENTS.md), the shared module entry for **Cody, Engineer**. Tony is Director; JARVIS is Architect. Tool/provider identity does not change the assigned seat.
+
+Current checkpoint: AWAITING BUILD_READBACK REVIEW AND TONY'S BUILD APPROVAL. JARVIS authorized documentation-only BUILD_READBACK, now delivered. Do not implement C1 or execute old P0/recovery, tests, installs or live work. Independent QA uses a separate session and [QAM instructions](QAM/EXECUTION_INSTRUCTIONS.md), not this engineering session. See [RECOVERY](../../../RECOVERY.md) for state.

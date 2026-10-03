@@ -1,0 +1,318 @@
+{
+  "scope": "Sanitized local engineering excerpt. No raw bodies or request/response headers. Full original traces remain at cited paths.",
+  "recording_boundaries": "CDP classification records operation/frame/Fetch/Network/predecessor IDs. Page-context script IDs differ from coordinator compiled IDs even with matching sourceURL. Null initiator means not used/available in that event, not a fabricated identity. Browser Request observer exposes no public CDP ID; it is resource statistics only. operation_id on incidental classification is active context, not budget attribution.",
+  "traces": [
+    {
+      "source": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/before-fix-real-controls/same-url-stylesheet.json",
+      "source_sha256": "d68d86af13ac6acc4a340ff84b8966b238badfbe286cf62ef937bd20785adfdb",
+      "dispatches": 1,
+      "stop_reason": "ambiguous_intentional_request",
+      "events": [
+        {
+          "source_event_index": 4,
+          "event": "intentional_dispatch",
+          "monotonic": 361431.548233373,
+          "url": "http://127.0.0.1:40485/identity/stylesheet",
+          "method": "GET",
+          "kind": "document",
+          "ordinal": 1,
+          "request_id": "interception-job-1.0",
+          "preceding_completion": null
+        },
+        {
+          "source_event_index": 5,
+          "event": "browser_request",
+          "monotonic": 361431.554621957,
+          "url": "http://127.0.0.1:40485/identity/stylesheet",
+          "method": "GET",
+          "resource_type": "document"
+        },
+        {
+          "source_event_index": 10,
+          "event": "stop",
+          "monotonic": 361431.587169091,
+          "reason": "ambiguous_intentional_request"
+        },
+        {
+          "source_event_index": 11,
+          "event": "intentional_prevented",
+          "monotonic": 361431.58717377,
+          "url": "http://127.0.0.1:40485/identity/stylesheet",
+          "reason": "ambiguous_intentional_request"
+        },
+        {
+          "source_event_index": 13,
+          "event": "browser_request",
+          "monotonic": 361431.599368031,
+          "url": "http://127.0.0.1:40485/identity/stylesheet",
+          "method": "GET",
+          "resource_type": "stylesheet"
+        }
+      ]
+    },
+    {
+      "source": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/affected-final-controls/same-url-stylesheet.json",
+      "source_sha256": "1690cb022c15d38932923d55ad6b48eb45601bb00d8839a07ab1aa0c52805db2",
+      "dispatches": 1,
+      "stop_reason": null,
+      "events": [
+        {
+          "source_event_index": 3,
+          "event": "request_classified",
+          "monotonic": 363804.908826414,
+          "url": "http://127.0.0.1:35087/identity/stylesheet",
+          "method": "GET",
+          "classification": "intentional",
+          "initiator_script_id": null,
+          "network_resource_type": "Document",
+          "operation_id": "op-1",
+          "request_id": "interception-job-1.0",
+          "network_id": "3D71E48979AA173758F664FD173FB17F",
+          "resource_type": "Document",
+          "frame_id": "2EF2EE0FA23F2ACB3B8A63DE1A5B5377",
+          "predecessor": null
+        },
+        {
+          "source_event_index": 5,
+          "event": "intentional_dispatch",
+          "monotonic": 363804.908924953,
+          "url": "http://127.0.0.1:35087/identity/stylesheet",
+          "method": "GET",
+          "kind": "document",
+          "ordinal": 1,
+          "operation_id": "op-1",
+          "request_id": "interception-job-1.0",
+          "network_id": "3D71E48979AA173758F664FD173FB17F",
+          "resource_type": "Document",
+          "frame_id": "2EF2EE0FA23F2ACB3B8A63DE1A5B5377",
+          "predecessor": null,
+          "preceding_completion": null
+        },
+        {
+          "source_event_index": 6,
+          "event": "browser_request",
+          "monotonic": 363804.925791498,
+          "url": "http://127.0.0.1:35087/identity/stylesheet",
+          "method": "GET",
+          "resource_type": "document"
+        },
+        {
+          "source_event_index": 9,
+          "event": "request_classified",
+          "monotonic": 363805.027815142,
+          "url": "http://127.0.0.1:35087/identity/stylesheet",
+          "method": "GET",
+          "classification": "incidental",
+          "initiator_script_id": null,
+          "network_resource_type": null,
+          "operation_id": "op-1",
+          "request_id": "interception-job-3.0",
+          "network_id": "438556.2",
+          "resource_type": "Stylesheet",
+          "frame_id": "2EF2EE0FA23F2ACB3B8A63DE1A5B5377",
+          "predecessor": null
+        },
+        {
+          "source_event_index": 11,
+          "event": "browser_request",
+          "monotonic": 363805.038792689,
+          "url": "http://127.0.0.1:35087/identity/stylesheet",
+          "method": "GET",
+          "resource_type": "stylesheet"
+        }
+      ]
+    },
+    {
+      "source": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/affected-final-controls/read-race-fetch-GET.json",
+      "source_sha256": "e70b53e5b0fcb9dfd195dd38edf31b2785fdf2c7045db671107f1a218bf4d56a",
+      "dispatches": 2,
+      "stop_reason": null,
+      "events": [
+        {
+          "source_event_index": 13,
+          "event": "read_identity_bound",
+          "monotonic": 363828.905383475,
+          "operation_id": "op-2",
+          "script_id": "38",
+          "context_id": 5,
+          "frame_id": "BD1DEE4DA9B4E559F033658AF6522CEC",
+          "execution_world": "same-frame isolated world",
+          "universal_access": false
+        },
+        {
+          "source_event_index": 15,
+          "event": "request_classified",
+          "monotonic": 363828.912897701,
+          "url": "http://127.0.0.1:39909/read-identity",
+          "method": "GET",
+          "classification": "incidental",
+          "initiator_script_id": "41",
+          "network_resource_type": "Fetch",
+          "operation_id": "op-2",
+          "request_id": "interception-job-3.0",
+          "network_id": "438822.2",
+          "resource_type": "XHR",
+          "frame_id": "BD1DEE4DA9B4E559F033658AF6522CEC",
+          "predecessor": null
+        },
+        {
+          "source_event_index": 16,
+          "event": "browser_request",
+          "monotonic": 363828.917641171,
+          "url": "http://127.0.0.1:39909/read-identity",
+          "method": "GET",
+          "resource_type": "fetch"
+        },
+        {
+          "source_event_index": 20,
+          "event": "request_classified",
+          "monotonic": 363828.936779257,
+          "url": "http://127.0.0.1:39909/read-identity",
+          "method": "GET",
+          "classification": "intentional",
+          "initiator_script_id": "38",
+          "network_resource_type": "Fetch",
+          "operation_id": "op-2",
+          "request_id": "interception-job-5.0",
+          "network_id": "438822.3",
+          "resource_type": "XHR",
+          "frame_id": "BD1DEE4DA9B4E559F033658AF6522CEC",
+          "predecessor": null
+        },
+        {
+          "source_event_index": 25,
+          "event": "intentional_dispatch",
+          "monotonic": 363833.891733153,
+          "url": "http://127.0.0.1:39909/read-identity",
+          "method": "GET",
+          "kind": "read",
+          "ordinal": 2,
+          "operation_id": "op-2",
+          "request_id": "interception-job-5.0",
+          "network_id": "438822.3",
+          "resource_type": "XHR",
+          "frame_id": "BD1DEE4DA9B4E559F033658AF6522CEC",
+          "predecessor": null,
+          "preceding_completion": 363828.887658825
+        },
+        {
+          "source_event_index": 26,
+          "event": "browser_request",
+          "monotonic": 363833.897088272,
+          "url": "http://127.0.0.1:39909/read-identity",
+          "method": "GET",
+          "resource_type": "fetch"
+        }
+      ]
+    },
+    {
+      "source": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/affected-final-controls/read-race-fetch-HEAD.json",
+      "source_sha256": "83273e34808d83b5c45401030a82fab721abebdb7f41f5bb019e107461389fdc",
+      "dispatches": 2,
+      "stop_reason": null,
+      "events": [
+        {
+          "source_event_index": 13,
+          "event": "read_identity_bound",
+          "monotonic": 363838.970684619,
+          "operation_id": "op-2",
+          "script_id": "38",
+          "context_id": 5,
+          "frame_id": "E1208812869E28AEAC456F92738AEE5C",
+          "execution_world": "same-frame isolated world",
+          "universal_access": false
+        },
+        {
+          "source_event_index": 15,
+          "event": "request_classified",
+          "monotonic": 363838.978471586,
+          "url": "http://127.0.0.1:38419/read-identity",
+          "method": "HEAD",
+          "classification": "incidental",
+          "initiator_script_id": "41",
+          "network_resource_type": "Fetch",
+          "operation_id": "op-2",
+          "request_id": "interception-job-3.0",
+          "network_id": "438889.2",
+          "resource_type": "XHR",
+          "frame_id": "E1208812869E28AEAC456F92738AEE5C",
+          "predecessor": null
+        },
+        {
+          "source_event_index": 16,
+          "event": "browser_request",
+          "monotonic": 363838.984606436,
+          "url": "http://127.0.0.1:38419/read-identity",
+          "method": "HEAD",
+          "resource_type": "fetch"
+        },
+        {
+          "source_event_index": 22,
+          "event": "request_classified",
+          "monotonic": 363839.004469415,
+          "url": "http://127.0.0.1:38419/read-identity",
+          "method": "HEAD",
+          "classification": "intentional",
+          "initiator_script_id": "38",
+          "network_resource_type": "Fetch",
+          "operation_id": "op-2",
+          "request_id": "interception-job-5.0",
+          "network_id": "438889.3",
+          "resource_type": "XHR",
+          "frame_id": "E1208812869E28AEAC456F92738AEE5C",
+          "predecessor": null
+        },
+        {
+          "source_event_index": 25,
+          "event": "intentional_dispatch",
+          "monotonic": 363843.960000967,
+          "url": "http://127.0.0.1:38419/read-identity",
+          "method": "HEAD",
+          "kind": "read",
+          "ordinal": 2,
+          "operation_id": "op-2",
+          "request_id": "interception-job-5.0",
+          "network_id": "438889.3",
+          "resource_type": "XHR",
+          "frame_id": "E1208812869E28AEAC456F92738AEE5C",
+          "predecessor": null,
+          "preceding_completion": 363838.953749513
+        },
+        {
+          "source_event_index": 26,
+          "event": "browser_request",
+          "monotonic": 363843.966566946,
+          "url": "http://127.0.0.1:38419/read-identity",
+          "method": "HEAD",
+          "resource_type": "fetch"
+        }
+      ]
+    }
+  ],
+  "positive_stop_controls": [
+    {
+      "source": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/affected-final-controls/read-fault-duplicate.json",
+      "sha256": "6bad4ac7c3e717897c6cfe65d3c2a01c06c525cb7e05bfeefb8f85e69337b308",
+      "stop_reason": "ambiguous_intentional_request",
+      "dispatches": 1
+    },
+    {
+      "source": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/affected-final-controls/read-fault-missing-initiator.json",
+      "sha256": "3aae76196ed55ed7cce72e8d6203aec9d8b4c0e9a4280e7646a2fd3a0581bc7a",
+      "stop_reason": "ambiguous_request_identity",
+      "dispatches": 1
+    },
+    {
+      "source": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/affected-final-controls/document-duplicate.json",
+      "sha256": "d8b784aa02c7aab5eaf7abfbcc40c9248d9e30e7679efabe02abbd4ed551e16b",
+      "stop_reason": "ambiguous_intentional_request",
+      "dispatches": 1
+    },
+    {
+      "source": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/affected-final-controls/incidental-sticky-prevention.json",
+      "sha256": "f35fa859b31ec1c2587a38b43a9e3720baf9275d6ae91c7e4fc95b11940f4766",
+      "stop_reason": "fixture_forced_stop",
+      "dispatches": 1
+    }
+  ]
+}

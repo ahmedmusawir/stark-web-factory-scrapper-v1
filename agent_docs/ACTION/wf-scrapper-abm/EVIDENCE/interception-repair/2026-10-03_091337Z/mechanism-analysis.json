@@ -1,0 +1,49 @@
+{
+  "live_failure": "Unidentified failing Fetch/Network request: control_error has neither. Nearby cancellation is not attribution.",
+  "smoke_facts": {
+    "request_classified": 71,
+    "unique_fetch_ids": 71,
+    "controls_installed": 1,
+    "intentional_dispatches": 1,
+    "error": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId."
+  },
+  "hypotheses": {
+    "cancellation": "Native localhost AbortController reproduction produced exact error after matching Network.loadingFailed canceled=true. Plausible mechanism, not proven live cause.",
+    "frame_or_navigation_teardown": "Crawl4AI kill_session closes page/context; configured session_id prevents per-capture page release. Added native child-frame teardown proof and page/frame observations; live correlation unavailable.",
+    "duplicate_resolution": "Old generic exception handler attempted Fetch.failRequest after any failed continueRequest, including a stale ID. No live Fetch ID recorded. New one-attempt lifecycle prevents this independently of cause.",
+    "duplicate_listener": "Live trace has one controls_installed and 71 unique classified IDs; no affirmative duplicate-listener evidence. created() is already page-idempotent. New per-Fetch event guard is defensive.",
+    "session_ownership": "Playwright RouteImpl retains originating CDP session with ID. Old controller used mutable self.cdp. No evidence it changed live. New record binds actual emitting session and rejects foreign ownership."
+  },
+  "installed_api": {
+    "playwright/driver/package/lib/server/chromium/crNetworkManager.js": {
+      "path": "venv/lib/python3.12/site-packages/playwright/driver/package/lib/server/chromium/crNetworkManager.js",
+      "sha256": "d958fcec8634cb91088a02dbdae49461fe9e0f8ba1e2707d4dc6aebe2c31cd59"
+    },
+    "playwright/driver/package/lib/server/chromium/crConnection.js": {
+      "path": "venv/lib/python3.12/site-packages/playwright/driver/package/lib/server/chromium/crConnection.js",
+      "sha256": "3f096e075710120d2687c9372b6fa5fe8925583fd70b3bee7cc8719de8e6fe1b"
+    },
+    "playwright/_impl/_cdp_session.py": {
+      "path": "venv/lib/python3.12/site-packages/playwright/_impl/_cdp_session.py",
+      "sha256": "05d7cde0c9081c683867748ead6c2797ff760258b6514a6fc5af675f4709d804"
+    },
+    "playwright/driver/package/types/protocol.d.ts": {
+      "path": "venv/lib/python3.12/site-packages/playwright/driver/package/types/protocol.d.ts",
+      "sha256": "0ef72620b8ed8555b1a571fba0573059b427c72c0f8fe0af12117c01deaa62aa"
+    },
+    "crawl4ai/async_crawler_strategy.py": {
+      "path": "venv/lib/python3.12/site-packages/crawl4ai/async_crawler_strategy.py",
+      "sha256": "19f2c1737adea0e82ee058662cc47f6cb3e7fd8651a9fd41b69761c935520719"
+    },
+    "crawl4ai/browser_manager.py": {
+      "path": "venv/lib/python3.12/site-packages/crawl4ai/browser_manager.py",
+      "sha256": "197a3c5ee84bf5e8fa52131996724d25e57647bc890fa21d571aeffba594106f"
+    }
+  },
+  "installed_paths": {
+    "Playwright": "crNetworkManager.js _onLoadingFailed:437; RouteImpl:491; catchDisallowedErrors:536. The library swallows most route protocol errors; controller does NOT adopt that blanket policy. crConnection.js CDPSession:163 holds native child session. Python public CDPSession offers send/detach and protocol events; does not expose a public protocol session-ID property.",
+    "Crawl4AI": "async_crawler_strategy.py finally checks config.session_id before releasing page; browser_manager.py kill_session:1746 closes page and potentially context; close uses kill_session.",
+    "session_field": "page-cdp-1 is controller-local label bound to actual CDPSession object, not a claimed native sessionId. Fetch/Network/frame IDs come from native events; null means unavailable."
+  },
+  "logging_boundary": "New lifecycle diagnostics omit headers/body/URL, cap at 20,000 rows; error detail 2,048 chars with URL userinfo/query/fragment redacted. 10,000 interception/cancellation records each; exhaustion is stop, not evidence success. Existing raw logger and outer 1MB command recorder limits remain."
+}

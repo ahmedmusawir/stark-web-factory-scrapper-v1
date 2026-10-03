@@ -1,0 +1,32 @@
+{
+  "wrapper_sha256": "129371edb9b4c7417cb0dccba7d384c1d09210019583dd05dc842b51add98bf1",
+  "source_hashes": {
+    "smart_crawler/crawler.py": "9393062219021ad89ddd671e68e109bd1c9d02917be4ff39996cca4e93c4ee75",
+    "discover_site/sitemap_utils.py": "ac2fc631eb13ed8e09e9baa83d946286c37c4631c91b9769182d3473a02185d3",
+    "venv/lib/python3.12/site-packages/crawl4ai/async_crawler_strategy.py": "19f2c1737adea0e82ee058662cc47f6cb3e7fd8651a9fd41b69761c935520719",
+    "venv/lib/python3.12/site-packages/crawl4ai/async_webcrawler.py": "7d86d004641a13ac4d880492cdda0bb533302bbfe8b4059a6a5153a74eef9af4",
+    "venv/lib/python3.12/site-packages/crawl4ai/async_configs.py": "19c9c8c25a11e0e069637c6b02dd3e4dce177e992e389744265cacb3d393a08b",
+    "venv/lib/python3.12/site-packages/playwright/async_api/_generated.py": "d4d0e0c536478c7f58845955d04a29d8bf19eb175c7425e5e51c149a73c39c7a",
+    "venv/lib/python3.12/site-packages/playwright/driver/package/types/protocol.d.ts": "0ef72620b8ed8555b1a571fba0573059b427c72c0f8fe0af12117c01deaa62aa"
+  },
+  "static_checks": {
+    "syntax": "pass",
+    "repo_root": "pass",
+    "no_direct_playwright_import": "pass",
+    "one_crawl_page_call_site": "pass"
+  },
+  "api_evidence": {
+    "crawl4ai_hooks": "async_crawler_strategy.py:164-208,615,725",
+    "retry_default": "async_configs.py:1744-1745; async_webcrawler.py:405",
+    "context_routing_limit": "playwright async_api/_generated.py:9442-9449",
+    "cdp_session_api": "playwright async_api/_generated.py:13579,13607",
+    "redirect_hop_interception": "playwright types/protocol.d.ts:16507-16561,16603-16629,16673"
+  },
+  "instrumentation_limitations": [
+    "Request events count browser-observed attempts, not a packet capture or proof of wire dispatch.",
+    "Routing can disable Chromium HTTP cache; Crawl4AI CacheMode.BYPASS is preserved.",
+    "DOM challenge recognition uses explicit indicators, not a universal challenge detector.",
+    "Service worker creation triggers a stop; requests already in flight can complete."
+  ],
+  "network_requests_in_preparation": 0
+}

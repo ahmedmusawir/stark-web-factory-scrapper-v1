@@ -1,0 +1,152 @@
+{
+  "browser_events": [
+    {
+      "event": "operation_start",
+      "monotonic": 363919.664903304,
+      "url": "http://127.0.0.1:39309/forbidden",
+      "operation_id": "op-1",
+      "deadline": 363974.123615226
+    },
+    {
+      "event": "controls_installed",
+      "monotonic": 363920.636882639,
+      "transport": "Chromium CDP Fetch.requestPaused"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 363920.644982605,
+      "request_id": "18FCB3ABAD18865B497463F1E7BA87AA",
+      "url": "http://127.0.0.1:39309/forbidden",
+      "redirect_from": null,
+      "redirect_status": null,
+      "browser_timestamp": 363920.643977,
+      "network_id": "18FCB3ABAD18865B497463F1E7BA87AA",
+      "frame_id": "5CCC2F8D4B148435D3060D69FB5E5F87",
+      "resource_type": "Document",
+      "loader_id": "18FCB3ABAD18865B497463F1E7BA87AA",
+      "initiator_type": "other",
+      "initiator_script_id": null
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 363920.645813073,
+      "url": "http://127.0.0.1:39309/forbidden",
+      "method": "GET",
+      "classification": "intentional",
+      "initiator_script_id": null,
+      "network_resource_type": "Document",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "18FCB3ABAD18865B497463F1E7BA87AA",
+      "resource_type": "Document",
+      "frame_id": "5CCC2F8D4B148435D3060D69FB5E5F87",
+      "predecessor": null
+    },
+    {
+      "event": "intentional_intercepted",
+      "monotonic": 363920.645841692,
+      "url": "http://127.0.0.1:39309/forbidden",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "18FCB3ABAD18865B497463F1E7BA87AA",
+      "resource_type": "Document",
+      "frame_id": "5CCC2F8D4B148435D3060D69FB5E5F87",
+      "predecessor": null
+    },
+    {
+      "event": "intentional_dispatch",
+      "monotonic": 363920.645859313,
+      "url": "http://127.0.0.1:39309/forbidden",
+      "method": "GET",
+      "kind": "document",
+      "ordinal": 1,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "18FCB3ABAD18865B497463F1E7BA87AA",
+      "resource_type": "Document",
+      "frame_id": "5CCC2F8D4B148435D3060D69FB5E5F87",
+      "predecessor": null,
+      "preceding_completion": null
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 363920.651946942,
+      "url": "http://127.0.0.1:39309/forbidden",
+      "method": "GET",
+      "resource_type": "document"
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 363920.666334661,
+      "url": "http://127.0.0.1:39309/forbidden",
+      "status": 403,
+      "headers": {
+        "content-length": "9",
+        "retry-after": "7"
+      },
+      "resource_type": "document"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 363920.66658273,
+      "request_id": "18FCB3ABAD18865B497463F1E7BA87AA",
+      "url": "http://127.0.0.1:39309/forbidden",
+      "status": 403
+    },
+    {
+      "event": "stop",
+      "monotonic": 363920.666598336,
+      "reason": "http_403"
+    },
+    {
+      "event": "operation_complete",
+      "monotonic": 363920.688668118,
+      "url": "http://127.0.0.1:39309/forbidden",
+      "kind": "document",
+      "operation_id": "op-1",
+      "error": null
+    }
+  ],
+  "server_events": [
+    {
+      "event": "request_received",
+      "path": "/forbidden",
+      "method": "GET",
+      "monotonic": 363920.661270008,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "document"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/forbidden",
+      "method": "GET",
+      "monotonic": 363920.661367966,
+      "status": 403
+    },
+    {
+      "event": "body_sent",
+      "path": "/forbidden",
+      "method": "GET",
+      "monotonic": 363920.661385806,
+      "bytes": 9
+    }
+  ],
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+  },
+  "dispatches": 1,
+  "stop_reason": "http_403"
+}
