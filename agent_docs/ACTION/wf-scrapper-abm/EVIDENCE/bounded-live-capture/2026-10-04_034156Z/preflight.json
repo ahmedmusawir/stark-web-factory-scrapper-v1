@@ -1,0 +1,82 @@
+{
+  "authorized_at": "2026-10-04T03:41:56.976422+00:00",
+  "mission": "ONE post-compact-body live Capture retest; no retry or repair",
+  "branch": "wf-scrapper-abm",
+  "head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "source_inventory_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+  "source_entries": 65,
+  "source_differences": [],
+  "existing_post_compact_live_retest": false,
+  "existing_runs": [
+    "outputs/CyberizeGroup/runs/2026-10-02T16-14-53Z",
+    "outputs/CyberizeGroup/runs/2026-10-03T07-39-21Z",
+    "outputs/CyberizeGroup/runs/2026-10-03T11-46-34Z",
+    "outputs/CyberizeGroup/runs/2026-10-03T17-35-57Z"
+  ],
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "recon_pipeline",
+    "--project",
+    "CyberizeGroup",
+    "--url",
+    "https://cyberizegroup.com",
+    "--limit",
+    "10",
+    "--skip-prepare",
+    "--no-media-head",
+    "--max-operations",
+    "120",
+    "--max-seconds",
+    "1800",
+    "--max-bytes",
+    "100000000",
+    "--max-aggregate-bytes",
+    "100000000"
+  ],
+  "audit_before": {
+    "RECOVERY.md": {
+      "bytes": 48397,
+      "sha256": "0b0ba8e78172895b7daf42df5a3c6f572ee1fd48bf9139233e29cb5d375c7aa6"
+    },
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md": {
+      "bytes": 54138,
+      "sha256": "aea8ce7ed2dd4e4c15c72f70f402635307c4bbeb8e18c9a716f1ca1ddaae9f58"
+    },
+    "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md": {
+      "bytes": 57911,
+      "sha256": "f3d781135f32e0148dab7ff457eb1d94b279f47d64cac7545e344f0c3cb42a52"
+    },
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md": {
+      "bytes": 30354,
+      "sha256": "dd606ffc9aa443f3ed597c8f7309be1115f8480ba96de1ae30e729af63717598"
+    },
+    "agent_docs/SESSIONS/session_2026-10-04.md": {
+      "bytes": 7259,
+      "sha256": "08f6226b120fa4c2355c6fd89af199ae646600954181665366f446884682417e"
+    }
+  },
+  "preserved_file_count": 11161,
+  "limits": {
+    "documents": 10,
+    "intentional_dispatches": 120,
+    "pacing_s": 5,
+    "elapsed_s": 1800,
+    "raw_bytes": 97000000,
+    "support_bytes": 3000000,
+    "decoded_response_bytes": 10485760,
+    "read_s": 30
+  },
+  "recorder_change": "Locator path only; ABM_QUIET_LOG=1",
+  "prepare": "ON HOLD",
+  "independent_qa": "NOT RUN",
+  "missing_instruction_file": "agent_docs/KIP_REGISTRY.md absent",
+  "budget_preflight": {
+    "existing_support_bytes": 539807,
+    "source_diff_bytes": 17875,
+    "command_log_ceiling": 1000000,
+    "reports_metadata_checkpoint_reserve": 650000,
+    "projected_support_ceiling": 2829079,
+    "aggregate_ceiling": 100000000
+  }
+}

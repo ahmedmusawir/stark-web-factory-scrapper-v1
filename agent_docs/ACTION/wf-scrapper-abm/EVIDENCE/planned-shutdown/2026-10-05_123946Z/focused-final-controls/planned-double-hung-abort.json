@@ -1,0 +1,97 @@
+{
+  "browser_events": [
+    {
+      "event": "stop",
+      "monotonic": 559276.092295299,
+      "reason": "fixture_original_stop"
+    },
+    {
+      "event": "shutdown_start",
+      "monotonic": 559276.092391094,
+      "deadline": 559276.2923798399,
+      "drain_deadline": 559276.2523803953
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 559276.092531181,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "state": "resolving"
+    },
+    {
+      "event": "shutdown_drain",
+      "monotonic": 559276.252929906,
+      "confirmed_aborts": 0,
+      "unconfirmed_count": 1,
+      "unconfirmed_sample": [
+        {
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "state": "resolving",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "abort_confirmed": false
+        }
+      ]
+    },
+    {
+      "event": "shutdown_planned_close",
+      "monotonic": 559276.252937938,
+      "deadline": 559276.2923798399
+    },
+    {
+      "event": "interception_command_cancelled",
+      "monotonic": 559276.253006689,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "abort_confirmed": false
+    },
+    {
+      "event": "shutdown_complete",
+      "monotonic": 559276.253046079,
+      "confirmed_aborts": 0,
+      "unconfirmed_count": 1,
+      "unconfirmed_sample": [
+        {
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "state": "error",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "abort_confirmed": false
+        }
+      ],
+      "deadline": 559276.2923798399,
+      "finished": 559276.253041879,
+      "stop_reason": "fixture_original_stop"
+    }
+  ],
+  "server_events": [],
+  "runtime": {},
+  "dispatches": 0,
+  "stop_reason": "fixture_original_stop"
+}

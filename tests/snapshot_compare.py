@@ -21,6 +21,27 @@ ORIGIN='http://127.0.0.1:8765'
 CLOCK='2026-01-01T00:00:00+00:00'
 
 
+def validate_complete_shutdown(events, limits):
+    """F-09 facts and bounds BEFORE projecting new shutdown clock values."""
+    names=('shutdown_start','shutdown_drain','shutdown_planned_close','shutdown_complete')
+    rows={name:[e for e in events if e['event']==name] for name in names}
+    assert all(len(rows[name])==1 for name in names), 'complete fixture shutdown must occur once'
+    start,drain,close,done=(rows[name][0] for name in names)
+    assert start['monotonic']<=drain['monotonic']<=close['monotonic']<=done['monotonic']
+    assert start['monotonic']<start['drain_deadline']<start['deadline']
+    assert start['deadline']-start['monotonic']<=limits['finalization_reserve']
+    assert drain['monotonic']<=start['drain_deadline']
+    assert close['deadline']==done['deadline']==start['deadline']
+    assert close['monotonic']<=done['finished']<=done['deadline']
+    assert done['finished']<=done['monotonic']
+    for row in (drain,done):
+        # This complete fixture has no pending IDs at shutdown. Do not project
+        # cancellation outcomes/counts or quietly accept unfinished collection.
+        assert row['confirmed_aborts']==row['unconfirmed_count']==0
+        assert row['unconfirmed_sample']==[]
+    assert done['stop_reason'] is None
+
+
 def compare_capture(root, server=None):
     raw=RawRun(root);m=raw.manifest
     assert m['project_name']=='Fix' and m['run_id']=='2026-01-01T00-00-00Z'
@@ -111,6 +132,7 @@ def compare_capture(root, server=None):
     assert item['provenance']==['../rest/objects/media-500.json',*['../'+p['html_file'] for p in m['pages']]]
     assert [x['slug'] for x in item['source_pages']]==[p['slug'] for p in m['pages']]
     events=[json.loads(line.split(' browser ',1)[1]) for line in raw.bytes('stage_log.txt').decode().splitlines() if ' browser ' in line]
+    validate_complete_shutdown(events,m['access']['limits'])
     dispatch=[e for e in events if e['event']=='intentional_dispatch']
     expected_urls=[ORIGIN+'/',*[ORIGIN+'/'+n for n in ('robots.txt','sitemap.xml','pages.xml','aliases.xml')],
                    *[ORIGIN+p for p in HEALTHY_PATHS[1:]],*inputs,ORIGIN+'/image.png']
@@ -134,19 +156,25 @@ def compare_capture(root, server=None):
     classified={e['request_id']:e for e in events if e['event']=='request_classified'}
     commands=[e for e in events if e['event']=='interception_command']
     completed=[e for e in events if e['event']=='interception_command_complete']
-    assert len(commands)==len(classified)==len(completed)==26
-    assert len({e['request_id'] for e in commands})==26
-    assert sum(e['command']=='Fetch.continueRequest' for e in commands)==24
-    assert sum(e['command']=='Fetch.failRequest' for e in commands)==2
+    # Authorized narrow CDP boundary: 18 intentional operations plus the one
+    # fixture iframe. Six images and the widget script are not custom pauses.
+    assert len(commands)==len(classified)==len(completed)==19
+    assert len({e['request_id'] for e in commands})==19
+    assert sum(e['command']=='Fetch.continueRequest' for e in commands)==18
+    assert sum(e['command']=='Fetch.failRequest' for e in commands)==1
+    assert all(e['resource_type'] in ('Document','Fetch','XHR') for e in commands)
+    assert len([e for e in events if e['event']=='browser_response' and
+                e['url']==ORIGIN+'/image.png' and e['resource_type']=='image' and e['status']==200])==6
+    assert any(e['event']=='external_test_request_prevented' and
+               e['url']=='https://widgets.example.invalid/widget.js' for e in events)
     for command in commands:
         record=classified[command['request_id']]
         done,=[e for e in completed if e['request_id']==command['request_id']]
         for key in ('operation_id','request_id','network_id','resource_type','frame_id','predecessor','session','classification'):
             assert command[key]==record[key]==done[key]
         assert command['session']=='page-cdp-1'
-        # F-05's iframe and widget script are intercepted but never dispatched.
-        external=record['url'] in ('https://maps.example.invalid/embed',
-                                   'https://widgets.example.invalid/widget.js')
+        # The iframe remains a controlled Document; the script uses context egress guard.
+        external=record['url']=='https://maps.example.invalid/embed'
         expected='Fetch.failRequest' if external else 'Fetch.continueRequest'
         assert command['command']==done['command']==expected
         if external:
@@ -210,8 +238,8 @@ undergo string substitutions. No generated output is an automatic golden.
             names[event['network_id']]='network-unobserved:'+event['url']
         if event.get('initiator_script_id'):
             bind(scripts,event['initiator_script_id'],'incidental-script:'+event.get('url','session'))
-    timing={'monotonic','browser_timestamp','preceding_completion','completed','predecessor_completed','deadline','seconds'}
-    identity={'request_id','network_id','loader_id','predecessor_request_id','correlated_next_request_id','predecessor'}
+    timing={'monotonic','browser_timestamp','preceding_completion','completed','predecessor_completed','deadline','seconds','correlation_deadline','drain_deadline','finished'}
+    identity={'request_id','network_id','loader_id','predecessor_request_id','correlated_next_request_id','predecessor','resolved_predecessor'}
     channels={}
     for event in events:
         row={}

@@ -1,0 +1,107 @@
+"""Native loopback proof of read deadline ownership, partial handoff and cancellation.
+
+The setup delay is explicitly injected scheduling latency, not an injected HTTP
+or protocol error. The supervised case uses the unchanged 30-second live bound.
+"""
+import asyncio
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+import pytest
+
+from fixture_server import fixture_server, ENTITY
+from prepare.reader import RawRun
+from smart_crawler.browser_session import BrowserSession, Bounds, CollectionStopped
+from test_browser_controls import retain
+from test_pipeline_shutdown import retain as retain_pipeline
+
+
+class SetupLatency(BrowserSession):
+    async def correlated_read(self, expression):
+        self.event('fixture_setup_delay', seconds=0.6)
+        await asyncio.sleep(0.6)
+        return await super().correlated_read(expression)
+
+
+@pytest.mark.parametrize('kind', ['complete', 'stalled'])
+def test_native_read_budget_includes_setup_and_pacing(tmp_path, kind):
+    with fixture_server() as (origin, timeline):
+        async def exercise():
+            s=SetupLatency(origin,bounds=Bounds(seconds=60,read_seconds=8,finalization_reserve=5),
+                           runtime_dir=tmp_path/'runtime',loopback_only=True)
+            result=None
+            try:
+                async with s:
+                    assert (await s.capture(origin+'/background'))['ok']
+                    result=await s.read(origin+('/data' if kind=='complete' else '/deadline-stream'))
+                    # Save returned evidence before assertions so failure cannot erase it.
+                    s.event('fixture_read_returned',bytes=len(result['body']),incomplete=result['incomplete'],error=result.get('error'))
+                    (tmp_path/'returned.body').write_bytes(result['body'])
+                    if kind=='complete':
+                        assert result['body']==ENTITY and not result['incomplete']
+                        assert s.stop_reason is None
+                    else:
+                        assert result['incomplete'] and result['body']==b'a'*2048
+                        assert result['error']==s.stop_reason=='read_deadline'
+                        with pytest.raises(CollectionStopped):await s.read(origin+'/never')
+                    completed=[x for x in s.events if x['event']=='operation_complete'][-1]
+                    assert completed['outcome']==('success' if kind=='complete' else 'failure')
+                    assert completed['error']==(None if kind=='complete' else 'read_deadline')
+                    start=[x for x in s.events if x['event']=='operation_start'][-1]
+                    assert completed['monotonic']<=start['deadline']+0.15
+                    dispatch=[x for x in s.events if x['event']=='intentional_dispatch']
+                    assert len(dispatch)==2 and dispatch[-1]['monotonic']-dispatch[-1]['preceding_completion']>=5
+            finally:retain(tmp_path,'deadline-'+kind,s,timeline)
+        asyncio.run(exercise())
+
+
+def test_actual_supervisor_retains_stalled_sitemap_prefix(tmp_path):
+    with fixture_server(mode='pipeline',sitemap_delay=40) as (origin,timeline):
+        cmd=[sys.executable,'-m','recon_pipeline','--project','Fix','--url',origin,
+             '--skip-prepare','--no-media-head','--fixture-only','--max-seconds','120',
+             '--max-operations','10','--max-bytes','20000000','--output-root',str(tmp_path/'output')]
+        result=subprocess.run(cmd,capture_output=True,text=True,timeout=70)
+        raw=RawRun(next((tmp_path/'output/Fix/runs').iterdir()))
+        retain_pipeline('supervised-sitemap-deadline',result,timeline,raw)
+        assert result.returncode==2
+        assert raw.manifest['access']['stop_reason']=='read_deadline'
+        body=raw.bytes('discovery/sitemap.xml')
+        assert len(body)==64 and body.startswith(b'<sitemapindex')
+        assert raw.bytes('discovery/bootstrap.html') and raw.bytes('discovery/robots.txt')
+        assert raw.manifest['counts']['captured']==0 and raw.manifest['counts']['rest_objects']==0
+        assert raw.manifest['stopped_early'] and not (tmp_path/'output/Fix/packs').exists()
+        assert not any(x['path'].startswith('/wp-json/') or x['path']=='/pages.xml' for x in timeline)
+        events=[json.loads(x.split(' browser ',1)[1]) for x in raw.bytes('stage_log.txt').decode().splitlines() if ' browser ' in x]
+        last=[x for x in events if x['event']=='operation_complete'][-1]
+        assert last['outcome']=='failure' and last['error']=='read_deadline'
+
+
+def test_native_read_task_cancellation_is_terminal_and_sticky(tmp_path):
+    with fixture_server() as (origin,timeline):
+        async def exercise():
+            s=BrowserSession(origin,bounds=Bounds(seconds=60,finalization_reserve=5),
+                             runtime_dir=tmp_path/'runtime',loopback_only=True)
+            try:
+                async with s:
+                    first=await s.capture(origin+'/background');assert first['ok']
+                    (tmp_path/'preserved-document.html').write_text(first['html'])
+                    task=asyncio.create_task(s.read(origin+'/deadline-stream'))
+                    until=time.monotonic()+12
+                    while not any(x['event']=='body_prefix_sent' for x in timeline):
+                        assert time.monotonic()<until
+                        await asyncio.sleep(.01)
+                    s.stop('fixture_original_stop')
+                    task.cancel()
+                    with pytest.raises(asyncio.CancelledError):await task
+                    assert s.stop_reason=='fixture_original_stop'
+                    last=[x for x in s.events if x['event']=='operation_complete'][-1]
+                    assert last['outcome']=='cancelled' and last['error']=='fixture_original_stop'
+                    with pytest.raises(CollectionStopped):await s.read(origin+'/never')
+                assert s.stop_reason=='fixture_original_stop'
+                assert 'substantive local article' in (tmp_path/'preserved-document.html').read_text()
+            finally:retain(tmp_path,'deadline-task-cancellation',s,timeline)
+        asyncio.run(exercise())

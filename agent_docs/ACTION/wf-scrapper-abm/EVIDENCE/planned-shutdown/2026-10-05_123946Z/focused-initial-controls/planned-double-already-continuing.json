@@ -1,0 +1,69 @@
+{
+  "browser_events": [
+    {
+      "event": "stop",
+      "monotonic": 559163.682058251,
+      "reason": "fixture_original_stop"
+    },
+    {
+      "event": "shutdown_start",
+      "monotonic": 559163.682132257,
+      "deadline": 559163.882127073,
+      "drain_deadline": 559163.842127321
+    },
+    {
+      "event": "shutdown_drain",
+      "monotonic": 559163.758296101,
+      "confirmed_aborts": 0,
+      "unconfirmed_count": 1,
+      "unconfirmed_sample": [
+        {
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "state": "resolved",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "abort_confirmed": false
+        }
+      ]
+    },
+    {
+      "event": "shutdown_planned_close",
+      "monotonic": 559163.758305388,
+      "deadline": 559163.882127073
+    },
+    {
+      "event": "shutdown_complete",
+      "monotonic": 559163.758356724,
+      "confirmed_aborts": 0,
+      "unconfirmed_count": 1,
+      "unconfirmed_sample": [
+        {
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "state": "resolved",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "abort_confirmed": false
+        }
+      ],
+      "deadline": 559163.882127073,
+      "finished": 559163.758336766,
+      "stop_reason": "fixture_original_stop"
+    }
+  ],
+  "server_events": [],
+  "runtime": {},
+  "dispatches": 0,
+  "stop_reason": "fixture_original_stop"
+}

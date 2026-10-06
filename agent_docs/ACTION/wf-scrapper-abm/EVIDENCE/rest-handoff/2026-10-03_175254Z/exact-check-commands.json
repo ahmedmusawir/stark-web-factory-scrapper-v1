@@ -1,0 +1,130 @@
+{
+  "working_directory": "/home/moose/PYTHON/stark-web-factory-scrapper-v1",
+  "checks": [
+    {
+      "phase": "before-checks",
+      "count": 6,
+      "unit": "pytest checks",
+      "exit_code": 0,
+      "elapsed_s": 223.61826656397898,
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_read_body_handoff.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "source_inventory_sha256": "91ca7fdd4e320f59399041fe517b137e62fff001e7bdd99a78638ccec311024c",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/before-checks/result.json"
+    },
+    {
+      "phase": "compact-comparison",
+      "count": 6,
+      "unit": "pytest checks",
+      "exit_code": 0,
+      "elapsed_s": 172.85526661400218,
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_read_body_handoff.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "source_inventory_sha256": "b25b3cd68affbf06c98ffb9a6efc574a8e7e1c203e48546373c0effe25605293",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/compact-comparison/result.json"
+    },
+    {
+      "phase": "affected",
+      "count": 16,
+      "unit": "pytest checks",
+      "exit_code": 0,
+      "elapsed_s": 366.79651847999776,
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_read_body_handoff.py",
+        "tests/test_read_deadlines.py",
+        "tests/test_interception_lifecycle.py::test_native_read_cancellation_before_result_handoff_preserves_failure",
+        "tests/test_browser_controls.py::test_real_decoded_cap_preserves_partial_and_stops",
+        "tests/test_browser_controls.py::test_real_redirect_completion_and_fetch_fidelity",
+        "tests/test_browser_controls.py::test_real_fetch_redirect_and_head_share_completion_gap",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "source_inventory_sha256": "1be50059dfd8ce2a01507379cdba083b2921f39150dba5ac3beaa1b6b2b221ba",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/affected/result.json"
+    },
+    {
+      "phase": "supervisor-sizes-verified",
+      "count": 3,
+      "unit": "supervisor cases",
+      "exit_code": 0,
+      "elapsed_s": 214.5626183259883,
+      "command": [
+        "venv/bin/python",
+        "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/supervisor_sizes.py"
+      ],
+      "source_inventory_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/supervisor-sizes-verified/result.json"
+    },
+    {
+      "phase": "regression",
+      "count": 179,
+      "unit": "pytest checks",
+      "exit_code": 0,
+      "elapsed_s": 888.4068013729993,
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "source_inventory_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/regression/result.json"
+    },
+    {
+      "phase": "comparison",
+      "count": 231,
+      "unit": "files compared",
+      "exit_code": 0,
+      "elapsed_s": 115.28490521898493,
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/regression-controls/complete-raw"
+      ],
+      "source_inventory_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/comparison/result.json"
+    }
+  ],
+  "environment": "ABM_QUIET_LOG=1; ABM_CONTROL_EVIDENCE uses fresh phase-specific folders; compact comparison additionally ABM_HANDOFF_REPRESENTATION=compact_candidate; regression PYTHONUNBUFFERED=1. No secrets/environment dump.",
+  "reproduction": "Use a fresh recorder label and evidence destination; preserve the existing folders. Use venv/bin/python -m pytest because the installed pytest script still names the previous lowercase checkout."
+}

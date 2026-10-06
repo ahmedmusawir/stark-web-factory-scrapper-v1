@@ -93,6 +93,7 @@ async def collect_rest(browser, base_url, run):
     checkpoint()
     for col in index['collections']:
         kind,endpoint=col['type'],col['endpoint']
+        seen_ids=set(); duplicate_ids=False
         if browser.stop_reason or run.limit_hit:
             absent(kind,'skipped','stop_rule');continue
         page=1
@@ -130,6 +131,10 @@ async def collect_rest(browser, base_url, run):
                 row['outcome']='malformed';col['status']='partial';absent(kind,'failed','malformed_response');break
             col['status']='partial'
             for position,value in enumerate(values):
+                if value['id'] in seen_ids:
+                    duplicate_ids=True
+                    row.setdefault('duplicate_ids',[]).append(value['id'])
+                seen_ids.add(value['id'])
                 base=f'objects/{kind}-{value["id"]}';name=base+'.json';suffix=1
                 while name in filenames:
                     suffix+=1;name=base+f'-{suffix}.json'
@@ -146,6 +151,8 @@ async def collect_rest(browser, base_url, run):
                         absent(name+'#'+gap['field'],'unsupported','optional_'+gap['state'])
                 col['fetched_objects']+=1
                 checkpoint()
+            if row.get('duplicate_ids'):
+                absent(kind,'failed','duplicate_object_id')
             if browser.stop_reason:break
             try:
                 total=int(headers['x-wp-total']);total_pages=int(headers['x-wp-totalpages'])
@@ -156,13 +163,18 @@ async def collect_rest(browser, base_url, run):
                 col['status']='partial';absent(kind,'failed','pagination_totals_changed');break
             col['total'],col['total_pages']=total,total_pages
             if page>=total_pages:
-                col['status']='complete' if col['fetched_objects']==total else 'partial'
-                if col['status']=='partial':absent(kind,'failed','pagination_count_mismatch')
+                col['status']='complete' if col['fetched_objects']==total and not duplicate_ids else 'partial'
+                if col['fetched_objects']!=total:absent(kind,'failed','pagination_count_mismatch')
                 break
             if kind=='users':
                 col['status']='partial';absent(kind,'skipped','optional_users_single_attempt');break
-            if len(values)!=100:
-                col['status']='partial';absent(kind,'failed','short_intermediate_page');break
+            if not values:
+                col['status']='partial';absent(kind,'failed','empty_intermediate_page');break
+            if len(values)<col['per_page']:
+                # Valid short pages do not override advertised pagination.
+                # Retain the anomaly independently from final coverage status.
+                row.setdefault('pagination_anomalies',[]).append('short_intermediate_page')
+                checkpoint()
             page+=1
     index['optional_field_absences']=optional
     mapping={'schema':'abm-rest-map-v1','by_route':{},'unrouted_objects':[],'content_rendered_empty':[]}

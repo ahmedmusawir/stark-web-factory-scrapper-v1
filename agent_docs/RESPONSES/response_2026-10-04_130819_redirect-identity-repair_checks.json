@@ -1,0 +1,299 @@
+{
+  "status": "LOCAL ENGINEERING VERIFIED; STOP for JARVIS review",
+  "repository": "/home/moose/PYTHON/stark-web-factory-scrapper-v1",
+  "branch": "wf-scrapper-abm",
+  "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "initial_source_inventory_sha256": "29315b06428a66896a5b23af3bbdfd25a0c7ed7fdd6bc3b0724d687a03187727",
+  "final_source_inventory_sha256": "f52235202ce3fb546d436efa4b4b4a7a92025868edef20a939c25c81e0dcaa53",
+  "source_entries": 67,
+  "phases": {
+    "first": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_interception_boundary.py::test_narrow_read_redirect_scope_prevents_target_dispatch",
+        "tests/test_browser_controls.py::test_real_redirect_completion_and_fetch_fidelity",
+        "tests/test_browser_controls.py::test_real_fetch_redirect_and_head_share_completion_gap",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-04T06:38:10.668403+00:00",
+      "finished_at": "2026-10-04T06:39:11.959868+00:00",
+      "elapsed_s": 61.29145925701596,
+      "exit_code": 0,
+      "command_log_bytes": 109,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "3aee3baff97a7fc687133e121499342f35572be41990b6fd3d250f222a510537",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "focused": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_redirect_identity.py",
+        "tests/test_interception_boundary.py",
+        "tests/test_request_identity.py",
+        "tests/test_browser_controls.py::test_real_redirect_denial_before_dispatch",
+        "tests/test_browser_controls.py::test_real_five_hop_bound",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-04T06:40:02.970190+00:00",
+      "finished_at": "2026-10-04T06:45:32.686674+00:00",
+      "elapsed_s": 329.71641752001597,
+      "exit_code": 0,
+      "command_log_bytes": 111,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "f52235202ce3fb546d436efa4b4b4a7a92025868edef20a939c25c81e0dcaa53",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "regression": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-04T06:46:24.026361+00:00",
+      "finished_at": "2026-10-04T07:04:07.350981+00:00",
+      "elapsed_s": 1063.3246175230015,
+      "exit_code": 0,
+      "command_log_bytes": 273,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "f52235202ce3fb546d436efa4b4b4a7a92025868edef20a939c25c81e0dcaa53",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "comparison": {
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/redirect-identity/2026-10-04_063724Z/regression-controls/complete-raw"
+      ],
+      "started_at": "2026-10-04T07:04:35.308465+00:00",
+      "finished_at": "2026-10-04T07:06:31.850025+00:00",
+      "elapsed_s": 116.54156037303619,
+      "exit_code": 0,
+      "command_log_bytes": 277,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "f52235202ce3fb546d436efa4b4b4a7a92025868edef20a939c25c81e0dcaa53",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    }
+  },
+  "totals": {
+    "initial_native_checks": 4,
+    "focused": 29,
+    "full_regression": 192,
+    "paired_comparison_files": 231,
+    "all_exit_codes": 0
+  },
+  "comparison": {
+    "full_canonical_comparison": "PASS",
+    "files": 231,
+    "normalization": "page elapsed; measured protocol times; correlated protocol IDs; independent resource channels; derived metadata byte-count/hash edges only"
+  },
+  "comparison_evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/redirect-identity/2026-10-04_063724Z/comparison-controls/F09-complete-o67mdihu/full-comparison.json",
+  "source_invariants": {
+    "changed_source_files": [
+      "smart_crawler/browser_session.py",
+      "tests/fixture_server.py",
+      "tests/snapshot_compare.py",
+      "tests/test_interception_boundary.py",
+      "tests/test_redirect_identity.py"
+    ],
+    "unchanged_controller_methods": [
+      "__init__",
+      "event",
+      "stop",
+      "check",
+      "scoped",
+      "gap",
+      "spawn",
+      "__aenter__",
+      "__aexit__",
+      "created",
+      "diagnostic",
+      "page_closed",
+      "paused_event",
+      "resolve_interception",
+      "network_data",
+      "network_finished",
+      "network_operation",
+      "network_failed",
+      "network_response",
+      "request_seen",
+      "request_finished",
+      "request_failed",
+      "response_seen",
+      "request_identity",
+      "before_return_html",
+      "timeout",
+      "after_goto",
+      "capture",
+      "new_operation",
+      "correlated_read",
+      "run_read_script"
+    ],
+    "compact_read_script_unchanged": true,
+    "compact_script_sha256": "996e62d94e50f7ec0204b7ba6982bd2df158ab64e87f1d3d993673a5c15f1e97",
+    "bounds_unchanged": true
+  },
+  "body_results": [
+    {
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/redirect-identity/2026-10-04_063724Z/regression-controls/body-10489856-history-1.json",
+      "expected_bytes": 10489856,
+      "expected_sha256": "770119e6287af0823bc796799eecb8858146178349ebd3361d1d52b89fe2beb3",
+      "result": {
+        "status": 200,
+        "bytes": 10485760,
+        "incomplete": true,
+        "error": "response_limit",
+        "sha256": "ff318151907b7354250184c53a0b2e9912c0f6e8ec85d1599d91e289d51da2c5",
+        "evidence_gap": null
+      },
+      "stop_reason": "response_limit"
+    },
+    {
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/redirect-identity/2026-10-04_063724Z/regression-controls/body-1500000-history-1.json",
+      "expected_bytes": 1500000,
+      "expected_sha256": "0bbaceb77a02135146df98d4b8414174eb363af03aecf0bbfb8dbc004b404951",
+      "result": {
+        "status": 200,
+        "bytes": 1500000,
+        "incomplete": false,
+        "error": null,
+        "sha256": "0bbaceb77a02135146df98d4b8414174eb363af03aecf0bbfb8dbc004b404951",
+        "evidence_gap": null
+      },
+      "stop_reason": null
+    },
+    {
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/redirect-identity/2026-10-04_063724Z/regression-controls/body-4000000-history-1.json",
+      "expected_bytes": 4000000,
+      "expected_sha256": "3c4a67afeed8aad1c93b2739a7bae95773f572bfd91c73639768939895d8d77f",
+      "result": {
+        "status": 200,
+        "bytes": 4000000,
+        "incomplete": false,
+        "error": null,
+        "sha256": "3c4a67afeed8aad1c93b2739a7bae95773f572bfd91c73639768939895d8d77f",
+        "evidence_gap": null
+      },
+      "stop_reason": null
+    },
+    {
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/redirect-identity/2026-10-04_063724Z/regression-controls/body-4000000-history-3.json",
+      "expected_bytes": 4000000,
+      "expected_sha256": "3c4a67afeed8aad1c93b2739a7bae95773f572bfd91c73639768939895d8d77f",
+      "result": {
+        "status": 200,
+        "bytes": 4000000,
+        "incomplete": false,
+        "error": null,
+        "sha256": "3c4a67afeed8aad1c93b2739a7bae95773f572bfd91c73639768939895d8d77f",
+        "evidence_gap": null
+      },
+      "stop_reason": null
+    },
+    {
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/redirect-identity/2026-10-04_063724Z/regression-controls/body-8000000-history-1.json",
+      "expected_bytes": 8000000,
+      "expected_sha256": "046b03dd5581a99a251fc3b24913ce6b03dca3d640baf6469b99fcec0c784178",
+      "result": {
+        "status": 200,
+        "bytes": 8000000,
+        "incomplete": false,
+        "error": null,
+        "sha256": "046b03dd5581a99a251fc3b24913ce6b03dca3d640baf6469b99fcec0c784178",
+        "evidence_gap": null
+      },
+      "stop_reason": null
+    }
+  ],
+  "proofs": {
+    "out_of_scope_GET_HEAD": "Product intentional_prevented/redirect_out_of_scope; no fixture egress guard earns PASS; zero destination requests",
+    "allowed_missing_parent": "GET/HEAD, Network-before-pause-handling and delayed Network observation, exact body, chain/counts and >=5s completion gap",
+    "ambiguity_cases": [
+      "missing transition",
+      "wrong previous URL",
+      "wrong frame",
+      "wrong resource type",
+      "wrong method"
+    ],
+    "ambiguity_result": "explicit ambiguous_redirect_identity; one abort, no destination continuation, no intentional dispatch after STOP",
+    "same_URL": "Existing Fetch/XHR script identity, duplicate and ambiguity controls retained",
+    "native_fields": "Original predecessor null retained; separate resolved_predecessor and correlation_source; Network native method/redirect-from recorded",
+    "fault_provenance": "Ordering fixtures defer handling of real native callbacks; conflict fixtures deliberately alter/suppress observations and are labeled. Unmodified native GET/HEAD scope traces retained separately."
+  },
+  "assertion_changes": [
+    {
+      "file": "tests/test_interception_boundary.py",
+      "authority": "Current explicit ruling permits native-parent assertion to move to resolved predecessor",
+      "change": "Require resolved_predecessor, retain native predecessor null and correlation source; strengthen no fixture egress prevention assertion. Behavioral denial assertions retained."
+    },
+    {
+      "file": "tests/snapshot_compare.py",
+      "authority": "Retained Document/Fetch/XHR narrowing and prior authorized resource-boundary dependent assertion updates",
+      "change": "19 owned pauses =18 intentional +1 iframe;18 continues +1 abort. Six image GETs still required to load, external widget script must be denied by context guard. Server requests remain24. No source/body/object/outcome/count expected data changed; measured correlation deadline and resolved IDs receive named normalization."
+    }
+  ],
+  "preservation": {
+    "prior_evidence_output_report_files": 11333,
+    "changed_or_missing": [],
+    "original_checkpoint_text_preserved": {
+      "RECOVERY.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md": true,
+      "agent_docs/SESSIONS/session_2026-10-04.md": true
+    },
+    "source_inventory_sha256": "f52235202ce3fb546d436efa4b4b4a7a92025868edef20a939c25c81e0dcaa53",
+    "source_unchanged_during_final_checks": true,
+    "live_requests_this_mission": 0
+  },
+  "handoff": {
+    "report": "agent_docs/RESPONSES/response_2026-10-04_130819_redirect-identity-repair.md",
+    "diff": "agent_docs/RESPONSES/response_2026-10-04_130819_redirect-identity-repair_source-test.diff.txt",
+    "controller": "agent_docs/RESPONSES/response_2026-10-04_130819_redirect-identity-repair_browser_session.py.txt",
+    "inventory": "agent_docs/RESPONSES/response_2026-10-04_130819_redirect-identity-repair_source-inventory.json",
+    "native_evidence": "agent_docs/RESPONSES/response_2026-10-04_130819_redirect-identity-repair_native-events.json",
+    "checks": "agent_docs/RESPONSES/response_2026-10-04_130819_redirect-identity-repair_checks.json"
+  },
+  "remaining_open": [
+    "Homepage bootstrap/route accounting discrepancy",
+    "Historical supervisor-finalization counter gap",
+    "CHK remains incomplete; no live qualification of these repairs or posts body",
+    "Prepare agent-skill amendment ON HOLD",
+    "Independent QA NOT RUN"
+  ],
+  "next_action": "JARVIS review; no automatic live attempt or further implementation."
+}

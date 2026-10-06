@@ -1,0 +1,162 @@
+{
+  "status": "BLOCKED at native redirect-scope gate; narrow patch retained, not qualified",
+  "source_inventory_sha256": "29315b06428a66896a5b23af3bbdfd25a0c7ed7fdd6bc3b0724d687a03187727",
+  "source_entries": 66,
+  "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "branch": "wf-scrapper-abm",
+  "phases": {
+    "original_loading_expected_failure": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_interception_boundary.py::test_excluded_resources_load_without_custom_pauses",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-04T05:58:05.258352+00:00",
+      "finished_at": "2026-10-04T05:58:14.044614+00:00",
+      "elapsed_s": 8.786253336002119,
+      "exit_code": 1,
+      "command_log_bytes": 4584,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "1b34a327e7cd45a393e178fa468b7a18ed520a71dbcaaed0d1709b1148f98495",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "narrow_focused": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_interception_boundary.py",
+        "tests/test_request_identity.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-04T05:58:43.754154+00:00",
+      "finished_at": "2026-10-04T06:01:10.678365+00:00",
+      "elapsed_s": 146.924205710995,
+      "exit_code": 1,
+      "command_log_bytes": 6921,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "29315b06428a66896a5b23af3bbdfd25a0c7ed7fdd6bc3b0724d687a03187727",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "original_controller_scope_reproduction": {
+      "command": [
+        "venv/bin/python",
+        "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-boundary/2026-10-04_055713Z/check_original_scope.py"
+      ],
+      "started_at": "2026-10-04T06:01:44.876899+00:00",
+      "finished_at": "2026-10-04T06:02:07.434679+00:00",
+      "elapsed_s": 22.55777253897395,
+      "exit_code": 0,
+      "command_log_bytes": 980,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "29315b06428a66896a5b23af3bbdfd25a0c7ed7fdd6bc3b0724d687a03187727",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    }
+  },
+  "totals": {
+    "narrow_focused_passed": 14,
+    "narrow_focused_failed": 2,
+    "full_regression": "NOT RUN: required redirect scope gate failed",
+    "capture_comparison": "NOT RUN: no qualified final candidate"
+  },
+  "confirmed": {
+    "excluded_types_loaded_without_custom_pauses": [
+      "Image",
+      "Stylesheet",
+      "Script"
+    ],
+    "native_image_navigation_cancellations": 2,
+    "fetch_event_type": "XHR",
+    "network_event_type": "Fetch",
+    "small_compact_body_bytes_hash": "PASS",
+    "same_url_identity_duplicate_ambiguity_and_sticky_stop": "PASS",
+    "controller_methods_changed": [
+      "created"
+    ]
+  },
+  "failed": {
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "fixture": "127.0.0.1 /boundary-denied -> localhost /never-boundary at same local port",
+    "expected": "Intentional redirect scope denial before destination dispatch",
+    "actual": "Missing Fetch predecessor; incidental classification; fixture-only egress guard blocks destination; read TypeError",
+    "original_controller_reproduces": true,
+    "live_destination_dispatch": "NOT TESTED",
+    "native_scope_evidence": "agent_docs/RESPONSES/response_2026-10-04_120350_narrow-interception_native-events.json"
+  },
+  "assertion_change": {
+    "test": "test_sticky_stop_names_incidental_prevention",
+    "before": "force stop on paused Stylesheet from /identity/stylesheet",
+    "after": "force stop on retained Fetch/XHR from /identity/fetch",
+    "preserved_assertions": [
+      "only one intentional dispatch",
+      "background request never reaches server",
+      "incidental_prevented present",
+      "intentional_prevented absent"
+    ],
+    "authority": "Tony/JARVIS current narrow resource-boundary repair instruction"
+  },
+  "remaining_unverified_this_candidate": [
+    "full engineering regression",
+    "paired Capture comparison",
+    "large-body size/cap matrix",
+    "full redirect/refusal/budget/context control matrix"
+  ],
+  "remaining_unresolved": [
+    "cross-host read redirect identity",
+    "homepage bootstrap/route accounting discrepancy",
+    "historical supervisor-finalization counter gap"
+  ],
+  "preservation": {
+    "prior_files": 11209,
+    "changed_or_missing": [],
+    "original_checkpoint_contents_preserved": {
+      "RECOVERY.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md": true,
+      "agent_docs/SESSIONS/session_2026-10-04.md": true
+    },
+    "changed_source_files": [
+      "smart_crawler/browser_session.py",
+      "tests/fixture_server.py",
+      "tests/test_interception_boundary.py",
+      "tests/test_request_identity.py"
+    ],
+    "all_other_initial_source_entries_unchanged": true,
+    "source_inventory_sha256": "29315b06428a66896a5b23af3bbdfd25a0c7ed7fdd6bc3b0724d687a03187727",
+    "live_requests": 0
+  },
+  "handoff": {
+    "report": "agent_docs/RESPONSES/response_2026-10-04_120350_narrow-interception.md",
+    "diff": "agent_docs/RESPONSES/response_2026-10-04_120350_narrow-interception_source-test.diff.txt",
+    "controller": "agent_docs/RESPONSES/response_2026-10-04_120350_narrow-interception_browser_session.py.txt",
+    "source_inventory": "agent_docs/RESPONSES/response_2026-10-04_120350_narrow-interception_source-inventory.json",
+    "native_evidence": "agent_docs/RESPONSES/response_2026-10-04_120350_narrow-interception_native-events.json",
+    "checks": "agent_docs/RESPONSES/response_2026-10-04_120350_narrow-interception_checks.json"
+  },
+  "prepare": "ON HOLD",
+  "independent_qa": "NOT RUN",
+  "next_action": "JARVIS decides scoped redirect-identity repair; no automatic continuation."
+}

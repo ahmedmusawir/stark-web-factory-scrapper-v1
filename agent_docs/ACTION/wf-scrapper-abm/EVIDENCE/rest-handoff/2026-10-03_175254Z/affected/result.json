@@ -1,0 +1,29 @@
+{
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_read_body_handoff.py",
+    "tests/test_read_deadlines.py",
+    "tests/test_interception_lifecycle.py::test_native_read_cancellation_before_result_handoff_preserves_failure",
+    "tests/test_browser_controls.py::test_real_decoded_cap_preserves_partial_and_stops",
+    "tests/test_browser_controls.py::test_real_redirect_completion_and_fetch_fidelity",
+    "tests/test_browser_controls.py::test_real_fetch_redirect_and_head_share_completion_gap",
+    "-o",
+    "tmp_path_retention_count=1000000",
+    "-o",
+    "tmp_path_retention_policy=all"
+  ],
+  "started_at": "2026-10-03T18:03:30.486758+00:00",
+  "finished_at": "2026-10-03T18:09:37.283272+00:00",
+  "elapsed_s": 366.79651847999776,
+  "exit_code": 0,
+  "command_log_bytes": 111,
+  "command_log_ceiling": 1000000,
+  "command_log_limit_hit": false,
+  "source_unchanged": true,
+  "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "source_inventory_sha256": "1be50059dfd8ce2a01507379cdba083b2921f39150dba5ac3beaa1b6b2b221ba",
+  "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+}

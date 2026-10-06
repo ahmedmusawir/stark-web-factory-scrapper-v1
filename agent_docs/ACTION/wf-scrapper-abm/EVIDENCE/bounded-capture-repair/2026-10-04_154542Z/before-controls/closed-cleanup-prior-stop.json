@@ -1,0 +1,74 @@
+{
+  "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+  "case": "closed-cleanup-prior-stop",
+  "calls": [
+    {
+      "command": "Fetch.failRequest",
+      "args": {
+        "requestId": "fixture-fetch-1",
+        "errorReason": "Aborted"
+      }
+    }
+  ],
+  "returned": [
+    false,
+    false
+  ],
+  "stop_reason": "original_refusal",
+  "closing": true,
+  "entry_state": "error",
+  "entry_command": "Fetch.failRequest",
+  "events": [
+    {
+      "event": "stop",
+      "monotonic": 483602.963498469,
+      "reason": "original_refusal"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 483602.96350748,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_error",
+      "monotonic": 483602.963531527,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "incidental",
+      "state": "error",
+      "error": "TargetClosedError",
+      "detail": "Target page, context or browser has been closed",
+      "confirmed_canceled": false,
+      "supported_incidental": false
+    },
+    {
+      "event": "interception_resolution_skipped",
+      "monotonic": 483602.96353881,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "incidental",
+      "state": "error"
+    }
+  ]
+}

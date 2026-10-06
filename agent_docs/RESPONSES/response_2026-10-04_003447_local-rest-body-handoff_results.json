@@ -1,0 +1,250 @@
+{
+  "verdict": "LOCAL REPRESENTATION OVERHEAD CONFIRMED; BOUNDED CORRECTION VERIFIED; LIVE CAUSE UNPROVEN",
+  "repository": "/home/moose/PYTHON/stark-web-factory-scrapper-v1",
+  "branch": "wf-scrapper-abm",
+  "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "initial_source_entries": 62,
+  "initial_source_sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b",
+  "final_source_entries": 65,
+  "final_source_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+  "changed_source_files": [
+    "smart_crawler/browser_session.py",
+    "tests/fixture_server.py",
+    "tests/handoff_probe.py",
+    "tests/handoff_worker.py",
+    "tests/test_read_body_handoff.py"
+  ],
+  "product_change": "Only 32KiB binary-to-base64 result chunks and strict Python base64 decode; same browser fetch/identity, decoded bytes/hash/provenance, fields/pagination, bounds and stops.",
+  "live_requests": 0,
+  "before_compact_comparison": [
+    {
+      "case": "body-10489856-history-1",
+      "expected_bytes": 10489856,
+      "returned_bytes": 10485760,
+      "returned_sha256": "ff318151907b7354250184c53a0b2e9912c0f6e8ec85d1599d91e289d51da2c5",
+      "original_delivery_s": 19.49258696095785,
+      "compact_delivery_s": 0.6943083800142631
+    },
+    {
+      "case": "body-1500000-history-1",
+      "expected_bytes": 1500000,
+      "returned_bytes": 1500000,
+      "returned_sha256": "0bbaceb77a02135146df98d4b8414174eb363af03aecf0bbfb8dbc004b404951",
+      "original_delivery_s": 1.854802366986405,
+      "compact_delivery_s": 0.05642951501067728
+    },
+    {
+      "case": "body-4000000-history-1",
+      "expected_bytes": 4000000,
+      "returned_bytes": 4000000,
+      "returned_sha256": "3c4a67afeed8aad1c93b2739a7bae95773f572bfd91c73639768939895d8d77f",
+      "original_delivery_s": 5.637846792989876,
+      "compact_delivery_s": 0.19290717504918575
+    },
+    {
+      "case": "body-4000000-history-3",
+      "expected_bytes": 4000000,
+      "returned_bytes": 4000000,
+      "returned_sha256": "3c4a67afeed8aad1c93b2739a7bae95773f572bfd91c73639768939895d8d77f",
+      "original_delivery_s": 5.041198191989679,
+      "compact_delivery_s": 0.18540305201895535
+    },
+    {
+      "case": "body-8000000-history-1",
+      "expected_bytes": 8000000,
+      "returned_bytes": 8000000,
+      "returned_sha256": "046b03dd5581a99a251fc3b24913ce6b03dca3d640baf6469b99fcec0c784178",
+      "original_delivery_s": 12.384530815994367,
+      "compact_delivery_s": 0.5928129029925913
+    }
+  ],
+  "measurement_boundary": "Python delivery of result_prepared browser binding to Python result receipt; not an isolated V8/driver/Python profile. Native browser timestamps, body-consumption marks, server/network completion and cleanup remain in case evidence.",
+  "checks": [
+    {
+      "phase": "before-checks",
+      "count": 6,
+      "unit": "pytest checks",
+      "exit_code": 0,
+      "elapsed_s": 223.61826656397898,
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_read_body_handoff.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "source_inventory_sha256": "91ca7fdd4e320f59399041fe517b137e62fff001e7bdd99a78638ccec311024c",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/before-checks/result.json"
+    },
+    {
+      "phase": "compact-comparison",
+      "count": 6,
+      "unit": "pytest checks",
+      "exit_code": 0,
+      "elapsed_s": 172.85526661400218,
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_read_body_handoff.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "source_inventory_sha256": "b25b3cd68affbf06c98ffb9a6efc574a8e7e1c203e48546373c0effe25605293",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/compact-comparison/result.json"
+    },
+    {
+      "phase": "affected",
+      "count": 16,
+      "unit": "pytest checks",
+      "exit_code": 0,
+      "elapsed_s": 366.79651847999776,
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_read_body_handoff.py",
+        "tests/test_read_deadlines.py",
+        "tests/test_interception_lifecycle.py::test_native_read_cancellation_before_result_handoff_preserves_failure",
+        "tests/test_browser_controls.py::test_real_decoded_cap_preserves_partial_and_stops",
+        "tests/test_browser_controls.py::test_real_redirect_completion_and_fetch_fidelity",
+        "tests/test_browser_controls.py::test_real_fetch_redirect_and_head_share_completion_gap",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "source_inventory_sha256": "1be50059dfd8ce2a01507379cdba083b2921f39150dba5ac3beaa1b6b2b221ba",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/affected/result.json"
+    },
+    {
+      "phase": "supervisor-sizes-verified",
+      "count": 3,
+      "unit": "supervisor cases",
+      "exit_code": 0,
+      "elapsed_s": 214.5626183259883,
+      "command": [
+        "venv/bin/python",
+        "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/supervisor_sizes.py"
+      ],
+      "source_inventory_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/supervisor-sizes-verified/result.json"
+    },
+    {
+      "phase": "regression",
+      "count": 179,
+      "unit": "pytest checks",
+      "exit_code": 0,
+      "elapsed_s": 888.4068013729993,
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "source_inventory_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/regression/result.json"
+    },
+    {
+      "phase": "comparison",
+      "count": 231,
+      "unit": "files compared",
+      "exit_code": 0,
+      "elapsed_s": 115.28490521898493,
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/regression-controls/complete-raw"
+      ],
+      "source_inventory_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+      "source_unchanged": true,
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/comparison/result.json"
+    }
+  ],
+  "supplemental_supervisor": [
+    {
+      "expected_bytes": 10489856,
+      "returned_bytes": 10485760,
+      "returned_sha256": "ff318151907b7354250184c53a0b2e9912c0f6e8ec85d1599d91e289d51da2c5",
+      "exact_bytes": true,
+      "body_complete": false,
+      "exit_code": 2,
+      "stop_reason": "response_limit",
+      "objects": 0,
+      "elapsed_s": 61.39800148201175,
+      "raw": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/supervisor-size-controls/10489856/output/Fix/runs/2026-01-01T00-00-00Z"
+    },
+    {
+      "expected_bytes": 1500000,
+      "returned_bytes": 1500000,
+      "returned_sha256": "0bbaceb77a02135146df98d4b8414174eb363af03aecf0bbfb8dbc004b404951",
+      "exact_bytes": true,
+      "body_complete": true,
+      "exit_code": 0,
+      "stop_reason": null,
+      "objects": 100,
+      "elapsed_s": 67.81612661899999,
+      "raw": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/supervisor-size-controls/1500000/output/Fix/runs/2026-01-01T00-00-00Z"
+    },
+    {
+      "expected_bytes": 8000000,
+      "returned_bytes": 8000000,
+      "returned_sha256": "046b03dd5581a99a251fc3b24913ce6b03dca3d640baf6469b99fcec0c784178",
+      "exact_bytes": true,
+      "body_complete": true,
+      "exit_code": 0,
+      "stop_reason": null,
+      "objects": 100,
+      "elapsed_s": 82.28158581699245,
+      "raw": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/supervisor-size-controls/8000000/output/Fix/runs/2026-01-01T00-00-00Z"
+    }
+  ],
+  "setup_corrections": [
+    "Recorder label before was refused because the preserved snapshot directory existed; no test ran.",
+    "Supplemental helper import failed before any browser/server; original helper and failed result retained, root import corrected.",
+    "New fixture egress assertion was strengthened to actual event names and observed hosts after affected checks; final179-test regression exercised it."
+  ],
+  "preservation": {
+    "prior_files_unchanged": 8157,
+    "original_audit_content_preserved": true,
+    "live_run": "outputs/CyberizeGroup/runs/2026-10-03T17-35-57Z"
+  },
+  "remaining_findings": [
+    "No local missing-body failure reproduced; original live posts size and browser consume/prepare timing unknown.",
+    "Live late cleanup/callback delay was not reproduced or proved fixed.",
+    "Original direct over-cap terminal processing took32.337s; unchanged supervisor has its own30s limit. Corrected supervisor cap case preserves the prefix and stops response_limit.",
+    "Prior supervisor-finalization manifest-counter gap remains outside this repair."
+  ],
+  "evidence_root": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z",
+  "timing_matrix": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/timing-matrix.json",
+  "comparison": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/rest-handoff/2026-10-03_175254Z/comparison-controls/F09-complete-l3kywy4n/full-comparison.json",
+  "report": "agent_docs/RESPONSES/response_2026-10-04_003447_local-rest-body-handoff.md",
+  "focused_diff": "agent_docs/RESPONSES/response_2026-10-04_003447_local-rest-body-handoff_source-test.diff.txt",
+  "source_inventory": "agent_docs/RESPONSES/response_2026-10-04_003447_local-rest-body-handoff_source-inventory.json",
+  "prepare": "ON HOLD for agent-skill amendment",
+  "independent_qa": "NOT RUN",
+  "next_action": "JARVIS review; no further live request or repair authorized by this handoff."
+}

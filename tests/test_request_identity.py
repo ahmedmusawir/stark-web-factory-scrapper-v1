@@ -20,6 +20,9 @@ def test_same_url_document_background_is_incidental(tmp_path,kind):
                     requests=[e for e in session.events if e['event']=='browser_request']
                     assert any(e['resource_type']==kind for e in requests)
                     assert len([e for e in timeline if e['event']=='request_received'])==2
+                    if kind in ('stylesheet','image'):
+                        assert not any(e['event']=='request_classified' and
+                                       e['resource_type'].lower()==kind for e in session.events)
             finally:retain(tmp_path,'same-url-'+kind,session,timeline)
         asyncio.run(exercise())
 
@@ -53,6 +56,7 @@ def test_read_cannot_be_impersonated(tmp_path,method,background):
                     assert [e['classification'] for e in rows]==['incidental','intentional']
                     assert rows[0]['initiator_script_id']!=rows[1]['initiator_script_id']
                     assert rows[0]['frame_id']==rows[1]['frame_id']==session.main_frame
+                    assert (rows[1]['resource_type'],rows[1]['network_resource_type'])==('XHR','Fetch')
                     if background=='fetch':
                         assert rows[0]['resource_type']==rows[1]['resource_type']
                         assert rows[0]['network_resource_type']==rows[1]['network_resource_type']=='Fetch'
@@ -119,22 +123,22 @@ def test_genuine_second_document_is_prevented(tmp_path):
 
 
 def test_sticky_stop_names_incidental_prevention(tmp_path):
-    class StopBeforeStyle(BrowserSession):
+    class StopBeforeFetch(BrowserSession):
         async def paused(self,params):
-            if params['resourceType']=='Stylesheet':
+            if params['resourceType'] in ('Fetch','XHR'):
                 self.stop('fixture_forced_stop')
             await super().paused(params)
     with fixture_server() as (origin,timeline):
         async def exercise():
-            session=StopBeforeStyle(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
+            session=StopBeforeFetch(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
                                     runtime_dir=tmp_path/'runtime',loopback_only=True)
             try:
                 async with session:
-                    result=await session.capture(origin+'/identity/stylesheet')
+                    result=await session.capture(origin+'/identity/fetch')
                     assert not result['ok'] and session.stop_reason=='fixture_forced_stop'
                     assert session.dispatches==1
                     assert len([e for e in timeline if e['event']=='request_received'])==1
-                    assert any(e['event']=='incidental_prevented' and e['resource_type']=='Stylesheet' for e in session.events)
+                    assert any(e['event']=='incidental_prevented' and e['resource_type'] in ('Fetch','XHR') for e in session.events)
                     assert not any(e['event']=='intentional_prevented' for e in session.events)
             finally:retain(tmp_path,'incidental-sticky-prevention',session,timeline)
         asyncio.run(exercise())

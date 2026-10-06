@@ -1,0 +1,995 @@
+{
+  "A": [
+    {
+      "kind": "worker/server observation",
+      "line": 80,
+      "elapsed_from_pause_ms": 0.0,
+      "record": {
+        "sequence": 80,
+        "monotonic": 540126.335855069,
+        "event": "native_fetch_pause_observed",
+        "request_id": "interception-job-7.0",
+        "network_id": "1707616.4",
+        "frame_id": "2A64933A9AB0C0132CBA32FD5AD6C2CF",
+        "resource_type": "XHR",
+        "native_predecessor": null,
+        "url": "http://127.0.0.1:35487/cleanup-held",
+        "method": "GET",
+        "owner_guid": "cdp-session@C85CEB3610A43F491EFF221DDCDD65F1"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 81,
+      "elapsed_from_pause_ms": 0.046812,
+      "record": {
+        "sequence": 81,
+        "monotonic": 540126.335901881,
+        "event": "interception_registration_observed",
+        "registered": true,
+        "details": {
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707616.4",
+          "resource_type": "XHR",
+          "frame_id": "2A64933A9AB0C0132CBA32FD5AD6C2CF",
+          "predecessor": null,
+          "session": "page-cdp-1"
+        },
+        "state": "pending"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 82,
+      "elapsed_from_pause_ms": 0.167834,
+      "record": {
+        "sequence": 82,
+        "monotonic": 540126.336022903,
+        "event": "fixture_hold_enter",
+        "request_id": "interception-job-7.0",
+        "network_id": "1707616.4",
+        "operation_id": "op-2"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 84,
+      "elapsed_from_pause_ms": 1001.801998,
+      "record": {
+        "sequence": 84,
+        "monotonic": 540127.337657067,
+        "event": "hold_interval_end",
+        "received_while_held": false
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 85,
+      "elapsed_from_pause_ms": 1001.863615,
+      "record": {
+        "sequence": 85,
+        "monotonic": 540127.337718684,
+        "event": "fixture_release_invocation"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 86,
+      "elapsed_from_pause_ms": 1001.922897,
+      "record": {
+        "sequence": 86,
+        "monotonic": 540127.337777966,
+        "event": "fixture_hold_exit",
+        "request_id": "interception-job-7.0"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 87,
+      "elapsed_from_pause_ms": 1001.973774,
+      "record": {
+        "sequence": 87,
+        "monotonic": 540127.337828843,
+        "event": "controller",
+        "row": {
+          "event": "request_classified",
+          "monotonic": 540127.337825823,
+          "url": "http://127.0.0.1:35487/cleanup-held",
+          "method": "GET",
+          "classification": "intentional",
+          "initiator_script_id": "39",
+          "network_resource_type": "Fetch",
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707616.4",
+          "resource_type": "XHR",
+          "frame_id": "2A64933A9AB0C0132CBA32FD5AD6C2CF",
+          "predecessor": null,
+          "session": "page-cdp-1"
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 90,
+      "elapsed_from_pause_ms": 4985.378382,
+      "record": {
+        "sequence": 90,
+        "monotonic": 540131.321233451,
+        "event": "controller",
+        "row": {
+          "event": "intentional_dispatch",
+          "monotonic": 540131.321225718,
+          "url": "http://127.0.0.1:35487/cleanup-held",
+          "method": "GET",
+          "kind": "read",
+          "ordinal": 2,
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707616.4",
+          "resource_type": "XHR",
+          "frame_id": "2A64933A9AB0C0132CBA32FD5AD6C2CF",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "preceding_completion": 540126.317732455
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 91,
+      "elapsed_from_pause_ms": 4985.468151,
+      "record": {
+        "sequence": 91,
+        "monotonic": 540131.32132322,
+        "event": "controller",
+        "row": {
+          "event": "interception_command",
+          "monotonic": 540131.321321006,
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707616.4",
+          "resource_type": "XHR",
+          "frame_id": "2A64933A9AB0C0132CBA32FD5AD6C2CF",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 92,
+      "elapsed_from_pause_ms": 4985.519046,
+      "record": {
+        "sequence": 92,
+        "monotonic": 540131.321374115,
+        "event": "python_cdp_send_attempt",
+        "method": "Fetch.continueRequest",
+        "params": {
+          "requestId": "interception-job-7.0"
+        },
+        "owner_guid": "cdp-session@C85CEB3610A43F491EFF221DDCDD65F1"
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 39,
+      "elapsed_from_pause_ms": 4987.941014,
+      "record": {
+        "python_observed_monotonic": 540131.323796083,
+        "direction": "send",
+        "correlated_method": "Fetch.continueRequest",
+        "message": {
+          "id": 71,
+          "method": "Fetch.continueRequest",
+          "params": {
+            "requestId": "interception-job-7.0"
+          },
+          "sessionId": "C85CEB3610A43F491EFF221DDCDD65F1"
+        },
+        "driver_log_prefix": "2026-10-05T07:29:11.281Z pw:protocol SEND \u25ba"
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 40,
+      "elapsed_from_pause_ms": 4988.480699,
+      "record": {
+        "python_observed_monotonic": 540131.324335768,
+        "direction": "receive",
+        "correlated_method": "Fetch.continueRequest",
+        "message": {
+          "id": 71,
+          "result": {},
+          "sessionId": "C85CEB3610A43F491EFF221DDCDD65F1"
+        },
+        "driver_log_prefix": "2026-10-05T07:29:11.282Z pw:protocol \u25c0 RECV"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 93,
+      "elapsed_from_pause_ms": 4988.740501,
+      "record": {
+        "sequence": 93,
+        "monotonic": 540131.32459557,
+        "event": "python_cdp_send_return",
+        "method": "Fetch.continueRequest",
+        "request_id": "interception-job-7.0",
+        "owner_guid": "cdp-session@C85CEB3610A43F491EFF221DDCDD65F1"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 94,
+      "elapsed_from_pause_ms": 4988.80339,
+      "record": {
+        "sequence": 94,
+        "monotonic": 540131.324658459,
+        "event": "controller",
+        "row": {
+          "event": "interception_command_complete",
+          "monotonic": 540131.324654646,
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707616.4",
+          "resource_type": "XHR",
+          "frame_id": "2A64933A9AB0C0132CBA32FD5AD6C2CF",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        }
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 41,
+      "elapsed_from_pause_ms": 4988.924024,
+      "record": {
+        "python_observed_monotonic": 540131.324779093,
+        "direction": "receive",
+        "correlated_method": "Fetch.requestPaused",
+        "message": {
+          "method": "Fetch.requestPaused",
+          "params": {
+            "requestId": "interception-job-8.0",
+            "request": {
+              "url": "http://127.0.0.1:35487/cleanup-held",
+              "method": "GET",
+              "initialPriority": "High",
+              "referrerPolicy": "strict-origin-when-cross-origin"
+            },
+            "frameId": "2A64933A9AB0C0132CBA32FD5AD6C2CF",
+            "resourceType": "XHR",
+            "networkId": "1707616.4"
+          },
+          "sessionId": "51B34426FD477863647948E043EFCC20"
+        },
+        "driver_log_prefix": "2026-10-05T07:29:11.282Z pw:protocol \u25c0 RECV"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 96,
+      "elapsed_from_pause_ms": 4990.009619,
+      "record": {
+        "sequence": 96,
+        "monotonic": 540131.325864688,
+        "event": "context_guard_invocation",
+        "route_guid": "route@dfbb1da3acb97d330ca31494860d97a3",
+        "request_guid": "request@2eb8f32f9fc6c9972f15cd85a0e4a52f",
+        "url": "http://127.0.0.1:35487/cleanup-held",
+        "method": "GET",
+        "stop_reason": null,
+        "closing": false
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 97,
+      "elapsed_from_pause_ms": 4990.054697,
+      "record": {
+        "sequence": 97,
+        "monotonic": 540131.325909766,
+        "event": "context_route_continue_attempt",
+        "route_guid": "route@dfbb1da3acb97d330ca31494860d97a3",
+        "request_guid": "request@2eb8f32f9fc6c9972f15cd85a0e4a52f",
+        "url": "http://127.0.0.1:35487/cleanup-held",
+        "method": "GET"
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 42,
+      "elapsed_from_pause_ms": 4993.264604,
+      "record": {
+        "python_observed_monotonic": 540131.329119673,
+        "direction": "send",
+        "correlated_method": "Fetch.continueRequest",
+        "message": {
+          "id": 72,
+          "method": "Fetch.continueRequest",
+          "params": {
+            "requestId": "interception-job-8.0"
+          },
+          "sessionId": "51B34426FD477863647948E043EFCC20"
+        },
+        "driver_log_prefix": "2026-10-05T07:29:11.287Z pw:protocol SEND \u25ba"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 98,
+      "elapsed_from_pause_ms": 4994.97016,
+      "record": {
+        "sequence": 98,
+        "monotonic": 540131.330825229,
+        "event": "server_socket_read_return",
+        "connection_id": "connection-1",
+        "read_started": 540123.085221119,
+        "bytes": 577,
+        "sha256": "51b7b8cc6b586ec96d8c938352a0bbfb98105aaaa007aa9891c893f637c1bb15",
+        "request_line": "GET /cleanup-held HTTP/1.1"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 99,
+      "elapsed_from_pause_ms": 4995.468689,
+      "record": {
+        "sequence": 99,
+        "monotonic": 540131.331323758,
+        "event": "server_handler_request_received",
+        "connection_id": "connection-1",
+        "path": "/cleanup-held",
+        "method": "GET",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 43,
+      "elapsed_from_pause_ms": 4995.519816,
+      "record": {
+        "python_observed_monotonic": 540131.331374885,
+        "direction": "receive",
+        "correlated_method": "Fetch.continueRequest",
+        "message": {
+          "id": 72,
+          "result": {},
+          "sessionId": "51B34426FD477863647948E043EFCC20"
+        },
+        "driver_log_prefix": "2026-10-05T07:29:11.289Z pw:protocol \u25c0 RECV"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 100,
+      "elapsed_from_pause_ms": 4996.00859,
+      "record": {
+        "sequence": 100,
+        "monotonic": 540131.331863659,
+        "event": "context_route_continue_return",
+        "route_guid": "route@dfbb1da3acb97d330ca31494860d97a3"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 108,
+      "elapsed_from_pause_ms": 5004.913709,
+      "record": {
+        "sequence": 108,
+        "monotonic": 540131.340768778,
+        "event": "controller",
+        "row": {
+          "event": "operation_complete",
+          "monotonic": 540131.340750081,
+          "url": "http://127.0.0.1:35487/cleanup-held",
+          "kind": "read",
+          "operation_id": "op-2",
+          "outcome": "success",
+          "error": null
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 110,
+      "elapsed_from_pause_ms": 5005.319878,
+      "record": {
+        "sequence": 110,
+        "monotonic": 540131.341174947,
+        "event": "read_return",
+        "incomplete": false,
+        "error": null,
+        "body_bytes": 3615
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 111,
+      "elapsed_from_pause_ms": 5005.365464,
+      "record": {
+        "sequence": 111,
+        "monotonic": 540131.341220533,
+        "event": "cleanup_invocation",
+        "stop_reason": null
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 112,
+      "elapsed_from_pause_ms": 5005.417913,
+      "record": {
+        "sequence": 112,
+        "monotonic": 540131.341272982,
+        "event": "page_close_invocation",
+        "stop_reason": null,
+        "closing": true
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 44,
+      "elapsed_from_pause_ms": 5008.980074,
+      "record": {
+        "python_observed_monotonic": 540131.344835143,
+        "direction": "send",
+        "correlated_method": "Target.closeTarget",
+        "message": {
+          "id": 73,
+          "method": "Target.closeTarget",
+          "params": {
+            "targetId": "2A64933A9AB0C0132CBA32FD5AD6C2CF"
+          }
+        },
+        "driver_log_prefix": "2026-10-05T07:29:11.302Z pw:protocol SEND \u25ba"
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 45,
+      "elapsed_from_pause_ms": 5009.690554,
+      "record": {
+        "python_observed_monotonic": 540131.345545623,
+        "direction": "receive",
+        "correlated_method": "Target.closeTarget",
+        "message": {
+          "id": 73,
+          "result": {
+            "success": true
+          }
+        },
+        "driver_log_prefix": "2026-10-05T07:29:11.303Z pw:protocol \u25c0 RECV"
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 46,
+      "elapsed_from_pause_ms": 5011.124416,
+      "record": {
+        "python_observed_monotonic": 540131.346979485,
+        "direction": "receive",
+        "correlated_method": "Target.detachedFromTarget",
+        "message": {
+          "method": "Target.detachedFromTarget",
+          "params": {
+            "sessionId": "51B34426FD477863647948E043EFCC20",
+            "targetId": "2A64933A9AB0C0132CBA32FD5AD6C2CF"
+          }
+        },
+        "driver_log_prefix": "2026-10-05T07:29:11.304Z pw:protocol \u25c0 RECV"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 113,
+      "elapsed_from_pause_ms": 5012.193105,
+      "record": {
+        "sequence": 113,
+        "monotonic": 540131.348048174,
+        "event": "page_closed_observed",
+        "closing": true,
+        "active_operation": null
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 115,
+      "elapsed_from_pause_ms": 5012.881526,
+      "record": {
+        "sequence": 115,
+        "monotonic": 540131.348736595,
+        "event": "page_close_return",
+        "is_closed": true
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 47,
+      "elapsed_from_pause_ms": 5014.569948,
+      "record": {
+        "python_observed_monotonic": 540131.350425017,
+        "direction": "receive",
+        "correlated_method": "Target.detachedFromTarget",
+        "message": {
+          "method": "Target.detachedFromTarget",
+          "params": {
+            "sessionId": "C85CEB3610A43F491EFF221DDCDD65F1",
+            "targetId": "2A64933A9AB0C0132CBA32FD5AD6C2CF"
+          },
+          "sessionId": "A97017B3A5CDCCCDC048DF95607914A7"
+        },
+        "driver_log_prefix": "2026-10-05T07:29:11.306Z pw:protocol \u25c0 RECV"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 117,
+      "elapsed_from_pause_ms": 5078.377098,
+      "record": {
+        "sequence": 117,
+        "monotonic": 540131.414232167,
+        "event": "cleanup_return",
+        "stop_reason": null,
+        "pending_tasks": 0
+      }
+    }
+  ],
+  "B": [
+    {
+      "kind": "worker/server observation",
+      "line": 80,
+      "elapsed_from_pause_ms": 0.0,
+      "record": {
+        "sequence": 80,
+        "monotonic": 540137.895092424,
+        "event": "native_fetch_pause_observed",
+        "request_id": "interception-job-7.0",
+        "network_id": "1707806.4",
+        "frame_id": "3D026F63E2F5E9869347E280FB23B29E",
+        "resource_type": "XHR",
+        "native_predecessor": null,
+        "url": "http://127.0.0.1:32967/cleanup-held",
+        "method": "GET",
+        "owner_guid": "cdp-session@3280E00130F1ED7E9B2BD470F36440B8"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 81,
+      "elapsed_from_pause_ms": 0.056515,
+      "record": {
+        "sequence": 81,
+        "monotonic": 540137.895148939,
+        "event": "interception_registration_observed",
+        "registered": true,
+        "details": {
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707806.4",
+          "resource_type": "XHR",
+          "frame_id": "3D026F63E2F5E9869347E280FB23B29E",
+          "predecessor": null,
+          "session": "page-cdp-1"
+        },
+        "state": "pending"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 82,
+      "elapsed_from_pause_ms": 0.099742,
+      "record": {
+        "sequence": 82,
+        "monotonic": 540137.895192166,
+        "event": "fixture_hold_enter",
+        "request_id": "interception-job-7.0",
+        "network_id": "1707806.4",
+        "operation_id": "op-2"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 84,
+      "elapsed_from_pause_ms": 1001.592899,
+      "record": {
+        "sequence": 84,
+        "monotonic": 540138.896685323,
+        "event": "hold_interval_end",
+        "received_while_held": false
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 85,
+      "elapsed_from_pause_ms": 1001.659716,
+      "record": {
+        "sequence": 85,
+        "monotonic": 540138.89675214,
+        "event": "page_close_invocation",
+        "stop_reason": null,
+        "closing": false
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 39,
+      "elapsed_from_pause_ms": 1003.966148,
+      "record": {
+        "python_observed_monotonic": 540138.899058572,
+        "direction": "send",
+        "correlated_method": "Target.closeTarget",
+        "message": {
+          "id": 71,
+          "method": "Target.closeTarget",
+          "params": {
+            "targetId": "3D026F63E2F5E9869347E280FB23B29E"
+          }
+        },
+        "driver_log_prefix": "2026-10-05T07:29:18.857Z pw:protocol SEND \u25ba"
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 40,
+      "elapsed_from_pause_ms": 1004.704882,
+      "record": {
+        "python_observed_monotonic": 540138.899797306,
+        "direction": "receive",
+        "correlated_method": "Target.closeTarget",
+        "message": {
+          "id": 71,
+          "result": {
+            "success": true
+          }
+        },
+        "driver_log_prefix": "2026-10-05T07:29:18.857Z pw:protocol \u25c0 RECV"
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 41,
+      "elapsed_from_pause_ms": 1006.140781,
+      "record": {
+        "python_observed_monotonic": 540138.901233205,
+        "direction": "receive",
+        "correlated_method": "Target.detachedFromTarget",
+        "message": {
+          "method": "Target.detachedFromTarget",
+          "params": {
+            "sessionId": "30C24241AB2C9AD71B368B76D5E75C4F",
+            "targetId": "3D026F63E2F5E9869347E280FB23B29E"
+          }
+        },
+        "driver_log_prefix": "2026-10-05T07:29:18.859Z pw:protocol \u25c0 RECV"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 86,
+      "elapsed_from_pause_ms": 1007.385318,
+      "record": {
+        "sequence": 86,
+        "monotonic": 540138.902477742,
+        "event": "page_closed_observed",
+        "closing": false,
+        "active_operation": "op-2"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 88,
+      "elapsed_from_pause_ms": 1007.477043,
+      "record": {
+        "sequence": 88,
+        "monotonic": 540138.902569467,
+        "event": "controller",
+        "row": {
+          "event": "stop",
+          "monotonic": 540138.902567654,
+          "reason": "browser_page_closed"
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 89,
+      "elapsed_from_pause_ms": 1008.301872,
+      "record": {
+        "sequence": 89,
+        "monotonic": 540138.903394296,
+        "event": "page_close_return",
+        "is_closed": true
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 90,
+      "elapsed_from_pause_ms": 1008.364431,
+      "record": {
+        "sequence": 90,
+        "monotonic": 540138.903456855,
+        "event": "fixture_release_invocation"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 91,
+      "elapsed_from_pause_ms": 1008.457345,
+      "record": {
+        "sequence": 91,
+        "monotonic": 540138.903549769,
+        "event": "fixture_hold_exit",
+        "request_id": "interception-job-7.0"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 92,
+      "elapsed_from_pause_ms": 1008.54075,
+      "record": {
+        "sequence": 92,
+        "monotonic": 540138.903633174,
+        "event": "controller",
+        "row": {
+          "event": "request_classified",
+          "monotonic": 540138.903628086,
+          "url": "http://127.0.0.1:32967/cleanup-held",
+          "method": "GET",
+          "classification": "intentional",
+          "initiator_script_id": "39",
+          "network_resource_type": "Fetch",
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707806.4",
+          "resource_type": "XHR",
+          "frame_id": "3D026F63E2F5E9869347E280FB23B29E",
+          "predecessor": null,
+          "session": "page-cdp-1"
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 93,
+      "elapsed_from_pause_ms": 1008.625542,
+      "record": {
+        "sequence": 93,
+        "monotonic": 540138.903717966,
+        "event": "controller",
+        "row": {
+          "event": "intentional_prevented",
+          "monotonic": 540138.903713792,
+          "url": "http://127.0.0.1:32967/cleanup-held",
+          "reason": "browser_page_closed",
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707806.4",
+          "resource_type": "XHR",
+          "frame_id": "3D026F63E2F5E9869347E280FB23B29E",
+          "predecessor": null,
+          "session": "page-cdp-1"
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 94,
+      "elapsed_from_pause_ms": 1008.691993,
+      "record": {
+        "sequence": 94,
+        "monotonic": 540138.903784417,
+        "event": "controller",
+        "row": {
+          "event": "interception_command",
+          "monotonic": 540138.903780317,
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707806.4",
+          "resource_type": "XHR",
+          "frame_id": "3D026F63E2F5E9869347E280FB23B29E",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 95,
+      "elapsed_from_pause_ms": 1008.798291,
+      "record": {
+        "sequence": 95,
+        "monotonic": 540138.903890715,
+        "event": "python_cdp_send_attempt",
+        "method": "Fetch.failRequest",
+        "params": {
+          "requestId": "interception-job-7.0",
+          "errorReason": "Aborted"
+        },
+        "owner_guid": "cdp-session@3280E00130F1ED7E9B2BD470F36440B8"
+      }
+    },
+    {
+      "kind": "parent observation of driver protocol log",
+      "line": 42,
+      "elapsed_from_pause_ms": 1009.20715,
+      "record": {
+        "python_observed_monotonic": 540138.904299574,
+        "direction": "receive",
+        "correlated_method": "Target.detachedFromTarget",
+        "message": {
+          "method": "Target.detachedFromTarget",
+          "params": {
+            "sessionId": "3280E00130F1ED7E9B2BD470F36440B8",
+            "targetId": "3D026F63E2F5E9869347E280FB23B29E"
+          },
+          "sessionId": "1C41632E3A151A537A4B956854D9A743"
+        },
+        "driver_log_prefix": "2026-10-05T07:29:18.862Z pw:protocol \u25c0 RECV"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 96,
+      "elapsed_from_pause_ms": 1010.100456,
+      "record": {
+        "sequence": 96,
+        "monotonic": 540138.90519288,
+        "event": "server_socket_read_return",
+        "connection_id": "connection-1",
+        "read_started": 540134.653488844,
+        "bytes": 577,
+        "sha256": "0737c682f2a7747893e8eb348b61a0094abbd97342afa04375d7e8040d3fb8b7",
+        "request_line": "GET /cleanup-held HTTP/1.1"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 97,
+      "elapsed_from_pause_ms": 1010.590384,
+      "record": {
+        "sequence": 97,
+        "monotonic": 540138.905682808,
+        "event": "server_handler_request_received",
+        "connection_id": "connection-1",
+        "path": "/cleanup-held",
+        "method": "GET",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 100,
+      "elapsed_from_pause_ms": 1012.129362,
+      "record": {
+        "sequence": 100,
+        "monotonic": 540138.907221786,
+        "event": "controller",
+        "row": {
+          "event": "operation_complete",
+          "monotonic": 540138.907216723,
+          "url": "http://127.0.0.1:32967/cleanup-held",
+          "kind": "read",
+          "operation_id": "op-2",
+          "outcome": "failure",
+          "error": "browser_page_closed"
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 101,
+      "elapsed_from_pause_ms": 1012.834279,
+      "record": {
+        "sequence": 101,
+        "monotonic": 540138.907926703,
+        "event": "read_return",
+        "incomplete": true,
+        "error": "browser_page_closed",
+        "body_bytes": 0
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 102,
+      "elapsed_from_pause_ms": 1013.269005,
+      "record": {
+        "sequence": 102,
+        "monotonic": 540138.908361429,
+        "event": "python_cdp_send_error",
+        "method": "Fetch.failRequest",
+        "request_id": "interception-job-7.0",
+        "error": "TargetClosedError",
+        "detail": "CDPSession.send: Target page, context or browser has been closed",
+        "owner_guid": "cdp-session@3280E00130F1ED7E9B2BD470F36440B8"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 103,
+      "elapsed_from_pause_ms": 1013.341048,
+      "record": {
+        "sequence": 103,
+        "monotonic": 540138.908433472,
+        "event": "controller",
+        "row": {
+          "event": "interception_command_error",
+          "monotonic": 540138.908430344,
+          "operation_id": "op-2",
+          "request_id": "interception-job-7.0",
+          "network_id": "1707806.4",
+          "resource_type": "XHR",
+          "frame_id": "3D026F63E2F5E9869347E280FB23B29E",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "error",
+          "error": "TargetClosedError",
+          "detail": "CDPSession.send: Target page, context or browser has been closed",
+          "confirmed_canceled": false,
+          "supported_incidental": false,
+          "supported_cleanup_closed": false
+        }
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 104,
+      "elapsed_from_pause_ms": 1013.412114,
+      "record": {
+        "sequence": 104,
+        "monotonic": 540138.908504538,
+        "event": "cleanup_invocation",
+        "stop_reason": "browser_page_closed"
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 105,
+      "elapsed_from_pause_ms": 1013.466814,
+      "record": {
+        "sequence": 105,
+        "monotonic": 540138.908559238,
+        "event": "page_close_invocation",
+        "stop_reason": "browser_page_closed",
+        "closing": true
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 106,
+      "elapsed_from_pause_ms": 1016.569457,
+      "record": {
+        "sequence": 106,
+        "monotonic": 540138.911661881,
+        "event": "page_close_return",
+        "is_closed": true
+      }
+    },
+    {
+      "kind": "worker/server observation",
+      "line": 108,
+      "elapsed_from_pause_ms": 1104.052213,
+      "record": {
+        "sequence": 108,
+        "monotonic": 540138.999144637,
+        "event": "cleanup_return",
+        "stop_reason": "browser_page_closed",
+        "pending_tasks": 0
+      }
+    }
+  ]
+}

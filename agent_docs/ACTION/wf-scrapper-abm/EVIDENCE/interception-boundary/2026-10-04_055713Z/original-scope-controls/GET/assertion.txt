@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/interception-boundary/2026-10-04_055713Z/check_original_scope.py", line 22, in <module>
+    checks.test_narrow_read_redirect_scope_prevents_target_dispatch(tmp,method)
+  File "/home/moose/PYTHON/stark-web-factory-scrapper-v1/tests/test_interception_boundary.py", line 106, in test_narrow_read_redirect_scope_prevents_target_dispatch
+    asyncio.run(exercise())
+  File "/home/moose/.pyenv/versions/3.12.3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/home/moose/.pyenv/versions/3.12.3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/moose/.pyenv/versions/3.12.3/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/moose/PYTHON/stark-web-factory-scrapper-v1/tests/test_interception_boundary.py", line 99, in exercise
+    assert result['incomplete'] and result['error']=='redirect_out_of_scope'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

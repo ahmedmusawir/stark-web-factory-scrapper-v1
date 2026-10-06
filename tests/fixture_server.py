@@ -12,7 +12,7 @@ ENTITY = b'[ {"id": 1, "link": "http://127.0.0.1/article/", "content": {"rendere
 
 
 @contextmanager
-def fixture_server(*, mode=None, port=0, variant="complete"):
+def fixture_server(*, mode=None, port=0, variant="complete", sitemap_delay=0, body_responses=None, redirect_destination=None):
     timeline=[]
     identity_reads={}
     class Handler(BaseHTTPRequestHandler):
@@ -25,6 +25,12 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
             self.rfile.read(int(self.headers.get('Content-Length','0')))
             self.respond(204,b'',{})
         def do_HEAD(self):
+            if self.path=='/boundary-allowed':
+                return self.respond(302,b'',{'Location':redirect_destination})
+            if self.path=='/boundary-data':
+                return self.respond(200,b'',{'Content-Type':'application/json','Content-Length':str(len(ENTITY)), 'Access-Control-Allow-Origin':'*'})
+            if self.path=='/boundary-denied':
+                return self.respond(302,b'',{'Location':f'http://localhost:{self.server.server_port}/never-boundary'})
             if self.path=='/read-identity':
                 return self.identity_read()
             if mode=='pipeline' and self.path=='/image.png':
@@ -35,6 +41,42 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
                 return self.respond(429,b'',{'Retry-After':'42'})
             self.respond(200,b'',{'Content-Type':'image/png','Content-Length':'4096'})
         def do_GET(self):
+            if self.path=='/boundary-allowed':
+                return self.respond(302,b'',{'Location':redirect_destination})
+            if self.path=='/boundary-data':
+                return self.respond(200,ENTITY,{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'})
+            if self.path=='/boundary-denied':
+                return self.respond(302,b'',{'Location':f'http://localhost:{self.server.server_port}/never-boundary'})
+            if self.path=='/boundary':
+                body=ARTICLE.replace(b'</head>',b'<link rel="stylesheet" href="/boundary.css"><script src="/boundary.js"></script></head>')
+                body=body.replace(b'</body>',b'<img id="boundary-image" src="/boundary.png"></body>')
+                return self.respond(200,body,{'Content-Type':'text/html'})
+            if self.path=='/boundary.css':
+                return self.respond(200,b'body { color: rgb(12, 34, 56); }',{'Content-Type':'text/css'})
+            if self.path=='/boundary.js':
+                return self.respond(200,b'window.boundaryScript=true;',{'Content-Type':'application/javascript'})
+            if self.path=='/boundary.png':
+                return self.respond(200,fixture_png(),{'Content-Type':'image/png'})
+            if self.path.startswith('/boundary-cancel.png'):
+                return self.respond(200,fixture_png(),{'Content-Type':'image/png'},delay=10,prefix=8)
+            if body_responses and self.path in body_responses:
+                return self.respond(200,body_responses[self.path],{'Content-Type':'application/json; charset=UTF-8',
+                    'X-WP-Total':'100','X-WP-TotalPages':'1'})
+            if self.path=='/handoff-activity':
+                # Public, deterministic loopback traffic; no interaction or form submission.
+                body=ARTICLE.replace(b'</body>',b'''<script>
+                for(let i=0;i<12;i++) {
+                  fetch('/activity-read?i='+i);
+                  let x=new XMLHttpRequest();x.open('GET','/activity-xhr?i='+i);x.send();
+                  let img=new Image();img.src='/activity-image?i='+i;document.body.append(img);
+                }
+                fetch('/activity-beacon',{method:'POST',body:'synthetic telemetry'});
+                </script></body>''')
+                return self.respond(200,body,{'Content-Type':'text/html'})
+            if self.path.startswith('/activity-image'):
+                return self.respond(200,fixture_png(),{'Content-Type':'image/png'})
+            if self.path.startswith('/activity-'):
+                return self.respond(200,b'public fixture background',{'Content-Type':'text/plain'})
             if self.path=='/read-identity':
                 return self.identity_read()
             if self.path.startswith('/identity/'):
@@ -70,7 +112,7 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
                 if self.path=='/robots.txt':
                     return self.respond(200,('User-agent: *\nDisallow: /private/\nSitemap: '+origin+'/sitemap.xml\n').encode(),{'Content-Type':'text/plain'})
                 if self.path=='/sitemap.xml':
-                    return self.respond(200,('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>'+origin+'/pages.xml</loc></sitemap><sitemap><loc>'+origin+'/aliases.xml</loc></sitemap></sitemapindex>').encode(),{'Content-Type':'application/xml'})
+                    return self.respond(200,('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>'+origin+'/pages.xml</loc></sitemap><sitemap><loc>'+origin+'/aliases.xml</loc></sitemap></sitemapindex>').encode(),{'Content-Type':'application/xml'},delay=sitemap_delay,prefix=64 if sitemap_delay else 0)
                 if self.path in ('/pages.xml','/aliases.xml'):
                     paths=HEALTHY_PATHS+(['/missing/'] if variant=='base' else []) if self.path=='/pages.xml' else ['/about/?utm_source=alias']
                     return self.respond(200,('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+origin+x+'</loc></url>' for x in paths)+'</urlset>').encode(),{'Content-Type':'application/xml'})
@@ -124,6 +166,8 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
                 try:
                     self.wfile.write(b'a'*2048);self.wfile.flush();self.emit('body_sent',bytes=4096)
                 except (BrokenPipeError,ConnectionResetError):self.emit('browser_closed_connection')
+            elif self.path=='/deadline-stream':
+                self.respond(200,b'a'*4096,{'Content-Type':'text/plain'},delay=40,prefix=2048)
             elif self.path.startswith('/large'):
                 self.respond(200,b'a'*4096,{})
             else:
@@ -134,15 +178,17 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
             # fixture order, never an identification header/query on the request.
             self.respond(403 if count==1 else 200,b'' if self.command=='HEAD' else b'coordinator response',
                          {'Content-Type':'text/plain'})
-        def respond(self,status,body,headers,delay=0):
+        def respond(self,status,body,headers,delay=0,prefix=0):
             self.emit('request_received',user_agent=self.headers.get('User-Agent'),resource_destination=self.headers.get('Sec-Fetch-Dest'))
             self.send_response(status)
             if 'Content-Length' not in headers: self.send_header('Content-Length',str(len(body)))
             for k,v in headers.items(): self.send_header(k,v)
             self.end_headers();self.wfile.flush();self.emit('headers_sent',status=status)
+            if prefix and self.command!='HEAD':
+                self.wfile.write(body[:prefix]);self.wfile.flush();self.emit('body_prefix_sent',bytes=prefix)
             if delay: time.sleep(delay)
             try:
-                if self.command!='HEAD': self.wfile.write(body);self.wfile.flush()
+                if self.command!='HEAD': self.wfile.write(body[prefix:]);self.wfile.flush()
                 self.emit('body_sent',bytes=len(body))
             except (BrokenPipeError, ConnectionResetError): self.emit('browser_closed_connection')
     server=ThreadingHTTPServer(('127.0.0.1',port),Handler)

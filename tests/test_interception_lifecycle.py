@@ -104,7 +104,10 @@ def test_native_intentional_cancellation_never_succeeds(tmp_path,kind):
     class CanceledIntentional(NativeCancellation):
         async def correlated_read(self, expression):
             # Native AbortController; change only the fixture abort timing.
-            return await super().correlated_read(expression.replace('ctl.abort(),timeout','ctl.abort(),300'))
+            marker='if(remaining<=0) abort();'
+            assert marker in expression, 'Native cancellation injection must bind the current script'
+            return await super().correlated_read(expression.replace(marker,
+                marker+' setTimeout(()=>ctl.abort(),300);'))
     with fixture_server() as (origin,timeline):
         async def exercise():
             s=CanceledIntentional(origin,bounds=Bounds(seconds=60,finalization_reserve=5),

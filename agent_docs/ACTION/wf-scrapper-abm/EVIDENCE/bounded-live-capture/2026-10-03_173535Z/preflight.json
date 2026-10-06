@@ -1,0 +1,90 @@
+{
+  "authorized_at": "2026-10-03T17:35:35.743205+00:00",
+  "mission": "ONE new post-deadline-repair live Capture attempt; stop after outcome; no repair/retry",
+  "actual_repository": "/home/moose/PYTHON/stark-web-factory-scrapper-v1",
+  "previous_repository_path": "/home/moose/python/stark-web-factory-scrapper-v1 (absent; uppercase PYTHON checkout verified)",
+  "branch": "wf-scrapper-abm",
+  "head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "source_inventory_sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b",
+  "source_entries": 62,
+  "source_differences": [],
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "recon_pipeline",
+    "--project",
+    "CyberizeGroup",
+    "--url",
+    "https://cyberizegroup.com",
+    "--limit",
+    "10",
+    "--skip-prepare",
+    "--no-media-head",
+    "--max-operations",
+    "120",
+    "--max-seconds",
+    "1800",
+    "--max-bytes",
+    "100000000",
+    "--max-aggregate-bytes",
+    "100000000"
+  ],
+  "preserved_file_count": 8062,
+  "audit_before": {
+    "RECOVERY.md": {
+      "bytes": 35644,
+      "sha256": "bc9896611ffab0f5b8550fe3266d4aaa67f3913adf11ce11bb3f91c313504397"
+    },
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md": {
+      "bytes": 42865,
+      "sha256": "b29c40bd420d6c8df61f0f2e467ec1b8714849d8e054a88a3c7790d871f7966f"
+    },
+    "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md": {
+      "bytes": 45987,
+      "sha256": "01a337ae06fa6c9e11c5052a020f78824fe70e6d59514c618a4b54c101f18dcc"
+    },
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md": {
+      "bytes": 20189,
+      "sha256": "29cfce937b60845a581fdd70e29c4c1152d69b9457c0e6e959ca5d939609c1d2"
+    },
+    "agent_docs/SESSIONS/session_2026-10-03.md": {
+      "bytes": 20939,
+      "sha256": "8c31ff11bccea959226a9314089e646ee23606f3269daab74f2c1b88d185e9a1"
+    }
+  },
+  "existing_runs": [
+    "outputs/CyberizeGroup/runs/2026-10-02T16-14-53Z",
+    "outputs/CyberizeGroup/runs/2026-10-03T07-39-21Z",
+    "outputs/CyberizeGroup/runs/2026-10-03T11-46-34Z"
+  ],
+  "runtime": {
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "Crawl4AI": "0.9.3",
+    "playwright": "1.52.0"
+  },
+  "limits": {
+    "intentional_dispatches": 120,
+    "document_slots_including_bootstrap": 10,
+    "completion_gap_s": 5,
+    "seconds_including_finalization": 1800,
+    "raw_bytes": 97000000,
+    "support_bytes": 3000000,
+    "aggregate_bytes": 100000000,
+    "decoded_response_bytes": 10485760,
+    "document_seconds": 180,
+    "read_seconds": 30,
+    "finalization_reserve_seconds": 30
+  },
+  "budget_preflight": {
+    "projected_support_ceiling": 2073603,
+    "command_log_max": 1000000,
+    "reports_inventory_checkpoint_growth_reserve": 500000,
+    "metadata_margin": 30000,
+    "method": "Existing raw writer limits raw to97MB; recorder limits command log to1MB; exact source/status/diff overhead plus all preflight files and500KB report/checkpoint reserve fit3MB. Tally all new files and audit growth at handoff."
+  },
+  "recorder_original": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+  "recorder_change": "Only locator path, to fresh evidence directory at verified relocated checkout. ABM_QUIET_LOG=1.",
+  "prepare": "ON HOLD; no P1-P6/E1/E2",
+  "independent_qa": "NOT RUN"
+}

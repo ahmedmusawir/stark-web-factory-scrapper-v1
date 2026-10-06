@@ -4,6 +4,7 @@ No alternate HTTP client. Crawl4AI hooks provide all browser objects. Events for
 incidental resources are separate from intentional admission/pacing evidence.
 """
 import asyncio
+import base64
 import hashlib
 import json
 from pathlib import Path
@@ -87,6 +88,7 @@ class Interception:
     classification: str = 'unresolved'
     state: str = 'pending'
     command: str | None = None
+    abort_confirmed: bool = False
 
 
 def protocol_detail(error):
@@ -133,6 +135,10 @@ class BrowserSession:
         self.closing = False
         self.diagnostic_events = 0
         self.interception_owner = None
+        self.shutdown_task = None
+        self.shutdown_result = None
+        self.shutdown_changed = asyncio.Event()
+        self.shutdown_requests = set()
 
     def event(self, event_name, **values):
         row = {'event':event_name, 'monotonic':time.monotonic(), **values}
@@ -141,7 +147,7 @@ class BrowserSession:
             self.log(row)
         except (OSError, BufferError):
             self.stop_reason = self.stop_reason or 'evidence_write_limit'
-            if self.page and not self.page.is_closed():self.spawn(self.page.close())
+            if self.page and not self.page.is_closed():self.request_shutdown()
 
     def stop(self, reason):
         if self.stop_reason is None:
@@ -149,8 +155,8 @@ class BrowserSession:
             self.event('stop', reason=reason)
 
     def check(self):
-        if self.stop_reason:
-            raise CollectionStopped(self.stop_reason)
+        if self.stop_reason or self.closing:
+            raise CollectionStopped(self.stop_reason or 'browser_closing')
         if time.monotonic() - self.started >= self.bounds.seconds - self.bounds.finalization_reserve:
             self.stop('wall_clock_limit')
             raise CollectionStopped(self.stop_reason)
@@ -202,15 +208,105 @@ class BrowserSession:
         return self
 
     async def __aexit__(self, *exc):
+        await self.shutdown()
+
+    def request_shutdown(self):
+        # Synchronous admission fence, before scheduling any asynchronous drain.
         self.closing = True
+        if self.op:
+            self.op.error = self.op.error or self.stop_reason or 'collector_shutdown'
+        if self.shutdown_task is None:
+            self.shutdown_task = asyncio.create_task(self._shutdown())
+        return self.shutdown_task
+
+    async def shutdown(self):
+        # Concurrent error callbacks and context exit share one sequence.
+        return await asyncio.shield(self.request_shutdown())
+
+    async def _shutdown(self):
+        deadline = min(self.started + self.bounds.seconds,
+                       time.monotonic() + self.bounds.finalization_reserve)
+        # Leave closure time INSIDE the existing reserve, never extend it.
+        drain_deadline = deadline - min(1.0, max(0, deadline-time.monotonic())/5)
+        attempted = set()
+        self.diagnostic('shutdown_start', deadline=deadline, drain_deadline=drain_deadline)
+        while True:
+            self.shutdown_changed.clear()
+            unsettled = [e for e in self.interceptions.values() if e.state in ('pending','resolving')]
+            self.shutdown_requests.update(e.details['request_id'] for e in unsettled)
+            self.shutdown_requests.update(e.details['request_id'] for e in self.interceptions.values()
+                                          if e.state in ('error','closed'))
+            for entry in unsettled:
+                rid = entry.details['request_id']
+                if entry.state == 'pending' and rid not in attempted:
+                    attempted.add(rid)
+                    self.spawn(self.resolve_interception(entry, 'Fetch.failRequest'))
+            remaining = drain_deadline-time.monotonic()
+            if remaining <= 0:
+                break
+            if not unsettled:
+                # Observe queued native pauses before starting planned closure.
+                # This is a bounded quiet observation, not proof of future silence.
+                count = len(self.interceptions)
+                await asyncio.sleep(min(.05, remaining))
+                if count == len(self.interceptions):
+                    break
+                continue
+            try:
+                await asyncio.wait_for(self.shutdown_changed.wait(), remaining)
+            except asyncio.TimeoutError:
+                break
+
+        def findings():
+            return [dict(e.details, state=e.state, command=e.command,
+                         classification=e.classification, abort_confirmed=e.abort_confirmed)
+                    for rid in sorted(self.shutdown_requests)
+                    if (e := self.interceptions[rid]).abort_confirmed is not True]
+
+        unconfirmed = findings()
+        self.diagnostic('shutdown_drain', confirmed_aborts=sum(
+            self.interceptions[rid].abort_confirmed for rid in self.shutdown_requests),
+            unconfirmed_count=len(unconfirmed), unconfirmed_sample=unconfirmed[:20])
+        if any(e['state'] != 'closed' or e['classification'] != 'incidental' for e in unconfirmed):
+            self.stop('shutdown_cancellation_unconfirmed')
         try:
-            await self.crawler.__aexit__(*exc)
+            if time.monotonic() >= deadline:
+                self.stop('shutdown_deadline')
+                self.diagnostic('shutdown_close_not_attempted', reason='deadline_exhausted')
+            elif hasattr(self, 'crawler'):
+                self.diagnostic('shutdown_planned_close', deadline=deadline)
+                async with asyncio.timeout_at(deadline):
+                    await self.crawler.__aexit__(None, None, None)
+        except asyncio.TimeoutError:
+            self.stop('shutdown_deadline')
+            self.diagnostic('shutdown_close_unconfirmed', reason='deadline_exhausted')
         except Exception as error:
             self.diagnostic('interception_cleanup_error', detail=protocol_detail(error))
-            self.stop('browser_cleanup_error')  # Sticky: never replaces the primary stop.
+            self.stop('browser_cleanup_error')
         finally:
-            if self.tasks:
-                await asyncio.gather(*list(self.tasks), return_exceptions=True)
+            # Held classification/identity/pacing tasks cannot outlive cleanup.
+            # Canceling an unresolved command is explicitly unconfirmed, not an
+            # abort acknowledgement. No stale ID or HTTP request is retried.
+            tasks = [t for t in self.tasks if t is not asyncio.current_task()]
+            for task in tasks:
+                if not task.done(): task.cancel()
+            if tasks and time.monotonic() < deadline:
+                try:
+                    async with asyncio.timeout_at(deadline):
+                        await asyncio.gather(*tasks, return_exceptions=True)
+                except asyncio.TimeoutError:
+                    self.stop('shutdown_deadline')
+            unconfirmed = findings()
+            if any(e['state'] != 'closed' or e['classification'] != 'incidental' for e in unconfirmed):
+                self.stop('shutdown_cancellation_unconfirmed')
+            self.shutdown_result = {
+                'confirmed_aborts':sum(self.interceptions[rid].abort_confirmed for rid in self.shutdown_requests),
+                'unconfirmed':unconfirmed, 'deadline':deadline,
+                'finished':time.monotonic(), 'stop_reason':self.stop_reason}
+            self.diagnostic('shutdown_complete', confirmed_aborts=self.shutdown_result['confirmed_aborts'],
+                            unconfirmed_count=len(unconfirmed), unconfirmed_sample=unconfirmed[:20],
+                            deadline=deadline, finished=self.shutdown_result['finished'], stop_reason=self.stop_reason)
+        return self.shutdown_result
 
     async def created(self, page, context, **kwargs):
         if self.page is page:
@@ -255,8 +351,8 @@ class BrowserSession:
                     self.stop('unexpected_top_level_page' if req.is_navigation_request() else 'unobservable_request_frame')
                     await route.abort()
                     return
-                if self.stop_reason or (req.is_navigation_request() and frame.parent_frame is None and frame != page.main_frame):
-                    if not self.stop_reason: self.stop('unexpected_top_level_page')
+                if self.stop_reason or self.closing or (req.is_navigation_request() and frame.parent_frame is None and frame != page.main_frame):
+                    if not self.stop_reason and not self.closing: self.stop('unexpected_top_level_page')
                     await route.abort()
                 else:
                     await route.continue_()
@@ -282,7 +378,13 @@ class BrowserSession:
         self.cdp.on('Network.loadingFailed', self.network_failed)
         self.cdp.on('Network.responseReceived', self.network_response)
         await self.cdp.send('Network.enable')
-        await self.cdp.send('Fetch.enable', {'patterns':[{'urlPattern':'*','requestStage':'Request'}]})
+        # Own only navigation and browser reads. Chromium can label window.fetch
+        # XHR here while Network reports Fetch, so retain both resource types.
+        # Match every URL: intentional redirect scope is checked before dispatch.
+        # Other resources keep the context guard and passive Network observers.
+        await self.cdp.send('Fetch.enable', {'patterns':[
+            {'urlPattern':'*','resourceType':kind,'requestStage':'Request'}
+            for kind in ('Document','Fetch','XHR')]})
         self.event('controls_installed', transport='Chromium CDP Fetch.requestPaused')
         return page
 
@@ -317,8 +419,17 @@ class BrowserSession:
                    'network_id':params.get('networkId'), 'resource_type':params['resourceType'],
                    'frame_id':params.get('frameId'), 'predecessor':params.get('redirectedRequestId'),
                    'session':'page-cdp-1'}
-        self.interceptions[rid] = Interception(owner, op, details)
-        self.spawn(self.paused(params))
+        entry = self.interceptions[rid] = Interception(owner, op, details)
+        self.shutdown_changed.set()
+        if self.closing:
+            # No identity/pacing wait is needed to DENY a new paused request.
+            # Keep classification honest; shutdown is not identity proof.
+            entry.classification = 'shutdown_unclassified'
+            self.shutdown_requests.add(rid)
+            self.diagnostic('shutdown_new_pause', **details)
+            self.spawn(self.resolve_interception(entry, 'Fetch.failRequest'))
+        else:
+            self.spawn(self.paused(params))
 
     async def resolve_interception(self, entry, command):
         """One command attempt on the session that emitted this exact Fetch ID."""
@@ -350,6 +461,12 @@ class BrowserSession:
                 await self.resolve_interception(entry, 'Fetch.failRequest')
                 return False
             await entry.owner.send(command, args)
+        except asyncio.CancelledError:
+            entry.state = 'error'
+            self.diagnostic('interception_command_cancelled', **details, command=command,
+                            classification=entry.classification, abort_confirmed=False)
+            self.shutdown_changed.set()
+            raise
         except Exception as error:
             entry.state = 'error'
             failure = self.cancellations.get(details['network_id'])
@@ -361,11 +478,23 @@ class BrowserSession:
                          f'Protocol error ({command}):' in str(error) and confirmed and
                          entry.classification == 'incidental' and not self.stop_reason and
                          not self.closing and self.page and not self.page.is_closed())
+            # A late abort during normal teardown cannot release HTTP. Only
+            # accept the installed driver's specific closed-target error when
+            # the owned page confirms closure and no collection is active.
+            cleanup_closed = (command == 'Fetch.failRequest' and self.closing and
+                              self.op is None and entry.classification == 'incidental' and
+                              type(error).__name__ == 'TargetClosedError' and
+                              self.page is not None and self.page.is_closed())
             self.diagnostic('interception_command_error', **details, command=command,
                             classification=entry.classification, state=entry.state,
                             error=type(error).__name__, detail=protocol_detail(error),
-                            confirmed_canceled=confirmed, supported_incidental=bool(supported))
-            if supported:
+                            confirmed_canceled=confirmed, supported_incidental=bool(supported),
+                            supported_cleanup_closed=bool(cleanup_closed))
+            if cleanup_closed:
+                entry.state = 'closed'  # Unresolved HTTP, not successful continuation.
+                self.diagnostic('interception_cleanup_closed', **details, command=command,
+                                classification=entry.classification, state=entry.state)
+            elif supported:
                 entry.state = 'canceled'
                 self.diagnostic('interception_incidental_canceled', **details, command=command,
                                 classification=entry.classification, state=entry.state)
@@ -374,10 +503,14 @@ class BrowserSession:
                     entry.operation.error = entry.operation.error or 'interception_error:'+type(error).__name__
                 self.stop('interception_error:'+type(error).__name__)
             # Never retry, or failRequest an ID after a failed continueRequest.
+            self.shutdown_changed.set()
             return False
         entry.state = 'resolved'
+        entry.abort_confirmed = command == 'Fetch.failRequest'
         self.diagnostic('interception_command_complete', **details, command=command,
-                        classification=entry.classification, state=entry.state)
+                        classification=entry.classification, state=entry.state,
+                        abort_confirmed=entry.abort_confirmed)
+        self.shutdown_changed.set()
         return True
 
     def network_request(self, params):
@@ -385,7 +518,9 @@ class BrowserSession:
         identity = {'network_id': params['requestId'], 'frame_id': params.get('frameId'),
                     'resource_type': params.get('type'), 'loader_id': params.get('loaderId'),
                     'initiator_type': params.get('initiator', {}).get('type'),
-                    'initiator_script_id': frames[0].get('scriptId') if frames else None}
+                    'initiator_script_id': frames[0].get('scriptId') if frames else None,
+                    'method': params['request']['method'],
+                    'redirect_from': params.get('redirectResponse', {}).get('url')}
         self.network_requests[(params['requestId'], params['request']['url'])] = identity
         redirect = params.get('redirectResponse')
         # Chromium marks redirect completion on the Network redirect transition.
@@ -404,7 +539,7 @@ class BrowserSession:
                 self.op.redirect_transition = (params['requestId'], predecessor,
                                                params['request']['url'], time.monotonic())
         self.event('cdp_request_will_be_sent', request_id=params['requestId'],
-                   url=params['request']['url'], redirect_from=redirect['url'] if redirect else None,
+                   url=params['request']['url'],
                    redirect_status=redirect['status'] if redirect else None,
                    browser_timestamp=params['timestamp'], **identity)
 
@@ -413,7 +548,7 @@ class BrowserSession:
             self.op.decoded_bytes = getattr(self.op,'decoded_bytes',0) + params['dataLength']
             if self.op.decoded_bytes > self.bounds.response_bytes:
                 self.stop('document_response_limit')
-                self.spawn(self.page.close())
+                self.request_shutdown()
 
     def network_finished(self, params):
         self.event('cdp_loading_finished', request_id=params['requestId'], browser_timestamp=params['timestamp'])
@@ -465,7 +600,7 @@ class BrowserSession:
             reason = challenge_reason(op.status, headers, '')
             if reason:
                 self.stop(reason)
-                self.spawn(self.page.close())
+                self.request_shutdown()
 
     def request_seen(self, request):
         host = urlsplit(request.url).hostname
@@ -506,6 +641,66 @@ class BrowserSession:
             raise CollectionStopped(self.stop_reason)
         return identity
 
+    async def redirect_identity(self, params, op):
+        """Resolve an owned redirect without inventing Chrome's native parent ID."""
+        entry = self.interceptions[params['requestId']]
+        network_id, url = params.get('networkId'), params['request']['url']
+        native_parent = params.get('redirectedRequestId')
+        previous = getattr(op, 'network_ids', {}).get(network_id)
+        deadline = min(getattr(op, 'redirect_deadline', op.started + self.bounds.read_seconds),
+                       self.started + self.bounds.seconds - self.bounds.finalization_reserve)
+        def refuse():
+            self.stop('ambiguous_redirect_identity')
+            raise CollectionStopped(self.stop_reason)
+        if (op is not self.op or self.closing or entry.operation is not op or
+                entry.owner is not self.cdp or entry.owner is not self.interception_owner or
+                not previous or params.get('frameId') != self.main_frame or
+                params['resourceType'] not in (('Document',) if op.kind == 'document' else ('Fetch','XHR')) or
+                params['request']['method'] != op.method):
+            refuse()
+        candidates = [rid for rid, old_url in getattr(op, 'fetch_ids', {}).items()
+                      if old_url == previous and rid in self.interceptions and
+                      self.interceptions[rid].details['network_id'] == network_id and
+                      self.interceptions[rid].operation is op and
+                      self.interceptions[rid].owner is entry.owner and
+                      self.interceptions[rid].classification == 'intentional']
+        if len(candidates) != 1 or (native_parent is not None and native_parent != candidates[0]):
+            refuse()
+        parent = candidates[0]
+        self.event('redirect_identity_wait', **entry.details, previous_url=previous, next_url=url,
+                   correlation_deadline=deadline)
+        while True:
+            if self.stop_reason:
+                raise CollectionStopped(self.stop_reason)
+            if op is not self.op or self.closing or time.monotonic() >= deadline:
+                refuse()
+            identity = self.network_requests.get((network_id, url))
+            transition = getattr(op, 'redirect_transition', None)
+            # A loop can revisit a URL whose old initial Network entry is still
+            # cached. Wait for fresh redirect evidence, not that initial record.
+            if identity and identity['redirect_from'] is not None:
+                compatible = (identity['resource_type'] == params['resourceType'] or
+                              (params['resourceType'],identity['resource_type']) == ('XHR','Fetch'))
+                if (not compatible or identity['frame_id'] != params.get('frameId') or
+                        identity['method'] != op.method or identity['redirect_from'] != previous):
+                    refuse()
+                if transition and transition[:3] == (network_id, previous, url):
+                    if self.interceptions[parent].state != 'resolved':
+                        # The prior continue command may still be returning while
+                        # native Network/Fetch callbacks deliver its redirect.
+                        if self.interceptions[parent].state != 'resolving': refuse()
+                    else:
+                        source = ('native_fetch_parent+network_transition' if native_parent else
+                                  'owned_network_transition_missing_fetch_parent')
+                        self.event('redirect_identity_resolved', **entry.details,
+                                   resolved_predecessor=parent, correlation_source=source,
+                                   previous_url=previous, next_url=url, completed=transition[3])
+                        return {**identity,'resolved_predecessor':parent,'correlation_source':source,
+                                'redirect_completed':transition[3]}
+                elif transition and transition[0] == network_id and transition[2] == url:
+                    refuse()
+            await asyncio.sleep(.001)
+
     async def admission_kind(self, params, op):
         parent = params.get('redirectedRequestId')
         if not op:
@@ -514,6 +709,9 @@ class BrowserSession:
         frame = params.get('frameId')
         expected_resources = ('Document',) if op.kind == 'document' else ('Fetch', 'XHR')
         related = parent in getattr(op, 'fetch_ids', {})
+        owned_network = params.get('networkId') in getattr(op, 'network_ids', {})
+        if related or owned_network:
+            return 'intentional', await self.redirect_identity(params, op)
         matches = params['request']['url'] == op.url and params['request']['method'] == op.method
         if not related and not matches:
             return 'incidental', None
@@ -523,12 +721,6 @@ class BrowserSession:
                 raise CollectionStopped(self.stop_reason)
             return 'incidental', None
         identity = await self.request_identity(params, op)
-        if related:
-            predecessor = op.fetch_ids[parent]
-            if op.network_ids.get(identity['network_id']) != predecessor:
-                self.stop('ambiguous_redirect_identity')
-                raise CollectionStopped(self.stop_reason)
-            return 'intentional', identity
         if op.kind == 'read':
             script = identity['initiator_script_id']
             if not script or not op.script_id:
@@ -557,6 +749,9 @@ class BrowserSession:
         try:
             classification, identity = await self.admission_kind(params, op)
             entry.classification = classification
+            if identity and identity.get('resolved_predecessor'):
+                parent = identity['resolved_predecessor']
+                details.update(resolved_predecessor=parent, correlation_source=identity['correlation_source'])
             intended = classification == 'intentional'
             self.event('request_classified', url=url, method=method, classification=classification,
                        initiator_script_id=identity.get('initiator_script_id') if identity else None,
@@ -632,6 +827,7 @@ class BrowserSession:
         except CollectionStopped as exc:
             if op and classification != 'incidental':
                 op.error = op.error or str(exc)
+                op.admission_error = op.error
             self.event(classification+'_prevented', url=url, reason=str(exc), **details)
             await self.resolve_interception(entry, 'Fetch.failRequest')
         except Exception as exc:
@@ -671,6 +867,7 @@ class BrowserSession:
             self.documents += 1
             self.op = self.new_operation(url,'GET','document')
             self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=time.monotonic()+self.timeout(self.bounds.document_seconds))
+            outcome = 'failure'
             try:
                 record = await asyncio.wait_for(crawl_page(self.crawler,url,session_id=self.session_id),
                                                 timeout=self.timeout(self.bounds.document_seconds))
@@ -684,13 +881,25 @@ class BrowserSession:
                     record.update(ok=False, fetched=False, error='blocked' if self.stop_reason and
                                   ('http_' in self.stop_reason or 'challenge' in self.stop_reason or 'block_document' in self.stop_reason)
                                   else op.error or self.stop_reason)
+                outcome = 'success' if record.get('ok') else 'failure'
+                op.error = op.error or record.get('error') or self.stop_reason
                 return record
+            except asyncio.CancelledError:
+                outcome = 'cancelled'
+                self.stop('document_cancelled')
+                self.op.error = self.stop_reason
+                raise
             except asyncio.TimeoutError:
                 self.stop('document_deadline')
+                self.op.error = self.stop_reason
                 raise CollectionStopped(self.stop_reason)
+            except Exception:
+                self.op.error = self.op.error or self.stop_reason or 'document_failed'
+                raise
             finally:
                 self.last_completion = time.monotonic()
-                self.event('operation_complete', url=url, kind='document', operation_id=self.op.operation_id, error=self.op.error)
+                self.event('operation_complete', url=url, kind='document', operation_id=self.op.operation_id,
+                           outcome=outcome, error=self.op.error)
                 self.op = None
 
     def new_operation(self, url, method, kind):
@@ -698,6 +907,7 @@ class BrowserSession:
         return Operation(url, method, kind, operation_id=f'op-{self.operation_sequence}')
 
     async def correlated_read(self, expression):
+        self.event('read_setup_start', operation_id=self.op.operation_id)
         await self.cdp.send('Runtime.enable')
         world = await self.cdp.send('Page.createIsolatedWorld', {
             'frameId': self.main_frame, 'worldName': 'abm-read-identity',
@@ -724,6 +934,7 @@ class BrowserSession:
     async def run_read_script(self, op):
         # The native initiator's top scriptId must match the compiled script, not
         # its spoofable sourceURL. Nothing is added to HTTP headers or URLs.
+        self.event('read_script_started', operation_id=op.operation_id)
         return await self.cdp.send('Runtime.runScript', {
             'scriptId': op.script_id, 'executionContextId': op.context_id,
             'awaitPromise': True, 'returnByValue': True})
@@ -738,42 +949,86 @@ class BrowserSession:
             if not self.scoped(url):
                 raise CollectionStopped('off_scope')
             self.op = self.new_operation(url,method,'read')
-            self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=time.monotonic()+self.timeout(self.bounds.read_seconds))
+            # One operation boundary, shared with the unchanged hard supervisor.
+            # Setup and pacing consume this budget. Reserve time *inside* it for
+            # the browser's partial result, then Python failure handoff. No grace
+            # period extends the 30-second collection ceiling.
+            read_timeout = self.timeout(self.bounds.read_seconds)
+            deadline = time.monotonic() + read_timeout
+            handoff = min(1.0, read_timeout / 10)
+            python_margin = min(0.25, read_timeout / 40)
+            self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=deadline)
+            self.event('read_abort_deadline', operation_id=self.op.operation_id, deadline=deadline-handoff)
+            self.op.redirect_deadline = deadline-handoff
+            outcome = 'failure'
             try:
-                read_timeout=self.timeout(self.bounds.read_seconds)
+                # Same-host wall time only anchors the cooperative JS timer;
+                # Python and supervisor hard limits remain monotonic. Computing
+                # an absolute cutoff prevents CDP setup from restarting a timer.
                 args = {'url':url,'method':method,'cap':self.bounds.response_bytes,
-                        'timeout':max(1,int(read_timeout*1000)-100)}
-                expression = '(' + '''async ({url,method,cap,timeout}) => {
-                    const ctl = new AbortController(); const timer=setTimeout(()=>ctl.abort(),timeout);
+                        'abortAt':(time.time()+deadline-time.monotonic()-handoff)*1000}
+                expression = '(' + '''async ({url,method,cap,abortAt}) => {
+                    const ctl = new AbortController(); let timedOut=false;
+                    const abort=()=>{timedOut=true;ctl.abort();};
+                    const remaining=abortAt-Date.now();
+                    const timer=remaining>0 ? setTimeout(abort,remaining) : null;
+                    if(remaining<=0) abort();
                     let chunks=[], count=0;
+                    // Keep the CDP result compact. Bounded binary-to-base64
+                    // blocks preserve bytes without a JSON number per byte or
+                    // an unbounded spread argument list. The decoded cap below
+                    // remains authoritative; Unicode is never re-encoded here.
+                    const append = value => {
+                        for(let offset=0;offset<value.length;offset+=32768) {
+                            chunks.push(btoa(String.fromCharCode(...value.subarray(offset,offset+32768))));
+                        }
+                    };
                     try {
                         const r=await window.fetch(url,{method,redirect:'follow',signal:ctl.signal});
                         if(r.body) { const reader=r.body.getReader();
                             while(true) { const {done,value}=await reader.read(); if(done) break;
-                                const room=cap-count; chunks.push(Array.from(value.slice(0,room)));
+                                const room=cap-count; append(value.subarray(0,room));
                                 count+=Math.min(value.length,room);
                                 if(value.length>room) { await reader.cancel(); ctl.abort();
                                     return {status:r.status,url:r.url,chunks,bytes:count,incomplete:true,error:'response_limit'}; }
                             }
                         }
                         return {status:r.status,url:r.url,chunks,bytes:count,incomplete:false};
-                    } catch(e) { return {chunks,bytes:count,incomplete:true,error:e.name}; }
+                    } catch(e) { return {chunks,bytes:count,incomplete:true,error:timedOut?'read_deadline':e.name}; }
                     finally { clearTimeout(timer); }
                 }''' + ')(' + json.dumps(args) + ')'
-                result = await asyncio.wait_for(self.correlated_read(expression), read_timeout)
-                body = bytes(x for chunk in result.pop('chunks') for x in chunk)
+                async with asyncio.timeout_at(deadline-python_margin):
+                    result = await self.correlated_read(expression)
+                self.event('read_result_received', operation_id=self.op.operation_id,
+                           bytes=result['bytes'], incomplete=result['incomplete'], error=result.get('error'))
+                body = b''.join(base64.b64decode(chunk,validate=True) for chunk in result.pop('chunks'))
                 result.update(body=body,sha256=hashlib.sha256(body).hexdigest(),headers=dict(self.op.response_headers),
                               redirect_chain=list(self.op.chain),transport='Chromium same-page window.fetch / Response.body.getReader',
-                              boundary='browser-decoded entity bytes',error=result.get('error') or self.op.error)
+                              boundary='browser-decoded entity bytes',
+                              error=getattr(self.op,'admission_error',None) or result.get('error') or self.op.error)
                 if result.get('error'):
                     result['incomplete'] = True
                 reason = challenge_reason(result.get('status'), result['headers'], body.decode('utf-8',errors='replace'))
                 if reason: self.stop(reason)
                 if result.get('incomplete'): self.stop(result.get('error') or 'incomplete_response')
+                self.op.error = self.stop_reason or result.get('error') or self.op.error
+                outcome = 'success' if not result['incomplete'] and not self.op.error else 'failure'
                 return result
+            except asyncio.CancelledError:
+                outcome = 'cancelled'
+                self.stop('read_cancelled')
+                self.op.error = self.stop_reason
+                # External task/SIGINT cancellation is not a successful read.
+                # Drain registered pauses while the session is still usable;
+                # page closure alone is NOT cancellation confirmation.
+                if self.page and not self.page.is_closed():self.request_shutdown()
+                raise
             except Exception as exc:
-                error=self.op.error or ('read_deadline' if isinstance(exc,asyncio.TimeoutError) else 'browser_read_failed')
+                error=self.stop_reason or self.op.error or ('read_deadline' if isinstance(exc,asyncio.TimeoutError) else 'browser_read_failed')
                 self.stop(error)
+                self.op.error = self.stop_reason
+                if isinstance(exc,asyncio.TimeoutError) and self.page and not self.page.is_closed():
+                    self.request_shutdown()
                 return {'body':b'', 'bytes':0,'sha256':hashlib.sha256(b'').hexdigest(),
                         'status':self.op.status,'url':self.op.final_url,'headers':dict(self.op.response_headers),
                         'redirect_chain':list(self.op.chain),'incomplete':True,'error':error,
@@ -782,5 +1037,6 @@ class BrowserSession:
                         'evidence_gap':'browser read interrupted before available chunks returned'}
             finally:
                 self.last_completion = time.monotonic()
-                self.event('operation_complete', url=url, kind='read', operation_id=self.op.operation_id, error=self.op.error)
+                self.event('operation_complete', url=url, kind='read', operation_id=self.op.operation_id,
+                           outcome=outcome, error=self.op.error)
                 self.op = None

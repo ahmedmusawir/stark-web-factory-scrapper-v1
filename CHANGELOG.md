@@ -86,3 +86,14 @@ Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark
 ## 2026-10-02 — Cody engineering checkpoint
 
 C1–C6 Capture/minimal raw reader implemented with 131 passing engineering tests and paired fixture comparison. CHK live failed on a same-URL incidental stylesheet classified as intentional; one dispatch, partial evidence retained. No Prepare/E2/QA completion claim. RECOVERY, ledger and QAM record BLOCKED; exact source and defect packaged for review.
+
+## 2026-10-05 07:34 UTC — [Cody] Engineer
+
+- **Updated:** RECOVERY.md, ENGINEERING_LOG.md, ABM_CAMPAIGN_JOURNAL.md and session_2026-10-05.md — append factual two-arm diagnostic checkpoint; preserve prior records.
+- **Reason:** Tony/JARVIS authorized local teardown experiment; no product repair or QA certification.
+
+## 2026-10-05 13:48 UTC — [Cody] Engineer
+
+- **Updated:** browser_session.py and added test_planned_shutdown.py — bounded pending-ID abort before planned closure; native/local verification only.
+- **Updated:** recovery, engineering journal/log, ledger and session checkpoint — factual source-bound handoff, independent QA NOT RUN.
+- **Reason:** JARVIS scoped local shutdown repair; preserved prior records and original failure.

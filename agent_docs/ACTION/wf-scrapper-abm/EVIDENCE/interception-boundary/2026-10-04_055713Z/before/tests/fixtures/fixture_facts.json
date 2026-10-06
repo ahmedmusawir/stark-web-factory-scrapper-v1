@@ -1,0 +1,77 @@
+{
+  "schema": "abm-fixture-facts-v1",
+  "authority": "E-14 / ABM_RULINGS_1_2 section 3",
+  "snapshot_origin": "http://127.0.0.1:8765",
+  "snapshot_clock": "2026-01-01T00:00:00+00:00",
+  "project": "Fix",
+  "healthy_routes": [
+    "/",
+    "/about/",
+    "/services/",
+    "/contact/",
+    "/article/",
+    "/rendered-only/"
+  ],
+  "base_only_required_failure": {
+    "route": "/missing/",
+    "status": 404
+  },
+  "complete": {
+    "routes": 6,
+    "captured": 6,
+    "pages_objects": 200,
+    "pages_response_sizes": [
+      100,
+      100
+    ],
+    "posts_objects": 1,
+    "media_objects": 1,
+    "categories_objects": 1,
+    "tags_objects": 1,
+    "users_status": 401,
+    "mapped_routes": 6,
+    "rest_objects": 204,
+    "unrouted_objects": 198,
+    "required_losses": 0
+  },
+  "optional_absences": {
+    "yoast_present_page_positions": [
+      0,
+      1,
+      2
+    ],
+    "yoast_missing_page_position": 3,
+    "yoast_null_page_position": 4,
+    "empty_rest_content_path": "/rendered-only/",
+    "rendered_only_words": 400,
+    "screenshots": "none supplied"
+  },
+  "partial": {
+    "routes": 6,
+    "html_failed_route": "/about/",
+    "rest_unavailable_route": "/services/",
+    "required_losses": 2,
+    "pages_objects": 199,
+    "rest_objects": 203,
+    "basis": "Synthetic F-12 omits service object 102 from complete returned collection; required route REST explicitly unavailable, not a malformed reference."
+  },
+  "forms_embeds": {
+    "forms": 2,
+    "embeds": 2,
+    "mailto_is_embed": false
+  },
+  "comparison": "Expected facts authored before regeneration. Source byte hashes are computed from these deterministic input builders, never blessed from product output; schema/reference/hash integrity is verified before permitted metadata normalization.",
+  "input_builder": "tests/fixture_server.py:wp_inputs",
+  "input_builders": [
+    "tests/fixture_server.py:wp_inputs",
+    "tests/fixture_server.py:complete_html",
+    "tests/fixture_server.py:fixture_png"
+  ],
+  "capture_expected": {
+    "intentional_dispatches": 18,
+    "document_slots": 6,
+    "incidental_image_gets": 6,
+    "raw_files": 231,
+    "bootstrap_gets": 1
+  }
+}

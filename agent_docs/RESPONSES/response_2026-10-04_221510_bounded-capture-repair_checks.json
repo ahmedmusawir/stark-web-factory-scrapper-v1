@@ -1,0 +1,188 @@
+{
+  "verdict": "SCOPED LOCAL REPAIRS VERIFIED; teardown traffic finding requires review; STOP",
+  "repository": "/home/moose/PYTHON/stark-web-factory-scrapper-v1",
+  "branch": "wf-scrapper-abm",
+  "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "source_inventory_sha256": "aaf883a8c59960ab825e5a58508772bb9c099b49f65187b248e1f2ed813dc622",
+  "source_entries": 68,
+  "changed_source_files": [
+    "smart_crawler/browser_session.py",
+    "smart_crawler/rest_client.py",
+    "tests/test_bounded_capture_repair.py"
+  ],
+  "source_hashes": {
+    "smart_crawler/browser_session.py": {
+      "sha256": "7b7c470cf7de2664ea7efea8a07cd290df94548683bcb91a816d5c0747c8ba72",
+      "bytes": 51810,
+      "mode": 436,
+      "symlink": null
+    },
+    "smart_crawler/rest_client.py": {
+      "sha256": "52d41a44dd42fa64a3109c9252b2feec950fbbbe9a9124d5651d82839098b657",
+      "bytes": 12387,
+      "mode": 436,
+      "symlink": null
+    },
+    "tests/test_bounded_capture_repair.py": {
+      "sha256": "7d5d3d5f2411b9ab27078caf21a59ebf9f9e80592c0f7b52f9adc4e0e8e24a9c",
+      "bytes": 10635,
+      "mode": 436,
+      "symlink": null
+    }
+  },
+  "phases": {
+    "before": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_bounded_capture_repair.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-04T15:46:40.795860+00:00",
+      "finished_at": "2026-10-04T15:47:16.326301+00:00",
+      "elapsed_s": 35.530434151994996,
+      "exit_code": 1,
+      "command_log_bytes": 19451,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "4b08adf1064831ab97621a7e28174d8e71279c73153d270f0bf2086e128cc460",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "log": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-capture-repair/2026-10-04_154542Z/before/command.log",
+      "test_summary": "8 failed, 12 passed in 34.49s"
+    },
+    "focused": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_bounded_capture_repair.py",
+        "tests/test_rest_client.py",
+        "tests/test_resolution_stop.py",
+        "tests/test_interception_lifecycle.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-04T15:47:46.853498+00:00",
+      "finished_at": "2026-10-04T15:50:23.768102+00:00",
+      "elapsed_s": 156.91459444595966,
+      "exit_code": 1,
+      "command_log_bytes": 5454,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "b62f71c0041183ef1f9323ca37793997e4f76b3d6044975863a4ff188dcdf2d2",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "log": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-capture-repair/2026-10-04_154542Z/focused/command.log",
+      "test_summary": "1 failed, 54 passed in 156.22s (0:02:36)"
+    },
+    "focused-final": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_bounded_capture_repair.py",
+        "tests/test_rest_client.py",
+        "tests/test_resolution_stop.py",
+        "tests/test_interception_lifecycle.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-04T15:51:04.990767+00:00",
+      "finished_at": "2026-10-04T15:53:48.038690+00:00",
+      "elapsed_s": 163.04791703796946,
+      "exit_code": 0,
+      "command_log_bytes": 111,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "aaf883a8c59960ab825e5a58508772bb9c099b49f65187b248e1f2ed813dc622",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "log": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-capture-repair/2026-10-04_154542Z/focused-final/command.log",
+      "test_summary": "56 passed in 162.13s (0:02:42)"
+    },
+    "regression": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-04T15:54:01.954722+00:00",
+      "finished_at": "2026-10-04T16:12:45.587998+00:00",
+      "elapsed_s": 1123.633268789039,
+      "exit_code": 0,
+      "command_log_bytes": 273,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "aaf883a8c59960ab825e5a58508772bb9c099b49f65187b248e1f2ed813dc622",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "log": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-capture-repair/2026-10-04_154542Z/regression/command.log",
+      "test_summary": "213 passed in 1122.70s (0:18:42)"
+    },
+    "comparison": {
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-capture-repair/2026-10-04_154542Z/regression-controls/complete-raw"
+      ],
+      "started_at": "2026-10-04T16:12:56.798120+00:00",
+      "finished_at": "2026-10-04T16:14:52.673308+00:00",
+      "elapsed_s": 115.87518310296582,
+      "exit_code": 0,
+      "command_log_bytes": 282,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "aaf883a8c59960ab825e5a58508772bb9c099b49f65187b248e1f2ed813dc622",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "log": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-capture-repair/2026-10-04_154542Z/comparison/command.log",
+      "test_summary": "PASS F-09 complete Capture facts, source bytes, references, inventory and actual pacing"
+    }
+  },
+  "prior_files_preserved": 13083,
+  "changed_or_missing_prior_files": [],
+  "live_requests": 0,
+  "prepare": "ON HOLD",
+  "independent_qa": "NOT RUN",
+  "remaining_findings": [
+    "Historical stopped-path homepage/route accounting discrepancy remains open.",
+    "Historical supervisor final-manifest counter gap remains open.",
+    "No live verification of this repair; previous live run remains incomplete.",
+    "Unexpected page closure: server received held intentional request after recorded STOP despite zero controller dispatch events; wire dispatch timing is unknown."
+  ],
+  "fixture_correction": "Initial new native fixture assumed CDP teardown prevents all incidental egress. A preserved trace disproved that assumption. It now asserts controller continuation prevention, one abort attempt, no reissue and unchanged intentional dispatches. No pre-existing assertions or expected Capture output changed.",
+  "capture_comparison": {
+    "full_canonical_comparison": "PASS",
+    "files": 231,
+    "normalization": "page elapsed; measured protocol times; correlated protocol IDs; independent resource channels; derived metadata byte-count/hash edges only",
+    "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-capture-repair/2026-10-04_154542Z/comparison-controls/F09-complete-1wqsd22h/full-comparison.json"
+  }
+}

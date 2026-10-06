@@ -1,0 +1,960 @@
+{
+  "planned-new-pause.json": {
+    "confirmed_before_close": [
+      {
+        "native_pause": {
+          "event": "fixture_native_pause",
+          "monotonic": 561246.85603971,
+          "request_id": "interception-job-8.0",
+          "network_id": "1875663.5",
+          "frame_id": "0E4013F88111E107409F8B49FF257489",
+          "resource_type": "XHR",
+          "predecessor": null,
+          "url": "http://127.0.0.1:37943/shutdown-late",
+          "owner_guid": "cdp-session@BC516CF872FBFD72EC5588BF86D94E92"
+        },
+        "abort_send": {
+          "line": 262,
+          "python_observed_monotonic": 561246.871105102,
+          "direction": "send",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 72,
+            "method": "Fetch.failRequest",
+            "params": {
+              "requestId": "interception-job-8.0",
+              "errorReason": "Aborted"
+            },
+            "sessionId": "BC516CF872FBFD72EC5588BF86D94E92"
+          },
+          "driver_prefix": "2026-10-05T13:21:06.829Z pw:protocol SEND \u25ba"
+        },
+        "abort_reply": {
+          "line": 263,
+          "python_observed_monotonic": 561246.872003773,
+          "direction": "receive",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 72,
+            "result": {},
+            "sessionId": "BC516CF872FBFD72EC5588BF86D94E92"
+          },
+          "driver_prefix": "2026-10-05T13:21:06.830Z pw:protocol \u25c0 RECV"
+        },
+        "close_send": {
+          "line": 266,
+          "python_observed_monotonic": 561246.948405659,
+          "direction": "send",
+          "correlated_method": "Target.closeTarget",
+          "message": {
+            "id": 74,
+            "method": "Target.closeTarget",
+            "params": {
+              "targetId": "0E4013F88111E107409F8B49FF257489"
+            }
+          },
+          "driver_prefix": "2026-10-05T13:21:06.906Z pw:protocol SEND \u25ba"
+        }
+      },
+      {
+        "native_pause": {
+          "event": "fixture_native_pause",
+          "monotonic": 561246.840529202,
+          "request_id": "interception-job-7.0",
+          "network_id": "1875663.4",
+          "frame_id": "0E4013F88111E107409F8B49FF257489",
+          "resource_type": "XHR",
+          "predecessor": null,
+          "url": "http://127.0.0.1:37943/cleanup-held",
+          "owner_guid": "cdp-session@BC516CF872FBFD72EC5588BF86D94E92"
+        },
+        "abort_send": {
+          "line": 264,
+          "python_observed_monotonic": 561246.887792748,
+          "direction": "send",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 73,
+            "method": "Fetch.failRequest",
+            "params": {
+              "requestId": "interception-job-7.0",
+              "errorReason": "Aborted"
+            },
+            "sessionId": "BC516CF872FBFD72EC5588BF86D94E92"
+          },
+          "driver_prefix": "2026-10-05T13:21:06.845Z pw:protocol SEND \u25ba"
+        },
+        "abort_reply": {
+          "line": 265,
+          "python_observed_monotonic": 561246.888584764,
+          "direction": "receive",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 73,
+            "result": {},
+            "sessionId": "BC516CF872FBFD72EC5588BF86D94E92"
+          },
+          "driver_prefix": "2026-10-05T13:21:06.846Z pw:protocol \u25c0 RECV"
+        },
+        "close_send": {
+          "line": 266,
+          "python_observed_monotonic": 561246.948405659,
+          "direction": "send",
+          "correlated_method": "Target.closeTarget",
+          "message": {
+            "id": 74,
+            "method": "Target.closeTarget",
+            "params": {
+              "targetId": "0E4013F88111E107409F8B49FF257489"
+            }
+          },
+          "driver_prefix": "2026-10-05T13:21:06.906Z pw:protocol SEND \u25ba"
+        }
+      }
+    ],
+    "server_events": [
+      {
+        "event": "request_received",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561243.441289292,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "document"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561243.441475632,
+        "status": 200
+      },
+      {
+        "event": "body_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561243.441494718,
+        "bytes": 3710
+      },
+      {
+        "event": "request_received",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561243.501343244,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561243.501491175,
+        "status": 204
+      },
+      {
+        "event": "body_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561243.501499377,
+        "bytes": 0
+      },
+      {
+        "event": "request_received",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561243.533823247,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561243.534259817,
+        "status": 403
+      },
+      {
+        "event": "body_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561243.534322735,
+        "bytes": 18
+      }
+    ],
+    "stop_reason": "collector_shutdown",
+    "dispatches": 1
+  },
+  "planned-normal-barrier.json": {
+    "confirmed_before_close": [
+      {
+        "native_pause": {
+          "event": "fixture_native_pause",
+          "monotonic": 561217.433464973,
+          "request_id": "interception-job-7.0",
+          "network_id": "1875130.4",
+          "frame_id": "2A796FBE4DD6879F0B6FF7C2C6BB581E",
+          "resource_type": "XHR",
+          "predecessor": null,
+          "url": "http://127.0.0.1:43139/cleanup-held",
+          "owner_guid": "cdp-session@7678793A9751CE5CC4D61333E6B3951E"
+        },
+        "abort_send": {
+          "line": 39,
+          "python_observed_monotonic": 561217.446841073,
+          "direction": "send",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "method": "Fetch.failRequest",
+            "params": {
+              "requestId": "interception-job-7.0",
+              "errorReason": "Aborted"
+            },
+            "sessionId": "7678793A9751CE5CC4D61333E6B3951E"
+          },
+          "driver_prefix": "2026-10-05T13:20:37.404Z pw:protocol SEND \u25ba"
+        },
+        "abort_reply": {
+          "line": 40,
+          "python_observed_monotonic": 561217.447822785,
+          "direction": "receive",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "result": {},
+            "sessionId": "7678793A9751CE5CC4D61333E6B3951E"
+          },
+          "driver_prefix": "2026-10-05T13:20:37.405Z pw:protocol \u25c0 RECV"
+        },
+        "close_send": {
+          "line": 41,
+          "python_observed_monotonic": 561217.507219867,
+          "direction": "send",
+          "correlated_method": "Target.closeTarget",
+          "message": {
+            "id": 72,
+            "method": "Target.closeTarget",
+            "params": {
+              "targetId": "2A796FBE4DD6879F0B6FF7C2C6BB581E"
+            }
+          },
+          "driver_prefix": "2026-10-05T13:20:37.465Z pw:protocol SEND \u25ba"
+        }
+      }
+    ],
+    "server_events": [
+      {
+        "event": "request_received",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561214.026455111,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "document"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561214.026614453,
+        "status": 200
+      },
+      {
+        "event": "body_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561214.026648711,
+        "bytes": 3710
+      },
+      {
+        "event": "request_received",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561214.107284174,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561214.107444645,
+        "status": 204
+      },
+      {
+        "event": "body_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561214.107468064,
+        "bytes": 0
+      },
+      {
+        "event": "request_received",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561214.134219064,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561214.134381821,
+        "status": 403
+      },
+      {
+        "event": "body_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561214.13439377,
+        "bytes": 18
+      }
+    ],
+    "stop_reason": "collector_shutdown",
+    "dispatches": 1
+  },
+  "planned-normal-pacing.json": {
+    "confirmed_before_close": [
+      {
+        "native_pause": {
+          "event": "fixture_native_pause",
+          "monotonic": 561229.500319077,
+          "request_id": "interception-job-7.0",
+          "network_id": "1875339.4",
+          "frame_id": "079B1716D573F6F79F53BC25C07E6490",
+          "resource_type": "XHR",
+          "predecessor": null,
+          "url": "http://127.0.0.1:44733/cleanup-held",
+          "owner_guid": "cdp-session@772209FCF9064AC775324341DAEE59AC"
+        },
+        "abort_send": {
+          "line": 127,
+          "python_observed_monotonic": 561229.512569633,
+          "direction": "send",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "method": "Fetch.failRequest",
+            "params": {
+              "requestId": "interception-job-7.0",
+              "errorReason": "Aborted"
+            },
+            "sessionId": "772209FCF9064AC775324341DAEE59AC"
+          },
+          "driver_prefix": "2026-10-05T13:20:49.470Z pw:protocol SEND \u25ba"
+        },
+        "abort_reply": {
+          "line": 128,
+          "python_observed_monotonic": 561229.513841192,
+          "direction": "receive",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "result": {},
+            "sessionId": "772209FCF9064AC775324341DAEE59AC"
+          },
+          "driver_prefix": "2026-10-05T13:20:49.471Z pw:protocol \u25c0 RECV"
+        },
+        "close_send": {
+          "line": 129,
+          "python_observed_monotonic": 561229.574387395,
+          "direction": "send",
+          "correlated_method": "Target.closeTarget",
+          "message": {
+            "id": 72,
+            "method": "Target.closeTarget",
+            "params": {
+              "targetId": "079B1716D573F6F79F53BC25C07E6490"
+            }
+          },
+          "driver_prefix": "2026-10-05T13:20:49.532Z pw:protocol SEND \u25ba"
+        }
+      }
+    ],
+    "server_events": [
+      {
+        "event": "request_received",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561226.096476408,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "document"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561226.096704471,
+        "status": 200
+      },
+      {
+        "event": "body_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561226.096734546,
+        "bytes": 3710
+      },
+      {
+        "event": "request_received",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561226.179248231,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561226.190652096,
+        "status": 204
+      },
+      {
+        "event": "body_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561226.190686657,
+        "bytes": 0
+      },
+      {
+        "event": "request_received",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561226.204918337,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561226.205096276,
+        "status": 403
+      },
+      {
+        "event": "body_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561226.205117192,
+        "bytes": 18
+      }
+    ],
+    "stop_reason": "collector_shutdown",
+    "dispatches": 1
+  },
+  "planned-resolving-abort.json": {
+    "confirmed_before_close": [
+      {
+        "native_pause": {
+          "event": "fixture_native_pause",
+          "monotonic": 561252.739796864,
+          "request_id": "interception-job-7.0",
+          "network_id": "1875767.4",
+          "frame_id": "867B5E6B27D1846173AA4A55FD94E0F6",
+          "resource_type": "XHR",
+          "predecessor": null,
+          "url": "http://127.0.0.1:38491/cleanup-held",
+          "owner_guid": "cdp-session@D5538E44A33B5C501893964F88EBF563"
+        },
+        "abort_send": {
+          "line": 308,
+          "python_observed_monotonic": 561252.7478973,
+          "direction": "send",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "method": "Fetch.failRequest",
+            "params": {
+              "requestId": "interception-job-7.0",
+              "errorReason": "Aborted"
+            },
+            "sessionId": "D5538E44A33B5C501893964F88EBF563"
+          },
+          "driver_prefix": "2026-10-05T13:21:12.705Z pw:protocol SEND \u25ba"
+        },
+        "abort_reply": {
+          "line": 309,
+          "python_observed_monotonic": 561252.748608508,
+          "direction": "receive",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "result": {},
+            "sessionId": "D5538E44A33B5C501893964F88EBF563"
+          },
+          "driver_prefix": "2026-10-05T13:21:12.706Z pw:protocol \u25c0 RECV"
+        },
+        "close_send": {
+          "line": 310,
+          "python_observed_monotonic": 561252.88221406,
+          "direction": "send",
+          "correlated_method": "Target.closeTarget",
+          "message": {
+            "id": 72,
+            "method": "Target.closeTarget",
+            "params": {
+              "targetId": "867B5E6B27D1846173AA4A55FD94E0F6"
+            }
+          },
+          "driver_prefix": "2026-10-05T13:21:12.840Z pw:protocol SEND \u25ba"
+        }
+      }
+    ],
+    "server_events": [
+      {
+        "event": "request_received",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561249.319484763,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "document"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561249.319599006,
+        "status": 200
+      },
+      {
+        "event": "body_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561249.319616198,
+        "bytes": 3710
+      },
+      {
+        "event": "request_received",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561249.379243389,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561249.380114991,
+        "status": 204
+      },
+      {
+        "event": "body_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561249.38013108,
+        "bytes": 0
+      },
+      {
+        "event": "request_received",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561249.406282117,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561249.406431313,
+        "status": 403
+      },
+      {
+        "event": "body_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561249.406442773,
+        "bytes": 18
+      }
+    ],
+    "stop_reason": "collector_shutdown",
+    "dispatches": 1
+  },
+  "planned-stop-barrier.json": {
+    "confirmed_before_close": [
+      {
+        "native_pause": {
+          "event": "fixture_native_pause",
+          "monotonic": 561223.732919091,
+          "request_id": "interception-job-7.0",
+          "network_id": "1875236.4",
+          "frame_id": "6850355AE1F5EBB2E444E9F035798C36",
+          "resource_type": "XHR",
+          "predecessor": null,
+          "url": "http://127.0.0.1:38061/cleanup-held",
+          "owner_guid": "cdp-session@18E8A5D29A3CFFFE8B561CFF31C8BAC9"
+        },
+        "abort_send": {
+          "line": 83,
+          "python_observed_monotonic": 561223.746610055,
+          "direction": "send",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "method": "Fetch.failRequest",
+            "params": {
+              "requestId": "interception-job-7.0",
+              "errorReason": "Aborted"
+            },
+            "sessionId": "18E8A5D29A3CFFFE8B561CFF31C8BAC9"
+          },
+          "driver_prefix": "2026-10-05T13:20:43.704Z pw:protocol SEND \u25ba"
+        },
+        "abort_reply": {
+          "line": 84,
+          "python_observed_monotonic": 561223.747798097,
+          "direction": "receive",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "result": {},
+            "sessionId": "18E8A5D29A3CFFFE8B561CFF31C8BAC9"
+          },
+          "driver_prefix": "2026-10-05T13:20:43.705Z pw:protocol \u25c0 RECV"
+        },
+        "close_send": {
+          "line": 85,
+          "python_observed_monotonic": 561223.810100853,
+          "direction": "send",
+          "correlated_method": "Target.closeTarget",
+          "message": {
+            "id": 72,
+            "method": "Target.closeTarget",
+            "params": {
+              "targetId": "6850355AE1F5EBB2E444E9F035798C36"
+            }
+          },
+          "driver_prefix": "2026-10-05T13:20:43.768Z pw:protocol SEND \u25ba"
+        }
+      }
+    ],
+    "server_events": [
+      {
+        "event": "request_received",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561220.234362076,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "document"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561220.234537357,
+        "status": 200
+      },
+      {
+        "event": "body_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561220.234558062,
+        "bytes": 3710
+      },
+      {
+        "event": "request_received",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561220.320707805,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561220.320846837,
+        "status": 204
+      },
+      {
+        "event": "body_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561220.320856634,
+        "bytes": 0
+      },
+      {
+        "event": "request_received",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561220.378085156,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561220.378266668,
+        "status": 403
+      },
+      {
+        "event": "body_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561220.37830262,
+        "bytes": 18
+      }
+    ],
+    "stop_reason": "fixture_original_refusal",
+    "dispatches": 1
+  },
+  "planned-stop-pacing.json": {
+    "confirmed_before_close": [
+      {
+        "native_pause": {
+          "event": "fixture_native_pause",
+          "monotonic": 561235.307337901,
+          "request_id": "interception-job-7.0",
+          "network_id": "1875444.4",
+          "frame_id": "F0976B3994AD082898B28E6697470A27",
+          "resource_type": "XHR",
+          "predecessor": null,
+          "url": "http://127.0.0.1:43717/cleanup-held",
+          "owner_guid": "cdp-session@FFB2DC2AE5497DDD99A3337F183D0C44"
+        },
+        "abort_send": {
+          "line": 171,
+          "python_observed_monotonic": 561235.316361401,
+          "direction": "send",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "method": "Fetch.failRequest",
+            "params": {
+              "requestId": "interception-job-7.0",
+              "errorReason": "Aborted"
+            },
+            "sessionId": "FFB2DC2AE5497DDD99A3337F183D0C44"
+          },
+          "driver_prefix": "2026-10-05T13:20:55.274Z pw:protocol SEND \u25ba"
+        },
+        "abort_reply": {
+          "line": 172,
+          "python_observed_monotonic": 561235.316948542,
+          "direction": "receive",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "result": {},
+            "sessionId": "FFB2DC2AE5497DDD99A3337F183D0C44"
+          },
+          "driver_prefix": "2026-10-05T13:20:55.275Z pw:protocol \u25c0 RECV"
+        },
+        "close_send": {
+          "line": 173,
+          "python_observed_monotonic": 561235.376652385,
+          "direction": "send",
+          "correlated_method": "Target.closeTarget",
+          "message": {
+            "id": 72,
+            "method": "Target.closeTarget",
+            "params": {
+              "targetId": "F0976B3994AD082898B28E6697470A27"
+            }
+          },
+          "driver_prefix": "2026-10-05T13:20:55.334Z pw:protocol SEND \u25ba"
+        }
+      }
+    ],
+    "server_events": [
+      {
+        "event": "request_received",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561231.893088319,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "document"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561231.893295384,
+        "status": 200
+      },
+      {
+        "event": "body_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561231.893317515,
+        "bytes": 3710
+      },
+      {
+        "event": "request_received",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561231.950853804,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561231.950966523,
+        "status": 204
+      },
+      {
+        "event": "body_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561231.950976404,
+        "bytes": 0
+      },
+      {
+        "event": "request_received",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561231.972439783,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561231.972561092,
+        "status": 403
+      },
+      {
+        "event": "body_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561231.97324764,
+        "bytes": 18
+      }
+    ],
+    "stop_reason": "fixture_original_refusal",
+    "dispatches": 1
+  },
+  "planned-write-failure-pacing.json": {
+    "confirmed_before_close": [
+      {
+        "native_pause": {
+          "event": "fixture_native_pause",
+          "monotonic": 561241.027527944,
+          "request_id": "interception-job-7.0",
+          "network_id": "1875550.4",
+          "frame_id": "C7BC90CD832CCEB36DCF7308547154EC",
+          "resource_type": "XHR",
+          "predecessor": null,
+          "url": "http://127.0.0.1:42571/cleanup-held",
+          "owner_guid": "cdp-session@D9F1C7BA26C3935DE266EB0F8395AD72"
+        },
+        "abort_send": {
+          "line": 215,
+          "python_observed_monotonic": 561241.035774372,
+          "direction": "send",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "method": "Fetch.failRequest",
+            "params": {
+              "requestId": "interception-job-7.0",
+              "errorReason": "Aborted"
+            },
+            "sessionId": "D9F1C7BA26C3935DE266EB0F8395AD72"
+          },
+          "driver_prefix": "2026-10-05T13:21:00.993Z pw:protocol SEND \u25ba"
+        },
+        "abort_reply": {
+          "line": 216,
+          "python_observed_monotonic": 561241.036394118,
+          "direction": "receive",
+          "correlated_method": "Fetch.failRequest",
+          "message": {
+            "id": 71,
+            "result": {},
+            "sessionId": "D9F1C7BA26C3935DE266EB0F8395AD72"
+          },
+          "driver_prefix": "2026-10-05T13:21:00.994Z pw:protocol \u25c0 RECV"
+        },
+        "close_send": {
+          "line": 217,
+          "python_observed_monotonic": 561241.098702805,
+          "direction": "send",
+          "correlated_method": "Target.closeTarget",
+          "message": {
+            "id": 72,
+            "method": "Target.closeTarget",
+            "params": {
+              "targetId": "C7BC90CD832CCEB36DCF7308547154EC"
+            }
+          },
+          "driver_prefix": "2026-10-05T13:21:01.056Z pw:protocol SEND \u25ba"
+        }
+      }
+    ],
+    "server_events": [
+      {
+        "event": "request_received",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561237.651230041,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "document"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561237.651450486,
+        "status": 200
+      },
+      {
+        "event": "body_sent",
+        "path": "/background",
+        "method": "GET",
+        "monotonic": 561237.651507193,
+        "bytes": 3710
+      },
+      {
+        "event": "request_received",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561237.736828344,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561237.737554231,
+        "status": 204
+      },
+      {
+        "event": "body_sent",
+        "path": "/beacon",
+        "method": "POST",
+        "monotonic": 561237.737637711,
+        "bytes": 0
+      },
+      {
+        "event": "request_received",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561237.762940495,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "resource_destination": "empty"
+      },
+      {
+        "event": "headers_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561237.763109631,
+        "status": 403
+      },
+      {
+        "event": "body_sent",
+        "path": "/incidental",
+        "method": "GET",
+        "monotonic": 561237.763151372,
+        "bytes": 18
+      }
+    ],
+    "stop_reason": "evidence_write_limit",
+    "dispatches": 1
+  }
+}
