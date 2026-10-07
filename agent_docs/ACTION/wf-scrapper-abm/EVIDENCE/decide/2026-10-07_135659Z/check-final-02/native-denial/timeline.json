@@ -1,0 +1,99 @@
+{
+  "checklist": {
+    "schema": "selected-collection-v1",
+    "created_at": "2026-10-07T14:07:21.304098+00:00",
+    "items": [
+      {
+        "kind": "page",
+        "url": "http://127.0.0.1:33101/deny",
+        "id": "49e06bc910e821394ccbcfed",
+        "page": 1,
+        "status": "failed",
+        "result": {
+          "file": "attempts/49e06bc910e821394ccbcfed/7ef12ff40f154b91928f71ad0e48c296/result.json",
+          "sha256": "9bde1c957ae6de0c5d4b17bcb38e2a7ddba80abccd89b315ef5febe635e9a16d"
+        },
+        "attempts": [
+          {
+            "file": "attempts/49e06bc910e821394ccbcfed/7ef12ff40f154b91928f71ad0e48c296/result.json",
+            "sha256": "9bde1c957ae6de0c5d4b17bcb38e2a7ddba80abccd89b315ef5febe635e9a16d"
+          }
+        ],
+        "error": "http_429"
+      },
+      {
+        "kind": "page",
+        "url": "http://127.0.0.1:33101/must-not-collect",
+        "id": "0a20c89ccb36bb9e946f5009",
+        "page": 1,
+        "status": "pending",
+        "result": null,
+        "attempts": [],
+        "error": null
+      }
+    ],
+    "coverage": {},
+    "runs": [
+      {
+        "started_at": "2026-10-07T14:07:21.373692+00:00",
+        "requests": [
+          {
+            "id": "49e06bc910e821394ccbcfed",
+            "url": "http://127.0.0.1:33101/deny",
+            "kind": "page",
+            "start": 637123.286526197,
+            "preceding_completion": null,
+            "completion": 637126.812053877,
+            "completion_epoch": 1791382045.5841935
+          }
+        ],
+        "stop_reason": "http_429",
+        "cleanup_error": null,
+        "gap_seconds": 0.05,
+        "max_requests": 100,
+        "max_seconds": 60,
+        "max_bytes": 100000000,
+        "response_cap": 10485760,
+        "browser_traffic": {
+          "request:document": 1,
+          "status:429": 1
+        },
+        "runtime": {
+          "python": "3.12.3",
+          "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+          "crawl4ai": "0.9.3",
+          "playwright": "1.52.0",
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+          "cache": "BYPASS",
+          "html_wait_for_images": true,
+          "html_post_load_delay": 3,
+          "navigation_timeout_ms": {
+            "page": 90000,
+            "rest": 30000
+          },
+          "tls_verification": true,
+          "browser": "136.0.7103.25"
+        },
+        "cleanup_messages": [],
+        "collection_outcome": "partial",
+        "finished_at": "2026-10-07T14:07:25.720653+00:00",
+        "elapsed_s": 4.346981354989111,
+        "completed": 0,
+        "remaining": 2
+      }
+    ],
+    "last_completion_epoch": 1791382045.5841935
+  },
+  "server_events": [
+    {
+      "url": "/deny",
+      "at": 637123.509927637
+    }
+  ],
+  "served_bodies": {
+    "/deny": {
+      "bytes": 17,
+      "sha256": "802600d124464157037a2519acb3cff90b97670fd04809ea902fbb95497a12ca"
+    }
+  }
+}

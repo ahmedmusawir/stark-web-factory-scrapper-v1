@@ -1,0 +1,125 @@
+{
+  "schema": "web-recon-review-v1",
+  "origin": "FRESH_BOUNDED_RECON",
+  "mode": "sitemap",
+  "created_at": "2026-10-07T14:01:17.335491+00:00",
+  "context": {
+    "base": "http://127.0.0.1:9888/",
+    "wp_api_base": "http://127.0.0.1:9888/wp-json/",
+    "bounds": {
+      "requests": 12,
+      "discovery_pages": 3,
+      "depth": 1,
+      "rest_pages_per_type": 1,
+      "per_page": 20,
+      "candidates": 5000,
+      "seconds": 300,
+      "gap_seconds": 0
+    },
+    "scope": "same-origin planned URLs; ordinary browser redirects/resources add traffic",
+    "purpose": "recon metadata only; never marks full collector tasks complete",
+    "discovery_pages_read": 1
+  },
+  "items": [
+    {
+      "id": "doc-1cdb8c7ffd0c2646b288",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/a",
+      "title": null,
+      "content_type": null,
+      "dates": {
+        "sitemap_lastmod": "2026-10-01"
+      },
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[0]"
+        },
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[1]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [],
+      "selection": "UNDECIDED"
+    },
+    {
+      "id": "doc-44758ca80440b39a5f01",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/b",
+      "title": null,
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[2]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [],
+      "selection": "UNDECIDED"
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:9888/s.xml",
+      "purpose": "sitemap",
+      "started": 636758.563798195,
+      "preceding_completion": null,
+      "completed": 636758.565313814,
+      "status": 200,
+      "headers": {
+        "content-type": "application/xml"
+      },
+      "final_url": "http://127.0.0.1:9888/s.xml",
+      "error": null,
+      "body_file": "evidence/0001.body",
+      "body_bytes": 239,
+      "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+      "purpose": "wp_types",
+      "started": 636758.567997109,
+      "preceding_completion": 636758.565313814,
+      "completed": 636758.569402793,
+      "status": 200,
+      "headers": {
+        "content-type": "text/html"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+      "error": "explicit_block_document",
+      "body_file": "evidence/0002.body",
+      "body_bytes": 51,
+      "sha256": "31104a57a414b887ce14f7991f8fe33882002b521f72cb7017b55d43028c0761",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    }
+  ],
+  "gaps": [
+    "wp_types:explicit_block_document"
+  ],
+  "wordpress": {
+    "status": "skipped_or_blocked",
+    "collections": [],
+    "gaps": [
+      "Public types/counts not established; no root enumeration or fallback."
+    ]
+  },
+  "stop_reason": "explicit_block_document",
+  "cleanup_error": null,
+  "browser_traffic": {},
+  "finished_at": "2026-10-07T14:01:17.343402+00:00"
+}

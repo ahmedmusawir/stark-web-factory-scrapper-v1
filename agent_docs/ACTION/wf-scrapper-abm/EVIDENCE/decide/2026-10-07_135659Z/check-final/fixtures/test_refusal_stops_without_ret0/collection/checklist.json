@@ -1,0 +1,94 @@
+{
+  "schema": "selected-collection-v1",
+  "created_at": "2026-10-07T14:04:54.415759+00:00",
+  "items": [
+    {
+      "kind": "page",
+      "url": "http://127.0.0.1:9876/a",
+      "id": "89b8c5f516c9b47d4d0fbe99",
+      "page": 1,
+      "status": "completed",
+      "result": {
+        "file": "attempts/89b8c5f516c9b47d4d0fbe99/2858d16a31444e509f25f477a0b87709/result.json",
+        "sha256": "2de5e6a884a5f870de3e8ad113f7f05010632b425f605f5ff0835817020eac1d"
+      },
+      "attempts": [
+        {
+          "file": "attempts/89b8c5f516c9b47d4d0fbe99/2858d16a31444e509f25f477a0b87709/result.json",
+          "sha256": "2de5e6a884a5f870de3e8ad113f7f05010632b425f605f5ff0835817020eac1d"
+        }
+      ],
+      "error": null
+    },
+    {
+      "kind": "page",
+      "url": "http://127.0.0.1:9876/b",
+      "id": "69cc7a5ddd8489e801166cd1",
+      "page": 1,
+      "status": "failed",
+      "result": {
+        "file": "attempts/69cc7a5ddd8489e801166cd1/27053a0fbbc340d1865f2f7cc6ff57e1/result.json",
+        "sha256": "75b006c14c1d7d07d38b704da62f54886611c03473fbf5295525ef84f2d90d56"
+      },
+      "attempts": [
+        {
+          "file": "attempts/69cc7a5ddd8489e801166cd1/27053a0fbbc340d1865f2f7cc6ff57e1/result.json",
+          "sha256": "75b006c14c1d7d07d38b704da62f54886611c03473fbf5295525ef84f2d90d56"
+        }
+      ],
+      "error": "http_429"
+    },
+    {
+      "kind": "page",
+      "url": "http://127.0.0.1:9876/c",
+      "id": "740f9094776229f7b200a37c",
+      "page": 1,
+      "status": "pending",
+      "result": null,
+      "attempts": [],
+      "error": null
+    }
+  ],
+  "coverage": {},
+  "runs": [
+    {
+      "started_at": "2026-10-07T14:04:54.418433+00:00",
+      "requests": [
+        {
+          "id": "89b8c5f516c9b47d4d0fbe99",
+          "url": "http://127.0.0.1:9876/a",
+          "kind": "page",
+          "start": 636975.648922406,
+          "preceding_completion": null,
+          "completion": 636975.651423087,
+          "completion_epoch": 1791381894.423563
+        },
+        {
+          "id": "69cc7a5ddd8489e801166cd1",
+          "url": "http://127.0.0.1:9876/b",
+          "kind": "page",
+          "start": 636975.658532361,
+          "preceding_completion": 636975.651423087,
+          "completion": 636975.661355591,
+          "completion_epoch": 1791381894.4334955
+        }
+      ],
+      "stop_reason": "http_429",
+      "cleanup_error": null,
+      "gap_seconds": 0,
+      "max_requests": 100,
+      "max_seconds": 1800,
+      "max_bytes": 100000000,
+      "response_cap": 10485760,
+      "browser_traffic": {},
+      "runtime": {},
+      "cleanup_messages": [],
+      "collection_outcome": "partial",
+      "finished_at": "2026-10-07T14:04:54.442940+00:00",
+      "elapsed_s": 0.024569471017457545,
+      "completed": 1,
+      "remaining": 2
+    }
+  ],
+  "last_completion_epoch": 1791381894.4334955
+}

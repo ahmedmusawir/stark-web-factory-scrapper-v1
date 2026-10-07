@@ -1,0 +1,111 @@
+{
+  "schema": "selected-collection-v1",
+  "created_at": "2026-10-07T14:09:01.950233+00:00",
+  "items": [
+    {
+      "kind": "rest",
+      "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2",
+      "paginate": true,
+      "max_pages": 4,
+      "id": "48d254df7ea4adc6d005aaef",
+      "page": 1,
+      "status": "completed",
+      "result": {
+        "file": "attempts/48d254df7ea4adc6d005aaef/d8f2bf16d2f44194a4443c13630a2380/result.json",
+        "sha256": "82507f89c37d92db05972d65538fab060c5c200c4a09413c5caad1f72873fb67"
+      },
+      "attempts": [
+        {
+          "file": "attempts/48d254df7ea4adc6d005aaef/d8f2bf16d2f44194a4443c13630a2380/result.json",
+          "sha256": "82507f89c37d92db05972d65538fab060c5c200c4a09413c5caad1f72873fb67"
+        }
+      ],
+      "error": null,
+      "group": "48d254df7ea4adc6d005aaef"
+    },
+    {
+      "id": "020b358091498bc972a52a87",
+      "kind": "rest",
+      "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=2",
+      "page": 2,
+      "group": "48d254df7ea4adc6d005aaef",
+      "status": "completed",
+      "result": {
+        "file": "attempts/020b358091498bc972a52a87/fbf4d7c975e64454a032a63475741f21/result.json",
+        "sha256": "0fc250cc6dc00cd31359d1d3de9d17bf15a7f351c9471f3e783d03b6866db6d3"
+      },
+      "attempts": [
+        {
+          "file": "attempts/020b358091498bc972a52a87/fbf4d7c975e64454a032a63475741f21/result.json",
+          "sha256": "0fc250cc6dc00cd31359d1d3de9d17bf15a7f351c9471f3e783d03b6866db6d3"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "coverage": {
+    "48d254df7ea4adc6d005aaef": {
+      "status": "partial",
+      "fetched_pages": [
+        1,
+        2
+      ],
+      "advertised_total": 4,
+      "advertised_pages": 2,
+      "records": 1,
+      "unique_ids": 1,
+      "duplicate_ids": [],
+      "short_pages": [
+        {
+          "page": 1,
+          "records": 1
+        }
+      ],
+      "gaps": [
+        "pagination_totals_changed"
+      ],
+      "advertised_end_reached": true
+    }
+  },
+  "runs": [
+    {
+      "started_at": "2026-10-07T14:09:01.953699+00:00",
+      "requests": [
+        {
+          "id": "48d254df7ea4adc6d005aaef",
+          "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2",
+          "kind": "rest",
+          "start": 637223.184498298,
+          "preceding_completion": null,
+          "completion": 637223.187061834,
+          "completion_epoch": 1791382141.9592023
+        },
+        {
+          "id": "020b358091498bc972a52a87",
+          "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=2",
+          "kind": "rest",
+          "start": 637223.197739081,
+          "preceding_completion": 637223.187061834,
+          "completion": 637223.200065185,
+          "completion_epoch": 1791382141.9722054
+        }
+      ],
+      "stop_reason": null,
+      "cleanup_error": null,
+      "gap_seconds": 0,
+      "max_requests": 100,
+      "max_seconds": 1800,
+      "max_bytes": 100000000,
+      "response_cap": 10485760,
+      "browser_traffic": {},
+      "runtime": {},
+      "cleanup_messages": [],
+      "collection_outcome": "partial",
+      "finished_at": "2026-10-07T14:09:01.982320+00:00",
+      "elapsed_s": 0.02873828005976975,
+      "completed": 2,
+      "remaining": 0
+    }
+  ],
+  "last_completion_epoch": 1791382141.9722054
+}

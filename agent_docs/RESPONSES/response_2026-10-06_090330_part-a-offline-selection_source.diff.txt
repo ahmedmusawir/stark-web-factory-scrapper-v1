@@ -1,0 +1,573 @@
+--- /dev/null
++++ agent_docs/ACTION/wf-scrapper-abm/PART_A_OFFLINE.md
+@@ -0,0 +1,71 @@
++# Part A — Offline imported Capture inventory and human selection
++
++Status: first engineering slice; independent QA NOT RUN. Prepare ON HOLD.
++
++## What this command does
++
++`recon_pipeline.offline_inventory` validates saved input using `prepare.reader.RawRun`, then creates a NEW review directory. Its numbered Markdown listing and JSON describe the same document candidates. This is **IMPORTED_CAPTURE_INVENTORY**, not a fresh lightweight recon run or a current access test.
++
++Candidate universe: saved discovery routes UNION saved WordPress pages/posts links, merged only by exact URL equality. Taxonomy/user/media collections remain coverage context. Their records are not automatically promoted to document-capture targets; no inclusion/exclusion decision is made. A taxonomy URL already present in discovery remains a document candidate. Unknown titles/types stay unknown; slugs and taxonomy labels are not invented as page titles.
++
++Stable IDs are `doc-` plus the first 20 hex digits of SHA-256 over the exact UTF-8 URL. Export refuses an ID collision. Numbers are display positions only. Titles, dates, WordPress types, captured HTML and collection-response/object references retain their source locators and file hashes. WordPress type is not an asserted HTTP MIME type. Empty REST content stays recorded as empty; meaningful HTML is not erased.
++
++The inventory carries the raw snapshot hash and a semantic binding over its context/items sorted by stable ID. Reordering rows keeps that binding; changing evidence metadata requires a new inventory and explicit reselection. Inventory creation timestamps do not define selection identity. These hashes detect mismatches; they are not independent certification.
++
++## Current preserved input
++
++- Raw: `outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z`.
++- Original capture source: 69 files, SHA-256 `f497011c908057d4a1fb447c8b83a83152cf783ba3f3d8f00ee954aac904c7d3`; historical base HEAD `366f9830ba7b9bfb91f17b8655fd37467410123b` plus then-reviewed dirty source.
++- Actual checkout at Part A start: branch `wf-scrapper-abm`, HEAD `2824afb773d02bb4e0e7387710f1e7917858be8e`, clean; original 69 source records still match.
++- Capture remains INCOMPLETE, exit **2**. All 39 intentional operations succeeded; media fetched pages 1–18 but returned **1,661 unique / 1,753 advertised**, gap **92**, with ten short intermediate pages. Two new shutdown XHR aborts remained unconfirmed. The original results are unchanged.
++- Existing imported review: `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/offline-selection/2026-10-06_025607Z/review/inventory.json` and `INVENTORY.md`. All **217** candidates are **UNDECIDED**. No real choice file has been authored.
++
++## Usage — existing installed venv, repository root
++
++Create a separate NEW export (the directory must not already exist):
++
++```bash
++PYTHONDONTWRITEBYTECODE=1 venv/bin/python -m recon_pipeline.offline_inventory import \
++  --raw outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z \
++  --out agent_docs/RESPONSES/CyberizeGroup_imported_review_NEW
++```
++
++Read the already generated listing:
++
++```bash
++venv/bin/python -m recon_pipeline.offline_inventory list \
++  --inventory agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/offline-selection/2026-10-06_025607Z/review/inventory.json
++```
++
++After Tony explicitly supplies IDs, save choices in a NEW file. This syntax example was **not executed against the real review inventory**; replace the placeholders with his choices:
++
++```bash
++venv/bin/python -m recon_pipeline.offline_inventory choose \
++  --inventory agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/offline-selection/2026-10-06_025607Z/review/inventory.json \
++  --include <INCLUDE_STABLE_ID> --exclude <EXCLUDE_STABLE_ID> \
++  --note 'Tony explicit selection' --out agent_docs/RESPONSES/CyberizeGroup_choices_v1.json
++```
++
++Quote substituted IDs as ordinary shell arguments; angle-bracket placeholders are not runnable shell input. Either include or exclude is sufficient; flags may repeat. Unknown IDs, conflicting include/exclude in one command, empty decisions, an existing output path, or any output within the original raw directory are refused. Unspecified IDs remain UNDECIDED. Metadata can be read and ranked conversationally; no embedded model integration is needed.
++
++Reopen saved choices:
++
++```bash
++venv/bin/python -m recon_pipeline.offline_inventory list \
++  --inventory agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/offline-selection/2026-10-06_025607Z/review/inventory.json \
++  --choices agent_docs/RESPONSES/CyberizeGroup_choices_v1.json
++```
++
++For revised explicit decisions, use `choose --previous <v1-file> --out <NEW-v2-file>` plus new include/exclude flags. Prior choices persist unless explicitly revised; v1 and the imported inventory remain untouched. Choice files store the inventory/source bindings; reopening against changed inventory content is refused. Choices never start capture.
++
++## Verification and limitations
++
++Focused engineering checks cover actual RawRun input, source-file/object traceability, stable IDs under reorder, include/exclude persistence after reopen, immutable revisions, unknown-ID refusal, raw/output overwrite refusal, visible missing metadata and partial-state context, and escaped presentation of source text. Synthetic choices are marked as test data and are not Tony decisions. Actual-input verification also hashes every referenced file, verifies each saved WordPress ID/link, forbids socket connections in its process and compares all raw bytes before/after.
++
++Missing metadata is not fetched or guessed. Exact URL equality can leave slash/alias variants separate; conversational review should inspect their provenance before making choices. Media/taxonomy/user coverage is context, not yet an independently selectable media asset catalog. The retained capture is not a fresh/current site inventory. No Prepare package is constructed.
++
++## Proposed next slice — requires separate live authorization
++
++JARVIS should bind a dedicated lightweight recon entry whose default is sitemap discovery. It should use the approved browser-owned session/identity/scope/pacing/stop controls, save robots and sitemap evidence and a route inventory, and label those future results FRESH_LIGHTWEIGHT_RECON. Propose **20 intentional dispatches**, **300 seconds including finalization**, **10 MB persisted aggregate**, existing 10 MiB per-response cap and existing operation deadlines; no HTML/REST/media collection in that slice. Ceilings are proposed, not granted or implemented.
++
++No automatic homepage fallback on refusal or missing sitemap; record the outcome and let Tony decide a separately bounded alternative. Before another live allocation, JARVIS must assess the two unconfirmed shutdown requests. Current Capture CLI is still Capture, not that proposed lightweight entry. Homepage stopped-path accounting and historical supervisor final-manifest counter findings remain OPEN. STOP after this offline handoff.
+--- /dev/null
++++ recon_pipeline/offline_inventory.py
+@@ -0,0 +1,322 @@
++"""Part A: import saved Capture evidence and persist explicit human choices.
++
++No browser, discovery execution, capture, Prepare construction or ranking.
++Document universe = saved discovery routes UNION returned REST pages/posts links.
++Other collections and media coverage remain context, never automatic exclusions.
++"""
++import argparse
++import hashlib
++import html
++import json
++from pathlib import Path
++from datetime import datetime, timezone
++
++from bs4 import BeautifulSoup
++from prepare.reader import RawRun
++
++INVENTORY_SCHEMA = 'web-recon-imported-inventory-v1'
++CHOICES_SCHEMA = 'web-recon-human-choices-v1'
++
++
++def digest(value):
++    return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False,
++                                     separators=(',', ':')).encode('utf-8')).hexdigest()
++
++
++def item_id(url):
++    return 'doc-' + hashlib.sha256(url.encode('utf-8')).hexdigest()[:20]
++
++
++def inventory_binding(inv):
++    return digest({'source_snapshot_sha256': inv['source_run']['snapshot_sha256'],
++                   'context': inv['context'],
++                   'items': sorted(inv['items'], key=lambda x: x['id'])})
++
++
++def build_inventory(root):
++    raw = RawRun(root)  # mandatory structural/reference/hash validation; no fetch
++    hashes = raw.inventory()
++    rows = {}
++
++    def item(url):
++        return rows.setdefault(url, {'id': item_id(url), 'url': url, 'title': None,
++            'titles': [], 'content_types': [], 'dates': [], 'sources': [],
++            'discovery_provenance': [], 'capture_outcome': None, 'gaps': []})
++
++    def source(row, file, locator, **values):
++        row['sources'].append({'file': file, 'locator': locator,
++                               'sha256': hashes[file], **values})
++
++    def title(row, value, file, locator, preferred=False):
++        if not isinstance(value, str) or not value.strip():
++            return
++        text = BeautifulSoup(value, 'html.parser').get_text(' ', strip=True)
++        if not text:
++            return
++        row['titles'].append({'value': text, 'source_file': file, 'locator': locator})
++        if preferred or row['title'] is None:
++            row['title'] = text
++
++    def date(row, kind, value, file, locator):
++        if isinstance(value, str) and value:
++            row['dates'].append({'kind': kind, 'value': value, 'source_file': file,
++                                 'locator': locator})
++
++    for i, route in enumerate(raw.routes['routes']):
++        row = item(route['url'])
++        source(row, 'discovery/routes.json', f'$.routes[{i}]')
++        row['discovery_provenance'].append({'route_position': i,
++            'source_file': route.get('source_file'), 'input_urls': route.get('input_urls', []),
++            'aliases': route.get('aliases', [])})
++        if route.get('source_file'):
++            file = 'discovery/' + route['source_file']
++            source(row, file, 'route source; see $.routes[%d]' % i)
++        date(row, 'sitemap_lastmod', route.get('lastmod'), 'discovery/routes.json',
++             f'$.routes[{i}].lastmod')
++
++    for i, page in enumerate(raw.manifest['pages']):
++        row = item(page['url'])
++        source(row, 'manifest.json', f'$.pages[{i}]')
++        row['capture_outcome'] = {'outcome': page['outcome'], 'reason': page['reason'],
++                                  'status': page['status'], 'final_url': page['final_url']}
++        date(row, 'fetched_at', page.get('fetched_at'), 'manifest.json', f'$.pages[{i}].fetched_at')
++        if page.get('html_file'):
++            file = page['html_file']
++            source(row, file, 'rendered HTML; not REST content')
++            soup = BeautifulSoup(raw.bytes(file), 'html.parser')
++            if soup.title:
++                title(row, soup.title.get_text(), file, 'html/title')
++        elif page['outcome'] != 'captured':
++            row['gaps'].append('rendered_html_' + page['outcome'])
++
++    responses = {x['file']: x for x in raw.rest_index['responses']}
++    for i, ref in enumerate(raw.rest_index['objects']):
++        response = responses[ref['response_file']]
++        if response['collection'] not in ('pages', 'posts'):
++            continue
++        obj = raw.json(ref['file'], 'rest/index.json')
++        row = item(obj['link'])  # exact observed link, no guessed canonical merge
++        file = 'rest/' + ref['file']
++        source(row, file, '$', wp_id=obj['id'], collection=response['collection'])
++        source(row, 'rest/' + ref['response_file'], f'$[{ref["array_position"]}]',
++               boundary=response.get('boundary'), body_complete=response.get('body_complete'))
++        source(row, 'rest/index.json', f'$.objects[{i}]')
++        kind = obj.get('type')
++        if isinstance(kind, str) and kind not in row['content_types']:
++            row['content_types'].append(kind)
++        value = obj.get('title')
++        title(row, value.get('rendered') if isinstance(value, dict) else None,
++              file, '$.title.rendered', preferred=row['title'] is None or
++              not any(t['source_file'].startswith('rest/') for t in row['titles']))
++        for name in ('date', 'date_gmt', 'modified', 'modified_gmt'):
++            date(row, name, obj.get(name), file, '$.' + name)
++        if 'content' not in obj:
++            row['gaps'].append('rest_content_missing')
++        elif obj['content'] is None:
++            row['gaps'].append('rest_content_null')
++        elif isinstance(obj['content'], dict):
++            if 'rendered' not in obj['content']:
++                row['gaps'].append('rest_content_rendered_missing')
++            elif obj['content']['rendered'] is None:
++                row['gaps'].append('rest_content_rendered_null')
++            elif not BeautifulSoup(obj['content']['rendered'], 'html.parser').get_text('', strip=True):
++                row['gaps'].append('rest_content_rendered_empty')
++        for name in ('yoast_head_json', 'yoast_head'):
++            if name not in obj:
++                row['gaps'].append(name + '_missing')
++            elif obj[name] is None:
++                row['gaps'].append(name + '_null')
++
++    items = sorted(rows.values(), key=lambda x: x['url'])
++    for row in items:
++        if row['title'] is None:
++            row['gaps'].append('title_unknown')
++        if not row['content_types']:
++            row['gaps'].append('wordpress_content_type_unknown')
++        if not row['dates']:
++            row['gaps'].append('dates_unknown')
++        if row['capture_outcome'] is None:
++            row['gaps'].append('rendered_capture_not_selected_or_not_known')
++        row['gaps'] = sorted(set(row['gaps']))
++        row['selection'] = 'UNDECIDED'
++    if len({x['id'] for x in items}) != len(items):
++        raise ValueError('stable-ID collision; no inventory written')
++
++    collections = []
++    for col in raw.rest_index['collections']:
++        ids = [raw.json(x['file'], 'rest/index.json')['id'] for x in raw.rest_index['objects']
++               if responses[x['response_file']]['collection'] == col['type']]
++        pages = [x for x in raw.rest_index['responses'] if x['collection'] == col['type']]
++        collections.append({'type': col['type'], 'status': col['status'],
++            'advertised_total': col.get('total'), 'advertised_pages': col.get('total_pages'),
++            'fetched_pages': [x['page'] for x in pages], 'saved_records': len(ids),
++            'unique_ids': len(set(ids)), 'duplicate_records': len(ids)-len(set(ids)),
++            'record_gap': col['total']-len(set(ids)) if col.get('total') is not None else None,
++            'short_page_anomalies': [{'page': x['page'], 'anomalies': x['pagination_anomalies']}
++                                      for x in pages if x.get('pagination_anomalies')]})
++    shutdown = None
++    for line in raw.bytes('stage_log.txt').decode('utf-8').splitlines():
++        if ' browser {' in line:
++            event = json.loads(line.split(' browser ', 1)[1])
++            if event['event'] == 'shutdown_complete':
++                shutdown = {k: event.get(k) for k in
++                            ('confirmed_aborts', 'unconfirmed_count', 'stop_reason')}
++    inv = {'schema': INVENTORY_SCHEMA, 'origin': 'IMPORTED_CAPTURE_INVENTORY',
++        'created_at': datetime.now(timezone.utc).isoformat(),
++        'source_run': {'local_input_locator': str(raw.root),
++            'locator_role': 'read-only local input, not a raw/pack output reference',
++            'run_id': raw.manifest['run_id'], 'project': raw.manifest['project_name'],
++            'snapshot_sha256': digest(hashes), 'manifest_sha256': hashes['manifest.json'],
++            'capture_source_identity_sha256': hashes.get('source_identity.json')},
++        'context': {'candidate_universe': 'discovery routes union returned REST pages/posts links; no automatic exclusions',
++            'capture_stopped_early': raw.manifest['stopped_early'],
++            'capture_stop_reason': raw.manifest['access'].get('stop_reason'),
++            'shutdown': shutdown, 'streams': raw.manifest['streams'],
++            'collections': collections, 'media_inventory': raw.media['counts'],
++            'source_files': {file: hashes[file] for file in
++                             ('manifest.json', 'rest/index.json', 'media/inventory.json', 'stage_log.txt')},
++            'unknowns': ['Not a fresh lightweight recon run; no current accessibility claim.',
++                'Media/taxonomy/users are context, not document candidates.',
++                'Hidden/deferred content completeness unknown; missing metadata is not inferred.',
++                'Selection does not authorize or execute capture.',
++                'HTTP response MIME is not inferred from WordPress object type.',
++                'Independent QA NOT RUN; Prepare ON HOLD.']},
++        'items': items}
++    inv['inventory_id'] = inventory_binding(inv)
++    return inv
++
++
++def validate_inventory(inv):
++    if inv.get('schema') != INVENTORY_SCHEMA or inv.get('origin') != 'IMPORTED_CAPTURE_INVENTORY':
++        raise ValueError('not an imported Capture inventory')
++    ids = [x['id'] for x in inv['items']]
++    if len(ids) != len(set(ids)) or any(x['id'] != item_id(x['url']) for x in inv['items']):
++        raise ValueError('invalid/duplicate stable IDs')
++    if inv.get('inventory_id') != inventory_binding(inv):
++        raise ValueError('inventory content binding mismatch')
++    return inv
++
++
++def load_inventory(path):
++    return validate_inventory(json.loads(Path(path).read_text()))
++
++
++def load_choices(path, inv):
++    doc = json.loads(Path(path).read_text())
++    if doc.get('schema') != CHOICES_SCHEMA or doc.get('inventory_id') != inv['inventory_id'] or \
++            doc.get('source_snapshot_sha256') != inv['source_run']['snapshot_sha256']:
++        raise ValueError('choices belong to a different inventory/source snapshot')
++    known = {x['id'] for x in inv['items']}
++    for key, choice in doc['choices'].items():
++        if key not in known or choice.get('decision') not in ('include', 'exclude') or not isinstance(choice.get('note'), str):
++            raise ValueError('unknown ID or malformed human choice')
++    return doc
++
++
++def guard_output(path, inv):
++    path = Path(path).resolve()
++    raw = Path(inv['source_run']['local_input_locator']).resolve()
++    if path == raw or path.is_relative_to(raw):
++        raise ValueError('cannot write into the original raw run')
++    if path.exists():
++        raise FileExistsError('output already exists; choose a NEW path')
++    return path
++
++
++def save_choices(inv, output, include=(), exclude=(), previous=None, note=''):
++    validate_inventory(inv)
++    included, excluded = set(include), set(exclude)
++    known = {x['id'] for x in inv['items']}
++    if (included | excluded) - known:
++        raise ValueError('unknown stable IDs: ' + ', '.join(sorted((included | excluded)-known)))
++    if included & excluded:
++        raise ValueError('same ID included and excluded in one command')
++    if not included and not excluded:
++        raise ValueError('provide an explicit human inclusion or exclusion')
++    choices = dict(load_choices(previous, inv)['choices']) if previous else {}
++    for decision, ids in [('include', included), ('exclude', excluded)]:
++        for key in sorted(ids):
++            choices[key] = {'decision': decision, 'note': note}
++    doc = {'schema': CHOICES_SCHEMA, 'inventory_id': inv['inventory_id'],
++        'source_snapshot_sha256': inv['source_run']['snapshot_sha256'],
++        'saved_at': datetime.now(timezone.utc).isoformat(), 'actor': 'explicit human choices',
++        'previous_file': str(Path(previous).resolve()) if previous else None, 'choices': choices}
++    output = guard_output(output, inv)
++    output.parent.mkdir(parents=True, exist_ok=True)
++    with output.open('x') as stream:
++        stream.write(json.dumps(doc, ensure_ascii=False, indent=2) + '\n')
++    return doc
++
++
++def display(value):
++    text = html.escape(str(value), quote=False).replace('\n', ' ').replace('\r', ' ')
++    for char in ('\\', '`', '*', '_', '[', ']', '|'):
++        text = text.replace(char, '\\' + char)
++    return text
++
++
++def listing(inv, choices=None):
++    decisions = choices['choices'] if choices else {}
++    lines = ['# Imported Capture document inventory', '',
++        '**IMPORTED_CAPTURE_INVENTORY — offline only; all unspecified choices UNDECIDED.**', '',
++        f"Source run: `{inv['source_run']['run_id']}`; inventory ID: `{inv['inventory_id']}`.",
++        f"Capture stop: `{inv['context']['capture_stop_reason']}`; stopped early: {inv['context']['capture_stopped_early']}.",
++        f"Shutdown: `{inv['context']['shutdown']}`.", '', '## Collection coverage', '']
++    for col in inv['context']['collections']:
++        lines.append(f"- {col['type']}: {col['unique_ids']} unique / {col['advertised_total']} advertised; "
++                     f"{len(col['fetched_pages'])}/{col['advertised_pages']} pages; status {col['status']}; "
++                     f"record gap {col['record_gap']}; duplicate records {col['duplicate_records']}; "
++                     f"short-page anomalies {len(col['short_page_anomalies'])}.")
++    lines += ['', '## Document candidates', '',
++              'Numbers are display positions only. Save choices using stable IDs.', '']
++    for n, row in enumerate(inv['items'], 1):
++        decision = decisions.get(row['id'], {}).get('decision', 'UNDECIDED')
++        lines += [f"{n}. **{display(row['title']) if row['title'] is not None else '[title unknown]'}** — `{row['id']}` — {decision}",
++            f"   - URL: {display(row['url'])}",
++            f"   - Type: {display(', '.join(row['content_types']) or 'unknown')}; dates: " +
++             display('; '.join(x['kind']+'='+x['value'] for x in row['dates']) or 'unknown'),
++            f"   - Sources: " + display('; '.join(x['file']+' '+x['locator'] for x in row['sources'])),
++            f"   - Gaps: " + display(', '.join(row['gaps']) or 'none recorded')]
++    return '\n'.join(lines) + '\n'
++
++
++def export_inventory(raw_path, out):
++    inv = build_inventory(raw_path)
++    out = guard_output(out, inv)
++    out.mkdir(parents=True, exist_ok=False)
++    for name, value in [('inventory.json', json.dumps(inv, ensure_ascii=False, indent=2)+'\n'),
++                        ('INVENTORY.md', listing(inv))]:
++        with (out/name).open('x') as stream:
++            stream.write(value)
++    return inv
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    commands = parser.add_subparsers(dest='command', required=True)
++    imp = commands.add_parser('import', help='Validate saved raw, write NEW imported inventory')
++    imp.add_argument('--raw', type=Path, required=True);imp.add_argument('--out', type=Path, required=True)
++    show = commands.add_parser('list', help='Read inventory and optional saved choices')
++    show.add_argument('--inventory', type=Path, required=True);show.add_argument('--choices', type=Path)
++    choose = commands.add_parser('choose', help='Save explicit human choices in a NEW file')
++    choose.add_argument('--inventory', type=Path, required=True);choose.add_argument('--out', type=Path, required=True)
++    choose.add_argument('--include', action='append', default=[]);choose.add_argument('--exclude', action='append', default=[])
++    choose.add_argument('--previous', type=Path);choose.add_argument('--note', default='')
++    args = parser.parse_args(argv)
++    try:
++        if args.command == 'import':
++            inv = export_inventory(args.raw, args.out)
++            print(f"IMPORTED_CAPTURE_INVENTORY: {len(inv['items'])} document candidates; all UNDECIDED; {args.out}")
++        else:
++            inv = load_inventory(args.inventory)
++            if args.command == 'list':
++                print(listing(inv, load_choices(args.choices, inv) if args.choices else None), end='')
++            else:
++                save_choices(inv, args.out, args.include, args.exclude, args.previous, args.note)
++                print(f'Explicit choices saved: {args.out}; capture was not started')
++    except (ValueError, OSError, KeyError, TypeError) as exc:
++        parser.exit(2, 'Offline inventory refused: ' + str(exc) + '\n')
++
++
++if __name__ == '__main__':
++    main()
+--- /dev/null
++++ tests/test_offline_inventory.py
+@@ -0,0 +1,171 @@
++"""Part A offline engineering checks; no browser/HTTP fixture is executed."""
++import copy
++import hashlib
++import json
++import socket
++
++import pytest
++from test_raw_v2 import raw_fixture
++from raw_fixture_factory import build_raw
++from prepare.reader import RawRun
++from recon_pipeline.offline_inventory import (
++    build_inventory, export_inventory, inventory_binding, item_id, listing,
++    load_choices, load_inventory, main, save_choices,
++)
++
++
++@pytest.fixture(autouse=True)
++def forbid_network(monkeypatch):
++    def forbidden(*args, **kwargs):
++        pytest.fail('offline inventory attempted socket connection')
++    monkeypatch.setattr(socket.socket, 'connect', forbidden)
++    monkeypatch.setattr(socket.socket, 'connect_ex', forbidden)
++
++
++@pytest.fixture
++def imported(tmp_path):
++    root = tmp_path/'raw'
++    root.mkdir()
++    raw_fixture(root)
++    return build_inventory(root)
++
++
++def test_real_raw_reader_traceability_and_preservation(tmp_path):
++    root = build_raw(tmp_path/'input', 'partial')  # synthetic byte-faithful input; no traffic
++    raw = RawRun(root)
++    before = raw.inventory()
++    inv = export_inventory(root, tmp_path/'review')
++    assert inv['origin'] == 'IMPORTED_CAPTURE_INVENTORY'
++    assert inv['context']['capture_stopped_early']
++    assert all(x['selection'] == 'UNDECIDED' for x in inv['items'])
++    assert len(inv['items']) >= len(raw.routes['routes'])
++    objects = 0
++    for row in inv['items']:
++        assert row['id'] == item_id(row['url'])
++        for source in row['sources']:
++            assert hashlib.sha256(raw.bytes(source['file'])).hexdigest() == source['sha256']
++            if source.get('wp_id'):
++                assert raw.json(source['file'])['id'] == source['wp_id']
++                assert raw.json(source['file'])['link'] == row['url']
++                objects += 1
++    assert objects > 0
++    assert RawRun(root).inventory() == before
++    assert load_inventory(tmp_path/'review/inventory.json') == inv
++
++
++def test_reordering_and_reopening_preserve_choices(imported, tmp_path):
++    a, b = imported['items'][:2]
++    chosen = tmp_path/'choices-v1.json'
++    save_choices(imported, chosen, [a['id']], [b['id']], note='synthetic test choices')
++    reopened = load_choices(chosen, imported)
++    rearranged = copy.deepcopy(imported)
++    rearranged['items'].reverse()
++    assert inventory_binding(rearranged) == imported['inventory_id']
++    path = tmp_path/'reordered.json'
++    path.write_text(json.dumps(rearranged))
++    assert load_choices(chosen, load_inventory(path)) == reopened
++    assert reopened['choices'][a['id']]['decision'] == 'include'
++    assert reopened['choices'][b['id']]['decision'] == 'exclude'
++    assert 'include' in listing(rearranged, reopened)
++
++
++@pytest.mark.parametrize('argument', ['include', 'exclude'])
++def test_unknown_id_is_rejected_without_output(imported, tmp_path, argument):
++    path = tmp_path/'unknown.json'
++    with pytest.raises(ValueError, match='unknown stable IDs'):
++        save_choices(imported, path, **{argument: ['doc-unknown']})
++    assert not path.exists()
++
++
++def test_conflicting_or_empty_choices_are_rejected(imported, tmp_path):
++    key = imported['items'][0]['id']
++    with pytest.raises(ValueError, match='included and excluded'):
++        save_choices(imported, tmp_path/'bad.json', [key], [key])
++    with pytest.raises(ValueError, match='explicit human'):
++        save_choices(imported, tmp_path/'empty.json')
++
++
++def test_choice_revision_keeps_previous_and_unspecified_ids(imported, tmp_path):
++    a, b, c = [x['id'] for x in imported['items']]
++    old = tmp_path/'v1.json'
++    save_choices(imported, old, [a], [b])
++    before = old.read_bytes()
++    new = tmp_path/'v2.json'
++    doc = save_choices(imported, new, [b], previous=old)
++    assert doc['choices'][a]['decision'] == 'include'
++    assert doc['choices'][b]['decision'] == 'include'
++    assert c not in doc['choices']
++    assert old.read_bytes() == before
++
++
++def test_existing_inventory_and_raw_outputs_are_protected(imported, tmp_path):
++    invpath = tmp_path/'inventory.json'
++    invpath.write_text(json.dumps(imported))
++    before = invpath.read_bytes()
++    key = imported['items'][0]['id']
++    with pytest.raises(FileExistsError):
++        save_choices(imported, invpath, [key])
++    raw = imported['source_run']['local_input_locator']
++    with pytest.raises(ValueError, match='original raw'):
++        save_choices(imported, raw+'/choices.json', [key])
++    with pytest.raises(ValueError, match='original raw'):
++        export_inventory(raw, raw+'/review')
++    out = tmp_path/'export'
++    export_inventory(raw, out)
++    with pytest.raises(FileExistsError):
++        export_inventory(raw, out)
++    assert invpath.read_bytes() == before
++
++
++def test_binding_rejects_changed_content_and_mismatched_choices(imported, tmp_path):
++    key = imported['items'][0]['id']
++    path = tmp_path/'choices.json'
++    save_choices(imported, path, [key])
++    changed = copy.deepcopy(imported)
++    changed['items'][0]['title'] = 'Different evidence-derived metadata'
++    corrupt = tmp_path/'changed.json'
++    corrupt.write_text(json.dumps(changed))
++    with pytest.raises(ValueError, match='binding mismatch'):
++        load_inventory(corrupt)
++    changed['inventory_id'] = inventory_binding(changed)
++    with pytest.raises(ValueError, match='different inventory'):
++        load_choices(path, changed)
++
++
++def test_missing_metadata_and_partial_state_are_visible(imported):
++    assert all(x['title'] is None for x in imported['items'])
++    assert all('title_unknown' in x['gaps'] for x in imported['items'])
++    assert all('wordpress_content_type_unknown' in x['gaps'] for x in imported['items'])
++    assert '[title unknown]' in listing(imported)
++    media = next(x for x in imported['context']['collections'] if x['type'] == 'media')
++    # Authored synthetic context tests display; actual imported run gap is verified separately.
++    media.update(unique_ids=1661, advertised_total=1753, record_gap=92, status='partial')
++    imported['context']['shutdown'] = {'confirmed_aborts': 0, 'unconfirmed_count': 2}
++    imported['inventory_id'] = inventory_binding(imported)
++    text = listing(imported)
++    assert '1661 unique / 1753 advertised' in text and 'record gap 92' in text
++    assert "'unconfirmed_count': 2" in text
++
++
++def test_cli_round_trip_and_unknown_id_exit(tmp_path, capsys):
++    root = tmp_path/'raw'
++    root.mkdir();raw_fixture(root)
++    out = tmp_path/'review'
++    main(['import', '--raw', str(root), '--out', str(out)])
++    inv = load_inventory(out/'inventory.json')
++    selected = tmp_path/'choices.json'
++    main(['choose', '--inventory', str(out/'inventory.json'), '--include', inv['items'][0]['id'], '--out', str(selected)])
++    main(['list', '--inventory', str(out/'inventory.json'), '--choices', str(selected)])
++    assert 'include' in capsys.readouterr().out
++    with pytest.raises(SystemExit) as ex:
++        main(['choose', '--inventory', str(out/'inventory.json'), '--include', 'unknown', '--out', str(tmp_path/'invalid.json')])
++    assert ex.value.code == 2 and not (tmp_path/'invalid.json').exists()
++
++
++def test_listing_escapes_source_markup_without_altering_metadata(imported):
++    row = imported['items'][0]
++    row['title'] = '<script>alert(1)</script> [link](x)'
++    original = copy.deepcopy(imported)
++    text = listing(imported)
++    assert '<script>' not in text and '&lt;script&gt;' in text and '\\[link\\]' in text
++    assert imported == original

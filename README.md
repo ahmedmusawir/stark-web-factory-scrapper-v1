@@ -1,3 +1,17 @@
+# DECIDE → COLLECT → PREPARE
+
+DECIDE is now a separate command: `venv/bin/python -m recon_pipeline.decide`. It provides explicit sitemap/default recon, metadata-only WordPress review, saved human choices and export to the unchanged collector plan. See [DECIDE usage](agent_docs/ACTION/wf-scrapper-abm/DECIDE.md). Discovery/export does not start full collection. Prepare remains a future separate skill; independent QA NOT RUN.
+
+# Current collector — explicit, resumable selection
+
+The active `venv/bin/python -m recon_pipeline` command now takes **collect, resume, add, refresh** subcommands. Give it selected page URLs and explicitly approved REST endpoints; it does not discover a site, follow page links, collect every WordPress collection, or run Prepare.
+
+See [current behavior and usage](agent_docs/ACTION/wf-scrapper-abm/COLLECTOR_SIMPLIFICATION.md). The examples require Tony's live authorization before use against a public website. This implementation was checked locally only; independent QA NOT RUN.
+
+The earlier README below documents the preserved historical discovery/crawl engine and installation baseline. It does not describe the new active collector or authorize its old live commands.
+
+---
+
 # Stark Web Recon — scraper v1
 
 Discovery-and-crawl engine for Stark Industries web recon. Point it at a site, it enumerates the site's pages (sitemap or homepage links), then crawls each page with [crawl4ai](https://github.com/unclecode/crawl4ai) and writes one markdown file per page to `outputs/pages/`. That markdown is the raw material for later analysis phases. Phase 1 so far: C1 baseline → bim000 stage prep → bim001 raw HTML capture (see `CHANGELOG.md`).

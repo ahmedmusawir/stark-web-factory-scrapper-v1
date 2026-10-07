@@ -1,3 +1,7 @@
+## Current Web Recon entry — 2026-10-07
+
+The active product direction and engineering scope are in [collector simplification](agent_docs/ACTION/wf-scrapper-abm/COLLECTOR_SIMPLIFICATION.md) and [RECOVERY.md](RECOVERY.md). Tony authorized this implementation plus local verification; the legacy controller campaign below is historical. No live requests, Git mutations or Prepare work in this task. Independent QA NOT RUN. This explicit user authorization supersedes the generic planning-only approval loop for this scoped implementation.
+
 # CLAUDE.md — Claude Code Configuration
 
 > **AI App Factory — Stark Industries**

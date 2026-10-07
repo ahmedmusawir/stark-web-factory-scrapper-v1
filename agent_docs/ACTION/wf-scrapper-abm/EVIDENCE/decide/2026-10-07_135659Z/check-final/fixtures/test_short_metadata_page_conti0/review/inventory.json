@@ -1,0 +1,317 @@
+{
+  "schema": "web-recon-review-v1",
+  "origin": "FRESH_BOUNDED_RECON",
+  "mode": "sitemap",
+  "created_at": "2026-10-07T14:04:49.848242+00:00",
+  "context": {
+    "base": "http://127.0.0.1:9888/",
+    "wp_api_base": "http://127.0.0.1:9888/wp-json/",
+    "bounds": {
+      "requests": 12,
+      "discovery_pages": 3,
+      "depth": 1,
+      "rest_pages_per_type": 2,
+      "per_page": 2,
+      "candidates": 5000,
+      "seconds": 300,
+      "gap_seconds": 0
+    },
+    "scope": "same-origin planned URLs; ordinary browser redirects/resources add traffic",
+    "purpose": "recon metadata only; never marks full collector tasks complete",
+    "known_collection": null,
+    "discovery_pages_read": 1
+  },
+  "items": [
+    {
+      "id": "doc-1cdb8c7ffd0c2646b288",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/a",
+      "title": null,
+      "content_type": null,
+      "dates": {
+        "sitemap_lastmod": "2026-10-01"
+      },
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[0]"
+        },
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[1]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "title_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "row": 1
+    },
+    {
+      "id": "doc-31950248dda8b8a77892",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/article-1",
+      "title": "Article 1",
+      "content_type": null,
+      "dates": {
+        "date": "2026-10-07T00:00:00"
+      },
+      "sources": [
+        {
+          "file": "evidence/0003.body",
+          "sha256": "1a747579f563f22ba4aa5eb4bef993f95c328b511ff2167031164a979fd0115f",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=2&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+          "locator": "$[0]"
+        }
+      ],
+      "rest_items": [
+        {
+          "id": 1,
+          "type": "post",
+          "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts/1"
+        }
+      ],
+      "gaps": [
+        "content_not_requested_in_recon",
+        "content_type_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "post",
+      "row": 2
+    },
+    {
+      "id": "doc-a120093e7c4ffa02f7d2",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/article-2",
+      "title": "Article 2",
+      "content_type": null,
+      "dates": {
+        "date": "2026-10-07T00:00:00"
+      },
+      "sources": [
+        {
+          "file": "evidence/0004.body",
+          "sha256": "04da9b02261b302abc163c5d483551dcc07e579a40359708cdd384850921b825",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=2&page=2&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+          "locator": "$[0]"
+        }
+      ],
+      "rest_items": [
+        {
+          "id": 2,
+          "type": "post",
+          "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts/2"
+        }
+      ],
+      "gaps": [
+        "content_not_requested_in_recon",
+        "content_type_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "post",
+      "row": 3
+    },
+    {
+      "id": "doc-9c10c1545076a6699be2",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/article-3",
+      "title": "Article 3",
+      "content_type": null,
+      "dates": {
+        "date": "2026-10-07T00:00:00"
+      },
+      "sources": [
+        {
+          "file": "evidence/0004.body",
+          "sha256": "04da9b02261b302abc163c5d483551dcc07e579a40359708cdd384850921b825",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=2&page=2&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+          "locator": "$[1]"
+        }
+      ],
+      "rest_items": [
+        {
+          "id": 3,
+          "type": "post",
+          "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts/3"
+        }
+      ],
+      "gaps": [
+        "content_not_requested_in_recon",
+        "content_type_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "post",
+      "row": 4
+    },
+    {
+      "id": "doc-44758ca80440b39a5f01",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/b",
+      "title": null,
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[2]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "dates_unknown",
+        "title_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "row": 5
+    },
+    {
+      "id": "rest-dc5aa2127387494cbe21",
+      "kind": "rest_collection",
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts",
+      "title": "REST collection: Posts",
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0002.body",
+          "sha256": "5e97fca8e2cd1b6b32c7669c8fa7553b1b490255f78faf1375b63d774597547a",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+          "locator": "types.post"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "dates_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "post",
+      "row": 6
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:9888/s.xml",
+      "purpose": "sitemap",
+      "started": 636971.076565019,
+      "preceding_completion": null,
+      "completed": 636971.078489532,
+      "status": 200,
+      "headers": {
+        "content-type": "application/xml"
+      },
+      "final_url": "http://127.0.0.1:9888/s.xml",
+      "error": null,
+      "body_file": "evidence/0001.body",
+      "body_bytes": 239,
+      "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+      "purpose": "wp_types",
+      "started": 636971.081746525,
+      "preceding_completion": 636971.078489532,
+      "completed": 636971.083375485,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+      "error": null,
+      "body_file": "evidence/0002.body",
+      "body_bytes": 76,
+      "sha256": "5e97fca8e2cd1b6b32c7669c8fa7553b1b490255f78faf1375b63d774597547a",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=2&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "purpose": "wp_metadata:post",
+      "started": 636971.08593513,
+      "preceding_completion": 636971.083375485,
+      "completed": 636971.088006255,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "3",
+        "x-wp-totalpages": "2"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=2&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "error": null,
+      "body_file": "evidence/0003.body",
+      "body_bytes": 137,
+      "sha256": "1a747579f563f22ba4aa5eb4bef993f95c328b511ff2167031164a979fd0115f",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=2&page=2&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "purpose": "wp_metadata:post",
+      "started": 636971.090297461,
+      "preceding_completion": 636971.088006255,
+      "completed": 636971.092197511,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "3",
+        "x-wp-totalpages": "2"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=2&page=2&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "error": null,
+      "body_file": "evidence/0004.body",
+      "body_bytes": 274,
+      "sha256": "04da9b02261b302abc163c5d483551dcc07e579a40359708cdd384850921b825",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    }
+  ],
+  "gaps": [],
+  "wordpress": {
+    "status": "bounded",
+    "collections": [
+      {
+        "type": "post",
+        "endpoint": "http://127.0.0.1:9888/wp-json/wp/v2/posts",
+        "status": "enumerated_metadata",
+        "advertised_total": 3,
+        "advertised_pages": 2,
+        "fetched_pages": [
+          1,
+          2
+        ],
+        "enumerated_records": 3,
+        "enumerated_unique": 3,
+        "duplicates": [],
+        "short_pages": [
+          1
+        ],
+        "gaps": []
+      }
+    ],
+    "types_response": "evidence/0002.body",
+    "excluded_types": [],
+    "gaps": [
+      "page_type_not_exposed"
+    ]
+  },
+  "stop_reason": null,
+  "cleanup_error": null,
+  "browser_traffic": {},
+  "finished_at": "2026-10-07T14:04:49.868524+00:00",
+  "inventory_id": "b1bac6d62918e81b965ec62393fc028ca6818397cb319b745f8f5f18fd9eef6a"
+}

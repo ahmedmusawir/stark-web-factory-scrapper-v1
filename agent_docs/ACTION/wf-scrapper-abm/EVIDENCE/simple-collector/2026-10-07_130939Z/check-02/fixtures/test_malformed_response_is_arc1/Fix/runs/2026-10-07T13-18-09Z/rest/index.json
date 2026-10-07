@@ -1,0 +1,340 @@
+{
+  "schema": "abm-rest-index-v1",
+  "transport": {
+    "client": "Chromium",
+    "api": "page.window.fetch / Response.body.getReader",
+    "session_ref": "../manifest.json",
+    "response_boundary": "browser-decoded entity bytes; not compressed wire bytes"
+  },
+  "collections": [
+    {
+      "type": "pages",
+      "endpoint": "http://127.0.0.1:8765/wp-json/wp/v2/pages",
+      "per_page": 100,
+      "total": null,
+      "total_pages": null,
+      "fetched_objects": 0,
+      "status": "partial",
+      "response_refs": [
+        "responses/pages-1.body"
+      ]
+    },
+    {
+      "type": "posts",
+      "endpoint": "http://127.0.0.1:8765/wp-json/wp/v2/posts",
+      "per_page": 100,
+      "total": 1,
+      "total_pages": 1,
+      "fetched_objects": 1,
+      "status": "complete",
+      "response_refs": [
+        "responses/posts-1.body"
+      ]
+    },
+    {
+      "type": "media",
+      "endpoint": "http://127.0.0.1:8765/wp-json/wp/v2/media",
+      "per_page": 100,
+      "total": 1,
+      "total_pages": 1,
+      "fetched_objects": 1,
+      "status": "complete",
+      "response_refs": [
+        "responses/media-1.body"
+      ]
+    },
+    {
+      "type": "categories",
+      "endpoint": "http://127.0.0.1:8765/wp-json/wp/v2/categories",
+      "per_page": 100,
+      "total": 1,
+      "total_pages": 1,
+      "fetched_objects": 1,
+      "status": "complete",
+      "response_refs": [
+        "responses/categories-1.body"
+      ]
+    },
+    {
+      "type": "tags",
+      "endpoint": "http://127.0.0.1:8765/wp-json/wp/v2/tags",
+      "per_page": 100,
+      "total": 1,
+      "total_pages": 1,
+      "fetched_objects": 1,
+      "status": "complete",
+      "response_refs": [
+        "responses/tags-1.body"
+      ]
+    },
+    {
+      "type": "users",
+      "endpoint": "http://127.0.0.1:8765/wp-json/wp/v2/users",
+      "per_page": 100,
+      "total": null,
+      "total_pages": null,
+      "fetched_objects": 0,
+      "status": "unavailable",
+      "response_refs": [
+        "responses/users-1.body"
+      ]
+    }
+  ],
+  "responses": [
+    {
+      "file": "responses/pages-1.body",
+      "sha256": "675633d96830f274d02ab5af4abb3deab38e9b189693fbdc2792191928f645bc",
+      "bytes": 66295,
+      "collection": "pages",
+      "page": 1,
+      "url": "http://127.0.0.1:8765/wp-json/wp/v2/pages?per_page=100&page=1",
+      "method": "GET",
+      "started_at": "2026-10-07T13:18:09+00:00",
+      "finished_at": "2026-10-07T13:18:09+00:00",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "200",
+        "x-wp-totalpages": "2"
+      },
+      "content_type": "application/json",
+      "location": null,
+      "retry_after": null,
+      "x_wp_total": "200",
+      "x_wp_total_pages": "2",
+      "transport": "fixture bytes adapter",
+      "boundary": "declared fixture entity bytes",
+      "outcome": "malformed",
+      "redirect_chain": [],
+      "body_complete": true,
+      "evidence_gap": null
+    },
+    {
+      "file": "responses/posts-1.body",
+      "sha256": "2699c21c1854c76093e9cb3bf8ba73d2c137c2cbc0e1684a1286530f4bfa21e7",
+      "bytes": 183,
+      "collection": "posts",
+      "page": 1,
+      "url": "http://127.0.0.1:8765/wp-json/wp/v2/posts?per_page=100&page=1",
+      "method": "GET",
+      "started_at": "2026-10-07T13:18:09+00:00",
+      "finished_at": "2026-10-07T13:18:09+00:00",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "1",
+        "x-wp-totalpages": "1"
+      },
+      "content_type": "application/json",
+      "location": null,
+      "retry_after": null,
+      "x_wp_total": "1",
+      "x_wp_total_pages": "1",
+      "transport": "fixture bytes adapter",
+      "boundary": "declared fixture entity bytes",
+      "outcome": "complete",
+      "redirect_chain": [],
+      "body_complete": true,
+      "evidence_gap": null
+    },
+    {
+      "file": "responses/media-1.body",
+      "sha256": "2006542a65b85fa7b0863d11a3de365ad0943ea01f341f6f0f755f4e82f72ee1",
+      "bytes": 295,
+      "collection": "media",
+      "page": 1,
+      "url": "http://127.0.0.1:8765/wp-json/wp/v2/media?per_page=100&page=1",
+      "method": "GET",
+      "started_at": "2026-10-07T13:18:09+00:00",
+      "finished_at": "2026-10-07T13:18:09+00:00",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "1",
+        "x-wp-totalpages": "1"
+      },
+      "content_type": "application/json",
+      "location": null,
+      "retry_after": null,
+      "x_wp_total": "1",
+      "x_wp_total_pages": "1",
+      "transport": "fixture bytes adapter",
+      "boundary": "declared fixture entity bytes",
+      "outcome": "complete",
+      "redirect_chain": [],
+      "body_complete": true,
+      "evidence_gap": null
+    },
+    {
+      "file": "responses/categories-1.body",
+      "sha256": "26659b7db5663a7eaeaa6516538870b7d8653ba385406ffb7b451b44eb469a4b",
+      "bytes": 93,
+      "collection": "categories",
+      "page": 1,
+      "url": "http://127.0.0.1:8765/wp-json/wp/v2/categories?per_page=100&page=1",
+      "method": "GET",
+      "started_at": "2026-10-07T13:18:09+00:00",
+      "finished_at": "2026-10-07T13:18:09+00:00",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "1",
+        "x-wp-totalpages": "1"
+      },
+      "content_type": "application/json",
+      "location": null,
+      "retry_after": null,
+      "x_wp_total": "1",
+      "x_wp_total_pages": "1",
+      "transport": "fixture bytes adapter",
+      "boundary": "declared fixture entity bytes",
+      "outcome": "complete",
+      "redirect_chain": [],
+      "body_complete": true,
+      "evidence_gap": null
+    },
+    {
+      "file": "responses/tags-1.body",
+      "sha256": "df264fa3fd2b585bdfe965ed0a245056771774742eaf20a5de70c5d5088636b6",
+      "bytes": 84,
+      "collection": "tags",
+      "page": 1,
+      "url": "http://127.0.0.1:8765/wp-json/wp/v2/tags?per_page=100&page=1",
+      "method": "GET",
+      "started_at": "2026-10-07T13:18:09+00:00",
+      "finished_at": "2026-10-07T13:18:09+00:00",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "1",
+        "x-wp-totalpages": "1"
+      },
+      "content_type": "application/json",
+      "location": null,
+      "retry_after": null,
+      "x_wp_total": "1",
+      "x_wp_total_pages": "1",
+      "transport": "fixture bytes adapter",
+      "boundary": "declared fixture entity bytes",
+      "outcome": "complete",
+      "redirect_chain": [],
+      "body_complete": true,
+      "evidence_gap": null
+    },
+    {
+      "file": "responses/users-1.body",
+      "sha256": "0822104e41a35bc898bb1960be8964b566e7511696e29dfb7f6add7d23975107",
+      "bytes": 35,
+      "collection": "users",
+      "page": 1,
+      "url": "http://127.0.0.1:8765/wp-json/wp/v2/users?per_page=100&page=1",
+      "method": "GET",
+      "started_at": "2026-10-07T13:18:09+00:00",
+      "finished_at": "2026-10-07T13:18:09+00:00",
+      "status": 401,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "content_type": "application/json",
+      "location": null,
+      "retry_after": null,
+      "x_wp_total": null,
+      "x_wp_total_pages": null,
+      "transport": "fixture bytes adapter",
+      "boundary": "declared fixture entity bytes",
+      "outcome": "unavailable",
+      "redirect_chain": [],
+      "body_complete": true,
+      "evidence_gap": null
+    }
+  ],
+  "objects": [
+    {
+      "file": "objects/posts-900.json",
+      "sha256": "29acada069631166f64edff6f702abb16e0dba56f461de5eabf09f91f7b43a2a",
+      "response_file": "responses/posts-1.body",
+      "array_position": 0,
+      "serialization": "UTF-8 JSON; ensure_ascii=false; indent=2; original key order; trailing LF; exact Decimal values; no injected fields"
+    },
+    {
+      "file": "objects/media-500.json",
+      "sha256": "e1778de20f59962667fa874b7675d10228cf7f79f4c78b0f6e21bace61334483",
+      "response_file": "responses/media-1.body",
+      "array_position": 0,
+      "serialization": "UTF-8 JSON; ensure_ascii=false; indent=2; original key order; trailing LF; exact Decimal values; no injected fields"
+    },
+    {
+      "file": "objects/categories-1.json",
+      "sha256": "d7967a6271fa17f457b2c5e04740dd6dd3d7ee73c21a81a8996ccd549bf36aff",
+      "response_file": "responses/categories-1.body",
+      "array_position": 0,
+      "serialization": "UTF-8 JSON; ensure_ascii=false; indent=2; original key order; trailing LF; exact Decimal values; no injected fields"
+    },
+    {
+      "file": "objects/tags-2.json",
+      "sha256": "6461b213927f431accbdc1ef514963881832fdbf93d0ef70a98a9dbd864bf0e5",
+      "response_file": "responses/tags-1.body",
+      "array_position": 0,
+      "serialization": "UTF-8 JSON; ensure_ascii=false; indent=2; original key order; trailing LF; exact Decimal values; no injected fields"
+    }
+  ],
+  "fields_requested": "all; no _fields filter",
+  "absences_file": "../absences.json",
+  "optional_field_absences": [
+    {
+      "object": "objects/posts-900.json",
+      "field": "slug",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "status",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "date",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "modified",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "excerpt.rendered",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "author",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "featured_media",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "categories",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "tags",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "yoast_head_json",
+      "state": "missing"
+    },
+    {
+      "object": "objects/posts-900.json",
+      "field": "yoast_head",
+      "state": "missing"
+    }
+  ]
+}

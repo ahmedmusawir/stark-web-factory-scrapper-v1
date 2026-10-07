@@ -1,0 +1,1 @@
+Synthetic fixture choices from the passing focused test, not decisions for CyberizeGroup. Reordered fixture inventory reopens the same choices by stable ID; local input locators refer to retained test fixtures. No capture authorized.

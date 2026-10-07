@@ -1,0 +1,132 @@
+{
+  "schema": "selected-collection-v1",
+  "created_at": "2026-10-07T13:15:49.218567+00:00",
+  "items": [
+    {
+      "kind": "rest",
+      "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2",
+      "paginate": true,
+      "max_pages": 4,
+      "id": "48d254df7ea4adc6d005aaef",
+      "page": 1,
+      "status": "pending",
+      "result": {
+        "file": "attempts/48d254df7ea4adc6d005aaef/797cb147c1c543ef9bf47d0d59c3250d/result.json",
+        "sha256": "9068176e04b1fc2073267344b495da2c002e6d963070eb2ae21e8897b72101fa"
+      },
+      "attempts": [
+        {
+          "file": "attempts/48d254df7ea4adc6d005aaef/797cb147c1c543ef9bf47d0d59c3250d/result.json",
+          "sha256": "9068176e04b1fc2073267344b495da2c002e6d963070eb2ae21e8897b72101fa"
+        }
+      ],
+      "error": "explicit_refresh",
+      "group": "48d254df7ea4adc6d005aaef"
+    },
+    {
+      "id": "020b358091498bc972a52a87",
+      "kind": "rest",
+      "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=2",
+      "page": 2,
+      "group": "48d254df7ea4adc6d005aaef",
+      "status": "pending",
+      "result": {
+        "file": "attempts/020b358091498bc972a52a87/12a2e64ff47f4b0a99ef55be3f7f6a79/result.json",
+        "sha256": "42e4383f244ae0fc40a9b941c1e389f3272986dbc8c4d336c0f05e0be933f58c"
+      },
+      "attempts": [
+        {
+          "file": "attempts/020b358091498bc972a52a87/12a2e64ff47f4b0a99ef55be3f7f6a79/result.json",
+          "sha256": "42e4383f244ae0fc40a9b941c1e389f3272986dbc8c4d336c0f05e0be933f58c"
+        }
+      ],
+      "error": "explicit_refresh"
+    },
+    {
+      "id": "c03f322111856e48618b75e1",
+      "kind": "rest",
+      "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=3",
+      "page": 3,
+      "group": "48d254df7ea4adc6d005aaef",
+      "status": "pending",
+      "result": {
+        "file": "attempts/c03f322111856e48618b75e1/56453c60ef7b47ff89c8e7926d610c25/result.json",
+        "sha256": "0b7f227452eb630180eef7775a9cb27de7be58df6f68d5795b475c82fd6265e6"
+      },
+      "attempts": [
+        {
+          "file": "attempts/c03f322111856e48618b75e1/56453c60ef7b47ff89c8e7926d610c25/result.json",
+          "sha256": "0b7f227452eb630180eef7775a9cb27de7be58df6f68d5795b475c82fd6265e6"
+        }
+      ],
+      "error": "explicit_refresh"
+    }
+  ],
+  "coverage": {
+    "48d254df7ea4adc6d005aaef": {
+      "status": "complete",
+      "fetched_pages": [
+        1,
+        2,
+        3
+      ],
+      "advertised_total": 5,
+      "advertised_pages": 3,
+      "records": 5,
+      "unique_ids": 5,
+      "duplicate_ids": [],
+      "short_pages": [
+        {
+          "page": 1,
+          "records": 1
+        }
+      ],
+      "gaps": [],
+      "advertised_end_reached": true
+    }
+  },
+  "runs": [
+    {
+      "started_at": "2026-10-07T13:15:49.220908+00:00",
+      "requests": [
+        {
+          "id": "48d254df7ea4adc6d005aaef",
+          "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2",
+          "kind": "rest",
+          "start": 634030.450736017,
+          "preceding_completion": null,
+          "completion": 634030.45298285
+        },
+        {
+          "id": "020b358091498bc972a52a87",
+          "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=2",
+          "kind": "rest",
+          "start": 634030.474288942,
+          "preceding_completion": 634030.45298285,
+          "completion": 634030.476493471
+        },
+        {
+          "id": "c03f322111856e48618b75e1",
+          "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=3",
+          "kind": "rest",
+          "start": 634030.498280646,
+          "preceding_completion": 634030.476493471,
+          "completion": 634030.500576446
+        }
+      ],
+      "stop_reason": null,
+      "cleanup_error": null,
+      "gap_seconds": 0.02,
+      "max_requests": 100,
+      "max_seconds": 1800,
+      "max_bytes": 100000000,
+      "response_cap": 10485760,
+      "browser_traffic": {},
+      "collection_outcome": "complete",
+      "finished_at": "2026-10-07T13:15:49.281909+00:00",
+      "elapsed_s": 0.061018161941319704,
+      "completed": 3,
+      "remaining": 0
+    }
+  ]
+}

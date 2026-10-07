@@ -1,0 +1,173 @@
+{
+  "verdict": "Implemented COLLECT first slice; engineering local checks PASS; independent QA NOT RUN",
+  "branch": "wf-scrapper-abm",
+  "head": "2824afb773d02bb4e0e7387710f1e7917858be8e",
+  "source_inventory": "f031eb90585599a276d10a920746d4fd0286a3c260e8be4e6d4e5bc776b7d009",
+  "source_files": 48,
+  "tested_source_unchanged": true,
+  "new_source_files": [
+    "recon_pipeline/collector.py",
+    "tests/test_selected_collector.py"
+  ],
+  "changed_existing_source": [
+    "recon_pipeline/__main__.py"
+  ],
+  "changed_documentation": [
+    "README.md",
+    "CLAUDE.md",
+    "RECOVERY.md",
+    "CHANGELOG.md",
+    "agent_docs/ACTION/wf-scrapper-abm/AGENTS.md",
+    "agent_docs/ACTION/wf-scrapper-abm/CLAUDE.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md",
+    "agent_docs/ACTION/wf-scrapper-abm/COLLECTOR_SIMPLIFICATION.md",
+    "agent_docs/SESSIONS/session_2026-10-07.md"
+  ],
+  "preexisting_dirty_state": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/simple-collector/2026-10-07_130939Z/git-status-before.txt",
+  "tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 SELECTED_COLLECTOR_EVIDENCE=/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/simple-collector/2026-10-07_130939Z/check-03 venv/bin/python -m pytest -q tests/test_selected_collector.py tests/test_rest_client.py tests/test_raw_reader.py tests/test_offline_inventory.py --basetemp=/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/simple-collector/2026-10-07_130939Z/check-03/fixtures",
+    "passed": 59,
+    "collector_checks": 32,
+    "existing_offline_checks": 27,
+    "exit": 0,
+    "log": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/simple-collector/2026-10-07_130939Z/check-03/pytest.log",
+    "initial_focused_result": "26 passed / exit0; preserved check-01",
+    "cli_help_exit": 0
+  },
+  "native_evidence": {
+    "native-success": {
+      "planned_requests": 3,
+      "server_requests": [
+        "/selected",
+        "/wp-json/wp/v2/posts?per_page=2",
+        "/wp-json/wp/v2/posts?per_page=2&page=2"
+      ],
+      "minimum_planned_gap_s": 0.1508107869885862,
+      "collection_outcome": "complete",
+      "stop_reason": null,
+      "cleanup_error": null,
+      "runtime": {
+        "python": "3.12.3",
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "crawl4ai": "0.9.3",
+        "playwright": "1.52.0",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "cache": "BYPASS",
+        "html_wait_for_images": true,
+        "html_post_load_delay": 3,
+        "navigation_timeout_ms": {
+          "page": 90000,
+          "rest": 30000
+        },
+        "tls_verification": true,
+        "browser": "136.0.7103.25"
+      },
+      "coverage": {
+        "59a7766998b20881f85435c2": {
+          "status": "complete",
+          "fetched_pages": [
+            1,
+            2
+          ],
+          "advertised_total": 3,
+          "advertised_pages": 2,
+          "records": 3,
+          "unique_ids": 3,
+          "duplicate_ids": [],
+          "short_pages": [
+            {
+              "page": 1,
+              "records": 1
+            }
+          ],
+          "gaps": [],
+          "advertised_end_reached": true
+        }
+      },
+      "timeline": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/simple-collector/2026-10-07_130939Z/check-03/native-success/timeline.json"
+    },
+    "native-denial": {
+      "planned_requests": 1,
+      "server_requests": [
+        "/deny"
+      ],
+      "minimum_planned_gap_s": null,
+      "collection_outcome": "partial",
+      "stop_reason": "http_429",
+      "cleanup_error": null,
+      "runtime": {
+        "python": "3.12.3",
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "crawl4ai": "0.9.3",
+        "playwright": "1.52.0",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "cache": "BYPASS",
+        "html_wait_for_images": true,
+        "html_post_load_delay": 3,
+        "navigation_timeout_ms": {
+          "page": 90000,
+          "rest": 30000
+        },
+        "tls_verification": true,
+        "browser": "136.0.7103.25"
+      },
+      "coverage": {},
+      "timeline": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/simple-collector/2026-10-07_130939Z/check-03/native-denial/timeline.json"
+    }
+  },
+  "preservation": {
+    "prior_files_checked": 18552,
+    "changed": [],
+    "missing": [],
+    "preexisting_doc_text_preserved": true
+  },
+  "live_requests": 0,
+  "prepare": "NOT BUILT; separate future skill",
+  "independent_QA": "NOT RUN",
+  "historical_capture": {
+    "path": "outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z",
+    "status": "INCOMPLETE",
+    "exit": 2,
+    "media_unique": 1661,
+    "media_advertised": 1753,
+    "unconfirmed_shutdown_aborts": 2,
+    "homepage_accounting": "OPEN",
+    "historical_supervisor_counters": "OPEN"
+  },
+  "proposed_live_check": {
+    "executed": false,
+    "urls": [
+      "https://cyberizegroup.com/blog/",
+      "https://cyberizegroup.com/wp-json/wp/v2/posts/11945"
+    ],
+    "planned_requests": 2,
+    "gap_s": 5,
+    "collection_seconds": 300,
+    "separate_cleanup_seconds": 10,
+    "configured_persisted_bytes": 20000000,
+    "response_cap": 10485760,
+    "limits_note": "Ordinary redirects/subresources add HTTP traffic; no hard wire/memory/aggregate-supervisor claim."
+  },
+  "artifacts": {
+    "report": "agent_docs/RESPONSES/response_2026-10-07_192033_simple-collector.md",
+    "summary": "agent_docs/RESPONSES/response_2026-10-07_192033_simple-collector_checks.json",
+    "example": "agent_docs/RESPONSES/response_2026-10-07_192033_simple-collector_plan.json",
+    "additions": "agent_docs/RESPONSES/response_2026-10-07_192033_simple-collector_additions.json",
+    "documentation_files": [
+      "README.md",
+      "CLAUDE.md",
+      "RECOVERY.md",
+      "CHANGELOG.md",
+      "agent_docs/ACTION/wf-scrapper-abm/AGENTS.md",
+      "agent_docs/ACTION/wf-scrapper-abm/CLAUDE.md",
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md",
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md",
+      "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md",
+      "agent_docs/ACTION/wf-scrapper-abm/COLLECTOR_SIMPLIFICATION.md",
+      "agent_docs/SESSIONS/session_2026-10-07.md"
+    ]
+  },
+  "evidence_directory": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/simple-collector/2026-10-07_130939Z"
+}

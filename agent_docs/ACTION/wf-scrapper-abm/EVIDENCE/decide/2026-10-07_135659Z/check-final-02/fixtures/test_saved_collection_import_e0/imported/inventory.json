@@ -1,0 +1,87 @@
+{
+  "schema": "web-recon-review-v1",
+  "origin": "IMPORTED_CAPTURE_INVENTORY",
+  "mode": "imported",
+  "created_at": "2026-10-07T14:07:10.977406+00:00",
+  "context": {
+    "input": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/check-final-02/fixtures/test_saved_collection_import_e0/saved",
+    "fresh_recon": false,
+    "collection_runs": [
+      {
+        "started_at": "2026-10-07T14:07:10.963460+00:00",
+        "requests": [
+          {
+            "id": "8a7e187d7e566318c43bbb40",
+            "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts/11945",
+            "kind": "rest",
+            "start": 637112.193518392,
+            "preceding_completion": null,
+            "completion": 637112.195748155,
+            "completion_epoch": 1791382030.9678888
+          }
+        ],
+        "stop_reason": null,
+        "cleanup_error": null,
+        "gap_seconds": 0,
+        "max_requests": 100,
+        "max_seconds": 1800,
+        "max_bytes": 100000000,
+        "response_cap": 10485760,
+        "browser_traffic": {},
+        "runtime": {},
+        "cleanup_messages": [],
+        "collection_outcome": "complete",
+        "finished_at": "2026-10-07T14:07:10.974268+00:00",
+        "elapsed_s": 0.010823338059708476,
+        "completed": 1,
+        "remaining": 0
+      }
+    ],
+    "collection_coverage": {}
+  },
+  "items": [
+    {
+      "id": "doc-5cd7e761fd3b4bed76a2",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/article",
+      "title": "Known post",
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/check-final-02/fixtures/test_saved_collection_import_e0/saved/attempts/8a7e187d7e566318c43bbb40/50948a0914e94eaa8f00444093c30e32/body",
+          "sha256": "8b6a98c42947693a8f91f44cb68ad075e691be4d092275feb58a512ca0da0415",
+          "locator": "JSON object 0"
+        }
+      ],
+      "rest_items": [
+        {
+          "id": 11945,
+          "type": "post",
+          "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts/11945"
+        }
+      ],
+      "gaps": [
+        "content_type_unknown",
+        "dates_unknown",
+        "needs_HTML_review_if_selected",
+        "rest_content_rendered_empty"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "post",
+      "row": 1
+    }
+  ],
+  "requests": [],
+  "gaps": [
+    "Historical saved evidence only; no current accessibility or complete-site claim.",
+    "REST type availability and current advertised totals were not established by this import."
+  ],
+  "wordpress": {
+    "status": "imported_selected_responses_only",
+    "collections": []
+  },
+  "stop_reason": null,
+  "cleanup_error": null,
+  "inventory_id": "f6e2f3f9949947b8f20d7eb97256db061b943a44a4596f7cc7e0c34d1889513f"
+}

@@ -1,3 +1,11 @@
+## Current task — DECIDE engineering handoff (2026-10-07)
+
+Tony authorized the separate DECIDE recon/human-selection layer. Read [DECIDE.md](DECIDE.md) and current RECOVERY before older campaign instructions below. Working COLLECT is preserved. This pass uses local fixtures/saved captures only; no new live allocation, Git mutation, dependency change or Prepare skill. Independent QA NOT RUN. Earlier “DECIDE not implemented” text below records the prior COLLECT-only checkpoint.
+
+## Current direction — explicit collector (2026-10-07)
+
+Tony's **SIMPLIFY THE WEB FACTORY COLLECTOR** instruction supersedes the historical controller-repair campaign and isolated Part A assignment for the new active path. Read [COLLECTOR_SIMPLIFICATION.md](COLLECTOR_SIMPLIFICATION.md) for current behavior, commands, limitations and superseded requirements. Engineering implementation and local checks are authorized; **no live requests** are authorized by this task. DECIDE and the separate PREPARE agent skill are not implemented here. Independent QA NOT RUN. Tony alone handles Git mutations and destructive cleanup. Earlier authority/checkpoint text below is preserved history, not permission to restart its campaign.
+
 # Web Recon ABM — Engineer entry
 
 ## Current checkpoint — ENGINEERING BLOCKED AT CHK

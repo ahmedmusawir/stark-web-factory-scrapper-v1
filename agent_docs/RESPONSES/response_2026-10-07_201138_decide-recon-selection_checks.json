@@ -1,0 +1,222 @@
+{
+  "verdict": "DECIDE first slice implemented; local engineering verification passed; independent QA NOT RUN",
+  "branch": "wf-scrapper-abm",
+  "head": "2824afb773d02bb4e0e7387710f1e7917858be8e",
+  "source_inventory_sha256": "ebc6e8310ce4aab49a93ec6cc3c2011fbddeb404642362a6fc442a71ae77b864",
+  "source_files": 50,
+  "new_code_test_files": [
+    "recon_pipeline/decide.py",
+    "tests/test_decide.py"
+  ],
+  "old_48_source_unchanged": true,
+  "changed_documentation": [
+    "README.md",
+    "RECOVERY.md",
+    "CHANGELOG.md",
+    "agent_docs/ACTION/wf-scrapper-abm/AGENTS.md",
+    "agent_docs/ACTION/wf-scrapper-abm/CLAUDE.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md",
+    "agent_docs/SESSIONS/session_2026-10-07.md",
+    "agent_docs/ACTION/wf-scrapper-abm/DECIDE.md"
+  ],
+  "tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 DECIDE_EVIDENCE=agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/verified-final SELECTED_COLLECTOR_EVIDENCE=agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/verified-final venv/bin/python -m pytest -q tests/test_decide.py tests/test_selected_collector.py tests/test_rest_client.py tests/test_raw_reader.py tests/test_offline_inventory.py --basetemp=agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/verified-final/fixtures",
+    "passed": 84,
+    "decide_checks": 25,
+    "existing_collector_and_offline_checks": 59,
+    "exit": 0,
+    "result": "........................................................................ [ 85%]\n............                                                             [100%]\n84 passed in 36.71s",
+    "initial_failure": "check-01: 18 passed / 1 native fixture setup failure (constructor created output directory before fresh-directory guard). Fixture now starts real browser after runner creates fresh output; guard retained."
+  },
+  "native": {
+    "planned_requests": 4,
+    "server_requests": [
+      "/s.xml",
+      "/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+      "/wp-json/wp/v2/posts?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "/wp-json/wp/v2/books?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt"
+    ],
+    "minimum_gap_s": 0.05062132503371686,
+    "configured_gap_s": 0.05,
+    "stop_reason": null,
+    "cleanup_error": null,
+    "collections": [
+      {
+        "type": "post",
+        "endpoint": "http://127.0.0.1:43467/wp-json/wp/v2/posts",
+        "status": "partial",
+        "advertised_total": 166,
+        "advertised_pages": 9,
+        "fetched_pages": [
+          1
+        ],
+        "enumerated_records": 1,
+        "enumerated_unique": 1,
+        "duplicates": [],
+        "short_pages": [
+          1
+        ],
+        "gaps": [
+          "metadata_page_limit"
+        ]
+      },
+      {
+        "type": "book",
+        "endpoint": "http://127.0.0.1:43467/wp-json/wp/v2/books",
+        "status": "enumerated_metadata",
+        "advertised_total": 0,
+        "advertised_pages": 0,
+        "fetched_pages": [
+          1
+        ],
+        "enumerated_records": 0,
+        "enumerated_unique": 0,
+        "duplicates": [],
+        "short_pages": [],
+        "gaps": []
+      }
+    ]
+  },
+  "sample": {
+    "sample_candidates": 10,
+    "selected_example_row": 3,
+    "selected_example_id": "doc-c6b9265b51bf57660bb4",
+    "all_original_rows_undecided": true,
+    "fresh_recon": false,
+    "actual_human_approval": false,
+    "source_reference_files_hash_verified": 229,
+    "historical_raw_import_candidates": 217,
+    "historical_media": {
+      "type": "media",
+      "status": "partial",
+      "advertised_total": 1753,
+      "advertised_pages": 18,
+      "fetched_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "saved_records": 1661,
+      "unique_ids": 1661,
+      "duplicate_records": 0,
+      "record_gap": 92,
+      "short_page_anomalies": [
+        {
+          "page": 3,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        },
+        {
+          "page": 4,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        },
+        {
+          "page": 5,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        },
+        {
+          "page": 8,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        },
+        {
+          "page": 9,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        },
+        {
+          "page": 12,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        },
+        {
+          "page": 13,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        },
+        {
+          "page": 14,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        },
+        {
+          "page": 15,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        },
+        {
+          "page": 17,
+          "anomalies": [
+            "short_intermediate_page"
+          ]
+        }
+      ],
+      "enumerated_records": 1661,
+      "enumerated_unique": 1661,
+      "gaps": [
+        "historical_record_gap:92"
+      ]
+    },
+    "sample_plan": {
+      "pages": [
+        "https://cyberizegroup.com/facebook-ads-andromeda-update/"
+      ],
+      "rest": [
+        {
+          "url": "https://cyberizegroup.com/wp-json/wp/v2/posts/11945",
+          "paginate": false
+        }
+      ]
+    }
+  },
+  "preservation": {
+    "previous_files_hash_verified": 27568,
+    "changed_previous_files": [],
+    "all_48_previous_source_test_files_unchanged": true,
+    "tested_source_matches_final": true,
+    "prior_document_text_preserved_verbatim": {
+      "README.md": true,
+      "RECOVERY.md": true,
+      "CHANGELOG.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/AGENTS.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/CLAUDE.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md": true,
+      "agent_docs/SESSIONS/session_2026-10-07.md": true
+    }
+  },
+  "live_site_requests": 0,
+  "independent_QA": "NOT RUN",
+  "Prepare": "NOT BUILT",
+  "report": "agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md",
+  "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z"
+}

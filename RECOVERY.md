@@ -1,3 +1,51 @@
+# Current checkpoint — DECIDE implemented; local verification and review handoff
+
+2026-10-07. Branch wf-scrapper-abm; HEAD `2824afb773d02bb4e0e7387710f1e7917858be8e` plus preserved dirty/untracked work. Separate `recon_pipeline.decide` implements explicit sitemap/default recon, lightweight WordPress types/counts/metadata, stable numbered review, exact-version human choices and collector-plan export. Existing collector, entry point and previous tests remain byte-identical.
+
+No new live site traffic; native Chromium only on loopback. Saved-data demonstration has ten imported rows and an EXAMPLE_ONLY single-article/single-REST plan, not Tony approval. Older raw import217 candidates retains media1661/1753 and historical gaps. Report [response_2026-10-07_201138_decide-recon-selection.md](agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md); usage [DECIDE.md](agent_docs/ACTION/wf-scrapper-abm/DECIDE.md); evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z`. Final local verification is recorded in the report/checks JSON. Independent QA NOT RUN.
+
+Next: Tony/JARVIS review source/diff/sample and proposed four-request live recon. No automatic live run or collection. Prepare not built. Historical controller/accounting findings remain open. STOP after handoff.
+
+## Preserved checkpoints
+
+# Current checkpoint — two-item simplified live check complete; STOP
+
+2026-10-07. Tony authorized exactly the blog listing and REST post11945. Both saved HTTP200, collect exit0; blog592886bytes/nine article headings, REST33839bytes/id11945/title populated/content.rendered empty. Planned gap5.000850s. Collection complete for this selection; cleanup no reported error. Conditional resume exit0, zero planned calls, no browser start; originals unchanged. Source48 `f031eb90585599a276d10a920746d4fd0286a3c260e8be4e6d4e5bc776b7d009` matches final tested bytes; branch `wf-scrapper-abm`, HEAD `2824afb773d02bb4e0e7387710f1e7917858be8e` plus preserved dirty work.
+
+Report: [response_2026-10-07_194146_selected-collector-live.md](agent_docs/RESPONSES/response_2026-10-07_194146_selected-collector-live.md). Fresh collection `outputs/collections/CyberizeGroup-selected-live-01`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/selected-live/2026-10-07_133839Z`. No further live run, retries or source repair authorized. Previous full-capture media discrepancy/unconfirmed aborts and accounting findings remain OPEN; this check does not close them. Prepare not started; independent QA NOT RUN.
+
+## Preserved checkpoints
+
+# Current checkpoint — simple collector implemented; awaiting Tony review
+
+2026-10-07. Branch `wf-scrapper-abm`; full HEAD `2824afb773d02bb4e0e7387710f1e7917858be8e` plus preserved dirty/untracked work. Tony's simplified COLLECT direction supersedes the legacy controller-repair loop and isolated offline-recon assignment. New active entry: `venv/bin/python -m recon_pipeline {collect,resume,add,refresh}`.
+
+Engineering local checks: **59 passed**, exit 0 (32 new collector checks, including two real loopback Chromium tests; 27 existing REST/reader/offline-inventory checks). No live websites requested. See [response_2026-10-07_192033_simple-collector.md](agent_docs/RESPONSES/response_2026-10-07_192033_simple-collector.md) and [usage/supersession](agent_docs/ACTION/wf-scrapper-abm/COLLECTOR_SIMPLIFICATION.md). Evidence: `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/simple-collector/2026-10-07_130939Z/check-03/`.
+
+The saved October 5 run remains INCOMPLETE/exit 2: media1661/1753 and two unconfirmed aborts. Old raw/source/controller and previous Part A work preserved. Homepage route accounting and historical supervisor-counter findings remain OPEN. DECIDE implementation and the PREPARE skill are outside this slice; independent QA NOT RUN. No live allocation, Git mutation, dependency change or deployment performed. Next: Tony reviews a proposed two-planned-request live check; do not execute it automatically.
+
+## Preserved earlier checkpoints
+
+# Recovery — Part A OFFLINE review inventory ready; STOP
+
+## 2026-10-06T03:04:16.861677+00:00 — Part A first OFFLINE slice verified; STOP
+
+- Result:217 imported document candidates, all UNDECIDED;194routeURLs+208RESTpage/postlinks,185exact shared,9route-only,23REST-only. No actual inclusion/exclusion decisions made.
+- Existing capture remains INCOMPLETE/exit2: media1661unique/1753advertised (92gap), pages1–18fetched,2unconfirmed shutdown aborts. Historical homepage/counter findings OPEN.
+- Source: branchwf-scrapper-abm, actualHEAD2824afb773d02bb4e0e7387710f1e7917858be8e; all69 original source records unchanged/f497011c908057d4a1fb447c8b83a83152cf783ba3f3d8f00ee954aac904c7d3. Final72-file sourcef4f6842735c0185d0dc6b03687b55ba2aca31bb2ad2d641110f8b0b37b7d8168; added only offline module/newtests/usage doc.
+- Checks:17focusedPASS/exit0;1216actualsourcehashrefs and208WPidentity/linkchecksPASS; reordering/choice reopen/unknown-ID/raw-overwrite protectionsPASS. Actual verification forbids sockets.9titles/typesunknown retained.
+- Preservation:1995rawfiles and18527previous evidence/output/report files unchanged. Existing Capture/controller/reader/dependencies untouched. No live test/fullsuite/QA certification.
+- Handoff:agent_docs/RESPONSES/response_2026-10-06_090330_part-a-offline-selection.md;checksagent_docs/RESPONSES/response_2026-10-06_090330_part-a-offline-selection_checks.json;stagingPROPOSALagent_docs/RESPONSES/response_2026-10-06_090330_part-a-offline-selection_proposed-staging.txt;reviewagent_docs/ACTION/wf-scrapper-abm/EVIDENCE/offline-selection/2026-10-06_025607Z/review. Next:conversational human review, then separately authorized sitemap-default lightweight recon slice after architecture decision on teardown. Proposed bounds are not live authorization.
+- Prepare ON HOLD; independent QA NOT RUN. No Git mutations, dependencies, deployment, deletion or controller repair. STOP.
+
+## Preserved checkpoints
+# Recovery — Part A OFFLINE approved; capture checkpoint preserved
+
+## 2026-10-06T02:56:08.058454+00:00 — Part A offline inventory/selection APPROVED → IN PROGRESS
+
+Tony authorizes first offline document review slice through RawRun. Current HEAD2824afb773d02bb4e0e7387710f1e7917858be8e, branchwf-scrapper-abm, clean worktree;69 source hashf497011c908057d4a1fb447c8b83a83152cf783ba3f3d8f00ee954aac904c7d3matches reviewed bytes. Preserve latest raw outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z, exit2, media1661/1753 and two unconfirmed shutdown aborts; no certification. Add only separate offline module/new focused tests/usage doc. Import discovered routes plus saved REST pages/posts; media/other collection context remains visible. Stable URL IDs, immutable imported inventory and new saved explicit human selections; unknown IDs rejected. Offline verification and factual handoff/staging proposal only. No live/controller repair, Git mutation, dependency change or Prepare. Evidenceagent_docs/ACTION/wf-scrapper-abm/EVIDENCE/offline-selection/2026-10-06_025607Z. Independent QA NOT RUN.
+
+## Preserved checkpoints
 # Recovery — ONE live Capture finished; allocation consumed; STOP
 
 ## 2026-10-05T14:19:27.792873+00:00 — Single planned-close live verification finished; allocation consumed; STOP
@@ -518,3 +566,5 @@ October 1–2 diagnostics established rendered blog/article capture and one filt
 Current review report: [response_2026-10-02_181842_abm-qam-amendment.md](agent_docs/RESPONSES/response_2026-10-02_181842_abm-qam-amendment.md). Its sibling ZIP is the self-contained handoff.
 
 Current BUILD_READBACK review report: [response_2026-10-02_192016_build-readback.md](agent_docs/RESPONSES/response_2026-10-02_192016_build-readback.md); sibling ZIP contains the complete review inputs. Final state: AWAITING BUILD_READBACK REVIEW AND TONY'S BUILD APPROVAL.
+
+DECIDE final verification: 84 passed/exit0 (25 new +59 existing), 27568 preserved prior output/evidence/report files; final50 code/test identity `ebc6e8310ce4aab49a93ec6cc3c2011fbddeb404642362a6fc442a71ae77b864`; old48 identity unchanged. Review `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md`. Engineering only; independent QA NOT RUN.

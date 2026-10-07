@@ -97,3 +97,21 @@ C1–C6 Capture/minimal raw reader implemented with 131 passing engineering test
 - **Updated:** browser_session.py and added test_planned_shutdown.py — bounded pending-ID abort before planned closure; native/local verification only.
 - **Updated:** recovery, engineering journal/log, ledger and session checkpoint — factual source-bound handoff, independent QA NOT RUN.
 - **Reason:** JARVIS scoped local shutdown repair; preserved prior records and original failure.
+
+## 2026-10-06T03:04:16.861677+00:00 — Cody / Engineer
+
+- Added first offline Recon/Selection import/list/human-choice module, focused tests and usage instructions under Tony’s scoped authority. Existing Capture source unchanged.
+- Appended factual checkpoints and selective staging proposal. Capture remains INCOMPLETE; independent QA NOT RUN; Prepare ON HOLD. No live traffic or Git mutation.
+
+
+## 2026-10-07 — Selected collector engineering slice
+
+- Active `python -m recon_pipeline` now accepts collect/resume/add/refresh with an explicit saved selection.
+- Ordinary Crawl4AI browser capture and REST navigation replace the custom interception controller in this path; historical pipeline remains intact.
+- Durable attempt/checklist persistence, hash-validated resume, five-second configurable pacing, stop-on-refusal, opt-in pagination and separate cleanup reporting.
+- 59 local checks passed; no live access or independent QA claim. See `agent_docs/RESPONSES/response_2026-10-07_192033_simple-collector.md`.
+
+
+## 2026-10-07 — DECIDE recon and human selection
+
+Separate bounded sitemap/default recon; projected WP types/counts/metadata; version-bound numbered/stable-ID choices; export to unchanged collector. Local fixtures and saved data only. See `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md`.

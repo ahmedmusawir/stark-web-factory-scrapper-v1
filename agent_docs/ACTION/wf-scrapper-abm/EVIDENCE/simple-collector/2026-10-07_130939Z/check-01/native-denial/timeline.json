@@ -1,0 +1,80 @@
+{
+  "checklist": {
+    "schema": "selected-collection-v1",
+    "created_at": "2026-10-07T13:15:55.745451+00:00",
+    "items": [
+      {
+        "kind": "page",
+        "url": "http://127.0.0.1:43089/deny",
+        "id": "091308cf15580b141e29c1e0",
+        "page": 1,
+        "status": "failed",
+        "result": {
+          "file": "attempts/091308cf15580b141e29c1e0/a7c304ae659f445a820b2fb35d85ca55/result.json",
+          "sha256": "7b69ee7c2d11f1336ee442509fb30950300bf1d31805252dc15cfe6a45b9d311"
+        },
+        "attempts": [
+          {
+            "file": "attempts/091308cf15580b141e29c1e0/a7c304ae659f445a820b2fb35d85ca55/result.json",
+            "sha256": "7b69ee7c2d11f1336ee442509fb30950300bf1d31805252dc15cfe6a45b9d311"
+          }
+        ],
+        "error": "http_429"
+      },
+      {
+        "kind": "page",
+        "url": "http://127.0.0.1:43089/must-not-collect",
+        "id": "cb54b9091010cf29efb7ad18",
+        "page": 1,
+        "status": "pending",
+        "result": null,
+        "attempts": [],
+        "error": null
+      }
+    ],
+    "coverage": {},
+    "runs": [
+      {
+        "started_at": "2026-10-07T13:15:55.806904+00:00",
+        "requests": [
+          {
+            "id": "091308cf15580b141e29c1e0",
+            "url": "http://127.0.0.1:43089/deny",
+            "kind": "page",
+            "start": 634037.552818726,
+            "preceding_completion": null,
+            "completion": 634041.11583101
+          }
+        ],
+        "stop_reason": "http_429",
+        "cleanup_error": null,
+        "gap_seconds": 0.05,
+        "max_requests": 100,
+        "max_seconds": 60,
+        "max_bytes": 100000000,
+        "response_cap": 10485760,
+        "browser_traffic": {
+          "request:document": 1,
+          "status:429": 1
+        },
+        "collection_outcome": "partial",
+        "finished_at": "2026-10-07T13:15:59.991015+00:00",
+        "elapsed_s": 4.184131847927347,
+        "completed": 0,
+        "remaining": 2
+      }
+    ]
+  },
+  "server_events": [
+    {
+      "url": "/deny",
+      "at": 634037.812075955
+    }
+  ],
+  "served_bodies": {
+    "/deny": {
+      "bytes": 17,
+      "sha256": "802600d124464157037a2519acb3cff90b97670fd04809ea902fbb95497a12ca"
+    }
+  }
+}

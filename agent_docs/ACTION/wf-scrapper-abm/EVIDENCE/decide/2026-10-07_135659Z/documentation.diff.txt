@@ -1,0 +1,221 @@
+--- before/README.md
++++ after/README.md
+@@ -1,3 +1,7 @@
++# DECIDE → COLLECT → PREPARE
++
++DECIDE is now a separate command: `venv/bin/python -m recon_pipeline.decide`. It provides explicit sitemap/default recon, metadata-only WordPress review, saved human choices and export to the unchanged collector plan. See [DECIDE usage](agent_docs/ACTION/wf-scrapper-abm/DECIDE.md). Discovery/export does not start full collection. Prepare remains a future separate skill; independent QA NOT RUN.
++
+ # Current collector — explicit, resumable selection
+ 
+ The active `venv/bin/python -m recon_pipeline` command now takes **collect, resume, add, refresh** subcommands. Give it selected page URLs and explicitly approved REST endpoints; it does not discover a site, follow page links, collect every WordPress collection, or run Prepare.
+--- before/RECOVERY.md
++++ after/RECOVERY.md
+@@ -1,3 +1,13 @@
++# Current checkpoint — DECIDE implemented; local verification and review handoff
++
++2026-10-07. Branch wf-scrapper-abm; HEAD `2824afb773d02bb4e0e7387710f1e7917858be8e` plus preserved dirty/untracked work. Separate `recon_pipeline.decide` implements explicit sitemap/default recon, lightweight WordPress types/counts/metadata, stable numbered review, exact-version human choices and collector-plan export. Existing collector, entry point and previous tests remain byte-identical.
++
++No new live site traffic; native Chromium only on loopback. Saved-data demonstration has ten imported rows and an EXAMPLE_ONLY single-article/single-REST plan, not Tony approval. Older raw import217 candidates retains media1661/1753 and historical gaps. Report [response_2026-10-07_201138_decide-recon-selection.md](agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md); usage [DECIDE.md](agent_docs/ACTION/wf-scrapper-abm/DECIDE.md); evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z`. Final local verification is recorded in the report/checks JSON. Independent QA NOT RUN.
++
++Next: Tony/JARVIS review source/diff/sample and proposed four-request live recon. No automatic live run or collection. Prepare not built. Historical controller/accounting findings remain open. STOP after handoff.
++
++## Preserved checkpoints
++
+ # Current checkpoint — two-item simplified live check complete; STOP
+ 
+ 2026-10-07. Tony authorized exactly the blog listing and REST post11945. Both saved HTTP200, collect exit0; blog592886bytes/nine article headings, REST33839bytes/id11945/title populated/content.rendered empty. Planned gap5.000850s. Collection complete for this selection; cleanup no reported error. Conditional resume exit0, zero planned calls, no browser start; originals unchanged. Source48 `f031eb90585599a276d10a920746d4fd0286a3c260e8be4e6d4e5bc776b7d009` matches final tested bytes; branch `wf-scrapper-abm`, HEAD `2824afb773d02bb4e0e7387710f1e7917858be8e` plus preserved dirty work.
+@@ -556,3 +566,5 @@
+ Current review report: [response_2026-10-02_181842_abm-qam-amendment.md](agent_docs/RESPONSES/response_2026-10-02_181842_abm-qam-amendment.md). Its sibling ZIP is the self-contained handoff.
+ 
+ Current BUILD_READBACK review report: [response_2026-10-02_192016_build-readback.md](agent_docs/RESPONSES/response_2026-10-02_192016_build-readback.md); sibling ZIP contains the complete review inputs. Final state: AWAITING BUILD_READBACK REVIEW AND TONY'S BUILD APPROVAL.
++
++DECIDE final verification: 84 passed/exit0 (25 new +59 existing), 27568 preserved prior output/evidence/report files; final50 code/test identity `ebc6e8310ce4aab49a93ec6cc3c2011fbddeb404642362a6fc442a71ae77b864`; old48 identity unchanged. Review `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md`. Engineering only; independent QA NOT RUN.
+--- before/CHANGELOG.md
++++ after/CHANGELOG.md
+@@ -110,3 +110,8 @@
+ - Ordinary Crawl4AI browser capture and REST navigation replace the custom interception controller in this path; historical pipeline remains intact.
+ - Durable attempt/checklist persistence, hash-validated resume, five-second configurable pacing, stop-on-refusal, opt-in pagination and separate cleanup reporting.
+ - 59 local checks passed; no live access or independent QA claim. See `agent_docs/RESPONSES/response_2026-10-07_192033_simple-collector.md`.
++
++
++## 2026-10-07 — DECIDE recon and human selection
++
++Separate bounded sitemap/default recon; projected WP types/counts/metadata; version-bound numbered/stable-ID choices; export to unchanged collector. Local fixtures and saved data only. See `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md`.
+--- before/agent_docs/ACTION/wf-scrapper-abm/AGENTS.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/AGENTS.md
+@@ -1,3 +1,7 @@
++## Current task — DECIDE engineering handoff (2026-10-07)
++
++Tony authorized the separate DECIDE recon/human-selection layer. Read [DECIDE.md](DECIDE.md) and current RECOVERY before older campaign instructions below. Working COLLECT is preserved. This pass uses local fixtures/saved captures only; no new live allocation, Git mutation, dependency change or Prepare skill. Independent QA NOT RUN. Earlier “DECIDE not implemented” text below records the prior COLLECT-only checkpoint.
++
+ ## Current direction — explicit collector (2026-10-07)
+ 
+ Tony's **SIMPLIFY THE WEB FACTORY COLLECTOR** instruction supersedes the historical controller-repair campaign and isolated Part A assignment for the new active path. Read [COLLECTOR_SIMPLIFICATION.md](COLLECTOR_SIMPLIFICATION.md) for current behavior, commands, limitations and superseded requirements. Engineering implementation and local checks are authorized; **no live requests** are authorized by this task. DECIDE and the separate PREPARE agent skill are not implemented here. Independent QA NOT RUN. Tony alone handles Git mutations and destructive cleanup. Earlier authority/checkpoint text below is preserved history, not permission to restart its campaign.
+--- before/agent_docs/ACTION/wf-scrapper-abm/CLAUDE.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/CLAUDE.md
+@@ -1,3 +1,7 @@
++## Current task — DECIDE engineering handoff (2026-10-07)
++
++Tony authorized the separate DECIDE recon/human-selection layer. Read [DECIDE.md](DECIDE.md) and current RECOVERY before older campaign instructions below. Working COLLECT is preserved. This pass uses local fixtures/saved captures only; no new live allocation, Git mutation, dependency change or Prepare skill. Independent QA NOT RUN. Earlier “DECIDE not implemented” text below records the prior COLLECT-only checkpoint.
++
+ ## Current direction — explicit collector (2026-10-07)
+ 
+ Tony's **SIMPLIFY THE WEB FACTORY COLLECTOR** instruction supersedes the historical controller-repair campaign and isolated Part A assignment for the new active path. Read [COLLECTOR_SIMPLIFICATION.md](COLLECTOR_SIMPLIFICATION.md) for current behavior, commands, limitations and superseded requirements. Engineering implementation and local checks are authorized; **no live requests** are authorized by this task. DECIDE and the separate PREPARE agent skill are not implemented here. Independent QA NOT RUN. Tony alone handles Git mutations and destructive cleanup. Earlier authority/checkpoint text below is preserved history, not permission to restart its campaign.
+--- before/agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md
+@@ -453,3 +453,10 @@
+ ## 2026-10-07 — Simplified collector two-item live check; engineering only
+ 
+ Tony-authorized two-item plan completed once: blog200/592886bytes with nine article headings; REST11945 200/33839bytes, title populated, content.rendered empty. Collect exit0, no reported cleanup error, planned completion gap5.000850s. One authorized no-op resume skipped both valid outputs, zero planned calls/no browser; exit0. Source48 `f031eb90585599a276d10a920746d4fd0286a3c260e8be4e6d4e5bc776b7d009` unchanged; HEAD `2824afb773d02bb4e0e7387710f1e7917858be8e` on `wf-scrapper-abm`. 27538 earlier output/evidence/report files unchanged. Report `agent_docs/RESPONSES/response_2026-10-07_194146_selected-collector-live.md`; collection `outputs/collections/CyberizeGroup-selected-live-01`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/selected-live/2026-10-07_133839Z`. New evidence concerns only these selected responses, not old ABM certification or full collection. Historical findings remain OPEN. No product/source/dependency edits, Git mutations, further live work or Prepare. Independent QA NOT RUN. STOP.
++
++
++## 2026-10-07 — DECIDE local implementation and engineering handoff
++
++Tony's current direction authorizes a separate recon/human-selection layer; working COLLECT preserved. New `recon_pipeline/decide.py` and `tests/test_decide.py`, explicit modes/bounds, projected WordPress metadata and counts, exact-version stable-ID/row choices, single-item versus whole-collection scope export. Existing source/tests and prior captures/evidence preserved. No new live traffic; local Chromium fixture only. Exact verification results/source identity in `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md` and its checks JSON; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z`. Demonstration uses imported saved data and EXAMPLE_ONLY choices, not Tony approval. Raw historical import retains media1661/1753 and original failure context. Old AC/QA records are not promoted to PASS by these engineering checks. Independent QA NOT RUN; Prepare not built; no Git/dependency/deployment changes. Stop for review.
++
++DECIDE final verification: 84 passed/exit0 (25 new +59 existing), 27568 preserved prior output/evidence/report files; final50 code/test identity `ebc6e8310ce4aab49a93ec6cc3c2011fbddeb404642362a6fc442a71ae77b864`; old48 identity unchanged. Review `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md`. Engineering only; independent QA NOT RUN.
+--- before/agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md
+@@ -253,3 +253,10 @@
+ ## 2026-10-07 — Simplified collector two-item live check; engineering only
+ 
+ Tony-authorized two-item plan completed once: blog200/592886bytes with nine article headings; REST11945 200/33839bytes, title populated, content.rendered empty. Collect exit0, no reported cleanup error, planned completion gap5.000850s. One authorized no-op resume skipped both valid outputs, zero planned calls/no browser; exit0. Source48 `f031eb90585599a276d10a920746d4fd0286a3c260e8be4e6d4e5bc776b7d009` unchanged; HEAD `2824afb773d02bb4e0e7387710f1e7917858be8e` on `wf-scrapper-abm`. 27538 earlier output/evidence/report files unchanged. Report `agent_docs/RESPONSES/response_2026-10-07_194146_selected-collector-live.md`; collection `outputs/collections/CyberizeGroup-selected-live-01`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/selected-live/2026-10-07_133839Z`. New evidence concerns only these selected responses, not old ABM certification or full collection. Historical findings remain OPEN. No product/source/dependency edits, Git mutations, further live work or Prepare. Independent QA NOT RUN. STOP.
++
++
++## 2026-10-07 — DECIDE local implementation and engineering handoff
++
++Tony's current direction authorizes a separate recon/human-selection layer; working COLLECT preserved. New `recon_pipeline/decide.py` and `tests/test_decide.py`, explicit modes/bounds, projected WordPress metadata and counts, exact-version stable-ID/row choices, single-item versus whole-collection scope export. Existing source/tests and prior captures/evidence preserved. No new live traffic; local Chromium fixture only. Exact verification results/source identity in `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md` and its checks JSON; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z`. Demonstration uses imported saved data and EXAMPLE_ONLY choices, not Tony approval. Raw historical import retains media1661/1753 and original failure context. Old AC/QA records are not promoted to PASS by these engineering checks. Independent QA NOT RUN; Prepare not built; no Git/dependency/deployment changes. Stop for review.
++
++DECIDE final verification: 84 passed/exit0 (25 new +59 existing), 27568 preserved prior output/evidence/report files; final50 code/test identity `ebc6e8310ce4aab49a93ec6cc3c2011fbddeb404642362a6fc442a71ae77b864`; old48 identity unchanged. Review `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md`. Engineering only; independent QA NOT RUN.
+--- before/agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md
+@@ -424,3 +424,10 @@
+ ## 2026-10-07 — Simplified collector two-item live check; engineering only
+ 
+ Tony-authorized two-item plan completed once: blog200/592886bytes with nine article headings; REST11945 200/33839bytes, title populated, content.rendered empty. Collect exit0, no reported cleanup error, planned completion gap5.000850s. One authorized no-op resume skipped both valid outputs, zero planned calls/no browser; exit0. Source48 `f031eb90585599a276d10a920746d4fd0286a3c260e8be4e6d4e5bc776b7d009` unchanged; HEAD `2824afb773d02bb4e0e7387710f1e7917858be8e` on `wf-scrapper-abm`. 27538 earlier output/evidence/report files unchanged. Report `agent_docs/RESPONSES/response_2026-10-07_194146_selected-collector-live.md`; collection `outputs/collections/CyberizeGroup-selected-live-01`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/selected-live/2026-10-07_133839Z`. New evidence concerns only these selected responses, not old ABM certification or full collection. Historical findings remain OPEN. No product/source/dependency edits, Git mutations, further live work or Prepare. Independent QA NOT RUN. STOP.
++
++
++## 2026-10-07 — DECIDE local implementation and engineering handoff
++
++Tony's current direction authorizes a separate recon/human-selection layer; working COLLECT preserved. New `recon_pipeline/decide.py` and `tests/test_decide.py`, explicit modes/bounds, projected WordPress metadata and counts, exact-version stable-ID/row choices, single-item versus whole-collection scope export. Existing source/tests and prior captures/evidence preserved. No new live traffic; local Chromium fixture only. Exact verification results/source identity in `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md` and its checks JSON; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z`. Demonstration uses imported saved data and EXAMPLE_ONLY choices, not Tony approval. Raw historical import retains media1661/1753 and original failure context. Old AC/QA records are not promoted to PASS by these engineering checks. Independent QA NOT RUN; Prepare not built; no Git/dependency/deployment changes. Stop for review.
++
++DECIDE final verification: 84 passed/exit0 (25 new +59 existing), 27568 preserved prior output/evidence/report files; final50 code/test identity `ebc6e8310ce4aab49a93ec6cc3c2011fbddeb404642362a6fc442a71ae77b864`; old48 identity unchanged. Review `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md`. Engineering only; independent QA NOT RUN.
+--- before/agent_docs/SESSIONS/session_2026-10-07.md
++++ after/agent_docs/SESSIONS/session_2026-10-07.md
+@@ -6,3 +6,7 @@
+ ## Two-item live check completed
+ 
+ Explicit Tony authorization; exact tested source confirmed. Collect exit0/two completed, resume exit0/zero planned requests. Report `agent_docs/RESPONSES/response_2026-10-07_194146_selected-collector-live.md`. No source edits or further live allocation; QA NOT RUN.
++
++## DECIDE — authorized local implementation
++
++Keep/scope plan recorded before editing at `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/implementation-plan.md`. New separate DECIDE module/test; collector unchanged. Native loopback plus offline fixture verification; imported latest sample10 and older raw217. Example choices explicitly not Tony approval. Report `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md`. No live site request, Git mutation or Prepare.
+--- /dev/null
++++ after/agent_docs/ACTION/wf-scrapper-abm/DECIDE.md
+@@ -0,0 +1,106 @@
++# DECIDE — recon and human selection
++
++Tony-authorized direction, 2026-10-07. **DECIDE → COLLECT → PREPARE**. DECIDE and COLLECT have separate commands and output directories. The working collector and all its source/tests are unchanged. Prepare remains a separate future skill. Independent QA NOT RUN. This implementation was verified with localhost fixtures and saved captures only; no new live recon was run.
++
++## Entry points and flow
++
++- DECIDE: `venv/bin/python -m recon_pipeline.decide {recon,import,list,select,export}`.
++- Existing COLLECT: `venv/bin/python -m recon_pipeline {collect,resume,add,refresh}` — unchanged.
++- Recon/import saves a review; selection saves a new decision file; export saves a plan. None automatically invokes the next stage or collection. No embedded model, automatic ranking/exclusions, paid API or dependency change.
++- Cody/Claudy can discuss the saved review with Tony. Only explicit recorded human choices become inclusions/exclusions. Unspecified rows stay UNDECIDED.
++
++## Explicit modes and bounds
++
++`recon --mode sitemap` reads a supplied sitemap, or reads `/robots.txt` for Sitemap directives. It follows same-origin sitemap index children within configured bounds. Without a usable declared/supplied sitemap, it records the gap; it never silently switches to link discovery or probes a list of guessed sitemap names.
++
++`recon --mode default` reads the supplied page and expands same-origin links breadth-first. **This downloads some rendered pages and their ordinary browser resources**. It does not promise zero page downloads. It skips obvious image/script/style/archive links and REST links as HTML candidates. HTML MIME/title/date metadata and link labels are recorded where available; a linked label is evidence from the referring page, not proof of the target's own title/content.
++
++Defaults: 12 planned requests total, 3 discovery page reads, depth 1, 1 metadata page per REST content type, 20 records per metadata page, 5,000 inventory candidates, 300 seconds collection work and five-second completion pacing. Bounds are configurable. `--max-pages` counts HTML or sitemap reads; `/robots.txt`, types and metadata calls also consume the shared `--max-requests` budget. Depth bounds followed pages/sitemap nesting; links found at the boundary can still be listed without being read. REST pagination uses the same pacing and overall request budget.
++
++The existing browser transport is reused unchanged: ordinary Crawl4AI Chromium navigation, native Response.body for XML/text/JSON, rendered HTML for link discovery. No custom CDP controller, HTTP-client fallback or retry loop. TLS verification/USER_AGENT and timeouts remain those of the collector. First 401/403/429 or explicit challenge stops subsequent planned requests and preserves evidence/inventory. Cleanup errors are separate. Available partial recon is checkpointed at `recon-progress.json` and finalized into a review.
++
++The candidate/next-request rule is **same origin** (scheme, host and port); www/apex are not silently merged. Browser redirects/resources can create additional traffic. An observed off-origin final redirect stops further recon, but there is no pre-dispatch per-hop scope interception or numerical background-resource bound in this simple transport. This limitation is inherited and explicit.
++
++## Lightweight WordPress reconnaissance
++
++- Directly request the standard `wp/v2/types` endpoint under the default `/wp-json/` API base, with `_fields=name,slug,rest_base,rest_namespace`. The root `/wp-json/` is never enumerated.
++- `--wp-base` supports an explicitly supplied same-origin API mount. Other mounts are not automatically guessed. An absent `rest_namespace` uses the standard wp/v2 convention; unusual routes require review.
++- Public types provide collection names/bases, including exposed custom post types. Pages/posts get priority. Attachment/media is explicitly excluded from enumeration; taxonomies/users are not content types and are not auto-collected.
++- Each admitted collection request uses `per_page`, `page` and `_fields=id,link,title,type,slug,date,date_gmt,modified,modified_gmt`. Full content/SEO/media data is not requested for review. If the server ignores projection, the unexpected response is preserved as recon evidence, marked partial and not paginated further; it never becomes a completed full-capture task.
++- Record X-WP-Total and X-WP-TotalPages separately from enumerated objects, unique IDs and actual review rows. Short nonempty pages do not terminate advertised pagination. Limits, unknown/changing totals, duplicate IDs, malformed responses, unavailable links and count mismatches stay explicit.
++- Collection rows in the review are **REST scope choices**, separate from HTML document rows. Missing/unexposed types, blocked access and skipped budget-limited calls are not represented as verified empty collections.
++- `--known-collection` reads validated saved collector output offline. An observed empty REST body can be attached as a **historical** warning with a file hash/date. It never causes a fresh content probe/retry. Post11945's warning is `needs_HTML_review_if_selected` in the supplied sample.
++
++## Inventory and decision identity
++
++`inventory.json` + `INVENTORY.md` hold stable URL/kind IDs, numbered rows, available title/MIME/WordPress type/dates, hashed source locators, REST item scope, unknowns and coverage limits. Fresh recon is labeled `FRESH_BOUNDED_RECON`; imports are `IMPORTED_CAPTURE_INVENTORY`. Old RawRun import reuses the existing offline adapter and keeps historical media/partial-capture facts.
++
++The inventory content hash includes row order. A decision also binds the **exact saved inventory file SHA-256**. Rows are resolved against that file into stable IDs when selected. Reordering keeps URL IDs but creates a new version; old row-based decisions cannot silently apply to it. Even reformatting the file invalidates its decision-file binding. Treat saved inventories as immutable.
++
++`select --include-html ROW_OR_ID` and `--include-rest ROW_OR_ID` are separate. `--exclude` records an explicit exclusion. Unknown rows/IDs and conflicting choices fail before saving. Every decision is a new file; pass all intended choices for that version (no implicit merge). `--by` records the stated decision-maker, not authenticated approval. An engineering illustration must use `--example` and an explicit example actor.
++
++A REST choice on a document row exports only its evidenced item endpoint(s), with `paginate: false`. Choosing a whole collection row requires explicit `--collection-max-pages`. Exports do not contain the metadata `_fields` filter. Selecting one post never grants permission for all posts. Export preserves HTML URLs and REST scope as distinct arrays accepted by the unchanged collector.
++
++## Exact usage
++
++The following `recon` commands are **not executed** and require live authorization before use against cyberizegroup.com. Use new output directories.
++
++```bash
++# Sitemap mode; omit --sitemap to discover Sitemap directives from robots.txt.
++venv/bin/python -m recon_pipeline.decide recon \
++  --mode sitemap --url https://cyberizegroup.com/ \
++  --sitemap https://cyberizegroup.com/sitemap_index.xml \
++  --out outputs/recon/CyberizeGroup-sitemap-01 \
++  --gap 5 --max-requests 8 --max-pages 2 --max-depth 1 \
++  --max-rest-pages 1 --per-page 1 --max-candidates 500 --max-seconds 180 \
++  --known-collection outputs/collections/CyberizeGroup-selected-live-01
++
++# Default mode: read one page; list its links without following them.
++venv/bin/python -m recon_pipeline.decide recon \
++  --mode default --url https://cyberizegroup.com/blog/ \
++  --out outputs/recon/CyberizeGroup-default-01 \
++  --gap 5 --max-requests 4 --max-pages 1 --max-depth 0 \
++  --max-rest-pages 1 --per-page 1 --max-candidates 100 --max-seconds 180 \
++  --known-collection outputs/collections/CyberizeGroup-selected-live-01
++
++# OFFLINE import instead of fresh recon.
++venv/bin/python -m recon_pipeline.decide import \
++  --collection outputs/collections/CyberizeGroup-selected-live-01 \
++  --out outputs/reviews/CyberizeGroup-imported-01
++# Older raw-v2 input alternative: --raw outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z
++
++venv/bin/python -m recon_pipeline.decide list \
++  --inventory outputs/reviews/CyberizeGroup-imported-01/inventory.json
++
++# Only after Tony actually chooses these rows/IDs; inspect the exact saved version first.
++venv/bin/python -m recon_pipeline.decide select \
++  --inventory outputs/reviews/CyberizeGroup-imported-01/inventory.json \
++  --include-html ROW_OR_STABLE_ID --include-rest ROW_OR_STABLE_ID \
++  --exclude ANOTHER_ROW_OR_ID --by Tony \
++  --out outputs/reviews/CyberizeGroup-decision-01.json
++
++venv/bin/python -m recon_pipeline.decide export \
++  --inventory outputs/reviews/CyberizeGroup-imported-01/inventory.json \
++  --decision outputs/reviews/CyberizeGroup-decision-01.json \
++  --out outputs/reviews/CyberizeGroup-approved-plan-01.json
++```
++
++Export also writes a `.review.json` sidecar with inventory/decision hashes, actor, example-only marker, separate HTML/REST scope and selected gaps. No collection runs. For a later authorized capture, feed the plan to existing `recon_pipeline collect`; for an existing collection use its unchanged `add --plan ...`, then explicit `resume`. Recon metadata files never enter the collector checklist.
++
++## Saved demonstration — no human approval implied
++
++[Numbered imported sample](EVIDENCE/decide/2026-10-07_135659Z/sample-final/review/INVENTORY.md): ten rows from the previously saved blog/REST responses. Illustrative row3 + stable ID `doc-c6b9265b51bf57660bb4` selects the Andromeda article as HTML and REST11945 only; illustrative row1 exclusion demonstrates syntax. These are NOT Tony decisions, recommendations or automatic exclusions. All original rows remain UNDECIDED.
++
++[Sample plan](EVIDENCE/decide/2026-10-07_135659Z/sample-final/EXAMPLE_ONLY_collector-plan.json) has one HTML URL and one REST item with pagination false. The historical empty content warning remains in its [review sidecar](EVIDENCE/decide/2026-10-07_135659Z/sample-final/EXAMPLE_ONLY_collector-plan.review.json). Actual recorded commands are in [commands.json](EVIDENCE/decide/2026-10-07_135659Z/sample-final/commands.json).
++
++The separate older raw import contains 217 document candidates and still reports media1661/1753, a 92-record gap. It is historical imported evidence, never combined with fresh recon totals. Both imports were read-only; 229 unique referenced source files were hash-verified.
++
++## Verification and limits
++
++Final verification command/results are in the [review report](../../RESPONSES/response_2026-10-07_201138_decide-recon-selection.md). Working collector code, its CLI and all prior tests remain unchanged. Tests cover explicit modes, bounds, deduplication, projections/custom types, stops/pacing, malformed/partial coverage, stable and numbered choices, unknown rejection, single-item versus collection export, and metadata/full-capture separation. Native Chromium is loopback-only.
++
++Current limits: no authenticated/admin-only types or exhaustive namespace discovery; no broad discovery guarantee; field projection depends on server support; unknown MIME is not inferred from a WordPress type; hidden/deferred content completeness unknown. Pacing applies to planned calls, not browser subresources. The 10 MiB post-receipt cap is not a wire/memory streaming bound; cleanup has a separate ten-second asynchronous timeout. No recon resume/retry loop or Prepare skill is added. Existing historical controller/accounting findings remain open.
++
++## Proposed next live check — not authorized or executed here
++
++Use the four-request **default** command above: one blog-page read, one projected public-types read, and at most two projected collection metadata reads (pages/posts prioritized if exposed, otherwise exposed custom types within the same cap). Metadata per_page1, one page per type, no media or content field, five-second gaps, 180-second collection deadline plus ordinary cleanup timeout. Browser resources/redirects add HTTP traffic. Save a bounded/partial inventory and stop; no selection or collection automatically follows. Tony reviews this proposal next. Independent QA NOT RUN.
