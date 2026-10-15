@@ -1,0 +1,316 @@
+{
+  "observed_at": "2026-10-11T14:38:15.389934+00:00",
+  "branch": "wf-scrapper-abm",
+  "head": "fb16b1b927a234d74a2c29c9044df33317ff8276",
+  "source_inventory_sha256": "609d3493a7f45bcb151c74c22275c35de171fc015886e40fb4547b6a020eb729",
+  "source_files": 50,
+  "inventory_file": "agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices_review/inventory.json",
+  "inventory_id": "64d54b52b28aa188e4d80a1eab97e1f7ebde293f294f39e6885b60991fb89392",
+  "inventory_sha256": "01adef99b6092cb57b089ff56e37298f36668ec11b7eb063df9d6be1d705f4c6",
+  "selected_rows": [
+    {
+      "row": 1,
+      "id": "doc-22d2072cb4418c53d3e9",
+      "url": "https://cyberizegroup.com/",
+      "title": "Home"
+    },
+    {
+      "row": 3,
+      "id": "doc-577a55ac200f36efce91",
+      "url": "https://cyberizegroup.com/agency-services/",
+      "title": "Agency Services"
+    },
+    {
+      "row": 9,
+      "id": "doc-c6b9265b51bf57660bb4",
+      "url": "https://cyberizegroup.com/facebook-ads-andromeda-update/",
+      "title": "How to Regain Consistency with Facebook Ads After the Andromeda Update"
+    }
+  ],
+  "decision": "outputs/selections/CyberizeGroup-first-selected-2026-10-11_203505/tony-decision.json",
+  "decision_sha256": "5e5384b4e04529eda9a34258dafc530527c2877aec7442193ff5534055ca3bf2",
+  "plan": "outputs/selections/CyberizeGroup-first-selected-2026-10-11_203505/collector-plan.json",
+  "plan_sha256": "23db3643b6766367b152bd66c406e74c9e22f7a46043500149325b0bce3d00c2",
+  "rest_scope": [],
+  "other_rows_undecided": 33,
+  "collection": "outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505",
+  "command": {
+    "command": [
+      "venv/bin/python",
+      "-m",
+      "recon_pipeline",
+      "collect",
+      "--plan",
+      "outputs/selections/CyberizeGroup-first-selected-2026-10-11_203505/collector-plan.json",
+      "--collection",
+      "outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505",
+      "--gap",
+      "5",
+      "--max-requests",
+      "3",
+      "--max-seconds",
+      "480",
+      "--max-bytes",
+      "30000000"
+    ],
+    "started_at": "2026-10-11T14:35:50.132322+00:00",
+    "exit_code": 0,
+    "collection": "outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505",
+    "attempt": "one initial selected collection; no automatic retries",
+    "pid": 3238945,
+    "finished_at": "2026-10-11T14:36:29.358556+00:00",
+    "elapsed_s": 39.22554098803084
+  },
+  "run": {
+    "started_at": "2026-10-11T14:35:51.563141+00:00",
+    "requests": [
+      {
+        "id": "3a1a77925e47639b5f9fd201",
+        "url": "https://cyberizegroup.com/",
+        "kind": "page",
+        "start": 738053.946405576,
+        "preceding_completion": null,
+        "completion": 738066.604438142,
+        "completion_epoch": 1791729365.204378
+      },
+      {
+        "id": "ae3d8256cdd00e50ca26c1f2",
+        "url": "https://cyberizegroup.com/agency-services/",
+        "kind": "page",
+        "start": 738071.605268585,
+        "preceding_completion": 738066.604438142,
+        "completion": 738078.338663072,
+        "completion_epoch": 1791729376.9386003
+      },
+      {
+        "id": "76f31511d3acb8433bdb9d50",
+        "url": "https://cyberizegroup.com/facebook-ads-andromeda-update/",
+        "kind": "page",
+        "start": 738083.342772926,
+        "preceding_completion": 738078.338663072,
+        "completion": 738090.161943868,
+        "completion_epoch": 1791729388.7618818
+      }
+    ],
+    "stop_reason": null,
+    "cleanup_error": null,
+    "gap_seconds": 5.0,
+    "max_requests": 3,
+    "max_seconds": 480.0,
+    "max_bytes": 30000000,
+    "response_cap": 10485760,
+    "browser_traffic": {
+      "request:document": 8,
+      "status:200": 319,
+      "request:script": 176,
+      "request:stylesheet": 33,
+      "request:image": 64,
+      "request:fetch": 33,
+      "request:font": 24,
+      "request:xhr": 13,
+      "status:301": 5,
+      "status:201": 2,
+      "request:ping": 4,
+      "status:204": 14,
+      "status:302": 2
+    },
+    "runtime": {
+      "python": "3.12.3",
+      "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+      "crawl4ai": "0.9.3",
+      "playwright": "1.52.0",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "cache": "BYPASS",
+      "html_wait_for_images": true,
+      "html_post_load_delay": 3,
+      "navigation_timeout_ms": {
+        "page": 90000,
+        "rest": 30000
+      },
+      "tls_verification": true,
+      "browser": "136.0.7103.25"
+    },
+    "cleanup_messages": [],
+    "collection_outcome": "complete",
+    "finished_at": "2026-10-11T14:36:28.988837+00:00",
+    "elapsed_s": 37.425719397026114,
+    "completed": 3,
+    "remaining": 0
+  },
+  "timings": [
+    {
+      "id": "3a1a77925e47639b5f9fd201",
+      "url": "https://cyberizegroup.com/",
+      "kind": "page",
+      "start": 738053.946405576,
+      "preceding_completion": null,
+      "completion": 738066.604438142,
+      "completion_epoch": 1791729365.204378,
+      "elapsed_s": 12.658032566076145,
+      "preceding_gap_s": null
+    },
+    {
+      "id": "ae3d8256cdd00e50ca26c1f2",
+      "url": "https://cyberizegroup.com/agency-services/",
+      "kind": "page",
+      "start": 738071.605268585,
+      "preceding_completion": 738066.604438142,
+      "completion": 738078.338663072,
+      "completion_epoch": 1791729376.9386003,
+      "elapsed_s": 6.733394486946054,
+      "preceding_gap_s": 5.000830442993902
+    },
+    {
+      "id": "76f31511d3acb8433bdb9d50",
+      "url": "https://cyberizegroup.com/facebook-ads-andromeda-update/",
+      "kind": "page",
+      "start": 738083.342772926,
+      "preceding_completion": 738078.338663072,
+      "completion": 738090.161943868,
+      "completion_epoch": 1791729388.7618818,
+      "elapsed_s": 6.819170942064375,
+      "preceding_gap_s": 5.004109853995033
+    }
+  ],
+  "items": [
+    {
+      "id": "3a1a77925e47639b5f9fd201",
+      "url": "https://cyberizegroup.com/",
+      "checklist_status": "completed",
+      "item_error": null,
+      "valid_saved_result": true,
+      "status": 200,
+      "final_url": "https://cyberizegroup.com/",
+      "bytes": 430420,
+      "sha256": "a38d8158c8f18005f66637d0152ef01b3319b158f6b0efd0a379181a932f5c3d",
+      "metadata_file": "outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505/attempts/3a1a77925e47639b5f9fd201/989120207d124adf99a60c163e10552a/result.json",
+      "metadata_sha256": "7fee7b1f23452bb591db265f4d8aa1e7464c327dd354918ea60844507664abd6",
+      "body_file": "outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505/attempts/3a1a77925e47639b5f9fd201/989120207d124adf99a60c163e10552a/body",
+      "body_complete": true,
+      "title": "B2B Digital Marketing Agency >> Cyberize Group",
+      "redirect_from": [],
+      "saved_at": "2026-10-11T14:36:05.278195+00:00",
+      "transport": "Crawl4AI Chromium navigation; rendered HTML",
+      "content_inspection": {
+        "kind": "homepage",
+        "headings": [
+          "We provide Digital Solutions for growing your business",
+          "Our Digital Solutions",
+          "Our Internet Marketing Services",
+          "Our Internet Marketing Services",
+          "SEO Services",
+          "PPC Services",
+          "Web Design and Development Services",
+          "Website Support & Maintenance",
+          "Supported Integrations"
+        ],
+        "brief_excerpt": "As a B2B Digital Marketing Agency we provide 3 core solutions that every business needs to succeed in today's ever changing global economy.",
+        "actual_selected_page_present": true
+      }
+    },
+    {
+      "id": "ae3d8256cdd00e50ca26c1f2",
+      "url": "https://cyberizegroup.com/agency-services/",
+      "checklist_status": "completed",
+      "item_error": null,
+      "valid_saved_result": true,
+      "status": 200,
+      "final_url": "https://cyberizegroup.com/agency-services/",
+      "bytes": 573516,
+      "sha256": "60ffd0d23a6db6968f31f71bb6efd872ce78f7d734ea3a24d5f5fc3597c7108d",
+      "metadata_file": "outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505/attempts/ae3d8256cdd00e50ca26c1f2/a53bc0b7b9064888b1cdd491acc23000/result.json",
+      "metadata_sha256": "9f91087d7d179298573bb8b1ef559f1f5f630e2c52f0c0a9dc2e7f13cd2b3883",
+      "body_file": "outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505/attempts/ae3d8256cdd00e50ca26c1f2/a53bc0b7b9064888b1cdd491acc23000/body",
+      "body_complete": true,
+      "title": "Agency Services » Cyberize Group",
+      "redirect_from": [],
+      "saved_at": "2026-10-11T14:36:16.998696+00:00",
+      "transport": "Crawl4AI Chromium navigation; rendered HTML",
+      "content_inspection": {
+        "kind": "category/article listing",
+        "selector": "#theme-content-section",
+        "headings": [
+          "Agency Services",
+          "Garage Door Repair PPC Agency – Get More Leads & Sales Now!",
+          "Boost Your Dental Practice with a Professional SEO Company",
+          "The Essential Guide to Developing a Winning Digital Marketing Strategy",
+          "Maximize Your eLearning ROI with a PPC Agency",
+          "Unlock Your Real Estate Business’s Growth with a Social Media Agency",
+          "Maximize Your Medical Supplies PPC Campaigns with the Right Agency"
+        ],
+        "body_class": [
+          "archive",
+          "category",
+          "category-agency-services",
+          "category-208",
+          "wp-theme-thrive-theme",
+          "tve-theme-64",
+          "thrive-layout-13",
+          "tve-desktop-browser",
+          "tve-chrome-browser",
+          "tve-version-browser"
+        ],
+        "actual_selected_page_present": true,
+        "note": "This URL presents a category listing, not an individual service article. Linked articles were not fetched."
+      }
+    },
+    {
+      "id": "76f31511d3acb8433bdb9d50",
+      "url": "https://cyberizegroup.com/facebook-ads-andromeda-update/",
+      "checklist_status": "completed",
+      "item_error": null,
+      "valid_saved_result": true,
+      "status": 200,
+      "final_url": "https://cyberizegroup.com/facebook-ads-andromeda-update/",
+      "bytes": 389468,
+      "sha256": "c614070f548bc8716a0d61b17342bd7efcac6ee4ad4974d356eaf2bd3dfc687b",
+      "metadata_file": "outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505/attempts/76f31511d3acb8433bdb9d50/220f10a856624283ba03669128dffef9/result.json",
+      "metadata_sha256": "f01d9a752f23af7eacbbbe2e12dea3212eb3faf23a8eb9a1b39dbca92d631e80",
+      "body_file": "outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505/attempts/76f31511d3acb8433bdb9d50/220f10a856624283ba03669128dffef9/body",
+      "body_complete": true,
+      "title": "How to Regain Consistency with Facebook Ads After the Andromeda Update",
+      "redirect_from": [],
+      "saved_at": "2026-10-11T14:36:28.824399+00:00",
+      "transport": "Crawl4AI Chromium navigation; rendered HTML",
+      "content_inspection": {
+        "kind": "article body",
+        "selector": ".tcb-post-content #tve_editor",
+        "heading": "How to Regain Consistency with Facebook Ads After the Andromeda Update",
+        "headings": [
+          "How to Regain Consistency with Facebook Ads After the Andromeda Update",
+          "The Three-Part System That Works Now",
+          "Build a Playbook That Wins",
+          "Scale Without Losing Control",
+          "Your New Weekly Routine",
+          "Ready to Stop Wasting Ad Spend?"
+        ],
+        "paragraph_count": 7,
+        "paragraph_characters": 647,
+        "list_items": 15,
+        "body_text_characters": 1903,
+        "substantive_article_present": true,
+        "brief_excerpts": [
+          "Think of your ad strategy as a funnel with three campaigns. Each one has its role:",
+          "The Andromeda update made one thing clear: your creative does the targeting.",
+          "Consistency comes from repetition. Here’s your rhythm:"
+        ],
+        "unicode_preserved": true,
+        "limitation": "Observed rendered snapshot; hidden/deferred content and live-site total completeness are not certified."
+      }
+    }
+  ],
+  "checklist_sha256": "4cfeaf65b69fadfde64c736ef7a976007a657bd6983812497a8505661c2fae02",
+  "html_bytes": 1393404,
+  "collection_persisted_bytes": 1400002,
+  "preservation": {
+    "checked_at": "2026-10-11T14:38:15.389255+00:00",
+    "existing_files": 43613,
+    "changed_or_missing": [],
+    "source_unchanged": true,
+    "original_inventory_unchanged": true
+  },
+  "resume_executed": false,
+  "independent_qa": "NOT RUN",
+  "prepare": "NOT STARTED / ON HOLD",
+  "historical_findings": "Prior media mismatch, shutdown findings, homepage accounting and supervisor counters remain open; this new selected batch does not resolve them."
+}

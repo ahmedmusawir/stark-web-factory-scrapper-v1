@@ -1,3 +1,17 @@
+# Active tool — DECIDE → COLLECT → PREPARE
+
+Current engineering readiness and historical acceptance mapping: [CURRENT_TOOL_SCOPE.md](agent_docs/ACTION/wf-scrapper-abm/CURRENT_TOOL_SCOPE.md). Start with [RECOVERY](RECOVERY.md) for the latest results and candidate handoff.
+
+- **DECIDE:** `venv/bin/python -m recon_pipeline.decide` discovers bounded candidates, saves immutable numbered review and exact human HTML/REST choices, then exports a plan. [Usage](agent_docs/ACTION/wf-scrapper-abm/DECIDE.md).
+- **COLLECT:** `venv/bin/python -m recon_pipeline collect --plan PLAN.json --collection NEW_DIR --gap 5 --max-requests N --max-seconds S --max-bytes B`; `resume --collection DIR` skips hash-valid completed items; `add --collection DIR --plan ADDITIONS.json` queues explicit additions offline; `refresh --collection DIR --id ID` queues replacement while retaining old attempts. Resume/collection require approved target scope/bounds. [Details](agent_docs/ACTION/wf-scrapper-abm/COLLECTOR_SIMPLIFICATION.md).
+- **PREPARE:** give the preparation agent a saved collection and [skill](agent_docs/SKILLS/web-recon-prepare/SKILL.md). Its offline helper extracts and validates; the agent inspects raw boundaries, corrects classifications and authors the source-linked brief/gaps. Growth Call’s known preliminary type error remains handled by that review; no automatic iframe capture.
+
+Shot2 uses only local tests/saved evidence. Independent QA NOT RUN. The dated original README sections below preserve earlier tool/campaign/install history; old Capture+Prepare commands/output guarantees are not the current tool. Existing requirements lock/direct pins remain unchanged; clean-install proof remains pending.
+
+## Current Prepare skill — 2026-10-11
+
+Tony authorized [Web Recon Prepare v0.1](agent_docs/SKILLS/web-recon-prepare/SKILL.md): an offline agent workflow for a supplied saved collection. Cody/Claudy validate hashes, extract Markdown and author the architect brief/requests. This supersedes older “Prepare not implemented” wording for this small skill only; it does not resume the historical ABM P1–P6/E1/E2 campaign. Collection/recon are unchanged; no live requests/Git mutations. Current output/checkpoint: [RECOVERY.md](RECOVERY.md). Independent QA NOT RUN.
+
 # DECIDE → COLLECT → PREPARE
 
 DECIDE is now a separate command: `venv/bin/python -m recon_pipeline.decide`. It provides explicit sitemap/default recon, metadata-only WordPress review, saved human choices and export to the unchanged collector plan. See [DECIDE usage](agent_docs/ACTION/wf-scrapper-abm/DECIDE.md). Discovery/export does not start full collection. Prepare remains a future separate skill; independent QA NOT RUN.

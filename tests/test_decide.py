@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import threading
+import time
 from urllib.parse import urlsplit,parse_qs
 
 import pytest
@@ -24,6 +25,33 @@ def json_response(value,total=None,pages=1):
     headers={'content-type':'application/json'}
     if total is not None:headers.update({'x-wp-total':str(total),'x-wp-totalpages':str(pages)})
     return response(json.dumps(value,ensure_ascii=False).encode(),**headers)
+
+
+def filtered_types_response(types, address):
+    """WP filters the type-name map, not each type's properties.
+
+    PHP's empty filtered array serializes as [], reproducing the saved failure.
+    Nested selectors are explicitly rooted at a type name.
+    """
+    fields=parse_qs(urlsplit(address).query).get('_fields')
+    if not fields:return json_response(types)
+    filtered={}
+    for field in fields[0].split(','):
+        key,separator,child=field.strip().partition('.')
+        if key not in types:continue
+        if not separator:filtered[key]=types[key]
+        elif child in types[key]:filtered.setdefault(key,{})[child]=types[key][child]
+    return json_response(filtered if filtered else [])
+
+
+class WordPressTypesFake(Fake):
+    def __init__(self, types, answers):
+        super().__init__(answers);self.types=types
+    async def get(self, item):
+        if urlsplit(item['url']).path=='/wp-json/wp/v2/types':
+            self.calls.append((item['url'],time.monotonic()))
+            return filtered_types_response(self.types,item['url'])
+        return await super().get(item)
 
 
 def obj(n,base=BASE):return {'id':n,'link':base+'/article-'+str(n),'title':{'rendered':'Article '+str(n)},'type':'post','date':'2026-10-07T00:00:00'}
@@ -56,7 +84,8 @@ def test_sitemap_dedup_metadata_counts_and_custom_type(tmp_path):
     assert cols['page']['gaps']==['metadata_page_limit'] and cols['book']['status']=='enumerated_metadata'
     assert inv['wordpress']['excluded_types']==[{'type':'attachment','reason':'media_not_enumerated_for_review'}]
     assert all('/media' not in url for url,_ in fake.calls)
-    assert all('_fields=' in url and 'content' not in parse_qs(urlsplit(url).query).get('_fields',[''])[0] for url,_ in fake.calls[1:])
+    assert fake.calls[1][0]==BASE+'/wp-json/wp/v2/types'
+    assert all(parse_qs(urlsplit(url).query)['_fields']==[d.FIELDS] and 'content' not in d.FIELDS.split(',') for url,_ in fake.calls[2:])
     assert not (root/'checklist.json').exists() and d.read_review(root/'inventory.json')[0]==inv
     for event in inv['requests']:
         assert c.sha((root/event['body_file']).read_bytes())==event['sha256']
@@ -197,7 +226,7 @@ def native_server():
             events.append(self.path);base=f'http://127.0.0.1:{self.server.server_port}'
             path=urlsplit(self.path).path
             if path=='/s.xml':value=sitemap(base)
-            elif path=='/wp-json/wp/v2/types':value=json_response({'post':TYPES['post'],'book':TYPES['book']})
+            elif path=='/wp-json/wp/v2/types':value=filtered_types_response({'post':TYPES['post'],'book':TYPES['book']},self.path)
             elif path=='/wp-json/wp/v2/posts':value=json_response([obj(11945,base)],166,9)
             elif path=='/wp-json/wp/v2/books':value=json_response([],0,0)
             else:value=response(status=404)
@@ -267,3 +296,93 @@ def test_budget_exhausted_by_robots_does_not_count_unread_sitemap(tmp_path):
     inv,fake,_=run(tmp_path,[response(('Sitemap: '+BASE+'/s.xml').encode())],mode='sitemap',max_requests=1)
     assert len(fake.calls)==1 and inv['stop_reason']=='request_limit'
     assert inv['context']['discovery_pages_read']==0
+
+
+def test_types_fixture_filters_type_name_map():
+    address=BASE+'/wp-json/wp/v2/types'
+    assert json.loads(filtered_types_response(TYPES,address+'?_fields=name,slug,rest_base,rest_namespace')['body'])==[]
+    assert json.loads(filtered_types_response(TYPES,address)['body'])==TYPES
+    assert json.loads(filtered_types_response(TYPES,address+'?_fields=page.name,post.rest_base')['body'])=={'page':{'name':'Pages'},'post':{'rest_base':'posts'}}
+
+
+def test_type_discovery_uses_unfiltered_map_and_projects_metadata(tmp_path):
+    types={k:{**TYPES[k],'description':'Public type description','unneeded':{'keep':'in raw evidence'}} for k in ('page','post')}
+    fake=WordPressTypesFake(types,[json_response([obj(1)],42,42),json_response([obj(2)],166,166)])
+    root=tmp_path/'rest-only';root.mkdir();(root/'evidence').mkdir()
+    engine=d.Recon(root,BASE,'default',transport=fake,gap=0,per_page=1,max_rest_pages=1,max_requests=3)
+    engine.deadline=time.monotonic()+10
+    asyncio.run(engine.wordpress())
+    assert len(fake.calls)==3
+    assert fake.calls[0][0]==BASE+'/wp-json/wp/v2/types'
+    assert [urlsplit(u).path for u,_ in fake.calls[1:]]==['/wp-json/wp/v2/pages','/wp-json/wp/v2/posts']
+    for url,_ in fake.calls[1:]:
+        query=parse_qs(urlsplit(url).query)
+        assert query=={'per_page':['1'],'page':['1'],'_fields':[d.FIELDS]}
+    assert json.loads((root/'evidence/0001.body').read_bytes())==types
+    cols={x['type']:x for x in engine.inv['wordpress']['collections']}
+    assert cols['page']['advertised_total']==42 and cols['post']['advertised_total']==166
+    assert all(x['enumerated_records']==1 and x['status']=='partial' for x in cols.values())
+
+
+@pytest.mark.parametrize('generic',['Read Post',' READ POST ','Read more...','Continue reading','Learn More','View post'])
+def test_candidate_informative_label_survives_generic_repeat(generic):
+    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/article'
+    heading={'file':'first.html','sha256':'heading','locator':'h2/a'}
+    repeated={'file':'first.html','sha256':'heading','locator':'a.read-post'}
+    first=d.candidate(inv,url,heading,title='A useful article heading')
+    again=d.candidate(inv,url,repeated,title=generic)
+    assert again is first and again['title']=='A useful article heading'
+    assert again['sources']==[heading,repeated] and again['selection']=='UNDECIDED'
+    assert again['id']==d.item_id(url)
+
+
+def test_generic_first_can_be_replaced_by_informative_label():
+    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/article'
+    d.candidate(inv,url,{'locator':'cta'},title='Read Post')
+    row=d.candidate(inv,url,{'locator':'h2/a'},title='<b>বাংলা meaningful heading</b>')
+    assert row['title']=='বাংলা meaningful heading'
+    d.candidate(inv,url,{'locator':'empty'},title='<span></span>')
+    assert row['title']=='বাংলা meaningful heading' and len(row['sources'])==3
+
+
+def test_default_heading_and_generic_links_preserve_provenance(tmp_path):
+    html=b'<title>Blog listing</title><h2><a href="/article">Useful heading</a></h2><a href="/article">Read Post</a><a href="/article">Read more...</a>'
+    inv,fake,_=run(tmp_path,[response(html),json_response({})],mode='default',max_depth=0)
+    row=next(x for x in inv['items'] if x['url']==BASE+'/article')
+    assert row['title']=='Useful heading' and len(row['sources'])==3
+    assert {ref['locator'] for ref in row['sources']}=={'a[href][0]','a[href][1]','a[href][2]'}
+    assert row['content_type'] is None and row['dates']=={} and row['selection']=='UNDECIDED'
+    assert len(fake.calls)==2  # Destination page was never fetched.
+
+
+@pytest.mark.parametrize('reverse',[False,True])
+@pytest.mark.parametrize('heading',['Useful article heading','বাংলা শিরোনাম','中文标题','Café SEO 🚀'])
+def test_punctuation_and_cta_order_preserves_exact_heading(tmp_path,reverse,heading):
+    labels=[heading,'...','Read Post']
+    if reverse:labels.reverse()
+    html=('<meta charset="utf-8"><title>Saved blog fixture</title>'+''.join('<a href="/article">'+x+'</a>' for x in labels)).encode('utf-8')
+    inv,fake,_=run(tmp_path,[response(html),json_response({})],mode='default',max_depth=0)
+    row=next(x for x in inv['items'] if x['url']==BASE+'/article')
+    assert row['title']==heading  # Exact saved heading, not just non-CTA.
+    assert row['id']==d.item_id(BASE+'/article')
+    assert {x['locator'] for x in row['sources']}=={'a[href][0]','a[href][1]','a[href][2]'}
+    assert row['selection']=='UNDECIDED' and len(fake.calls)==2
+
+
+@pytest.mark.parametrize('weak',['','   ','...','…','—',':;!?',' . \u200b . ','<em>...</em>','Read Post'])
+def test_weak_only_labels_leave_title_unknown_without_slug_guessing(weak):
+    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/tempting-slug-name'
+    row=d.candidate(inv,url,{'locator':'weak'},title=weak)
+    assert row['title'] is None and row['sources']==[{'locator':'weak'}]
+    assert row['id']==d.item_id(url)
+    d.candidate(inv,url,{'locator':'missing'},title=None)
+    assert row['title'] is None and len(row['sources'])==2
+
+
+@pytest.mark.parametrize('weak',['...','Read Post','   '])
+def test_informative_unicode_replaces_legacy_weak_label(weak):
+    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/article'
+    row=d.candidate(inv,url,{'locator':'original'},title=None)
+    row['title']=weak  # A weak label inherited from earlier in-memory data.
+    d.candidate(inv,url,{'locator':'heading'},title='বাংলা article café')
+    assert row['title']=='বাংলা article café' and len(row['sources'])==2

@@ -1,3 +1,7 @@
+## Current-tool scope pointer — 2026-10-14
+
+Active DECIDE → COLLECT → agent-assisted PREPARE is governed by [CURRENT_TOOL_SCOPE.md](CURRENT_TOOL_SCOPE.md), October7 simplification and subsequent approvals. Its crosswalk retains all48 original acceptance IDs/history and separates applicable principles from retired design bindings. Original literal criteria/statuses/authorizations below are preserved; they are not an executable current-tool build/QA plan, new live allocation or historical PASS/waiver. Independent QA NOT RUN; current engineering evidence is linked from [RECOVERY](../../../RECOVERY.md). No original result rows are rewritten by this readiness pass.
+
 # Web Recon ABM — launch packet 1.2
 
 ## Director GO — implementation launch (2026-10-02)

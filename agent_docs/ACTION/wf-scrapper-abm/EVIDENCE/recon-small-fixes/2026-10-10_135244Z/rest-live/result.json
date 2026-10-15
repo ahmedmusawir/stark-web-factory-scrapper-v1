@@ -1,0 +1,421 @@
+{
+  "started_utc": "2026-10-10T13:56:06.445163+00:00",
+  "public_types": [
+    "attachment",
+    "feedback",
+    "jetpack_form",
+    "jp_act_log_event",
+    "jp_pay_order",
+    "jp_pay_product",
+    "jp_search_overlay",
+    "nav_menu_item",
+    "page",
+    "post",
+    "tcb_symbol",
+    "thrive_layout",
+    "thrive_section",
+    "thrive_template",
+    "tvd_content_set",
+    "tve_cond_display",
+    "tve_global_cond_set",
+    "tve_lead_shortcode",
+    "tve_notifications",
+    "tve_saved_lp",
+    "tve_user_template",
+    "tve_video_data",
+    "tvo_capture",
+    "tvo_capture_post",
+    "tvo_display",
+    "tvo_display_post",
+    "wp_block",
+    "wp_font_face",
+    "wp_font_family",
+    "wp_global_styles",
+    "wp_navigation",
+    "wp_template",
+    "wp_template_part"
+  ],
+  "type_descriptions": {
+    "post": {
+      "name": "Posts",
+      "slug": "post",
+      "rest_base": "posts",
+      "rest_namespace": "wp/v2"
+    },
+    "page": {
+      "name": "Pages",
+      "slug": "page",
+      "rest_base": "pages",
+      "rest_namespace": "wp/v2"
+    },
+    "attachment": {
+      "name": "Media",
+      "slug": "attachment",
+      "rest_base": "media",
+      "rest_namespace": "wp/v2"
+    },
+    "nav_menu_item": {
+      "name": "Navigation Menu Items",
+      "slug": "nav_menu_item",
+      "rest_base": "menu-items",
+      "rest_namespace": "wp/v2"
+    },
+    "wp_block": {
+      "name": "Patterns",
+      "slug": "wp_block",
+      "rest_base": "blocks",
+      "rest_namespace": "wp/v2"
+    },
+    "wp_template": {
+      "name": "Templates",
+      "slug": "wp_template",
+      "rest_base": "templates",
+      "rest_namespace": "wp/v2"
+    },
+    "wp_template_part": {
+      "name": "Template Parts",
+      "slug": "wp_template_part",
+      "rest_base": "template-parts",
+      "rest_namespace": "wp/v2"
+    },
+    "wp_global_styles": {
+      "name": "Global Styles",
+      "slug": "wp_global_styles",
+      "rest_base": "global-styles",
+      "rest_namespace": "wp/v2"
+    },
+    "wp_navigation": {
+      "name": "Navigation Menus",
+      "slug": "wp_navigation",
+      "rest_base": "navigation",
+      "rest_namespace": "wp/v2"
+    },
+    "wp_font_family": {
+      "name": "Font Families",
+      "slug": "wp_font_family",
+      "rest_base": "font-families",
+      "rest_namespace": "wp/v2"
+    },
+    "wp_font_face": {
+      "name": "Font Faces",
+      "slug": "wp_font_face",
+      "rest_base": "font-families/(?P<font_family_id>[\\d]+)/font-faces",
+      "rest_namespace": "wp/v2"
+    },
+    "tcb_symbol": {
+      "name": "Thrive Symbols",
+      "slug": "tcb_symbol",
+      "rest_base": "tcb_symbol",
+      "rest_namespace": "wp/v2"
+    },
+    "tvd_content_set": {
+      "name": "Content Set",
+      "slug": "tvd_content_set",
+      "rest_base": "tvd_content_set",
+      "rest_namespace": "wp/v2"
+    },
+    "jp_search_overlay": {
+      "name": "Search overlay template",
+      "slug": "jp_search_overlay",
+      "rest_base": "jetpack-search-overlay",
+      "rest_namespace": "wp/v2"
+    },
+    "feedback": {
+      "name": "Form Responses",
+      "slug": "feedback",
+      "rest_base": "feedback",
+      "rest_namespace": "wp/v2"
+    },
+    "jetpack_form": {
+      "name": "Forms",
+      "slug": "jetpack_form",
+      "rest_base": "jetpack-forms",
+      "rest_namespace": "wp/v2"
+    },
+    "tvo_capture_post": {
+      "name": "Thrive Ovation Capture",
+      "slug": "tvo_capture_post",
+      "rest_base": "tvo_capture_post",
+      "rest_namespace": "wp/v2"
+    },
+    "tvo_display_post": {
+      "name": "Thrive Ovation Display",
+      "slug": "tvo_display_post",
+      "rest_base": "tvo_display_post",
+      "rest_namespace": "wp/v2"
+    },
+    "tvo_capture": {
+      "name": "Thrive Ovation Blocks",
+      "slug": "tvo_capture",
+      "rest_base": "tvo_capture",
+      "rest_namespace": "wp/v2"
+    },
+    "tvo_display": {
+      "name": "Thrive Ovation Blocks",
+      "slug": "tvo_display",
+      "rest_base": "tvo_display",
+      "rest_namespace": "wp/v2"
+    },
+    "tve_saved_lp": {
+      "name": "Saved Landing Page",
+      "slug": "tve_saved_lp",
+      "rest_base": "tve_saved_lp",
+      "rest_namespace": "wp/v2"
+    },
+    "tve_notifications": {
+      "name": "Notifications",
+      "slug": "tve_notifications",
+      "rest_base": "tve_notifications",
+      "rest_namespace": "wp/v2"
+    },
+    "tve_cond_display": {
+      "name": "Conditional display group",
+      "slug": "tve_cond_display",
+      "rest_base": "tve_cond_display",
+      "rest_namespace": "wp/v2"
+    },
+    "tve_global_cond_set": {
+      "name": "Global condition set",
+      "slug": "tve_global_cond_set",
+      "rest_base": "tve_global_cond_set",
+      "rest_namespace": "wp/v2"
+    },
+    "tve_user_template": {
+      "name": "User template",
+      "slug": "tve_user_template",
+      "rest_base": "tve_user_template",
+      "rest_namespace": "wp/v2"
+    },
+    "tve_video_data": {
+      "name": "Video reporting",
+      "slug": "tve_video_data",
+      "rest_base": "tve_video_data",
+      "rest_namespace": "wp/v2"
+    },
+    "jp_act_log_event": {
+      "name": "Activity Log Events",
+      "slug": "jp_act_log_event",
+      "rest_base": "activity-log-events",
+      "rest_namespace": "wp/v2"
+    },
+    "tve_lead_shortcode": {
+      "name": "Thrive Leads - Shortcodes",
+      "slug": "tve_lead_shortcode",
+      "rest_base": "tve-lead-shortcodes",
+      "rest_namespace": "wp/v2"
+    },
+    "thrive_template": {
+      "name": "Thrive Template",
+      "slug": "thrive_template",
+      "rest_base": "thrive_template",
+      "rest_namespace": "wp/v2"
+    },
+    "thrive_section": {
+      "name": "Thrive Section",
+      "slug": "thrive_section",
+      "rest_base": "thrive_section",
+      "rest_namespace": "wp/v2"
+    },
+    "thrive_layout": {
+      "name": "Thrive Layout",
+      "slug": "thrive_layout",
+      "rest_base": "thrive_layout",
+      "rest_namespace": "wp/v2"
+    },
+    "jp_pay_order": {
+      "name": "Order",
+      "slug": "jp_pay_order",
+      "rest_base": "jp_pay_order",
+      "rest_namespace": "wp/v2"
+    },
+    "jp_pay_product": {
+      "name": "Product",
+      "slug": "jp_pay_product",
+      "rest_base": "jp_pay_product",
+      "rest_namespace": "wp/v2"
+    }
+  },
+  "samples": [
+    {
+      "type": "page",
+      "attempted": true,
+      "advertised_total": 42,
+      "advertised_pages": 42,
+      "enumerated_records": 1,
+      "enumerated_unique": 1,
+      "fetched_pages": [
+        1
+      ],
+      "coverage": "bounded_one_page_metadata_sample",
+      "reason": null,
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/pages?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "ids": [
+        9067
+      ],
+      "field_keys": [
+        [
+          "date",
+          "date_gmt",
+          "id",
+          "link",
+          "modified",
+          "modified_gmt",
+          "slug",
+          "title",
+          "type"
+        ]
+      ],
+      "projection_honored": true,
+      "content_requested": false,
+      "body_bytes": 276,
+      "sha256": "4fe387e57711eb4560ad125d5f9702ca320933e781047b68c6bb9f30ad2fbe0a",
+      "body_complete": true,
+      "status": 200,
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/pages?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "title_populated": [
+        true
+      ]
+    },
+    {
+      "type": "post",
+      "attempted": true,
+      "advertised_total": 166,
+      "advertised_pages": 166,
+      "enumerated_records": 1,
+      "enumerated_unique": 1,
+      "fetched_pages": [
+        1
+      ],
+      "coverage": "bounded_one_page_metadata_sample",
+      "reason": null,
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/posts?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "ids": [
+        11945
+      ],
+      "field_keys": [
+        [
+          "date",
+          "date_gmt",
+          "id",
+          "link",
+          "modified",
+          "modified_gmt",
+          "slug",
+          "title",
+          "type"
+        ]
+      ],
+      "projection_honored": true,
+      "content_requested": false,
+      "body_bytes": 363,
+      "sha256": "b6fcb3df8f038ef624105ef8b3842eff1704e4cf275403bc6c516358d9a5d23f",
+      "body_complete": true,
+      "status": 200,
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/posts?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "title_populated": [
+        true
+      ]
+    }
+  ],
+  "advertised_totals_are_not_enumerated_counts": true,
+  "runtime": {
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "crawl4ai": "0.9.3",
+    "playwright": "1.52.0",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "cache": "BYPASS",
+    "html_wait_for_images": true,
+    "html_post_load_delay": 3,
+    "navigation_timeout_ms": {
+      "page": 90000,
+      "rest": 30000
+    },
+    "tls_verification": true,
+    "browser": "136.0.7103.25"
+  },
+  "ended_utc": "2026-10-10T13:56:22.281695+00:00",
+  "elapsed_seconds": 15.836579096037894,
+  "requests": [
+    {
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/types",
+      "purpose": "wp_types",
+      "started": 649268.642646728,
+      "preceding_completion": null,
+      "completed": 649270.796371293,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=UTF-8",
+        "x-ac": "16.sin _atomic_bur MISS"
+      },
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/types",
+      "error": null,
+      "body_file": "evidence/0001.body",
+      "body_bytes": 25278,
+      "sha256": "01ab390c1214b551f484c2e139aa2acd1778f4520c866047972d4210a255bce9",
+      "body_complete": true,
+      "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+      "redirect_from": []
+    },
+    {
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/pages?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "purpose": "wp_metadata:page",
+      "started": 649275.79711241,
+      "preceding_completion": 649270.796371293,
+      "completed": 649277.157970534,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=UTF-8",
+        "x-ac": "24.sin _atomic_bur MISS",
+        "x-wp-total": "42",
+        "x-wp-totalpages": "42"
+      },
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/pages?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "error": null,
+      "body_file": "evidence/0002.body",
+      "body_bytes": 276,
+      "sha256": "4fe387e57711eb4560ad125d5f9702ca320933e781047b68c6bb9f30ad2fbe0a",
+      "body_complete": true,
+      "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+      "redirect_from": []
+    },
+    {
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/posts?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "purpose": "wp_metadata:post",
+      "started": 649282.161034421,
+      "preceding_completion": 649277.157970534,
+      "completed": 649283.585007614,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=UTF-8",
+        "x-ac": "18.sin _atomic_bur MISS",
+        "x-wp-total": "166",
+        "x-wp-totalpages": "166"
+      },
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/posts?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "error": null,
+      "body_file": "evidence/0003.body",
+      "body_bytes": 363,
+      "sha256": "b6fcb3df8f038ef624105ef8b3842eff1704e4cf275403bc6c516358d9a5d23f",
+      "body_complete": true,
+      "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+      "redirect_from": []
+    }
+  ],
+  "planned_calls": 3,
+  "stop_reason": null,
+  "cleanup_error": null,
+  "browser_traffic": {
+    "request:document": 3,
+    "status:200": 3
+  },
+  "limit": {
+    "planned_calls": 3,
+    "work_seconds": 180,
+    "completion_gap_seconds": 5,
+    "per_page": 1,
+    "page": 1
+  },
+  "unused_calls": 0,
+  "no_discovery_or_collection": true
+}

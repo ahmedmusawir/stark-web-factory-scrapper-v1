@@ -1,3 +1,11 @@
+## Current tool / authorized engineering readiness — 2026-10-14
+
+Read [CURRENT_TOOL_SCOPE.md](CURRENT_TOOL_SCOPE.md) and [RECOVERY](../../../RECOVERY.md). Cody is Engineer. JARVIS approved Shot1; Tony authorizes Shot2 documentation, fixture/reference verification and the three focused local modules. Use current DECIDE/explicit COLLECT/offline agent PREPARE, preserve dirty work/history, and keep QA independent. No product/helper repair, external requests, dependencies/Git or final playbook/closeout. Growth preliminary classification is a known agent-reviewed limitation. Current results and handoff are in RECOVERY; the earlier campaign instructions below are historical, not authorization to resume C1–E2/controller work.
+
+## Current Prepare skill — 2026-10-11
+
+Read [Web Recon Prepare v0.1](../../SKILLS/web-recon-prepare/SKILL.md) and [RECOVERY](../../../RECOVERY.md). Tony authorizes the small offline skill on the supplied saved collection; historical no-Prepare statements below describe earlier tasks. This does not authorize the old ABM Prepare campaign, live collection or independent QA. Collection/recon remain unchanged; Tony handles Git.
+
 ## Current task — DECIDE engineering handoff (2026-10-07)
 
 Tony authorized the separate DECIDE recon/human-selection layer. Read [DECIDE.md](DECIDE.md) and current RECOVERY before older campaign instructions below. Working COLLECT is preserved. This pass uses local fixtures/saved captures only; no new live allocation, Git mutation, dependency change or Prepare skill. Independent QA NOT RUN. Earlier “DECIDE not implemented” text below records the prior COLLECT-only checkpoint.

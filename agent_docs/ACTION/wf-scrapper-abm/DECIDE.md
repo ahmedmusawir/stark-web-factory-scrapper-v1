@@ -1,3 +1,15 @@
+## Current operating pointer — 2026-10-14
+
+[CURRENT_TOOL_SCOPE.md](CURRENT_TOOL_SCOPE.md) records the complete current DECIDE → COLLECT → offline agent PREPARE scope and readiness/QA boundaries. The behavior/commands below remain useful where marked current; older task-only “Prepare future/not implemented” and proposed live-check statements are dated history, superseded by accepted Prepare v0.1 and subsequent task records. They authorize no new live request. Current WordPress types are unfiltered; individual metadata stays projected. Independent QA NOT RUN. See [RECOVERY](../../../RECOVERY.md).
+
+## Offline label correction — 2026-10-11
+
+The October10 nine-heading preservation claim was incorrect: its saved proof contained ellipses, and its non-CTA assertion was insufficient. The historical proof remains intact; current verification must match all nine actual saved h2 texts exactly. Candidate titles require at least one Unicode letter/number and cannot be generic CTAs; empty/whitespace/punctuation-only labels remain unknown. Informative text can replace earlier weak labels; IDs and every source locator remain. No title is invented from a slug. This follow-up imports saved HTML/accepted REST metadata into a NEW immutable review; no live request or human choice is authorized. Current evidence/report are linked from RECOVERY.
+
+## Scoped follow-up — 2026-10-10
+
+Tony authorized the types-map/filter and repeated-label fixes, focused local checks and one REST-only live verification of at most three planned calls. The original October 7 inventory, decisions and raw responses remain immutable historical evidence. See current RECOVERY for results; no automatic discovery, selection or collection is authorized. Earlier implementation/proposal wording below records its original checkpoint.
+
 # DECIDE — recon and human selection
 
 Tony-authorized direction, 2026-10-07. **DECIDE → COLLECT → PREPARE**. DECIDE and COLLECT have separate commands and output directories. The working collector and all its source/tests are unchanged. Prepare remains a separate future skill. Independent QA NOT RUN. This implementation was verified with localhost fixtures and saved captures only; no new live recon was run.
@@ -13,7 +25,7 @@ Tony-authorized direction, 2026-10-07. **DECIDE → COLLECT → PREPARE**. DECID
 
 `recon --mode sitemap` reads a supplied sitemap, or reads `/robots.txt` for Sitemap directives. It follows same-origin sitemap index children within configured bounds. Without a usable declared/supplied sitemap, it records the gap; it never silently switches to link discovery or probes a list of guessed sitemap names.
 
-`recon --mode default` reads the supplied page and expands same-origin links breadth-first. **This downloads some rendered pages and their ordinary browser resources**. It does not promise zero page downloads. It skips obvious image/script/style/archive links and REST links as HTML candidates. HTML MIME/title/date metadata and link labels are recorded where available; a linked label is evidence from the referring page, not proof of the target's own title/content.
+`recon --mode default` reads the supplied page and expands same-origin links breadth-first. **This downloads some rendered pages and their ordinary browser resources**. It does not promise zero page downloads. It skips obvious image/script/style/archive links and REST links as HTML candidates. HTML MIME/title/date metadata and link labels are recorded where available; a linked label is evidence from the referring page, not proof of the target's own title/content. Later generic Read Post/Read More/Continue Reading/Learn More/View Post labels do not replace an informative candidate label; every source locator remains recorded.
 
 Defaults: 12 planned requests total, 3 discovery page reads, depth 1, 1 metadata page per REST content type, 20 records per metadata page, 5,000 inventory candidates, 300 seconds collection work and five-second completion pacing. Bounds are configurable. `--max-pages` counts HTML or sitemap reads; `/robots.txt`, types and metadata calls also consume the shared `--max-requests` budget. Depth bounds followed pages/sitemap nesting; links found at the boundary can still be listed without being read. REST pagination uses the same pacing and overall request budget.
 
@@ -23,7 +35,7 @@ The candidate/next-request rule is **same origin** (scheme, host and port); www/
 
 ## Lightweight WordPress reconnaissance
 
-- Directly request the standard `wp/v2/types` endpoint under the default `/wp-json/` API base, with `_fields=name,slug,rest_base,rest_namespace`. The root `/wp-json/` is never enumerated.
+- Directly request the standard `wp/v2/types` endpoint under the default `/wp-json/` API base **without `_fields`**. Its response is a map keyed by type names; filtering those keys with property names produced the preserved `[]` response on October 7. Extract `name`, `slug`, `rest_base` and `rest_namespace` locally from each type description. This endpoint describes types, not post bodies. Individual collection metadata requests retain their existing `_fields` projection. The root `/wp-json/` is never enumerated.
 - `--wp-base` supports an explicitly supplied same-origin API mount. Other mounts are not automatically guessed. An absent `rest_namespace` uses the standard wp/v2 convention; unusual routes require review.
 - Public types provide collection names/bases, including exposed custom post types. Pages/posts get priority. Attachment/media is explicitly excluded from enumeration; taxonomies/users are not content types and are not auto-collected.
 - Each admitted collection request uses `per_page`, `page` and `_fields=id,link,title,type,slug,date,date_gmt,modified,modified_gmt`. Full content/SEO/media data is not requested for review. If the server ignores projection, the unexpected response is preserved as recon evidence, marked partial and not paginated further; it never becomes a completed full-capture task.

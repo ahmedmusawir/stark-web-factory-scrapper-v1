@@ -1,3 +1,11 @@
+## Active Web Recon tool / Shot2 readiness — 2026-10-14
+
+Read [current-tool scope](agent_docs/ACTION/wf-scrapper-abm/CURRENT_TOOL_SCOPE.md) and [RECOVERY](RECOVERY.md) first. DECIDE → explicit resumable COLLECT → offline agent-assisted PREPARE is the active direction. Tony authorizes this bounded engineering-readiness pass: documentation, retained fixture checks, three focused local modules and saved-package verification. No further planning approval is needed for that scope. No product/helper repair, external collection, dependencies/Git, independent QA or final playbook/closeout. Cody Engineer; JARVIS Architect; Tony Director. SOL remains QA Lead, separate Executor binding pending. Growth classification is handled by required agent source review, not a claimed helper fix. The dated older commands/authorizations below are preserved history and do not restart that campaign.
+
+## Current Prepare skill — 2026-10-11
+
+Tony authorized [Web Recon Prepare v0.1](agent_docs/SKILLS/web-recon-prepare/SKILL.md): an offline agent workflow for a supplied saved collection. Cody/Claudy validate hashes, extract Markdown and author the architect brief/requests. This supersedes older “Prepare not implemented” wording for this small skill only; it does not resume the historical ABM P1–P6/E1/E2 campaign. Collection/recon are unchanged; no live requests/Git mutations. Current output/checkpoint: [RECOVERY.md](RECOVERY.md). Independent QA NOT RUN.
+
 ## Current Web Recon entry — 2026-10-07
 
 The active product direction and engineering scope are in [collector simplification](agent_docs/ACTION/wf-scrapper-abm/COLLECTOR_SIMPLIFICATION.md) and [RECOVERY.md](RECOVERY.md). Tony authorized this implementation plus local verification; the legacy controller campaign below is historical. No live requests, Git mutations or Prepare work in this task. Independent QA NOT RUN. This explicit user authorization supersedes the generic planning-only approval loop for this scoped implementation.

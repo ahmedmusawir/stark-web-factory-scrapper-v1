@@ -1,0 +1,70 @@
+{
+  "schema": "web-recon-prepared-v0.1",
+  "prepared_at": "2026-10-11T15:09:59.188440+00:00",
+  "path_base": "repository root (same layout in review ZIP)",
+  "source_collection": "input",
+  "checklist": {
+    "file": "input/checklist.json",
+    "sha256": "484f2903fb6fbe4258fdf35b85affdf8733a2229c75e1de959908243a91e9cbb"
+  },
+  "scope": "Selected saved sample; not whole-site coverage",
+  "pages": [
+    {
+      "id": "61b12ad9bf87feecc0688d4e",
+      "url": "https://example.test/page",
+      "final_url": "https://example.test/page",
+      "capture_saved_at": "2026-10-11T15:09:59.180012+00:00",
+      "document_type": "landing page",
+      "title": null,
+      "source": {
+        "raw_file": "input/attempts/61b12ad9bf87feecc0688d4e/2c40ebf954974e508f50b8e9aab43260/body",
+        "raw_sha256": "ecdd808c1968fe039286825f9abc16db92e61d87d58abd20b7a67751edc64d4d",
+        "raw_bytes": 297,
+        "metadata_file": "input/attempts/61b12ad9bf87feecc0688d4e/2c40ebf954974e508f50b8e9aab43260/result.json",
+        "metadata_sha256": "90a07f48d67196a9f613461f7d52c14070acd53a6d0fb80fdf09453ec93a5592"
+      },
+      "extraction": {
+        "css_selector": "#tcb_landing_page #tve_editor",
+        "match_index": 0,
+        "removed_markup": "script, style, noscript, template, svg, input[type=\"hidden\"]",
+        "separated_boilerplate": "header, footer, nav, #thrive-header, #thrive-footer, [role=\"navigation\"], [role=\"banner\"], [role=\"contentinfo\"]",
+        "basis": "observed semantic/theme container; agent must inspect the boundary"
+      },
+      "prepared": {
+        "file": "derived/pages/61b12ad9bf87feecc0688d4e.md",
+        "sha256": "e5df99a55eea1fd39d64d039b7c005dd40869b52e0e0d742fcd887eb85c64ce4"
+      },
+      "content": {
+        "headings": [
+          "Core offering"
+        ],
+        "paragraphs": 1,
+        "list_items": 0,
+        "empty_list_items_removed": 0,
+        "links": [
+          {
+            "label": "Book call",
+            "source_href": "/call",
+            "resolved_url": "https://example.test/call"
+          }
+        ],
+        "images": [],
+        "images_note": "not included as downloaded image bytes or OCR; loading unverified"
+      },
+      "boilerplate_locations": [
+        "div#thrive-header",
+        "div#thrive-footer"
+      ],
+      "gaps": []
+    }
+  ],
+  "rest_context": [],
+  "unavailable_items": [],
+  "historical_context": [],
+  "agent_authored": [],
+  "image_completeness": "UNVERIFIED; image references do not prove images loaded",
+  "boilerplate": {
+    "file": "derived/BOILERPLATE.md",
+    "sha256": "acaa2ae0591ef893b254f7941ac50e4b9915b3e44446bfd2470a44012a373cf2"
+  }
+}

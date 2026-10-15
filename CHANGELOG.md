@@ -115,3 +115,16 @@ C1–C6 Capture/minimal raw reader implemented with 131 passing engineering test
 ## 2026-10-07 — DECIDE recon and human selection
 
 Separate bounded sitemap/default recon; projected WP types/counts/metadata; version-bound numbered/stable-ID choices; export to unchanged collector. Local fixtures and saved data only. See `agent_docs/RESPONSES/response_2026-10-07_201138_decide-recon-selection.md`.
+
+
+## 2026-10-14T11:39:42.505610+00:00 — [CC] Cody / Codex, Shot 1 completion recon
+
+- Added `agent_docs/RESPONSES/response_2026-10-14_173927_current-tool-completion-plan.md` and its review metadata: current-tool completion/readiness proposal, no implementation or test execution.
+- Updated `RECOVERY.md` and `agent_docs/SESSIONS/session_2026-10-14.md`: interim closeout/playbook deferred, awaiting plan review; historical records preserved.
+
+
+## 2026-10-14T13:03:31.215804+00:00 — [CC] Cody / Codex, Shot2 current-tool engineering readiness
+
+- Added `agent_docs/ACTION/wf-scrapper-abm/CURRENT_TOOL_SCOPE.md`: current direction/entry points and all48 historical acceptance mappings; no QA plan/certificate or historical result change.
+- Prefixed root/module/acceptance/contract/build/QA/QAM documents with current scope and readiness pointers; original bodies/history preserved.
+- Recorded combined97-test engineering results, fixture restoration and offline content proof in `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z`; updated recovery/session/engineering/campaign checkpoints. No product/test/dependency changes or external collection.

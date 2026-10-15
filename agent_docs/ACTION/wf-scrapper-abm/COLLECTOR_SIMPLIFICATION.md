@@ -1,3 +1,7 @@
+## Current operating pointer — 2026-10-14
+
+[CURRENT_TOOL_SCOPE.md](CURRENT_TOOL_SCOPE.md) records the complete current DECIDE → COLLECT → offline agent PREPARE scope and readiness/QA boundaries. The behavior/commands below remain useful where marked current; older task-only “Prepare future/not implemented” and proposed live-check statements are dated history, superseded by accepted Prepare v0.1 and subsequent task records. They authorize no new live request. Current WordPress types are unfiltered; individual metadata stays projected. Independent QA NOT RUN. See [RECOVERY](../../../RECOVERY.md).
+
 # Simple collector — Tony-authorized direction, 2026-10-07
 
 DECIDE → COLLECT → PREPARE (separate future agent skill). This task implements COLLECT only. Independent QA NOT RUN.

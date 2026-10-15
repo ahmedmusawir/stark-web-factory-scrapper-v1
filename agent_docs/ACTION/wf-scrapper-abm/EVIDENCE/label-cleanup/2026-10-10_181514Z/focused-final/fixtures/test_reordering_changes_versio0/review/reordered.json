@@ -1,0 +1,137 @@
+{
+  "schema": "web-recon-review-v1",
+  "origin": "FRESH_BOUNDED_RECON",
+  "mode": "sitemap",
+  "created_at": "2026-10-10T18:17:54.934577+00:00",
+  "context": {
+    "base": "http://127.0.0.1:9888/",
+    "wp_api_base": "http://127.0.0.1:9888/wp-json/",
+    "bounds": {
+      "requests": 12,
+      "discovery_pages": 3,
+      "depth": 1,
+      "rest_pages_per_type": 1,
+      "per_page": 20,
+      "candidates": 5000,
+      "seconds": 300,
+      "gap_seconds": 0
+    },
+    "scope": "same-origin planned URLs; ordinary browser redirects/resources add traffic",
+    "purpose": "recon metadata only; never marks full collector tasks complete",
+    "known_collection": null,
+    "discovery_pages_read": 1
+  },
+  "items": [
+    {
+      "id": "doc-44758ca80440b39a5f01",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/b",
+      "title": null,
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[2]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "dates_unknown",
+        "title_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "row": 1
+    },
+    {
+      "id": "doc-1cdb8c7ffd0c2646b288",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/a",
+      "title": null,
+      "content_type": null,
+      "dates": {
+        "sitemap_lastmod": "2026-10-01"
+      },
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[0]"
+        },
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[1]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "title_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "row": 2
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:9888/s.xml",
+      "purpose": "sitemap",
+      "started": 664976.335069198,
+      "preceding_completion": null,
+      "completed": 664976.336546624,
+      "status": 200,
+      "headers": {
+        "content-type": "application/xml"
+      },
+      "final_url": "http://127.0.0.1:9888/s.xml",
+      "error": null,
+      "body_file": "evidence/0001.body",
+      "body_bytes": 239,
+      "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/types",
+      "purpose": "wp_types",
+      "started": 664976.339509885,
+      "preceding_completion": 664976.336546624,
+      "completed": 664976.340911499,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/types",
+      "error": null,
+      "body_file": "evidence/0002.body",
+      "body_bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    }
+  ],
+  "gaps": [],
+  "wordpress": {
+    "status": "bounded",
+    "collections": [],
+    "types_response": "evidence/0002.body",
+    "excluded_types": [],
+    "gaps": [
+      "page_type_not_exposed",
+      "post_type_not_exposed"
+    ]
+  },
+  "stop_reason": null,
+  "cleanup_error": null,
+  "browser_traffic": {},
+  "finished_at": "2026-10-10T18:17:54.944233+00:00",
+  "inventory_id": "67be0554634a1257d6cb0c50f7f06e2b7950e266068c67793641d6c047b49173"
+}

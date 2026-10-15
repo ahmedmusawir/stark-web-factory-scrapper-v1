@@ -1,0 +1,210 @@
+{
+  "verdict": "Both scoped fixes verified; three-call REST-only check succeeded",
+  "branch": "wf-scrapper-abm",
+  "HEAD": "fb16b1b927a234d74a2c29c9044df33317ff8276",
+  "source_count": 50,
+  "source_before_sha256": "ebc6e8310ce4aab49a93ec6cc3c2011fbddeb404642362a6fc442a71ae77b864",
+  "source_final_sha256": "32cbd7e9f47137afb754b4954bc402ddae7319f2153895f8c16e092e82b91f2f",
+  "changed_product_test_paths": [
+    "recon_pipeline/decide.py",
+    "tests/test_decide.py"
+  ],
+  "changed_files": [
+    "recon_pipeline/decide.py",
+    "tests/test_decide.py",
+    "agent_docs/ACTION/wf-scrapper-abm/DECIDE.md",
+    "RECOVERY.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md",
+    "agent_docs/SESSIONS/session_2026-10-10.md"
+  ],
+  "pre_existing_status": " M RECOVERY.md\n M agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md\n M agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md\n M agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md\n M agent_docs/SESSIONS/session_2026-10-07.md\n?? agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/default-recon-live/\n?? agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/\n?? agent_docs/RESPONSES/response_2026-10-07_205421_default-recon-live.md\n?? agent_docs/RESPONSES/response_2026-10-07_205421_default-recon-live.zip\n?? agent_docs/RESPONSES/response_2026-10-07_205421_default-recon-live_review/\n?? agent_docs/RESPONSES/response_2026-10-07_205421_default-recon-live_summary.json\n",
+  "focused_checks": {
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pre_fix_failures": 8,
+  "live_command": [
+    "venv/bin/python",
+    "-B",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z/rest-only-verification.py",
+    "--out",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z/rest-live"
+  ],
+  "live_exit_code": 0,
+  "live_planned_calls": 3,
+  "live_urls": [
+    "https://cyberizegroup.com/wp-json/wp/v2/types",
+    "https://cyberizegroup.com/wp-json/wp/v2/pages?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+    "https://cyberizegroup.com/wp-json/wp/v2/posts?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt"
+  ],
+  "statuses": [
+    200,
+    200,
+    200
+  ],
+  "body_checks": [
+    {
+      "file": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z/rest-live/evidence/0001.body",
+      "bytes": 25278,
+      "sha256": "01ab390c1214b551f484c2e139aa2acd1778f4520c866047972d4210a255bce9",
+      "json_valid": true,
+      "body_complete": true
+    },
+    {
+      "file": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z/rest-live/evidence/0002.body",
+      "bytes": 276,
+      "sha256": "4fe387e57711eb4560ad125d5f9702ca320933e781047b68c6bb9f30ad2fbe0a",
+      "json_valid": true,
+      "body_complete": true
+    },
+    {
+      "file": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z/rest-live/evidence/0003.body",
+      "bytes": 363,
+      "sha256": "b6fcb3df8f038ef624105ef8b3842eff1704e4cf275403bc6c516358d9a5d23f",
+      "json_valid": true,
+      "body_complete": true
+    }
+  ],
+  "public_type_names": [
+    "attachment",
+    "feedback",
+    "jetpack_form",
+    "jp_act_log_event",
+    "jp_pay_order",
+    "jp_pay_product",
+    "jp_search_overlay",
+    "nav_menu_item",
+    "page",
+    "post",
+    "tcb_symbol",
+    "thrive_layout",
+    "thrive_section",
+    "thrive_template",
+    "tvd_content_set",
+    "tve_cond_display",
+    "tve_global_cond_set",
+    "tve_lead_shortcode",
+    "tve_notifications",
+    "tve_saved_lp",
+    "tve_user_template",
+    "tve_video_data",
+    "tvo_capture",
+    "tvo_capture_post",
+    "tvo_display",
+    "tvo_display_post",
+    "wp_block",
+    "wp_font_face",
+    "wp_font_family",
+    "wp_global_styles",
+    "wp_navigation",
+    "wp_template",
+    "wp_template_part"
+  ],
+  "samples": [
+    {
+      "type": "page",
+      "attempted": true,
+      "advertised_total": 42,
+      "advertised_pages": 42,
+      "enumerated_records": 1,
+      "enumerated_unique": 1,
+      "fetched_pages": [
+        1
+      ],
+      "coverage": "bounded_one_page_metadata_sample",
+      "reason": null,
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/pages?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "ids": [
+        9067
+      ],
+      "field_keys": [
+        [
+          "date",
+          "date_gmt",
+          "id",
+          "link",
+          "modified",
+          "modified_gmt",
+          "slug",
+          "title",
+          "type"
+        ]
+      ],
+      "projection_honored": true,
+      "content_requested": false,
+      "body_bytes": 276,
+      "sha256": "4fe387e57711eb4560ad125d5f9702ca320933e781047b68c6bb9f30ad2fbe0a",
+      "body_complete": true,
+      "status": 200,
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/pages?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "title_populated": [
+        true
+      ]
+    },
+    {
+      "type": "post",
+      "attempted": true,
+      "advertised_total": 166,
+      "advertised_pages": 166,
+      "enumerated_records": 1,
+      "enumerated_unique": 1,
+      "fetched_pages": [
+        1
+      ],
+      "coverage": "bounded_one_page_metadata_sample",
+      "reason": null,
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/posts?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "ids": [
+        11945
+      ],
+      "field_keys": [
+        [
+          "date",
+          "date_gmt",
+          "id",
+          "link",
+          "modified",
+          "modified_gmt",
+          "slug",
+          "title",
+          "type"
+        ]
+      ],
+      "projection_honored": true,
+      "content_requested": false,
+      "body_bytes": 363,
+      "sha256": "b6fcb3df8f038ef624105ef8b3842eff1704e4cf275403bc6c516358d9a5d23f",
+      "body_complete": true,
+      "status": 200,
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/posts?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "title_populated": [
+        true
+      ]
+    }
+  ],
+  "pacing_gaps_seconds": [
+    5.000741116935387,
+    5.0030638868920505
+  ],
+  "work_elapsed_seconds": 15.836579096037894,
+  "stop_reason": null,
+  "cleanup_error": null,
+  "source_unchanged_since_tests": true,
+  "nine_meaningful_labels_preserved": true,
+  "original_inventory_unchanged": true,
+  "original_inventory_sha256": "2ee9e4ac53dfb9fd630d06a7f86e43b2e9539ca07481b066bf657c37f1a7ee44",
+  "preservation": {
+    "files_checked": 42686,
+    "changed": [],
+    "missing": [],
+    "all_unchanged": true
+  },
+  "human_decisions": "NONE; all original rows UNDECIDED",
+  "historical_content_gap_11945": "unchanged; content not requested this time",
+  "independent_QA": "NOT RUN",
+  "Prepare": "NOT STARTED"
+}

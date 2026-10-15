@@ -1,3 +1,9 @@
+## Active current-tool readiness — 2026-10-14
+
+**READY FOR CANDIDATE COMMIT AND INDEPENDENT QA Q1; independent QA NOT RUN.** Current [scope/crosswalk](../CURRENT_TOOL_SCOPE.md) supersedes retired controller/whole-pack executable instructions for this tool, preserving their history/results below. Read [RECOVERY](../../../../RECOVERY.md) for factual current evidence. Old candidate/checkpoint/live-allocation text below is historical, not a current pin or authority to restart. Engineering handoff: [Shot2 report](../../../RESPONSES/response_2026-10-14_183709_current-tool-readiness.md); [fixture access](../../../RESPONSES/response_2026-10-14_183709_current-tool-readiness_review/FIXTURE_ACCESS.md). Combined engineering checks:97 passed,0 failures/errors/skips; source unchanged. Candidate commit/QA branch/session/plan remain PENDING Tony/Executor/SOL.
+
+**Next seats:** Cody completes the factual engineering handoff; Tony alone commits the candidate/creates QA branch. Separate Executor Q1 pins the actual commit, inspects readiness and authors candidate-bound recon/plan. SOL QA Lead approves/amends before Q2. Cody neither authors nor approves that independent plan and cannot certify his work. Session bindings and QA plan identity/approval remain PENDING. No new live allocation, cleanup, final closeout or playbook adoption.
+
 # Shared QA execution instructions
 
 Revision 1.2 · 2026-10-02. Authority: JARVIS Architect amendment under Tony’s delegated authority. QA Lead SOL; independent Executor session binding pending. Follow [README workflow](README.md), [MANIFEST](MANIFEST.md), [STATE](STATE.md), canonical [master plan](../QA/MASTER_QA_TEST_PLAN.md) and [acceptance/errata](../ABM_ACCEPTANCE_SPEC.md). Preserved [QA playbook](../REFERENCES/QA_PLAYBOOK.md) provides verdict vocabulary; this pilot supersedes its generic one-command/operator-at-a-time procedure and any later-cleanup order. No deployment/Gate D work.

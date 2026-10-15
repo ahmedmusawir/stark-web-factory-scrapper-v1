@@ -1,0 +1,103 @@
+{
+  "schema": "web-recon-review-v1",
+  "origin": "REST_ONLY_METADATA_VERIFICATION",
+  "mode": "default",
+  "created_at": "2026-10-10T13:56:06.444879+00:00",
+  "context": {
+    "base": "https://cyberizegroup.com/",
+    "wp_api_base": "https://cyberizegroup.com/wp-json/",
+    "bounds": {
+      "requests": 3,
+      "discovery_pages": 3,
+      "depth": 1,
+      "rest_pages_per_type": 1,
+      "per_page": 1,
+      "candidates": 5000,
+      "seconds": 180,
+      "gap_seconds": 5
+    },
+    "scope": "same-origin planned URLs; ordinary browser redirects/resources add traffic",
+    "purpose": "recon metadata only; never marks full collector tasks complete",
+    "known_collection": null,
+    "discovery_pages_read": 0
+  },
+  "items": [],
+  "requests": [
+    {
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/types",
+      "purpose": "wp_types",
+      "started": 649268.642646728,
+      "preceding_completion": null,
+      "completed": 649270.796371293,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=UTF-8",
+        "x-ac": "16.sin _atomic_bur MISS"
+      },
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/types",
+      "error": null,
+      "body_file": "evidence/0001.body",
+      "body_bytes": 25278,
+      "sha256": "01ab390c1214b551f484c2e139aa2acd1778f4520c866047972d4210a255bce9",
+      "body_complete": true,
+      "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+      "redirect_from": []
+    },
+    {
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/pages?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "purpose": "wp_metadata:page",
+      "started": 649275.79711241,
+      "preceding_completion": 649270.796371293,
+      "completed": 649277.157970534,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=UTF-8",
+        "x-ac": "24.sin _atomic_bur MISS",
+        "x-wp-total": "42",
+        "x-wp-totalpages": "42"
+      },
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/pages?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "error": null,
+      "body_file": "evidence/0002.body",
+      "body_bytes": 276,
+      "sha256": "4fe387e57711eb4560ad125d5f9702ca320933e781047b68c6bb9f30ad2fbe0a",
+      "body_complete": true,
+      "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+      "redirect_from": []
+    },
+    {
+      "url": "https://cyberizegroup.com/wp-json/wp/v2/posts?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "purpose": "wp_metadata:post",
+      "started": 649282.161034421,
+      "preceding_completion": 649277.157970534,
+      "completed": 649283.585007614,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=UTF-8",
+        "x-ac": "18.sin _atomic_bur MISS",
+        "x-wp-total": "166",
+        "x-wp-totalpages": "166"
+      },
+      "final_url": "https://cyberizegroup.com/wp-json/wp/v2/posts?per_page=1&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "error": null,
+      "body_file": "evidence/0003.body",
+      "body_bytes": 363,
+      "sha256": "b6fcb3df8f038ef624105ef8b3842eff1704e4cf275403bc6c516358d9a5d23f",
+      "body_complete": true,
+      "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+      "redirect_from": []
+    }
+  ],
+  "gaps": [],
+  "wordpress": {
+    "status": "not_attempted",
+    "collections": []
+  },
+  "stop_reason": null,
+  "cleanup_error": null,
+  "browser_traffic": {
+    "request:document": 3,
+    "status:200": 3
+  },
+  "finished_at": "2026-10-10T13:56:22.279235+00:00"
+}

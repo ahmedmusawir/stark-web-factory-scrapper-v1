@@ -1,0 +1,634 @@
+{
+  "kind": "Engineering scope mapping, not independent QA test plan or result",
+  "authority": "JARVIS-approved Shot1; Tony Shot2",
+  "rows": [
+    {
+      "id": "AC-001",
+      "title": "Reproducible setup",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Lock/direct-dependency distinction, environment identity and reproducible setup; clean-install QA remains pending.",
+      "historical_qa_groups": [
+        "T-01"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-002",
+      "title": "Inputs validated",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Validate explicit plans/URLs/IDs and actionable CLI errors. Old --project flags, exact three-line errors and test filenames belong to the retired CLI.",
+      "historical_qa_groups": [
+        "T-02"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-003",
+      "title": "One invocation, plus separable entry points",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Separable stages remain: decide, collect/resume/add/refresh, then offline agent skill. The default one-command Capture+Prepare build is retired.",
+      "historical_qa_groups": [
+        "T-03"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-004",
+      "title": "Paths stay inside outputs, no overwrite",
+      "applicability": "Retained",
+      "current_and_retired_binding": "New review/collection/package paths, confined saved references, no silent overwrite and preservation of prior attempts; arbitrary user-supplied output path is explicit, not old project-slug routing.",
+      "historical_qa_groups": [
+        "T-02"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-005",
+      "title": "Scope, redirects, limits",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Explicit planned scope, sequential default5s pacing, refusals/challenges and no automatic retries remain. Custom pre-dispatch per-hop scope/five-hop/CDP cancellation machinery is retired; redirects/resources are extra browser traffic.",
+      "historical_qa_groups": [
+        "T-04"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-006",
+      "title": "Failures visible",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Failures, interruption, progress and cleanup must remain visible. Current resume reuses a collection and immutable attempts; old no-resume/always-new-run rule and old exit mapping are retired.",
+      "historical_qa_groups": [
+        "T-05"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-007",
+      "title": "Route set + identity rule",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Bounded explicit sitemap/default discovery, stable URL IDs, dedup and provenance remain. Old tracking-query stripping/routes.json identity binding is not the DECIDE normalize rule.",
+      "historical_qa_groups": [
+        "T-06"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-008",
+      "title": "Every route accounted per stream",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Each approved checklist item is accounted for; HTML and REST are separately selected. Mandatory per-route REST mapping/raw-v2 pages[] accounting belongs to the old whole-site design.",
+      "historical_qa_groups": [
+        "T-06"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-009",
+      "title": "HTML untouched",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Rendered Crawl4AI HTML is saved as UTF-8 at the declared boundary with hashes, without pretending it is original compressed wire bytes.",
+      "historical_qa_groups": [
+        "T-07"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-010",
+      "title": "Block pages never captured",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Do not call refusals/challenge documents or empty/failed capture successful content; detector is heuristic, not comprehensive access certification.",
+      "historical_qa_groups": [
+        "T-07"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-011",
+      "title": "REST + SEO survive",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Complete selected REST entity bytes, all returned fields and hashes survive; malformed mandatory identities fail. Old object derivatives/route mapping/mandatory SEO inventory are retired. No production four-field filter is injected.",
+      "historical_qa_groups": [
+        "T-08"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-012",
+      "title": "Pagination + non-REST routes",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Only explicitly approved pagination follows advertised pages within max_pages; short-page anomalies/duplicates/count gaps stay explicit. Mandatory REST mapping of every HTML route is retired.",
+      "historical_qa_groups": [
+        "T-08"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-013",
+      "title": "Site-level inventory retained",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Save recon source evidence/types/counts and collection status. Whole-site robots/every-sitemap/six-collection rest/index layout is retired; no automatic collection expansion.",
+      "historical_qa_groups": [
+        "T-08"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-014",
+      "title": "REST-empty / rendered-present",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Present-empty REST content remains empty and cannot erase substantive HTML. Dated complementary observations retained; no Thrive/plugin cause asserted.",
+      "historical_qa_groups": [
+        "T-09"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-015",
+      "title": "Media inventory with provenance",
+      "applicability": "Retired design",
+      "current_and_retired_binding": "No automatic media inventory/HEAD sweep/download. Saved page image references and explicit gaps remain available; this does not close historical media coverage defects.",
+      "historical_qa_groups": [
+        "T-10"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-016",
+      "title": "Manifest + stage log explain the run",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Checklist/result/attempt records, runtime, planned timing and separate cleanup explain collection. Old manifest/stage-log/native-ID and exact supervisor counters are retired bindings.",
+      "historical_qa_groups": [
+        "T-11"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-017",
+      "title": "Typed absences",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Pending/completed/failed items and explicit partial/stop reasons preserve losses. Old raw-v2 absence enums and requirement to map every site route are retired.",
+      "historical_qa_groups": [
+        "T-05"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-018",
+      "title": "Authored evidence distinct",
+      "applicability": "Retired design",
+      "current_and_retired_binding": "Authored screenshot stream/manifest is not a current feature requirement. Agent-authored brief/interpretation is still distinguished from captured facts.",
+      "historical_qa_groups": [
+        "T-11"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-019",
+      "title": "Raw untouched by Prepare",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Prepare is offline and source collections remain unchanged; new derived package construction is allowed.",
+      "historical_qa_groups": [
+        "T-12"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-020",
+      "title": "Invalid raw fails visibly",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Invalid completed references/hashes refuse preparation before output. Old F-10/raw-v2 version checks, pack.json and exit3 are retired; current helper refusal is exit2.",
+      "historical_qa_groups": [
+        "T-12"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-021",
+      "title": "Provenance on every derived record",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Prepared page IDs, URLs, capture dates, raw/metadata/derived hashes and CSS locators trace to saved evidence; authoring/context sources are indexed.",
+      "historical_qa_groups": [
+        "T-13"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-022",
+      "title": "Labels distinguishable",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Separate observed source facts, agent interpretation and unknown/absent information; a helper hint is not a final reviewed classification.",
+      "historical_qa_groups": [
+        "T-13"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-023",
+      "title": "Sitemap/IA + content inventory",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Numbered JSON/Markdown candidate inventory and prepared selected sample remain. Mandatory whole-site site_map/content_inventory snapshots are retired.",
+      "historical_qa_groups": [
+        "T-14"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-024",
+      "title": "Disagreements visible",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Expose observed cross-source differences without fabricating a winner. Mandatory disagreements.json/F-06 three-conflict schema belongs to the retired pack.",
+      "historical_qa_groups": [
+        "T-09"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-025",
+      "title": "SEO preserved",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Preserve returned SEO fields in raw selected REST and avoid invention. Automatic full derived SEO inventory/Yoast certification is outside current demonstrated skill scope.",
+      "historical_qa_groups": [
+        "T-15"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-026",
+      "title": "Forms/embeds honest",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Forms/embeds are observed markup only; agent source inspection records unavailable child content, no booking/form testing or automatic iframe fetch. Exact old F-07 output schema is retired.",
+      "historical_qa_groups": [
+        "T-16"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-027",
+      "title": "Design observed, not prescribed",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Observed facts and authored design implications must be distinguishable. Agent architect brief may state labeled implications; old automatic design JSON/rule schema is retired.",
+      "historical_qa_groups": [
+        "T-14"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-028",
+      "title": "Media classes preserve everything",
+      "applicability": "Retired design",
+      "current_and_retired_binding": "Automatic media classes/rules and full media_classification.json are retired; no authority to delete/promote source data.",
+      "historical_qa_groups": [
+        "T-10"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-029",
+      "title": "Loss surfaced",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Missing/failed capture and useful-content gaps remain explicit in checklist/GAPS_AND_REQUESTS. Old loss_ledger/pack.json/F-12 exact-two-loss binding is historical.",
+      "historical_qa_groups": [
+        "T-17"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-030",
+      "title": "Confidence \u2260 authority",
+      "applicability": "Retained",
+      "current_and_retired_binding": "No source/package deletion, destructive cleanup, URL promotion or overwrite based on confidence; preserve originals and only write separately derived material.",
+      "historical_qa_groups": [
+        "T-17"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-031",
+      "title": "Twins agree",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Inventory JSON and readable listing represent the same review version. Automatically generated twins for every Data Pack JSON are retired; briefs are agent authored.",
+      "historical_qa_groups": [
+        "T-18"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-032",
+      "title": "Prepare reproducible",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Hashes and exact preserved content support repeatable extraction; new derived paths preserve older packages. Bitwise reproducibility of agent interpretation and old deterministic pack schema is not promised.",
+      "historical_qa_groups": [
+        "T-18"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-033",
+      "title": "Entry brief points to real inventory",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "ARCHITECT_BRIEF/GAPS/source index point to real prepared/evidence files. SITE_RECON_BRIEF/pack.json count schema is retired.",
+      "historical_qa_groups": [
+        "T-19"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-034",
+      "title": "Pack answers B7",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Useful architect positioning/offer/content/CTA implications plus gaps for the selected sample remain. Full frozen B7 Data Pack schema is not automatically a current feature.",
+      "historical_qa_groups": [
+        "T-20"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-035",
+      "title": "Cold-read without live access",
+      "applicability": "QA owner decision",
+      "current_and_retired_binding": "Offline consumer usefulness/cold-read remains relevant; original fresh-Fable twelve-B7/certificate binding is preserved history. Executor and QA Lead must decide current applicability, not Cody.",
+      "historical_qa_groups": [
+        "T-20"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-036",
+      "title": "Drill-down works",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Source drill-down resolves URL/date/raw hash/metadata/CSS boundaries; any QA spot-check selection is the independent Executor\u2019s work.",
+      "historical_qa_groups": [
+        "T-19"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-037",
+      "title": "Portable delivery unit",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Review handoff must be self-contained, with readable governing inputs and reproducible fixture/reference restoration. Original isolated pack/raw portability schema is retired.",
+      "historical_qa_groups": [
+        "T-19"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-038",
+      "title": "Honest completeness",
+      "applicability": "Retained",
+      "current_and_retired_binding": "State selected-scope completion separately from useful-content/child-content completeness and cleanup. Counts advertised are not content captured; missing data cannot become complete.",
+      "historical_qa_groups": [
+        "T-20"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-039",
+      "title": "Full chain on fixture site",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Current stages work together and have saved selected-flow/local proof. Old default E1 full Capture+Prepare fixture pipeline is retired; no mandatory new feature test framework.",
+      "historical_qa_groups": [
+        "T-21"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-040",
+      "title": "Real target reproducible",
+      "applicability": "Retired design",
+      "current_and_retired_binding": "Old E2 two full-site runs/hour separation is not a current obligation/allocation. Existing bounded live evidence is preserved; new live QA requires Tony\u2019s explicit scope.",
+      "historical_qa_groups": [
+        "T-21"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-041",
+      "title": "Certified behavior stays green",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Working current collector/DECIDE/skill behavior must not regress. Old certified --project/raw-v2/output controller suite is history; current focused tests are engineering claims, not QA certification.",
+      "historical_qa_groups": [
+        "T-22"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-042",
+      "title": "Limits recorded",
+      "applicability": "Mixed",
+      "current_and_retired_binding": "Current planned-call/time/post-receipt byte limits and partial outcomes remain. Exact aggregate supervisor, redirect-hop request budgets and old --limit route ceiling are retired.",
+      "historical_qa_groups": [
+        "T-22"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-043",
+      "title": "Untrusted input contained",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Untrusted captures are data; confine authored references, preserve raw bytes, strip scripts/styles from derived content, never execute embedded instructions. Presentation/viewer adversarial breadth remains for independent review, not a new PASS claim.",
+      "historical_qa_groups": [
+        "T-23"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-044",
+      "title": "No secrets leak",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Do not expose private credentials/cookies/authorization; evidence/ZIP hygiene remains. Full historical sentinel/negative-control certification is not claimed by current focused tests; QA Lead binds any applicable check.",
+      "historical_qa_groups": [
+        "T-23"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-045",
+      "title": "Auditable, resumable",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Factual recovery/session/journal/checkpoints and durable collector checklist support resume. Retired C1\u2013E2 task ordering is not the current schedule.",
+      "historical_qa_groups": [
+        "T-24"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-046",
+      "title": "Ledger complete",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Keep all48 canonical ledger rows/status/history; current scope mapping and engineering evidence supplement them. Independent result fields remain NOT RUN.",
+      "historical_qa_groups": [
+        "T-24"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-047",
+      "title": "Instructions match tool",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Current entry documentation matches the real CLI/agent workflow; hardcoded saved-input requirements are packaged/documented. Clean-clone operator/independent QA checks remain pending.",
+      "historical_qa_groups": [
+        "T-01"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    },
+    {
+      "id": "AC-048",
+      "title": "Candidate and evidence agree",
+      "applicability": "Retained",
+      "current_and_retired_binding": "Exact source including untracked files binds engineering evidence; Tony\u2019s future actual commit binds QA. Independent verdict/cleanup/review/merge/closeout decisions remain pending, not fabricated.",
+      "historical_qa_groups": [
+        "T-24"
+      ],
+      "qa": "NOT RUN",
+      "historical_result_changed": false
+    }
+  ],
+  "historical_groups": {
+    "T-01": [
+      "AC-001",
+      "AC-047"
+    ],
+    "T-02": [
+      "AC-002",
+      "AC-004"
+    ],
+    "T-03": [
+      "AC-003"
+    ],
+    "T-04": [
+      "AC-005"
+    ],
+    "T-05": [
+      "AC-006",
+      "AC-017"
+    ],
+    "T-06": [
+      "AC-007",
+      "AC-008"
+    ],
+    "T-07": [
+      "AC-009",
+      "AC-010"
+    ],
+    "T-08": [
+      "AC-011",
+      "AC-012",
+      "AC-013"
+    ],
+    "T-09": [
+      "AC-014",
+      "AC-024"
+    ],
+    "T-10": [
+      "AC-015",
+      "AC-028"
+    ],
+    "T-11": [
+      "AC-016",
+      "AC-018"
+    ],
+    "T-12": [
+      "AC-019",
+      "AC-020"
+    ],
+    "T-13": [
+      "AC-021",
+      "AC-022"
+    ],
+    "T-14": [
+      "AC-023",
+      "AC-027"
+    ],
+    "T-15": [
+      "AC-025"
+    ],
+    "T-16": [
+      "AC-026"
+    ],
+    "T-17": [
+      "AC-029",
+      "AC-030"
+    ],
+    "T-18": [
+      "AC-031",
+      "AC-032"
+    ],
+    "T-19": [
+      "AC-033",
+      "AC-036",
+      "AC-037"
+    ],
+    "T-20": [
+      "AC-034",
+      "AC-035",
+      "AC-038"
+    ],
+    "T-21": [
+      "AC-039",
+      "AC-040"
+    ],
+    "T-22": [
+      "AC-041",
+      "AC-042"
+    ],
+    "T-23": [
+      "AC-043",
+      "AC-044"
+    ],
+    "T-24": [
+      "AC-045",
+      "AC-046",
+      "AC-048"
+    ]
+  },
+  "original_ids_preserved": true,
+  "qa": "NOT RUN"
+}

@@ -1,0 +1,196 @@
+--- before/recon_pipeline/decide.py
++++ after/recon_pipeline/decide.py
+@@ -24,7 +24,8 @@
+ 
+ SCHEMA = 'web-recon-review-v1'
+ FIELDS = 'id,link,title,type,slug,date,date_gmt,modified,modified_gmt'
+-TYPES_FIELDS = 'name,slug,rest_base,rest_namespace'
++TYPE_PROPERTIES = ('name','slug','rest_base','rest_namespace')
++GENERIC_LINK_LABELS = {'read post','read more','continue reading','learn more','view post'}
+ ASSET = re.compile(r'\.(?:png|jpe?g|gif|webp|svg|ico|css|js|woff2?|ttf|mp[34]|zip)(?:$)', re.I)
+ 
+ 
+@@ -65,7 +66,12 @@
+              'dates':{},'sources':[],'rest_items':[],'gaps':[],'selection':'UNDECIDED'}
+         inv['items'].append(row)
+     if source not in row['sources']: row['sources'].append(source)
+-    if title: row['title']=BeautifulSoup(title,'html.parser').get_text(' ',strip=True) or None
++    if title:
++        label=BeautifulSoup(title,'html.parser').get_text(' ',strip=True)
++        # A referring-page CTA is weaker evidence than an informative label.
++        # Sources are retained above even when its generic label is ignored.
++        if label and (not row['title'] or label.casefold().rstrip(' .…›»>') not in GENERIC_LINK_LABELS):
++            row['title']=label
+     if mime: row['content_type']=mime
+     if dates: row['dates'].update({k:v for k,v in dates.items() if isinstance(v,str) and v})
+     return row
+@@ -273,7 +279,8 @@
+ 
+     async def wordpress(self):
+         wp=self.inv['wordpress'];wp['status']='partial'
+-        response=await self.read(self.wp_base+'wp/v2/types?'+urlencode({'_fields':TYPES_FIELDS}),'wp_types')
++        # WordPress filters this type-name map, not each nested type object.
++        response=await self.read(self.wp_base+'wp/v2/types','wp_types')
+         if not response:
+             wp['status']='unavailable' if not self.inv['stop_reason'] else 'skipped_or_blocked'
+             wp['gaps']=['Public types/counts not established; no root enumeration or fallback.'];return
+@@ -285,6 +292,7 @@
+         wp['types_response']=event['body_file'];wp['excluded_types']=[]
+         for kind,typ in sorted(types.items(),key=lambda kv:(kv[0] not in ('page','post'),kv[0])):
+             if not isinstance(typ,dict):self.gap('malformed_wp_type');continue
++            typ={key:typ[key] for key in TYPE_PROPERTIES if key in typ}
+             rest_base=typ.get('rest_base');namespace=typ.get('rest_namespace','wp/v2')
+             if kind=='attachment' or rest_base=='media':wp['excluded_types'].append({'type':kind,'reason':'media_not_enumerated_for_review'});continue
+             if not isinstance(rest_base,str) or not isinstance(namespace,str) or not re.fullmatch(r'[A-Za-z0-9_-]+',rest_base) or not re.fullmatch(r'[A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*',namespace):
+--- before/tests/test_decide.py
++++ after/tests/test_decide.py
+@@ -6,6 +6,7 @@
+ import os
+ from pathlib import Path
+ import threading
++import time
+ from urllib.parse import urlsplit,parse_qs
+ 
+ import pytest
+@@ -24,6 +25,33 @@
+     headers={'content-type':'application/json'}
+     if total is not None:headers.update({'x-wp-total':str(total),'x-wp-totalpages':str(pages)})
+     return response(json.dumps(value,ensure_ascii=False).encode(),**headers)
++
++
++def filtered_types_response(types, address):
++    """WP filters the type-name map, not each type's properties.
++
++    PHP's empty filtered array serializes as [], reproducing the saved failure.
++    Nested selectors are explicitly rooted at a type name.
++    """
++    fields=parse_qs(urlsplit(address).query).get('_fields')
++    if not fields:return json_response(types)
++    filtered={}
++    for field in fields[0].split(','):
++        key,separator,child=field.strip().partition('.')
++        if key not in types:continue
++        if not separator:filtered[key]=types[key]
++        elif child in types[key]:filtered.setdefault(key,{})[child]=types[key][child]
++    return json_response(filtered if filtered else [])
++
++
++class WordPressTypesFake(Fake):
++    def __init__(self, types, answers):
++        super().__init__(answers);self.types=types
++    async def get(self, item):
++        if urlsplit(item['url']).path=='/wp-json/wp/v2/types':
++            self.calls.append((item['url'],time.monotonic()))
++            return filtered_types_response(self.types,item['url'])
++        return await super().get(item)
+ 
+ 
+ def obj(n,base=BASE):return {'id':n,'link':base+'/article-'+str(n),'title':{'rendered':'Article '+str(n)},'type':'post','date':'2026-10-07T00:00:00'}
+@@ -56,7 +84,8 @@
+     assert cols['page']['gaps']==['metadata_page_limit'] and cols['book']['status']=='enumerated_metadata'
+     assert inv['wordpress']['excluded_types']==[{'type':'attachment','reason':'media_not_enumerated_for_review'}]
+     assert all('/media' not in url for url,_ in fake.calls)
+-    assert all('_fields=' in url and 'content' not in parse_qs(urlsplit(url).query).get('_fields',[''])[0] for url,_ in fake.calls[1:])
++    assert fake.calls[1][0]==BASE+'/wp-json/wp/v2/types'
++    assert all(parse_qs(urlsplit(url).query)['_fields']==[d.FIELDS] and 'content' not in d.FIELDS.split(',') for url,_ in fake.calls[2:])
+     assert not (root/'checklist.json').exists() and d.read_review(root/'inventory.json')[0]==inv
+     for event in inv['requests']:
+         assert c.sha((root/event['body_file']).read_bytes())==event['sha256']
+@@ -197,7 +226,7 @@
+             events.append(self.path);base=f'http://127.0.0.1:{self.server.server_port}'
+             path=urlsplit(self.path).path
+             if path=='/s.xml':value=sitemap(base)
+-            elif path=='/wp-json/wp/v2/types':value=json_response({'post':TYPES['post'],'book':TYPES['book']})
++            elif path=='/wp-json/wp/v2/types':value=filtered_types_response({'post':TYPES['post'],'book':TYPES['book']},self.path)
+             elif path=='/wp-json/wp/v2/posts':value=json_response([obj(11945,base)],166,9)
+             elif path=='/wp-json/wp/v2/books':value=json_response([],0,0)
+             else:value=response(status=404)
+@@ -267,3 +296,60 @@
+     inv,fake,_=run(tmp_path,[response(('Sitemap: '+BASE+'/s.xml').encode())],mode='sitemap',max_requests=1)
+     assert len(fake.calls)==1 and inv['stop_reason']=='request_limit'
+     assert inv['context']['discovery_pages_read']==0
++
++
++def test_types_fixture_filters_type_name_map():
++    address=BASE+'/wp-json/wp/v2/types'
++    assert json.loads(filtered_types_response(TYPES,address+'?_fields=name,slug,rest_base,rest_namespace')['body'])==[]
++    assert json.loads(filtered_types_response(TYPES,address)['body'])==TYPES
++    assert json.loads(filtered_types_response(TYPES,address+'?_fields=page.name,post.rest_base')['body'])=={'page':{'name':'Pages'},'post':{'rest_base':'posts'}}
++
++
++def test_type_discovery_uses_unfiltered_map_and_projects_metadata(tmp_path):
++    types={k:{**TYPES[k],'description':'Public type description','unneeded':{'keep':'in raw evidence'}} for k in ('page','post')}
++    fake=WordPressTypesFake(types,[json_response([obj(1)],42,42),json_response([obj(2)],166,166)])
++    root=tmp_path/'rest-only';root.mkdir();(root/'evidence').mkdir()
++    engine=d.Recon(root,BASE,'default',transport=fake,gap=0,per_page=1,max_rest_pages=1,max_requests=3)
++    engine.deadline=time.monotonic()+10
++    asyncio.run(engine.wordpress())
++    assert len(fake.calls)==3
++    assert fake.calls[0][0]==BASE+'/wp-json/wp/v2/types'
++    assert [urlsplit(u).path for u,_ in fake.calls[1:]]==['/wp-json/wp/v2/pages','/wp-json/wp/v2/posts']
++    for url,_ in fake.calls[1:]:
++        query=parse_qs(urlsplit(url).query)
++        assert query=={'per_page':['1'],'page':['1'],'_fields':[d.FIELDS]}
++    assert json.loads((root/'evidence/0001.body').read_bytes())==types
++    cols={x['type']:x for x in engine.inv['wordpress']['collections']}
++    assert cols['page']['advertised_total']==42 and cols['post']['advertised_total']==166
++    assert all(x['enumerated_records']==1 and x['status']=='partial' for x in cols.values())
++
++
++@pytest.mark.parametrize('generic',['Read Post',' READ POST ','Read more...','Continue reading','Learn More','View post'])
++def test_candidate_informative_label_survives_generic_repeat(generic):
++    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/article'
++    heading={'file':'first.html','sha256':'heading','locator':'h2/a'}
++    repeated={'file':'first.html','sha256':'heading','locator':'a.read-post'}
++    first=d.candidate(inv,url,heading,title='A useful article heading')
++    again=d.candidate(inv,url,repeated,title=generic)
++    assert again is first and again['title']=='A useful article heading'
++    assert again['sources']==[heading,repeated] and again['selection']=='UNDECIDED'
++    assert again['id']==d.item_id(url)
++
++
++def test_generic_first_can_be_replaced_by_informative_label():
++    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/article'
++    d.candidate(inv,url,{'locator':'cta'},title='Read Post')
++    row=d.candidate(inv,url,{'locator':'h2/a'},title='<b>বাংলা meaningful heading</b>')
++    assert row['title']=='বাংলা meaningful heading'
++    d.candidate(inv,url,{'locator':'empty'},title='<span></span>')
++    assert row['title']=='বাংলা meaningful heading' and len(row['sources'])==3
++
++
++def test_default_heading_and_generic_links_preserve_provenance(tmp_path):
++    html=b'<title>Blog listing</title><h2><a href="/article">Useful heading</a></h2><a href="/article">Read Post</a><a href="/article">Read more...</a>'
++    inv,fake,_=run(tmp_path,[response(html),json_response({})],mode='default',max_depth=0)
++    row=next(x for x in inv['items'] if x['url']==BASE+'/article')
++    assert row['title']=='Useful heading' and len(row['sources'])==3
++    assert {ref['locator'] for ref in row['sources']}=={'a[href][0]','a[href][1]','a[href][2]'}
++    assert row['content_type'] is None and row['dates']=={} and row['selection']=='UNDECIDED'
++    assert len(fake.calls)==2  # Destination page was never fetched.
+--- before/agent_docs/ACTION/wf-scrapper-abm/DECIDE.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/DECIDE.md
+@@ -1,3 +1,7 @@
++## Scoped follow-up — 2026-10-10
++
++Tony authorized the types-map/filter and repeated-label fixes, focused local checks and one REST-only live verification of at most three planned calls. The original October 7 inventory, decisions and raw responses remain immutable historical evidence. See current RECOVERY for results; no automatic discovery, selection or collection is authorized. Earlier implementation/proposal wording below records its original checkpoint.
++
+ # DECIDE — recon and human selection
+ 
+ Tony-authorized direction, 2026-10-07. **DECIDE → COLLECT → PREPARE**. DECIDE and COLLECT have separate commands and output directories. The working collector and all its source/tests are unchanged. Prepare remains a separate future skill. Independent QA NOT RUN. This implementation was verified with localhost fixtures and saved captures only; no new live recon was run.
+@@ -13,7 +17,7 @@
+ 
+ `recon --mode sitemap` reads a supplied sitemap, or reads `/robots.txt` for Sitemap directives. It follows same-origin sitemap index children within configured bounds. Without a usable declared/supplied sitemap, it records the gap; it never silently switches to link discovery or probes a list of guessed sitemap names.
+ 
+-`recon --mode default` reads the supplied page and expands same-origin links breadth-first. **This downloads some rendered pages and their ordinary browser resources**. It does not promise zero page downloads. It skips obvious image/script/style/archive links and REST links as HTML candidates. HTML MIME/title/date metadata and link labels are recorded where available; a linked label is evidence from the referring page, not proof of the target's own title/content.
++`recon --mode default` reads the supplied page and expands same-origin links breadth-first. **This downloads some rendered pages and their ordinary browser resources**. It does not promise zero page downloads. It skips obvious image/script/style/archive links and REST links as HTML candidates. HTML MIME/title/date metadata and link labels are recorded where available; a linked label is evidence from the referring page, not proof of the target's own title/content. Later generic Read Post/Read More/Continue Reading/Learn More/View Post labels do not replace an informative candidate label; every source locator remains recorded.
+ 
+ Defaults: 12 planned requests total, 3 discovery page reads, depth 1, 1 metadata page per REST content type, 20 records per metadata page, 5,000 inventory candidates, 300 seconds collection work and five-second completion pacing. Bounds are configurable. `--max-pages` counts HTML or sitemap reads; `/robots.txt`, types and metadata calls also consume the shared `--max-requests` budget. Depth bounds followed pages/sitemap nesting; links found at the boundary can still be listed without being read. REST pagination uses the same pacing and overall request budget.
+ 
+@@ -23,7 +27,7 @@
+ 
+ ## Lightweight WordPress reconnaissance
+ 
+-- Directly request the standard `wp/v2/types` endpoint under the default `/wp-json/` API base, with `_fields=name,slug,rest_base,rest_namespace`. The root `/wp-json/` is never enumerated.
++- Directly request the standard `wp/v2/types` endpoint under the default `/wp-json/` API base **without `_fields`**. Its response is a map keyed by type names; filtering those keys with property names produced the preserved `[]` response on October 7. Extract `name`, `slug`, `rest_base` and `rest_namespace` locally from each type description. This endpoint describes types, not post bodies. Individual collection metadata requests retain their existing `_fields` projection. The root `/wp-json/` is never enumerated.
+ - `--wp-base` supports an explicitly supplied same-origin API mount. Other mounts are not automatically guessed. An absent `rest_namespace` uses the standard wp/v2 convention; unusual routes require review.
+ - Public types provide collection names/bases, including exposed custom post types. Pages/posts get priority. Attachment/media is explicitly excluded from enumeration; taxonomies/users are not content types and are not auto-collected.
+ - Each admitted collection request uses `per_page`, `page` and `_fields=id,link,title,type,slug,date,date_gmt,modified,modified_gmt`. Full content/SEO/media data is not requested for review. If the server ignores projection, the unexpected response is preserved as recon evidence, marked partial and not paginated further; it never becomes a completed full-capture task.

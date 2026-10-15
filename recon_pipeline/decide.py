@@ -24,7 +24,8 @@ from smart_crawler.rest_client import parse_source
 
 SCHEMA = 'web-recon-review-v1'
 FIELDS = 'id,link,title,type,slug,date,date_gmt,modified,modified_gmt'
-TYPES_FIELDS = 'name,slug,rest_base,rest_namespace'
+TYPE_PROPERTIES = ('name','slug','rest_base','rest_namespace')
+GENERIC_LINK_LABELS = {'read post','read more','continue reading','learn more','view post'}
 ASSET = re.compile(r'\.(?:png|jpe?g|gif|webp|svg|ico|css|js|woff2?|ttf|mp[34]|zip)(?:$)', re.I)
 
 
@@ -65,7 +66,13 @@ def candidate(inv, address, source, *, kind='document', title=None, mime=None, d
              'dates':{},'sources':[],'rest_items':[],'gaps':[],'selection':'UNDECIDED'}
         inv['items'].append(row)
     if source not in row['sources']: row['sources'].append(source)
-    if title: row['title']=BeautifulSoup(title,'html.parser').get_text(' ',strip=True) or None
+    if title:
+        label=BeautifulSoup(title,'html.parser').get_text(' ',strip=True)
+        # Empty/punctuation-only labels and generic CTAs are unavailable titles.
+        # Unicode letters/numbers remain text; sources are retained even when
+        # their weak label is ignored. Never derive a title from the URL.
+        if any(char.isalnum() for char in label) and label.casefold().rstrip(' .…›»>') not in GENERIC_LINK_LABELS:
+            row['title']=label
     if mime: row['content_type']=mime
     if dates: row['dates'].update({k:v for k,v in dates.items() if isinstance(v,str) and v})
     return row
@@ -273,7 +280,8 @@ class Recon:
 
     async def wordpress(self):
         wp=self.inv['wordpress'];wp['status']='partial'
-        response=await self.read(self.wp_base+'wp/v2/types?'+urlencode({'_fields':TYPES_FIELDS}),'wp_types')
+        # WordPress filters this type-name map, not each nested type object.
+        response=await self.read(self.wp_base+'wp/v2/types','wp_types')
         if not response:
             wp['status']='unavailable' if not self.inv['stop_reason'] else 'skipped_or_blocked'
             wp['gaps']=['Public types/counts not established; no root enumeration or fallback.'];return
@@ -285,6 +293,7 @@ class Recon:
         wp['types_response']=event['body_file'];wp['excluded_types']=[]
         for kind,typ in sorted(types.items(),key=lambda kv:(kv[0] not in ('page','post'),kv[0])):
             if not isinstance(typ,dict):self.gap('malformed_wp_type');continue
+            typ={key:typ[key] for key in TYPE_PROPERTIES if key in typ}
             rest_base=typ.get('rest_base');namespace=typ.get('rest_namespace','wp/v2')
             if kind=='attachment' or rest_base=='media':wp['excluded_types'].append({'type':kind,'reason':'media_not_enumerated_for_review'});continue
             if not isinstance(rest_base,str) or not isinstance(namespace,str) or not re.fullmatch(r'[A-Za-z0-9_-]+',rest_base) or not re.fullmatch(r'[A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*',namespace):

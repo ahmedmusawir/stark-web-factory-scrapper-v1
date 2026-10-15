@@ -1,3 +1,7 @@
+## Current-tool QA readiness pointer — 2026-10-14
+
+Read [current scope/crosswalk](../CURRENT_TOOL_SCOPE.md), [QAM state](../QAM/STATE.md) and [RECOVERY](../../../../RECOVERY.md). Cody’s Shot2 evidence is engineering verification only. This preserved canonical plan retains its24 groups/48 mappings/history; its old controller/pack commands are not the current candidate-bound executable plan. A separate Executor must independently inspect Tony’s actual committed candidate and propose Q1 bindings for current applicable scope; SOL approves/amends before Q2. This pointer is not a QA plan authored or approved by Cody. No independent QA has run; no old criterion/finding is passed/waived/closed. Final closeout/playbook remain deferred.
+
 # Web Recon + Prepare — Master QA Test Plan
 
 ## Director GO — implementation launch (2026-10-02)
