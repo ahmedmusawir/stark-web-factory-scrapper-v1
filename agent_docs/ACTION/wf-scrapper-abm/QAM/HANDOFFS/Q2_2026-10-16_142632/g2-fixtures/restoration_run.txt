@@ -1,0 +1,46 @@
+2026-10-16 14:35:09 +0600
+--- restoration helper documented CLI ---
+usage: restore-fixtures.py [-h] --repo REPO --manifest MANIFEST --archive-root
+                           ARCHIVE_ROOT
+
+Offline fixture provisioner: exact hashes, named archive members, no
+overwrite.
+
+options:
+  -h, --help            show this help message and exit
+  --repo REPO
+  --manifest MANIFEST
+  --archive-root ARCHIVE_ROOT
+--- restore named fixtures into scoped snapshot (exact hashes, no-overwrite; archive-root = snapshot, which contains both verified ZIPs) ---
+command: restore-fixtures.py --repo /tmp/opencode/q2-scratch-20261016/snapshot-scoped --manifest <installed>/ORIGINAL_Q1/governing/fixture-manifest.json --archive-root /tmp/opencode/q2-scratch-20261016/snapshot-scoped
+{
+  "written": 30,
+  "existing_matching": 4,
+  "verified_files": 34,
+  "network_requests": 0,
+  "overwritten_files": 0
+}
+restore_exit=0
+--- post-restoration: fixture references in snapshot (expect 34/34) ---
+root: /tmp/opencode/q2-scratch-20261016/snapshot-scoped
+references: 34 match: 34
+missing: none
+mismatch: none
+ALL_MATCH True
+postverify_exit=0
+--- source52 unchanged after restoration ---
+root: /tmp/opencode/q2-scratch-20261016/snapshot-scoped
+source52: 39b9728ac72cd2699410b6fda05c68c38b842b23eff7bd6490d9fb4f6d3d8314
+expected: 39b9728ac72cd2699410b6fda05c68c38b842b23eff7bd6490d9fb4f6d3d8314
+per-file mismatches: none
+SOURCE52_OK: True
+source52_exit=0
+--- real-repo fixtures untouched (expect 34/34 again) ---
+root: /home/moose/PYTHON/stark-web-factory-scrapper-v1
+references: 34 match: 34
+missing: none
+mismatch: none
+ALL_MATCH True
+realrepo_verify_exit=0
+--- scratch disk use ---
+3250668	/tmp/opencode/q2-scratch-20261016

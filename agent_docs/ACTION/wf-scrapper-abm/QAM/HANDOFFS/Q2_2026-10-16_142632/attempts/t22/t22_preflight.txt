@@ -1,0 +1,138 @@
+2026-10-16 14:35:09 +0600
+--- browser binary record (local metadata query, no network) ---
+chromium executable: /home/moose/.cache/ms-playwright/chromium-1169/chrome-linux/chrome
+browser_record_exit=1
+=== T-22 node-ID reconciliation: current three modules (documented current-suite count: 97) ===
+command (cwd=snapshot): python -m pytest tests/test_selected_collector.py tests/test_decide.py agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py --collect-only -q -p no:cacheprovider
+tests/test_selected_collector.py::test_selected_only_and_pacing
+tests/test_selected_collector.py::test_refusal_stops_without_retry[blocked0]
+tests/test_selected_collector.py::test_refusal_stops_without_retry[blocked1]
+tests/test_selected_collector.py::test_refusal_stops_without_retry[blocked2]
+tests/test_selected_collector.py::test_refusal_stops_without_retry[blocked3]
+tests/test_selected_collector.py::test_json_quoted_challenge_is_source_not_denial
+tests/test_selected_collector.py::test_interruption_reopen_skips_completed
+tests/test_selected_collector.py::test_missing_and_corrupt_results_are_not_skipped
+tests/test_selected_collector.py::test_add_only_and_explicit_refresh_preserve_attempts
+tests/test_selected_collector.py::test_short_intermediate_page_continues_and_exact_unicode_bytes
+tests/test_selected_collector.py::test_incomplete_coverage_is_explicit[replies0-4-count_mismatch]
+tests/test_selected_collector.py::test_incomplete_coverage_is_explicit[replies1-4-duplicate_ids]
+tests/test_selected_collector.py::test_incomplete_coverage_is_explicit[replies2-1-approved_page_limit]
+tests/test_selected_collector.py::test_incomplete_coverage_is_explicit[replies3-4-pagination_totals_changed]
+tests/test_selected_collector.py::test_incomplete_coverage_is_explicit[replies4-4-empty_intermediate_page]
+tests/test_selected_collector.py::test_incomplete_coverage_is_explicit[replies5-4-pagination_headers_missing_or_invalid]
+tests/test_selected_collector.py::test_limit_resume_and_cleanup_separate
+tests/test_selected_collector.py::test_cleanup_does_not_replace_first_refusal
+tests/test_selected_collector.py::test_write_failure_cannot_mark_complete
+tests/test_selected_collector.py::test_cap_preserves_partial_not_complete
+tests/test_selected_collector.py::test_invalid_scope_rejected_before_create[plan0]
+tests/test_selected_collector.py::test_invalid_scope_rejected_before_create[plan1]
+tests/test_selected_collector.py::test_invalid_scope_rejected_before_create[plan2]
+tests/test_selected_collector.py::test_invalid_scope_rejected_before_create[plan3]
+tests/test_selected_collector.py::test_native_browser_html_rest_pagination_and_no_link_crawl
+tests/test_selected_collector.py::test_native_429_stops_next_planned_request
+tests/test_selected_collector.py::test_incomplete_browser_body_and_error_are_preserved
+tests/test_selected_collector.py::test_single_rest_response_does_not_claim_collection_coverage
+tests/test_selected_collector.py::test_overlapping_pagination_scope_is_explicit_partial
+tests/test_selected_collector.py::test_library_logged_cleanup_error_is_not_silenced
+tests/test_selected_collector.py::test_cli_add_is_offline_and_retains_completed
+tests/test_selected_collector.py::test_pacing_survives_resume_and_addition
+tests/test_decide.py::test_mode_is_explicit_and_incompatible_flag_rejected
+tests/test_decide.py::test_sitemap_dedup_metadata_counts_and_custom_type
+tests/test_decide.py::test_default_page_depth_limit_no_sitemap_switch
+tests/test_decide.py::test_supplied_sitemap_failure_never_switches_to_default
+tests/test_decide.py::test_robots_sitemap_discovery
+tests/test_decide.py::test_refusal_stops_and_preserves_partial[blocked0]
+tests/test_decide.py::test_refusal_stops_and_preserves_partial[blocked1]
+tests/test_decide.py::test_refusal_stops_and_preserves_partial[blocked2]
+tests/test_decide.py::test_shared_limit_and_pacing
+tests/test_decide.py::test_short_metadata_page_continues_to_advertised_end
+tests/test_decide.py::test_rest_discrepancies_remain_partial[records0-2-duplicate_ids]
+tests/test_decide.py::test_rest_discrepancies_remain_partial[records1-2-advertised_count_mismatch]
+tests/test_decide.py::test_projection_ignored_stops_enumeration
+tests/test_decide.py::test_number_selection_export_is_single_item_and_exact_version
+tests/test_decide.py::test_reordering_changes_version_not_stable_ids
+tests/test_decide.py::test_unknown_conflict_and_broad_collection_need_explicit_scope
+tests/test_decide.py::test_saved_collection_import_empty_content_and_no_network
+tests/test_decide.py::test_raw_import_reuses_reader_and_preserves_media_gap
+tests/test_decide.py::test_native_sitemap_types_and_projected_metadata
+tests/test_decide.py::test_known_empty_content_flag_survives_projected_recon
+tests/test_decide.py::test_scope_does_not_expand_to_external_endpoint_or_redirect
+tests/test_decide.py::test_discovery_page_and_candidate_bounds
+tests/test_decide.py::test_malformed_wp_metadata_is_not_claimed_enumerated
+tests/test_decide.py::test_html_published_date_available_and_cleanup_separate
+tests/test_decide.py::test_budget_exhausted_by_robots_does_not_count_unread_sitemap
+tests/test_decide.py::test_types_fixture_filters_type_name_map
+tests/test_decide.py::test_type_discovery_uses_unfiltered_map_and_projects_metadata
+tests/test_decide.py::test_candidate_informative_label_survives_generic_repeat[Read Post]
+tests/test_decide.py::test_candidate_informative_label_survives_generic_repeat[ READ POST ]
+tests/test_decide.py::test_candidate_informative_label_survives_generic_repeat[Read more...]
+tests/test_decide.py::test_candidate_informative_label_survives_generic_repeat[Continue reading]
+tests/test_decide.py::test_candidate_informative_label_survives_generic_repeat[Learn More]
+tests/test_decide.py::test_candidate_informative_label_survives_generic_repeat[View post]
+tests/test_decide.py::test_generic_first_can_be_replaced_by_informative_label
+tests/test_decide.py::test_default_heading_and_generic_links_preserve_provenance
+tests/test_decide.py::test_punctuation_and_cta_order_preserves_exact_heading[Useful article heading-False]
+tests/test_decide.py::test_punctuation_and_cta_order_preserves_exact_heading[Useful article heading-True]
+tests/test_decide.py::test_punctuation_and_cta_order_preserves_exact_heading[\u09ac\u09be\u0982\u09b2\u09be \u09b6\u09bf\u09b0\u09cb\u09a8\u09be\u09ae-False]
+tests/test_decide.py::test_punctuation_and_cta_order_preserves_exact_heading[\u09ac\u09be\u0982\u09b2\u09be \u09b6\u09bf\u09b0\u09cb\u09a8\u09be\u09ae-True]
+tests/test_decide.py::test_punctuation_and_cta_order_preserves_exact_heading[\u4e2d\u6587\u6807\u9898-False]
+tests/test_decide.py::test_punctuation_and_cta_order_preserves_exact_heading[\u4e2d\u6587\u6807\u9898-True]
+tests/test_decide.py::test_punctuation_and_cta_order_preserves_exact_heading[Caf\xe9 SEO \U0001f680-False]
+tests/test_decide.py::test_punctuation_and_cta_order_preserves_exact_heading[Caf\xe9 SEO \U0001f680-True]
+tests/test_decide.py::test_weak_only_labels_leave_title_unknown_without_slug_guessing[]
+tests/test_decide.py::test_weak_only_labels_leave_title_unknown_without_slug_guessing[   ]
+tests/test_decide.py::test_weak_only_labels_leave_title_unknown_without_slug_guessing[...]
+tests/test_decide.py::test_weak_only_labels_leave_title_unknown_without_slug_guessing[\u2026]
+tests/test_decide.py::test_weak_only_labels_leave_title_unknown_without_slug_guessing[\u2014]
+tests/test_decide.py::test_weak_only_labels_leave_title_unknown_without_slug_guessing[:;!?]
+tests/test_decide.py::test_weak_only_labels_leave_title_unknown_without_slug_guessing[ . \u200b . ]
+tests/test_decide.py::test_weak_only_labels_leave_title_unknown_without_slug_guessing[<em>...</em>]
+tests/test_decide.py::test_weak_only_labels_leave_title_unknown_without_slug_guessing[Read Post]
+tests/test_decide.py::test_informative_unicode_replaces_legacy_weak_label[...]
+tests/test_decide.py::test_informative_unicode_replaces_legacy_weak_label[Read Post]
+tests/test_decide.py::test_informative_unicode_replaces_legacy_weak_label[   ]
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_landing_page_not_newsletter_and_boilerplate_separated
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_unicode_paragraphs_lists_links_cta_and_scripts
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_invalid_completed_reference_refused_before_output[body]
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_invalid_completed_reference_refused_before_output[metadata]
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_invalid_completed_reference_refused_before_output[escaping_reference]
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_preserves_existing_packages_and_input[existing]
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_preserves_existing_packages_and_input[inside]
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_pending_item_is_gap_not_fabricated_page
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_actual_three_page_capture_exact_content
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_empty_icon_separator_does_not_create_false_nested_list
+
+97 tests collected in 1.67s
+collect_current_exit=0
+=== T-22 node-ID reconciliation: retained three modules (documented retained-suite count: 27) ===
+command (cwd=snapshot): python -m pytest tests/test_rest_client.py tests/test_raw_reader.py tests/test_offline_inventory.py --collect-only -q -p no:cacheprovider
+tests/test_rest_client.py::test_pagination_response_bytes_derivatives_and_unknown_fields
+tests/test_rest_client.py::test_optional_missing_and_null_are_distinct
+tests/test_rest_client.py::test_mapping_gap_variants[ambiguous-/article/-ambiguous]
+tests/test_rest_client.py::test_mapping_gap_variants[unmapped-/services/-unmapped]
+tests/test_rest_client.py::test_malformed_response_is_archived_without_fabricated_objects[malformed_identity]
+tests/test_rest_client.py::test_malformed_response_is_archived_without_fabricated_objects[malformed_container]
+tests/test_rest_client.py::test_validator_detects_fractional_value_change_even_when_float_rounds_equal
+tests/test_rest_client.py::test_refusal_preserves_response_and_skips_remaining_collections
+tests/test_rest_client.py::test_missing_totals_never_claims_complete
+tests/test_rest_client.py::test_duplicate_id_different_values_are_retained
+tests/test_raw_reader.py::test_complete_and_valid_partial_are_distinct_and_read_only
+tests/test_raw_reader.py::test_invalid_is_refused_instead_of_called_partial[manifest]
+tests/test_raw_reader.py::test_invalid_is_refused_instead_of_called_partial[schema]
+tests/test_raw_reader.py::test_invalid_is_refused_instead_of_called_partial[map]
+tests/test_raw_reader.py::test_invalid_is_refused_instead_of_called_partial[reference]
+tests/test_raw_reader.py::test_director_authored_screenshot_is_hashed_and_untouched
+tests/test_offline_inventory.py::test_real_raw_reader_traceability_and_preservation
+tests/test_offline_inventory.py::test_reordering_and_reopening_preserve_choices
+tests/test_offline_inventory.py::test_unknown_id_is_rejected_without_output[include]
+tests/test_offline_inventory.py::test_unknown_id_is_rejected_without_output[exclude]
+tests/test_offline_inventory.py::test_conflicting_or_empty_choices_are_rejected
+tests/test_offline_inventory.py::test_choice_revision_keeps_previous_and_unspecified_ids
+tests/test_offline_inventory.py::test_existing_inventory_and_raw_outputs_are_protected
+tests/test_offline_inventory.py::test_binding_rejects_changed_content_and_mismatched_choices
+tests/test_offline_inventory.py::test_missing_metadata_and_partial_state_are_visible
+tests/test_offline_inventory.py::test_cli_round_trip_and_unknown_id_exit
+tests/test_offline_inventory.py::test_listing_escapes_source_markup_without_altering_metadata
+
+27 tests collected in 1.47s
+collect_retained_exit=0

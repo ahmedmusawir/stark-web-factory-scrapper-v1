@@ -1,0 +1,103 @@
+{
+  "schema": "selected-collection-v1",
+  "created_at": "2026-10-16T08:53:11.796831+00:00",
+  "items": [
+    {
+      "kind": "page",
+      "url": "http://127.0.0.1:41067/doc-mut",
+      "id": "fe84807f5637a25bf310c725",
+      "page": 1,
+      "status": "completed",
+      "result": {
+        "file": "attempts/fe84807f5637a25bf310c725/5def6090dc5f497eb7ec0f0c159652be/result.json",
+        "sha256": "b035a4f169116283f70a147783e08d32b81e92a52ee6c67aa9613ae85354ec65"
+      },
+      "attempts": [
+        {
+          "file": "attempts/fe84807f5637a25bf310c725/5def6090dc5f497eb7ec0f0c159652be/result.json",
+          "sha256": "b035a4f169116283f70a147783e08d32b81e92a52ee6c67aa9613ae85354ec65"
+        }
+      ],
+      "error": null
+    },
+    {
+      "kind": "page",
+      "url": "http://127.0.0.1:41067/doc-b",
+      "id": "8838c193eb5eb83205636ebc",
+      "page": 1,
+      "status": "completed",
+      "result": {
+        "file": "attempts/8838c193eb5eb83205636ebc/b90d43cf173644d0abaf016328b1dcff/result.json",
+        "sha256": "5da177f7a7f934098b6b7d56872832dbaff15ced6d10b7a3f493d3a716edc234"
+      },
+      "attempts": [
+        {
+          "file": "attempts/8838c193eb5eb83205636ebc/b90d43cf173644d0abaf016328b1dcff/result.json",
+          "sha256": "5da177f7a7f934098b6b7d56872832dbaff15ced6d10b7a3f493d3a716edc234"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "coverage": {},
+  "runs": [
+    {
+      "started_at": "2026-10-16T08:53:11.799878+00:00",
+      "requests": [
+        {
+          "id": "fe84807f5637a25bf310c725",
+          "url": "http://127.0.0.1:41067/doc-mut",
+          "kind": "page",
+          "start": 964066.581803223,
+          "preceding_completion": null,
+          "completion": 964070.070795183,
+          "completion_epoch": 1792140795.934143
+        },
+        {
+          "id": "8838c193eb5eb83205636ebc",
+          "url": "http://127.0.0.1:41067/doc-b",
+          "kind": "page",
+          "start": 964075.075383589,
+          "preceding_completion": 964070.070795183,
+          "completion": 964078.42494894,
+          "completion_epoch": 1792140804.288295
+        }
+      ],
+      "stop_reason": null,
+      "cleanup_error": null,
+      "gap_seconds": 5,
+      "max_requests": 100,
+      "max_seconds": 1800,
+      "max_bytes": 100000000,
+      "response_cap": 10485760,
+      "browser_traffic": {
+        "request:document": 2,
+        "status:200": 3,
+        "request:image": 1
+      },
+      "runtime": {
+        "python": "3.12.3",
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "crawl4ai": "0.9.3",
+        "playwright": "1.52.0",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "cache": "BYPASS",
+        "html_wait_for_images": true,
+        "html_post_load_delay": 3,
+        "navigation_timeout_ms": {
+          "page": 90000,
+          "rest": 30000
+        },
+        "tls_verification": true,
+        "browser": "136.0.7103.25"
+      },
+      "cleanup_messages": [],
+      "collection_outcome": "complete",
+      "finished_at": "2026-10-16T08:53:24.391963+00:00",
+      "elapsed_s": 12.592105126008391,
+      "completed": 2,
+      "remaining": 0
+    }
+  ],
+  "last_completion_epoch": 1792140804.288295
+}

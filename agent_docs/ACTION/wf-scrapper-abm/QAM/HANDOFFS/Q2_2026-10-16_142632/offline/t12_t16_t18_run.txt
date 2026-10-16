@@ -1,0 +1,33 @@
+2026-10-16 14:39:11 +0600
+=== T-12: raw preservation + tamper negatives (candidate Prepare CLI, offline) ===
+part1 zero source changes: True
+body_byte_flip exit 2 out_created False refusal: True
+metadata_hash_tamper exit 2 out_created False refusal: True
+escaping_reference_hash_consistent exit 2 out_created False refusal: True
+symlinked_body_original_content exit 2 out_created False refusal: True
+assessment: {
+  "part1_zero_source_changes": true,
+  "body_byte_flip_refused_before_output": true,
+  "metadata_hash_tamper_refused_before_output": true,
+  "escaping_reference_behavior": "refused",
+  "symlink_behavior": "refused",
+  "outside_files_untouched": true
+}
+t12_exit=0
+=== T-18: Prepare repeatability twins ===
+both CLI runs exit 0: True
+content files identical: True
+index diff paths: ['$.boilerplate.file', '$.pages[0].prepared.file', '$.pages[1].prepared.file', '$.pages[2].prepared.file', '$.prepared_at']
+index diff outside allowlist: none
+cross vs accepted v01: {'pages/3a1a77925e47639b5f9fd201.md': True, 'pages/76f31511d3acb8433bdb9d50.md': True, 'pages/ae3d8256cdd00e50ca26c1f2.md': True, 'BOILERPLATE.md': True}
+t18_exit=0
+=== T-16: Growth Call embed honesty ===
+fresh initial exit: 0
+raw parent: forms 0 | labels 0 | iframes [{'src': 'https://www.googletagmanager.com/ns.html?id=GTM-NK6WH4B', 'title': None}, {'src': 'https://link.cyberizegroup.com/widget/booking/DGS01qOQAJzewOETHhPD', 'title': None}, {'src': 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDoXROUgTXZpS-LNbRyBb7P5MK1EwzOxaI&q=Cyberize%20Group%2C3110%20Hatton%20st%20sarasota%2C%20fl%2034237&zoom=10', 'title': 'Google Map'}]
+native main text empty: True
+initial page comparison: {'fresh_bytes': 199, 'saved_initial_bytes': 199, 'reviewed_bytes': 2173, 'fresh_equals_saved_initial': True}
+reviewed preparation_outcome: Parent-page evidence prepared; booking form/content coverage PARTIAL / UNKNOWN
+reviewed gaps mention UNKNOWN/PARTIAL: {'contains_UNKNOWN': False, 'contains_PARTIAL': False}
+t16_exit=0
+--- scratch disk use ---
+20690962	/tmp/opencode/q2-scratch-20261016

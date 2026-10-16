@@ -1,0 +1,11 @@
+2026-10-16 14:35:27 +0600
+--- corrected browser binary version record (local binary query; playwright BrowserType.version attribute absent in 1.52 — instrument correction recorded) ---
+Chromium 136.0.7103.25 
+chrome_version_exit=0
+=== T-22 once-only full regression: CURRENT suite (expect 97 passed, 0 failed) ===
+command (cwd=snapshot): PYTHONDONTWRITEBYTECODE=1 SELECTED_COLLECTOR_EVIDENCE=<lane>/native/selected-collector-evidence DECIDE_EVIDENCE=<lane>/native/decide-evidence python -m pytest tests/test_selected_collector.py tests/test_decide.py agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py -p no:cacheprovider --basetemp=<scratch>/t22-current-basetemp -q --junitxml=<lane>/attempts/t22/junit_current.xml
+........................................................................ [ 74%]
+.........................                                                [100%]
+- generated xml file: /home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/Q2_2026-10-16_142632/attempts/t22/junit_current.xml -
+97 passed in 18.60s
+t22_current_exit=0

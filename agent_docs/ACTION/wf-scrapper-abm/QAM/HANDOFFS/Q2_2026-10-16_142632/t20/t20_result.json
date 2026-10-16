@@ -1,0 +1,70 @@
+{
+  "test": "T-20",
+  "acs": [
+    "AC-034",
+    "AC-035",
+    "AC-038"
+  ],
+  "executor": "Claudy (Claude Code, Claude Opus 5.5) prepared the packet, dispatched the reader and recorded dispositions",
+  "reader": {
+    "identity": "fresh Claude Code general-purpose subagent, model Claude Opus 5.5 (claude-opus-5-5) - self-reported identity matches dispatch",
+    "session": "separate subagent context started with only reader_task.txt; no Q2/Opy/Cody analysis supplied; dispatched 2026-10-16T09:45Z, ~185 s, 15 tool uses",
+    "independence_limits": [
+      "dispatched by the incoming Executor; same model family as the Executor",
+      "the harness auto-loads repository/global instruction files (CLAUDE.md protocol rules) into subagents - the reader referenced the response-log protocol; these files contain no Q2 analysis of the packages",
+      "no technical tool restriction: network/write prohibitions were instructional; compliance verified from the transcript (reader_tool_audit.json)"
+    ]
+  },
+  "task_file": "t20/reader_task.txt",
+  "task_sha256": "4095f8ce153be4c9913da22902efe2ddc2f13a2cd8955ab434f2391c69fa6475",
+  "packet": {
+    "manifest": "t20/packet.manifest.json",
+    "members": 36,
+    "build_result": "t20/t20_packet_result.json",
+    "checker_unadjudicated": "t20/packet_check_unadjudicated.json (FAIL: 3 google_api_key hits in raw public page bodies)",
+    "checker_adjudicated": "t20/packet_check_adjudicated.json (PASS, 3 exact-location adjudications)",
+    "adjudication_rationale": "t20/packet_adjudication_rationale.json"
+  },
+  "response": {
+    "file": "t20/reader_response.md",
+    "sha256": "c05ca79c85f5c7cc746b3a81474f889d28a802b6268405036ca31cf711b1760b",
+    "bytes": 15464,
+    "source": "SubagentHandback tool input (verbatim); the 63-byte trailing assistant text is kept separately in reader_trailing_text.txt",
+    "untouched": true,
+    "reproduces_embed_key": false
+  },
+  "transcript_audit": {
+    "file": "t20/reader_tool_audit.json",
+    "classification": "all 13 Bash commands operate inside the packet (heuristic outside-path hits are cd /tmp + absolute packet paths; write-token hit is a > inside a grep regex); 0 network tokens; the one Read outside the packet is the harness spill file of the reader's own command output; no writes"
+  },
+  "dispositions": {
+    "Q1": "ANSWERED - self-description cited to source ID/date/boundary and raw bytes; marketing claims separated and labeled; audience tension labeled interpretation",
+    "Q2": "ANSWERED - offerings cited; listing vs detail classified from raw body classes; Agency Services = category/listing; missing service detail pages cited to GAPS",
+    "Q3": "ANSWERED - CTAs with destinations from SOURCE_INDEX; raw href=\"#\" verified independently; Andromeda counts recounted from raw",
+    "Q4": "ANSWERED - iframe/boundary facts cited; child DOM/form function explicitly UNKNOWN with cited gaps",
+    "Q5": "ANSWERED - Oct 7 present-empty REST, Oct 10 advertised totals (not enumerated), Oct 11 rendered HTML kept dated and separate; cause unknown cited",
+    "Q6": "ANSWERED - implications labeled interpretation with brief citations; own interpretations labeled",
+    "Q7": "ANSWERED - prioritized requests cited to GAPS, nothing fetched",
+    "Q8": "ANSWERED - one claim per reviewed package traced to source ID, capture date, CSS boundary and recomputed sha256 (match); all 31 recorded hashes recomputed, all match"
+  },
+  "reader_reported_usability_observations": [
+    "initial unreviewed Growth Call package present but not mentioned in README (packet README authored by Executor)",
+    "fragment-only href=\"#\" rendered as resolved page URLs in Markdown/BOILERPLATE; navigation links lack source_href; brief phrase about different saved destinations slightly overstates (consistent with Opy row-6 # adjudication)",
+    "directory stamps local time vs UTC evidence stamps",
+    "dropped spaces in brief text",
+    "reviewed P2 SOURCE_INDEX keeps original prepared_at",
+    "SOURCE_INDEX files themselves not hashed anywhere in the packet",
+    "logs reference absolute paths outside the packet",
+    "REST empty excerpt and publication date present in bytes but not in briefs"
+  ],
+  "observation_status": "reader-reported; not independently re-verified by the Executor except where noted; for Lead review",
+  "measurement": "PASS",
+  "matrix_note": "Fresh cold reader (Claude Code subagent, Opus 5.5; same model family as Executor, instruction files auto-loaded, no Q2 analysis) answered 8/8 from a checker-passed 36-file packet with resolvable citations; drill-down and 31/31 recorded hashes verified; usability observations recorded for Lead review.",
+  "g3_corrections": [
+    {
+      "what": "first response extraction captured the 63-byte trailing text",
+      "cause": "the reader delivered its answer via the hand-back tool input, not a text block",
+      "correction": "re-extracted verbatim from the hand-back input; trailing text kept separately in reader_trailing_text.txt"
+    }
+  ]
+}

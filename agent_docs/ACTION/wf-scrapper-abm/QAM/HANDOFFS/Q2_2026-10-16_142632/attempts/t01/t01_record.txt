@@ -1,0 +1,81 @@
+2026-10-16 14:34:22 +0600
+cwd for all commands: /tmp/opencode/q2-scratch-20261016/snapshot-scoped (scoped verified candidate snapshot, pre-restoration)
+=== T-01 part A: three entry points with --help (expect exit 0, documented options) ===
+[1/3 DECIDE] command: python -m recon_pipeline.decide --help
+usage: decide.py [-h] {recon,import,list,select,export} ...
+
+DECIDE: bounded browser reconnaissance, version-bound human choices, plan
+export. Separate from COLLECT: recon never creates a collector checklist or
+runs capture.
+
+positional arguments:
+  {recon,import,list,select,export}
+
+options:
+  -h, --help            show this help message and exit
+decide_help_exit=0
+[2/3 COLLECT] command: python -m recon_pipeline --help
+usage: __main__.py [-h] {collect,resume,add,refresh} ...
+
+Explicit, resumable collection with ordinary Crawl4AI browser lifecycle. Plan:
+{"pages": [URL...], "rest": [{"url": URL, "paginate": false}...]} Pagination
+requires paginate=true and an explicit max_pages. No discovery/Prepare.
+
+positional arguments:
+  {collect,resume,add,refresh}
+
+options:
+  -h, --help            show this help message and exit
+collect_help_exit=0
+[3/3 PREPARE] command: python agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py --help
+usage: prepare_saved.py [-h] --collection COLLECTION --out OUT
+
+Offline extraction helper for the agent-led Web Recon Prepare skill.
+
+options:
+  -h, --help            show this help message and exit
+  --collection COLLECTION
+  --out OUT
+prepare_help_exit=0
+=== T-01 part B: missing-fixture negative — saved-capture-dependent Prepare case by node ID (expect FAIL specifically identifying the missing saved collection, not a skip/import error) ===
+command: python -m pytest agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_actual_three_page_capture_exact_content -p no:cacheprovider --basetemp=<scratch>/t01-basetemp -q
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_actual_three_page_capture_exact_content _________________
+
+tmp_path = PosixPath('/tmp/opencode/q2-scratch-20261016/t01-basetemp/test_actual_three_page_capture0')
+
+    def test_actual_three_page_capture_exact_content(tmp_path):
+        root=REPO/'outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505'
+        # Keep the real inputs untouched; output only in the test directory.
+>       result=helper.prepare(root,tmp_path/'actual',repo=Path('/'))
+
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py:74: in prepare
+    state = load(collection)
+recon_pipeline/collector.py:129: in load
+    state = json.loads((root/'checklist.json').read_bytes())
+/home/moose/.pyenv/versions/3.12.3/lib/python3.12/pathlib.py:1019: in read_bytes
+    with self.open(mode='rb') as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/opencode/q2-scratch-20261016/snapshot-scoped/outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505/checklist.json')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/opencode/q2-scratch-20261016/snapshot-scoped/outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505/checklist.json'
+
+/home/moose/.pyenv/versions/3.12.3/lib/python3.12/pathlib.py:1013: FileNotFoundError
+=========================== short test summary info ============================
+FAILED agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_actual_three_page_capture_exact_content
+1 failed in 1.62s
+t01_negative_exit=1

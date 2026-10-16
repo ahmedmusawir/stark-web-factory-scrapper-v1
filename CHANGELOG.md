@@ -2,6 +2,14 @@
 
 Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark manual edit. Newest first.
 
+## 2026-10-16 09:55 UTC — [CC] Claudy (Claude Code/Opus 5.5) — Q2 T-23/T-20/T-24 closeout
+
+- **Created:** Q2 lane `helpers/q2_export_checker.py`, `t23_untrusted_privacy.py`, `t20_packet.py`, `t24_readiness.py`, `t24_matrix.py`, `t24_package.py`; evidence `offline/t23_*`, `t20/`, `t24/`, `matrix/AC_EVIDENCE_MATRIX.md`, package ZIP in `exports/` (+ Downloads copy).
+- **Updated:** `agent_docs/ACTION/wf-scrapper-abm/QAM/STATE.md` — dated Q2 entry linking the final matrix/report.
+- **Updated:** `agent_docs/SESSIONS/session_2026-10-16.md`, `RECOVERY.md` — executor transition, T-23/T-20/T-24 entries.
+- **Created:** `agent_docs/RESPONSES/response_<ts>_q2-final-report.md` — final report with package receipt, saved before display.
+- **Reason:** Authorized Q2 run continuation after the Opy → Claudy executor handoff. No product/test/dependency changes, no Git mutation, zero external requests; no certificate claimed.
+
 ## 2026-10-16 08:12 UTC — [CC] Opy (OpenCode/GLM 5.3) — installed-records read order complete
 
 - **Created:** `agent_docs/RESPONSES/response_2026-10-16_141158_opy-installed-records-read.md` — full handoff read-order completion (final plan in full, all 11 governing snapshots, complete receipt lane), read-only Git observation and unchanged Q2 STOP boundary, saved before display.

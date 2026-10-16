@@ -1,0 +1,228 @@
+{
+  "bindings": {
+    "t04": "two planned documents, default gap (no override), native monotonic timing, unlinked-route oracle",
+    "t07": "DOM-mutation rendered-vs-original-bytes plus independent Playwright observation",
+    "evidence_note": "SELECTED_COLLECTOR_EVIDENCE deposition is a suite-harness mechanism (tests/test_selected_collector.py line 228), not product behavior; this QA run records its own server event log and the checklist run record as native evidence",
+    "g3_correction": "run 1 misread the checklist path guard (collection directory is not a file), producing an empty parse while the underlying run was valid (native gap 5.006s recorded in the checklist, preserved as t04_t07_result.run1.json / t04-t07-checklist.run1.json); /doc-b was refused by the Crawl4AI structural check ('minimal_text on small page', 121 bytes / 32 visible chars) and the collector preserved the failure honestly (page_capture_failed, exit 2 partial, no fabricated success) \u2014 retained as a T-07 honest-failure observation; fixture enriched for this corrected run"
+  },
+  "port_record": {
+    "bind": "127.0.0.1",
+    "port": 41067,
+    "origin": "http://127.0.0.1:41067"
+  },
+  "cli": {
+    "exit": 0,
+    "stdout": "{\n  \"collection_outcome\": \"complete\",\n  \"stop_reason\": null,\n  \"cleanup_error\": null,\n  \"completed\": 2,\n  \"remaining\": 0,\n  \"elapsed_s\": 12.592105126008391\n}\nCHECKLIST: /tmp/opencode/q2-scratch-20261016/t04-native/collection/checklist.json\n",
+    "stderr": "[FETCH]... \u2193 http://127.0.0.1:41067/doc-mut                                                                       | \u2713 | \u23f1: 3.44s \n[SCRAPE].. \u25c6 http://127.0.0.1:41067/doc-mut                                                                       | \u2713 | \u23f1: 0.00s \n[COMPLETE] \u25cf http://127.0.0.1:41067/doc-mut                                                                       | \u2713 | \u23f1: 3.45s \n[FETCH]... \u2193 http://127.0.0.1:41067/doc-b                                                                         | \u2713 | \u23f1: 3.31s \n[SCRAPE].. \u25c6 http://127.0.0.1:41067/doc-b                                                                         | \u2713 | \u23f1: 0.00s \n[COMPLETE] \u25cf http://127.0.0.1:41067/doc-b                                                                         | \u2713 | \u23f1: 3.32s \n",
+    "wall_elapsed_s": 14.13
+  },
+  "run_record": {
+    "started_at": "2026-10-16T08:53:11.799878+00:00",
+    "requests": [
+      {
+        "id": "fe84807f5637a25bf310c725",
+        "url": "http://127.0.0.1:41067/doc-mut",
+        "kind": "page",
+        "start": 964066.581803223,
+        "preceding_completion": null,
+        "completion": 964070.070795183,
+        "completion_epoch": 1792140795.934143
+      },
+      {
+        "id": "8838c193eb5eb83205636ebc",
+        "url": "http://127.0.0.1:41067/doc-b",
+        "kind": "page",
+        "start": 964075.075383589,
+        "preceding_completion": 964070.070795183,
+        "completion": 964078.42494894,
+        "completion_epoch": 1792140804.288295
+      }
+    ],
+    "stop_reason": null,
+    "cleanup_error": null,
+    "gap_seconds": 5,
+    "max_requests": 100,
+    "max_seconds": 1800,
+    "max_bytes": 100000000,
+    "response_cap": 10485760,
+    "browser_traffic": {
+      "request:document": 2,
+      "status:200": 3,
+      "request:image": 1
+    },
+    "runtime": {
+      "python": "3.12.3",
+      "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+      "crawl4ai": "0.9.3",
+      "playwright": "1.52.0",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "cache": "BYPASS",
+      "html_wait_for_images": true,
+      "html_post_load_delay": 3,
+      "navigation_timeout_ms": {
+        "page": 90000,
+        "rest": 30000
+      },
+      "tls_verification": true,
+      "browser": "136.0.7103.25"
+    },
+    "cleanup_messages": [],
+    "collection_outcome": "complete",
+    "finished_at": "2026-10-16T08:53:24.391963+00:00",
+    "elapsed_s": 12.592105126008391,
+    "completed": 2,
+    "remaining": 0
+  },
+  "server_events": [
+    {
+      "arrival": 964066.74371499,
+      "arrival_epoch": 1792140792.607062,
+      "method": "GET",
+      "path": "/doc-mut",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 964066.752903919,
+      "arrival_epoch": 1792140792.61625,
+      "method": "GET",
+      "path": "/pixel.png",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
+    },
+    {
+      "arrival": 964075.137579714,
+      "arrival_epoch": 1792140801.0009255,
+      "method": "GET",
+      "path": "/doc-b",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 964079.505331267,
+      "arrival_epoch": 1792140805.368677,
+      "method": "GET",
+      "path": "/doc-mut",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 964079.51767154,
+      "arrival_epoch": 1792140805.3810174,
+      "method": "GET",
+      "path": "/pixel.png",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
+    }
+  ],
+  "t04_pacing": {
+    "resolved_gap_seconds": 5,
+    "gap_override_passed": false,
+    "planned_calls_recorded": 2,
+    "collector_native_gap_s": 5.004588406067342,
+    "collector_gap_pass_5s": true,
+    "server_observed_gap_s": 8.393864723970182,
+    "server_gap_pass_5s": true,
+    "preceding_completion_consistent": true,
+    "unlinked_route_requested": false,
+    "unlinked_route_oracle_pass": true,
+    "linked_unselected_requested": false,
+    "background_traffic": {
+      "pixel_png_requests": 1,
+      "favicon_requests": 0,
+      "browser_traffic_counter": {
+        "request:document": 2,
+        "status:200": 3,
+        "request:image": 1
+      },
+      "note": "subresource/favicon requests are browser background traffic, recorded in the server log and traffic counter, not in the planned-call records"
+    },
+    "planned_calls_exactly_two": true
+  },
+  "saved_results": {
+    "fe84807f5637a25bf310c725": {
+      "url": "http://127.0.0.1:41067/doc-mut",
+      "kind": "page",
+      "ok": true,
+      "error": null,
+      "body_complete": true,
+      "bytes": 466,
+      "sha256": "6fe2d8eb41b06cf177587a034f54a799ca1784e9f12d1414f764ebcf0e5fbc5e",
+      "status": 200,
+      "transport": "Crawl4AI Chromium navigation; rendered HTML",
+      "header_keys": [
+        "content-length",
+        "content-type"
+      ],
+      "saved_at": "2026-10-16T08:53:15.947908+00:00",
+      "library_success": true
+    },
+    "8838c193eb5eb83205636ebc": {
+      "url": "http://127.0.0.1:41067/doc-b",
+      "kind": "page",
+      "ok": true,
+      "error": null,
+      "body_complete": true,
+      "bytes": 953,
+      "sha256": "123a2a939a0ff8b07cfd17d44ca4a78bc73ed77bba8a528732313fb3c89599a9",
+      "status": 200,
+      "transport": "Crawl4AI Chromium navigation; rendered HTML",
+      "header_keys": [
+        "content-length",
+        "content-type"
+      ],
+      "saved_at": "2026-10-16T08:53:24.291491+00:00",
+      "library_success": true
+    }
+  },
+  "t07_fidelity": {
+    "original_payload_sha256": "b80719c89ecea50e5b6b2acc29d0e413468fc45b18ab483948c630f6111dac77",
+    "saved_body_sha256": "6fe2d8eb41b06cf177587a034f54a799ca1784e9f12d1414f764ebcf0e5fbc5e",
+    "rendered_differs_from_original_bytes": true,
+    "mutation_in_saved_body": true,
+    "original_text_absent_from_saved": true,
+    "unicode_preserved": true,
+    "rendered_vs_bytes_recorded": "saved page body is rendered HTML (post-mutation), not the original response bytes",
+    "independent_playwright_observation": {
+      "content_sha256": "6fe2d8eb41b06cf177587a034f54a799ca1784e9f12d1414f764ebcf0e5fbc5e",
+      "byte_identical_to_saved": true,
+      "mutation_in_independent_observation": true,
+      "serialization_note": "page.content() serialization from a separate Chromium session; byte differences, if any, are recorded rather than treated as failure"
+    }
+  },
+  "t11_records": {
+    "runtime": {
+      "python": "3.12.3",
+      "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+      "crawl4ai": "0.9.3",
+      "playwright": "1.52.0",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "cache": "BYPASS",
+      "html_wait_for_images": true,
+      "html_post_load_delay": 3,
+      "navigation_timeout_ms": {
+        "page": 90000,
+        "rest": 30000
+      },
+      "tls_verification": true,
+      "browser": "136.0.7103.25"
+    },
+    "cleanup_messages": [],
+    "collection_outcome": "complete",
+    "stop_reason": null,
+    "elapsed_s": 12.592105126008391,
+    "observed_user_agent_first_page": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "user_agent_matches_runtime_record": true
+  },
+  "assessment": {
+    "collect_exit_zero": true,
+    "both_items_completed": true,
+    "t04_pass": true,
+    "t07_pass": true
+  }
+}

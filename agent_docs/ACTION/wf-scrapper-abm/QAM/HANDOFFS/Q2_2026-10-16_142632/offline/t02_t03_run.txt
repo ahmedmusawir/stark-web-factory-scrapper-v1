@@ -1,0 +1,20 @@
+2026-10-16 14:45:16 +0600
+=== T-02: collector input/output boundary refusals (public CLI, synthetic dirs) ===
+plan refusal cases: 13 / 13 pass; all: True
+  non_http_scheme → exit 2 | Collector refused: use an absolute HTTP(S) URL without credentials or fragment
+  credential_bearing_url → exit 2 | Collector refused: use an absolute HTTP(S) URL without credentials or fragment
+  rest_root_enumeration → exit 2 | Collector refused: select a REST endpoint; root enumeration is not supported
+  pagination_without_max_pages → exit 2 | Collector refused: pagination requires an explicit positive max_pages
+  pagination_starting_at_page_2 → exit 2 | Collector refused: a paginated collection must start at page 1
+  unknown_plan_key → exit 2 | Collector refused: plan accepts only pages and rest
+  empty_plan → exit 2 | Collector refused: select at least one page or REST endpoint
+positive control items: 1 | no dir side effect: True
+existing-collection refusal: True | bytes unchanged: True
+add changed-scope refusal: True | bytes preserved: True
+paginated refresh refusal: True | bytes preserved: True
+unknown refresh ID refusal: True
+t02_exit=0
+=== T-03: DECIDE explicit stages on copied saved data ===
+t03_exit=1
+--- scratch disk use ---
+23984064	/tmp/opencode/q2-scratch-20261016

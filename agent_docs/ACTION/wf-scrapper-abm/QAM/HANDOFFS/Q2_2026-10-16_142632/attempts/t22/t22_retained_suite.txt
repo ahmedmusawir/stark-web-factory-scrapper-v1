@@ -1,0 +1,13 @@
+2026-10-16 14:35:52 +0600
+=== T-22 once-only regression: RETAINED suite (expect 27 passed, 0 failed) ===
+command (cwd=snapshot): PYTHONDONTWRITEBYTECODE=1 python -m pytest tests/test_rest_client.py tests/test_raw_reader.py tests/test_offline_inventory.py -p no:cacheprovider --basetemp=<scratch>/t22-retained-basetemp -q --junitxml=<lane>/attempts/t22/junit_retained.xml
+...........................                                              [100%]
+- generated xml file: /home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/Q2_2026-10-16_142632/attempts/t22/junit_retained.xml -
+27 passed in 18.80s
+t22_retained_exit=0
+--- native evidence deposited ---
+/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/Q2_2026-10-16_142632/native/decide-evidence/native-result.json
+/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/Q2_2026-10-16_142632/native/selected-collector-evidence/native-success/timeline.json
+/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/Q2_2026-10-16_142632/native/selected-collector-evidence/native-denial/timeline.json
+--- scratch disk use after T-22 ---
+14660027	/tmp/opencode/q2-scratch-20261016
