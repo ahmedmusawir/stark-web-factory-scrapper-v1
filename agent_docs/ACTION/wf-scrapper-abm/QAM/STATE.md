@@ -1,3 +1,27 @@
+## 2026-10-15 15:35 UTC — LEAD-01 INSTALLED; Q2 NOT RUN / STOPPED
+
+**Active decision:** JARVIS, QA Lead, approved the exact supplied amended plan. Installation only is complete; Tony's required planning/approval record commit and explicit Q2 release remain PENDING. No test result, Gate Q verdict or historical finding disposition is granted. This dated routing supersedes stale planning/candidate/Lead summaries below without rewriting them.
+
+| Binding | Installed identity |
+|---|---|
+| Product candidate / actual installation HEAD | `8fbcff289fde5149be0c0631b08e8a5fbcb3faa4` (both); `qa/wf-scrapper-abm` |
+| Active final plan | [01_QAM_TEST_PLAN_FINAL.md](HANDOFFS/WebFactory_Q1_Lead_Review_2026-10-15/01_QAM_TEST_PLAN_FINAL.md), LEAD-01, 42,580 bytes, SHA-256 `4cf1673851f5a170391af4e3e3fa418069732108ff1828e9fead6e062b52da2f` |
+| Exact Lead approval | [02_QAM_APPROVAL.md](HANDOFFS/WebFactory_Q1_Lead_Review_2026-10-15/02_QAM_APPROVAL.md), SHA-256 `60db8de4c79c4692a553af24edcc526c676d6d9448e77fbcbeb07fdfd9d5b28f` |
+| Exact amendments | [03_EXACT_AMENDMENTS.md](HANDOFFS/WebFactory_Q1_Lead_Review_2026-10-15/03_EXACT_AMENDMENTS.md), SHA-256 `d5341140eb68de54fb88c6a5952ce8861a0c6bfbf20aad2bbd687d7630fe2a69` |
+| Current-scope hash | `639070b6b7f297104678da307b95ba39ddc8176797fcd8dafbb22f9b0dc1c87c` |
+| Governing index | [GOVERNING_INDEX.json](HANDOFFS/WebFactory_Q1_Lead_Review_2026-10-15/GOVERNING_INDEX.json), SHA-256 `8d5ff7249e6431f8d49c64145b989d779a3ef9ed4489faaf553240c9f7a5522d` |
+| Source52 | `39b9728ac72cd2699410b6fda05c68c38b842b23eff7bd6490d9fb4f6d3d8314`; candidate blobs and current 52 files match |
+| Superseded proposal | `fc2cfdcc3170008689ad87001f4519d1ccf899c2486071fe3d147f2f04855826`; original Q1 STOP/BOUND exports preserved |
+| Lead / appointed independent Executor | JARVIS / Opy (OpenCode, GLM 5.3); Cody remains Engineer |
+| Installer provenance | Current Codex session under Tony's direct installation instruction; administrative install only, no claim of OpenCode/GLM execution |
+| Input ZIP | `/home/moose/Downloads/WebFactory_Q1_Lead_Review_2026-10-15.zip`, 137,812 bytes, SHA-256 `62d6da2cb44c20aa6694920f6b15184c9c5d3cb5e4825686afe35c6d6f9e8475` |
+| Installation receipt | [INSTALLATION_RECEIPT.md](HANDOFFS/Q1_LEAD_INSTALLATION_2026-10-15_213514/INSTALLATION_RECEIPT.md), with verification/path resolution/complete changed-path classification in the same lane |
+| Q2 / release / certificate | NOT RUN / PENDING Tony's explicit release against final plan and execution HEAD / NOT ISSUED |
+
+AM-01 is a superseding prose erratum only: Growth Call fixture SHA-256 is `fdf18de8838f36344459555041a12e4f0cf463044a1f211f6241a7bf420ab4a8` (107,429 bytes); original reports remain unchanged. Historical controller findings remain OPEN. Reviewed governing snapshots and exact archived-reference mapping are in the installation receipt lane; original contract/errata/import/environment/instrument checks remain for released Q2 entry.
+
+**Next owner/action:** Tony reviews and commits required records under Operator-only Git policy, then explicitly releases Q2 against the final plan identity and recorded execution HEAD. Any successor HEAD must satisfy final plan §1 ancestry/complete-diff checks before execution. STOP; no tests, live requests, product changes or Git mutation by the installer.
+
 ## Active current-tool readiness — 2026-10-14
 
 **READY FOR CANDIDATE COMMIT AND INDEPENDENT QA Q1; independent QA NOT RUN.** Current [scope/crosswalk](../CURRENT_TOOL_SCOPE.md) supersedes retired controller/whole-pack executable instructions for this tool, preserving their history/results below. Read [RECOVERY](../../../../RECOVERY.md) for factual current evidence. Old candidate/checkpoint/live-allocation text below is historical, not a current pin or authority to restart. Engineering handoff: [Shot2 report](../../../RESPONSES/response_2026-10-14_183709_current-tool-readiness.md); [fixture access](../../../RESPONSES/response_2026-10-14_183709_current-tool-readiness_review/FIXTURE_ACCESS.md). Combined engineering checks:97 passed,0 failures/errors/skips; source unchanged. Candidate commit/QA branch/session/plan remain PENDING Tony/Executor/SOL.
