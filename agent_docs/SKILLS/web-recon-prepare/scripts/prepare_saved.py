@@ -4,12 +4,13 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+import re
 import sys
 from urllib.parse import urljoin, urlsplit
 
 REPO = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(REPO))
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
 from recon_pipeline.collector import load, valid_result, artifact
 
@@ -39,10 +40,22 @@ def clean(node):
     return result
 
 
+ANGLE = re.compile(r'([<>])')
+
+
 def markdown(node, base):
+    # Source text must stay literal through conversion: the converter decodes
+    # entities, so text angle brackets would re-emerge as raw HTML and
+    # bracket/paren text as link syntax. escape_snob backslash-escapes Markdown
+    # punctuation in text only (generated links/emphasis untouched); angle
+    # brackets are outside its set, so they are escaped here on a copy.
+    literal = BeautifulSoup(str(node), 'html.parser')
+    for text in literal.find_all(string=True):
+        if type(text) is NavigableString and ANGLE.search(text) and not text.find_parent(['code', 'pre']):
+            text.replace_with(ANGLE.sub(r'\\\1', text))
     result = DefaultMarkdownGenerator().generate_markdown(
-        str(node).replace('</li>', '</li>\n'), base_url=base, citations=False,
-        html2text_options={'body_width': 0, 'ignore_images': True, 'ignore_links': False, 'single_line_break': False})
+        str(literal).replace('</li>', '</li>\n'), base_url=base, citations=False,
+        html2text_options={'body_width': 0, 'ignore_images': True, 'ignore_links': False, 'single_line_break': False, 'escape_snob': True})
     text = result.raw_markdown.strip('\n\r')  # Retain first-list indentation.
     if text.startswith(('Error converting HTML', 'Error in markdown')):
         raise ValueError(text)

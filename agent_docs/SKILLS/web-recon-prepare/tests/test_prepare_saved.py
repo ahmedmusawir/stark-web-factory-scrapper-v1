@@ -132,3 +132,51 @@ def test_empty_icon_separator_does_not_create_false_nested_list(tmp_path):
     md=document(result,tmp_path)
     assert [text(li) for li in md.select('li')]==['Home','Archive']
     assert result['pages'][0]['content']['empty_list_items_removed']==1
+
+
+# LEAD-02 R2: source text stays inert through the Markdown conversion boundary.
+B1="<p>Escaped markup text: &lt;script&gt;alert('t23-escaped-text')&lt;/script&gt; shown as characters.</p>"
+B2="<p>Markdown-shaped text: [click me](javascript:alert('t23-md-inject')) should remain plain text.</p>"
+CONTROLS=('<h1>Καλημέρα heading</h1><h2>Second heading</h2><p>Plain <strong>bold</strong> and <em>emphasis</em> text with café, 1 &lt; 2.</p>'
+          '<ul><li>One</li><li>Two</li></ul><ol><li>First</li><li>Second</li></ol><p><a href="/call/">Book a call</a> and <a href="https://example.test/x">Absolute</a>.</p>')
+# Declared local parser/renderer configurations; html=True ensures B1 is not hidden by disabling raw HTML.
+RENDERERS={'commonmark html=True':MarkdownIt('commonmark',{'html':True}),'default html=True':MarkdownIt('default',{'html':True}),
+           'default html=False':MarkdownIt('default',{'html':False})}
+
+
+def tree_hashes(root):return {str(p.relative_to(root)):helper.sha(p.read_bytes()) for p in root.rglob('*') if p.is_file()}
+
+
+def flat(tokens):
+    for token in tokens:
+        yield token
+        if token.children:yield from flat(token.children)
+
+
+def test_source_text_stays_inert_in_page_and_boilerplate(tmp_path):
+    html=f'<html><body><header id="thrive-header"><a href="/">Home</a>{B1}{B2}</header><main>{CONTROLS}{B1}{B2}</main></body></html>'
+    root,_=saved(tmp_path,html);before=tree_hashes(root)
+    result=helper.prepare(root,tmp_path/'derived',repo=tmp_path)
+    assert tree_hashes(root)==before  # Raw body, metadata and checklist untouched.
+    page=(tmp_path/result['pages'][0]['prepared']['file']).read_bytes();boiler=(tmp_path/result['boilerplate']['file']).read_bytes()
+    assert result['pages'][0]['prepared']['sha256']==helper.sha(page) and result['boilerplate']['sha256']==helper.sha(boiler)
+    # Inspect converted content only: the page header's own `<!-- MAIN CONTENT -->` marker is helper text, not source.
+    for generated in (page.decode().split('<!-- MAIN CONTENT -->',1)[1],boiler.decode()):
+        # Converter boundary: literal text, never raw HTML or authored link syntax.
+        assert '<script>' not in generated and '](javascript:' not in generated
+        assert 't23-escaped-text' in generated and 't23-md-inject' in generated
+        for name,parser in RENDERERS.items():
+            tokens=list(flat(parser.parse(generated)))
+            assert not [t for t in tokens if t.type in ('html_inline','html_block')],name
+            assert not [t for t in tokens if t.type=='link_open' and t.attrGet('href').lower().startswith('javascript:')],name
+            dom=BeautifulSoup(parser.render(generated),'html.parser')
+            assert not dom.find('script') and not [a for a in dom.select('a[href]') if a['href'].lower().startswith('javascript:')],name
+            rendered=text(dom)
+            assert "Escaped markup text: <script>alert('t23-escaped-text')</script> shown as characters." in rendered,name
+            assert "Markdown-shaped text: [click me](javascript:alert('t23-md-inject')) should remain plain text." in rendered,name
+    dom=document(result,tmp_path)  # Positive controls keep structure, labels and resolved destinations.
+    assert [h.get_text() for h in dom.select('h1,h2')]==['Καλημέρα heading','Second heading']
+    assert dom.strong.get_text()=='bold' and dom.em.get_text()=='emphasis' and 'café, 1 < 2.' in text(dom)
+    assert [li.get_text() for li in dom.select('li')]==['One','Two','First','Second']
+    assert {(a.get_text(),a['href']) for a in dom.select('a[href]')}=={('Book a call','https://example.test/call/'),('Absolute','https://example.test/x')}
+    assert 'Home' in boiler.decode() and result['pages'][0]['content']['headings']==['Καλημέρα heading','Second heading']

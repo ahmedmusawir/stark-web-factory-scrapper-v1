@@ -11,6 +11,7 @@ import math
 from pathlib import Path
 import re
 import time
+import unicodedata
 from urllib.parse import urljoin, urlsplit, urlunsplit, urlencode
 import xml.etree.ElementTree as ET
 
@@ -27,6 +28,16 @@ FIELDS = 'id,link,title,type,slug,date,date_gmt,modified,modified_gmt'
 TYPE_PROPERTIES = ('name','slug','rest_base','rest_namespace')
 GENERIC_LINK_LABELS = {'read post','read more','continue reading','learn more','view post'}
 ASSET = re.compile(r'\.(?:png|jpe?g|gif|webp|svg|ico|css|js|woff2?|ttf|mp[34]|zip)(?:$)', re.I)
+
+
+def generic_label(label):
+    """Exact generic-CTA membership after removing decoration only: casefold,
+    collapsed whitespace, leading/trailing punctuation or symbols (… › » → 👉).
+    Not a substring rule: a sentence containing CTA words stays informative."""
+    core=' '.join(label.casefold().split())
+    while core and unicodedata.category(core[-1])[0] in 'PSZ': core=core[:-1]
+    while core and unicodedata.category(core[0])[0] in 'PSZ': core=core[1:]
+    return core in GENERIC_LINK_LABELS
 
 
 def normalize(value, base=None):
@@ -71,7 +82,7 @@ def candidate(inv, address, source, *, kind='document', title=None, mime=None, d
         # Empty/punctuation-only labels and generic CTAs are unavailable titles.
         # Unicode letters/numbers remain text; sources are retained even when
         # their weak label is ignored. Never derive a title from the URL.
-        if any(char.isalnum() for char in label) and label.casefold().rstrip(' .…›»>') not in GENERIC_LINK_LABELS:
+        if any(char.isalnum() for char in label) and not generic_label(label):
             row['title']=label
     if mime: row['content_type']=mime
     if dates: row['dates'].update({k:v for k,v in dates.items() if isinstance(v,str) and v})

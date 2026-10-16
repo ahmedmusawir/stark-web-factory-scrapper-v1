@@ -386,3 +386,50 @@ def test_informative_unicode_replaces_legacy_weak_label(weak):
     row['title']=weak  # A weak label inherited from earlier in-memory data.
     d.candidate(inv,url,{'locator':'heading'},title='বাংলা article café')
     assert row['title']=='বাংলা article café' and len(row['sources'])==2
+
+
+# LEAD-02 R1: generic CTA labels never supply or replace a title.
+ARROW='Read more →'  # Exact O6 reproduction; U+2192 was outside the old fixed rstrip set.
+INFORMATIVE='Informative Title Kept'
+
+
+def test_arrow_cta_cannot_supply_unknown_title():
+    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/tempting-slug-name'
+    row=d.candidate(inv,url,{'locator':'a.read-more'},title=ARROW)
+    assert row['title'] is None  # Unknown stays unknown; never a slug guess.
+    assert row['sources']==[{'locator':'a.read-more'}] and row['id']==d.item_id(url) and row['selection']=='UNDECIDED'
+
+
+def test_arrow_cta_cannot_replace_informative_title():
+    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/article'
+    heading={'file':'first.html','sha256':'heading','locator':'h2/a'};cta={'file':'first.html','sha256':'heading','locator':'a.read-more'}
+    first=d.candidate(inv,url,heading,title=INFORMATIVE)
+    again=d.candidate(inv,url,cta,title=ARROW)
+    assert again is first and again['title']==INFORMATIVE and again['sources']==[heading,cta]
+
+
+@pytest.mark.parametrize('label,expected',[
+    (ARROW,None),('Read more ›',None),('READ MORE…',None),('?!...',None),('   ',None),('→→',None),
+    ('→ Read more',None),('Read  more 👉',None),('Continue reading »',None),('» Learn More !',None),
+    ('How to Regain Consistency with Facebook Ads After the Andromeda Update','How to Regain Consistency with Facebook Ads After the Andromeda Update'),
+    ('Read more about the Andromeda recovery process','Read more about the Andromeda recovery process'),  # CTA words inside a sentence stay informative.
+    ('Learn More: 5 Tactics','Learn More: 5 Tactics'),('Café SEO 🚀','Café SEO 🚀'),('বাংলা শিরোনাম →','বাংলা শিরোনাম →')])
+def test_label_guard_cases_keep_exact_informative_text(label,expected):
+    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/tempting-slug-name'
+    row=d.candidate(inv,url,{'locator':'guard'},title=label)
+    assert row['title']==expected and row['sources']==[{'locator':'guard'}]
+
+
+@pytest.mark.parametrize('reverse',[False,True])
+def test_arrow_cta_discovery_double_both_orders(tmp_path,reverse):
+    labels=[INFORMATIVE,ARROW]
+    if reverse:labels.reverse()
+    html=('<meta charset="utf-8"><title>Saved blog fixture</title>'+''.join('<a href="/tempting-slug-name">'+x+'</a>' for x in labels)).encode('utf-8')
+    inv,fake,root=run(tmp_path,[response(html),json_response({})],mode='default',max_depth=0)
+    row=next(x for x in inv['items'] if x['url']==BASE+'/tempting-slug-name')
+    assert row['title']==INFORMATIVE and row['id']==d.item_id(BASE+'/tempting-slug-name')
+    assert [x['locator'] for x in row['sources']]==['a[href][0]','a[href][1]'] and row['selection']=='UNDECIDED'
+    assert len(fake.calls)==2  # Destination page was never fetched.
+    ref=row['sources'][labels.index(ARROW)]
+    saved=(root/ref['file']).read_bytes()  # Raw CTA label stays recoverable at its locator in hashed evidence.
+    assert ARROW.encode('utf-8') in saved and d.sha(saved)==ref['sha256']
