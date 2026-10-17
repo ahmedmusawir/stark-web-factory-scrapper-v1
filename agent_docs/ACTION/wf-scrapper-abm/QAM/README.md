@@ -1,3 +1,7 @@
+## Module closeout — Gate Q PASS (scoped) — 2026-10-17
+
+QA campaign complete and certified; see [STATE](STATE.md) top entry, the installed [certificate](CERTIFICATES/WebFactory_GATE_Q_Certificate_2026-10-17.md) and the [Architect closeout](HANDOFFS/ARCHITECT_CLOSEOUT_GATEQ_2026-10-17_114606/ARCHITECT_CLOSEOUT.md). Older readiness/launch sections below are historical. Integration (commit/push/merge) remains Tony's, pending and separate from certification.
+
 ## Active current-tool readiness — 2026-10-14
 
 **READY FOR CANDIDATE COMMIT AND INDEPENDENT QA Q1; independent QA NOT RUN.** Current [scope/crosswalk](../CURRENT_TOOL_SCOPE.md) supersedes retired controller/whole-pack executable instructions for this tool, preserving their history/results below. Read [RECOVERY](../../../../RECOVERY.md) for factual current evidence. Old candidate/checkpoint/live-allocation text below is historical, not a current pin or authority to restart. Engineering handoff: [Shot2 report](../../../RESPONSES/response_2026-10-14_183709_current-tool-readiness.md); [fixture access](../../../RESPONSES/response_2026-10-14_183709_current-tool-readiness_review/FIXTURE_ACCESS.md). Combined engineering checks:97 passed,0 failures/errors/skips; source unchanged. Candidate commit/QA branch/session/plan remain PENDING Tony/Executor/SOL.

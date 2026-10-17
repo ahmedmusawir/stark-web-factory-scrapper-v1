@@ -1,0 +1,57 @@
+Received 2026-10-17 ~10:23 +06 in the Claudy QA Executor session. Recorded verbatim.
+----------------------------------------------------------------------
+Claudy — DIRECTOR RELEASE for the approved QA scratch cleanup.
+
+JARVIS has accepted technical QA. Read:
+/home/moose/Downloads/WebFactory_QA_LEAD04_Technical_Acceptance_2026-10-17.md
+
+Complete its §3 cleanup and verification in one pass.
+
+REPO
+/home/moose/PYTHON/stark-web-factory-scrapper-v1
+
+Accepted product candidate:
+0f98bcf095781a3ac7a231c276199224dc531f11
+
+Accepted source52:
+6f35cf8dacf3aeecc17a89b1c96e3558ea52e3c03edf63c2e402a766a1e986f4
+
+BEFORE CLEANUP
+- Acquire the single writer seat and verify product identity.
+- Verify the four durable evidence ZIPs against the exact hashes
+  in LEAD-04, including CRC and their availability in Downloads.
+- Preserve all permanent evidence, decisions, original collections,
+  prepared packages and QA/engineering records.
+- Confirm each deletion target is the intended owned directory,
+  with no unexpected root symlink or active dependent process.
+
+AUTHORIZED DELETION — ONLY THESE THREE ROOTS
+/tmp/claudy-lead02-retest-20261016/
+/tmp/opencode/q2-scratch-20261016/
+/tmp/cody-lead02-2026-10-16_172752/
+
+Do not delete anything else. If a target is already absent, record it.
+If durable evidence is missing or mismatched, preserve the affected
+scratch and report the exact blocker.
+
+AFTER CLEANUP
+- Verify the released targets are absent.
+- Verify durable evidence and product identity remain unchanged.
+- Confirm no owned servers or browsers remain running.
+- Update current QA/recovery routing to durable records while
+  preserving history.
+- Record Git status accurately; pending QA records do not mean
+  the working tree is clean.
+
+No product edits, installs, external requests, Git mutations or
+test reruns. Tony retains commits, merge and integration control.
+
+Deliver one cleanup-verification ZIP to:
+/home/moose/Downloads/WebFactory_QA_Cleanup_Verification_<timestamp>.zip
+
+Include the before/after checks, exact deleted/retained/absent paths,
+archive hashes, product identity, process status and Git status.
+Write the concise report under agent_docs/RESPONSES/.
+
+Return the ZIP's absolute path, size and SHA-256.
+JARVIS will review cleanup verification for final Gate Q.

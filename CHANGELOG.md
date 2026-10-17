@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 2026-10-17 05:48 UTC — [CC] Claude Code
+
+- **Added:** `agent_docs/ACTION/wf-scrapper-abm/QAM/CERTIFICATES/WebFactory_GATE_Q_Certificate_2026-10-17.md` — JARVIS Gate Q certificate installed unchanged (SHA-256 6ecb6310…74c31).
+- **Added:** `agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/ARCHITECT_CLOSEOUT_GATEQ_2026-10-17_114606/` — Architect closeout handoff, identity/evidence verification, Tony's Git steps, writer seat.
+- **Updated:** `QAM/STATE.md`, `QAM/README.md`, module `AGENTS.md`, root `AGENTS.md`, `CLAUDE.md`, `RECOVERY.md` — dated Gate Q closeout routing entries prepended; history preserved.
+- **Reason:** JARVIS Architect accepted the Gate Q certificate for scoped module closeout; administrative closeout executed by Cody under Architect direction. No product change.
+
+## 2026-10-17 04:28 UTC — [CC] Claudy (Independent QA Executor, Claude Fable 5)
+
+- **Added:** `…/RETEST_LEAD02_2026-10-16_180559/cleanup/` — LEAD-04 §3 cleanup verification (three released scratch roots deleted, durable evidence re-verified) and delivered ZIP.
+- **Updated:** `RECOVERY.md` — routing now points to durable records only.
+- **Reason:** JARVIS LEAD-04 technical acceptance + Tony's DIRECTOR RELEASE.
+
 ## 2026-10-16 13:28 UTC — [CC] Claudy (Independent QA Executor, Claude Fable 5)
 
 - **Added:** `…/RETEST_LEAD02_2026-10-16_180559/addendum/` — LEAD-03 §3 evidence addendum (A1 C1 artifacts + reviewed-v2, A2 C3 saved chain, A3 runtime sizing proof) and delivered ZIP.

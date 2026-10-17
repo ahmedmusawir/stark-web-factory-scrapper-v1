@@ -8,3 +8,5 @@
 - **Released:** 2026-10-16 18:42 +06 (+0600) / 12:42 UTC — QA writer seat released to Tony at closeout. All retest evidence written; repaired-candidate verification complete; no further writes to the shared checkout.
 - **Reacquired:** 2026-10-16 19:22 +06 / 13:22 UTC by Claudy (Claude Code, Claude Fable 5) for the LEAD-03 §3 evidence addendum (Tony's GO pasted in-session; LEAD-03 copied to `addendum/`). Single writer; same lane.
 - **Released (addendum):** 2026-10-16 19:28 +06 / 13:28 UTC — writer seat released to Tony. Addendum complete, packaged and delivered.
+- **Reacquired:** 2026-10-17 (see session log) by Claudy (Claude Code, Claude Fable 5) for the LEAD-04 §3 cleanup pass (Tony DIRECTOR RELEASE pasted in-session; LEAD-04 copied to `cleanup/`). Single writer.
+- **Released (cleanup):** 2026-10-17 10:28 +06 / 04:28 UTC — writer seat released to Tony. Cleanup executed and verified; package delivered.
