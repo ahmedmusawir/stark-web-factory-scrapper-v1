@@ -1,0 +1,234 @@
+{
+  "browser_events": [
+    {
+      "event": "operation_start",
+      "monotonic": 561990.617888142,
+      "url": "http://127.0.0.1:42205/cancel-fixture",
+      "operation_id": "op-1",
+      "deadline": 562044.971900886
+    },
+    {
+      "event": "controls_installed",
+      "monotonic": 561991.852234454,
+      "transport": "Chromium CDP Fetch.requestPaused"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 561991.870577772,
+      "request_id": "39212A739CD657FE403BC07A15E407AC",
+      "url": "http://127.0.0.1:42205/cancel-fixture",
+      "redirect_status": null,
+      "browser_timestamp": 561991.8695,
+      "network_id": "39212A739CD657FE403BC07A15E407AC",
+      "frame_id": "E31EFC2943D8D3FE380E32BCB17407AA",
+      "resource_type": "Document",
+      "loader_id": "39212A739CD657FE403BC07A15E407AC",
+      "initiator_type": "other",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "operation_complete",
+      "monotonic": 561991.899681611,
+      "url": "http://127.0.0.1:42205/cancel-fixture",
+      "kind": "document",
+      "operation_id": "op-1",
+      "outcome": "failure",
+      "error": "Unexpected error in _crawl_web at line 778 in _crawl_web (venv/lib/python3.12/site-packages/crawl4ai/async_crawler_strategy.py):\nError: Failed on navigating ACS-GOTO:\nPage.goto: net::ERR_ABORTED at http://127.0.0.1:42205/cancel-fixture\nCall log:\n  - navigating to \"http://127.0.0.1:42205/cancel-fixture\", waiting until \"domcontentloaded\"\n\n\nCode context:\n 773                                   tag=\"GOTO\",\n 774                                   params={\"url\": url},\n 775                               )\n 776                               response = None\n 777                           else:\n 778 \u2192                             raise RuntimeError(f\"Failed on navigating ACS-GOTO:\\n{str(e)}\")\n 779   \n 780                       # \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n 781                       # Walk the redirect chain.  Playwright returns only the last\n 782                       # hop, so we trace the `request.redirected_from` links until the\n 783                       # first response that differs from the final one and surface its"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 561991.900096333,
+      "url": "http://127.0.0.1:42205/cancel-fixture",
+      "method": "GET",
+      "resource_type": "document"
+    },
+    {
+      "event": "browser_request_failed",
+      "monotonic": 561991.90026581,
+      "url": "http://127.0.0.1:42205/cancel-fixture",
+      "resource_type": "document"
+    },
+    {
+      "event": "cdp_loading_failed",
+      "monotonic": 561991.90037476,
+      "request_id": "39212A739CD657FE403BC07A15E407AC",
+      "session": "page-cdp-1",
+      "browser_timestamp": 561991.885716,
+      "canceled": true,
+      "error_text": "net::ERR_ABORTED",
+      "blocked_reason": null,
+      "resource_type": "Document"
+    },
+    {
+      "event": "fixture_native_cancellation",
+      "monotonic": 561991.900380679,
+      "request_id": "interception-job-1.0",
+      "network_id": "39212A739CD657FE403BC07A15E407AC",
+      "frame_id": "E31EFC2943D8D3FE380E32BCB17407AA",
+      "canceled": true,
+      "error_text": "net::ERR_ABORTED"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 561991.900600903,
+      "url": "http://127.0.0.1:42205/cancel-fixture",
+      "method": "GET",
+      "classification": "intentional",
+      "initiator_script_id": null,
+      "network_resource_type": "Document",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "39212A739CD657FE403BC07A15E407AC",
+      "resource_type": "Document",
+      "frame_id": "E31EFC2943D8D3FE380E32BCB17407AA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "intentional_intercepted",
+      "monotonic": 561991.900611804,
+      "url": "http://127.0.0.1:42205/cancel-fixture",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "39212A739CD657FE403BC07A15E407AC",
+      "resource_type": "Document",
+      "frame_id": "E31EFC2943D8D3FE380E32BCB17407AA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "stop",
+      "monotonic": 561991.900615004,
+      "reason": "inactive_operation"
+    },
+    {
+      "event": "intentional_prevented",
+      "monotonic": 561991.900623368,
+      "url": "http://127.0.0.1:42205/cancel-fixture",
+      "reason": "inactive_operation",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "39212A739CD657FE403BC07A15E407AC",
+      "resource_type": "Document",
+      "frame_id": "E31EFC2943D8D3FE380E32BCB17407AA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 561991.900633138,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "39212A739CD657FE403BC07A15E407AC",
+      "resource_type": "Document",
+      "frame_id": "E31EFC2943D8D3FE380E32BCB17407AA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_error",
+      "monotonic": 561991.912634669,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "39212A739CD657FE403BC07A15E407AC",
+      "resource_type": "Document",
+      "frame_id": "E31EFC2943D8D3FE380E32BCB17407AA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "state": "error",
+      "error": "Error",
+      "detail": "CDPSession.send: Protocol error (Fetch.failRequest): Invalid InterceptionId.",
+      "confirmed_canceled": true,
+      "supported_incidental": false,
+      "supported_cleanup_closed": false
+    },
+    {
+      "event": "shutdown_start",
+      "monotonic": 561991.912712929,
+      "deadline": 561996.912707973,
+      "drain_deadline": 561995.9127082998
+    },
+    {
+      "event": "shutdown_drain",
+      "monotonic": 561991.963440212,
+      "confirmed_aborts": 0,
+      "unconfirmed_count": 1,
+      "unconfirmed_sample": [
+        {
+          "operation_id": "op-1",
+          "request_id": "interception-job-1.0",
+          "network_id": "39212A739CD657FE403BC07A15E407AC",
+          "resource_type": "Document",
+          "frame_id": "E31EFC2943D8D3FE380E32BCB17407AA",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "state": "error",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "abort_confirmed": false
+        }
+      ]
+    },
+    {
+      "event": "shutdown_planned_close",
+      "monotonic": 561991.963452327,
+      "deadline": 561996.912707973
+    },
+    {
+      "event": "interception_page_closed",
+      "monotonic": 561991.981613038,
+      "session": "page-cdp-1",
+      "cleanup": true
+    },
+    {
+      "event": "shutdown_complete",
+      "monotonic": 561992.086794956,
+      "confirmed_aborts": 0,
+      "unconfirmed_count": 1,
+      "unconfirmed_sample": [
+        {
+          "operation_id": "op-1",
+          "request_id": "interception-job-1.0",
+          "network_id": "39212A739CD657FE403BC07A15E407AC",
+          "resource_type": "Document",
+          "frame_id": "E31EFC2943D8D3FE380E32BCB17407AA",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "state": "error",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "abort_confirmed": false
+        }
+      ],
+      "deadline": 561996.912707973,
+      "finished": 561992.08673214,
+      "stop_reason": "inactive_operation"
+    }
+  ],
+  "server_events": [],
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+  },
+  "dispatches": 0,
+  "stop_reason": "inactive_operation"
+}

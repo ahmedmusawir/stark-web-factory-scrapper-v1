@@ -1,0 +1,7 @@
+def identity():
+ paths=[]
+ for name in ['smart_crawler','discover_site','prepare','recon_pipeline','tests']:
+  if (r/name).exists(): paths += [p for p in (r/name).rglob('*') if p.is_file() and '__pycache__' not in p.parts]
+ paths += [r/name for name in ['requirements.txt','requirements-lock.txt','CLAUDE.md','README.md','RUN_NOTES.md']]
+ paths += [p for p in (r/'agent_docs/ACTION/wf-scrapper-abm').rglob('*.md') if not any(x in p.parts for x in ['EVIDENCE','REFERENCES']) and p.name not in ['ENGINEERING_LOG.md','ABM_LEDGER.md','ABM_CAMPAIGN_JOURNAL.md']]
+ return {str(p.relative_to(r)):{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size,'mode':stat.S_IMODE(p.stat().st_mode),'symlink':str(p.readlink()) if p.is_symlink() else None} for p in sorted(set(paths))}

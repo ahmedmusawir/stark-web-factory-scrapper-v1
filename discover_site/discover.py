@@ -3,10 +3,11 @@ import argparse
 from pathlib import Path
 from urllib.parse import urlparse, urljoin
 
-import requests
+import asyncio
+import sys
 from bs4 import BeautifulSoup
 
-from discover_site.sitemap_utils import SESSION, fetch_sitemap_urls
+from discover_site.sitemap_utils import canonical_url, discover
 
 # Anchor to the repo root so the script works from any CWD (run as: python -m discover_site.discover <url>)
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -21,31 +22,11 @@ def is_valid_link(href, domain):
     return (not parsed.netloc or parsed.netloc == domain) and not parsed.fragment
 
 def normalize_link(href, base_url):
-    return urljoin(base_url, href.split("#")[0].split("?")[0])
+    return canonical_url(urljoin(base_url, href))
 
-def extract_internal_links(base_url):
-    domain = urlparse(base_url).netloc
-    print(f"[INFO] Crawling homepage: {base_url}")
-
-    try:
-        res = SESSION.get(base_url, timeout=10)
-        res.raise_for_status()
-    except requests.RequestException as e:
-        print(f"[ERROR] Failed to fetch {base_url}: {e}")
-        return []
-
-    soup = BeautifulSoup(res.text, "html.parser")
-    anchors = soup.find_all("a")
-
-    links = set()
-    for tag in anchors:
-        href = tag.get("href")
-        if is_valid_link(href, domain):
-            full_url = normalize_link(href, base_url)
-            if full_url.startswith(base_url):
-                links.add(full_url)
-
-    return sorted(links)
+async def extract_internal_links(base_url, browser, out, bootstrap_html):
+    routes, _, _ = await discover(base_url,browser,out,mode='homepage',bootstrap_html=bootstrap_html)
+    return [r['url'] for r in routes['routes']]
 
 def write_to_json(urls, output_path):
     data = [ {"url": url} for url in urls ]
@@ -55,40 +36,29 @@ def write_to_json(urls, output_path):
     print(f"[SUCCESS] Saved {len(data)} links to {output_path}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Discover internal links on a website")
-    parser.add_argument("url", help="Root URL of the website to crawl")
-    args = parser.parse_args()
+    parser=argparse.ArgumentParser(description="Discover routes through a controlled Chromium session")
+    parser.add_argument('url')
+    parser.add_argument('--mode', choices=['sitemap','homepage'])
+    parser.add_argument('--out',type=Path,required=True)
+    args=parser.parse_args()
+    if args.mode is None:
+        if not sys.stdin.isatty(): parser.error('--mode is required without a TTY')
+        choice=input('Discovery [1 sitemap / 2 homepage]: ').strip()
+        if choice not in ('1','2'): parser.error('choose 1 or 2')
+        args.mode='sitemap' if choice=='1' else 'homepage'
+    if args.out.exists(): parser.error('--out must be a NEW directory; existing evidence is preserved')
+    args.out.mkdir(parents=True)
+    async def execute():
+        from smart_crawler.browser_session import BrowserSession
+        async with BrowserSession(args.url) as browser:
+            bootstrap=await browser.capture(args.url)
+            if not bootstrap['ok']: raise RuntimeError('bootstrap unavailable')
+            routes,absences,state=await discover(args.url,browser,args.out,mode=args.mode,bootstrap_html=bootstrap['html'])
+            for name,value in [('routes.json',routes),('absences.json',absences)]:
+                with (args.out/name).open('x') as f: json.dump(value,f,indent=2)
+            print(f'Discovery {state}: {len(routes["routes"])} routes')
+    asyncio.run(execute())
 
-    print("\nChoose a discovery method:\n")
-    print("[1] Crawl sitemap.xml")
-    print("[2] Parse homepage <a> links")
-    print("[q] Quit\n")
 
-    choice = input("Your choice: ").strip()
-
-    if choice == "1":
-        links = fetch_sitemap_urls(args.url)
-        if not links:
-            print("[WARNING] Sitemap unavailable or empty.")
-            return
-    elif choice == "2":
-        links = extract_internal_links(args.url)
-        if not links:
-            print("[WARNING] No internal links found on homepage.")
-            return
-    elif choice.lower() == "q":
-        print("Exiting.")
-        return
-    else:
-        print("[ERROR] Invalid choice.")
-        return
-
-    write_to_json(links, output_path)
-
-    with open(output_path, "r") as f:
-        print("\n[INFO] Discovered Pages:")
-        for entry in json.load(f):
-            print(f"- {entry['url']}")
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

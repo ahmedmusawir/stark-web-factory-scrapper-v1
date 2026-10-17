@@ -60,53 +60,41 @@ def _urls(n):
 
 
 def test_403_and_500_write_no_file_and_are_recorded(sandbox):
-    fake = FakeCrawler([
-        _result(403, success=False, raw="", error="Blocked by anti-bot protection: HTTP 403"),
-        _result(500, success=False, raw=""),
-        _result(200),
-    ])
-    pages, stopped = asyncio.run(crawler.crawl_all(_urls(3), fake))
-    assert stopped is False
-    assert [p["ok"] for p in pages] == [False, False, True]
-    assert pages[0]["error"] == "blocked"
-    assert pages[1]["error"] == "HTTP 500"
-    assert pages[2]["error"] is None
-    assert sorted(p.name for p in crawler.PAGE_DIR.iterdir()) == ["example-com-p2.md"]
-
-    summary_path = crawler.write_summary(pages, "2026-09-05T00:00:00+00:00", "2026-09-05T00:01:00+00:00")
-    summary = json.loads(summary_path.read_text())
-    assert set(summary) == {"started_at", "finished_at", "crawl4ai_version", "pause_range_s", "pages"}
-    assert summary["pause_range_s"] == [2, 5]
-    assert [p["status"] for p in summary["pages"]] == [403, 500, 200]
-    assert set(summary["pages"][0]) == {"url", "status", "ok", "elapsed_s", "error"}
+    """E-01/E-05/E-09 — BUILD_READBACK §5 authorized replacement."""
+    for status in (403,500):
+        fake = FakeCrawler([_result(status, success=False, raw=''), _result(200, html='<p>ok</p>')])
+        pages, stopped = asyncio.run(crawler.crawl_all(_urls(2),fake))
+        assert stopped is (status == 403)
+        assert len(fake.calls) == (1 if stopped else 2)
+        assert pages[0]['error'] == ('blocked' if stopped else 'HTTP 500')
+        assert not pages[0]['ok']
+        if not stopped: assert pages[1]['ok'] and pages[1]['error'] is None
+    assert list(crawler.PAGE_DIR.iterdir()) == []
+    assert not crawler.SUMMARY_PATH.exists()
 
 
 def test_three_consecutive_429_stop_the_run(sandbox, capsys):
-    fake = FakeCrawler([_result(429, success=False, raw="")] * 3 + [_result(200)])
-    pages, stopped = asyncio.run(crawler.crawl_all(_urls(4), fake))
-    assert stopped is True
-    assert len(pages) == 3 and all(p["error"] == "blocked" for p in pages)
-    assert fake.calls == _urls(3)  # 4th URL never attempted
-    assert "3 consecutive blocked pages" in capsys.readouterr().out
+    """E-05 — BUILD_READBACK §5 authorized replacement."""
+    fake = FakeCrawler([_result(429,success=False)]*3+[_result(200)])
+    pages, stopped = asyncio.run(crawler.crawl_all(_urls(4),fake))
+    assert stopped and len(pages) == 1 and pages[0]['error'] == 'blocked'
+    assert fake.calls == _urls(1)
+    assert 'First intentional refusal' in capsys.readouterr().out
     assert list(crawler.PAGE_DIR.iterdir()) == []
 
 
 def test_blocked_counter_resets_on_success(sandbox):
-    fake = FakeCrawler([
-        _result(429, success=False, raw=""), _result(429, success=False, raw=""),
-        _result(200),
-        _result(403, success=False, raw=""), _result(403, success=False, raw=""),
-        _result(200),
-    ])
-    pages, stopped = asyncio.run(crawler.crawl_all(_urls(6), fake))
-    assert stopped is False and len(pages) == 6
+    """E-05 — BUILD_READBACK §5 authorized replacement."""
+    fake = FakeCrawler([_result(429,success=False),_result(200,html='<p>ok</p>')])
+    pages, stopped = asyncio.run(crawler.crawl_all(_urls(2),fake))
+    assert stopped and len(pages) == 1 and fake.calls == _urls(1)
 
 
 def test_pause_between_pages_not_before_first(sandbox, capsys):
-    fake = FakeCrawler([_result(200)] * 3)
-    asyncio.run(crawler.crawl_all(_urls(3), fake))
-    assert sandbox.sleeps == [2.5, 2.5]
-    assert capsys.readouterr().out.count("⏸ pause 2.5s") == 2
+    """E-05 — BUILD_READBACK §5 authorized replacement."""
+    fake = FakeCrawler([_result(200,html='<p>ok</p>')]*3)
+    asyncio.run(crawler.crawl_all(_urls(3),fake))
+    assert sandbox.sleeps == [5.0,5.0]
 
 
 def test_limit_and_input_flags(tmp_path):
@@ -122,22 +110,16 @@ def test_limit_and_input_flags(tmp_path):
 
 
 def test_session_user_agent_on_sitemap_calls(monkeypatch):
-    ua = sitemap_utils.USER_AGENT
-    assert "Chrome/" in ua and "Safari/537.36" in ua
-    assert sitemap_utils.SESSION.headers["User-Agent"] == ua
-    assert crawler.USER_AGENT == ua
-
-    seen = []
-
-    def fake_get(url, timeout=10):
-        seen.append(url)
-        body = '<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://example.com/a</loc></url></urlset>'
-        return types.SimpleNamespace(content=body.encode(), raise_for_status=lambda: None)
-
-    monkeypatch.setattr(sitemap_utils.SESSION, "get", fake_get)
-    monkeypatch.setattr(sitemap_utils.requests, "get", lambda *a, **k: pytest.fail("bare requests.get used"))
-    assert sitemap_utils.fetch_sitemap_urls("https://example.com/") == ["https://example.com/a"]
-    assert seen == ["https://example.com/sitemap.xml"]
+    """E-06 — single USER_AGENT in the owned browser, no requests Session transport."""
+    from smart_crawler.browser_session import BrowserSession
+    assert 'Chrome/' in sitemap_utils.USER_AGENT and 'Safari/537.36' in sitemap_utils.USER_AGENT
+    assert crawler.USER_AGENT == sitemap_utils.USER_AGENT
+    assert not hasattr(sitemap_utils,'SESSION')
+    source=(REPO_ROOT/'smart_crawler/browser_session.py').read_text()
+    assert 'BrowserConfig(headless=True, user_agent=USER_AGENT)' in source
+    tree = ast.parse(source)
+    assert not any(isinstance(n, ast.Import) and any(a.name == 'requests' for a in n.names) or
+                   isinstance(n, ast.ImportFrom) and n.module == 'requests' for n in ast.walk(tree))
 
 
 def test_import_from_foreign_cwd_creates_no_directory(tmp_path):
@@ -147,24 +129,16 @@ def test_import_from_foreign_cwd_creates_no_directory(tmp_path):
 
 
 def test_empty_input_writes_truthful_summary_without_crawling(sandbox, tmp_path, monkeypatch, capsys):
-    """AC-21: a valid `[]` input is a run — zero crawls, summary written, stale records gone."""
-    empty = tmp_path / "empty.json"
-    empty.write_text("[]")
-    crawler.SUMMARY_PATH.write_text(json.dumps({"pages": [{"url": "https://example.com/stale"}]}))
-
-    async def no_crawl(urls):
-        pytest.fail("run() must not be called for empty input")
-
-    monkeypatch.setattr(crawler, "run", no_crawl)
-    monkeypatch.setattr(sys, "argv", ["crawler", "--project", "TestProj", "--input", str(empty)])  # bim001 AC-71(b)
-    crawler.main()  # the real application path
-
-    summary = json.loads(crawler.SUMMARY_PATH.read_text())
-    assert set(summary) == {"started_at", "finished_at", "crawl4ai_version", "pause_range_s", "pages"}
-    assert summary["pages"] == []
-    assert summary["crawl4ai_version"] and summary["pause_range_s"] == [2, 5]
-    assert summary["started_at"] and summary["finished_at"]
-    assert "No URLs found" in capsys.readouterr().out
+    """E-01/E-09 — BUILD_READBACK §5 authorized replacement."""
+    empty = tmp_path/'empty.json'; empty.write_text('[]')
+    crawler.SUMMARY_PATH.write_text('historical summary')
+    monkeypatch.setattr(crawler,'run',lambda *a,**kw: pytest.fail('empty input crawled'))
+    monkeypatch.setattr(sys,'argv',['crawler','--project','TestProj','--input',str(empty)])
+    crawler.main()
+    assert crawler.SUMMARY_PATH.read_text() == 'historical summary'
+    m=json.loads(next((tmp_path/'TestProj/runs').glob('*/manifest.json')).read_text())
+    assert m['pages'] == [] and m['counts']['routes'] == 0
+    assert 'No URLs found' in capsys.readouterr().out
     assert list(crawler.PAGE_DIR.iterdir()) == []
 
 
@@ -288,14 +262,12 @@ def _finish(rf, **kw):
 
 
 def test_ac10_run_folder_layout_exact(tmp_path):
-    rf = _folder(tmp_path)
-    rf.log("run start project=Proj run_id=" + rf.run_id)
-    _finish(rf)
-    rf.write_absences([])
-    assert rf.dir == tmp_path / "Proj" / "runs" / "2026-09-06T14-30-00Z"
-    assert sorted(p.name for p in rf.dir.iterdir()) == ["absences.json", "html", "manifest.json", "stage_log.txt"]
-    assert rf.html_dir.is_dir() and list(rf.html_dir.iterdir()) == []
-    assert rf.run_dir_rel == "outputs/Proj/runs/2026-09-06T14-30-00Z"
+    """E-01/E-08 — BUILD_READBACK §5 authorized replacement."""
+    rf=_folder(tmp_path);rf.log('run start');_finish(rf);rf.write_absences([])
+    assert rf.dir == tmp_path/'Proj/runs/2026-09-06T14-30-00Z'
+    assert {p.name for p in rf.dir.iterdir()} == {'absences.json','manifest.json','stage_log.txt','html','rest','discovery','media','screenshots'}
+    assert rf.html_dir.is_dir() and not list(rf.html_dir.iterdir())
+    assert rf.run_dir_rel == 'outputs/Proj/runs/2026-09-06T14-30-00Z'
 
 
 def test_ac21_html_byte_for_byte(tmp_path):
@@ -328,56 +300,43 @@ def test_ac23_collision_suffix(tmp_path):
 
 
 def test_ac30_manifest_top_level_keys_exact(tmp_path):
-    rf = _folder(tmp_path)
-    manifest = json.loads(_finish(rf).read_text())
-    assert sorted(manifest) == [
-        "access_rung", "command", "crawl4ai_version", "delay_before_return_html_s",
-        "fallbacks_fired", "finished_at", "input_hosts", "input_path", "input_total",
-        "limit", "page_timeout_ms", "pages", "pause_range_s", "playwright_version",
-        "project_name", "python_version", "run_dir", "run_id", "schema",
-        "started_at", "stopped_early", "summary_path", "wait_for_images"]
-    assert len(manifest) == 23
+    """E-01/E-06/E-09 — BUILD_READBACK §5 authorized replacement."""
+    m=json.loads(_finish(_folder(tmp_path)).read_text())
+    assert set(m) == {'schema','project_name','run_id','started_at','finished_at','command','input','scope','access','versions','streams','counts','stopped_early','fallbacks_fired','pages'}
+    assert next(iter(m)) == 'schema'
 
 
 def test_ac31_manifest_fixed_values(tmp_path):
-    m = json.loads(_finish(_folder(tmp_path)).read_text())
-    assert m["schema"] == "bim001-manifest-v1" and m["access_rung"] == "a" and m["fallbacks_fired"] == []
-    assert m["wait_for_images"] is True and m["delay_before_return_html_s"] == 3.0
-    assert m["page_timeout_ms"] == 90000 and m["pause_range_s"] == [2, 5]
-    assert m["crawl4ai_version"] == "0.9.3" and m["playwright_version"] == "1.52.0"
-    assert m["python_version"].startswith("3.12")
-    assert m["summary_path"] == "outputs/run_summary.json"
+    """E-01/E-05/E-06 — BUILD_READBACK §5 authorized replacement."""
+    m=json.loads(_finish(_folder(tmp_path)).read_text());a=m['access']
+    assert m['schema']=='abm-raw-v2' and a['rung']=='a' and m['fallbacks_fired']==[]
+    assert a['wait_for_images'] is True and a['page_timeout_ms']==90000 and a['delay_before_return_html_s']==3.0
+    assert a['cache_mode']=='BYPASS' and a['user_agent']==sitemap_utils.USER_AGENT
+    assert a['operation_gap_after_completion_s']==5 and a['retry_max']==0 and a['stop_on_first_intentional_refusal']
+    assert not a['automatic_restart'] and not a['background_resources_paced']
+    assert m['versions']['crawl4ai']=='0.9.3' and m['versions']['playwright']=='1.52.0'
+    assert m['versions']['python'].startswith('3.12') and len(m['versions']['tool_commit'])==40
 
 
 def test_ac34_manifest_page_keys_exact(tmp_path):
-    rf = _folder(tmp_path)
-    rf.record_page(_rec("https://example.com/a"), slug="example-com-a", outcome="captured",
-                   html_file="html/example-com-a.html", html_bytes=10, md_file="pages/example-com-a.md")
-    rf.record_page(_rec("https://example.com/b", 403, False, 0.5, "blocked"), slug="example-com-b",
-                   outcome="blocked", reason="blocked")
-    m = json.loads(_finish(rf).read_text())
-    for entry in m["pages"]:
-        assert sorted(entry) == ["elapsed_s", "error", "html_bytes", "html_file", "md_file", "ok",
-                                 "outcome", "reason", "slug", "status", "url"]
-    assert m["pages"][1]["html_file"] is None and m["pages"][1]["html_bytes"] is None
-    with pytest.raises(AssertionError):
-        rf.record_page(_rec("https://example.com/c"), slug="c", outcome="weird")
+    """E-01/E-09 — BUILD_READBACK §5 authorized replacement."""
+    rf=_folder(tmp_path)
+    rf.record_page(_rec('https://example.com/b',403,False,.5,'blocked'),slug='b',outcome='blocked',reason='blocked')
+    m=json.loads(_finish(rf).read_text());e=m['pages'][0]
+    assert set(e)=={'url','input_url','final_url','redirect_chain','slug','status','outcome','reason','fetched_at','elapsed_s','retries','html_file','block_file','html_bytes','sha256','rest_ref','rest_outcome'}
+    assert e['html_file'] is None and e['html_bytes'] is None and e['sha256'] is None and e['retries']==0
+    with pytest.raises(AssertionError): rf.record_page(_rec('https://example.com/c'),slug='c',outcome='weird')
 
 
 def test_ac40_absences_shape(tmp_path):
-    rf = _folder(tmp_path)
-    rf.record_page(_rec("https://example.com/a"), slug="a", outcome="captured", html_file="html/a.html", html_bytes=1)
-    rf.record_page(_rec("https://example.com/b", 500, False, 0.5, "HTTP 500"), slug="b", outcome="failed", reason="HTTP 500")
-    absences = crawler.build_absences(rf.pages, attempted=["https://example.com/a", "https://example.com/b"],
-                                      all_urls=["https://example.com/a", "https://example.com/b", "https://example.com/c"])
-    path = rf.write_absences(absences)
-    loaded = json.loads(path.read_text())
-    assert isinstance(loaded, list) and len(loaded) == 2
-    for e in loaded:
-        assert sorted(e) == ["outcome", "reason", "url"]
-        assert e["outcome"] in {"blocked", "failed", "unsupported", "skipped"}
-    assert loaded[0] == {"url": "https://example.com/b", "outcome": "failed", "reason": "HTTP 500"}
-    assert loaded[1] == {"url": "https://example.com/c", "outcome": "skipped", "reason": "limit"}
+    """E-09 — BUILD_READBACK §5 authorized replacement."""
+    rf=_folder(tmp_path)
+    rf.record_page(_rec(_urls(2)[1],500,False,.5,'HTTP 500'),slug='b',outcome='failed',reason='HTTP 500')
+    a=crawler.build_absences(rf.pages,_urls(2),_urls(3))
+    assert all(set(e)=={'stream','ref','outcome','reason','at'} for e in a)
+    assert a[0]['stream']=='html' and a[0]['ref']==_urls(2)[1] and a[0]['reason']=='HTTP 500'
+    assert a[-1]['ref']==_urls(3)[2] and a[-1]['reason']=='limit'
+    assert json.loads(rf.write_absences(a).read_text()) == a
 
 
 def test_ac50_stage_log_lines_start_with_timestamp(tmp_path):
@@ -415,29 +374,29 @@ def _crawl(sandbox, results, urls=None, project="Proj", crawler_cls=FakeCrawler)
 
 
 def test_ac20_captured_for_successful_fetch(sandbox):
-    rf, pages, _ = _crawl(sandbox, [_result(200, html="<html>a</html>"), _result(200, html="<html>b</html>")])
-    assert [e["outcome"] for e in rf.pages] == ["captured", "captured"]
+    """E-01 — BUILD_READBACK §5 authorized replacement."""
+    rf,pages,_=_crawl(sandbox,[_result(200,html='<html>a</html>'),_result(200,html='<html>b</html>')])
+    assert [e['outcome'] for e in rf.pages]==['captured','captured']
     for e in rf.pages:
-        assert (rf.dir / e["html_file"]).exists() and e["html_file"] == f"html/{e['slug']}.html"
-        assert e["html_bytes"] == (rf.dir / e["html_file"]).stat().st_size and e["reason"] is None
-        assert e["md_file"] == f"pages/{e['slug']}.md" and (crawler.PAGE_DIR / f"{e['slug']}.md").exists()
-    assert [p["ok"] for p in pages] == [True, True]
+        assert e['html_file']==f"html/{e['slug']}.html" and e['reason'] is None
+        assert e['html_bytes']==(rf.dir/e['html_file']).stat().st_size
+        assert len(e['sha256'])==64 and 'md_file' not in e
+    assert [p['ok'] for p in pages]==[True,True] and not list(crawler.PAGE_DIR.iterdir())
 
 
 def test_ac22_html_stem_equals_md_stem(sandbox):
-    rf, _, _ = _crawl(sandbox, [_result(200, html="<p>x</p>")], urls=["https://example.com/About-Us/"])
-    html_stem = Path(rf.pages[0]["html_file"]).stem
-    md_stem = next(crawler.PAGE_DIR.iterdir()).stem
-    assert html_stem == md_stem == crawler.slugify("example.com/About-Us/") == "example-com-about-us"
-    source = (REPO_ROOT / "smart_crawler" / "crawler.py").read_text()
-    assert source.count("def slugify") == 1
+    """E-01 — BUILD_READBACK §5 authorized replacement."""
+    rf,_,_=_crawl(sandbox,[_result(200,html='<p>x</p>')],urls=['https://example.com/About-Us/'])
+    assert Path(rf.pages[0]['html_file']).stem == rf.pages[0]['slug'] == crawler.slugify('example.com/About-Us/') == 'example-com-about-us'
+    assert not list(crawler.PAGE_DIR.iterdir())
+    assert SOURCE_PATH.read_text().count('def slugify')==1
 
 
 def test_ac24_blocked_no_html(sandbox):
-    rf, pages, _ = _crawl(sandbox, [_result(403, success=False, raw="", html="<html>blocked page</html>")])
-    assert rf.pages[0]["outcome"] == "blocked" and rf.pages[0]["reason"] == "blocked"
-    assert rf.pages[0]["html_file"] is None and list(rf.html_dir.iterdir()) == []
-    assert pages[0]["error"] == "blocked"
+    """E-05/E-19 — BUILD_READBACK §5 authorized replacement."""
+    rf,pages,stopped=_crawl(sandbox,[_result(403,success=False,raw='',html='<html>blocked page</html>')])
+    assert stopped and rf.pages[0]['outcome']=='blocked' and rf.pages[0]['reason']=='blocked'
+    assert rf.pages[0]['html_file'] is None and pages[0]['error']=='blocked'
 
 
 def test_ac25_failed_and_exception_no_html(sandbox):
@@ -451,20 +410,19 @@ def test_ac25_failed_and_exception_no_html(sandbox):
 
 
 def test_ac26_unsupported_when_html_absent(sandbox):
-    stub = _result(200)  # no html attribute at all
-    assert not hasattr(stub, "html")
-    rf, pages, _ = _crawl(sandbox, [stub])
-    assert rf.pages[0]["outcome"] == "unsupported" and "html" in rf.pages[0]["reason"]
-    assert rf.pages[0]["html_file"] is None and list(rf.html_dir.iterdir()) == []
-    assert pages[0]["ok"] is True  # markdown side untouched
+    """E-01 — BUILD_READBACK §5 authorized replacement."""
+    stub=_result(200);assert not hasattr(stub,'html')
+    rf,pages,_=_crawl(sandbox,[stub])
+    assert rf.pages[0]['outcome']=='unsupported' and 'html' in rf.pages[0]['reason']
+    assert rf.pages[0]['html_file'] is None and not list(rf.html_dir.iterdir())
+    assert pages[0]['ok'] is False
 
 
 def test_ac27_html_independent_of_markdown(sandbox):
-    rf, pages, _ = _crawl(sandbox, [_result(200, raw="", html="<p>x</p>")])
-    assert rf.pages[0]["outcome"] == "captured" and (rf.dir / rf.pages[0]["html_file"]).read_text() == "<p>x</p>"
-    assert pages[0]["ok"] is False and pages[0]["error"] == "empty markdown"  # bim000 behavior preserved
-    assert rf.pages[0]["ok"] is False and rf.pages[0]["error"] == "empty markdown"
-    assert rf.pages[0]["md_file"] is None and list(crawler.PAGE_DIR.iterdir()) == []
+    """E-01 — BUILD_READBACK §5 authorized replacement."""
+    rf,pages,_=_crawl(sandbox,[_result(200,raw='',html='<p>x</p>')])
+    assert rf.pages[0]['outcome']=='captured' and (rf.dir/rf.pages[0]['html_file']).read_text()=='<p>x</p>'
+    assert pages[0]['ok'] and pages[0]['error'] is None and not list(crawler.PAGE_DIR.iterdir())
 
 
 def test_ac28_write_failure_is_failure_not_crash(sandbox, monkeypatch):
@@ -511,7 +469,10 @@ def _main(sandbox, monkeypatch, results, urls, extra=(), project="Proj"):
     src = sandbox.dir / "in" / "input.json"
     src.parent.mkdir(exist_ok=True)
     src.write_text(json.dumps([{"url": u} for u in urls]))
-    monkeypatch.setattr(crawler, "AsyncWebCrawler", FakeBrowser(results))
+    # BUILD_READBACK helper adaptation: isolate CLI fixture from the real browser gate.
+    async def fixture_run(selected, run_folder):
+        return await crawler.crawl_all(selected, FakeCrawler(results), run_folder)
+    monkeypatch.setattr(crawler, "run", fixture_run)
     monkeypatch.setattr(sys, "argv", ["crawler", "--project", project, "--input", str(src), *extra])
     try:
         crawler.main()
@@ -535,15 +496,15 @@ def test_ac07_project_case_preserved(sandbox, monkeypatch):
 
 
 def test_ac13_empty_input_creates_run_folder(sandbox, monkeypatch):
-    monkeypatch.setattr(crawler, "run", lambda *a, **k: pytest.fail("run() must not be called"))
-    code, run_dir = _main(sandbox, monkeypatch, [], [], project="CyberizeGroup")
-    assert code == 0 and run_dir is not None
-    manifest, absences, log = _load(run_dir)
-    assert sorted(p.name for p in run_dir.iterdir()) == ["absences.json", "html", "manifest.json", "stage_log.txt"]
-    assert list((run_dir / "html").iterdir()) == []
-    assert manifest["pages"] == [] and manifest["input_total"] == 0 and absences == [] and len(log) >= 1
-    summary = json.loads(crawler.SUMMARY_PATH.read_text())
-    assert summary["pages"] == [] and set(summary) == {"started_at", "finished_at", "crawl4ai_version", "pause_range_s", "pages"}
+    """E-01/E-09 — BUILD_READBACK §5 authorized replacement."""
+    monkeypatch.setattr(crawler,'run',lambda *a,**kw:pytest.fail('run called'))
+    code,d=_main(sandbox,monkeypatch,[],[],project='CyberizeGroup')
+    m,a,log=_load(d)
+    assert code==0 and m['pages']==[] and m['counts']['routes']==0
+    assert not [x for x in a if x['stream']=='html'] and log
+    assert not list((d/'html').iterdir()) and not crawler.SUMMARY_PATH.exists()
+    from smart_crawler.validate import validate_run
+    assert validate_run(d)
 
 
 def test_ac14_two_runs_two_folders(sandbox, monkeypatch):
@@ -556,114 +517,98 @@ def test_ac14_two_runs_two_folders(sandbox, monkeypatch):
 
 
 def test_ac32_manifest_identity_values(sandbox, monkeypatch):
-    urls = ["https://b.example.com/x", "https://a.example.com/y", "https://b.example.com/z",
-            "https://example.invalid:8443/port", "https://example.invalid/plain"]
-    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")] * 5, urls, extra=["--limit", "2"], project="CyberizeGroup")
-    manifest, _, _ = _load(run_dir)
-    assert manifest["project_name"] == "CyberizeGroup"
-    assert manifest["run_id"] == run_dir.name
-    assert manifest["run_dir"] == f"outputs/CyberizeGroup/runs/{run_dir.name}" and not manifest["run_dir"].endswith("/")
-    assert manifest["command"].startswith("python -m smart_crawler.crawler") and "--project CyberizeGroup" in manifest["command"] and "--limit 2" in manifest["command"]
-    assert manifest["input_path"] == str((sandbox.dir / "in" / "input.json").resolve())
-    assert manifest["input_hosts"] == ["a.example.com", "b.example.com", "example.invalid"]  # hostnames only
-    assert "example.invalid:8443" not in manifest["input_hosts"]
-    assert crawler.input_hosts(["https://example.invalid:8443/port", "https://example.invalid/plain"]) == ["example.invalid"]
-    assert crawler.input_hosts(["not a url", "https://x.invalid/"]) == ["x.invalid"]  # None hostnames skipped
-    assert manifest["summary_path"] == "outputs/run_summary.json"
+    """E-01/E-06/E-18 — BUILD_READBACK §5 authorized replacement."""
+    urls=['https://b.example.com/x','https://a.example.com/y','https://b.example.com/z','https://example.invalid:8443/port','https://example.invalid/plain']
+    code,d=_main(sandbox,monkeypatch,[_result(200,html='<p>x</p>')]*2,urls,extra=['--limit','2'],project='CyberizeGroup')
+    m,_,_=_load(d)
+    assert m['project_name']=='CyberizeGroup' and m['run_id']==d.name
+    assert '--project CyberizeGroup' in m['command'] and '--limit 2' in m['command']
+    assert str(sandbox.dir) not in json.dumps(m)
+    # E-06: declared scope must match the actual browser's site + www twin;
+    # merely appearing in a legacy input array does not expand that scope.
+    assert m['scope']['hosts_allowed']==['b.example.com','www.b.example.com']
+    assert crawler.input_hosts(['https://example.invalid:8443/port','https://example.invalid/plain'])==['example.invalid']
+    assert crawler.input_hosts(['not a url','https://x.invalid/'])==['x.invalid']
 
 
 def test_ac33_manifest_counts(sandbox, monkeypatch):
-    # 6 inputs, --limit 5, stop rule after 3 blocked -> attempted 3
-    results = [_result(429, success=False, raw="")] * 3
-    code, run_dir = _main(sandbox, monkeypatch, results, _urls(6), extra=["--limit", "5"])
-    manifest, _, _ = _load(run_dir)
-    assert code == 2 and manifest["input_total"] == 6 and manifest["limit"] == 5 and len(manifest["pages"]) == 3
-    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")] * 2, _urls(2))
-    manifest, _, _ = _load(run_dir)
-    assert manifest["input_total"] == 2 and manifest["limit"] is None and len(manifest["pages"]) == 2
+    """E-05/E-09 — BUILD_READBACK §5 authorized replacement."""
+    code,d=_main(sandbox,monkeypatch,[_result(429,success=False)],_urls(6),extra=['--limit','5'])
+    m,_,_=_load(d)
+    assert code==2 and m['counts']['routes']==len(m['pages'])==6
+    assert m['input']['limit']==5 and m['counts']['blocked']==1 and m['counts']['skipped']==5
+    assert [p['reason'] for p in m['pages'][1:]]==['stop_rule']*4+['limit']
 
 
 def test_ac35_page_values_match_run_summary(sandbox, monkeypatch):
-    results = [_result(200, html="<p>ok</p>"), _result(403, success=False, raw=""), _result(200), _result(200, raw="", html="<p>nomd</p>")]
-    code, run_dir = _main(sandbox, monkeypatch, results, _urls(4))
-    manifest, _, _ = _load(run_dir)
-    summary = json.loads(crawler.SUMMARY_PATH.read_text())
-    for m, s in zip(manifest["pages"], summary["pages"]):
-        assert {k: m[k] for k in ("url", "status", "ok", "elapsed_s", "error")} == s
-        assert m["outcome"] in {"captured", "blocked", "failed", "unsupported"}
-        if m["outcome"] == "captured":
-            assert m["html_file"] == f"html/{m['slug']}.html" and m["reason"] is None
-            assert m["html_bytes"] == (run_dir / m["html_file"]).stat().st_size
-        else:
-            assert m["html_file"] is None and m["html_bytes"] is None and m["reason"]
-    assert [m["outcome"] for m in manifest["pages"]] == ["captured", "blocked", "unsupported", "captured"]
-    assert [m["md_file"] for m in manifest["pages"]] == ["pages/example-com-p0.md", None, "pages/example-com-p2.md", None]
+    """E-01/E-05/E-09 — BUILD_READBACK §5 authorized replacement."""
+    results=[_result(200,html='<p>ok</p>'),_result(200),_result(200,raw='',html='<p>nomd</p>'),_result(403,success=False)]
+    code,d=_main(sandbox,monkeypatch,results,_urls(5));m,a,_=_load(d)
+    assert code==2 and [p['outcome'] for p in m['pages']]==['captured','unsupported','captured','blocked','skipped']
+    assert [(d/p['html_file']).read_text() for p in m['pages'] if p['html_file']]==['<p>ok</p>','<p>nomd</p>']
+    from smart_crawler.validate import validate_run
+    assert validate_run(d) and not crawler.SUMMARY_PATH.exists()
 
 
 def test_ac36_timestamps_identical(sandbox, monkeypatch):
-    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")], _urls(1))
-    manifest, _, _ = _load(run_dir)
-    summary = json.loads(crawler.SUMMARY_PATH.read_text())
-    assert manifest["started_at"] == summary["started_at"] and manifest["finished_at"] == summary["finished_at"]
-    assert crawler.make_run_id(manifest["started_at"]) == manifest["run_id"]
+    """E-01/E-14 — BUILD_READBACK §5 authorized replacement."""
+    _,d=_main(sandbox,monkeypatch,[_result(200,html='<p>x</p>')],_urls(1));m,a,log=_load(d)
+    assert crawler.make_run_id(m['started_at'])==m['run_id']
+    assert m['started_at']<=m['pages'][0]['fetched_at']<=m['finished_at']
+    assert all(x['at']<=m['finished_at'] for x in a)
+    assert all(m['started_at']<=x[:25]<=m['finished_at'] for x in log)
 
 
 def test_ac37_manifest_on_early_stop_exit_2(sandbox, monkeypatch):
-    results = [_result(200, html="<p>x</p>")] + [_result(429, success=False, raw="")] * 3
-    code, run_dir = _main(sandbox, monkeypatch, results, _urls(6))
-    manifest, absences, log = _load(run_dir)
-    assert code == 2 and manifest["stopped_early"] is True and len(manifest["pages"]) == 4
-    assert any("stop rule" in line for line in log)
-    code, run_dir = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")], _urls(1))
-    manifest, _, _ = _load(run_dir)
-    assert code == 0 and manifest["stopped_early"] is False
+    """E-05/E-09 — BUILD_READBACK §5 authorized replacement."""
+    code,d=_main(sandbox,monkeypatch,[_result(200,html='<p>x</p>'),_result(429,success=False)],_urls(6))
+    m,a,log=_load(d)
+    assert code==2 and m['stopped_early'] and len(m['pages'])==6
+    assert [p['outcome'] for p in m['pages']]==['captured','blocked']+['skipped']*4
+    assert any('stop rule' in x for x in log)
+    code,d=_main(sandbox,monkeypatch,[_result(200,html='<p>x</p>')],_urls(1))
+    assert code==0 and not _load(d)[0]['stopped_early']
 
 
 def test_ac41_absences_completeness_and_order(sandbox, monkeypatch):
-    # inputs p0..p7, limit 6; p0 captured, p1 failed, p2 unsupported, p3 p4 p5 blocked -> stop; p6 p7 limit
-    results = [_result(200, html="<p>x</p>"), _result(500, success=False, raw=""), _result(200),
-               _result(403, success=False, raw=""), _result(429, success=False, raw=""), _result(403, success=False, raw="")]
-    code, run_dir = _main(sandbox, monkeypatch, results, _urls(8), extra=["--limit", "6"])
-    manifest, absences, _ = _load(run_dir)
-    captured = {p["url"] for p in manifest["pages"] if p["outcome"] == "captured"}
-    absent = {e["url"] for e in absences}
-    assert captured == {"https://example.com/p0"} and captured.isdisjoint(absent)
-    assert captured | absent == set(_urls(8))
-    assert [e["url"] for e in absences] == _urls(8)[1:]  # attempted-and-absent in attempt order, then skipped in input order
-    assert [e["outcome"] for e in absences] == ["failed", "unsupported", "blocked", "blocked", "blocked", "skipped", "skipped"]
+    """E-05/E-09 — BUILD_READBACK §5 authorized replacement."""
+    results=[_result(200,html='<p>x</p>'),_result(500,success=False),_result(200),_result(403,success=False)]
+    code,d=_main(sandbox,monkeypatch,results,_urls(8),extra=['--limit','6']);m,a,_=_load(d)
+    a=[e for e in a if e['stream']=='html'];captured={p['url'] for p in m['pages'] if p['outcome']=='captured'}
+    assert captured==set(_urls(1)) and captured.isdisjoint({e['ref'] for e in a})
+    assert captured|{e['ref'] for e in a}==set(_urls(8))
+    assert [e['ref'] for e in a]==_urls(8)[1:]
+    assert [e['outcome'] for e in a]==['failed','unsupported','blocked']+['skipped']*4
 
 
 def test_ac42_skipped_reasons_limit_and_stop_rule(sandbox, monkeypatch):
-    results = [_result(429, success=False, raw="")] * 3
-    code, run_dir = _main(sandbox, monkeypatch, results, _urls(7), extra=["--limit", "5"])
-    _, absences, _ = _load(run_dir)
-    by_url = {e["url"]: e for e in absences}
-    assert by_url["https://example.com/p3"] == {"url": "https://example.com/p3", "outcome": "skipped", "reason": "stop_rule"}
-    assert by_url["https://example.com/p4"]["reason"] == "stop_rule"
-    assert by_url["https://example.com/p5"]["reason"] == "limit" and by_url["https://example.com/p6"]["reason"] == "limit"
-    assert len(absences) == 7
+    """E-05/E-09 — BUILD_READBACK §5 authorized replacement."""
+    _,d=_main(sandbox,monkeypatch,[_result(429,success=False)],_urls(7),extra=['--limit','5'])
+    a=[e for e in _load(d)[1] if e['stream']=='html'];by={e['ref']:e for e in a}
+    assert by[_urls(7)[0]]['outcome']=='blocked'
+    assert all(by[u]['reason']=='stop_rule' for u in _urls(5)[1:])
+    assert all(by[u]['reason']=='limit' for u in _urls(7)[5:]) and len(a)==7
 
 
 def test_ac43_absence_reason_matches_manifest(sandbox, monkeypatch):
-    results = [_result(500, success=False, raw=""), _result(200), _result(403, success=False, raw=""), _result(200, html="<p>x</p>")]
-    code, run_dir = _main(sandbox, monkeypatch, results, _urls(4))
-    manifest, absences, _ = _load(run_dir)
-    reasons = {p["url"]: p["reason"] for p in manifest["pages"]}
-    for e in absences:
-        assert e["outcome"] in {"blocked", "failed", "unsupported"} and e["reason"] == reasons[e["url"]]
-    assert len(absences) == 3
+    """E-05/E-09 — BUILD_READBACK §5 authorized replacement."""
+    _,d=_main(sandbox,monkeypatch,[_result(500,success=False),_result(200),_result(403,success=False)],_urls(4))
+    m,a,_=_load(d);by={p['url']:p for p in m['pages']};a=[e for e in a if e['stream']=='html']
+    assert len(a)==4
+    for e in a:
+        assert e['reason']==by[e['ref']]['reason'] and e['outcome']==by[e['ref']]['outcome']
 
 
 def test_ac51_stage_log_contents(sandbox, monkeypatch):
-    results = [_result(200, html="<p>x</p>"), _result(500, success=False, raw="")] + [_result(429, success=False, raw="")] * 3
-    code, run_dir = _main(sandbox, monkeypatch, results, _urls(6), project="CyberizeGroup")
-    manifest, _, log = _load(run_dir)
-    assert "run start" in log[0] and "CyberizeGroup" in log[0] and manifest["run_id"] in log[0]
-    for p in manifest["pages"]:
-        matching = [line for line in log if p["url"] in line]
-        assert len(matching) == 1 and p["outcome"] in matching[0]
-    assert sum("stop rule" in line for line in log) == 1
-    assert "run end" in log[-1]
+    """E-05/E-09 — BUILD_READBACK §5 authorized replacement."""
+    _,d=_main(sandbox,monkeypatch,[_result(200,html='<p>x</p>'),_result(500,success=False),_result(429,success=False)],_urls(6),project='CyberizeGroup')
+    m,_,log=_load(d)
+    assert 'run start' in log[0] and 'CyberizeGroup' in log[0] and m['run_id'] in log[0]
+    assert sum('intentional captured' in x for x in log)==1
+    assert sum('intentional failed' in x for x in log)==1
+    assert sum('intentional blocked' in x for x in log)==1
+    assert sum('stop rule' in x for x in log)==1 and 'run end' in log[-1]
+    assert sum('pause' in x for x in log)==2
 
 
 # ---------------------------------------------------------------------------
@@ -675,13 +620,14 @@ SOURCE_PATH = REPO_ROOT / "smart_crawler" / "crawler.py"
 
 
 def test_ac10_run_folder_layout_end_to_end(sandbox, monkeypatch):
-    results = [_result(200, html="<p>a</p>"), _result(403, success=False, raw=""), _result(200, html="<p>c</p>")]
-    code, run_dir = _main(sandbox, monkeypatch, results, _urls(3), project="CyberizeGroup")
-    assert code == 0
-    assert run_dir.parent == sandbox.dir / "CyberizeGroup" / "runs"
-    assert sorted(p.name for p in run_dir.iterdir()) == ["absences.json", "html", "manifest.json", "stage_log.txt"]
-    assert sorted(p.name for p in (run_dir / "html").iterdir()) == ["example-com-p0.html", "example-com-p2.html"]
-    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}Z", run_dir.name)
+    """E-01/E-05/E-08 — BUILD_READBACK §5 authorized replacement."""
+    code,d=_main(sandbox,monkeypatch,[_result(200,html='<p>a</p>'),_result(403,success=False)],_urls(3),project='CyberizeGroup')
+    assert code==2 and d.parent==sandbox.dir/'CyberizeGroup/runs'
+    assert {p.name for p in d.iterdir()}=={'absences.json','manifest.json','stage_log.txt','html','rest','discovery','media','screenshots'}
+    assert [p.name for p in (d/'html').iterdir()]==['example-com-p0.html']
+    assert re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}Z',d.name)
+    from smart_crawler.validate import validate_run
+    assert validate_run(d)
 
 
 def test_ac12_no_mkdir_at_module_level():
@@ -694,30 +640,30 @@ def test_ac12_no_mkdir_at_module_level():
 
 
 def test_ac60_run_summary_contract_unchanged_via_main(sandbox, monkeypatch):
-    results = [_result(200, html="<p>a</p>"), _result(500, success=False, raw="")]
-    code, _ = _main(sandbox, monkeypatch, results, _urls(2))
-    summary = json.loads(crawler.SUMMARY_PATH.read_text())
-    assert sorted(summary) == ["crawl4ai_version", "finished_at", "pages", "pause_range_s", "started_at"]
-    for page in summary["pages"]:
-        assert sorted(page) == ["elapsed_s", "error", "ok", "status", "url"]
-    assert crawler.SUMMARY_PATH.name == "run_summary.json" and crawler.SUMMARY_PATH.parent == sandbox.dir
+    """E-01/R8 — BUILD_READBACK §5 authorized replacement."""
+    crawler.SUMMARY_PATH.write_bytes(b'historical summary')
+    old=crawler.PAGE_DIR/'historic.md';old.write_bytes(b'historical markdown')
+    code,d=_main(sandbox,monkeypatch,[_result(200,html='<p>a</p>'),_result(500,success=False)],_urls(2))
+    assert crawler.SUMMARY_PATH.read_bytes()==b'historical summary' and old.read_bytes()==b'historical markdown'
+    assert list(crawler.PAGE_DIR.iterdir())==[old] and _load(d)[0]['counts']['captured']==1
 
 
 def test_ac61_62_bim000_code_and_config_literals_unchanged():
-    src = SOURCE_PATH.read_text()
-    for literal in ("wait_for_images=True", "delay_before_return_html=3.0", "page_timeout=90000", "CacheMode.BYPASS"):
-        assert src.count(literal) == 1, literal
-    assert "PAUSE_RANGE_S = (2, 5)" in src and "random.uniform(*PAUSE_RANGE_S)" in src
-    assert src.count("def slugify") == 1 and src.count("def save_markdown") == 1
-    body = src[src.index("def save_markdown"):src.index("def write_summary")]
-    assert 'out_path = PAGE_DIR / f"{name}.md"' in body and "write_text(markdown" in body
+    """E-01/E-05/E-06 — BUILD_READBACK §5 authorized replacement."""
+    src=SOURCE_PATH.read_text()
+    for literal in ('wait_for_images=True','delay_before_return_html=3.0','page_timeout=90000','CacheMode.BYPASS'):
+        assert src.count(literal)==1
+    assert 'random.uniform(' not in src and src.count('def slugify')==1
+    with pytest.raises(RuntimeError,match='retired'): crawler.save_markdown('url','text')
+    with pytest.raises(RuntimeError,match='retired'): crawler.write_summary([],STARTED,STARTED)
 
 
 def test_ac63_exit_codes_complete(sandbox, monkeypatch, tmp_path):
+    """E-05 — first refusal exits 2; other exit contracts retained."""
     # normal -> 0
     code, _ = _main(sandbox, monkeypatch, [_result(200, html="<p>x</p>")], _urls(1))
     assert code == 0
-    # 3 consecutive blocked -> 2
+    # E-05: first blocked -> 2
     code, _ = _main(sandbox, monkeypatch, [_result(429, success=False, raw="")] * 3, _urls(3))
     assert code == 2
     # input file missing (valid project) -> 1

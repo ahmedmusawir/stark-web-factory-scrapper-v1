@@ -1,0 +1,747 @@
+{
+  "port_record": {
+    "bind": "127.0.0.1",
+    "port": 35637,
+    "origin": "http://127.0.0.1:35637"
+  },
+  "fields_projection_oracle": "id,link,title,type,slug,date,date_gmt,modified,modified_gmt",
+  "stage1_recon": {
+    "argv": [
+      "-m",
+      "recon_pipeline.decide",
+      "recon",
+      "--mode",
+      "sitemap",
+      "--url",
+      "http://127.0.0.1:35637/",
+      "--sitemap",
+      "http://127.0.0.1:35637/sitemap.xml",
+      "--out",
+      "/tmp/opencode/q2-scratch-20261016/t21/recon"
+    ],
+    "exit": 0,
+    "stdout": "{\"inventory\": \"/tmp/opencode/q2-scratch-20261016/t21/recon/inventory.json\", \"candidates\": 3, \"stop_reason\": null, \"cleanup_error\": null, \"gaps\": []}\n",
+    "stderr": "[FETCH]... \u2193 http://127.0.0.1:35637/sitemap.xml                                                                   | \u2713 | \u23f1: 0.32s \n[SCRAPE].. \u25c6 http://127.0.0.1:35637/sitemap.xml                                                                   | \u2713 | \u23f1: 0.00s \n[ERROR]... \u00d7 http://127.0.0.1:35637/sitemap.xml                 | Error: Blocked by anti-bot protection: Structural: no_content_elements on small page (3162 bytes, 403 chars visible) \n[COMPLETE] \u25cf http://127.0.0.1:35637/sitemap.xml                                                                   | \u2717 | \u23f1: 0.34s \n/tmp/opencode/q2-scratch-20261016/snapshot-scoped/smart_crawler/browser_session.py:38: XMLParsedAsHTMLWarning: It looks like you're using an HTML parser to parse an XML document.\n\nAssuming this really is an XML document, what you're doing might work, but you should know that using an XML parser will be more reliable. To parse this document as XML, make sure you have the Python package 'lxml' installed, and pass the keyword argument `features=\"xml\"` into the BeautifulSoup constructor.\n\nIf you want or need to use an HTML parser on this document, you can make this warning go away by filtering it. To do that, run this code before calling the BeautifulSoup constructor:\n\n    from bs4 import XMLParsedAsHTMLWarning\n    import warnings\n\n    warnings.filterwarnings(\"ignore\", category=XMLParsedAsHTMLWarning)\n\n  soup = BeautifulSoup(body or '', 'html.parser')\n[FETCH]... \u2193 http://127.0.0.1:35637/wp-json/wp/v2/types                                                           | \u2713 | \u23f1: 0.15s \n[SCRAPE].. \u25c6 http://127.0.0.1:35637/wp-json/wp/v2/types                                                           | \u2713 | \u23f1: 0.00s \n[COMPLETE] \u25cf http://127.0.0.1:35637/wp-json/wp/v2/types                                                           | \u2713 | \u23f1: 0.16s \n[FETCH]... \u2193 http://127.0.0.1:35637/wp-json/wp/v2/pages?per_p...le,type,slug,date,date_gmt,modified,modified_gmt  | \u2713 | \u23f1: 0.16s \n[SCRAPE].. \u25c6 http://127.0.0.1:35637/wp-json/wp/v2/pages?per_p...le,type,slug,date,date_gmt,modified,modified_gmt  | \u2713 | \u23f1: 0.00s \n[COMPLETE] \u25cf http://127.0.0.1:35637/wp-json/wp/v2/pages?per_p...le,type,slug,date,date_gmt,modified,modified_gmt  | \u2713 | \u23f1: 0.17s \n"
+  },
+  "stage1_inventory": {
+    "sealed_files": [
+      ".crawl4ai",
+      ".runtime",
+      "0001.body",
+      "0002.body",
+      "0003.body",
+      "INVENTORY.md",
+      "cache",
+      "evidence",
+      "inventory.json",
+      "recon-progress.json"
+    ],
+    "items": [
+      {
+        "id": "doc-8c78e7e0b089caeb36ff",
+        "kind": "document",
+        "url": "http://127.0.0.1:35637/",
+        "title": null,
+        "content_type": null,
+        "dates": {},
+        "sources": [
+          {
+            "file": "evidence/0001.body",
+            "sha256": "06091f14f5d12e03e844048a4afe9d0760e847aa7bf9af903316f8848edd9c42",
+            "discovered_from": "http://127.0.0.1:35637/sitemap.xml",
+            "locator": "XML loc[0]"
+          }
+        ],
+        "rest_items": [],
+        "gaps": [
+          "content_type_unknown",
+          "dates_unknown",
+          "title_unknown"
+        ],
+        "selection": "UNDECIDED",
+        "row": 1
+      },
+      {
+        "id": "doc-ac1509d80c5dc9b76767",
+        "kind": "document",
+        "url": "http://127.0.0.1:35637/services",
+        "title": "Services Overview",
+        "content_type": null,
+        "dates": {
+          "date": "2026-10-01T10:00:00"
+        },
+        "sources": [
+          {
+            "file": "evidence/0001.body",
+            "sha256": "06091f14f5d12e03e844048a4afe9d0760e847aa7bf9af903316f8848edd9c42",
+            "discovered_from": "http://127.0.0.1:35637/sitemap.xml",
+            "locator": "XML loc[1]"
+          },
+          {
+            "file": "evidence/0003.body",
+            "sha256": "a9049400c9e9dfcc950d57f358e1d2c76250917fdaa62fd31fe2f157da0ec4b6",
+            "discovered_from": "http://127.0.0.1:35637/wp-json/wp/v2/pages?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+            "locator": "$[0]"
+          }
+        ],
+        "rest_items": [
+          {
+            "id": 7,
+            "type": "page",
+            "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7"
+          }
+        ],
+        "gaps": [
+          "content_not_requested_in_recon",
+          "content_type_unknown"
+        ],
+        "selection": "UNDECIDED",
+        "wordpress_type": "page",
+        "row": 2
+      },
+      {
+        "id": "rest-4b7efd6aa95af93b002f",
+        "kind": "rest_collection",
+        "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages",
+        "title": "REST collection: Pages",
+        "content_type": null,
+        "dates": {},
+        "sources": [
+          {
+            "file": "evidence/0002.body",
+            "sha256": "4a12ed81e4c1a739f62b1bacaff4604ed9f45ebe1305bff49a3b120229e8d22a",
+            "discovered_from": "http://127.0.0.1:35637/wp-json/wp/v2/types",
+            "locator": "types.page"
+          }
+        ],
+        "rest_items": [],
+        "gaps": [
+          "content_type_unknown",
+          "dates_unknown"
+        ],
+        "selection": "UNDECIDED",
+        "wordpress_type": "page",
+        "row": 3
+      }
+    ],
+    "home_row": {
+      "id": "doc-8c78e7e0b089caeb36ff",
+      "kind": "document",
+      "url": "http://127.0.0.1:35637/",
+      "title": null,
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "06091f14f5d12e03e844048a4afe9d0760e847aa7bf9af903316f8848edd9c42",
+          "discovered_from": "http://127.0.0.1:35637/sitemap.xml",
+          "locator": "XML loc[0]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "dates_unknown",
+        "title_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "row": 1
+    },
+    "services_row": {
+      "id": "doc-ac1509d80c5dc9b76767",
+      "kind": "document",
+      "url": "http://127.0.0.1:35637/services",
+      "title": "Services Overview",
+      "content_type": null,
+      "dates": {
+        "date": "2026-10-01T10:00:00"
+      },
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "06091f14f5d12e03e844048a4afe9d0760e847aa7bf9af903316f8848edd9c42",
+          "discovered_from": "http://127.0.0.1:35637/sitemap.xml",
+          "locator": "XML loc[1]"
+        },
+        {
+          "file": "evidence/0003.body",
+          "sha256": "a9049400c9e9dfcc950d57f358e1d2c76250917fdaa62fd31fe2f157da0ec4b6",
+          "discovered_from": "http://127.0.0.1:35637/wp-json/wp/v2/pages?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+          "locator": "$[0]"
+        }
+      ],
+      "rest_items": [
+        {
+          "id": 7,
+          "type": "page",
+          "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7"
+        }
+      ],
+      "gaps": [
+        "content_not_requested_in_recon",
+        "content_type_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "page",
+      "row": 2
+    },
+    "contact_linked_candidate": null
+  },
+  "stage2_list": {
+    "argv": [
+      "-m",
+      "recon_pipeline.decide",
+      "list",
+      "--inventory",
+      "/tmp/opencode/q2-scratch-20261016/t21/recon/inventory.json"
+    ],
+    "exit": 0,
+    "stdout": "# DECIDE \u2014 numbered review inventory\n\n**FRESH_BOUNDED_RECON**; mode `sitemap`.\nVersion: `ef3c5764268333e821ae552d8f5bf903499c732924d65abe651f878229a0cf74`. All choices initially UNDECIDED.\n\nRow numbers refer ONLY to this saved version. HTML and REST require separate choices.\nStop: none; coverage gaps: none recorded; bounded scope only.\n\n## WordPress metadata coverage\n\n- page: advertised 1 records / 1 pages; enumerated 1 unique; status enumerated\\_metadata; gaps \\[\\].\n\n## Candidates\n\n1. **\\[title unknown\\]** \u2014 `doc-8c78e7e0b089caeb36ff` \u2014 document\n   - URL: http://127.0.0.1:35637/\n   - HTTP content type: unknown; WordPress type: unknown; dates: unknown\n   - REST item scope: not established\n   - Gaps: content\\_type\\_unknown, dates\\_unknown, title\\_unknown.\n   - Evidence: evidence/0001.body \u2014 XML loc\\[0\\]\n2. **Services Overview** \u2014 `doc-ac1509d80c5dc9b76767` \u2014 document\n   - URL: http://127.0.0.1:35637/services\n   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2026-10-01T10:00:00'}\n   - REST item scope: \\['http://127.0.0.1:35637/wp-json/wp/v2/pages/7'\\]\n   - Gaps: content\\_not\\_requested\\_in\\_recon, content\\_type\\_unknown.\n   - Evidence: evidence/0001.body \u2014 XML loc\\[1\\]\n   - Evidence: evidence/0003.body \u2014 $\\[0\\]\n3. **REST collection: Pages** \u2014 `rest-4b7efd6aa95af93b002f` \u2014 rest_collection\n   - URL: http://127.0.0.1:35637/wp-json/wp/v2/pages\n   - HTTP content type: unknown; WordPress type: page; dates: unknown\n   - REST item scope: not established\n   - Gaps: content\\_type\\_unknown, dates\\_unknown.\n   - Evidence: evidence/0002.body \u2014 types.page\n",
+    "stderr": ""
+  },
+  "rest_scope_expected": [
+    {
+      "id": 7,
+      "type": "page",
+      "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7"
+    }
+  ],
+  "stage3_select": {
+    "argv": [
+      "-m",
+      "recon_pipeline.decide",
+      "select",
+      "--inventory",
+      "/tmp/opencode/q2-scratch-20261016/t21/recon/inventory.json",
+      "--out",
+      "/tmp/opencode/q2-scratch-20261016/t21/decision.json",
+      "--by",
+      "Opy \u2014 Q2 QA (T-21 fixture flow)",
+      "--include-html",
+      "doc-8c78e7e0b089caeb36ff",
+      "--include-html",
+      "doc-ac1509d80c5dc9b76767",
+      "--include-rest",
+      "doc-ac1509d80c5dc9b76767"
+    ],
+    "exit": 0,
+    "stdout": "Explicit choices saved: /tmp/opencode/q2-scratch-20261016/t21/decision.json; no collection executed\n",
+    "stderr": ""
+  },
+  "stage3_decision": {
+    "schema": "web-recon-selection-v1",
+    "inventory_id": "ef3c5764268333e821ae552d8f5bf903499c732924d65abe651f878229a0cf74",
+    "inventory_file_sha256": "7455b5fdf323a12c9a3ff101f9f4e3b544722b7a5782ce68b42890a1cc84a52a",
+    "recorded_at": "2026-10-16T08:56:39.274415+00:00",
+    "recorded_by": "Opy \u2014 Q2 QA (T-21 fixture flow)",
+    "example_only": false,
+    "include_html": [
+      "doc-8c78e7e0b089caeb36ff",
+      "doc-ac1509d80c5dc9b76767"
+    ],
+    "include_rest": [
+      "doc-ac1509d80c5dc9b76767"
+    ],
+    "exclude": [],
+    "rest_scopes": {
+      "doc-ac1509d80c5dc9b76767": [
+        {
+          "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7",
+          "paginate": false
+        }
+      ]
+    },
+    "note": "Unspecified rows remain undecided; no model exclusions or collection execution."
+  },
+  "stage4_export": {
+    "argv": [
+      "-m",
+      "recon_pipeline.decide",
+      "export",
+      "--inventory",
+      "/tmp/opencode/q2-scratch-20261016/t21/recon/inventory.json",
+      "--decision",
+      "/tmp/opencode/q2-scratch-20261016/t21/decision.json",
+      "--out",
+      "/tmp/opencode/q2-scratch-20261016/t21/plan.json"
+    ],
+    "exit": 0,
+    "stdout": "Collector plan exported: /tmp/opencode/q2-scratch-20261016/t21/plan.json; no collection executed\n",
+    "stderr": ""
+  },
+  "stage4_plan": {
+    "plan": {
+      "pages": [
+        "http://127.0.0.1:35637/",
+        "http://127.0.0.1:35637/services"
+      ],
+      "rest": [
+        {
+          "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7",
+          "paginate": false
+        }
+      ]
+    },
+    "plan_review": {
+      "inventory_file_sha256": "7455b5fdf323a12c9a3ff101f9f4e3b544722b7a5782ce68b42890a1cc84a52a",
+      "decision_sha256": "f7c06f3de1c0a25aa2ddb2f0940bbf88612d76d6be478e86dd1066cb39978340",
+      "recorded_by": "Opy \u2014 Q2 QA (T-21 fixture flow)",
+      "example_only": false,
+      "selected_html_urls": [
+        "http://127.0.0.1:35637/",
+        "http://127.0.0.1:35637/services"
+      ],
+      "selected_rest_scope": [
+        {
+          "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7",
+          "paginate": false
+        }
+      ],
+      "selected_gaps": {
+        "doc-8c78e7e0b089caeb36ff": [
+          "content_type_unknown",
+          "dates_unknown",
+          "title_unknown"
+        ],
+        "doc-ac1509d80c5dc9b76767": [
+          "content_not_requested_in_recon",
+          "content_type_unknown"
+        ]
+      },
+      "collection_executed": false,
+      "note": "This export cannot mark metadata reconnaissance as complete capture. Human approval is a recorded assertion, not authenticated by the CLI."
+    }
+  },
+  "stage5_collect": {
+    "argv": [
+      "-m",
+      "recon_pipeline",
+      "collect",
+      "--collection",
+      "/tmp/opencode/q2-scratch-20261016/snapshot-scoped/outputs/collections/qa-t21-flow",
+      "--plan",
+      "/tmp/opencode/q2-scratch-20261016/t21/plan.json"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"collection_outcome\": \"complete\",\n  \"stop_reason\": null,\n  \"cleanup_error\": null,\n  \"completed\": 3,\n  \"remaining\": 0,\n  \"elapsed_s\": 17.818513958947733\n}\nCHECKLIST: /tmp/opencode/q2-scratch-20261016/snapshot-scoped/outputs/collections/qa-t21-flow/checklist.json\n",
+    "stderr": "[FETCH]... \u2193 http://127.0.0.1:35637/                                                                              | \u2713 | \u23f1: 3.49s \n[SCRAPE].. \u25c6 http://127.0.0.1:35637/                                                                              | \u2713 | \u23f1: 0.00s \n[COMPLETE] \u25cf http://127.0.0.1:35637/                                                                              | \u2713 | \u23f1: 3.51s \n[FETCH]... \u2193 http://127.0.0.1:35637/services                                                                      | \u2713 | \u23f1: 3.33s \n[SCRAPE].. \u25c6 http://127.0.0.1:35637/services                                                                      | \u2713 | \u23f1: 0.00s \n[COMPLETE] \u25cf http://127.0.0.1:35637/services                                                                      | \u2713 | \u23f1: 3.34s \n[FETCH]... \u2193 http://127.0.0.1:35637/wp-json/wp/v2/pages/7                                                         | \u2713 | \u23f1: 0.14s \n[SCRAPE].. \u25c6 http://127.0.0.1:35637/wp-json/wp/v2/pages/7                                                         | \u2713 | \u23f1: 0.00s \n[COMPLETE] \u25cf http://127.0.0.1:35637/wp-json/wp/v2/pages/7                                                         | \u2713 | \u23f1: 0.14s \n"
+  },
+  "stage5_checklist": {
+    "items": [
+      {
+        "id": "5a737feb36a69aa93b4fbee9",
+        "kind": "page",
+        "url": "http://127.0.0.1:35637/",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "id": "b566f749258628cc2f70adf4",
+        "kind": "page",
+        "url": "http://127.0.0.1:35637/services",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "id": "3826ff6e8374f10c875e022e",
+        "kind": "rest",
+        "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7",
+        "status": "completed",
+        "error": null
+      }
+    ],
+    "runs": [
+      {
+        "started_at": "2026-10-16T08:56:42.109570+00:00",
+        "requests": [
+          {
+            "id": "5a737feb36a69aa93b4fbee9",
+            "url": "http://127.0.0.1:35637/",
+            "kind": "page",
+            "start": 964276.859551074,
+            "preceding_completion": null,
+            "completion": 964280.407918741,
+            "completion_epoch": 1792141006.2712655
+          },
+          {
+            "id": "b566f749258628cc2f70adf4",
+            "url": "http://127.0.0.1:35637/services",
+            "kind": "page",
+            "start": 964285.413875279,
+            "preceding_completion": 964280.407918741,
+            "completion": 964288.783596864,
+            "completion_epoch": 1792141014.646943
+          },
+          {
+            "id": "3826ff6e8374f10c875e022e",
+            "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7",
+            "kind": "rest",
+            "start": 964293.788227127,
+            "preceding_completion": 964288.783596864,
+            "completion": 964293.969496316,
+            "completion_epoch": 1792141019.8328426
+          }
+        ],
+        "stop_reason": null,
+        "cleanup_error": null,
+        "gap_seconds": 5,
+        "max_requests": 100,
+        "max_seconds": 1800,
+        "max_bytes": 100000000,
+        "response_cap": 10485760,
+        "browser_traffic": {
+          "request:document": 3,
+          "status:200": 3
+        },
+        "runtime": {
+          "python": "3.12.3",
+          "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+          "crawl4ai": "0.9.3",
+          "playwright": "1.52.0",
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+          "cache": "BYPASS",
+          "html_wait_for_images": true,
+          "html_post_load_delay": 3,
+          "navigation_timeout_ms": {
+            "page": 90000,
+            "rest": 30000
+          },
+          "tls_verification": true,
+          "browser": "136.0.7103.25"
+        },
+        "cleanup_messages": [],
+        "collection_outcome": "complete",
+        "finished_at": "2026-10-16T08:56:59.928052+00:00",
+        "elapsed_s": 17.818513958947733,
+        "completed": 3,
+        "remaining": 0
+      }
+    ]
+  },
+  "stage5_saved_results": {
+    "5a737feb36a69aa93b4fbee9": {
+      "url": "http://127.0.0.1:35637/",
+      "kind": "page",
+      "ok": true,
+      "error": null,
+      "body_complete": true,
+      "sha256": "0aeb842392d40305376b6afa01354ee3cc6958e29c07defa06fb49f9b56cfe8b",
+      "bytes": 477,
+      "status": 200,
+      "transport": "Crawl4AI Chromium navigation; rendered HTML",
+      "coverage_scope": null,
+      "coverage_note": null,
+      "header_keys": [
+        "content-length",
+        "content-type"
+      ]
+    },
+    "b566f749258628cc2f70adf4": {
+      "url": "http://127.0.0.1:35637/services",
+      "kind": "page",
+      "ok": true,
+      "error": null,
+      "body_complete": true,
+      "sha256": "ad05b53e747043feed896895ef56c30a43ad54002177a094084c69540712fe3d",
+      "bytes": 451,
+      "status": 200,
+      "transport": "Crawl4AI Chromium navigation; rendered HTML",
+      "coverage_scope": null,
+      "coverage_note": null,
+      "header_keys": [
+        "content-length",
+        "content-type"
+      ]
+    },
+    "3826ff6e8374f10c875e022e": {
+      "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7",
+      "kind": "rest",
+      "ok": true,
+      "error": null,
+      "body_complete": true,
+      "sha256": "1c481f2c440da0ad788afe1221bfeb69c87c72745cd9b50580c52c67ba3d4728",
+      "bytes": 143,
+      "status": 200,
+      "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+      "coverage_scope": "selected_response_only",
+      "coverage_note": "No claim of whole-collection coverage; pagination was not requested.",
+      "header_keys": [
+        "content-length",
+        "content-type"
+      ],
+      "rest_body_sha256": "1c481f2c440da0ad788afe1221bfeb69c87c72745cd9b50580c52c67ba3d4728",
+      "served_entity_sha256": "1c481f2c440da0ad788afe1221bfeb69c87c72745cd9b50580c52c67ba3d4728"
+    }
+  },
+  "stage5_page_texts_oracle": {
+    "5a737feb36a69aa93b4fbee9": {
+      "Acme Fixture Home": true,
+      "Book the Workshop": true,
+      "\u00dcn\u00efcode \u4e2d\u6587 \ud83e\udd8a": true,
+      "Strategy engagement": true
+    },
+    "b566f749258628cc2f70adf4": {
+      "Services Overview": true,
+      "Strategy": true,
+      "Delivery": true,
+      "Verification": true
+    }
+  },
+  "stage5_rest_bytes_identical": true,
+  "stage6_prepare": {
+    "argv": [
+      "/tmp/opencode/q2-scratch-20261016/snapshot-scoped/agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py",
+      "--collection",
+      "/tmp/opencode/q2-scratch-20261016/snapshot-scoped/outputs/collections/qa-t21-flow",
+      "--out",
+      "/tmp/opencode/q2-scratch-20261016/snapshot-scoped/outputs/prepared/qa-t21-prepared"
+    ],
+    "exit": 0,
+    "stdout": "{\"prepared_pages\": 2, \"unavailable_items\": 0, \"out\": \"/tmp/opencode/q2-scratch-20261016/snapshot-scoped/outputs/prepared/qa-t21-prepared\", \"next\": \"Agent inspects Markdown/source, writes ARCHITECT_BRIEF.md and GAPS_AND_REQUESTS.md, then verifies references.\"}\n",
+    "stderr": ""
+  },
+  "prepared_dump": {
+    "out_created": true,
+    "package_files": [
+      "BOILERPLATE.md",
+      "SOURCE_INDEX.json",
+      "pages/5a737feb36a69aa93b4fbee9.md",
+      "pages/b566f749258628cc2f70adf4.md"
+    ],
+    "index": {
+      "schema": "web-recon-prepared-v0.1",
+      "prepared_at": "2026-10-16T08:57:01.383241+00:00",
+      "path_base": "repository root (same layout in review ZIP)",
+      "source_collection": "outputs/collections/qa-t21-flow",
+      "checklist": {
+        "file": "outputs/collections/qa-t21-flow/checklist.json",
+        "sha256": "8be16b5db7454236c58e6776e9d1460ed0bdc0e348810a8ba6c6a764144bd8d4"
+      },
+      "scope": "Selected saved sample; not whole-site coverage",
+      "pages": [
+        {
+          "id": "5a737feb36a69aa93b4fbee9",
+          "url": "http://127.0.0.1:35637/",
+          "final_url": "http://127.0.0.1:35637/",
+          "capture_saved_at": "2026-10-16T08:56:46.295957+00:00",
+          "document_type": "page",
+          "title": "Acme Fixture Home",
+          "source": {
+            "raw_file": "outputs/collections/qa-t21-flow/attempts/5a737feb36a69aa93b4fbee9/ecff2204727f4941bf9f862fcf32abba/body",
+            "raw_sha256": "0aeb842392d40305376b6afa01354ee3cc6958e29c07defa06fb49f9b56cfe8b",
+            "raw_bytes": 477,
+            "metadata_file": "outputs/collections/qa-t21-flow/attempts/5a737feb36a69aa93b4fbee9/ecff2204727f4941bf9f862fcf32abba/result.json",
+            "metadata_sha256": "fc267b6ddd5fe130126c81701573fe8427ad476c81e009de4a4a0eea3e249099"
+          },
+          "extraction": {
+            "css_selector": "main",
+            "match_index": 0,
+            "removed_markup": "script, style, noscript, template, svg, input[type=\"hidden\"]",
+            "separated_boilerplate": "header, footer, nav, #thrive-header, #thrive-footer, [role=\"navigation\"], [role=\"banner\"], [role=\"contentinfo\"]",
+            "basis": "observed semantic/theme container; agent must inspect the boundary"
+          },
+          "prepared": {
+            "file": "outputs/prepared/qa-t21-prepared/pages/5a737feb36a69aa93b4fbee9.md",
+            "sha256": "0e9243a091df0dc19ac2e2c53a5ab2a1483c746b8146ed2c7750a07085c33833"
+          },
+          "content": {
+            "headings": [
+              "Acme Fixture Home"
+            ],
+            "paragraphs": 1,
+            "list_items": 3,
+            "empty_list_items_removed": 0,
+            "links": [
+              {
+                "label": "Book the Workshop \u2192",
+                "source_href": "/contact",
+                "resolved_url": "http://127.0.0.1:35637/contact"
+              },
+              {
+                "label": "Explore services",
+                "source_href": "/services",
+                "resolved_url": "http://127.0.0.1:35637/services"
+              }
+            ],
+            "images": [],
+            "images_note": "not included as downloaded image bytes or OCR; loading unverified"
+          },
+          "boilerplate_locations": [],
+          "gaps": []
+        },
+        {
+          "id": "b566f749258628cc2f70adf4",
+          "url": "http://127.0.0.1:35637/services",
+          "final_url": "http://127.0.0.1:35637/services",
+          "capture_saved_at": "2026-10-16T08:56:54.649965+00:00",
+          "document_type": "page",
+          "title": "Services Overview",
+          "source": {
+            "raw_file": "outputs/collections/qa-t21-flow/attempts/b566f749258628cc2f70adf4/c21b257344f74d97a4774067798efa4a/body",
+            "raw_sha256": "ad05b53e747043feed896895ef56c30a43ad54002177a094084c69540712fe3d",
+            "raw_bytes": 451,
+            "metadata_file": "outputs/collections/qa-t21-flow/attempts/b566f749258628cc2f70adf4/c21b257344f74d97a4774067798efa4a/result.json",
+            "metadata_sha256": "87b15b94f43579db37912422f815546c8aa09a83ac2af60f7828e2a81f0b9e90"
+          },
+          "extraction": {
+            "css_selector": "main",
+            "match_index": 0,
+            "removed_markup": "script, style, noscript, template, svg, input[type=\"hidden\"]",
+            "separated_boilerplate": "header, footer, nav, #thrive-header, #thrive-footer, [role=\"navigation\"], [role=\"banner\"], [role=\"contentinfo\"]",
+            "basis": "observed semantic/theme container; agent must inspect the boundary"
+          },
+          "prepared": {
+            "file": "outputs/prepared/qa-t21-prepared/pages/b566f749258628cc2f70adf4.md",
+            "sha256": "2a90cd27455136d8ec2deb6c1b113eda9199da66cb9f7411d7f85006dec872b5"
+          },
+          "content": {
+            "headings": [
+              "Services Overview",
+              "Strategy",
+              "Delivery",
+              "Verification"
+            ],
+            "paragraphs": 3,
+            "list_items": 0,
+            "empty_list_items_removed": 0,
+            "links": [],
+            "images": [],
+            "images_note": "not included as downloaded image bytes or OCR; loading unverified"
+          },
+          "boilerplate_locations": [],
+          "gaps": []
+        }
+      ],
+      "rest_context": [
+        {
+          "id": "3826ff6e8374f10c875e022e",
+          "url": "http://127.0.0.1:35637/wp-json/wp/v2/pages/7",
+          "capture_saved_at": "2026-10-16T08:56:59.835033+00:00",
+          "source": {
+            "raw_file": "outputs/collections/qa-t21-flow/attempts/3826ff6e8374f10c875e022e/36b5cb63a6974c94be96689e94048b73/body",
+            "raw_sha256": "1c481f2c440da0ad788afe1221bfeb69c87c72745cd9b50580c52c67ba3d4728",
+            "raw_bytes": 143,
+            "metadata_file": "outputs/collections/qa-t21-flow/attempts/3826ff6e8374f10c875e022e/36b5cb63a6974c94be96689e94048b73/result.json",
+            "metadata_sha256": "762cf6180fb5db39a949937afeed9cff30138dc0c5197c764c1b4543ca4182f2"
+          },
+          "scope": "saved selected REST response only; not assumed collection coverage"
+        }
+      ],
+      "unavailable_items": [],
+      "historical_context": [],
+      "agent_authored": [],
+      "image_completeness": "UNVERIFIED; image references do not prove images loaded",
+      "boilerplate": {
+        "file": "outputs/prepared/qa-t21-prepared/BOILERPLATE.md",
+        "sha256": "1d655d11015797cee79294333b79802591a4652e4e43c349be4c70e0903d99d2"
+      }
+    },
+    "pages": {
+      "5a737feb36a69aa93b4fbee9.md": "Source: <http://127.0.0.1:35637/>\n\nCapture saved (UTC): 2026-10-16T08:56:46.295957+00:00  \nObserved type: page  \nSource ID: `5a737feb36a69aa93b4fbee9`\n\n<!-- MAIN CONTENT -->\n\n# Acme Fixture Home\n\nFixture home paragraph describing the workshop offering, with \u00dcn\u00efcode \u4e2d\u6587 \ud83e\udd8a included so that rendered-body and prepared-Markdown fidelity can be checked byte-for-text.\n\n  * Strategy engagement\n  * Delivery support\n  * Verification pass\n\n[Book the Workshop \u2192](http://127.0.0.1:35637/contact) [Explore services](http://127.0.0.1:35637/services)\n",
+      "b566f749258628cc2f70adf4.md": "Source: <http://127.0.0.1:35637/services>\n\nCapture saved (UTC): 2026-10-16T08:56:54.649965+00:00  \nObserved type: page  \nSource ID: `b566f749258628cc2f70adf4`\n\n<!-- MAIN CONTENT -->\n\n# Services Overview\n\n## Strategy\n\nStrategy paragraph with ordinary fixture text for extraction checks.\n\n## Delivery\n\nDelivery paragraph with ordinary fixture text for extraction checks.\n\n## Verification\n\nVerification paragraph with more ordinary fixture text so that no structural heuristic refuses the page during native navigation.\n"
+    },
+    "boilerplate": "# Separated navigation and footer\n\nObserved source text, not verified functionality. Main sales sections remain in page Markdown.\n\n"
+  },
+  "prepared_text_oracle": {
+    "home_md_has": {
+      "Acme Fixture Home": true,
+      "Book the Workshop": true,
+      "\u00dcn\u00efcode \u4e2d\u6587 \ud83e\udd8a": true,
+      "Strategy engagement": true
+    },
+    "services_md_has": {
+      "Services Overview": true,
+      "Strategy": true,
+      "Delivery": true,
+      "Verification": true
+    }
+  },
+  "server_events": [
+    {
+      "arrival": 964259.936759287,
+      "arrival_epoch": 1792140985.8001056,
+      "method": "GET",
+      "path": "/sitemap.xml",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 964265.197602416,
+      "arrival_epoch": 1792140991.0609481,
+      "method": "GET",
+      "path": "/wp-json/wp/v2/types",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 964270.393976714,
+      "arrival_epoch": 1792140996.2573225,
+      "method": "GET",
+      "path": "/wp-json/wp/v2/pages",
+      "query": "per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 964277.063631323,
+      "arrival_epoch": 1792141002.9269767,
+      "method": "GET",
+      "path": "/",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 964285.476349157,
+      "arrival_epoch": 1792141011.3396947,
+      "method": "GET",
+      "path": "/services",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 964293.846349228,
+      "arrival_epoch": 1792141019.7096946,
+      "method": "GET",
+      "path": "/wp-json/wp/v2/pages/7",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    }
+  ],
+  "decide_request_shapes": {
+    "types_requests": 1,
+    "types_without_fields": true,
+    "metadata_requests": 1,
+    "metadata_queries": [
+      "per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt"
+    ],
+    "projection_matches_fields": true,
+    "content_not_projected": true
+  },
+  "traffic_oracle": {
+    "contact_fetched": false,
+    "unexpected_paths": [],
+    "all_loopback_by_construction": true
+  },
+  "assessment": {
+    "recon_exit_zero": true,
+    "inventory_has_home_and_services": true,
+    "linked_contact_candidate_not_fetched": true,
+    "types_without_fields": true,
+    "metadata_projection_ok": true,
+    "select_export_exit_zero": true,
+    "plan_pages_exact": true,
+    "plan_has_rest_scope": true,
+    "collect_exit_zero": true,
+    "all_items_completed": true,
+    "page_bodies_contain_oracle": true,
+    "rest_bytes_identical": true,
+    "prepare_exit_zero": true,
+    "prepared_md_contains_oracle": true
+  }
+}

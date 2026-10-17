@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="10" time="2.708" timestamp="2026-10-11T21:08:33.400351+06:00" hostname="StarkZorin"><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_landing_page_not_newsletter_and_boilerplate_separated" time="0.047" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_unicode_paragraphs_lists_links_cta_and_scripts" time="0.026" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_invalid_completed_reference_refused_before_output[body]" time="0.015" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_invalid_completed_reference_refused_before_output[metadata]" time="0.012" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_invalid_completed_reference_refused_before_output[escaping_reference]" time="0.015" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_preserves_existing_packages_and_input[existing]" time="0.015" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_preserves_existing_packages_and_input[inside]" time="0.015" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_pending_item_is_gap_not_fabricated_page" time="0.008" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_actual_three_page_capture_exact_content" time="0.821"><failure message="assert 'Page 1 of 7' in 'Agency Services Home Archives: Agency Services Agency Services Garage Door Repair PPC Agency – Get More Leads &amp; Sales...Campaigns with the Right Agency In the dynamic world ... Read More Page  1  of  7 First Previous 1 2 3 ... 7 Next Last'&#10; +  where 'Agency Services Home Archives: Agency Services Agency Services Garage Door Repair PPC Agency – Get More Leads &amp; Sales...Campaigns with the Right Agency In the dynamic world ... Read More Page  1  of  7 First Previous 1 2 3 ... 7 Next Last' = get_text(' ', strip=True)&#10; +    where get_text = &lt;h1&gt;Agency Services&lt;/h1&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=&quot;https://cyberizegroup.com/?cat_source=direct&amp;amp;cat_medium=%28none%29&quot;&gt;Hom...a href=&quot;https://cyberizegroup.com/agency-services/page/7/?cat_source=direct&amp;amp;cat_medium=%28none%29&quot;&gt; Last  &lt;/a&gt;&lt;/p&gt;\n.get_text">tmp_path = PosixPath('/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/prepare-skill/2026-10-11_150309Z/focused-verified/fixtures/test_actual_three_page_capture0')
+
+    def test_actual_three_page_capture_exact_content(tmp_path):
+        root=REPO/'outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505'
+        # Keep the real inputs untouched; output only in the test directory.
+        result=helper.prepare(root,tmp_path/'actual',repo=Path('/'))
+        assert [p['document_type'] for p in result['pages']]==['landing page','category/article listing','article']
+        for row in result['pages']:
+            raw=BeautifulSoup((Path('/')/row['source']['raw_file']).read_bytes().decode('utf-8'),'html.parser')
+            node=raw.select(row['extraction']['css_selector'])[0]
+            for boiler in node.select(helper.BOILERPLATE):boiler.decompose()
+            generated=(Path('/')/row['prepared']['file']).read_text().split('&lt;!-- MAIN CONTENT --&gt;',1)[1]
+            md=BeautifulSoup(MarkdownIt().render(generated),'html.parser')
+            assert [text(n) for n in node.select('h1,h2,h3,h4,h5,h6')]==[text(n) for n in md.select('h1,h2,h3,h4,h5,h6')]
+            paragraphs=[text(p) for p in node.select('p') if text(p)]
+            rendered_paragraphs=[text(p) for p in md.select('p')]
+            assert all(p in rendered_paragraphs for p in paragraphs)
+            # One archive breadcrumb li is empty spacing, not a content item.
+            assert [text(n) for n in node.select('li') if text(n)]==[text(n) for n in md.select('li')]
+            meaningful={(text(a),urljoin(row['final_url'],a['href'])) for a in node.select('a[href]') if text(a) and a['href'].startswith(('/', 'http','mailto:','tel:','#'))}
+            rendered={(text(a),a['href']) for a in md.select('a[href]')}
+            assert meaningful &lt;= rendered
+            if row['document_type']=='article':
+                assert len(paragraphs)==7 and len(md.select('li'))==15
+                assert len(node.select('h1,h2,h3,h4,h5,h6'))==6
+            if row['document_type']=='landing page':
+                assert 'We provide Digital Solutions for growing your business' in [text(h) for h in md.select('h1')]
+            if row['document_type']=='category/article listing':
+                assert 'category-agency-services' in raw.body['class']
+&gt;               assert 'Page 1 of 7' in md.get_text(' ',strip=True)
+E               assert 'Page 1 of 7' in 'Agency Services Home Archives: Agency Services Agency Services Garage Door Repair PPC Agency – Get More Leads &amp; Sales...Campaigns with the Right Agency In the dynamic world ... Read More Page  1  of  7 First Previous 1 2 3 ... 7 Next Last'
+E                +  where 'Agency Services Home Archives: Agency Services Agency Services Garage Door Repair PPC Agency – Get More Leads &amp; Sales...Campaigns with the Right Agency In the dynamic world ... Read More Page  1  of  7 First Previous 1 2 3 ... 7 Next Last' = get_text(' ', strip=True)
+E                +    where get_text = &lt;h1&gt;Agency Services&lt;/h1&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href="https://cyberizegroup.com/?cat_source=direct&amp;amp;cat_medium=%28none%29"&gt;Hom...a href="https://cyberizegroup.com/agency-services/page/7/?cat_source=direct&amp;amp;cat_medium=%28none%29"&gt; Last  &lt;/a&gt;&lt;/p&gt;\n.get_text
+
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py:126: AssertionError</failure></testcase><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_empty_icon_separator_does_not_create_false_nested_list" time="0.024"><failure message="AssertionError: assert ['Home Archive', 'Archive'] == ['Home', 'Archive']&#10;  &#10;  At index 0 diff: 'Home Archive' != 'Home'&#10;  Use -v to get more diff">tmp_path = PosixPath('/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/prepare-skill/2026-10-11_150309Z/focused-verified/fixtures/test_empty_icon_separator_does0')
+
+    def test_empty_icon_separator_does_not_create_false_nested_list(tmp_path):
+        html='&lt;html&gt;&lt;body&gt;&lt;main&gt;&lt;ul&gt;&lt;li&gt;Home&lt;/li&gt;&lt;li&gt;&lt;svg&gt;&lt;path/&gt;&lt;/svg&gt;&lt;/li&gt;&lt;li&gt;Archive&lt;/li&gt;&lt;/ul&gt;&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;'
+        root,_=saved(tmp_path,html);result=helper.prepare(root,tmp_path/'derived',repo=tmp_path)
+        md=document(result,tmp_path)
+&gt;       assert [text(li) for li in md.select('li')]==['Home','Archive']
+E       AssertionError: assert ['Home Archive', 'Archive'] == ['Home', 'Archive']
+E         
+E         At index 0 diff: 'Home Archive' != 'Home'
+E         Use -v to get more diff
+
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py:133: AssertionError</failure></testcase></testsuite></testsuites>

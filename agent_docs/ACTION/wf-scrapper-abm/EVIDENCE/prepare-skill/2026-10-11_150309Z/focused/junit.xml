@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="9" time="2.692" timestamp="2026-10-11T21:07:08.025560+06:00" hostname="StarkZorin"><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_landing_page_not_newsletter_and_boilerplate_separated" time="0.042" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_unicode_paragraphs_lists_links_cta_and_scripts" time="0.028" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_invalid_completed_reference_refused_before_output[body]" time="0.019" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_invalid_completed_reference_refused_before_output[metadata]" time="0.015" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_invalid_completed_reference_refused_before_output[escaping_reference]" time="0.016" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_preserves_existing_packages_and_input[existing]" time="0.015" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_preserves_existing_packages_and_input[inside]" time="0.014" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_pending_item_is_gap_not_fabricated_page" time="0.007" /><testcase classname="agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved" name="test_actual_three_page_capture_exact_content" time="0.827"><failure message="AssertionError: assert ['Home', '', ...ncy Services'] == ['Home', 'Arc...ncy Services']&#10;  &#10;  At index 1 diff: '' != 'Archives: Agency Services'&#10;  Use -v to get more diff">tmp_path = PosixPath('/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/prepare-skill/2026-10-11_150309Z/focused/fixtures/test_actual_three_page_capture0')
+
+    def test_actual_three_page_capture_exact_content(tmp_path):
+        root=REPO/'outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505'
+        # Keep the real inputs untouched; output only in the test directory.
+        result=helper.prepare(root,tmp_path/'actual',repo=Path('/'))
+        assert [p['document_type'] for p in result['pages']]==['landing page','category/article listing','article']
+        for row in result['pages']:
+            raw=BeautifulSoup((Path('/')/row['source']['raw_file']).read_bytes().decode('utf-8'),'html.parser')
+            node=raw.select(row['extraction']['css_selector'])[0]
+            for boiler in node.select(helper.BOILERPLATE):boiler.decompose()
+            generated=(Path('/')/row['prepared']['file']).read_text().split('&lt;!-- MAIN CONTENT --&gt;',1)[1]
+            md=BeautifulSoup(MarkdownIt().render(generated),'html.parser')
+            assert [text(n) for n in node.select('h1,h2,h3,h4,h5,h6')]==[text(n) for n in md.select('h1,h2,h3,h4,h5,h6')]
+            paragraphs=[text(p) for p in node.select('p') if text(p)]
+            rendered_paragraphs=[text(p) for p in md.select('p')]
+            assert all(p in rendered_paragraphs for p in paragraphs)
+&gt;           assert [text(n) for n in node.select('li')]==[text(n) for n in md.select('li')]
+E           AssertionError: assert ['Home', '', ...ncy Services'] == ['Home', 'Arc...ncy Services']
+E             
+E             At index 1 diff: '' != 'Archives: Agency Services'
+E             Use -v to get more diff
+
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py:114: AssertionError</failure></testcase></testsuite></testsuites>

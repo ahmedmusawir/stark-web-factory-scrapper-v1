@@ -1,0 +1,73 @@
+[
+  {
+    "command": [
+      "venv/bin/python",
+      "-m",
+      "recon_pipeline.decide",
+      "import",
+      "--collection",
+      "outputs/collections/CyberizeGroup-selected-live-01",
+      "--out",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/sample-final/review"
+    ],
+    "exit": 0,
+    "stdout": "IMPORTED_CAPTURE_INVENTORY: 10 candidates; agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/sample-final/review\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "venv/bin/python",
+      "-m",
+      "recon_pipeline.decide",
+      "select",
+      "--inventory",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/sample-final/review/inventory.json",
+      "--include-html",
+      "3",
+      "--include-rest",
+      "doc-c6b9265b51bf57660bb4",
+      "--exclude",
+      "1",
+      "--by",
+      "Cody illustrative example; NOT Tony approval",
+      "--example",
+      "--out",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/sample-final/EXAMPLE_ONLY_decision.json"
+    ],
+    "exit": 0,
+    "stdout": "Explicit choices saved: agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/sample-final/EXAMPLE_ONLY_decision.json; no collection executed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "venv/bin/python",
+      "-m",
+      "recon_pipeline.decide",
+      "export",
+      "--inventory",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/sample-final/review/inventory.json",
+      "--decision",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/sample-final/EXAMPLE_ONLY_decision.json",
+      "--out",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/sample-final/EXAMPLE_ONLY_collector-plan.json"
+    ],
+    "exit": 0,
+    "stdout": "Collector plan exported: agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/sample-final/EXAMPLE_ONLY_collector-plan.json; no collection executed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "venv/bin/python",
+      "-m",
+      "recon_pipeline.decide",
+      "import",
+      "--raw",
+      "outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z",
+      "--out",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/imported-raw-review"
+    ],
+    "exit": 0,
+    "stdout": "IMPORTED_CAPTURE_INVENTORY: 217 candidates; agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/imported-raw-review\n",
+    "stderr": ""
+  }
+]

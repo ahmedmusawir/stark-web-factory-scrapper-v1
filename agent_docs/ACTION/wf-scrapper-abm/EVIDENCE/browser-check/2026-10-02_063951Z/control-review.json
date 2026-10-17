@@ -1,0 +1,25 @@
+{
+  "syntax": "pass",
+  "offline_validator_checks": 4,
+  "validator_checks": "pass",
+  "no_blanket_method_shutdown": true,
+  "product_crawl_page_call_sites": 1,
+  "direct_playwright_import": false,
+  "rest_transport": "window.fetch through page.evaluate on the original live Chromium page",
+  "rest_redirects": "error (do not follow)",
+  "rest_gate": "successful saved-HTML and saved-Markdown article verification, then >=5 seconds",
+  "wrapper_sha256": "06d5eaf7b050f1a12160a5a906f9174ec53d51e34771f20a8b377c97afbde624",
+  "python": "3.12.3 (main, Sep 18 2026, 20:16:10) [GCC 13.3.0]",
+  "installed_versions": {
+    "crawl4ai": "0.9.3",
+    "playwright": "1.52.0",
+    "requests": "2.32.3",
+    "beautifulsoup4": "4.13.4"
+  },
+  "local_api_evidence": [
+    "crawl4ai/async_crawler_strategy.py:1216-1229 retains the last headless page",
+    "crawl4ai/browser_manager.py:1784-1804 releases refcount without closing this active browser",
+    "same hooks and CDP APIs inspected for the prior diagnostic"
+  ],
+  "preparation_external_requests": 0
+}

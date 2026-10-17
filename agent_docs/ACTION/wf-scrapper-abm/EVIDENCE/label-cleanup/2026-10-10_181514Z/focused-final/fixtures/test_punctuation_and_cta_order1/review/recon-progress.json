@@ -1,0 +1,133 @@
+{
+  "schema": "web-recon-review-v1",
+  "origin": "FRESH_BOUNDED_RECON",
+  "mode": "default",
+  "created_at": "2026-10-10T18:18:01.002460+00:00",
+  "context": {
+    "base": "http://127.0.0.1:9888/",
+    "wp_api_base": "http://127.0.0.1:9888/wp-json/",
+    "bounds": {
+      "requests": 12,
+      "discovery_pages": 3,
+      "depth": 0,
+      "rest_pages_per_type": 1,
+      "per_page": 20,
+      "candidates": 5000,
+      "seconds": 300,
+      "gap_seconds": 0
+    },
+    "scope": "same-origin planned URLs; ordinary browser redirects/resources add traffic",
+    "purpose": "recon metadata only; never marks full collector tasks complete",
+    "known_collection": null,
+    "discovery_pages_read": 1
+  },
+  "items": [
+    {
+      "id": "doc-e6f520bab8651520fdcb",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/",
+      "title": "Saved blog fixture",
+      "content_type": "text/html",
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "0faadbd75b3e59aff02b91d4cb955ca487a32fe19357bcf750a2c2eb9bc5e047",
+          "discovered_from": "http://127.0.0.1:9888/",
+          "locator": "html/title and date metadata"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [],
+      "selection": "UNDECIDED"
+    },
+    {
+      "id": "doc-5cd7e761fd3b4bed76a2",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/article",
+      "title": "Useful article heading",
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "0faadbd75b3e59aff02b91d4cb955ca487a32fe19357bcf750a2c2eb9bc5e047",
+          "discovered_from": "http://127.0.0.1:9888/",
+          "locator": "a[href][0]"
+        },
+        {
+          "file": "evidence/0001.body",
+          "sha256": "0faadbd75b3e59aff02b91d4cb955ca487a32fe19357bcf750a2c2eb9bc5e047",
+          "discovered_from": "http://127.0.0.1:9888/",
+          "locator": "a[href][1]"
+        },
+        {
+          "file": "evidence/0001.body",
+          "sha256": "0faadbd75b3e59aff02b91d4cb955ca487a32fe19357bcf750a2c2eb9bc5e047",
+          "discovered_from": "http://127.0.0.1:9888/",
+          "locator": "a[href][2]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [],
+      "selection": "UNDECIDED"
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:9888/",
+      "purpose": "link_page",
+      "started": 664982.402875524,
+      "preceding_completion": null,
+      "completed": 664982.407253573,
+      "status": 200,
+      "headers": {
+        "content-type": "text/html"
+      },
+      "final_url": "http://127.0.0.1:9888/",
+      "error": null,
+      "body_file": "evidence/0001.body",
+      "body_bytes": 158,
+      "sha256": "0faadbd75b3e59aff02b91d4cb955ca487a32fe19357bcf750a2c2eb9bc5e047",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/types",
+      "purpose": "wp_types",
+      "started": 664982.41366764,
+      "preceding_completion": 664982.407253573,
+      "completed": 664982.415924327,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/types",
+      "error": null,
+      "body_file": "evidence/0002.body",
+      "body_bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    }
+  ],
+  "gaps": [
+    "discovery_depth_limit"
+  ],
+  "wordpress": {
+    "status": "bounded",
+    "collections": [],
+    "types_response": "evidence/0002.body",
+    "excluded_types": [],
+    "gaps": [
+      "page_type_not_exposed",
+      "post_type_not_exposed"
+    ]
+  },
+  "stop_reason": null,
+  "cleanup_error": null,
+  "browser_traffic": {},
+  "finished_at": "2026-10-10T18:18:01.018907+00:00"
+}

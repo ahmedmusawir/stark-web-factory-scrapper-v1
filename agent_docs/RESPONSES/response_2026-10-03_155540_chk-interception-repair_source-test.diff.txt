@@ -1,0 +1,671 @@
+--- before/smart_crawler/browser_session.py
++++ after/smart_crawler/browser_session.py
+@@ -8,6 +8,7 @@
+ import json
+ from pathlib import Path
+ import platform
++import re
+ import time
+ from collections import Counter
+ from dataclasses import dataclass, field
+@@ -75,6 +76,30 @@
+     final_url: str | None = None
+     error: str | None = None
+     started: float = field(default_factory=time.monotonic)
++
++
++@dataclass
++class Interception:
++    owner: object
++    operation: Operation | None
++    details: dict
++    seen: float = field(default_factory=time.monotonic)
++    classification: str = 'unresolved'
++    state: str = 'pending'
++    command: str | None = None
++
++
++def protocol_detail(error):
++    # Protocol errors normally contain no URLs. Redact URL userinfo/query/fragment
++    # if a driver includes one; never include request headers or post data.
++    def public_url(match):
++        try:
++            p = urlsplit(match.group())
++            return f'{p.scheme}://{p.hostname or ""}{p.path}'
++        except ValueError:
++            return '<redacted URL>'
++    text = re.sub(r'https?://[^\s]+', public_url, str(error))
++    return text[:2048]
+ 
+ 
+ class BrowserSession:
+@@ -103,6 +128,11 @@
+         self.runtime = {}
+         self.operation_sequence = 0
+         self.network_requests = {}
++        self.interceptions = {}
++        self.cancellations = {}
++        self.closing = False
++        self.diagnostic_events = 0
++        self.interception_owner = None
+ 
+     def event(self, event_name, **values):
+         row = {'event':event_name, 'monotonic':time.monotonic(), **values}
+@@ -172,9 +202,15 @@
+         return self
+ 
+     async def __aexit__(self, *exc):
+-        await self.crawler.__aexit__(*exc)
+-        if self.tasks:
+-            await asyncio.gather(*list(self.tasks), return_exceptions=True)
++        self.closing = True
++        try:
++            await self.crawler.__aexit__(*exc)
++        except Exception as error:
++            self.diagnostic('interception_cleanup_error', detail=protocol_detail(error))
++            self.stop('browser_cleanup_error')  # Sticky: never replaces the primary stop.
++        finally:
++            if self.tasks:
++                await asyncio.gather(*list(self.tasks), return_exceptions=True)
+ 
+     async def created(self, page, context, **kwargs):
+         if self.page is page:
+@@ -227,7 +263,19 @@
+         await context.route('**/*', guard)
+         self.cdp = await context.new_cdp_session(page)
+         self.main_frame = (await self.cdp.send('Page.getFrameTree'))['frameTree']['frame']['id']
+-        self.cdp.on('Fetch.requestPaused', lambda params:self.spawn(self.paused(params)))
++        # One listener set per owned page (created() is idempotent above).
++        # Bind the actual CDPSession object, never a request from another session.
++        self.interception_owner = self.cdp
++        owner = self.cdp
++        self.cdp.on('Fetch.requestPaused', lambda params:self.paused_event(owner, params))
++        page.on('close', self.page_closed)
++        page.on('crash', lambda _: self.stop('browser_page_crashed'))
++        self.cdp.on('Page.frameDetached', lambda p:self.diagnostic(
++            'interception_frame_detached', session='page-cdp-1', frame_id=p['frameId'], reason=p.get('reason')))
++        self.cdp.on('Page.frameNavigated', lambda p:self.diagnostic(
++            'interception_frame_navigated', session='page-cdp-1', frame_id=p['frame']['id'],
++            loader_id=p['frame'].get('loaderId')))
++        await self.cdp.send('Page.enable')
+         self.cdp.on('Network.requestWillBeSent', self.network_request)
+         self.cdp.on('Network.loadingFinished', self.network_finished)
+         self.cdp.on('Network.dataReceived', self.network_data)
+@@ -237,6 +285,89 @@
+         await self.cdp.send('Fetch.enable', {'patterns':[{'urlPattern':'*','requestStage':'Request'}]})
+         self.event('controls_installed', transport='Chromium CDP Fetch.requestPaused')
+         return page
++
++    def diagnostic(self, name, **values):
++        # At most 20,000 small lifecycle rows per run; no header/body fields.
++        if self.diagnostic_events >= 20_000:
++            self.stop('interception_evidence_limit')
++            return
++        self.diagnostic_events += 1
++        self.event(name, **values)
++
++    def page_closed(self, *_):
++        self.diagnostic('interception_page_closed', session='page-cdp-1', cleanup=self.closing)
++        if not self.closing:
++            self.stop('browser_page_closed')
++
++    def paused_event(self, owner, params):
++        rid = params['requestId']
++        if owner is not self.interception_owner:
++            self.stop('interception_session_mismatch')
++            self.diagnostic('interception_owner_rejected', request_id=rid)
++            return
++        if rid in self.interceptions:
++            entry = self.interceptions[rid]
++            self.diagnostic('interception_duplicate_event', **entry.details, state=entry.state)
++            return
++        if len(self.interceptions) >= 10_000:
++            self.stop('interception_record_limit')
++            return
++        op = self.op
++        details = {'operation_id':op.operation_id if op else None, 'request_id':rid,
++                   'network_id':params.get('networkId'), 'resource_type':params['resourceType'],
++                   'frame_id':params.get('frameId'), 'predecessor':params.get('redirectedRequestId'),
++                   'session':'page-cdp-1'}
++        self.interceptions[rid] = Interception(owner, op, details)
++        self.spawn(self.paused(params))
++
++    async def resolve_interception(self, entry, command):
++        """One command attempt on the session that emitted this exact Fetch ID."""
++        details = entry.details
++        if (entry.owner is not self.interception_owner or entry.owner is not self.cdp or
++                self.interceptions.get(details['request_id']) is not entry):
++            self.stop('interception_session_mismatch')
++            self.diagnostic('interception_owner_rejected', **details, command=command)
++            return False
++        if entry.state != 'pending':
++            self.diagnostic('interception_resolution_skipped', **details, command=command,
++                            classification=entry.classification, state=entry.state)
++            return False
++        entry.state, entry.command = 'resolving', command
++        self.diagnostic('interception_command', **details, command=command,
++                        classification=entry.classification, state=entry.state)
++        args = {'requestId':details['request_id']}
++        if command == 'Fetch.failRequest': args['errorReason'] = 'Aborted'
++        try:
++            await entry.owner.send(command, args)
++        except Exception as error:
++            entry.state = 'error'
++            failure = self.cancellations.get(details['network_id'])
++            confirmed = bool(failure and failure['canceled'] is True and failure['observed'] >= entry.seen)
++            # Native loadingFailed(canceled=true), same session/Network ID, and
++            # specifically a stale Fetch ID. Teardown alone is NOT cancellation
++            # proof. Unknown/intentional errors and lost page control still stop.
++            supported = (str(error).endswith('Invalid InterceptionId.') and
++                         f'Protocol error ({command}):' in str(error) and confirmed and
++                         entry.classification == 'incidental' and not self.stop_reason and
++                         not self.closing and self.page and not self.page.is_closed())
++            self.diagnostic('interception_command_error', **details, command=command,
++                            classification=entry.classification, state=entry.state,
++                            error=type(error).__name__, detail=protocol_detail(error),
++                            confirmed_canceled=confirmed, supported_incidental=bool(supported))
++            if supported:
++                entry.state = 'canceled'
++                self.diagnostic('interception_incidental_canceled', **details, command=command,
++                                classification=entry.classification, state=entry.state)
++            else:
++                if entry.operation and entry.classification != 'incidental':
++                    entry.operation.error = entry.operation.error or 'interception_error:'+type(error).__name__
++                self.stop('interception_error:'+type(error).__name__)
++            # Never retry, or failRequest an ID after a failed continueRequest.
++            return False
++        entry.state = 'resolved'
++        self.diagnostic('interception_command_complete', **details, command=command,
++                        classification=entry.classification, state=entry.state)
++        return True
+ 
+     def network_request(self, params):
+         frames = params.get('initiator', {}).get('stack', {}).get('callFrames', [])
+@@ -291,10 +422,23 @@
+         return None
+ 
+     def network_failed(self, params):
+-        self.event('cdp_loading_failed', request_id=params['requestId'])
++        failure = {'canceled':params.get('canceled', False), 'observed':time.monotonic(),
++                   'error_text':protocol_detail(params.get('errorText', ''))}
++        if len(self.cancellations) < 10_000:
++            self.cancellations[params['requestId']] = failure
++        else:
++            self.stop('interception_record_limit')
++        self.event('cdp_loading_failed', request_id=params['requestId'], session='page-cdp-1',
++                   browser_timestamp=params.get('timestamp'), canceled=failure['canceled'],
++                   error_text=failure['error_text'], blocked_reason=params.get('blockedReason'),
++                   resource_type=params.get('type'))
+         op = self.network_operation(params['requestId'])
+         if op:
+             op.error = op.error or 'network_error'
++            # A read's own bounded stream cancellation can precede delivery of
++            # its partial bytes/error. The operation lock prevents a next read;
++            # settle that result (or its existing deadline) before stopping.
++            if op.kind != 'read': self.stop(op.error)
+ 
+     def network_response(self, params):
+         response = params['response']
+@@ -393,15 +537,15 @@
+         rid = params['requestId']
+         url = params['request']['url']
+         method = params['request']['method']
+-        op = self.op
++        entry = self.interceptions[rid]
++        op = entry.operation
+         parent = params.get('redirectedRequestId')
+         main = params['resourceType'] == 'Document' and params['frameId'] == self.main_frame
+         classification = 'unresolved'
+-        details = {'operation_id': op.operation_id if op else None, 'request_id': rid,
+-                   'network_id': params.get('networkId'), 'resource_type': params['resourceType'],
+-                   'frame_id': params.get('frameId'), 'predecessor': parent}
++        details = entry.details
+         try:
+             classification, identity = await self.admission_kind(params, op)
++            entry.classification = classification
+             intended = classification == 'intentional'
+             self.event('request_classified', url=url, method=method, classification=classification,
+                        initiator_script_id=identity.get('initiator_script_id') if identity else None,
+@@ -411,7 +555,7 @@
+                 # prevention is incidental; it does not claim document refusal.
+                 if not intended and not main:
+                     self.event('incidental_prevented', url=url, reason='fixture_egress', **details)
+-                    await self.cdp.send('Fetch.failRequest', {'requestId':rid,'errorReason':'Aborted'})
++                    await self.resolve_interception(entry, 'Fetch.failRequest')
+                     return
+             if self.stop_reason:
+                 raise CollectionStopped(self.stop_reason)
+@@ -419,9 +563,12 @@
+                 self.stop('unexpected_top_level_navigation')
+                 raise CollectionStopped(self.stop_reason)
+             if not intended:
+-                await self.cdp.send('Fetch.continueRequest', {'requestId':rid})
++                await self.resolve_interception(entry, 'Fetch.continueRequest')
+                 return
+             self.event('intentional_intercepted', url=url, **details)
++            if op is not self.op or self.closing:
++                self.stop('inactive_operation')
++                raise CollectionStopped(self.stop_reason)
+             if not self.scoped(url):
+                 op.error = 'redirect_out_of_scope'
+                 raise CollectionStopped(op.error)
+@@ -470,19 +617,17 @@
+             self.dispatches += 1
+             self.event('intentional_dispatch', url=url, method=method, kind=op.kind, ordinal=self.dispatches,
+                        **details, preceding_completion=op.finished.get(op.fetch_ids.get(parent)) if parent else self.last_completion)
+-            await self.cdp.send('Fetch.continueRequest', {'requestId':rid})
++            await self.resolve_interception(entry, 'Fetch.continueRequest')
+         except CollectionStopped as exc:
+             if op and classification != 'incidental':
+                 op.error = op.error or str(exc)
+             self.event(classification+'_prevented', url=url, reason=str(exc), **details)
+-            await self.cdp.send('Fetch.failRequest', {'requestId':rid,'errorReason':'Aborted'})
++            await self.resolve_interception(entry, 'Fetch.failRequest')
+         except Exception as exc:
+             self.stop('interception_error:'+type(exc).__name__)
+-            self.event('control_error', error=type(exc).__name__, detail=str(exc))
+-            try:
+-                await self.cdp.send('Fetch.failRequest', {'requestId':rid,'errorReason':'Aborted'})
+-            except Exception:
+-                pass
++            self.diagnostic('control_error', **details, classification=classification,
++                            state=entry.state, error=type(exc).__name__, detail=protocol_detail(exc))
++            await self.resolve_interception(entry, 'Fetch.failRequest')
+ 
+     async def before_return_html(self, page, html, **kwargs):
+         if self.op:
+@@ -608,7 +753,9 @@
+                 body = bytes(x for chunk in result.pop('chunks') for x in chunk)
+                 result.update(body=body,sha256=hashlib.sha256(body).hexdigest(),headers=dict(self.op.response_headers),
+                               redirect_chain=list(self.op.chain),transport='Chromium same-page window.fetch / Response.body.getReader',
+-                              boundary='browser-decoded entity bytes',error=self.op.error or result.get('error'))
++                              boundary='browser-decoded entity bytes',error=result.get('error') or self.op.error)
++                if result.get('error'):
++                    result['incomplete'] = True
+                 reason = challenge_reason(result.get('status'), result['headers'], body.decode('utf-8',errors='replace'))
+                 if reason: self.stop(reason)
+                 if result.get('incomplete'): self.stop(result.get('error') or 'incomplete_response')
+--- /dev/null
++++ after/tests/test_interception_lifecycle.py
+@@ -0,0 +1,323 @@
++"""Native loopback cancellation and scoped interception lifecycle controls."""
++import asyncio
++
++from smart_crawler.browser_session import BrowserSession, Bounds
++from fixture_server import fixture_server, ENTITY
++from test_browser_controls import retain
++
++
++class NativeCancellation(BrowserSession):
++    """Hold a real paused request until Chromium reports AbortController cancellation.
++
++    Only scheduling is controlled: no injected CDP error or fabricated native event.
++    """
++    async def paused(self, params):
++        if params['request']['url'].endswith('/cancel-fixture'):
++            self.fixture_paused = params
++            self.fixture_held.set()
++            await self.fixture_release.wait()
++        await super().paused(params)
++
++    def network_failed(self, params):
++        super().network_failed(params)
++        if params['requestId'] == getattr(self, 'fixture_paused', {}).get('networkId'):
++            self.fixture_failure = params
++            self.event('fixture_native_cancellation', request_id=self.fixture_paused['requestId'],
++                       network_id=params['requestId'], frame_id=self.fixture_paused.get('frameId'),
++                       canceled=params.get('canceled'), error_text=params.get('errorText'))
++            self.fixture_canceled.set()
++
++
++def test_native_canceled_incidental_preserves_document_and_read(tmp_path):
++    with fixture_server() as (origin, timeline):
++        async def exercise():
++            session = NativeCancellation(origin, bounds=Bounds(seconds=60, finalization_reserve=5),
++                                         runtime_dir=tmp_path/'runtime', loopback_only=True)
++            session.fixture_held = asyncio.Event()
++            session.fixture_release = asyncio.Event()
++            session.fixture_canceled = asyncio.Event()
++            try:
++                async with session:
++                    document = await session.capture(origin+'/background')
++                    assert document['ok'] and not session.stop_reason
++                    response = await session.read(origin+'/data')
++                    assert response['body'] == ENTITY and not response['incomplete']
++                    await session.page.evaluate("""() => {
++                        window.fixtureAbort = new AbortController();
++                        window.fixturePromise = fetch('/cancel-fixture', {signal:fixtureAbort.signal})
++                            .catch(e => e.name);
++                    }""")
++                    await asyncio.wait_for(session.fixture_held.wait(), 5)
++                    await session.page.evaluate('fixtureAbort.abort()')
++                    await asyncio.wait_for(session.fixture_canceled.wait(), 5)
++                    assert session.fixture_failure['canceled'] is True
++                    session.fixture_release.set()
++                    await asyncio.gather(*list(session.tasks))
++                    assert session.stop_reason is None, session.stop_reason
++                    result = await session.read(origin+'/data?after-cancel')
++                    assert result['body'] == ENTITY and not result['incomplete']
++                    assert session.dispatches == 3
++                    assert not any(e['path']=='/cancel-fixture' for e in timeline)
++            finally:
++                session.fixture_release.set()
++                retain(tmp_path, 'native-incidental-cancellation', session, timeline)
++        asyncio.run(exercise())
++
++
++def test_native_frame_teardown_cancellation_is_correlated(tmp_path):
++    with fixture_server() as (origin, timeline):
++        async def exercise():
++            s = NativeCancellation(origin, bounds=Bounds(seconds=60, finalization_reserve=5),
++                                   runtime_dir=tmp_path/'runtime', loopback_only=True)
++            s.fixture_held, s.fixture_release, s.fixture_canceled = (asyncio.Event() for _ in range(3))
++            try:
++                async with s:
++                    assert (await s.capture(origin+'/background'))['ok']
++                    await s.page.evaluate("""() => {
++                        window.fixtureFrame=document.createElement('iframe');
++                        fixtureFrame.src='/cancel-fixture';document.body.append(fixtureFrame);
++                    }""")
++                    await asyncio.wait_for(s.fixture_held.wait(), 5)
++                    await s.page.evaluate('fixtureFrame.remove()')
++                    await asyncio.wait_for(s.fixture_canceled.wait(), 5)
++                    s.fixture_release.set()
++                    await asyncio.gather(*list(s.tasks))
++                    assert s.stop_reason is None, s.stop_reason
++                    response=await s.read(origin+'/data')
++                    assert response['body']==ENTITY and not response['incomplete']
++                    assert s.dispatches==2
++                    assert any(e['event']=='interception_frame_detached' and
++                               e['frame_id']==s.fixture_paused['frameId'] for e in s.events)
++                    assert any(e['event']=='interception_incidental_canceled' for e in s.events)
++            finally:
++                s.fixture_release.set()
++                retain(tmp_path,'native-frame-cancellation',s,timeline)
++        asyncio.run(exercise())
++
++
++import pytest
++from dataclasses import replace
++
++
++@pytest.mark.parametrize('kind',['document','GET','HEAD'])
++def test_native_intentional_cancellation_never_succeeds(tmp_path,kind):
++    class CanceledIntentional(NativeCancellation):
++        async def correlated_read(self, expression):
++            # Native AbortController; change only the fixture abort timing.
++            return await super().correlated_read(expression.replace('ctl.abort(),timeout','ctl.abort(),300'))
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            s=CanceledIntentional(origin,bounds=Bounds(seconds=60,finalization_reserve=5),
++                                  runtime_dir=tmp_path/'runtime',loopback_only=True)
++            s.fixture_held,s.fixture_release,s.fixture_canceled=(asyncio.Event() for _ in range(3))
++            try:
++                async with s:
++                    if kind!='document':assert (await s.capture(origin+'/background'))['ok']
++                    task=asyncio.create_task(s.capture(origin+'/cancel-fixture') if kind=='document'
++                                             else s.read(origin+'/cancel-fixture',kind))
++                    await asyncio.wait_for(s.fixture_held.wait(),5)
++                    if kind=='document':await s.cdp.send('Page.stopLoading')
++                    await asyncio.wait_for(s.fixture_canceled.wait(),5)
++                    s.fixture_release.set()
++                    result=await asyncio.wait_for(task,15)
++                    await asyncio.gather(*list(s.tasks))
++                    assert not result['ok'] if kind=='document' else result['incomplete']
++                    assert s.stop_reason is not None
++                    assert not any(e['event']=='interception_incidental_canceled' for e in s.events)
++                    assert not any(e['path']=='/cancel-fixture' for e in timeline)
++                    attempted=[e for e in s.events if e['event']=='interception_command' and
++                               e['request_id']==s.fixture_paused['requestId']]
++                    assert len(attempted)<=1 # No abort/retry after stale resolution.
++            finally:
++                s.fixture_release.set()
++                retain(tmp_path,'native-intentional-cancel-'+kind,s,timeline)
++        asyncio.run(exercise())
++
++
++def test_duplicate_listener_and_late_resolution_do_not_touch_next_read(tmp_path):
++    class DuplicateDelivery(BrowserSession):
++        async def paused(self,params):
++            # Explicit duplicate event injection, not a native Chromium duplicate.
++            self.paused_event(self.cdp,params)
++            await super().paused(params)
++        async def run_read_script(self,op):
++            old=next(e for e in self.interceptions.values() if e.classification=='intentional')
++            assert old.operation is not op and old.state=='resolved'
++            assert not await self.resolve_interception(old,'Fetch.failRequest')
++            assert op.error is None and self.stop_reason is None
++            return await super().run_read_script(op)
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            s=DuplicateDelivery(origin,bounds=Bounds(seconds=60,finalization_reserve=5),
++                                runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with s:
++                    assert (await s.capture(origin+'/background'))['ok']
++                    result=await s.read(origin+'/data')
++                    assert result['body']==ENTITY and not result['incomplete']
++                    assert s.dispatches==2 and not s.stop_reason
++                    commands=[e['request_id'] for e in s.events if e['event']=='interception_command']
++                    assert len(commands)==len(set(commands))
++                    assert sum(e['event']=='controls_installed' for e in s.events)==1
++                    assert any(e['event']=='interception_resolution_skipped' for e in s.events)
++            finally:retain(tmp_path,'duplicate-event-late-resolution',s,timeline)
++        asyncio.run(exercise())
++
++
++def test_wrong_session_cannot_resolve_another_interception(tmp_path):
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            s=BrowserSession(origin,bounds=Bounds(seconds=30,finalization_reserve=5),
++                             runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with s:
++                    assert (await s.capture(origin+'/article/'))['ok']
++                    old=next(iter(s.interceptions.values()))
++                    foreign=replace(old,owner=object(),state='pending')
++                    assert not await s.resolve_interception(foreign,'Fetch.continueRequest')
++                    assert s.stop_reason=='interception_session_mismatch'
++                    assert old.state=='resolved' and s.dispatches==1
++            finally:retain(tmp_path,'foreign-session-rejected',s,timeline)
++        asyncio.run(exercise())
++
++
++@pytest.mark.parametrize('fault',['unexplained-invalid-id','canceled-other-error','canceled-unresolved','cleanup-primary'])
++def test_injected_defensive_protocol_failures_remain_fatal(tmp_path,fault):
++    class DefensiveSession(NativeCancellation):
++        async def admission_kind(self,params,op):
++            if fault=='canceled-unresolved' and params['request']['url'].endswith('/cancel-fixture'):
++                return 'unresolved',None # Explicit observation-loss injection.
++            return await super().admission_kind(params,op)
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            s=DefensiveSession(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++                               runtime_dir=tmp_path/'runtime',loopback_only=True)
++            s.fixture_held,s.fixture_release,s.fixture_canceled=(asyncio.Event() for _ in range(3))
++            try:
++                async with s:
++                    assert (await s.capture(origin+'/background'))['ok']
++                    await s.page.evaluate("""() => {
++                        window.fixtureAbort=new AbortController();
++                        fetch('/cancel-fixture',{signal:fixtureAbort.signal}).catch(()=>null);
++                    }""")
++                    await asyncio.wait_for(s.fixture_held.wait(),5)
++                    if fault!='unexplained-invalid-id':
++                        await s.page.evaluate('fixtureAbort.abort()')
++                        await asyncio.wait_for(s.fixture_canceled.wait(),5)
++                    original=s.cdp.send
++                    async def injected(command,args=None):
++                        if command in ('Fetch.continueRequest','Fetch.failRequest') and args['requestId']==s.fixture_paused['requestId']:
++                            suffix='Unexpected protocol fault.' if fault=='canceled-other-error' else 'Invalid InterceptionId.'
++                            raise RuntimeError(f'CDPSession.send: Protocol error ({command}): '+suffix)
++                        return await original(command,args)
++                    s.cdp.send=injected
++                    if fault=='cleanup-primary':s.stop('fixture_original_stop')
++                    s.event('fixture_injected_protocol_error',fault=fault)
++                    s.fixture_release.set()
++                    await asyncio.gather(*list(s.tasks))
++                    assert s.stop_reason==('fixture_original_stop' if fault=='cleanup-primary' else 'interception_error:RuntimeError')
++                    assert not any(e['event']=='interception_incidental_canceled' for e in s.events)
++                    errors=[e for e in s.events if e['event']=='interception_command_error']
++                    assert len(errors)==1 and errors[0]['request_id']==s.fixture_paused['requestId']
++                    assert errors[0]['supported_incidental'] is False
++                    assert sum(e['event']=='interception_command' and e['request_id']==s.fixture_paused['requestId'] for e in s.events)==1
++            finally:
++                s.fixture_release.set()
++                retain(tmp_path,'defensive-'+fault,s,timeline)
++        asyncio.run(exercise())
++
++
++def test_native_cancellation_during_capture_does_not_poison_document(tmp_path):
++    class DuringCapture(NativeCancellation):
++        async def after_goto(self,page,response=None,**kwargs):
++            await super().after_goto(page,response,**kwargs)
++            await page.evaluate("""() => {
++                window.fixtureAbort=new AbortController();
++                fetch('/cancel-fixture',{signal:fixtureAbort.signal}).catch(()=>null);
++            }""")
++            await asyncio.wait_for(self.fixture_held.wait(),5)
++            await page.evaluate('fixtureAbort.abort()')
++            await asyncio.wait_for(self.fixture_canceled.wait(),5)
++            self.fixture_release.set()
++            await asyncio.gather(*list(self.tasks))
++            return page
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            s=DuringCapture(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++                            runtime_dir=tmp_path/'runtime',loopback_only=True)
++            s.fixture_held,s.fixture_release,s.fixture_canceled=(asyncio.Event() for _ in range(3))
++            try:
++                async with s:
++                    result=await s.capture(origin+'/background')
++                    assert result['ok'] and result['status']==200
++                    assert 'substantive local article' in result['html']
++                    read=await s.read(origin+'/data')
++                    assert read['body']==ENTITY and not read['incomplete']
++                    assert s.dispatches==2 and not s.stop_reason
++                    row,=[e for e in s.events if e['event']=='interception_incidental_canceled']
++                    assert row['operation_id']=='op-1' and row['classification']=='incidental'
++            finally:
++                s.fixture_release.set()
++                retain(tmp_path,'native-cancel-during-capture',s,timeline)
++        asyncio.run(exercise())
++
++
++def test_protocol_diagnostics_redact_and_bound_error_text():
++    from smart_crawler.browser_session import protocol_detail
++    raw='Protocol error https://user:private@host.invalid/path?secret=value#private '+('x'*5000)
++    text=protocol_detail(raw)
++    assert len(text)==2048 and 'https://host.invalid/path' in text
++    assert all(token not in text for token in ('user','private','secret','value'))
++    exact='CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.'
++    assert protocol_detail(exact)==exact
++
++
++def test_diagnostic_limit_is_explicit_and_sticky():
++    s=BrowserSession('http://127.0.0.1')
++    s.diagnostic_events=20_000
++    s.diagnostic('not_retained')
++    assert s.stop_reason=='interception_evidence_limit'
++    assert [e['event'] for e in s.events]==['stop']
++    s.diagnostic('not_retained_either')
++    assert len(s.events)==1
++
++
++@pytest.mark.parametrize('cause',['response-cap','intentional-abort'])
++def test_native_read_cancellation_before_result_handoff_preserves_failure(tmp_path,cause):
++    class NativeHandoffRace(BrowserSession):
++        def network_failed(self,params):
++            super().network_failed(params)
++            if self.op and params['requestId'] in getattr(self.op,'network_ids',{}):
++                self.fixture_failure=params
++                self.fixture_canceled.set()
++        async def correlated_read(self,expression):
++            if cause=='intentional-abort':
++                expression=expression.replace('if(r.body) { const reader',
++                    'setTimeout(()=>ctl.abort(),300); if(r.body) { const reader')
++            return await super().correlated_read(expression)
++        async def run_read_script(self,op):
++            result=await super().run_read_script(op)
++            # Native event only: enforce the demonstrated event-before-result
++            # ordering without injecting a protocol failure/cancellation flag.
++            await asyncio.wait_for(self.fixture_canceled.wait(),5)
++            self.event('fixture_native_failure_before_result',network_id=self.fixture_failure['requestId'])
++            return result
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            s=NativeHandoffRace(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++                                runtime_dir=tmp_path/'runtime',loopback_only=True)
++            s.fixture_canceled=asyncio.Event()
++            try:
++                async with s:
++                    assert (await s.capture(origin+'/background'))['ok']
++                    if cause=='response-cap':s.bounds.response_bytes=1024
++                    result=await s.read(origin+'/cancel-stream')
++                    assert s.fixture_failure['canceled'] is True
++                    assert result['incomplete'] is True
++                    assert result['body']==(b'a'*1024 if cause=='response-cap' else b'a'*2048)
++                    assert result['error']==s.stop_reason==('response_limit' if cause=='response-cap' else 'AbortError')
++                    from smart_crawler.browser_session import CollectionStopped
++                    with pytest.raises(CollectionStopped):await s.read(origin+'/never')
++                    assert s.dispatches==2 and not any(e['path']=='/never' for e in timeline)
++            finally:retain(tmp_path,'native-read-handoff-'+cause,s,timeline)
++        asyncio.run(exercise())
+--- before/tests/snapshot_compare.py
++++ after/tests/snapshot_compare.py
+@@ -129,6 +129,35 @@
+             assert row['network_resource_type']=='Fetch' and row['initiator_script_id']==binding['script_id']
+         else:assert row['resource_type']==row['network_resource_type']=='Document'
+     for d in dispatch[1:]:assert d['monotonic']-d['preceding_completion']>=5
++    # Lifecycle observations are compared too; a green package cannot hide a
++    # duplicated/failed resolution or associate commands with another operation.
++    classified={e['request_id']:e for e in events if e['event']=='request_classified'}
++    commands=[e for e in events if e['event']=='interception_command']
++    completed=[e for e in events if e['event']=='interception_command_complete']
++    assert len(commands)==len(classified)==len(completed)==26
++    assert len({e['request_id'] for e in commands})==26
++    assert sum(e['command']=='Fetch.continueRequest' for e in commands)==24
++    assert sum(e['command']=='Fetch.failRequest' for e in commands)==2
++    for command in commands:
++        record=classified[command['request_id']]
++        done,=[e for e in completed if e['request_id']==command['request_id']]
++        for key in ('operation_id','request_id','network_id','resource_type','frame_id','predecessor','session','classification'):
++            assert command[key]==record[key]==done[key]
++        assert command['session']=='page-cdp-1'
++        # F-05's iframe and widget script are intercepted but never dispatched.
++        external=record['url'] in ('https://maps.example.invalid/embed',
++                                   'https://widgets.example.invalid/widget.js')
++        expected='Fetch.failRequest' if external else 'Fetch.continueRequest'
++        assert command['command']==done['command']==expected
++        if external:
++            assert record['classification']=='incidental'
++            assert any(e['event']=='incidental_prevented' and e['request_id']==command['request_id']
++                       and e['reason']=='fixture_egress' for e in events)
++        assert command['state']=='resolving' and done['state']=='resolved'
++        assert record['monotonic']<=command['monotonic']<=done['monotonic']
++    assert not any(e['event'] in ('interception_command_error','interception_cleanup_error',
++                                  'interception_resolution_skipped','interception_owner_rejected',
++                                  'interception_duplicate_event') for e in events)
+     assert not any(e['event'] in ('stop','control_error','intentional_prevented') for e in events)
+     if server is not None:
+         received=[e for e in server if e['event']=='request_received']
+--- before/tests/fixture_server.py
++++ after/tests/fixture_server.py
+@@ -113,6 +113,17 @@
+                 self.respond(403,b'incidental failure',{})
+             elif self.path.startswith('/refusal'):
+                 self.respond(429,b'too many requests',{'Retry-After':'42'})
++            elif self.path=='/cancel-stream':
++                # A cap/AbortController cancellation occurs while bytes remain
++                # on the native connection, before the JS result is handed back.
++                self.emit('request_received',user_agent=self.headers.get('User-Agent'),
++                          resource_destination=self.headers.get('Sec-Fetch-Dest'))
++                self.send_response(200);self.send_header('Content-Length','4096');self.end_headers()
++                self.wfile.write(b'a'*2048);self.wfile.flush();self.emit('body_prefix_sent',bytes=2048)
++                time.sleep(1)
++                try:
++                    self.wfile.write(b'a'*2048);self.wfile.flush();self.emit('body_sent',bytes=4096)
++                except (BrokenPipeError,ConnectionResetError):self.emit('browser_closed_connection')
+             elif self.path.startswith('/large'):
+                 self.respond(200,b'a'*4096,{})
+             else:

@@ -1,0 +1,1046 @@
+{
+  "schema": "abm-resolution-stop-handoff-v1",
+  "prepared_at": "2026-10-03T11:23:24.592863+00:00",
+  "status": "LOCAL_REPAIR_VERIFIED_STOP_FOR_REVIEW",
+  "repo": "/home/moose/python/stark-web-factory-scrapper-v1",
+  "branch": "wf-scrapper-abm",
+  "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+  "source_inventory_sha256": "38fd82f3f26468c2ec31a3db2919061caaa79763d7f2887909c5176c58435ffa",
+  "source_inventory_path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/regression/source-before.json",
+  "source_changes": {
+    "baseline_inventory_sha256": "92ccc13172b95e18c2c949aebb4397686b5cdb92e7445ade465a4dd47fa04a70",
+    "final_inventory_sha256": "38fd82f3f26468c2ec31a3db2919061caaa79763d7f2887909c5176c58435ffa",
+    "changed": {
+      "smart_crawler/browser_session.py": {
+        "before": {
+          "sha256": "3fc7229b978817a7569348eee2948201fc6737710c7c64f7116725216f1a956e",
+          "bytes": 41496,
+          "mode": 436,
+          "symlink": null
+        },
+        "after": {
+          "sha256": "265545f494406dd688b2ddfa6770827cb33293b449946747e1e3a665a45c96d9",
+          "bytes": 42317,
+          "mode": 436,
+          "symlink": null
+        }
+      },
+      "tests/test_resolution_stop.py": {
+        "before": null,
+        "after": {
+          "sha256": "6520f984db40868bbc304aac8b3dc7fb2799d5f45fc590103dcc2a8fd69d6a87",
+          "bytes": 7102,
+          "mode": 436,
+          "symlink": null
+        }
+      }
+    },
+    "out_of_scope_changes": []
+  },
+  "commands": {
+    "before-fix": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_resolution_stop.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T11:09:34.741932+00:00",
+      "finished_at": "2026-10-03T11:09:38.109873+00:00",
+      "elapsed_s": 3.367933167028241,
+      "exit_code": 1,
+      "command_log_bytes": 36035,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "830cf1e19f8edb31298be0b663c897680f1fa2c3d8839db9b4fdd93d67524638",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 2,
+        "failed": 7,
+        "skipped": 0
+      },
+      "recorder_prefix": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/check_runner.py",
+        "before-fix"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/before-fix-controls"
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/before-fix",
+      "result_sha256": "2ac4747d7a8d786e74b70b10bf53ef92c950b8083c78adb5c328a3af75817aaa"
+    },
+    "focused": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_resolution_stop.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T11:10:06.472067+00:00",
+      "finished_at": "2026-10-03T11:10:08.925524+00:00",
+      "elapsed_s": 2.4534527030191384,
+      "exit_code": 0,
+      "command_log_bytes": 98,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "38fd82f3f26468c2ec31a3db2919061caaa79763d7f2887909c5176c58435ffa",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "recorder_prefix": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/check_runner.py",
+        "focused"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/focused-controls"
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/focused",
+      "result_sha256": "f4c8b1001ff68e28cadc2f9e9f0b5e8783d847475bceaf17f7449a49456b3586"
+    },
+    "regression": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T11:10:43.491380+00:00",
+      "finished_at": "2026-10-03T11:20:38.063977+00:00",
+      "elapsed_s": 594.5725956159877,
+      "exit_code": 0,
+      "command_log_bytes": 272,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "38fd82f3f26468c2ec31a3db2919061caaa79763d7f2887909c5176c58435ffa",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 168,
+        "failed": 0,
+        "skipped": 0
+      },
+      "recorder_prefix": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/check_runner.py",
+        "regression"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/regression-controls"
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/regression",
+      "result_sha256": "934bc95de82e42b1b4283ab4d84cb3c45c05f6da3982d598b165e43a4e3dd40d"
+    },
+    "comparison": {
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/regression-controls/complete-raw"
+      ],
+      "started_at": "2026-10-03T11:21:16.667892+00:00",
+      "finished_at": "2026-10-03T11:23:14.665527+00:00",
+      "elapsed_s": 117.99763172102394,
+      "exit_code": 0,
+      "command_log_bytes": 275,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "38fd82f3f26468c2ec31a3db2919061caaa79763d7f2887909c5176c58435ffa",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "pytest_totals": {
+        "passed": 0,
+        "failed": 0,
+        "skipped": 0
+      },
+      "recorder_prefix": [
+        "venv/bin/python",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/check_runner.py",
+        "comparison"
+      ],
+      "environment": {
+        "ABM_QUIET_LOG": "1",
+        "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/comparison-controls"
+      },
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/resolution-stop/2026-10-03_110850Z/comparison",
+      "result_sha256": "f2420e9c70d4b9bc5e984d897b8798e2d3c97d8c513aa50a63e977bbc28ca9ae"
+    }
+  },
+  "capture_comparison": {
+    "full_canonical_comparison": "PASS",
+    "files": 231,
+    "normalization": "page elapsed; measured protocol times; correlated protocol IDs; independent resource channels; derived metadata byte-count/hash edges only"
+  },
+  "reproduction_before": {
+    "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+    "case": "resolution-diagnostic-limit",
+    "calls": [
+      {
+        "command": "Fetch.continueRequest",
+        "args": {
+          "requestId": "fixture-fetch-1"
+        }
+      }
+    ],
+    "returned": [
+      true,
+      false,
+      false
+    ],
+    "stop_reason": "interception_evidence_limit",
+    "closing": false,
+    "entry_state": "resolved",
+    "entry_command": "Fetch.continueRequest",
+    "events": [
+      {
+        "event": "stop",
+        "monotonic": 382787.529335284,
+        "reason": "interception_evidence_limit"
+      }
+    ]
+  },
+  "focused_after": {
+    "resolution-cleanup-error": {
+      "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+      "case": "resolution-cleanup-error",
+      "calls": [
+        {
+          "command": "Fetch.failRequest",
+          "args": {
+            "requestId": "fixture-fetch-1",
+            "errorReason": "Aborted"
+          }
+        }
+      ],
+      "returned": [
+        false,
+        false
+      ],
+      "stop_reason": "original_refusal",
+      "closing": false,
+      "entry_state": "error",
+      "entry_command": "Fetch.failRequest",
+      "events": [
+        {
+          "event": "stop",
+          "monotonic": 382818.831827066,
+          "reason": "original_refusal"
+        },
+        {
+          "event": "interception_command",
+          "monotonic": 382818.831834013,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_continuation_prevented",
+          "monotonic": 382818.831839671,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "classification": "intentional",
+          "state": "pending",
+          "reason": "original_refusal"
+        },
+        {
+          "event": "interception_command",
+          "monotonic": 382818.831844535,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_command_error",
+          "monotonic": 382818.8319545,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "error",
+          "error": "RuntimeError",
+          "detail": "CDPSession.send: Protocol error (Fetch.failRequest): Invalid InterceptionId.",
+          "confirmed_canceled": false,
+          "supported_incidental": false
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.831963517,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "error"
+        }
+      ]
+    },
+    "resolution-closing-in-diagnostic": {
+      "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+      "case": "resolution-closing-in-diagnostic",
+      "calls": [
+        {
+          "command": "Fetch.failRequest",
+          "args": {
+            "requestId": "fixture-fetch-1",
+            "errorReason": "Aborted"
+          }
+        }
+      ],
+      "returned": [
+        false,
+        false,
+        false
+      ],
+      "stop_reason": null,
+      "closing": true,
+      "entry_state": "resolved",
+      "entry_command": "Fetch.failRequest",
+      "events": [
+        {
+          "event": "interception_command",
+          "monotonic": 382818.824958941,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_continuation_prevented",
+          "monotonic": 382818.82496589,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "classification": "intentional",
+          "state": "pending",
+          "reason": "browser_closing"
+        },
+        {
+          "event": "interception_command",
+          "monotonic": 382818.824971463,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_command_complete",
+          "monotonic": 382818.824976797,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.824981321,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.824985215,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        }
+      ]
+    },
+    "resolution-closing": {
+      "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+      "case": "resolution-closing",
+      "calls": [
+        {
+          "command": "Fetch.failRequest",
+          "args": {
+            "requestId": "fixture-fetch-1",
+            "errorReason": "Aborted"
+          }
+        }
+      ],
+      "returned": [
+        false,
+        false,
+        false
+      ],
+      "stop_reason": null,
+      "closing": true,
+      "entry_state": "resolved",
+      "entry_command": "Fetch.failRequest",
+      "events": [
+        {
+          "event": "interception_command",
+          "monotonic": 382818.822565575,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_continuation_prevented",
+          "monotonic": 382818.822572456,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "classification": "intentional",
+          "state": "pending",
+          "reason": "browser_closing"
+        },
+        {
+          "event": "interception_command",
+          "monotonic": 382818.82257742,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_command_complete",
+          "monotonic": 382818.82258306,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.822587665,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.822591419,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        }
+      ]
+    },
+    "resolution-diagnostic-limit": {
+      "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+      "case": "resolution-diagnostic-limit",
+      "calls": [
+        {
+          "command": "Fetch.failRequest",
+          "args": {
+            "requestId": "fixture-fetch-1",
+            "errorReason": "Aborted"
+          }
+        }
+      ],
+      "returned": [
+        false,
+        false,
+        false
+      ],
+      "stop_reason": "interception_evidence_limit",
+      "closing": false,
+      "entry_state": "resolved",
+      "entry_command": "Fetch.failRequest",
+      "events": [
+        {
+          "event": "stop",
+          "monotonic": 382818.811344331,
+          "reason": "interception_evidence_limit"
+        }
+      ]
+    },
+    "resolution-direct-cleanup": {
+      "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+      "case": "resolution-direct-cleanup",
+      "calls": [
+        {
+          "command": "Fetch.failRequest",
+          "args": {
+            "requestId": "fixture-fetch-1",
+            "errorReason": "Aborted"
+          }
+        }
+      ],
+      "returned": [
+        true,
+        false,
+        false
+      ],
+      "stop_reason": "original_refusal",
+      "closing": true,
+      "entry_state": "resolved",
+      "entry_command": "Fetch.failRequest",
+      "events": [
+        {
+          "event": "stop",
+          "monotonic": 382818.829626964,
+          "reason": "original_refusal"
+        }
+      ]
+    },
+    "resolution-existing-stop": {
+      "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+      "case": "resolution-existing-stop",
+      "calls": [
+        {
+          "command": "Fetch.failRequest",
+          "args": {
+            "requestId": "fixture-fetch-1",
+            "errorReason": "Aborted"
+          }
+        }
+      ],
+      "returned": [
+        false,
+        false,
+        false
+      ],
+      "stop_reason": "original_refusal",
+      "closing": false,
+      "entry_state": "resolved",
+      "entry_command": "Fetch.failRequest",
+      "events": [
+        {
+          "event": "stop",
+          "monotonic": 382818.819517361,
+          "reason": "original_refusal"
+        },
+        {
+          "event": "interception_command",
+          "monotonic": 382818.819525251,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_continuation_prevented",
+          "monotonic": 382818.819531355,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "classification": "intentional",
+          "state": "pending",
+          "reason": "original_refusal"
+        },
+        {
+          "event": "interception_command",
+          "monotonic": 382818.819536457,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_command_complete",
+          "monotonic": 382818.819541909,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.819546685,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.819550413,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        }
+      ]
+    },
+    "resolution-normal": {
+      "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+      "case": "resolution-normal",
+      "calls": [
+        {
+          "command": "Fetch.continueRequest",
+          "args": {
+            "requestId": "fixture-fetch-1"
+          }
+        }
+      ],
+      "returned": [
+        true,
+        false,
+        false
+      ],
+      "stop_reason": "later_stop",
+      "closing": false,
+      "entry_state": "resolved",
+      "entry_command": "Fetch.continueRequest",
+      "events": [
+        {
+          "event": "interception_command",
+          "monotonic": 382818.827178392,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_command_complete",
+          "monotonic": 382818.827188045,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "stop",
+          "monotonic": 382818.827190788,
+          "reason": "later_stop"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.827194286,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.827198188,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        }
+      ]
+    },
+    "resolution-write-buffererror": {
+      "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+      "case": "resolution-write-buffererror",
+      "calls": [
+        {
+          "command": "Fetch.failRequest",
+          "args": {
+            "requestId": "fixture-fetch-1",
+            "errorReason": "Aborted"
+          }
+        }
+      ],
+      "returned": [
+        false,
+        false,
+        false
+      ],
+      "stop_reason": "evidence_write_limit",
+      "closing": false,
+      "entry_state": "resolved",
+      "entry_command": "Fetch.failRequest",
+      "events": [
+        {
+          "event": "interception_command",
+          "monotonic": 382818.816883962,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_continuation_prevented",
+          "monotonic": 382818.816892675,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "classification": "intentional",
+          "state": "pending",
+          "reason": "evidence_write_limit"
+        },
+        {
+          "event": "interception_command",
+          "monotonic": 382818.816897746,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_command_complete",
+          "monotonic": 382818.816904125,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.816908718,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.816912704,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        }
+      ]
+    },
+    "resolution-write-oserror": {
+      "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+      "case": "resolution-write-oserror",
+      "calls": [
+        {
+          "command": "Fetch.failRequest",
+          "args": {
+            "requestId": "fixture-fetch-1",
+            "errorReason": "Aborted"
+          }
+        }
+      ],
+      "returned": [
+        false,
+        false,
+        false
+      ],
+      "stop_reason": "evidence_write_limit",
+      "closing": false,
+      "entry_state": "resolved",
+      "entry_command": "Fetch.failRequest",
+      "events": [
+        {
+          "event": "interception_command",
+          "monotonic": 382818.814302475,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_continuation_prevented",
+          "monotonic": 382818.814387631,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "classification": "intentional",
+          "state": "pending",
+          "reason": "evidence_write_limit"
+        },
+        {
+          "event": "interception_command",
+          "monotonic": 382818.814394968,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolving"
+        },
+        {
+          "event": "interception_command_complete",
+          "monotonic": 382818.814404961,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.81441056,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.failRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        },
+        {
+          "event": "interception_resolution_skipped",
+          "monotonic": 382818.814414902,
+          "operation_id": "op-1",
+          "request_id": "fixture-fetch-1",
+          "network_id": "fixture-network-1",
+          "frame_id": "fixture-frame-1",
+          "resource_type": "Document",
+          "predecessor": null,
+          "session": "page-cdp-1",
+          "command": "Fetch.continueRequest",
+          "classification": "intentional",
+          "state": "resolved"
+        }
+      ]
+    }
+  },
+  "preservation": {
+    "status": "PASS",
+    "files": 6523,
+    "changed_or_missing": []
+  },
+  "live_requests": 0,
+  "independent_qa": "NOT RUN",
+  "remaining": [
+    "CHK replacement allocation consumed; no new live authority",
+    "Original live failing request unidentified",
+    "Prepare ON HOLD for agent-skill amendment",
+    "Independent QA and Tony candidate commit pending"
+  ],
+  "attachments": {
+    "agent_docs/RESPONSES/response_2026-10-03_172324_resolution-stop-repair.md": {
+      "bytes": 4955,
+      "sha256": "61c9abbdd60461133821ae1909992d9145d3d21070eed39baf73f95d04128b82"
+    },
+    "agent_docs/RESPONSES/response_2026-10-03_172324_resolution-stop-repair_source-test.diff.txt": {
+      "bytes": 8516,
+      "sha256": "100ceac15b8c0e0e80a1509885f56a7f2f7f9b32516a1d3655b977f55185af4b"
+    },
+    "agent_docs/RESPONSES/response_2026-10-03_172324_resolution-stop-repair_browser_session.py.txt": {
+      "bytes": 42317,
+      "sha256": "265545f494406dd688b2ddfa6770827cb33293b449946747e1e3a665a45c96d9"
+    }
+  }
+}

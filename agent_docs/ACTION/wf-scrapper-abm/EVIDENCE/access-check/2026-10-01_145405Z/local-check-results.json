@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "utc_end": "2026-10-01T14:57:58.451310+00:00",
+  "checks": [
+    {
+      "check": "15-second response-completion pacing across curl and Python",
+      "status": "PASS",
+      "measured_gap_s": 15.000689404987497
+    },
+    {
+      "check": "sticky 429 stops both clients: curl",
+      "status": "PASS"
+    },
+    {
+      "check": "no automatic redirect follow: curl",
+      "status": "PASS"
+    },
+    {
+      "check": "unexpected redirect stops without external hop: curl",
+      "status": "PASS"
+    },
+    {
+      "check": "streaming 2 MiB ceiling: curl",
+      "status": "PASS"
+    },
+    {
+      "check": "hard wall timeout: curl",
+      "status": "PASS"
+    },
+    {
+      "check": "sticky 429 stops both clients: python",
+      "status": "PASS"
+    },
+    {
+      "check": "no automatic redirect follow: python",
+      "status": "PASS"
+    },
+    {
+      "check": "unexpected redirect stops without external hop: python",
+      "status": "PASS"
+    },
+    {
+      "check": "streaming 2 MiB ceiling: python",
+      "status": "PASS"
+    },
+    {
+      "check": "hard wall timeout: python",
+      "status": "PASS"
+    },
+    {
+      "check": "six-request shared budget refuses seventh dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "stage and total mission deadlines before dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "deadline rechecked after pacing wait",
+      "status": "PASS"
+    },
+    {
+      "check": "stop condition /forbid",
+      "status": "PASS"
+    },
+    {
+      "check": "stop condition /challenge",
+      "status": "PASS"
+    },
+    {
+      "check": "stop condition /bad",
+      "status": "PASS"
+    },
+    {
+      "check": "empty REST collection is a data gap",
+      "status": "PASS"
+    },
+    {
+      "check": "external destinations rejected before subprocess dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "exclusive evidence directory; existing bytes unchanged",
+      "status": "PASS"
+    },
+    {
+      "check": "cookies/auth not sent; sensitive response headers not persisted",
+      "status": "PASS"
+    },
+    {
+      "check": "concurrent callers serialized to one in-flight request",
+      "status": "PASS"
+    }
+  ],
+  "local_HTTP_requests": 26,
+  "external_HTTP_requests": 0,
+  "failure": null,
+  "coordinator_sha256": "7b8ebcac90a41fea3fb8d03ae2d577370d862f7af7472b52eac415045f85f6ef"
+}

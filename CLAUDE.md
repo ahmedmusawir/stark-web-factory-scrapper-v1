@@ -1,3 +1,19 @@
+## Web Recon module closed — Gate Q PASS (scoped) — 2026-10-17
+
+JARVIS certified the DECIDE → COLLECT → PREPARE module on candidate `0f98bcf095781a3ac7a231c276199224dc531f11`; certificate installed at [QAM/CERTIFICATES](agent_docs/ACTION/wf-scrapper-abm/QAM/CERTIFICATES/WebFactory_GATE_Q_Certificate_2026-10-17.md); closeout at [ARCHITECT_CLOSEOUT_GATEQ_2026-10-17_114606](agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/ARCHITECT_CLOSEOUT_GATEQ_2026-10-17_114606/ARCHITECT_CLOSEOUT.md). No engineering/QA task is open. Tony alone performs the pending closeout commit, push and `main` integration (steps in the closeout lane). Dated entries below are preserved history.
+
+## Active Web Recon tool / Shot2 readiness — 2026-10-14
+
+Read [current-tool scope](agent_docs/ACTION/wf-scrapper-abm/CURRENT_TOOL_SCOPE.md) and [RECOVERY](RECOVERY.md) first. DECIDE → explicit resumable COLLECT → offline agent-assisted PREPARE is the active direction. Tony authorizes this bounded engineering-readiness pass: documentation, retained fixture checks, three focused local modules and saved-package verification. No further planning approval is needed for that scope. No product/helper repair, external collection, dependencies/Git, independent QA or final playbook/closeout. Cody Engineer; JARVIS Architect; Tony Director. SOL remains QA Lead, separate Executor binding pending. Growth classification is handled by required agent source review, not a claimed helper fix. The dated older commands/authorizations below are preserved history and do not restart that campaign.
+
+## Current Prepare skill — 2026-10-11
+
+Tony authorized [Web Recon Prepare v0.1](agent_docs/SKILLS/web-recon-prepare/SKILL.md): an offline agent workflow for a supplied saved collection. Cody/Claudy validate hashes, extract Markdown and author the architect brief/requests. This supersedes older “Prepare not implemented” wording for this small skill only; it does not resume the historical ABM P1–P6/E1/E2 campaign. Collection/recon are unchanged; no live requests/Git mutations. Current output/checkpoint: [RECOVERY.md](RECOVERY.md). Independent QA NOT RUN.
+
+## Current Web Recon entry — 2026-10-07
+
+The active product direction and engineering scope are in [collector simplification](agent_docs/ACTION/wf-scrapper-abm/COLLECTOR_SIMPLIFICATION.md) and [RECOVERY.md](RECOVERY.md). Tony authorized this implementation plus local verification; the legacy controller campaign below is historical. No live requests, Git mutations or Prepare work in this task. Independent QA NOT RUN. This explicit user authorization supersedes the generic planning-only approval loop for this scoped implementation.
+
 # CLAUDE.md — Claude Code Configuration
 
 > **AI App Factory — Stark Industries**
@@ -5,6 +21,12 @@
 > _Version: 3.1 | July 2026_
 
 ---
+
+## Active Web Recon module / seat override
+
+For `agent_docs/ACTION/wf-scrapper-abm/`, read [module AGENTS](agent_docs/ACTION/wf-scrapper-abm/AGENTS.md) and [RECOVERY](RECOVERY.md) first. Current seats: Tony Stark Director, JARVIS Architect, Cody Engineer. Independent QA enters through [QAM](agent_docs/ACTION/wf-scrapper-abm/QAM/README.md) in a separate session; Cody’s engineering session cannot self-certify. This module-specific assignment supersedes the generic “Tony is the architect” wording below for this campaign only.
+
+Tony’s DIRECTOR GO authorizes implementation of approved BUILD_READBACK, C1–C6 → CHK → P1–P6 → E1–E2. Module launch E-20/E-21 bind redirect completion and cf-mitigated evidence. Engineering checks are authorized; live allocations are conditional on passing local gates. Independent QA remains separate. Tony alone owns Git mutations and destructive cleanup. Current state: ENGINEERING BLOCKED AT CHK; see RECOVERY.md. One live attempt stopped on a control failure; no automatic retry or advancement.
 
 ## Role Definition
 

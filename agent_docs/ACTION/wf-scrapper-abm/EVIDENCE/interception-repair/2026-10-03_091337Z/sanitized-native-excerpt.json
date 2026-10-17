@@ -1,0 +1,150 @@
+{
+  "native-incidental-cancellation": {
+    "stop_reason": null,
+    "dispatches": 3,
+    "events": [
+      {
+        "event": "fixture_native_cancellation",
+        "monotonic": 376188.506863257,
+        "request_id": "interception-job-9.0",
+        "network_id": "456559.5",
+        "frame_id": "F9AA3FD207307950A9EC33977E6D1D1F",
+        "canceled": true,
+        "error_text": "net::ERR_ABORTED"
+      },
+      {
+        "event": "interception_command_error",
+        "monotonic": 376188.511970885,
+        "operation_id": null,
+        "request_id": "interception-job-9.0",
+        "network_id": "456559.5",
+        "resource_type": "XHR",
+        "frame_id": "F9AA3FD207307950A9EC33977E6D1D1F",
+        "predecessor": null,
+        "session": "page-cdp-1",
+        "command": "Fetch.continueRequest",
+        "classification": "incidental",
+        "state": "error",
+        "error": "Error",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": true
+      },
+      {
+        "event": "interception_incidental_canceled",
+        "monotonic": 376188.51197738,
+        "operation_id": null,
+        "request_id": "interception-job-9.0",
+        "network_id": "456559.5",
+        "resource_type": "XHR",
+        "frame_id": "F9AA3FD207307950A9EC33977E6D1D1F",
+        "predecessor": null,
+        "session": "page-cdp-1",
+        "command": "Fetch.continueRequest",
+        "classification": "incidental",
+        "state": "canceled"
+      }
+    ]
+  },
+  "native-frame-cancellation": {
+    "stop_reason": null,
+    "dispatches": 2,
+    "events": [
+      {
+        "event": "fixture_native_cancellation",
+        "monotonic": 376198.611674915,
+        "request_id": "interception-job-7.0",
+        "network_id": "AE3AA59D842FF2D8963FDDE56B57D85F",
+        "frame_id": "8528F347948866291FECAACCFC2767FC",
+        "canceled": true,
+        "error_text": "net::ERR_ABORTED"
+      },
+      {
+        "event": "interception_frame_detached",
+        "monotonic": 376198.614948749,
+        "session": "page-cdp-1",
+        "frame_id": "8528F347948866291FECAACCFC2767FC",
+        "reason": "remove"
+      },
+      {
+        "event": "interception_command_error",
+        "monotonic": 376198.620520442,
+        "operation_id": null,
+        "request_id": "interception-job-7.0",
+        "network_id": "AE3AA59D842FF2D8963FDDE56B57D85F",
+        "resource_type": "Document",
+        "frame_id": "8528F347948866291FECAACCFC2767FC",
+        "predecessor": null,
+        "session": "page-cdp-1",
+        "command": "Fetch.continueRequest",
+        "classification": "incidental",
+        "state": "error",
+        "error": "Error",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": true
+      },
+      {
+        "event": "interception_incidental_canceled",
+        "monotonic": 376198.620527225,
+        "operation_id": null,
+        "request_id": "interception-job-7.0",
+        "network_id": "AE3AA59D842FF2D8963FDDE56B57D85F",
+        "resource_type": "Document",
+        "frame_id": "8528F347948866291FECAACCFC2767FC",
+        "predecessor": null,
+        "session": "page-cdp-1",
+        "command": "Fetch.continueRequest",
+        "classification": "incidental",
+        "state": "canceled"
+      }
+    ]
+  },
+  "native-cancel-during-capture": {
+    "stop_reason": null,
+    "dispatches": 2,
+    "events": [
+      {
+        "event": "fixture_native_cancellation",
+        "monotonic": 376255.255062998,
+        "request_id": "interception-job-7.0",
+        "network_id": "457437.4",
+        "frame_id": "FEEC85D43A761C3D5343606F545F825A",
+        "canceled": true,
+        "error_text": "net::ERR_ABORTED"
+      },
+      {
+        "event": "interception_command_error",
+        "monotonic": 376255.260768681,
+        "operation_id": "op-1",
+        "request_id": "interception-job-7.0",
+        "network_id": "457437.4",
+        "resource_type": "XHR",
+        "frame_id": "FEEC85D43A761C3D5343606F545F825A",
+        "predecessor": null,
+        "session": "page-cdp-1",
+        "command": "Fetch.continueRequest",
+        "classification": "incidental",
+        "state": "error",
+        "error": "Error",
+        "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+        "confirmed_canceled": true,
+        "supported_incidental": true
+      },
+      {
+        "event": "interception_incidental_canceled",
+        "monotonic": 376255.260775238,
+        "operation_id": "op-1",
+        "request_id": "interception-job-7.0",
+        "network_id": "457437.4",
+        "resource_type": "XHR",
+        "frame_id": "FEEC85D43A761C3D5343606F545F825A",
+        "predecessor": null,
+        "session": "page-cdp-1",
+        "command": "Fetch.continueRequest",
+        "classification": "incidental",
+        "state": "canceled"
+      }
+    ]
+  }
+}

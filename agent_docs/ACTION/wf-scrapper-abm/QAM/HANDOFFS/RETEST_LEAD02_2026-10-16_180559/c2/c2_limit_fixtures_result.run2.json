@@ -1,0 +1,351 @@
+{
+  "executor": "Claudy (Claude Code, Claude Fable 5)",
+  "instrument_sha256": "9739d4be56196524655dfdc07ae2767df1959ffc56ee2b80bd8fe587d67e2d30",
+  "collector_module": "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/recon_pipeline/collector.py",
+  "collector_sha256": "3b2791bccb4fa6d75d3be1f5c281d2de2826c168465c7dda60373d20260b7db2",
+  "fixture_body_bytes": 10120,
+  "fixture_body_sha256": "1047a051d95f5d2accfff301e2acfdbd8048f4395cde1c3ed093bab654e30bd2",
+  "case_a_max_requests_1": {
+    "collection": "/tmp/claudy-lead02-retest-20261016/c2-run2/qa-c2-maxreq1",
+    "settings": {
+      "gap_seconds": 0,
+      "max_requests": 1,
+      "max_seconds": 60,
+      "max_bytes": 100000000,
+      "response_cap": 10485760
+    },
+    "start": "2026-10-16T12:22:58.573162+00:00",
+    "end": "2026-10-16T12:22:58.636926+00:00",
+    "exit_code": 2,
+    "dispatches": [
+      {
+        "url": "http://127.0.0.1/qa-c2/a1",
+        "monotonic": 976652.715510964,
+        "wall": "2026-10-16T12:22:58.578858+00:00"
+      }
+    ],
+    "transport_starts": 1,
+    "transport_closed": 1,
+    "requests_recorded": [
+      {
+        "id": "4ea68d433c1cfce79373167f",
+        "url": "http://127.0.0.1/qa-c2/a1",
+        "start": 976652.713577487,
+        "completion": 976652.715538822,
+        "completion_epoch": 1792153378.5788856
+      }
+    ],
+    "stop_reason": "request_limit",
+    "collection_outcome": "partial",
+    "cleanup_error": null,
+    "items": [
+      {
+        "id": "4ea68d433c1cfce79373167f",
+        "url": "http://127.0.0.1/qa-c2/a1",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "id": "1d4b9ed81c08e889bd818d9a",
+        "url": "http://127.0.0.1/qa-c2/a2",
+        "status": "pending",
+        "error": null
+      }
+    ],
+    "bytes": {
+      "per_file_sum": 12539,
+      "du_sb": 12539,
+      "file_count": 4,
+      "writer_lock_bytes": 0,
+      "runtime_entries_by_name_only": [],
+      "files": {
+        ".writer.lock": 0,
+        "attempts/4ea68d433c1cfce79373167f/68ce9e42d04c4714a9997888fdfb6af1/body": 10120,
+        "attempts/4ea68d433c1cfce79373167f/68ce9e42d04c4714a9997888fdfb6af1/result.json": 510,
+        "checklist.json": 1909
+      }
+    },
+    "persisted_attempts": [
+      "attempts/4ea68d433c1cfce79373167f/68ce9e42d04c4714a9997888fdfb6af1/result.json"
+    ],
+    "persisted_bodies_sha256": {
+      "attempts/4ea68d433c1cfce79373167f/68ce9e42d04c4714a9997888fdfb6af1/body": "1047a051d95f5d2accfff301e2acfdbd8048f4395cde1c3ed093bab654e30bd2"
+    },
+    "expected": {
+      "one_dispatch": true,
+      "request_completed": true,
+      "one_attempt_persisted": true,
+      "stop_request_limit": true,
+      "second_item_pending": true,
+      "partial_outcome": true,
+      "transport_closed": true
+    }
+  },
+  "case_b_tiny_deadline": {
+    "collection": "/tmp/claudy-lead02-retest-20261016/c2-run2/qa-c2-deadline",
+    "settings": {
+      "gap_seconds": 0,
+      "max_requests": 5,
+      "max_seconds": 1,
+      "max_bytes": 100000000,
+      "response_cap": 10485760
+    },
+    "start": "2026-10-16T12:22:58.642301+00:00",
+    "end": "2026-10-16T12:22:59.648837+00:00",
+    "exit_code": 2,
+    "dispatches": [
+      {
+        "url": "http://127.0.0.1/qa-c2/b1",
+        "monotonic": 976652.78347794,
+        "wall": "2026-10-16T12:22:58.646826+00:00"
+      }
+    ],
+    "transport_starts": 1,
+    "transport_closed": 1,
+    "requests_recorded": [
+      {
+        "id": "f8db3fdfc808e71c8b6e15f3",
+        "url": "http://127.0.0.1/qa-c2/b1",
+        "start": 976652.781547898,
+        "completion": null,
+        "completion_epoch": null
+      }
+    ],
+    "stop_reason": "request_error",
+    "collection_outcome": "partial",
+    "cleanup_error": null,
+    "items": [
+      {
+        "id": "f8db3fdfc808e71c8b6e15f3",
+        "url": "http://127.0.0.1/qa-c2/b1",
+        "status": "failed",
+        "error": "TimeoutError: "
+      }
+    ],
+    "bytes": {
+      "per_file_sum": 1150,
+      "du_sb": 1150,
+      "file_count": 2,
+      "writer_lock_bytes": 0,
+      "runtime_entries_by_name_only": [],
+      "files": {
+        ".writer.lock": 0,
+        "checklist.json": 1150
+      }
+    },
+    "persisted_attempts": [],
+    "persisted_bodies_sha256": {},
+    "expected": {
+      "stop_deadline_cancellation": true,
+      "dispatched_once": true,
+      "no_attempt_persisted": true,
+      "item_failed": true,
+      "partial_outcome": true,
+      "transport_closed": true
+    },
+    "semantics_observed": "The deadline is enforced pre-dispatch (loop guard → stop_reason time_limit, case B2) and in-flight via asyncio.timeout_at(deadline): the cancelled await raises TimeoutError inside the per-request try-block, so the run records stop_reason request_error with the item error 'TimeoutError: ...' and persists nothing. The run still stops at the deadline; only the stop label differs between the two paths (OBSERVATION for the Lead). Cancellation is cooperative asyncio cancellation at the next await point - no instantaneous or wire-level cancellation guarantee is claimed."
+  },
+  "case_b2_predispatch_deadline": {
+    "collection": "/tmp/claudy-lead02-retest-20261016/c2-run2/qa-c2-deadline-predispatch",
+    "settings": {
+      "gap_seconds": 5,
+      "max_requests": 5,
+      "max_seconds": 2,
+      "max_bytes": 100000000,
+      "response_cap": 10485760
+    },
+    "start": "2026-10-16T12:22:59.653159+00:00",
+    "end": "2026-10-16T12:22:59.666478+00:00",
+    "exit_code": 2,
+    "dispatches": [
+      {
+        "url": "http://127.0.0.1/qa-c2/c1",
+        "monotonic": 976653.794331232,
+        "wall": "2026-10-16T12:22:59.657677+00:00"
+      }
+    ],
+    "transport_starts": 1,
+    "transport_closed": 1,
+    "requests_recorded": [
+      {
+        "id": "1972f5b10c60cf0e6c94c5c6",
+        "url": "http://127.0.0.1/qa-c2/c1",
+        "start": 976653.792236916,
+        "completion": 976653.794349172,
+        "completion_epoch": 1792153379.6576953
+      }
+    ],
+    "stop_reason": "time_limit",
+    "collection_outcome": "partial",
+    "cleanup_error": null,
+    "items": [
+      {
+        "id": "1972f5b10c60cf0e6c94c5c6",
+        "url": "http://127.0.0.1/qa-c2/c1",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "id": "be94bc44a3c163f7e23409ef",
+        "url": "http://127.0.0.1/qa-c2/c2",
+        "status": "pending",
+        "error": null
+      }
+    ],
+    "bytes": {
+      "per_file_sum": 12536,
+      "du_sb": 12536,
+      "file_count": 4,
+      "writer_lock_bytes": 0,
+      "runtime_entries_by_name_only": [],
+      "files": {
+        ".writer.lock": 0,
+        "attempts/1972f5b10c60cf0e6c94c5c6/33fe60214bee4e9b9554cfdc85f35918/body": 10120,
+        "attempts/1972f5b10c60cf0e6c94c5c6/33fe60214bee4e9b9554cfdc85f35918/result.json": 510,
+        "checklist.json": 1906
+      }
+    },
+    "persisted_attempts": [
+      "attempts/1972f5b10c60cf0e6c94c5c6/33fe60214bee4e9b9554cfdc85f35918/result.json"
+    ],
+    "persisted_bodies_sha256": {
+      "attempts/1972f5b10c60cf0e6c94c5c6/33fe60214bee4e9b9554cfdc85f35918/body": "1047a051d95f5d2accfff301e2acfdbd8048f4395cde1c3ed093bab654e30bd2"
+    },
+    "expected": {
+      "stop_time_limit": true,
+      "first_completed_persisted": true,
+      "second_never_dispatched": true,
+      "second_item_pending": true,
+      "partial_outcome": true
+    }
+  },
+  "case_c_byte_allowance": {
+    "collection": "/tmp/claudy-lead02-retest-20261016/c2-run2/qa-c2-bytes",
+    "settings": {
+      "gap_seconds": 0,
+      "max_requests": 10,
+      "max_seconds": 60,
+      "max_bytes": 90656,
+      "response_cap": 10485760
+    },
+    "start": "2026-10-16T12:22:59.672152+00:00",
+    "end": "2026-10-16T12:22:59.697883+00:00",
+    "exit_code": 0,
+    "dispatches": [
+      {
+        "url": "http://127.0.0.1/qa-c2/d1",
+        "monotonic": 976653.814298901,
+        "wall": "2026-10-16T12:22:59.677646+00:00"
+      },
+      {
+        "url": "http://127.0.0.1/qa-c2/d2",
+        "monotonic": 976653.823434342,
+        "wall": "2026-10-16T12:22:59.686781+00:00"
+      }
+    ],
+    "transport_starts": 1,
+    "transport_closed": 1,
+    "requests_recorded": [
+      {
+        "id": "cadadac516ec53db37a152cb",
+        "url": "http://127.0.0.1/qa-c2/d1",
+        "start": 976653.812135435,
+        "completion": 976653.81432575,
+        "completion_epoch": 1792153379.6776721
+      },
+      {
+        "id": "6ac26e5aeecff286aa772aca",
+        "url": "http://127.0.0.1/qa-c2/d2",
+        "start": 976653.821024652,
+        "completion": 976653.823473781,
+        "completion_epoch": 1792153379.6868198
+      }
+    ],
+    "stop_reason": null,
+    "collection_outcome": "complete",
+    "cleanup_error": null,
+    "items": [
+      {
+        "id": "cadadac516ec53db37a152cb",
+        "url": "http://127.0.0.1/qa-c2/d1",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "id": "6ac26e5aeecff286aa772aca",
+        "url": "http://127.0.0.1/qa-c2/d2",
+        "status": "completed",
+        "error": null
+      }
+    ],
+    "bytes": {
+      "per_file_sum": 23876,
+      "du_sb": 23876,
+      "file_count": 6,
+      "writer_lock_bytes": 0,
+      "runtime_entries_by_name_only": [],
+      "files": {
+        ".writer.lock": 0,
+        "attempts/6ac26e5aeecff286aa772aca/394a5545ab3e48058b540df03de5b0e3/body": 10120,
+        "attempts/6ac26e5aeecff286aa772aca/394a5545ab3e48058b540df03de5b0e3/result.json": 510,
+        "attempts/cadadac516ec53db37a152cb/c10f9792c01b4180ba37a7cdb40d2fda/body": 10120,
+        "attempts/cadadac516ec53db37a152cb/c10f9792c01b4180ba37a7cdb40d2fda/result.json": 510,
+        "checklist.json": 2616
+      }
+    },
+    "persisted_attempts": [
+      "attempts/6ac26e5aeecff286aa772aca/394a5545ab3e48058b540df03de5b0e3/result.json",
+      "attempts/cadadac516ec53db37a152cb/c10f9792c01b4180ba37a7cdb40d2fda/result.json"
+    ],
+    "persisted_bodies_sha256": {
+      "attempts/6ac26e5aeecff286aa772aca/394a5545ab3e48058b540df03de5b0e3/body": "1047a051d95f5d2accfff301e2acfdbd8048f4395cde1c3ed093bab654e30bd2",
+      "attempts/cadadac516ec53db37a152cb/c10f9792c01b4180ba37a7cdb40d2fda/body": "1047a051d95f5d2accfff301e2acfdbd8048f4395cde1c3ed093bab654e30bd2"
+    },
+    "allowance": 90656,
+    "expected": {
+      "stop_byte_limit": false,
+      "first_persisted": false,
+      "second_dispatched_but_not_persisted": true,
+      "second_item_failed_byte_limit": false,
+      "partial_outcome": false,
+      "directory_within_allowance": true
+    },
+    "semantics_documented": "Post-receipt enforcement: after a response arrives, current persisted directory size + len(body) + 65536 (metadata/checklist overhead estimate) is compared to max_bytes; the crossing response is NOT persisted and the run stops. The allowance bounds persisted bytes, not wire bytes, response memory or redirect hops."
+  },
+  "o2_directory_bytes": {
+    "case_a": {
+      "per_file_sum": 12539,
+      "du_sb": 12539,
+      "writer_lock": 0,
+      "runtime_by_name": []
+    },
+    "case_b": {
+      "per_file_sum": 1150,
+      "du_sb": 1150,
+      "writer_lock": 0,
+      "runtime_by_name": []
+    },
+    "case_b2": {
+      "per_file_sum": 12536,
+      "du_sb": 12536,
+      "writer_lock": 0,
+      "runtime_by_name": []
+    },
+    "case_c": {
+      "per_file_sum": 23876,
+      "du_sb": 23876,
+      "writer_lock": 0,
+      "runtime_by_name": []
+    },
+    "historical_real_collection": {
+      "path": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/collections/CyberizeGroup-first-selected-2026-10-11_203505",
+      "per_file_sum": 1400002,
+      "du_sb": 1400002,
+      "writer_lock": 0,
+      "runtime_by_name": [],
+      "note": "read-only measurement of the retained real collection; .runtime listed by name/size only"
+    }
+  },
+  "o2_note": "du -sb exceeds the per-file sum by filesystem block/directory overhead; the product's own size check uses the per-file stat sum, which these measurements bound.",
+  "verdict_c2": "FAIL"
+}

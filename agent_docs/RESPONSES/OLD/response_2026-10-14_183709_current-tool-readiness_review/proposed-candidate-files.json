@@ -1,0 +1,68 @@
+{
+  "kind": "Proposed selective staging/retention list for Tony; NO Git mutations executed",
+  "source_sha256": "39b9728ac72cd2699410b6fda05c68c38b842b23eff7bd6490d9fb4f6d3d8314",
+  "base_head": "fb16b1b927a234d74a2c29c9044df33317ff8276",
+  "required_changed_or_untracked_source": [
+    "agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py",
+    "agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py",
+    "recon_pipeline/decide.py",
+    "tests/test_decide.py"
+  ],
+  "current_operating_docs_and_skill": [
+    "CLAUDE.md",
+    "README.md",
+    "agent_docs/ACTION/wf-scrapper-abm/AGENTS.md",
+    "agent_docs/ACTION/wf-scrapper-abm/CLAUDE.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_ACCEPTANCE_SPEC.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_CONTRACTS.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_BRIEF.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_BUILD_INSTRUCTIONS.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md",
+    "agent_docs/ACTION/wf-scrapper-abm/DECIDE.md",
+    "agent_docs/ACTION/wf-scrapper-abm/COLLECTOR_SIMPLIFICATION.md",
+    "agent_docs/ACTION/wf-scrapper-abm/QA/README.md",
+    "agent_docs/ACTION/wf-scrapper-abm/QA/MASTER_QA_TEST_PLAN.md",
+    "agent_docs/ACTION/wf-scrapper-abm/QAM/README.md",
+    "agent_docs/ACTION/wf-scrapper-abm/QAM/MANIFEST.md",
+    "agent_docs/ACTION/wf-scrapper-abm/QAM/STATE.md",
+    "agent_docs/ACTION/wf-scrapper-abm/QAM/EXECUTION_INSTRUCTIONS.md",
+    "agent_docs/ACTION/wf-scrapper-abm/CURRENT_TOOL_SCOPE.md",
+    "agent_docs/SKILLS/web-recon-prepare/SKILL.md",
+    "agent_docs/SKILLS/web-recon-prepare/AGENTS.md",
+    "agent_docs/SKILLS/web-recon-prepare/CLAUDE.md"
+  ],
+  "checkpoint_records": [
+    "RECOVERY.md",
+    "CHANGELOG.md",
+    "agent_docs/SESSIONS/session_2026-10-14.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md",
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md"
+  ],
+  "small_handoff_evidence": [
+    "agent_docs/RESPONSES/response_2026-10-14_183709_current-tool-readiness.md",
+    "agent_docs/RESPONSES/response_2026-10-14_183709_current-tool-readiness_review/source-inventory.json",
+    "agent_docs/RESPONSES/response_2026-10-14_183709_current-tool-readiness_review/engineering-results.json",
+    "agent_docs/RESPONSES/response_2026-10-14_183709_current-tool-readiness_review/fixture-manifest.json",
+    "agent_docs/RESPONSES/response_2026-10-14_183709_current-tool-readiness_review/restore-fixtures.py",
+    "agent_docs/RESPONSES/response_2026-10-14_183709_current-tool-readiness_review/FIXTURE_ACCESS.md",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/combined/command.json",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/combined/result.json",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/combined/junit.xml",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/combined/pytest.log",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/fixture-checks.json",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/offline-content-checks.json",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/acceptance-crosswalk.json"
+  ],
+  "fixture_archives_retained_outside_candidate": [
+    "agent_docs/RESPONSES/response_2026-10-11_210309_prepare-v01.zip",
+    "agent_docs/RESPONSES/response_2026-10-13_223736_growth-call-follow-up.zip"
+  ],
+  "exclude": [
+    "outputs bulk captures/collections/prepared/recon",
+    "runtime/browser caches",
+    "dependencies/.env/credentials",
+    "large preservation/scratch fixtures",
+    "unrelated historical reports/work"
+  ],
+  "instructions": "Review file diffs/hunks. Some listed files contain pre-existing dirty work; preserve it and choose only intended candidate changes. Do not git add -A. If committed product/test bytes differ from source52, assess/reverify before evidence reuse. QA independently pins actual commit; base HEAD is not the finished implementation commit."
+}

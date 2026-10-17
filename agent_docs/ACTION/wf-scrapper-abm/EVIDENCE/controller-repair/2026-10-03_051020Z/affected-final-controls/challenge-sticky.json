@@ -1,0 +1,165 @@
+{
+  "browser_events": [
+    {
+      "event": "operation_start",
+      "monotonic": 363921.701067625,
+      "url": "http://127.0.0.1:34851/challenge",
+      "operation_id": "op-1",
+      "deadline": 363976.16532532
+    },
+    {
+      "event": "controls_installed",
+      "monotonic": 363922.680633993,
+      "transport": "Chromium CDP Fetch.requestPaused"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 363922.68797954,
+      "request_id": "762860A6E7C37D1F7AF666904736F4B2",
+      "url": "http://127.0.0.1:34851/challenge",
+      "redirect_from": null,
+      "redirect_status": null,
+      "browser_timestamp": 363922.686807,
+      "network_id": "762860A6E7C37D1F7AF666904736F4B2",
+      "frame_id": "194DCFAB808DDDFE38741F2DA972D97D",
+      "resource_type": "Document",
+      "loader_id": "762860A6E7C37D1F7AF666904736F4B2",
+      "initiator_type": "other",
+      "initiator_script_id": null
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 363922.689173511,
+      "url": "http://127.0.0.1:34851/challenge",
+      "method": "GET",
+      "classification": "intentional",
+      "initiator_script_id": null,
+      "network_resource_type": "Document",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "762860A6E7C37D1F7AF666904736F4B2",
+      "resource_type": "Document",
+      "frame_id": "194DCFAB808DDDFE38741F2DA972D97D",
+      "predecessor": null
+    },
+    {
+      "event": "intentional_intercepted",
+      "monotonic": 363922.68920147,
+      "url": "http://127.0.0.1:34851/challenge",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "762860A6E7C37D1F7AF666904736F4B2",
+      "resource_type": "Document",
+      "frame_id": "194DCFAB808DDDFE38741F2DA972D97D",
+      "predecessor": null
+    },
+    {
+      "event": "intentional_dispatch",
+      "monotonic": 363922.689222771,
+      "url": "http://127.0.0.1:34851/challenge",
+      "method": "GET",
+      "kind": "document",
+      "ordinal": 1,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "762860A6E7C37D1F7AF666904736F4B2",
+      "resource_type": "Document",
+      "frame_id": "194DCFAB808DDDFE38741F2DA972D97D",
+      "predecessor": null,
+      "preceding_completion": null
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 363922.69658424,
+      "url": "http://127.0.0.1:34851/challenge",
+      "method": "GET",
+      "resource_type": "document"
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 363922.711472776,
+      "url": "http://127.0.0.1:34851/challenge",
+      "status": 200,
+      "headers": {
+        "content-length": "76",
+        "content-type": "text/html",
+        "cf-mitigated": "challenge"
+      },
+      "resource_type": "document"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 363922.711725268,
+      "request_id": "762860A6E7C37D1F7AF666904736F4B2",
+      "url": "http://127.0.0.1:34851/challenge",
+      "status": 200
+    },
+    {
+      "event": "stop",
+      "monotonic": 363922.711733438,
+      "reason": "cf_mitigated_challenge"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 363922.716425024,
+      "request_id": "762860A6E7C37D1F7AF666904736F4B2",
+      "browser_timestamp": 363922.706415
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 363922.717017742,
+      "url": "http://127.0.0.1:34851/challenge",
+      "resource_type": "document"
+    },
+    {
+      "event": "operation_complete",
+      "monotonic": 363922.751882605,
+      "url": "http://127.0.0.1:34851/challenge",
+      "kind": "document",
+      "operation_id": "op-1",
+      "error": null
+    }
+  ],
+  "server_events": [
+    {
+      "event": "request_received",
+      "path": "/challenge",
+      "method": "GET",
+      "monotonic": 363922.704391331,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "document"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/challenge",
+      "method": "GET",
+      "monotonic": 363922.704548905,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/challenge",
+      "method": "GET",
+      "monotonic": 363922.704578151,
+      "bytes": 76
+    }
+  ],
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+  },
+  "dispatches": 1,
+  "stop_reason": "cf_mitigated_challenge"
+}

@@ -1,0 +1,269 @@
+{
+  "schema": "web-recon-imported-inventory-v1",
+  "origin": "IMPORTED_CAPTURE_INVENTORY",
+  "created_at": "2026-10-07T14:05:22.520908+00:00",
+  "source_run": {
+    "local_input_locator": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/check-final/fixtures/test_cli_round_trip_and_unknow0/raw",
+    "locator_role": "read-only local input, not a raw/pack output reference",
+    "run_id": "2026-01-01T00-00-00Z",
+    "project": "Static",
+    "snapshot_sha256": "7775a58b6bc7b3a3537d3d6133a61841f5bce0907925e20f5484111b12fc91b0",
+    "manifest_sha256": "98dbad694ddb0c5d5e2a2167331858fdba3dc03852da4c2ad37724b09a39547e",
+    "capture_source_identity_sha256": null
+  },
+  "context": {
+    "candidate_universe": "discovery routes union returned REST pages/posts links; no automatic exclusions",
+    "capture_stopped_early": false,
+    "capture_stop_reason": null,
+    "shutdown": null,
+    "streams": {
+      "discovery": "partial",
+      "html": "partial",
+      "rest": "skipped",
+      "media": "skipped",
+      "screenshots": "empty"
+    },
+    "collections": [
+      {
+        "type": "pages",
+        "status": "skipped",
+        "advertised_total": null,
+        "advertised_pages": null,
+        "fetched_pages": [],
+        "saved_records": 0,
+        "unique_ids": 0,
+        "duplicate_records": 0,
+        "record_gap": null,
+        "short_page_anomalies": []
+      },
+      {
+        "type": "posts",
+        "status": "skipped",
+        "advertised_total": null,
+        "advertised_pages": null,
+        "fetched_pages": [],
+        "saved_records": 0,
+        "unique_ids": 0,
+        "duplicate_records": 0,
+        "record_gap": null,
+        "short_page_anomalies": []
+      },
+      {
+        "type": "media",
+        "status": "skipped",
+        "advertised_total": null,
+        "advertised_pages": null,
+        "fetched_pages": [],
+        "saved_records": 0,
+        "unique_ids": 0,
+        "duplicate_records": 0,
+        "record_gap": null,
+        "short_page_anomalies": []
+      },
+      {
+        "type": "categories",
+        "status": "skipped",
+        "advertised_total": null,
+        "advertised_pages": null,
+        "fetched_pages": [],
+        "saved_records": 0,
+        "unique_ids": 0,
+        "duplicate_records": 0,
+        "record_gap": null,
+        "short_page_anomalies": []
+      },
+      {
+        "type": "tags",
+        "status": "skipped",
+        "advertised_total": null,
+        "advertised_pages": null,
+        "fetched_pages": [],
+        "saved_records": 0,
+        "unique_ids": 0,
+        "duplicate_records": 0,
+        "record_gap": null,
+        "short_page_anomalies": []
+      },
+      {
+        "type": "users",
+        "status": "skipped",
+        "advertised_total": null,
+        "advertised_pages": null,
+        "fetched_pages": [],
+        "saved_records": 0,
+        "unique_ids": 0,
+        "duplicate_records": 0,
+        "record_gap": null,
+        "short_page_anomalies": []
+      }
+    ],
+    "media_inventory": {
+      "items": 0,
+      "internal": 0,
+      "external": 0,
+      "staging_domain": 0
+    },
+    "source_files": {
+      "manifest.json": "98dbad694ddb0c5d5e2a2167331858fdba3dc03852da4c2ad37724b09a39547e",
+      "rest/index.json": "122969adb039d12ffc4ff8e73b2492f846475cae8fbb21150a3261b446854e29",
+      "media/inventory.json": "1940af42a7d2afdd2359205ea10c58bda158f605e866ae17ad5e5d4334cbf657",
+      "stage_log.txt": "7c023449834fbe8bac695c748c5dcb23c48c12a28e0c861d0f2f41606e2795a3"
+    },
+    "unknowns": [
+      "Not a fresh lightweight recon run; no current accessibility claim.",
+      "Media/taxonomy/users are context, not document candidates.",
+      "Hidden/deferred content completeness unknown; missing metadata is not inferred.",
+      "Selection does not authorize or execute capture.",
+      "HTTP response MIME is not inferred from WordPress object type.",
+      "Independent QA NOT RUN; Prepare ON HOLD."
+    ]
+  },
+  "items": [
+    {
+      "id": "doc-b87cf5173256bfd56a1a",
+      "url": "https://example.com/later/",
+      "title": null,
+      "titles": [],
+      "content_types": [],
+      "dates": [],
+      "sources": [
+        {
+          "file": "discovery/routes.json",
+          "locator": "$.routes[2]",
+          "sha256": "48bb4e75c8d44fdf34322c19971dd7d5ff72088ab58d2deb6c3a1fb1ff8efa04"
+        },
+        {
+          "file": "manifest.json",
+          "locator": "$.pages[2]",
+          "sha256": "98dbad694ddb0c5d5e2a2167331858fdba3dc03852da4c2ad37724b09a39547e"
+        }
+      ],
+      "discovery_provenance": [
+        {
+          "route_position": 2,
+          "source_file": null,
+          "input_urls": [
+            "https://example.com/later/"
+          ],
+          "aliases": []
+        }
+      ],
+      "capture_outcome": {
+        "outcome": "skipped",
+        "reason": "limit",
+        "status": null,
+        "final_url": null
+      },
+      "gaps": [
+        "dates_unknown",
+        "rendered_html_skipped",
+        "title_unknown",
+        "wordpress_content_type_unknown"
+      ],
+      "selection": "UNDECIDED"
+    },
+    {
+      "id": "doc-4095d50c54aeb25ec9e3",
+      "url": "https://example.com/missing/",
+      "title": null,
+      "titles": [],
+      "content_types": [],
+      "dates": [
+        {
+          "kind": "fetched_at",
+          "value": "2026-01-01T00:00:00+00:00",
+          "source_file": "manifest.json",
+          "locator": "$.pages[1].fetched_at"
+        }
+      ],
+      "sources": [
+        {
+          "file": "discovery/routes.json",
+          "locator": "$.routes[1]",
+          "sha256": "48bb4e75c8d44fdf34322c19971dd7d5ff72088ab58d2deb6c3a1fb1ff8efa04"
+        },
+        {
+          "file": "manifest.json",
+          "locator": "$.pages[1]",
+          "sha256": "98dbad694ddb0c5d5e2a2167331858fdba3dc03852da4c2ad37724b09a39547e"
+        }
+      ],
+      "discovery_provenance": [
+        {
+          "route_position": 1,
+          "source_file": null,
+          "input_urls": [
+            "https://example.com/missing/"
+          ],
+          "aliases": []
+        }
+      ],
+      "capture_outcome": {
+        "outcome": "failed",
+        "reason": "HTTP 404",
+        "status": 404,
+        "final_url": "https://example.com/missing/"
+      },
+      "gaps": [
+        "rendered_html_failed",
+        "title_unknown",
+        "wordpress_content_type_unknown"
+      ],
+      "selection": "UNDECIDED"
+    },
+    {
+      "id": "doc-3ab9aa1cbc6ca0f83757",
+      "url": "https://example.com/one/",
+      "title": null,
+      "titles": [],
+      "content_types": [],
+      "dates": [
+        {
+          "kind": "fetched_at",
+          "value": "2026-01-01T00:00:00+00:00",
+          "source_file": "manifest.json",
+          "locator": "$.pages[0].fetched_at"
+        }
+      ],
+      "sources": [
+        {
+          "file": "discovery/routes.json",
+          "locator": "$.routes[0]",
+          "sha256": "48bb4e75c8d44fdf34322c19971dd7d5ff72088ab58d2deb6c3a1fb1ff8efa04"
+        },
+        {
+          "file": "manifest.json",
+          "locator": "$.pages[0]",
+          "sha256": "98dbad694ddb0c5d5e2a2167331858fdba3dc03852da4c2ad37724b09a39547e"
+        },
+        {
+          "file": "html/one.html",
+          "locator": "rendered HTML; not REST content",
+          "sha256": "fa1844f268470190497b1dc60ece2ce9337ce97a752bd77e54dcdc119e35da60"
+        }
+      ],
+      "discovery_provenance": [
+        {
+          "route_position": 0,
+          "source_file": null,
+          "input_urls": [
+            "https://example.com/one/"
+          ],
+          "aliases": []
+        }
+      ],
+      "capture_outcome": {
+        "outcome": "captured",
+        "reason": null,
+        "status": 200,
+        "final_url": "https://example.com/one/"
+      },
+      "gaps": [
+        "title_unknown",
+        "wordpress_content_type_unknown"
+      ],
+      "selection": "UNDECIDED"
+    }
+  ],
+  "inventory_id": "2fd81a45035b868eb4fe3b3112c03cdd8ab0216c7869e2c49f804128d8b675d9"
+}

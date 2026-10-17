@@ -1,0 +1,84 @@
+{
+ "validation/prefix/affected-junit-prefix.xml": {
+  "totals": {
+   "tests": "85",
+   "failures": "8",
+   "errors": "0",
+   "skipped": "0",
+   "time": "8.979"
+  },
+  "per_module": {
+   "tests.test_decide": {
+    "tests": 74,
+    "failures": 7
+   },
+   "agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved": {
+    "tests": 11,
+    "failures": 1
+   }
+  },
+  "failed": [
+   "tests.test_decide::test_arrow_cta_cannot_supply_unknown_title",
+   "tests.test_decide::test_arrow_cta_cannot_replace_informative_title",
+   "tests.test_decide::test_label_guard_cases_keep_exact_informative_text[Read more \\u2192-None]",
+   "tests.test_decide::test_label_guard_cases_keep_exact_informative_text[\\u2192 Read more-None]",
+   "tests.test_decide::test_label_guard_cases_keep_exact_informative_text[Read  more \\U0001f449-None]",
+   "tests.test_decide::test_label_guard_cases_keep_exact_informative_text[\\xbb Learn More !-None]",
+   "tests.test_decide::test_arrow_cta_discovery_double_both_orders[False]",
+   "agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved::test_source_text_stays_inert_in_page_and_boilerplate"
+  ]
+ },
+ "validation/affected-junit.run1.xml": {
+  "totals": {
+   "tests": "85",
+   "failures": "1",
+   "errors": "0",
+   "skipped": "0",
+   "time": "7.864"
+  },
+  "per_module": {
+   "tests.test_decide": {
+    "tests": 74,
+    "failures": 0
+   },
+   "agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved": {
+    "tests": 11,
+    "failures": 1
+   }
+  },
+  "failed": [
+   "agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved::test_source_text_stays_inert_in_page_and_boilerplate"
+  ]
+ },
+ "validation/affected-junit.xml": {
+  "totals": {
+   "tests": "85",
+   "failures": "0",
+   "errors": "0",
+   "skipped": "0",
+   "time": "7.733"
+  },
+  "per_module": {
+   "tests.test_decide": {
+    "tests": 74,
+    "failures": 0
+   },
+   "agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved": {
+    "tests": 11,
+    "failures": 0
+   }
+  },
+  "failed": []
+ },
+ "new_regression_tests": [
+  "tests/test_decide.py::test_arrow_cta_cannot_supply_unknown_title",
+  "tests/test_decide.py::test_arrow_cta_cannot_replace_informative_title",
+  "tests/test_decide.py::test_label_guard_cases_keep_exact_informative_text (15 params)",
+  "tests/test_decide.py::test_arrow_cta_discovery_double_both_orders (2 params)",
+  "agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_source_text_stays_inert_in_page_and_boilerplate"
+ ],
+ "baseline_q2_counts": {
+  "test_decide.py": "part of the 97 current-suite cases",
+  "note": "pre-fix run collected 85 cases in the two affected modules = 65 pre-existing + 20 new node IDs (2+15+2+1)"
+ }
+}

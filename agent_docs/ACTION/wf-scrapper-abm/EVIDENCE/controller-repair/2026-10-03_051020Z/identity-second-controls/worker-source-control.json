@@ -1,0 +1,186 @@
+{
+  "browser_events": [
+    {
+      "event": "operation_start",
+      "monotonic": 363621.737314641,
+      "url": "http://127.0.0.1:42153/worker-source",
+      "operation_id": "op-1",
+      "deadline": 363676.210819027
+    },
+    {
+      "event": "controls_installed",
+      "monotonic": 363622.673760191,
+      "transport": "Chromium CDP Fetch.requestPaused"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 363622.680801001,
+      "request_id": "2D970D3B5515258EB7E85D5EA5DF7654",
+      "url": "http://127.0.0.1:42153/worker-source",
+      "redirect_from": null,
+      "redirect_status": null,
+      "browser_timestamp": 363622.679432,
+      "network_id": "2D970D3B5515258EB7E85D5EA5DF7654",
+      "frame_id": "9DAAE6E32ADC53294C1B8B2F6E77D98A",
+      "resource_type": "Document",
+      "loader_id": "2D970D3B5515258EB7E85D5EA5DF7654",
+      "initiator_type": "other",
+      "initiator_script_id": null
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 363622.68184813,
+      "url": "http://127.0.0.1:42153/worker-source",
+      "method": "GET",
+      "classification": "intentional",
+      "initiator_script_id": null,
+      "network_resource_type": "Document",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "2D970D3B5515258EB7E85D5EA5DF7654",
+      "resource_type": "Document",
+      "frame_id": "9DAAE6E32ADC53294C1B8B2F6E77D98A",
+      "predecessor": null
+    },
+    {
+      "event": "intentional_intercepted",
+      "monotonic": 363622.681877749,
+      "url": "http://127.0.0.1:42153/worker-source",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "2D970D3B5515258EB7E85D5EA5DF7654",
+      "resource_type": "Document",
+      "frame_id": "9DAAE6E32ADC53294C1B8B2F6E77D98A",
+      "predecessor": null
+    },
+    {
+      "event": "intentional_dispatch",
+      "monotonic": 363622.68189539,
+      "url": "http://127.0.0.1:42153/worker-source",
+      "method": "GET",
+      "kind": "document",
+      "ordinal": 1,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "2D970D3B5515258EB7E85D5EA5DF7654",
+      "resource_type": "Document",
+      "frame_id": "9DAAE6E32ADC53294C1B8B2F6E77D98A",
+      "predecessor": null,
+      "preceding_completion": null
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 363622.690586312,
+      "url": "http://127.0.0.1:42153/worker-source",
+      "method": "GET",
+      "resource_type": "document"
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 363622.702929433,
+      "url": "http://127.0.0.1:42153/worker-source",
+      "status": 200,
+      "headers": {
+        "content-length": "3678",
+        "content-type": "text/html"
+      },
+      "resource_type": "document"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 363622.703185264,
+      "request_id": "2D970D3B5515258EB7E85D5EA5DF7654",
+      "url": "http://127.0.0.1:42153/worker-source",
+      "status": 200
+    },
+    {
+      "event": "stop",
+      "monotonic": 363622.713578612,
+      "reason": "uncontrolled_service_worker"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 363622.731632118,
+      "request_id": "2D970D3B5515258EB7E85D5EA5DF7654",
+      "browser_timestamp": 363622.70112
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 363622.732916037,
+      "url": "http://127.0.0.1:42153/worker-source",
+      "resource_type": "document"
+    },
+    {
+      "event": "operation_complete",
+      "monotonic": 363625.967552266,
+      "url": "http://127.0.0.1:42153/worker-source",
+      "kind": "document",
+      "operation_id": "op-1",
+      "error": null
+    }
+  ],
+  "server_events": [
+    {
+      "event": "request_received",
+      "path": "/worker-source",
+      "method": "GET",
+      "monotonic": 363622.699055102,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "document"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/worker-source",
+      "method": "GET",
+      "monotonic": 363622.699277374,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/worker-source",
+      "method": "GET",
+      "monotonic": 363622.699298548,
+      "bytes": 3678
+    },
+    {
+      "event": "request_received",
+      "path": "/worker.js",
+      "method": "GET",
+      "monotonic": 363622.714838429,
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "resource_destination": "serviceworker"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/worker.js",
+      "method": "GET",
+      "monotonic": 363622.715367162,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/worker.js",
+      "method": "GET",
+      "monotonic": 363622.715378029,
+      "bytes": 45
+    }
+  ],
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+  },
+  "dispatches": 1,
+  "stop_reason": "uncontrolled_service_worker"
+}

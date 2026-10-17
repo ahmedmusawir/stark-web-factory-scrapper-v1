@@ -1,0 +1,482 @@
+{
+  "outcome": "INCOMPLETE; one allocation consumed; STOP",
+  "report": "agent_docs/RESPONSES/response_2026-10-04_154804_redirect-repair-live-retest.md",
+  "repository": "/home/moose/PYTHON/stark-web-factory-scrapper-v1",
+  "branch": "wf-scrapper-abm",
+  "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "source_inventory_sha256": "f52235202ce3fb546d436efa4b4b4a7a92025868edef20a939c25c81e0dcaa53",
+  "source_entries": 67,
+  "source_unchanged": true,
+  "prior_post_repair_attempt_found": false,
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "recon_pipeline",
+    "--project",
+    "CyberizeGroup",
+    "--url",
+    "https://cyberizegroup.com",
+    "--limit",
+    "10",
+    "--skip-prepare",
+    "--no-media-head",
+    "--max-operations",
+    "120",
+    "--max-seconds",
+    "1800",
+    "--max-bytes",
+    "100000000",
+    "--max-aggregate-bytes",
+    "100000000"
+  ],
+  "exit_code": 2,
+  "stop_reason": "interception_error:TargetClosedError",
+  "started_at": "2026-10-04T09:40:41.932670+00:00",
+  "finished_at": "2026-10-04T09:44:54.921930+00:00",
+  "elapsed_s": 252.9892508490011,
+  "raw_run": "outputs/CyberizeGroup/runs/2026-10-04T09-40-43Z",
+  "html": {
+    "document_slots": 10,
+    "unique_documents": 10,
+    "html_directory_files": 10,
+    "bootstrap_separate_file": true,
+    "bootstrap_bytes": 409994,
+    "bootstrap_matches_homepage_html": true,
+    "saved_html_files_including_bootstrap_copy": 11,
+    "note": "One homepage navigation reused for matching route; duplicate bytes on disk are not an extra captured document. Historical stopped-path accounting discrepancy remains open."
+  },
+  "manifest_counts": {
+    "routes": 194,
+    "captured": 10,
+    "blocked": 0,
+    "failed": 0,
+    "unsupported": 0,
+    "skipped": 184,
+    "rest_objects": 581,
+    "rest_mapped_routes": 193,
+    "media_items": 2108
+  },
+  "streams": {
+    "discovery": "complete",
+    "html": "partial",
+    "rest": "partial",
+    "media": "skipped",
+    "screenshots": "empty"
+  },
+  "sitemaps": [
+    {
+      "file": "discovery/sitemap_index.xml",
+      "bytes": 662,
+      "sha256": "94e327fb8e913af3df0d462621ce25f5bac53ca86bbcf7a6988225ddc42cf109",
+      "hash_matches_source": true,
+      "valid_xml": true,
+      "root": "{http://www.sitemaps.org/schemas/sitemap/0.9}sitemapindex",
+      "entries": 3
+    },
+    {
+      "file": "discovery/post-sitemap.xml",
+      "bytes": 93198,
+      "sha256": "31462f08eb8182613b85295c3082c19e6c817618fffd0499a330bf41b79a1f1b",
+      "hash_matches_source": true,
+      "valid_xml": true,
+      "root": "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset",
+      "entries": 167
+    },
+    {
+      "file": "discovery/page-sitemap.xml",
+      "bytes": 7353,
+      "sha256": "a78a8023d1e180bc7da9f3a6113a1a4a9ffc02b1b064791de22a404ed58e3bfc",
+      "hash_matches_source": true,
+      "valid_xml": true,
+      "root": "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset",
+      "entries": 18
+    },
+    {
+      "file": "discovery/category-sitemap.xml",
+      "bytes": 1653,
+      "sha256": "97eb2cf8ff7bb9c9c2f4c408db06295dc756604ec743b5a60ad5f5a57e4eed6c",
+      "hash_matches_source": true,
+      "valid_xml": true,
+      "root": "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset",
+      "entries": 9
+    }
+  ],
+  "discovery_counts": {
+    "loc_total": 194,
+    "routes": 194,
+    "dropped": 0
+  },
+  "rest_collections": [
+    {
+      "type": "pages",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/pages",
+      "status": "complete",
+      "attempted": true,
+      "per_page": 100,
+      "total": 42,
+      "total_pages": 1,
+      "fetched_objects": 42,
+      "saved_bytes": 1459408,
+      "pagination_finished": true,
+      "unfetched_advertised_pages": [],
+      "remaining_reason": null,
+      "responses": [
+        {
+          "file": "responses/pages-1.body",
+          "page": 1,
+          "bytes": 1459408,
+          "sha256": "96239ab39f93c8c8955a2714be18c19245cae6ad69435f14d1d520c5f1c312fd",
+          "body_complete": true,
+          "status": 200,
+          "x_wp_total": "42",
+          "x_wp_total_pages": "1",
+          "objects_in_saved_response": 42
+        }
+      ]
+    },
+    {
+      "type": "posts",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/posts",
+      "status": "complete",
+      "attempted": true,
+      "per_page": 100,
+      "total": 166,
+      "total_pages": 2,
+      "fetched_objects": 166,
+      "saved_bytes": 15862451,
+      "pagination_finished": true,
+      "unfetched_advertised_pages": [],
+      "remaining_reason": null,
+      "responses": [
+        {
+          "file": "responses/posts-1.body",
+          "page": 1,
+          "bytes": 9095375,
+          "sha256": "0c8a6489c0a52d595285a1dd15b17bad06ac250c85a7e8993244ef36f08b40fc",
+          "body_complete": true,
+          "status": 200,
+          "x_wp_total": "166",
+          "x_wp_total_pages": "2",
+          "objects_in_saved_response": 100
+        },
+        {
+          "file": "responses/posts-2.body",
+          "page": 2,
+          "bytes": 6767076,
+          "sha256": "51f7d583a0cf99aaba6d2d5a91cc96a9aa1566afd72392e3374ec8d5709a29a8",
+          "body_complete": true,
+          "status": 200,
+          "x_wp_total": "166",
+          "x_wp_total_pages": "2",
+          "objects_in_saved_response": 66
+        }
+      ]
+    },
+    {
+      "type": "media",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/media",
+      "status": "partial",
+      "attempted": true,
+      "per_page": 100,
+      "total": 1753,
+      "total_pages": 18,
+      "fetched_objects": 296,
+      "saved_bytes": 1236577,
+      "pagination_finished": false,
+      "unfetched_advertised_pages": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "remaining_reason": "short_intermediate_page: page 3 contains 96 objects, fewer than per_page=100; advertised 18 pages. Pages 4-18 not requested.",
+      "responses": [
+        {
+          "file": "responses/media-1.body",
+          "page": 1,
+          "bytes": 431241,
+          "sha256": "b3ac3bca900e60ebfb3c867280d664f19b679ac47d3e72dd4fd4c3e3cfdd8ed8",
+          "body_complete": true,
+          "status": 200,
+          "x_wp_total": "1753",
+          "x_wp_total_pages": "18",
+          "objects_in_saved_response": 100
+        },
+        {
+          "file": "responses/media-2.body",
+          "page": 2,
+          "bytes": 437488,
+          "sha256": "f7d8a5bf6c273c0269271cef25b217228fa371a71bce66bf6a77ccd1bf2dd728",
+          "body_complete": true,
+          "status": 200,
+          "x_wp_total": "1753",
+          "x_wp_total_pages": "18",
+          "objects_in_saved_response": 100
+        },
+        {
+          "file": "responses/media-3.body",
+          "page": 3,
+          "bytes": 367848,
+          "sha256": "6fbea766bbec54ca443cf99a54a13715b971e37dece6229e1d8cb18647afddd7",
+          "body_complete": true,
+          "status": 200,
+          "x_wp_total": "1753",
+          "x_wp_total_pages": "18",
+          "objects_in_saved_response": 96
+        }
+      ]
+    },
+    {
+      "type": "categories",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/categories",
+      "status": "complete",
+      "attempted": true,
+      "per_page": 100,
+      "total": 15,
+      "total_pages": 1,
+      "fetched_objects": 15,
+      "saved_bytes": 113505,
+      "pagination_finished": true,
+      "unfetched_advertised_pages": [],
+      "remaining_reason": null,
+      "responses": [
+        {
+          "file": "responses/categories-1.body",
+          "page": 1,
+          "bytes": 113505,
+          "sha256": "f9b59f211c87224744138de2112975479ce3cb8f0a4227a064417efb1eb785e0",
+          "body_complete": true,
+          "status": 200,
+          "x_wp_total": "15",
+          "x_wp_total_pages": "1",
+          "objects_in_saved_response": 15
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/tags",
+      "status": "complete",
+      "attempted": true,
+      "per_page": 100,
+      "total": 56,
+      "total_pages": 1,
+      "fetched_objects": 56,
+      "saved_bytes": 351086,
+      "pagination_finished": true,
+      "unfetched_advertised_pages": [],
+      "remaining_reason": null,
+      "responses": [
+        {
+          "file": "responses/tags-1.body",
+          "page": 1,
+          "bytes": 351086,
+          "sha256": "443fd43199491ec8a749efaf9dca01d5686a8326ccf277a5cee5bfdc82a27ac1",
+          "body_complete": true,
+          "status": 200,
+          "x_wp_total": "56",
+          "x_wp_total_pages": "1",
+          "objects_in_saved_response": 56
+        }
+      ]
+    },
+    {
+      "type": "users",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/users",
+      "status": "complete",
+      "attempted": true,
+      "per_page": 100,
+      "total": 6,
+      "total_pages": 1,
+      "fetched_objects": 6,
+      "saved_bytes": 5551,
+      "pagination_finished": true,
+      "unfetched_advertised_pages": [],
+      "remaining_reason": null,
+      "responses": [
+        {
+          "file": "responses/users-1.body",
+          "page": 1,
+          "bytes": 5551,
+          "sha256": "d7df93a120524ef5110a70cd9873fef29888d2476fd533f5ced36f99921976af",
+          "body_complete": true,
+          "status": 200,
+          "x_wp_total": "6",
+          "x_wp_total_pages": "1",
+          "objects_in_saved_response": 6
+        }
+      ]
+    }
+  ],
+  "posts_pagination_finished": true,
+  "rest_response_bytes": 19028578,
+  "media_inventory": {
+    "items": 2108,
+    "internal": 2067,
+    "external": 12,
+    "staging_domain": 29
+  },
+  "media_retrieval": {
+    "internal_head_disabled": 2067,
+    "off_scope_untested": 41,
+    "separate_media_byte_harvesting": false
+  },
+  "traffic": {
+    "intentional_dispatches": 24,
+    "document_slots": 10,
+    "minimum_completion_gap_s": 5.0019506179960445,
+    "paced_gaps": 23,
+    "all_gaps_at_least_5s": true,
+    "intentional_redirect_hops": 0,
+    "dispatches_after_stop": 0,
+    "browser_request_events": 1174,
+    "browser_response_events": 1110,
+    "response_statuses": {
+      "200": 1039,
+      "201": 2,
+      "301": 9,
+      "204": 56,
+      "302": 3,
+      "404": 1
+    },
+    "controller_errors": 10,
+    "supported_incidental_cancellation_errors": 8,
+    "cleanup_protocol_errors": 2,
+    "intentional_refusals_observed": false,
+    "note": "Eight confirmed incidental cancellations were recorded without stopping. Two later cleanup TargetClosedError events caused STOP. No intentional redirects were exercised."
+  },
+  "failure": {
+    "phase": "browser cleanup",
+    "active_operation": null,
+    "first_stop_line": 8174,
+    "requests": [
+      {
+        "line": 8173,
+        "utc": "2026-10-04T09:44:51+00:00",
+        "event": "interception_command_error",
+        "monotonic": 464101.777961475,
+        "operation_id": null,
+        "request_id": "interception-job-2425.0",
+        "network_id": "91BB79803B22090783B10A80FC61E283",
+        "resource_type": "XHR",
+        "frame_id": "CA8AA44191F0C05F50558B23CD2A80C0",
+        "predecessor": null,
+        "session": "page-cdp-1",
+        "command": "Fetch.failRequest",
+        "classification": "incidental",
+        "state": "error",
+        "error": "TargetClosedError",
+        "detail": "CDPSession.send: Target page, context or browser has been closed",
+        "confirmed_canceled": false,
+        "supported_incidental": false
+      },
+      {
+        "line": 8175,
+        "utc": "2026-10-04T09:44:51+00:00",
+        "event": "interception_command_error",
+        "monotonic": 464101.800247828,
+        "operation_id": null,
+        "request_id": "interception-job-2426.0",
+        "network_id": "1116470.2949",
+        "resource_type": "XHR",
+        "frame_id": "CA8AA44191F0C05F50558B23CD2A80C0",
+        "predecessor": null,
+        "session": "page-cdp-1",
+        "command": "Fetch.failRequest",
+        "classification": "incidental",
+        "state": "error",
+        "error": "TargetClosedError",
+        "detail": "CDPSession.send: Target page, context or browser has been closed",
+        "confirmed_canceled": false,
+        "supported_incidental": false
+      }
+    ],
+    "timeline": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/failed-operation-timeline.json",
+    "interpretation": "Observed cleanup failure after closing guard prevented continuation; no underlying race/root cause asserted."
+  },
+  "reader_validation": {
+    "result": "PASS",
+    "checks": [
+      "schemas and mandatory files valid",
+      "references and byte hashes valid",
+      "route outcomes/counts/absences reconciled",
+      "REST derivatives and mappings valid"
+    ],
+    "meaning": "Structural validity does not establish complete collection or QA certification.",
+    "files": 615,
+    "raw_unchanged": true,
+    "validator": "prepare.reader.RawRun -> smart_crawler.validate.validate_run",
+    "read_only": true
+  },
+  "preservation": {
+    "prior_files": 12445,
+    "changed_or_missing": [],
+    "source_inventory_sha256": "f52235202ce3fb546d436efa4b4b4a7a92025868edef20a939c25c81e0dcaa53",
+    "source_unchanged": true,
+    "raw_unchanged_by_reader": true,
+    "raw_source_identity_matches_reviewed_files": true,
+    "original_checkpoint_contents_preserved": {
+      "RECOVERY.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md": true,
+      "agent_docs/SESSIONS/session_2026-10-04.md": true
+    }
+  },
+  "evidence": {
+    "smoke/result.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/smoke/result.json",
+    "source-final.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/source-final.json",
+    "collected-results.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/collected-results.json",
+    "failed-operation-timeline.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/failed-operation-timeline.json",
+    "operation-and-pacing.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/operation-and-pacing.json",
+    "reader-validation.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/reader-validation.json",
+    "raw-inventory.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/raw-inventory.json",
+    "preservation-result.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/preservation-result.json",
+    "budget-accounting.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_094028Z/budget-accounting.json"
+  },
+  "remaining_findings": [
+    "Cleanup TargetClosedError causes nonzero exit after collection.",
+    "Media pagination incomplete:96objects on intermediate page3; pages4-18 not requested.",
+    "Historical stopped-path homepage accounting discrepancy remains open; current run successfully reused bootstrap.",
+    "Historical supervisor final-manifest counter gap remains open; no supervisor stop in this run."
+  ],
+  "prepare": "ON HOLD for agent-skill amendment",
+  "independent_qa": "NOT RUN",
+  "next_action": "JARVIS architecture review; no automatic repair, restart or further live request.",
+  "budget": {
+    "raw_bytes": 49213523,
+    "evidence_directory_bytes": 1614374,
+    "report_bytes": 10118,
+    "summary_bytes": 16479,
+    "checkpoint_growth_bytes": 16851,
+    "runtime_bytes": 0,
+    "support_bytes": 1716824,
+    "aggregate_bytes": 50930347,
+    "raw_ceiling": 97000000,
+    "support_ceiling": 3000000,
+    "aggregate_ceiling": 100000000,
+    "method": "All new run/evidence/report/summary bytes, checkpoint growth, per-run runtime files and mission-created /tmp helpers/analysis; previous bytes excluded.",
+    "temporary_support_files": {
+      "/tmp/abm_live_preflight.py": 2852,
+      "/tmp/abm_current_live_e": 131,
+      "/tmp/abm_live_analyze.py": 7432,
+      "/tmp/abm_live_analysis_output.json": 22491,
+      "/tmp/abm_live_detail.py": 3644,
+      "/tmp/abm_live_handoff.py": 17372,
+      "/tmp/abm_live_report_paths": 266,
+      "/tmp/abm_live_finalize.py": 4814
+    },
+    "temporary_support_bytes": 59002
+  }
+}

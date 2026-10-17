@@ -1,0 +1,537 @@
+"""Explicit, resumable collection with ordinary Crawl4AI browser lifecycle.
+
+Plan: {"pages": [URL...], "rest": [{"url": URL, "paginate": false}...]}
+Pagination requires paginate=true and an explicit max_pages. No discovery/Prepare.
+"""
+import argparse
+import asyncio
+from collections import Counter
+from contextlib import contextmanager
+from datetime import datetime, timezone
+import fcntl
+import hashlib
+import importlib.metadata
+import platform
+import json
+import math
+import os
+from pathlib import Path
+import time
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+import uuid
+
+from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl4ai.async_logger import AsyncLogger
+from discover_site.sitemap_utils import USER_AGENT
+# Pure existing functions only; the custom BrowserSession is never constructed.
+from smart_crawler.browser_session import challenge_reason, HEADER_ALLOWLIST
+from smart_crawler.rest_client import parse_source, validate_collection
+
+SCHEMA = 'selected-collection-v1'
+
+
+def now():
+    return datetime.now(timezone.utc).isoformat()
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def url(value):
+    if not isinstance(value, str):
+        raise ValueError('URL must be a string')
+    p = urlsplit(value)
+    if p.scheme not in ('http', 'https') or not p.hostname or p.username or p.password or p.fragment:
+        raise ValueError('use an absolute HTTP(S) URL without credentials or fragment')
+    return value
+
+
+def key(kind, address):
+    return sha((kind + '\n' + address).encode())[:24]
+
+
+def plan_items(plan):
+    if isinstance(plan, list):
+        plan = {'pages': plan}
+    if not isinstance(plan, dict) or set(plan) - {'pages', 'rest'}:
+        raise ValueError('plan accepts only pages and rest')
+    if any(not isinstance(plan.get(k, []), list) for k in ('pages', 'rest')):
+        raise ValueError('pages and rest must be arrays')
+    result = []
+    for address in plan.get('pages', []):
+        result.append({'kind': 'page', 'url': url(address)})
+    for spec in plan.get('rest', []):
+        if isinstance(spec, str):
+            spec = {'url': spec}
+        if not isinstance(spec, dict) or set(spec) - {'url', 'paginate', 'max_pages'}:
+            raise ValueError('REST entry accepts url, paginate, max_pages')
+        address = url(spec.get('url'))
+        if urlsplit(address).path.rstrip('/') == '/wp-json':
+            raise ValueError('select a REST endpoint; root enumeration is not supported')
+        paginate = spec.get('paginate', False)
+        if type(paginate) is not bool:
+            raise ValueError('paginate must be boolean')
+        maximum = spec.get('max_pages', 1)
+        if type(maximum) is not int or maximum < 1 or (paginate and 'max_pages' not in spec):
+            raise ValueError('pagination requires an explicit positive max_pages')
+        query = parse_qsl(urlsplit(address).query, keep_blank_values=True)
+        pages = [v for k, v in query if k == 'page']
+        per_page = [v for k, v in query if k == 'per_page']
+        if paginate and (pages not in ([], ['1']) or len(per_page) > 1):
+            raise ValueError('a paginated collection must start at page 1')
+        result.append({'kind': 'rest', 'url': address, 'paginate': paginate, 'max_pages': maximum})
+    if not result:
+        raise ValueError('select at least one page or REST endpoint')
+    return result
+
+
+def atomic_json(path, value):
+    data = (json.dumps(value, ensure_ascii=False, indent=2) + '\n').encode()
+    temp = path.with_name(path.name + '.' + uuid.uuid4().hex + '.tmp')
+    with temp.open('xb') as stream:
+        stream.write(data); stream.flush(); os.fsync(stream.fileno())
+    os.replace(temp, path)
+    fd = os.open(path.parent, os.O_RDONLY)
+    try:
+        os.fsync(fd)
+    finally:
+        os.close(fd)
+
+
+def add_items(state, selected):
+    by_id = {x['id']: x for x in state['items']}
+    added = []
+    for spec in selected:
+        ident = key(spec['kind'], spec['url'])
+        if ident in by_id:
+            old = by_id[ident]
+            if old['url'] != spec['url'] or any(old.get(k) != spec.get(k) for k in ('paginate', 'max_pages')):
+                raise ValueError('existing selection differs; create a separate collection for changed pagination scope')
+            continue
+        row = dict(spec, id=ident, page=1, status='pending', result=None, attempts=[], error=None)
+        if spec['kind'] == 'rest' and spec['paginate']:
+            row['group'] = ident
+        state['items'].append(row); by_id[ident] = row; added.append(ident)
+    return added
+
+
+def create(root, plan):
+    selected = plan_items(plan)
+    state = {'schema': SCHEMA, 'created_at': now(), 'items': [], 'coverage': {}, 'runs': []}
+    add_items(state, selected)
+    root.mkdir(parents=True, exist_ok=False)
+    atomic_json(root/'checklist.json', state)
+    return state
+
+
+def load(root):
+    state = json.loads((root/'checklist.json').read_bytes())
+    if state.get('schema') != SCHEMA or len({x['id'] for x in state['items']}) != len(state['items']):
+        raise ValueError('invalid collection checklist')
+    for item in state['items']:
+        if item['id'] != key(item['kind'], url(item['url'])):
+            raise ValueError('invalid item identity')
+    return state
+
+
+def artifact(root, relative):
+    p = (root/relative).resolve()
+    if not p.is_relative_to(root.resolve()):
+        raise ValueError('artifact outside collection')
+    return p
+
+
+def valid_result(root, item):
+    ref = item.get('result')
+    if not ref:
+        return None
+    try:
+        data = artifact(root, ref['file']).read_bytes()
+        if sha(data) != ref['sha256']:
+            return None
+        meta = json.loads(data)
+        body = artifact(root, meta['body_file']).read_bytes()
+        if (meta['url'], meta['kind']) != (item['url'], item['kind']) or not meta['ok'] or not meta['body_complete']:
+            return None
+        if len(body) != meta['bytes'] or sha(body) != meta['sha256']:
+            return None
+        return meta
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+
+
+def persist_result(root, item, response):
+    directory = root/'attempts'/item['id']/uuid.uuid4().hex
+    directory.mkdir(parents=True, exist_ok=False)
+    body = response.pop('body')
+    path = directory/'body'
+    with path.open('xb') as stream:
+        stream.write(body); stream.flush(); os.fsync(stream.fileno())
+    meta = dict(response, url=item['url'], kind=item['kind'], saved_at=now(),
+                body_file=str(path.relative_to(root)), bytes=len(body), sha256=sha(body))
+    atomic_json(directory/'result.json', meta)
+    file = str((directory/'result.json').relative_to(root))
+    ref = {'file': file, 'sha256': sha((directory/'result.json').read_bytes())}
+    item['attempts'].append(ref)
+    item['result'] = ref  # updated only AFTER body and metadata are durable
+    return meta
+
+
+def next_page(address, page):
+    p = urlsplit(address)
+    query = [(k, v) for k, v in parse_qsl(p.query, keep_blank_values=True) if k != 'page']
+    return urlunsplit((p.scheme, p.netloc, p.path, urlencode(query + [('page', str(page))]), ''))
+
+
+def pagination(root, state):
+    """Reconcile valid saved pages, then admit at most the next explicit page."""
+    for first in list(state['items']):
+        if not first.get('paginate'):
+            continue
+        rows = sorted([x for x in state['items'] if x.get('group') == first['id']], key=lambda x: x['page'])
+        good = []
+        for row in rows:
+            meta = valid_result(root, row) if row['status'] == 'completed' else None
+            if meta is None or row['page'] != len(good)+1:
+                break
+            good.append((row, meta))
+        coverage = {'status': 'partial', 'fetched_pages': [x['page'] for x, m in good],
+                    'advertised_total': None, 'advertised_pages': None, 'records': 0,
+                    'unique_ids': 0, 'duplicate_ids': [], 'short_pages': [], 'gaps': []}
+        ids = []
+        for row, meta in good:
+            ids.extend(meta['record_ids'])
+            try:
+                total, pages = int(meta['headers']['x-wp-total']), int(meta['headers']['x-wp-totalpages'])
+                if total < 0 or pages < 0:
+                    raise ValueError()
+            except (KeyError, ValueError):
+                coverage['gaps'].append('pagination_headers_missing_or_invalid'); break
+            if coverage['advertised_total'] is None:
+                coverage.update(advertised_total=total, advertised_pages=pages)
+            elif (total, pages) != (coverage['advertised_total'], coverage['advertised_pages']):
+                coverage['gaps'].append('pagination_totals_changed'); break
+            per = dict(parse_qsl(urlsplit(row['url']).query)).get('per_page', '10')
+            if per.isdigit() and row['page'] < pages and len(meta['record_ids']) < int(per):
+                coverage['short_pages'].append({'page': row['page'], 'records': len(meta['record_ids'])})
+            if not meta['record_ids'] and row['page'] < pages:
+                coverage['gaps'].append('empty_intermediate_page'); break
+        counts = Counter(ids)
+        coverage.update(records=len(ids), unique_ids=len(counts), duplicate_ids=[i for i, n in counts.items() if n > 1])
+        pages = coverage['advertised_pages']
+        end = bool(good) and pages is not None and len(good) >= max(1, pages)
+        coverage['advertised_end_reached'] = end
+        if end and not coverage['gaps']:
+            if len(ids) != coverage['advertised_total']:
+                coverage['gaps'].append('count_mismatch')
+            if coverage['duplicate_ids']:
+                coverage['gaps'].append('duplicate_ids')
+            coverage['status'] = 'complete' if not coverage['gaps'] else 'partial'
+        elif good and not coverage['gaps']:
+            page = len(good)+1
+            if page > first['max_pages']:
+                coverage['gaps'].append('approved_page_limit')
+            elif not any(x['page'] == page for x in rows):
+                address = next_page(first['url'], page)
+                if any(x['id'] == key('rest', address) for x in state['items']):
+                    coverage['gaps'].append('overlapping_explicit_selection')
+                    state['coverage'][first['id']] = coverage
+                    continue
+                state['items'].append({'id': key('rest', address), 'kind': 'rest', 'url': address,
+                    'page': page, 'group': first['id'], 'status': 'pending', 'result': None, 'attempts': [], 'error': None})
+        state['coverage'][first['id']] = coverage
+
+
+class CollectionLogger(AsyncLogger):
+    """Keep cleanup errors which Crawl4AI logs instead of raising."""
+    def __init__(self):
+        super().__init__(log_file=None, verbose=False)
+        self.closing = False
+        self.cleanup_messages = []
+
+    def error(self, message, tag='ERROR', **kwargs):
+        if self.closing and len(self.cleanup_messages) < 20:
+            self.cleanup_messages.append({'message': str(message)[:300],
+                'detail': str(kwargs.get('params', {}).get('error', ''))[:300]})
+        super().error(message, tag, **kwargs)
+
+
+class BrowserTransport:
+    """Crawl4AI public lifecycle/hooks; browser navigation for both kinds."""
+    def __init__(self, root, fixture_only=False):
+        self.fixture_only = fixture_only
+        self.active = None
+        self.response = None
+        self.pages = set()
+        self.traffic = Counter()
+        self.logger = CollectionLogger()
+        self.runtime = {'python': platform.python_version(), 'platform': platform.platform(),
+            'crawl4ai': importlib.metadata.version('crawl4ai'),
+            'playwright': importlib.metadata.version('playwright'), 'user_agent': USER_AGENT,
+            'cache': 'BYPASS', 'html_wait_for_images': True, 'html_post_load_delay': 3,
+            'navigation_timeout_ms': {'page': 90000, 'rest': 30000}, 'tls_verification': True}
+        self.crawler = AsyncWebCrawler(config=BrowserConfig(headless=True, user_agent=USER_AGENT,
+                                       ignore_https_errors=False),
+            logger=self.logger, base_directory=str(root/'.runtime'))
+        self.crawler.crawler_strategy.set_hook('on_page_context_created', self.created)
+        self.crawler.crawler_strategy.set_hook('after_goto', self.received)
+
+    async def created(self, page, context, **kwargs):
+        if page not in self.pages:
+            self.pages.add(page)
+            page.on('request', lambda req: self.traffic.update(['request:'+req.resource_type]))
+            page.on('response', lambda response: self.traffic.update(['status:'+str(response.status)]))
+            if self.fixture_only:
+                async def local_only(route):
+                    if urlsplit(route.request.url).hostname != '127.0.0.1':
+                        await route.abort()
+                    else:
+                        await route.continue_()
+                await context.route('**/*', local_only)
+        return page
+
+    async def received(self, page, response, **kwargs):
+        if response:
+            headers = {k.lower(): v for k, v in (await response.all_headers()).items() if k.lower() in HEADER_ALLOWLIST}
+            chain = []; request = response.request
+            while request.redirected_from:
+                request = request.redirected_from; chain.append(request.url)
+            self.response = {'status': response.status, 'headers': headers, 'final_url': response.url,
+                             'redirect_from': list(reversed(chain))}
+            if self.active['kind'] == 'rest':
+                self.response['body_complete'] = False
+                self.response['body'] = await response.body()
+                self.response['body_complete'] = True
+        return page
+
+    async def start(self):
+        await self.crawler.start()
+        self.runtime['browser'] = self.crawler.crawler_strategy.browser_manager.browser.version
+
+    async def get(self, item):
+        if self.fixture_only and urlsplit(item['url']).hostname != '127.0.0.1':
+            raise ValueError('fixture mode requires loopback')
+        self.active, self.response = item, None
+        is_page = item['kind'] == 'page'
+        config = CrawlerRunConfig(cache_mode=CacheMode.BYPASS, session_id='selected-collector',
+            page_timeout=90000 if is_page else 30000, wait_for_images=is_page,
+            delay_before_return_html=3.0 if is_page else 0, max_retries=0,
+            fallback_fetch_function=None)
+        try:
+            async with asyncio.timeout(120 if is_page else 30):
+                result = await self.crawler.arun(item['url'], config=config)
+        except Exception as exc:
+            # Preserve acquired headers/body without claiming an interrupted result succeeded.
+            response = self.response or {'status': None, 'headers': {}, 'final_url': None, 'redirect_from': []}
+            response.setdefault('body', b'')
+            response.setdefault('body_complete', False)
+            response['transport_error'] = type(exc).__name__ + ': ' + str(exc)[:300]
+            return response
+        response = self.response or {'status': None, 'headers': {}, 'final_url': None, 'redirect_from': []}
+        if is_page:
+            response['body'] = (getattr(result, 'html', None) or '').encode('utf-8')
+            response['library_success'] = bool(getattr(result, 'success', False))
+        else:
+            response.setdefault('body', b'')
+        response['transport'] = 'Crawl4AI Chromium navigation; rendered HTML' if is_page else 'Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes'
+        return response
+
+    async def close(self):
+        self.logger.closing = True
+        await self.crawler.close()
+        if self.logger.cleanup_messages:
+            raise RuntimeError('Crawl4AI logged cleanup errors: ' + str(self.logger.cleanup_messages))
+
+
+def classify(item, response, cap):
+    response = dict(response)
+    body = response['body']
+    # JSON can quote challenge markup as source content; it is not a block document.
+    content_type = response['headers'].get('content-type', '').lower()
+    document = '' if 'json' in content_type else body[:cap].decode('utf-8', errors='replace')
+    stop = challenge_reason(response['status'], response['headers'], document)
+    if response['status'] == 401:
+        stop = 'http_401_access_denied'
+    error = stop or ('browser_read_failed' if response.get('transport_error') else None)
+    if response.get('transport_error'):
+        stop = stop or 'browser_read_failed'
+    response['body_complete'] = response.get('body_complete', True) and len(body) <= cap
+    if len(body) > cap:
+        response['body'] = body[:cap]; error = error or 'response_cap'; stop = stop or 'response_cap'
+    if not response['body_complete']:
+        error = error or 'incomplete_body'
+    if not error and (response['status'] is None or not 200 <= response['status'] < 300):
+        error = 'http_failure'
+    if not error and item['kind'] == 'page' and (not body or not response.get('library_success', True)):
+        error = 'page_capture_failed'
+    if not error and item['kind'] == 'rest':
+        try:
+            value = parse_source(body)
+            if item.get('group') and not isinstance(value, list):
+                raise ValueError('pagination requires a collection array')
+            values = validate_collection(value if isinstance(value, list) else [value], 'selected')
+            response['record_ids'] = [x['id'] for x in values]
+            response['rest_shape'] = 'collection' if isinstance(value, list) else 'item'
+            response['coverage_scope'] = 'paginated_collection' if item.get('group') else 'selected_response_only'
+            if not item.get('group'):
+                response['coverage_note'] = 'No claim of whole-collection coverage; pagination was not requested.'
+        except (ValueError, TypeError, UnicodeError):
+            error = 'malformed_rest_response'
+    response.update(ok=not error, error=error)
+    return response, stop
+
+
+async def run_collection(root, state, *, gap=5.0, max_requests=100, max_seconds=1800,
+                         max_bytes=100_000_000, response_cap=10*1024*1024, transport=None):
+    if not math.isfinite(gap) or gap < 0 or max_requests < 1 or not math.isfinite(max_seconds) or max_seconds < 1 or max_bytes < 1 or response_cap < 1:
+        raise ValueError('invalid run limits')
+    started = time.monotonic(); deadline = started+max_seconds
+    record = {'started_at': now(), 'requests': [], 'stop_reason': None, 'cleanup_error': None,
+              'gap_seconds': gap, 'max_requests': max_requests, 'max_seconds': max_seconds,
+              'max_bytes': max_bytes, 'response_cap': response_cap}
+    state['runs'].append(record)
+    for item in state['items']:
+        if item['status'] == 'completed' and valid_result(root, item) is None:
+            item.update(status='pending', error='saved_result_missing_or_invalid')
+        elif item['status'] == 'running':
+            item.update(status='pending', error='prior_run_interrupted')
+    pagination(root, state)
+    atomic_json(root/'checklist.json', state)
+    browser = transport
+    previous_completion = state.get('last_completion_epoch')
+    # Monotonic within this process; persisted wall time supplies a conservative resume cooldown.
+    last = None if previous_completion is None else time.monotonic()-max(0, time.time()-previous_completion)
+    attempted = set()
+    try:
+        while True:
+            item = next((x for x in state['items'] if x['status'] != 'completed' and x['id'] not in attempted), None)
+            if item is None:
+                break
+            if len(record['requests']) >= max_requests:
+                record['stop_reason'] = 'request_limit'; break
+            if last is not None:
+                delay = max(0, last+gap-time.monotonic())
+                if time.monotonic()+delay >= deadline:
+                    record['stop_reason'] = 'time_limit'; break
+                await asyncio.sleep(delay)
+            if time.monotonic() >= deadline:
+                record['stop_reason'] = 'time_limit'; break
+            if browser is None:
+                browser = BrowserTransport(root)
+            if not record['requests']:
+                async with asyncio.timeout_at(deadline):
+                    await browser.start()
+            item.update(status='running', error=None); attempted.add(item['id'])
+            event = {'id': item['id'], 'url': item['url'], 'kind': item['kind'], 'start': time.monotonic(),
+                     'preceding_completion': last}
+            record['requests'].append(event); atomic_json(root/'checklist.json', state)
+            try:
+                async with asyncio.timeout_at(deadline):
+                    response = await browser.get(item)
+                last = time.monotonic(); event['completion'] = last
+                state['last_completion_epoch'] = event['completion_epoch'] = time.time()
+                response, stop = classify(item, response, response_cap)
+                size = sum(p.stat().st_size for p in root.rglob('*') if p.is_file())
+                if size+len(response['body'])+65536 > max_bytes:
+                    item.update(status='failed', error='persisted_byte_limit')
+                    record['stop_reason'] = 'persisted_byte_limit'; break
+                meta = persist_result(root, item, response)
+                item.update(status='completed' if meta['ok'] else 'failed', error=meta['error'])
+                if stop:
+                    record['stop_reason'] = stop
+                pagination(root, state)
+                atomic_json(root/'checklist.json', state)
+                if stop:
+                    break
+            except asyncio.CancelledError:
+                item.update(status='failed', error='interrupted'); record['stop_reason'] = 'interrupted'; break
+            except Exception as exc:
+                item.update(status='failed', error=type(exc).__name__+': '+str(exc)[:300])
+                record['stop_reason'] = 'request_error'; break
+    except asyncio.CancelledError:
+        record['stop_reason'] = 'interrupted'
+    except Exception as exc:
+        record['stop_reason'] = 'setup_or_persistence_error:'+type(exc).__name__
+    finally:
+        if browser is not None:
+            try:
+                await asyncio.wait_for(browser.close(), timeout=10)
+            except (Exception, asyncio.CancelledError) as exc:
+                record['cleanup_error'] = type(exc).__name__+': '+str(exc)[:300]
+            record['browser_traffic'] = dict(getattr(browser, 'traffic', {}))
+            record['runtime'] = getattr(browser, 'runtime', {})
+            record['cleanup_messages'] = getattr(getattr(browser, 'logger', None), 'cleanup_messages', [])
+        for item in state['items']:
+            if item['status'] == 'running':
+                item.update(status='failed', error=record['stop_reason'] or 'interrupted')
+        pending = [x for x in state['items'] if x['status'] != 'completed']
+        partial = any(x['status'] != 'complete' for x in state['coverage'].values())
+        record['collection_outcome'] = 'partial' if pending or partial or record['stop_reason'] else 'complete'
+        record.update(finished_at=now(), elapsed_s=time.monotonic()-started,
+                      completed=sum(x['status']=='completed' for x in state['items']), remaining=len(pending))
+        atomic_json(root/'checklist.json', state)
+    return 130 if record['stop_reason']=='interrupted' else 2 if record['collection_outcome']!='complete' else 3 if record['cleanup_error'] else 0
+
+
+@contextmanager
+def writer(root):
+    with (root/'.writer.lock').open('a') as stream:
+        try:
+            fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            raise ValueError('another collector writer is active')
+        yield
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    commands = parser.add_subparsers(dest='action', required=True)
+    for action in ('collect', 'resume', 'add', 'refresh'):
+        sub = commands.add_parser(action)
+        sub.add_argument('--collection', type=Path, required=True)
+        if action in ('collect', 'add'):
+            sub.add_argument('--plan', type=Path, required=True)
+        if action == 'refresh':
+            sub.add_argument('--id', action='append', required=True)
+        if action in ('collect', 'resume'):
+            sub.add_argument('--gap', type=float, default=5)
+            sub.add_argument('--max-requests', type=int, default=100)
+            sub.add_argument('--max-seconds', type=float, default=1800)
+            sub.add_argument('--max-bytes', type=int, default=100_000_000)
+    args = parser.parse_args(argv); root = args.collection.resolve()
+    try:
+        if args.action == 'collect':
+            create(root, json.loads(args.plan.read_text()))
+        with writer(root):
+            state = load(root)
+            if args.action == 'add':
+                added = add_items(state, plan_items(json.loads(args.plan.read_text())))
+                atomic_json(root/'checklist.json', state)
+                print(json.dumps({'queued_ids': added, 'next': 'resume explicitly'})); return
+            if args.action == 'refresh':
+                ids = set(args.id)
+                if ids - {x['id'] for x in state['items']}:
+                    raise ValueError('unknown refresh ID')
+                if any(x.get('group') and x['id'] in ids for x in state['items']):
+                    raise ValueError('refresh a paginated collection into a NEW collection directory; do not mix page generations')
+                for item in state['items']:
+                    if item['id'] in ids:
+                        item.update(status='pending', error='explicit_refresh')
+                atomic_json(root/'checklist.json', state)
+                print('Refresh queued; originals retained. Run resume explicitly.'); return
+            code = asyncio.run(run_collection(root, state, gap=args.gap, max_requests=args.max_requests,
+                                              max_seconds=args.max_seconds, max_bytes=args.max_bytes))
+            result = state['runs'][-1]
+            print(json.dumps({k: result[k] for k in ('collection_outcome','stop_reason','cleanup_error','completed','remaining','elapsed_s')}, indent=2))
+            print('CHECKLIST: '+str(root/'checklist.json'))
+            if code:
+                raise SystemExit(code)
+    except KeyboardInterrupt:
+        raise SystemExit(130)
+    except (ValueError, OSError, KeyError, TypeError) as exc:
+        parser.exit(2, 'Collector refused: '+str(exc)+'\n')
+
+
+if __name__ == '__main__':
+    main()

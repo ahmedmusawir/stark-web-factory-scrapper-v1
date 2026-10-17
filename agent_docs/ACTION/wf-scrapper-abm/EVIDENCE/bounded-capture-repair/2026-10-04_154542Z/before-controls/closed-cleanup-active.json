@@ -1,0 +1,74 @@
+{
+  "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+  "case": "closed-cleanup-active",
+  "calls": [
+    {
+      "command": "Fetch.failRequest",
+      "args": {
+        "requestId": "fixture-fetch-1",
+        "errorReason": "Aborted"
+      }
+    }
+  ],
+  "returned": [
+    false,
+    false
+  ],
+  "stop_reason": "interception_error:TargetClosedError",
+  "closing": true,
+  "entry_state": "error",
+  "entry_command": "Fetch.failRequest",
+  "events": [
+    {
+      "event": "interception_command",
+      "monotonic": 483603.046994609,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_error",
+      "monotonic": 483603.047088793,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "incidental",
+      "state": "error",
+      "error": "TargetClosedError",
+      "detail": "Target page, context or browser has been closed",
+      "confirmed_canceled": false,
+      "supported_incidental": false
+    },
+    {
+      "event": "stop",
+      "monotonic": 483603.047093651,
+      "reason": "interception_error:TargetClosedError"
+    },
+    {
+      "event": "interception_resolution_skipped",
+      "monotonic": 483603.04710061,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "incidental",
+      "state": "error"
+    }
+  ]
+}

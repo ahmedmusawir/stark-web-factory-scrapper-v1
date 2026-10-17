@@ -1,0 +1,191 @@
+diff --git a/smart_crawler/browser_session.py b/smart_crawler/browser_session.py
+index 9f895d5..224ffa4 100644
+--- a/smart_crawler/browser_session.py
++++ b/smart_crawler/browser_session.py
+@@ -671,6 +671,7 @@ class BrowserSession:
+             self.documents += 1
+             self.op = self.new_operation(url,'GET','document')
+             self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=time.monotonic()+self.timeout(self.bounds.document_seconds))
++            outcome = 'failure'
+             try:
+                 record = await asyncio.wait_for(crawl_page(self.crawler,url,session_id=self.session_id),
+                                                 timeout=self.timeout(self.bounds.document_seconds))
+@@ -684,13 +685,25 @@ class BrowserSession:
+                     record.update(ok=False, fetched=False, error='blocked' if self.stop_reason and
+                                   ('http_' in self.stop_reason or 'challenge' in self.stop_reason or 'block_document' in self.stop_reason)
+                                   else op.error or self.stop_reason)
++                outcome = 'success' if record.get('ok') else 'failure'
++                op.error = op.error or record.get('error') or self.stop_reason
+                 return record
++            except asyncio.CancelledError:
++                outcome = 'cancelled'
++                self.stop('document_cancelled')
++                self.op.error = self.stop_reason
++                raise
+             except asyncio.TimeoutError:
+                 self.stop('document_deadline')
++                self.op.error = self.stop_reason
+                 raise CollectionStopped(self.stop_reason)
++            except Exception:
++                self.op.error = self.op.error or self.stop_reason or 'document_failed'
++                raise
+             finally:
+                 self.last_completion = time.monotonic()
+-                self.event('operation_complete', url=url, kind='document', operation_id=self.op.operation_id, error=self.op.error)
++                self.event('operation_complete', url=url, kind='document', operation_id=self.op.operation_id,
++                           outcome=outcome, error=self.op.error)
+                 self.op = None
+ 
+     def new_operation(self, url, method, kind):
+@@ -698,6 +711,7 @@ class BrowserSession:
+         return Operation(url, method, kind, operation_id=f'op-{self.operation_sequence}')
+ 
+     async def correlated_read(self, expression):
++        self.event('read_setup_start', operation_id=self.op.operation_id)
+         await self.cdp.send('Runtime.enable')
+         world = await self.cdp.send('Page.createIsolatedWorld', {
+             'frameId': self.main_frame, 'worldName': 'abm-read-identity',
+@@ -724,6 +738,7 @@ class BrowserSession:
+     async def run_read_script(self, op):
+         # The native initiator's top scriptId must match the compiled script, not
+         # its spoofable sourceURL. Nothing is added to HTTP headers or URLs.
++        self.event('read_script_started', operation_id=op.operation_id)
+         return await self.cdp.send('Runtime.runScript', {
+             'scriptId': op.script_id, 'executionContextId': op.context_id,
+             'awaitPromise': True, 'returnByValue': True})
+@@ -738,13 +753,29 @@ class BrowserSession:
+             if not self.scoped(url):
+                 raise CollectionStopped('off_scope')
+             self.op = self.new_operation(url,method,'read')
+-            self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=time.monotonic()+self.timeout(self.bounds.read_seconds))
++            # One operation boundary, shared with the unchanged hard supervisor.
++            # Setup and pacing consume this budget. Reserve time *inside* it for
++            # the browser's partial result, then Python failure handoff. No grace
++            # period extends the 30-second collection ceiling.
++            read_timeout = self.timeout(self.bounds.read_seconds)
++            deadline = time.monotonic() + read_timeout
++            handoff = min(1.0, read_timeout / 10)
++            python_margin = min(0.25, read_timeout / 40)
++            self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=deadline)
++            self.event('read_abort_deadline', operation_id=self.op.operation_id, deadline=deadline-handoff)
++            outcome = 'failure'
+             try:
+-                read_timeout=self.timeout(self.bounds.read_seconds)
++                # Same-host wall time only anchors the cooperative JS timer;
++                # Python and supervisor hard limits remain monotonic. Computing
++                # an absolute cutoff prevents CDP setup from restarting a timer.
+                 args = {'url':url,'method':method,'cap':self.bounds.response_bytes,
+-                        'timeout':max(1,int(read_timeout*1000)-100)}
+-                expression = '(' + '''async ({url,method,cap,timeout}) => {
+-                    const ctl = new AbortController(); const timer=setTimeout(()=>ctl.abort(),timeout);
++                        'abortAt':(time.time()+deadline-time.monotonic()-handoff)*1000}
++                expression = '(' + '''async ({url,method,cap,abortAt}) => {
++                    const ctl = new AbortController(); let timedOut=false;
++                    const abort=()=>{timedOut=true;ctl.abort();};
++                    const remaining=abortAt-Date.now();
++                    const timer=remaining>0 ? setTimeout(abort,remaining) : null;
++                    if(remaining<=0) abort();
+                     let chunks=[], count=0;
+                     try {
+                         const r=await window.fetch(url,{method,redirect:'follow',signal:ctl.signal});
+@@ -757,10 +788,13 @@ class BrowserSession:
+                             }
+                         }
+                         return {status:r.status,url:r.url,chunks,bytes:count,incomplete:false};
+-                    } catch(e) { return {chunks,bytes:count,incomplete:true,error:e.name}; }
++                    } catch(e) { return {chunks,bytes:count,incomplete:true,error:timedOut?'read_deadline':e.name}; }
+                     finally { clearTimeout(timer); }
+                 }''' + ')(' + json.dumps(args) + ')'
+-                result = await asyncio.wait_for(self.correlated_read(expression), read_timeout)
++                async with asyncio.timeout_at(deadline-python_margin):
++                    result = await self.correlated_read(expression)
++                self.event('read_result_received', operation_id=self.op.operation_id,
++                           bytes=result['bytes'], incomplete=result['incomplete'], error=result.get('error'))
+                 body = bytes(x for chunk in result.pop('chunks') for x in chunk)
+                 result.update(body=body,sha256=hashlib.sha256(body).hexdigest(),headers=dict(self.op.response_headers),
+                               redirect_chain=list(self.op.chain),transport='Chromium same-page window.fetch / Response.body.getReader',
+@@ -770,10 +804,24 @@ class BrowserSession:
+                 reason = challenge_reason(result.get('status'), result['headers'], body.decode('utf-8',errors='replace'))
+                 if reason: self.stop(reason)
+                 if result.get('incomplete'): self.stop(result.get('error') or 'incomplete_response')
++                self.op.error = self.stop_reason or result.get('error') or self.op.error
++                outcome = 'success' if not result['incomplete'] and not self.op.error else 'failure'
+                 return result
++            except asyncio.CancelledError:
++                outcome = 'cancelled'
++                self.stop('read_cancelled')
++                self.op.error = self.stop_reason
++                # External task/SIGINT cancellation is not a successful read.
++                # Closing the existing page stops its pending fetch; never issue
++                # a replacement HTTP request or retry a resolved interception.
++                if self.page and not self.page.is_closed():self.spawn(self.page.close())
++                raise
+             except Exception as exc:
+-                error=self.op.error or ('read_deadline' if isinstance(exc,asyncio.TimeoutError) else 'browser_read_failed')
++                error=self.stop_reason or self.op.error or ('read_deadline' if isinstance(exc,asyncio.TimeoutError) else 'browser_read_failed')
+                 self.stop(error)
++                self.op.error = self.stop_reason
++                if isinstance(exc,asyncio.TimeoutError) and self.page and not self.page.is_closed():
++                    self.spawn(self.page.close())
+                 return {'body':b'', 'bytes':0,'sha256':hashlib.sha256(b'').hexdigest(),
+                         'status':self.op.status,'url':self.op.final_url,'headers':dict(self.op.response_headers),
+                         'redirect_chain':list(self.op.chain),'incomplete':True,'error':error,
+@@ -782,5 +830,6 @@ class BrowserSession:
+                         'evidence_gap':'browser read interrupted before available chunks returned'}
+             finally:
+                 self.last_completion = time.monotonic()
+-                self.event('operation_complete', url=url, kind='read', operation_id=self.op.operation_id, error=self.op.error)
++                self.event('operation_complete', url=url, kind='read', operation_id=self.op.operation_id,
++                           outcome=outcome, error=self.op.error)
+                 self.op = None
+diff --git a/tests/fixture_server.py b/tests/fixture_server.py
+index b9b82e2..4a0b6de 100644
+--- a/tests/fixture_server.py
++++ b/tests/fixture_server.py
+@@ -12,7 +12,7 @@ ENTITY = b'[ {"id": 1, "link": "http://127.0.0.1/article/", "content": {"rendere
+ 
+ 
+ @contextmanager
+-def fixture_server(*, mode=None, port=0, variant="complete"):
++def fixture_server(*, mode=None, port=0, variant="complete", sitemap_delay=0):
+     timeline=[]
+     identity_reads={}
+     class Handler(BaseHTTPRequestHandler):
+@@ -70,7 +70,7 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
+                 if self.path=='/robots.txt':
+                     return self.respond(200,('User-agent: *\nDisallow: /private/\nSitemap: '+origin+'/sitemap.xml\n').encode(),{'Content-Type':'text/plain'})
+                 if self.path=='/sitemap.xml':
+-                    return self.respond(200,('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>'+origin+'/pages.xml</loc></sitemap><sitemap><loc>'+origin+'/aliases.xml</loc></sitemap></sitemapindex>').encode(),{'Content-Type':'application/xml'})
++                    return self.respond(200,('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>'+origin+'/pages.xml</loc></sitemap><sitemap><loc>'+origin+'/aliases.xml</loc></sitemap></sitemapindex>').encode(),{'Content-Type':'application/xml'},delay=sitemap_delay,prefix=64 if sitemap_delay else 0)
+                 if self.path in ('/pages.xml','/aliases.xml'):
+                     paths=HEALTHY_PATHS+(['/missing/'] if variant=='base' else []) if self.path=='/pages.xml' else ['/about/?utm_source=alias']
+                     return self.respond(200,('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+origin+x+'</loc></url>' for x in paths)+'</urlset>').encode(),{'Content-Type':'application/xml'})
+@@ -124,6 +124,8 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
+                 try:
+                     self.wfile.write(b'a'*2048);self.wfile.flush();self.emit('body_sent',bytes=4096)
+                 except (BrokenPipeError,ConnectionResetError):self.emit('browser_closed_connection')
++            elif self.path=='/deadline-stream':
++                self.respond(200,b'a'*4096,{'Content-Type':'text/plain'},delay=40,prefix=2048)
+             elif self.path.startswith('/large'):
+                 self.respond(200,b'a'*4096,{})
+             else:
+@@ -134,15 +136,17 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
+             # fixture order, never an identification header/query on the request.
+             self.respond(403 if count==1 else 200,b'' if self.command=='HEAD' else b'coordinator response',
+                          {'Content-Type':'text/plain'})
+-        def respond(self,status,body,headers,delay=0):
++        def respond(self,status,body,headers,delay=0,prefix=0):
+             self.emit('request_received',user_agent=self.headers.get('User-Agent'),resource_destination=self.headers.get('Sec-Fetch-Dest'))
+             self.send_response(status)
+             if 'Content-Length' not in headers: self.send_header('Content-Length',str(len(body)))
+             for k,v in headers.items(): self.send_header(k,v)
+             self.end_headers();self.wfile.flush();self.emit('headers_sent',status=status)
++            if prefix and self.command!='HEAD':
++                self.wfile.write(body[:prefix]);self.wfile.flush();self.emit('body_prefix_sent',bytes=prefix)
+             if delay: time.sleep(delay)
+             try:
+-                if self.command!='HEAD': self.wfile.write(body);self.wfile.flush()
++                if self.command!='HEAD': self.wfile.write(body[prefix:]);self.wfile.flush()
+                 self.emit('body_sent',bytes=len(body))
+             except (BrokenPipeError, ConnectionResetError): self.emit('browser_closed_connection')
+     server=ThreadingHTTPServer(('127.0.0.1',port),Handler)

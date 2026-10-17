@@ -1,0 +1,14 @@
+{
+  "failed_check": "test_real_decoded_cap_preserves_partial_and_stops",
+  "full_result": "1 failed, 156 passed; exit 1",
+  "native_trace": "regression-final-controls/response-cap.json",
+  "expected": "1024 retained bytes, incomplete true, stop response_limit",
+  "actual": "0 retained bytes, incomplete true, stop network_error",
+  "mechanism": "New immediate stop on Network.loadingFailed raced with the intentional Response reader cancellation at decoded-byte cap. correlated_read rejected before returning collected chunks.",
+  "repair": "For admitted reads, record native failure but settle bounded script result under existing operation lock/deadline before stopping. Preserve script response_limit reason and bytes. Any native/script failure forces incomplete; unexpected intentional abort still stops. Documents still stop immediately.",
+  "native_proof": "New /cancel-stream fixture and explicit event-before-result gate; no native event/error injection. Also abort a slow intentional read to prove failure stays fatal.",
+  "preserved_failed_source": {
+    "path": "failed-regression-browser_session.py.txt",
+    "sha256": "a90f7c4a03104ccf33475bac07761a2f0bbac47f9bea3e87d99cfcbee8b28438"
+  }
+}

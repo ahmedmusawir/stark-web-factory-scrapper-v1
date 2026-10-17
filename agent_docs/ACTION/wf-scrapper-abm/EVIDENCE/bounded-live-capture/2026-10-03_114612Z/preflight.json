@@ -1,0 +1,90 @@
+{
+  "authorized_at": "2026-10-03T11:46:12.304879+00:00",
+  "mission": "ONE new Capture-only attempt; stop after any outcome; no repair/retry",
+  "branch": "wf-scrapper-abm",
+  "head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+  "source_inventory_sha256": "38fd82f3f26468c2ec31a3db2919061caaa79763d7f2887909c5176c58435ffa",
+  "source_entries": 60,
+  "source_differences": [],
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "recon_pipeline",
+    "--project",
+    "CyberizeGroup",
+    "--url",
+    "https://cyberizegroup.com",
+    "--limit",
+    "10",
+    "--skip-prepare",
+    "--no-media-head",
+    "--max-operations",
+    "120",
+    "--max-seconds",
+    "1800",
+    "--max-bytes",
+    "100000000",
+    "--max-aggregate-bytes",
+    "100000000"
+  ],
+  "preserved_file_count": 7172,
+  "audit_before": {
+    "RECOVERY.md": {
+      "bytes": 23832,
+      "sha256": "427a96588909976fcec0bdd2c701be806d19dd2241999854278c94be552fef32"
+    },
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md": {
+      "bytes": 31815,
+      "sha256": "49a8fcc9faaee90bfe4ec347fa05b9958cddcfa3533b9d2550eebcad2ad56a72"
+    },
+    "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md": {
+      "bytes": 34937,
+      "sha256": "c934096612072fcf970dd7c2977d511666c78df6b36017407552139f27ebb18f"
+    },
+    "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md": {
+      "bytes": 12960,
+      "sha256": "d4f78956901bcce0d6947267cea799d356023c2ecdb041679454bd4333046ef4"
+    },
+    "agent_docs/SESSIONS/session_2026-10-03.md": {
+      "bytes": 9889,
+      "sha256": "db44587c21ab70d3db3b45817fcfe929c2311ae9c98c950c7c80fc88ce92cab3"
+    }
+  },
+  "existing_runs": [
+    "outputs/CyberizeGroup/runs/2026-10-02T16-14-53Z",
+    "outputs/CyberizeGroup/runs/2026-10-03T07-39-21Z"
+  ],
+  "runtime": {
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "Crawl4AI": "0.9.3",
+    "playwright": "1.52.0",
+    "requests": "2.32.3"
+  },
+  "limits": {
+    "intentional_dispatches": 120,
+    "document_slots_including_bootstrap": 10,
+    "completion_gap_s": 5,
+    "seconds_including_finalization": 1800,
+    "raw_bytes": 97000000,
+    "recorder_evidence_bytes": 3000000,
+    "aggregate_bytes": 100000000,
+    "decoded_response_bytes": 10485760,
+    "document_seconds": 180,
+    "read_seconds": 30,
+    "finalization_reserve_seconds": 30
+  },
+  "budget_preflight": {
+    "projected_support_ceiling": 2502146,
+    "command_log_max": 1000000,
+    "report_inventory_checkpoint_growth_reserve": 400000,
+    "metadata_safety_reserve": 20000,
+    "baseline_gzip_bytes": 321855,
+    "temporary_helper_files": [],
+    "method": "Raw writer enforces 97MB; existing recorder caps command log at 1MB; source/diff/status overhead calculated; all new evidence/report/checkpoint growth tallied; no additional probes or tests."
+  },
+  "recorder_original": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/chk-replacement/2026-10-03_073838Z/recorder.py",
+  "recorder_change": "Only locator path points at fresh evidence directory. ABM_QUIET_LOG=1 prevents printing raw logs.",
+  "prepare": "ON HOLD for in-repo agent-skill amendment; no P1-P6/E1/E2",
+  "independent_qa": "NOT RUN"
+}

@@ -19,6 +19,8 @@ def test_is_valid_link_accepts_relative_and_same_domain_only():
 
 
 def test_normalize_link_strips_fragment_and_query_and_resolves_relative():
+    """Contracts §1.1/E-06 — preserve meaningful query; drop only declared tracking keys."""
     base = "https://example.com/"
-    assert normalize_link("/about?utm=x#team", base) == "https://example.com/about"
-    assert normalize_link("https://example.com/contact#form", base) == "https://example.com/contact"
+    assert normalize_link('/about?utm_source=x&q=kept#team',base)=='https://example.com/about/?q=kept'
+    assert normalize_link('https://example.com/contact#form',base)=='https://example.com/contact/'
+    assert normalize_link('/about?utm=x',base)=='https://example.com/about/?utm=x'

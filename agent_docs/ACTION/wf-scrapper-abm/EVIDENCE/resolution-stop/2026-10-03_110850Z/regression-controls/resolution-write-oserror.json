@@ -1,0 +1,108 @@
+{
+  "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+  "case": "resolution-write-oserror",
+  "calls": [
+    {
+      "command": "Fetch.failRequest",
+      "args": {
+        "requestId": "fixture-fetch-1",
+        "errorReason": "Aborted"
+      }
+    }
+  ],
+  "returned": [
+    false,
+    false,
+    false
+  ],
+  "stop_reason": "evidence_write_limit",
+  "closing": false,
+  "entry_state": "resolved",
+  "entry_command": "Fetch.failRequest",
+  "events": [
+    {
+      "event": "interception_command",
+      "monotonic": 383441.564669506,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_continuation_prevented",
+      "monotonic": 383441.56468218,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "classification": "intentional",
+      "state": "pending",
+      "reason": "evidence_write_limit"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 383441.564702956,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 383441.564726985,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "state": "resolved"
+    },
+    {
+      "event": "interception_resolution_skipped",
+      "monotonic": 383441.564733628,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "state": "resolved"
+    },
+    {
+      "event": "interception_resolution_skipped",
+      "monotonic": 383441.564738828,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "resolved"
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "citations": {
+    "existing_output_and_inside_collection_refusals": [
+      "agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_preserves_existing_packages_and_input[existing]",
+      "agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py::test_preserves_existing_packages_and_input[inside]"
+    ],
+    "traversal_symlink_escaping_negatives": "T-12 (t12_result.json part2): body_byte_flip, metadata_hash_tamper, escaping_reference_hash_consistent, symlinked_body_original_content \u2014 all refused exit 2 before derived output; canaries outside the owned tree untouched",
+    "decide_rejections": [
+      "tests/test_decide.py::test_unknown_conflict_and_broad_collection_need_explicit_scope",
+      "tests/test_offline_inventory.py::test_unknown_id_is_rejected_without_output[include]",
+      "tests/test_offline_inventory.py::test_unknown_id_is_rejected_without_output[exclude]",
+      "tests/test_offline_inventory.py::test_conflicting_or_empty_choices_are_rejected"
+    ]
+  },
+  "plan_refusals": {
+    "non_http_scheme": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/non_http_scheme",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/non_http_scheme.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: use an absolute HTTP(S) URL without credentials or fragment\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "missing_hostname": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/missing_hostname",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/missing_hostname.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: use an absolute HTTP(S) URL without credentials or fragment\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "credential_bearing_url": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/credential_bearing_url",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/credential_bearing_url.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: use an absolute HTTP(S) URL without credentials or fragment\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "fragment_in_url": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/fragment_in_url",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/fragment_in_url.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: use an absolute HTTP(S) URL without credentials or fragment\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "rest_root_enumeration": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/rest_root_enumeration",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/rest_root_enumeration.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: select a REST endpoint; root enumeration is not supported\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "pagination_without_max_pages": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/pagination_without_max_pages",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/pagination_without_max_pages.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: pagination requires an explicit positive max_pages\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "pagination_starting_at_page_2": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/pagination_starting_at_page_2",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/pagination_starting_at_page_2.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: a paginated collection must start at page 1\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "unknown_plan_key": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/unknown_plan_key",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/unknown_plan_key.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: plan accepts only pages and rest\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "unknown_rest_key": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/unknown_rest_key",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/unknown_rest_key.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: REST entry accepts url, paginate, max_pages\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "empty_plan": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/empty_plan",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/empty_plan.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: select at least one page or REST endpoint\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "paginate_not_boolean": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/paginate_not_boolean",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/paginate_not_boolean.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: paginate must be boolean\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "max_pages_below_one": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/max_pages_below_one",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/max_pages_below_one.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: pagination requires an explicit positive max_pages\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    },
+    "rest_not_array": {
+      "argv": [
+        "python",
+        "-m",
+        "recon_pipeline",
+        "collect",
+        "--collection",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/rest_not_array",
+        "--plan",
+        "/tmp/opencode/q2-scratch-20261016/t02-cases/rest_not_array.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Collector refused: pages and rest must be arrays\n",
+      "refused_visibly": true,
+      "collection_dir_not_created": true
+    }
+  },
+  "all_plan_refusals_pass": true,
+  "positive_control_plan_items": {
+    "items": [
+      {
+        "kind": "page",
+        "url": "http://127.0.0.1:9876/qa-control-a"
+      }
+    ],
+    "no_directory_side_effect": true
+  },
+  "existing_collection_refusal": {
+    "argv": [
+      "python",
+      "-m",
+      "recon_pipeline",
+      "collect",
+      "--collection",
+      "/tmp/opencode/q2-scratch-20261016/t02-cases/existing-collection",
+      "--plan",
+      "/tmp/opencode/q2-scratch-20261016/t02-cases/valid.json"
+    ],
+    "exit": 2,
+    "stdout": "",
+    "stderr": "Collector refused: [Errno 17] File exists: '/tmp/opencode/q2-scratch-20261016/t02-cases/existing-collection'\n",
+    "refused_visibly": true,
+    "bytes_unchanged": true
+  },
+  "add_changed_pagination_scope_refusal": {
+    "argv": [
+      "python",
+      "-m",
+      "recon_pipeline",
+      "add",
+      "--collection",
+      "/tmp/opencode/q2-scratch-20261016/t02-cases/paginated-collection",
+      "--plan",
+      "/tmp/opencode/q2-scratch-20261016/t02-cases/changed-scope.json"
+    ],
+    "exit": 2,
+    "stdout": "",
+    "stderr": "Collector refused: existing selection differs; create a separate collection for changed pagination scope\n",
+    "refused_visibly": true,
+    "bytes_unchanged_except_writer_lock": true
+  },
+  "t17_paginated_refresh_refusal": {
+    "argv": [
+      "python",
+      "-m",
+      "recon_pipeline",
+      "refresh",
+      "--collection",
+      "/tmp/opencode/q2-scratch-20261016/t02-cases/paginated-collection",
+      "--id",
+      "69efc43e3ff010c3f8f4dfbd"
+    ],
+    "exit": 2,
+    "stdout": "",
+    "stderr": "Collector refused: refresh a paginated collection into a NEW collection directory; do not mix page generations\n",
+    "refused_visibly": true,
+    "bytes_unchanged_except_writer_lock": true
+  },
+  "unknown_refresh_id_refusal": {
+    "argv": [
+      "python",
+      "-m",
+      "recon_pipeline",
+      "refresh",
+      "--collection",
+      "/tmp/opencode/q2-scratch-20261016/t02-cases/paginated-collection",
+      "--id",
+      "nonexistent000000000000"
+    ],
+    "exit": 2,
+    "stdout": "",
+    "stderr": "Collector refused: unknown refresh ID\n",
+    "refused_visibly": true
+  }
+}

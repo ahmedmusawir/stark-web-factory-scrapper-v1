@@ -1,0 +1,186 @@
+Received 2026-10-16 ~18:04 +06 in the Claudy QA Executor session (Claude Code; model
+switched by Tony to Claude Fable 5 before this GO). Recorded verbatim below.
+----------------------------------------------------------------------
+Independent QA Executor — DIRECTOR GO for the LEAD-02 repair
+verification and remaining QA completion work.
+
+ROLE
+You are independent QA, outside Cody’s engineering seat.
+Cody has completed engineering and released the writer seat.
+Tony has committed the repair and now releases this candidate to QA.
+
+REPOSITORY
+/home/moose/PYTHON/stark-web-factory-scrapper-v1
+
+Branch:
+qa/wf-scrapper-abm
+
+RELEASED REPAIRED CANDIDATE
+0f98bcf095781a3ac7a231c276199224dc531f11
+
+Expected repaired source52:
+6f35cf8dacf3aeecc17a89b1c96e3558ea52e3c03edf63c2e402a766a1e986f4
+
+INPUT FILES — EXACT DOWNLOADS LOCATIONS
+
+1. /home/moose/Downloads/WebFactory_QA_Lead_Decision_2026-10-16.md
+
+2. /home/moose/Downloads/WEB_FACTORY_LEAD02_CODY_REPAIR_HANDOFF_2026-10-16.txt
+
+3. /home/moose/Downloads/WebFactory_LEAD02_Engineering_Rework_2026-10-16_173633.zip
+
+Engineering ZIP SHA-256:
+151c15e61ee2d723f4b62fab96e12be3b7706af87641d9bb7eee9931f2b04666
+Size: 116,748 bytes
+
+4. /home/moose/Downloads/WebFactory_QA_Q2_Package_2026-10-16_155121.zip
+
+Historical QA ZIP SHA-256:
+06f73841cc678badd30d56bfb4c41614c376b16abe7254ea1e374a96c1d974df
+Size: 499,912 bytes
+
+Read the Lead decision completely. Use the Architect’s handoff and
+engineering package to locate the repairs and reproductions.
+Keep both historical packages unchanged.
+
+The historical QA ZIP contains the approved plan at:
+governing/WebFactory_Q1_Lead_Review_2026-10-15/01_QAM_TEST_PLAN_FINAL.md
+
+Approved plan SHA-256:
+4cf1673851f5a170391af4e3e3fa418069732108ff1828e9fead6e062b52da2f
+
+AUTHORITY
+Record this release verbatim in a fresh QA lane.
+
+LEAD-02 already defines this retest scope. Setup, verification,
+execution, evidence collection and packaging are one authorized job.
+Do not restart general recon or request another approval of the
+unchanged test plan.
+
+PREFLIGHT AND OWNERSHIP
+Acquire and record the independent QA writer seat.
+Maintain one active writer in the shared checkout.
+
+Verify the full candidate SHA, committed repair diff, four repaired
+file hashes, new source52 identity, fixtures and environment.
+Use a fresh snapshot of the REPAIRED committed candidate; never
+accidentally execute the old pre-repair QA snapshot.
+
+Expected remaining bookkeeping changes:
+- CHANGELOG.md
+- RECOVERY.md
+- agent_docs/SESSIONS/session_2026-10-16.md
+- agent_docs/RESPONSES/response_2026-10-16_165613_cody-engineer-recovery.md
+- agent_docs/RESPONSES/response_2026-10-16_172610_lead02-repair-plan.md
+
+Record and preserve those files. Their presence alone is not a blocker.
+Investigate any additional product/test/dependency drift.
+
+WORK TO COMPLETE
+
+R1 — TITLE GUARD
+Independently verify the exact “Read more →” supply and replacement
+reproductions, controls, provenance, Unicode titles, stable IDs and
+explicit selection behavior. Complete the affected T-06 checks.
+
+R2 — INERT PRESENTATION
+Independently verify B1/B2 at the generated Markdown boundary and
+under a declared local renderer/parser configuration, including
+HTML-enabled rendering. Inspect tokens and resulting markup.
+Verify readable literal text and legitimate formatting/links survive.
+
+Keep B3 image source values as untrusted JSON provenance.
+Do not treat their mere presence as a product failure.
+
+C1 — FINAL ARTICLE-HEADING PRESERVATION
+Complete the agent-assisted review of the synthetic article heading
+in a NEW reviewed rendition. Restore the meaningful title to main
+content, preserve paragraphs and CTA, separate genuine global
+navigation/footer, and update index/hash/provenance.
+Verify final content, references and unchanged raw bytes.
+Preserve the initial helper output. Do not change helper code.
+
+C2 — LIMIT FIXTURES AND O2
+Execute the three already-approved controlled cases:
+- max_requests=1
+- a bounded tiny work deadline
+- a small persisted-byte allowance
+
+Record settings, fixture definitions, request starts/completions,
+stop reasons, partial outcomes, preserved attempts and cleanup.
+Measure actual directory bytes, including .runtime and writer-lock
+overhead. Assess the documented estimate/post-receipt semantics.
+Do not invent exact wire-byte or instantaneous-cancellation guarantees.
+
+C3 — RICH NATIVE REST FIDELITY
+First identify any existing exact measurement satisfying this
+obligation. If none exists, perform one controlled loopback native
+capture using deliberately formatted UTF-8 JSON containing Unicode,
+whitespace, content, optional SEO and nested/unknown fields.
+
+Compare complete saved bytes with independently defined served bytes.
+Verify no collector-injected _fields and no synthetic Set-Cookie
+value in result metadata.
+
+REGRESSION AND COVERAGE
+Complete affected Prepare content/provenance checks and T-23.
+Run all SIX required modules once against the repaired candidate:
+
+tests/test_selected_collector.py
+tests/test_decide.py
+agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py
+tests/test_rest_client.py
+tests/test_raw_reader.py
+tests/test_offline_inventory.py
+
+Include new tests in actual totals; do not force old counts.
+Engineering results cannot replace your independent measurements.
+
+Refresh a NEW supplemental 48-row acceptance matrix.
+Preserve historical failures and accepted measurements unchanged.
+Justify reuse of unaffected evidence using the repaired candidate diff.
+Repeat T-20 only if actual consumer-output changes invalidate it.
+
+Record ordinary failures and continue unaffected safe checks.
+Stop the whole run only for a genuine safety or validity blocker.
+
+BOUNDARIES
+Preserve DECIDE → COLLECT → offline agent-assisted PREPARE.
+Zero external requests; saved fixtures and controlled loopback only.
+Retain the approved disk budget and other execution bounds.
+No product repairs, dependency changes or Git mutations.
+No revival of the retired controller/full-site campaign.
+No deletion of retained QA scratch or historical evidence.
+
+DELIVERY
+Create a NEW lane under:
+/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/
+
+Name it:
+RETEST_LEAD02_<actual-local-timestamp>/
+
+Capture resolved interpreter, actual arguments, cwd, start/end,
+exit codes, complete logs, fixtures, assertions, JUnit, matrix,
+candidate/diff/source identities and cleanup status.
+
+Include the existing historical package-check receipts supplied as
+companions in the engineering package. Do not recreate old receipts.
+
+Deliver ONE complete QA review ZIP to:
+/home/moose/Downloads/
+
+Name it:
+WebFactory_LEAD02_QA_Retest_<actual-local-timestamp>.zip
+
+Verify CRC, unique confined paths, exact manifest membership,
+sizes/hashes and export hygiene. Keep ZIP/hash receipts outside the
+ZIP. Exclude browser profiles, credentials and unrelated material.
+
+Write a concise report under:
+/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/RESPONSES/
+
+Return the actual ZIP path, size, SHA-256, outcomes, remaining gaps,
+owned-process cleanup and writer-seat release.
+
+JARVIS QA Lead will adjudicate the returned evidence.
+Do not declare Gate Q or merge/deployment approval yourself.

@@ -1,0 +1,193 @@
+diff --git a/agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py b/agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py
+index 2b7beb1..b074e35 100644
+--- a/agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py
++++ b/agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py
+@@ -4,12 +4,13 @@ from datetime import datetime, timezone
+ import hashlib
+ import json
+ from pathlib import Path
++import re
+ import sys
+ from urllib.parse import urljoin, urlsplit
+ 
+ REPO = Path(__file__).resolve().parents[4]
+ sys.path.insert(0, str(REPO))
+-from bs4 import BeautifulSoup
++from bs4 import BeautifulSoup, NavigableString
+ from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+ from recon_pipeline.collector import load, valid_result, artifact
+ 
+@@ -39,10 +40,22 @@ def clean(node):
+     return result
+ 
+ 
++ANGLE = re.compile(r'([<>])')
++
++
+ def markdown(node, base):
++    # Source text must stay literal through conversion: the converter decodes
++    # entities, so text angle brackets would re-emerge as raw HTML and
++    # bracket/paren text as link syntax. escape_snob backslash-escapes Markdown
++    # punctuation in text only (generated links/emphasis untouched); angle
++    # brackets are outside its set, so they are escaped here on a copy.
++    literal = BeautifulSoup(str(node), 'html.parser')
++    for text in literal.find_all(string=True):
++        if type(text) is NavigableString and ANGLE.search(text) and not text.find_parent(['code', 'pre']):
++            text.replace_with(ANGLE.sub(r'\\\1', text))
+     result = DefaultMarkdownGenerator().generate_markdown(
+-        str(node).replace('</li>', '</li>\n'), base_url=base, citations=False,
+-        html2text_options={'body_width': 0, 'ignore_images': True, 'ignore_links': False, 'single_line_break': False})
++        str(literal).replace('</li>', '</li>\n'), base_url=base, citations=False,
++        html2text_options={'body_width': 0, 'ignore_images': True, 'ignore_links': False, 'single_line_break': False, 'escape_snob': True})
+     text = result.raw_markdown.strip('\n\r')  # Retain first-list indentation.
+     if text.startswith(('Error converting HTML', 'Error in markdown')):
+         raise ValueError(text)
+diff --git a/agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py b/agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py
+index 77b2de2..ad69a7f 100644
+--- a/agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py
++++ b/agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py
+@@ -132,3 +132,51 @@ def test_empty_icon_separator_does_not_create_false_nested_list(tmp_path):
+     md=document(result,tmp_path)
+     assert [text(li) for li in md.select('li')]==['Home','Archive']
+     assert result['pages'][0]['content']['empty_list_items_removed']==1
++
++
++# LEAD-02 R2: source text stays inert through the Markdown conversion boundary.
++B1="<p>Escaped markup text: &lt;script&gt;alert('t23-escaped-text')&lt;/script&gt; shown as characters.</p>"
++B2="<p>Markdown-shaped text: [click me](javascript:alert('t23-md-inject')) should remain plain text.</p>"
++CONTROLS=('<h1>Καλημέρα heading</h1><h2>Second heading</h2><p>Plain <strong>bold</strong> and <em>emphasis</em> text with café, 1 &lt; 2.</p>'
++          '<ul><li>One</li><li>Two</li></ul><ol><li>First</li><li>Second</li></ol><p><a href="/call/">Book a call</a> and <a href="https://example.test/x">Absolute</a>.</p>')
++# Declared local parser/renderer configurations; html=True ensures B1 is not hidden by disabling raw HTML.
++RENDERERS={'commonmark html=True':MarkdownIt('commonmark',{'html':True}),'default html=True':MarkdownIt('default',{'html':True}),
++           'default html=False':MarkdownIt('default',{'html':False})}
++
++
++def tree_hashes(root):return {str(p.relative_to(root)):helper.sha(p.read_bytes()) for p in root.rglob('*') if p.is_file()}
++
++
++def flat(tokens):
++    for token in tokens:
++        yield token
++        if token.children:yield from flat(token.children)
++
++
++def test_source_text_stays_inert_in_page_and_boilerplate(tmp_path):
++    html=f'<html><body><header id="thrive-header"><a href="/">Home</a>{B1}{B2}</header><main>{CONTROLS}{B1}{B2}</main></body></html>'
++    root,_=saved(tmp_path,html);before=tree_hashes(root)
++    result=helper.prepare(root,tmp_path/'derived',repo=tmp_path)
++    assert tree_hashes(root)==before  # Raw body, metadata and checklist untouched.
++    page=(tmp_path/result['pages'][0]['prepared']['file']).read_bytes();boiler=(tmp_path/result['boilerplate']['file']).read_bytes()
++    assert result['pages'][0]['prepared']['sha256']==helper.sha(page) and result['boilerplate']['sha256']==helper.sha(boiler)
++    # Inspect converted content only: the page header's own `<!-- MAIN CONTENT -->` marker is helper text, not source.
++    for generated in (page.decode().split('<!-- MAIN CONTENT -->',1)[1],boiler.decode()):
++        # Converter boundary: literal text, never raw HTML or authored link syntax.
++        assert '<script>' not in generated and '](javascript:' not in generated
++        assert 't23-escaped-text' in generated and 't23-md-inject' in generated
++        for name,parser in RENDERERS.items():
++            tokens=list(flat(parser.parse(generated)))
++            assert not [t for t in tokens if t.type in ('html_inline','html_block')],name
++            assert not [t for t in tokens if t.type=='link_open' and t.attrGet('href').lower().startswith('javascript:')],name
++            dom=BeautifulSoup(parser.render(generated),'html.parser')
++            assert not dom.find('script') and not [a for a in dom.select('a[href]') if a['href'].lower().startswith('javascript:')],name
++            rendered=text(dom)
++            assert "Escaped markup text: <script>alert('t23-escaped-text')</script> shown as characters." in rendered,name
++            assert "Markdown-shaped text: [click me](javascript:alert('t23-md-inject')) should remain plain text." in rendered,name
++    dom=document(result,tmp_path)  # Positive controls keep structure, labels and resolved destinations.
++    assert [h.get_text() for h in dom.select('h1,h2')]==['Καλημέρα heading','Second heading']
++    assert dom.strong.get_text()=='bold' and dom.em.get_text()=='emphasis' and 'café, 1 < 2.' in text(dom)
++    assert [li.get_text() for li in dom.select('li')]==['One','Two','First','Second']
++    assert {(a.get_text(),a['href']) for a in dom.select('a[href]')}=={('Book a call','https://example.test/call/'),('Absolute','https://example.test/x')}
++    assert 'Home' in boiler.decode() and result['pages'][0]['content']['headings']==['Καλημέρα heading','Second heading']
+diff --git a/recon_pipeline/decide.py b/recon_pipeline/decide.py
+index 30b9e61..66e1ca6 100644
+--- a/recon_pipeline/decide.py
++++ b/recon_pipeline/decide.py
+@@ -11,6 +11,7 @@ import math
+ from pathlib import Path
+ import re
+ import time
++import unicodedata
+ from urllib.parse import urljoin, urlsplit, urlunsplit, urlencode
+ import xml.etree.ElementTree as ET
+ 
+@@ -29,6 +30,16 @@ GENERIC_LINK_LABELS = {'read post','read more','continue reading','learn more','
+ ASSET = re.compile(r'\.(?:png|jpe?g|gif|webp|svg|ico|css|js|woff2?|ttf|mp[34]|zip)(?:$)', re.I)
+ 
+ 
++def generic_label(label):
++    """Exact generic-CTA membership after removing decoration only: casefold,
++    collapsed whitespace, leading/trailing punctuation or symbols (… › » → 👉).
++    Not a substring rule: a sentence containing CTA words stays informative."""
++    core=' '.join(label.casefold().split())
++    while core and unicodedata.category(core[-1])[0] in 'PSZ': core=core[:-1]
++    while core and unicodedata.category(core[0])[0] in 'PSZ': core=core[1:]
++    return core in GENERIC_LINK_LABELS
++
++
+ def normalize(value, base=None):
+     if not isinstance(value, str): raise ValueError('URL must be text')
+     p = urlsplit(urljoin(base, value) if base else value)
+@@ -71,7 +82,7 @@ def candidate(inv, address, source, *, kind='document', title=None, mime=None, d
+         # Empty/punctuation-only labels and generic CTAs are unavailable titles.
+         # Unicode letters/numbers remain text; sources are retained even when
+         # their weak label is ignored. Never derive a title from the URL.
+-        if any(char.isalnum() for char in label) and label.casefold().rstrip(' .…›»>') not in GENERIC_LINK_LABELS:
++        if any(char.isalnum() for char in label) and not generic_label(label):
+             row['title']=label
+     if mime: row['content_type']=mime
+     if dates: row['dates'].update({k:v for k,v in dates.items() if isinstance(v,str) and v})
+diff --git a/tests/test_decide.py b/tests/test_decide.py
+index 2d2c7d8..6653bdf 100644
+--- a/tests/test_decide.py
++++ b/tests/test_decide.py
+@@ -386,3 +386,50 @@ def test_informative_unicode_replaces_legacy_weak_label(weak):
+     row['title']=weak  # A weak label inherited from earlier in-memory data.
+     d.candidate(inv,url,{'locator':'heading'},title='বাংলা article café')
+     assert row['title']=='বাংলা article café' and len(row['sources'])==2
++
++
++# LEAD-02 R1: generic CTA labels never supply or replace a title.
++ARROW='Read more →'  # Exact O6 reproduction; U+2192 was outside the old fixed rstrip set.
++INFORMATIVE='Informative Title Kept'
++
++
++def test_arrow_cta_cannot_supply_unknown_title():
++    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/tempting-slug-name'
++    row=d.candidate(inv,url,{'locator':'a.read-more'},title=ARROW)
++    assert row['title'] is None  # Unknown stays unknown; never a slug guess.
++    assert row['sources']==[{'locator':'a.read-more'}] and row['id']==d.item_id(url) and row['selection']=='UNDECIDED'
++
++
++def test_arrow_cta_cannot_replace_informative_title():
++    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/article'
++    heading={'file':'first.html','sha256':'heading','locator':'h2/a'};cta={'file':'first.html','sha256':'heading','locator':'a.read-more'}
++    first=d.candidate(inv,url,heading,title=INFORMATIVE)
++    again=d.candidate(inv,url,cta,title=ARROW)
++    assert again is first and again['title']==INFORMATIVE and again['sources']==[heading,cta]
++
++
++@pytest.mark.parametrize('label,expected',[
++    (ARROW,None),('Read more ›',None),('READ MORE…',None),('?!...',None),('   ',None),('→→',None),
++    ('→ Read more',None),('Read  more 👉',None),('Continue reading »',None),('» Learn More !',None),
++    ('How to Regain Consistency with Facebook Ads After the Andromeda Update','How to Regain Consistency with Facebook Ads After the Andromeda Update'),
++    ('Read more about the Andromeda recovery process','Read more about the Andromeda recovery process'),  # CTA words inside a sentence stay informative.
++    ('Learn More: 5 Tactics','Learn More: 5 Tactics'),('Café SEO 🚀','Café SEO 🚀'),('বাংলা শিরোনাম →','বাংলা শিরোনাম →')])
++def test_label_guard_cases_keep_exact_informative_text(label,expected):
++    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/tempting-slug-name'
++    row=d.candidate(inv,url,{'locator':'guard'},title=label)
++    assert row['title']==expected and row['sources']==[{'locator':'guard'}]
++
++
++@pytest.mark.parametrize('reverse',[False,True])
++def test_arrow_cta_discovery_double_both_orders(tmp_path,reverse):
++    labels=[INFORMATIVE,ARROW]
++    if reverse:labels.reverse()
++    html=('<meta charset="utf-8"><title>Saved blog fixture</title>'+''.join('<a href="/tempting-slug-name">'+x+'</a>' for x in labels)).encode('utf-8')
++    inv,fake,root=run(tmp_path,[response(html),json_response({})],mode='default',max_depth=0)
++    row=next(x for x in inv['items'] if x['url']==BASE+'/tempting-slug-name')
++    assert row['title']==INFORMATIVE and row['id']==d.item_id(BASE+'/tempting-slug-name')
++    assert [x['locator'] for x in row['sources']]==['a[href][0]','a[href][1]'] and row['selection']=='UNDECIDED'
++    assert len(fake.calls)==2  # Destination page was never fetched.
++    ref=row['sources'][labels.index(ARROW)]
++    saved=(root/ref['file']).read_bytes()  # Raw CTA label stays recoverable at its locator in hashed evidence.
++    assert ARROW.encode('utf-8') in saved and d.sha(saved)==ref['sha256']

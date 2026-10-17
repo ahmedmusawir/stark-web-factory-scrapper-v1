@@ -1,0 +1,267 @@
+{
+  "executor": "Claudy (Claude Code, Claude Fable 5)",
+  "instrument_sha256": "190b43e53c8fb05a1bfc17b5441ed33df748863d1391dbec5a319cb0491607f0",
+  "snapshot": "/tmp/claudy-lead02-retest-20261016/snapshot-repaired",
+  "prepare_script_sha256": "962add46f1172018963808a31af5d4fb08276b2bd6c5b4c91a2d952513c69c06",
+  "body_sha256": "d7502053a3e9ee15f082e15a69f7617255eed4fb40a626845ea1c0e4a430e754",
+  "b1_source": "Escaped markup text: &lt;script&gt;alert('t23-escaped-text')&lt;/script&gt; shown as characters.",
+  "b2_source": "Markdown-shaped text: [click me](javascript:alert('t23-md-inject')) should remain plain text.",
+  "cli": {
+    "argv": [
+      "unshare",
+      "-rn",
+      "/home/moose/PYTHON/stark-web-factory-scrapper-v1/venv/bin/python",
+      "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py",
+      "--collection",
+      "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/collections/qa-r2-inert",
+      "--out",
+      "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/prepared/qa-r2-inert"
+    ],
+    "cwd": "/tmp/claudy-lead02-retest-20261016/snapshot-repaired",
+    "start": "2026-10-16T12:14:09.309718+00:00",
+    "end": "2026-10-16T12:14:10.798925+00:00",
+    "exit": 0,
+    "stdout": "{\"prepared_pages\": 1, \"unavailable_items\": 0, \"out\": \"/tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/prepared/qa-r2-inert\", \"next\": \"Agent inspects Markdown/source, writes ARCHITECT_BRIEF.md and GAPS_AND_REQUESTS.md, then verifies references.\"}\n",
+    "stderr": ""
+  },
+  "raw_collection_unchanged": true,
+  "page": {
+    "markdown_it_version": "4.2.0",
+    "html_assertion_parser": "bs4 html.parser",
+    "converter_boundary": {
+      "raw_script_substring": true,
+      "markdown_js_link_token": false,
+      "b1_sentence_findable": true,
+      "b2_sentence_findable": true
+    },
+    "renders": {
+      "commonmark_htmlTrue": {
+        "preset_options": {
+          "maxNesting": 20,
+          "html": true,
+          "linkify": false,
+          "typographer": false,
+          "quotes": "“”‘’",
+          "xhtmlOut": true,
+          "breaks": false,
+          "langPrefix": "language-"
+        },
+        "validateLink_javascript": false,
+        "html_token_types": [
+          "html_block"
+        ],
+        "html_token_contents": [
+          "<!-- MAIN CONTENT -->\n"
+        ],
+        "dom_script_elements": 0,
+        "active_scheme_destinations": [],
+        "b1_literal_in_rendered_text": true,
+        "b2_literal_in_rendered_text": true,
+        "controls": {
+          "h1": true,
+          "h2": true,
+          "strong": true,
+          "em": true,
+          "ul_items": 2,
+          "ol_items": 2,
+          "math_literal": true,
+          "unicode": true,
+          "relative_link": true,
+          "absolute_link": true
+        }
+      },
+      "default_htmlTrue": {
+        "preset_options": {
+          "maxNesting": 100,
+          "html": true,
+          "linkify": false,
+          "typographer": false,
+          "quotes": "“”‘’",
+          "xhtmlOut": false,
+          "breaks": false,
+          "langPrefix": "language-"
+        },
+        "validateLink_javascript": false,
+        "html_token_types": [
+          "html_block"
+        ],
+        "html_token_contents": [
+          "<!-- MAIN CONTENT -->\n"
+        ],
+        "dom_script_elements": 0,
+        "active_scheme_destinations": [],
+        "b1_literal_in_rendered_text": true,
+        "b2_literal_in_rendered_text": true,
+        "controls": {
+          "h1": true,
+          "h2": true,
+          "strong": true,
+          "em": true,
+          "ul_items": 2,
+          "ol_items": 2,
+          "math_literal": true,
+          "unicode": true,
+          "relative_link": true,
+          "absolute_link": true
+        }
+      },
+      "default_htmlFalse": {
+        "preset_options": {
+          "maxNesting": 100,
+          "html": false,
+          "linkify": false,
+          "typographer": false,
+          "quotes": "“”‘’",
+          "xhtmlOut": false,
+          "breaks": false,
+          "langPrefix": "language-"
+        },
+        "validateLink_javascript": false,
+        "html_token_types": [],
+        "html_token_contents": [],
+        "dom_script_elements": 0,
+        "active_scheme_destinations": [],
+        "b1_literal_in_rendered_text": true,
+        "b2_literal_in_rendered_text": true,
+        "controls": {
+          "h1": true,
+          "h2": true,
+          "strong": true,
+          "em": true,
+          "ul_items": 2,
+          "ol_items": 2,
+          "math_literal": true,
+          "unicode": true,
+          "relative_link": true,
+          "absolute_link": true
+        }
+      }
+    }
+  },
+  "boilerplate": {
+    "markdown_it_version": "4.2.0",
+    "html_assertion_parser": "bs4 html.parser",
+    "converter_boundary": {
+      "raw_script_substring": true,
+      "markdown_js_link_token": false,
+      "b1_sentence_findable": true,
+      "b2_sentence_findable": true
+    },
+    "renders": {
+      "commonmark_htmlTrue": {
+        "preset_options": {
+          "maxNesting": 20,
+          "html": true,
+          "linkify": false,
+          "typographer": false,
+          "quotes": "“”‘’",
+          "xhtmlOut": true,
+          "breaks": false,
+          "langPrefix": "language-"
+        },
+        "validateLink_javascript": false,
+        "html_token_types": [],
+        "html_token_contents": [],
+        "dom_script_elements": 0,
+        "active_scheme_destinations": [],
+        "b1_literal_in_rendered_text": true,
+        "b2_literal_in_rendered_text": true,
+        "controls": {
+          "h1": true,
+          "h2": true,
+          "strong": false,
+          "em": false,
+          "ul_items": 0,
+          "ol_items": 0,
+          "math_literal": false,
+          "unicode": false,
+          "relative_link": false,
+          "absolute_link": false
+        }
+      },
+      "default_htmlTrue": {
+        "preset_options": {
+          "maxNesting": 100,
+          "html": true,
+          "linkify": false,
+          "typographer": false,
+          "quotes": "“”‘’",
+          "xhtmlOut": false,
+          "breaks": false,
+          "langPrefix": "language-"
+        },
+        "validateLink_javascript": false,
+        "html_token_types": [],
+        "html_token_contents": [],
+        "dom_script_elements": 0,
+        "active_scheme_destinations": [],
+        "b1_literal_in_rendered_text": true,
+        "b2_literal_in_rendered_text": true,
+        "controls": {
+          "h1": true,
+          "h2": true,
+          "strong": false,
+          "em": false,
+          "ul_items": 0,
+          "ol_items": 0,
+          "math_literal": false,
+          "unicode": false,
+          "relative_link": false,
+          "absolute_link": false
+        }
+      },
+      "default_htmlFalse": {
+        "preset_options": {
+          "maxNesting": 100,
+          "html": false,
+          "linkify": false,
+          "typographer": false,
+          "quotes": "“”‘’",
+          "xhtmlOut": false,
+          "breaks": false,
+          "langPrefix": "language-"
+        },
+        "validateLink_javascript": false,
+        "html_token_types": [],
+        "html_token_contents": [],
+        "dom_script_elements": 0,
+        "active_scheme_destinations": [],
+        "b1_literal_in_rendered_text": true,
+        "b2_literal_in_rendered_text": true,
+        "controls": {
+          "h1": true,
+          "h2": true,
+          "strong": false,
+          "em": false,
+          "ul_items": 0,
+          "ol_items": 0,
+          "math_literal": false,
+          "unicode": false,
+          "relative_link": false,
+          "absolute_link": false
+        }
+      }
+    }
+  },
+  "source_index": {
+    "raw": "see file",
+    "b3_source_src_values": [
+      "javascript:alert('t23-img-src')"
+    ],
+    "b3_retains_raw_javascript_as_data": true
+  },
+  "index_hashes": [
+    {
+      "file": "pages/8a2b284197fe55dd038acbc2.md",
+      "sha256": "1a478f6926ee246def6bd48642dcf81298b095032e106e9847dbc6dce709fe12",
+      "listed_in_index": true
+    },
+    {
+      "file": "BOILERPLATE.md",
+      "sha256": "8d6532ea263aa1f2c19590d8d8b7590dd0263d34384bc67a599639683d25ef3e",
+      "listed_in_index": true
+    }
+  ],
+  "verdict_r2": "FAIL",
+  "safety_boundary_statement": "Verified for the converter output and markdown-it-py 4.2.0 under commonmark/default presets with html on and off; backslash-escape semantics per CommonMark. Not a claim about renderers that ignore backslash escapes or that serve .md as raw HTML; no browser exploit claimed or tested."
+}

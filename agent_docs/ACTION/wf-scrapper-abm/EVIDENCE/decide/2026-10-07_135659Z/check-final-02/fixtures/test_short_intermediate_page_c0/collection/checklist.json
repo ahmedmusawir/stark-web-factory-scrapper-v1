@@ -1,0 +1,138 @@
+{
+  "schema": "selected-collection-v1",
+  "created_at": "2026-10-07T14:07:15.646660+00:00",
+  "items": [
+    {
+      "kind": "rest",
+      "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2",
+      "paginate": true,
+      "max_pages": 4,
+      "id": "48d254df7ea4adc6d005aaef",
+      "page": 1,
+      "status": "completed",
+      "result": {
+        "file": "attempts/48d254df7ea4adc6d005aaef/4c903a17a7ab41028ef46492883e0a2e/result.json",
+        "sha256": "8339a52511b5d6fc28cfddf2ff79d43fcbf658ba563df6f58d88f14dd40524f9"
+      },
+      "attempts": [
+        {
+          "file": "attempts/48d254df7ea4adc6d005aaef/4c903a17a7ab41028ef46492883e0a2e/result.json",
+          "sha256": "8339a52511b5d6fc28cfddf2ff79d43fcbf658ba563df6f58d88f14dd40524f9"
+        }
+      ],
+      "error": null,
+      "group": "48d254df7ea4adc6d005aaef"
+    },
+    {
+      "id": "020b358091498bc972a52a87",
+      "kind": "rest",
+      "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=2",
+      "page": 2,
+      "group": "48d254df7ea4adc6d005aaef",
+      "status": "completed",
+      "result": {
+        "file": "attempts/020b358091498bc972a52a87/29cd36a71daa435f96b58bc608127c46/result.json",
+        "sha256": "86138f980d9937666b99dcd11ce3cf582728833e128349c4b64ae1ec486dac56"
+      },
+      "attempts": [
+        {
+          "file": "attempts/020b358091498bc972a52a87/29cd36a71daa435f96b58bc608127c46/result.json",
+          "sha256": "86138f980d9937666b99dcd11ce3cf582728833e128349c4b64ae1ec486dac56"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "c03f322111856e48618b75e1",
+      "kind": "rest",
+      "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=3",
+      "page": 3,
+      "group": "48d254df7ea4adc6d005aaef",
+      "status": "completed",
+      "result": {
+        "file": "attempts/c03f322111856e48618b75e1/a0e91b95ff4c46aaa34ccce04d9098d5/result.json",
+        "sha256": "299349864a227cfc142ad1220834e24af12181bd00610f6479efc4b36fce17c6"
+      },
+      "attempts": [
+        {
+          "file": "attempts/c03f322111856e48618b75e1/a0e91b95ff4c46aaa34ccce04d9098d5/result.json",
+          "sha256": "299349864a227cfc142ad1220834e24af12181bd00610f6479efc4b36fce17c6"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "coverage": {
+    "48d254df7ea4adc6d005aaef": {
+      "status": "complete",
+      "fetched_pages": [
+        1,
+        2,
+        3
+      ],
+      "advertised_total": 5,
+      "advertised_pages": 3,
+      "records": 5,
+      "unique_ids": 5,
+      "duplicate_ids": [],
+      "short_pages": [
+        {
+          "page": 1,
+          "records": 1
+        }
+      ],
+      "gaps": [],
+      "advertised_end_reached": true
+    }
+  },
+  "runs": [
+    {
+      "started_at": "2026-10-07T14:07:15.648564+00:00",
+      "requests": [
+        {
+          "id": "48d254df7ea4adc6d005aaef",
+          "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2",
+          "kind": "rest",
+          "start": 637116.877849963,
+          "preceding_completion": null,
+          "completion": 637116.8791992,
+          "completion_epoch": 1791382035.6513393
+        },
+        {
+          "id": "020b358091498bc972a52a87",
+          "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=2",
+          "kind": "rest",
+          "start": 637116.899637536,
+          "preceding_completion": 637116.8791992,
+          "completion": 637116.901727398,
+          "completion_epoch": 1791382035.6738672
+        },
+        {
+          "id": "c03f322111856e48618b75e1",
+          "url": "http://127.0.0.1:9876/wp-json/wp/v2/posts?per_page=2&page=3",
+          "kind": "rest",
+          "start": 637116.923421256,
+          "preceding_completion": 637116.901727398,
+          "completion": 637116.925054662,
+          "completion_epoch": 1791382035.6971946
+        }
+      ],
+      "stop_reason": null,
+      "cleanup_error": null,
+      "gap_seconds": 0.02,
+      "max_requests": 100,
+      "max_seconds": 1800,
+      "max_bytes": 100000000,
+      "response_cap": 10485760,
+      "browser_traffic": {},
+      "runtime": {},
+      "cleanup_messages": [],
+      "collection_outcome": "complete",
+      "finished_at": "2026-10-07T14:07:15.706158+00:00",
+      "elapsed_s": 0.05761254206299782,
+      "completed": 3,
+      "remaining": 0
+    }
+  ],
+  "last_completion_epoch": 1791382035.6971946
+}

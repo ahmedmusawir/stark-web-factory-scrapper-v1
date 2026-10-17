@@ -1,0 +1,206 @@
+--- intake/smart_crawler/browser_session.py
++++ current/smart_crawler/browser_session.py
+@@ -283,7 +283,13 @@
+         self.cdp.on('Network.loadingFailed', self.network_failed)
+         self.cdp.on('Network.responseReceived', self.network_response)
+         await self.cdp.send('Network.enable')
+-        await self.cdp.send('Fetch.enable', {'patterns':[{'urlPattern':'*','requestStage':'Request'}]})
++        # Own only navigation and browser reads. Chromium can label window.fetch
++        # XHR here while Network reports Fetch, so retain both resource types.
++        # Match every URL: intentional redirect scope is checked before dispatch.
++        # Other resources keep the context guard and passive Network observers.
++        await self.cdp.send('Fetch.enable', {'patterns':[
++            {'urlPattern':'*','resourceType':kind,'requestStage':'Request'}
++            for kind in ('Document','Fetch','XHR')]})
+         self.event('controls_installed', transport='Chromium CDP Fetch.requestPaused')
+         return page
+ 
+--- intake/tests/fixture_server.py
++++ current/tests/fixture_server.py
+@@ -25,6 +25,8 @@
+             self.rfile.read(int(self.headers.get('Content-Length','0')))
+             self.respond(204,b'',{})
+         def do_HEAD(self):
++            if self.path=='/boundary-denied':
++                return self.respond(302,b'',{'Location':f'http://localhost:{self.server.server_port}/never-boundary'})
+             if self.path=='/read-identity':
+                 return self.identity_read()
+             if mode=='pipeline' and self.path=='/image.png':
+@@ -35,6 +37,20 @@
+                 return self.respond(429,b'',{'Retry-After':'42'})
+             self.respond(200,b'',{'Content-Type':'image/png','Content-Length':'4096'})
+         def do_GET(self):
++            if self.path=='/boundary-denied':
++                return self.respond(302,b'',{'Location':f'http://localhost:{self.server.server_port}/never-boundary'})
++            if self.path=='/boundary':
++                body=ARTICLE.replace(b'</head>',b'<link rel="stylesheet" href="/boundary.css"><script src="/boundary.js"></script></head>')
++                body=body.replace(b'</body>',b'<img id="boundary-image" src="/boundary.png"></body>')
++                return self.respond(200,body,{'Content-Type':'text/html'})
++            if self.path=='/boundary.css':
++                return self.respond(200,b'body { color: rgb(12, 34, 56); }',{'Content-Type':'text/css'})
++            if self.path=='/boundary.js':
++                return self.respond(200,b'window.boundaryScript=true;',{'Content-Type':'application/javascript'})
++            if self.path=='/boundary.png':
++                return self.respond(200,fixture_png(),{'Content-Type':'image/png'})
++            if self.path.startswith('/boundary-cancel.png'):
++                return self.respond(200,fixture_png(),{'Content-Type':'image/png'},delay=10,prefix=8)
+             if body_responses and self.path in body_responses:
+                 return self.respond(200,body_responses[self.path],{'Content-Type':'application/json; charset=UTF-8',
+                     'X-WP-Total':'100','X-WP-TotalPages':'1'})
+--- /dev/null
++++ current/tests/test_interception_boundary.py
+@@ -0,0 +1,106 @@
++"""Narrow custom CDP boundary; native loopback browser/server evidence only."""
++import asyncio
++import hashlib
++
++import pytest
++
++from smart_crawler.browser_session import BrowserSession, Bounds
++from fixture_server import fixture_server, ENTITY
++from test_browser_controls import retain
++
++
++CONTROLLED = {'Document', 'Fetch', 'XHR'}
++
++
++def assert_no_excluded_pauses(session):
++    # Entries are registered only by our owned Fetch.requestPaused listener.
++    assert session.interceptions
++    assert {e.details['resource_type'] for e in session.interceptions.values()} <= CONTROLLED
++    assert all(e['resource_type'] in CONTROLLED for e in session.events
++               if e['event'] in ('request_classified', 'interception_command',
++                                  'interception_command_error'))
++
++
++def test_excluded_resources_load_without_custom_pauses(tmp_path):
++    with fixture_server() as (origin, timeline):
++        async def exercise():
++            s=BrowserSession(origin,bounds=Bounds(seconds=60,finalization_reserve=5),
++                             runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with s:
++                    result=await s.capture(origin+'/boundary')
++                    assert result['ok'] and not s.stop_reason
++                    # Assert actual script execution, stylesheet application and image decode.
++                    assert await s.page.evaluate("""() => [window.boundaryScript,
++                        getComputedStyle(document.body).color,
++                        document.querySelector('#boundary-image').naturalWidth]""")==[True,'rgb(12, 34, 56)',20]
++                    for path,kind in [('/boundary.css','Stylesheet'),('/boundary.js','Script'),('/boundary.png','Image')]:
++                        assert any(e['event']=='body_sent' and e['path']==path for e in timeline)
++                        assert any(e['event']=='browser_response' and e['url']==origin+path and e['status']==200 for e in s.events)
++                        assert any(e['event']=='cdp_request_will_be_sent' and e['url']==origin+path and e['resource_type']==kind for e in s.events)
++                    assert_no_excluded_pauses(s)
++                    response=await s.read(origin+'/data')
++                    assert response['body']==ENTITY and hashlib.sha256(response['body']).digest()==hashlib.sha256(ENTITY).digest()
++                    assert not response['incomplete'] and s.dispatches==2 and not s.stop_reason
++                    row,=[e for e in s.events if e['event']=='request_classified' and e['url']==origin+'/data']
++                    # Installed Chromium's two native domains disagree in this precise way.
++                    assert row['classification']=='intentional'
++                    assert (row['resource_type'],row['network_resource_type'])==('XHR','Fetch')
++                    assert_no_excluded_pauses(s)
++            finally:retain(tmp_path,'narrow-boundary-loads',s,timeline)
++        asyncio.run(exercise())
++
++
++def test_image_navigation_cancellation_stays_outside_custom_resolution(tmp_path):
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            s=BrowserSession(origin,bounds=Bounds(seconds=75,finalization_reserve=5),
++                             runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with s:
++                    assert (await s.capture(origin+'/boundary'))['ok']
++                    await s.page.evaluate("""() => {
++                        for(let i=0;i<2;i++) {let image=new Image();
++                            image.src='/boundary-cancel.png?i='+i;document.body.append(image);}
++                    }""")
++                    async def both_started():
++                        while len([e for e in timeline if e['event']=='body_prefix_sent' and
++                                   e['path'].startswith('/boundary-cancel.png')])<2:
++                            await asyncio.sleep(.01)
++                    await asyncio.wait_for(both_started(),5)
++                    assert (await s.capture(origin+'/article/'))['ok']
++                    ids={e['network_id'] for e in s.events if e['event']=='cdp_request_will_be_sent' and
++                         '/boundary-cancel.png' in e['url']}
++                    assert len(ids)==2
++                    canceled={e['request_id'] for e in s.events if e['event']=='cdp_loading_failed' and e['canceled']}
++                    assert ids <= canceled
++                    assert not any(e.details['network_id'] in ids for e in s.interceptions.values())
++                    assert not any(e['event']=='interception_command_error' for e in s.events)
++                    assert_no_excluded_pauses(s)
++                    read=await s.read(origin+'/data')
++                    assert read['body']==ENTITY and not read['incomplete']
++                    assert not s.stop_reason and s.dispatches==3
++                    for d in [e for e in s.events if e['event']=='intentional_dispatch'][1:]:
++                        assert d['monotonic']-d['preceding_completion']>=5
++            finally:retain(tmp_path,'narrow-image-navigation-churn',s,timeline)
++        asyncio.run(exercise())
++
++
++@pytest.mark.parametrize('method',['GET','HEAD'])
++def test_narrow_read_redirect_scope_prevents_target_dispatch(tmp_path,method):
++    with fixture_server() as (origin,timeline):
++        async def exercise():
++            s=BrowserSession(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++                             runtime_dir=tmp_path/'runtime',loopback_only=True)
++            try:
++                async with s:
++                    assert (await s.capture(origin+'/boundary'))['ok']
++                    result=await s.read(origin+'/boundary-denied',method)
++                    assert result['incomplete'] and result['error']=='redirect_out_of_scope'
++                    denied=[e for e in s.events if e['event']=='intentional_prevented' and e['reason']=='redirect_out_of_scope']
++                    assert len(denied)==1 and denied[0]['resource_type'] in ('Fetch','XHR')
++                    assert denied[0]['predecessor'] is not None
++                    assert s.dispatches==2 and not any(e['path']=='/never-boundary' for e in timeline)
++                    assert_no_excluded_pauses(s)
++            finally:retain(tmp_path,'narrow-scope-'+method,s,timeline)
++        asyncio.run(exercise())
+--- intake/tests/test_request_identity.py
++++ current/tests/test_request_identity.py
+@@ -20,6 +20,9 @@
+                     requests=[e for e in session.events if e['event']=='browser_request']
+                     assert any(e['resource_type']==kind for e in requests)
+                     assert len([e for e in timeline if e['event']=='request_received'])==2
++                    if kind in ('stylesheet','image'):
++                        assert not any(e['event']=='request_classified' and
++                                       e['resource_type'].lower()==kind for e in session.events)
+             finally:retain(tmp_path,'same-url-'+kind,session,timeline)
+         asyncio.run(exercise())
+ 
+@@ -53,6 +56,7 @@
+                     assert [e['classification'] for e in rows]==['incidental','intentional']
+                     assert rows[0]['initiator_script_id']!=rows[1]['initiator_script_id']
+                     assert rows[0]['frame_id']==rows[1]['frame_id']==session.main_frame
++                    assert (rows[1]['resource_type'],rows[1]['network_resource_type'])==('XHR','Fetch')
+                     if background=='fetch':
+                         assert rows[0]['resource_type']==rows[1]['resource_type']
+                         assert rows[0]['network_resource_type']==rows[1]['network_resource_type']=='Fetch'
+@@ -119,22 +123,22 @@
+ 
+ 
+ def test_sticky_stop_names_incidental_prevention(tmp_path):
+-    class StopBeforeStyle(BrowserSession):
++    class StopBeforeFetch(BrowserSession):
+         async def paused(self,params):
+-            if params['resourceType']=='Stylesheet':
++            if params['resourceType'] in ('Fetch','XHR'):
+                 self.stop('fixture_forced_stop')
+             await super().paused(params)
+     with fixture_server() as (origin,timeline):
+         async def exercise():
+-            session=StopBeforeStyle(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++            session=StopBeforeFetch(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
+                                     runtime_dir=tmp_path/'runtime',loopback_only=True)
+             try:
+                 async with session:
+-                    result=await session.capture(origin+'/identity/stylesheet')
++                    result=await session.capture(origin+'/identity/fetch')
+                     assert not result['ok'] and session.stop_reason=='fixture_forced_stop'
+                     assert session.dispatches==1
+                     assert len([e for e in timeline if e['event']=='request_received'])==1
+-                    assert any(e['event']=='incidental_prevented' and e['resource_type']=='Stylesheet' for e in session.events)
++                    assert any(e['event']=='incidental_prevented' and e['resource_type'] in ('Fetch','XHR') for e in session.events)
+                     assert not any(e['event']=='intentional_prevented' for e in session.events)
+             finally:retain(tmp_path,'incidental-sticky-prevention',session,timeline)
+         asyncio.run(exercise())

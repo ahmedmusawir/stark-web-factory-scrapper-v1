@@ -1,0 +1,2320 @@
+# DECIDE — numbered review inventory
+
+**IMPORTED_CAPTURE_INVENTORY**; mode `imported`.
+Version: `86d3742653f070893a8105e966b1a2d7b4d6f341f121c40f26b6bf6f8ad92666`. All choices initially UNDECIDED.
+
+Row numbers refer ONLY to this saved version. HTML and REST require separate choices.
+Stop: none; coverage gaps: Historical saved evidence only; no current accessibility or complete-site claim..
+
+## WordPress metadata coverage
+
+- pages: advertised 42 records / 1 pages; enumerated 42 unique; status complete; gaps \[\].
+- posts: advertised 166 records / 2 pages; enumerated 166 unique; status complete; gaps \[\].
+- media: advertised 1753 records / 18 pages; enumerated 1661 unique; status partial; gaps \['historical\_record\_gap:92'\].
+- categories: advertised 15 records / 1 pages; enumerated 15 unique; status complete; gaps \[\].
+- tags: advertised 56 records / 1 pages; enumerated 56 unique; status complete; gaps \[\].
+- users: advertised 6 records / 1 pages; enumerated 6 unique; status complete; gaps \[\].
+
+## Candidates
+
+1. **Home – New** — `doc-22d2072cb4418c53d3e9` — document
+   - URL: https://cyberizegroup.com/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-02-02T16:30:39+00:00', 'fetched\_at': '2026-10-05T14:10:52+00:00', 'date': '2021-03-04T17:05:08', 'date\_gmt': '2021-03-04T22:05:08', 'modified': '2025-02-02T11:30:39', 'modified\_gmt': '2025-02-02T16:30:39'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/8245'\]
+   - Gaps: content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[167\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[167\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[167\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-8245.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[6\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[6\]
+2. **10 Essential Small Business Marketing Strategies for 2024** — `doc-196c4e1aca79a5e74c21` — document
+   - URL: https://cyberizegroup.com/10-essential-small-business-marketing-strategies-for-2024/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-29T14:04:21+00:00', 'date': '2023-11-13T05:08:44', 'date\_gmt': '2023-11-13T10:08:44', 'modified': '2024-05-29T10:04:21', 'modified\_gmt': '2024-05-29T14:04:21'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9801'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[68\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[68\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[68\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9801.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[13\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[155\]
+3. **10 Online Advertising Strategies for Small Businesses to Grow Their Reach** — `doc-6df86182ba5c772ee160` — document
+   - URL: https://cyberizegroup.com/10-online-advertising-strategies-for-small-businesses-to-grow-their-reach/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-07T09:30:11+00:00', 'date': '2024-05-07T05:30:11', 'date\_gmt': '2024-05-07T09:30:11', 'modified': '2024-05-07T05:30:11', 'modified\_gmt': '2024-05-07T09:30:11'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9804'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[53\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[53\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[53\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9804.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[67\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[109\]
+4. **10 Proven Strategies to Optimize Your Content for Search Engines** — `doc-d92d138d9f04718da2f0` — document
+   - URL: https://cyberizegroup.com/10-proven-strategies-to-optimize-your-content-for-search-engines/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-08T01:36:09+00:00', 'date': '2024-10-02T05:40:05', 'date\_gmt': '2024-10-02T09:40:05', 'modified': '2024-10-07T21:36:09', 'modified\_gmt': '2024-10-08T01:36:09'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9666'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[113\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[113\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[113\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9666.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[10\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[52\]
+5. **10 SEO Techniques to Improve Your Website Rankings Quickly** — `doc-ac5d7a7cfa213cdd4aff` — document
+   - URL: https://cyberizegroup.com/10-seo-techniques-to-improve-your-website-rankings-quickly/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-22T10:34:30+00:00', 'date': '2024-02-21T08:59:14', 'date\_gmt': '2024-02-21T13:59:14', 'modified': '2024-07-22T06:34:30', 'modified\_gmt': '2024-07-22T10:34:30'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9650'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[78\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[78\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[78\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9650.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[2\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[144\]
+6. **10 Small Business Advertising Solutions to Grow Your Brand** — `doc-a71fe4bc32b557afe701` — document
+   - URL: https://cyberizegroup.com/10-small-business-advertising-solutions-to-grow-your-brand/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-03T10:54:00+00:00', 'date': '2024-05-03T06:54:00', 'date\_gmt': '2024-05-03T10:54:00', 'modified': '2024-05-03T06:54:00', 'modified\_gmt': '2024-05-03T10:54:00'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9818'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[50\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[50\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[50\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9818.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[70\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[112\]
+7. **10 Tips for Optimizing Your Landing Pages for Maximum Conversions** — `doc-7cbae6993454eeea7b81` — document
+   - URL: https://cyberizegroup.com/10-tips-for-optimizing-your-landing-pages-for-maximum-conversions/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-03T09:57:39+00:00', 'date': '2024-05-03T05:57:39', 'date\_gmt': '2024-05-03T09:57:39', 'modified': '2024-05-03T05:57:39', 'modified\_gmt': '2024-05-03T09:57:39'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9822'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[46\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[46\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[46\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9822.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[74\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[116\]
+8. **5 CRM Tips for Food Trucks to Grow Their Business** — `doc-a62885abe59cb15e598d` — document
+   - URL: https://cyberizegroup.com/5-crm-tips-for-food-trucks-to-grow-their-business/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:20:52+00:00', 'date': '2024-08-13T06:12:46', 'date\_gmt': '2024-08-13T10:12:46', 'modified': '2025-01-26T14:20:52', 'modified\_gmt': '2025-01-26T19:20:52'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9627'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[146\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[146\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[146\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9627.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[42\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[84\]
+9. **5 Foundational Principles for Online Success** — `doc-50276400dbffe1fcb024` — document
+   - URL: https://cyberizegroup.com/5-foundational-principles-for-online-success/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-04-25T21:32:29+00:00', 'fetched\_at': '2026-10-05T14:12:30+00:00', 'date': '2022-05-27T08:59:05', 'date\_gmt': '2022-05-27T12:59:05', 'modified': '2023-04-25T17:32:29', 'modified\_gmt': '2023-04-25T21:32:29'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/8740'\]
+   - Gaps: content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[4\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[4\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[4\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com-5-foundational-principles-for-online-success.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-8740.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[54\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[196\]
+10. **5 Mistakes Real Estate Agents Make When Trying To Generate Leads Online… And How To Avoid Them** — `doc-bdf7a080342d2c4209e4` — document
+   - URL: https://cyberizegroup.com/5-mistakes-real-estate-agents-make/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-04-25T21:33:16+00:00', 'fetched\_at': '2026-10-05T14:12:43+00:00', 'date': '2018-07-14T16:41:15', 'date\_gmt': '2018-07-14T20:41:15', 'modified': '2023-04-25T17:33:16', 'modified\_gmt': '2023-04-25T21:33:16'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/5086'\]
+   - Gaps: content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[5\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[5\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[5\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com-5-mistakes-real-estate-agents-make.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-5086.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[64\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[206\]
+11. **How to add a COVID-19 notification bar to your WordPress Website** — `doc-f91a99a933f0e1016532` — document
+   - URL: https://cyberizegroup.com/add-a-covid-19-notification-bar/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T18:52:57+00:00', 'date': '2020-03-24T08:57:42', 'date\_gmt': '2020-03-24T12:57:42', 'modified': '2025-01-26T13:52:57', 'modified\_gmt': '2025-01-26T18:52:57'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/6906'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[140\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[140\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[140\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-6906.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[61\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[203\]
+12. **Adwords Consulting: How to Get the Most Out of Your Ad Spend** — `doc-017f469e01fa48331905` — document
+   - URL: https://cyberizegroup.com/adwords-consulting-how-to-get-the-most-out-of-your-ad-spend/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-04-10T10:02:12+00:00', 'date': '2024-04-10T06:02:12', 'date\_gmt': '2024-04-10T10:02:12', 'modified': '2024-04-10T06:02:12', 'modified\_gmt': '2024-04-10T10:02:12'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9850'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[43\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[43\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[43\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9850.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[76\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[118\]
+13. **Adwords Management Tool: Get More From Your Ad Spend With Automation** — `doc-634c8a9305821f876c96` — document
+   - URL: https://cyberizegroup.com/adwords-management-tool-get-more-from-your-ad-spend-with-automation/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-12T10:01:06+00:00', 'date': '2024-03-12T06:01:06', 'date\_gmt': '2024-03-12T10:01:06', 'modified': '2024-03-12T06:01:06', 'modified\_gmt': '2024-03-12T10:01:06'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9856'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[37\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[37\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[37\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9856.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[87\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[129\]
+14. **Affordable SEO Services: Get More Traffic and Leads Now!** — `doc-3cf94a2d031f2a54a9e5` — document
+   - URL: https://cyberizegroup.com/affordable-seo-services-get-more-traffic-and-leads-now/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-22T10:38:07+00:00', 'date': '2024-05-22T06:38:07', 'date\_gmt': '2024-05-22T10:38:07', 'modified': '2024-05-22T06:38:07', 'modified\_gmt': '2024-05-22T10:38:07'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9811'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[60\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[60\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[60\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9811.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[61\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[103\]
+15. **\[title unknown\]** — `doc-1c060484d78bdcd07f14` — document
+   - URL: https://cyberizegroup.com/agency-locations/
+   - HTTP content type: unknown; WordPress type: unknown; dates: {'sitemap\_lastmod': '2025-01-26T20:15:50+00:00'}
+   - REST item scope: not established
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped, title\_unknown, wordpress\_content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[185\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/category-sitemap.xml — route source; see $.routes\[185\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[185\]
+16. **SEO &amp; PPC White Label Partner Program** — `doc-0cee259422659c32ade0` — document
+   - URL: https://cyberizegroup.com/agency-partner/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2023-09-27T17:36:52+00:00', 'date': '2020-05-05T15:46:06', 'date\_gmt': '2020-05-05T19:46:06', 'modified': '2023-09-27T13:36:52', 'modified\_gmt': '2023-09-27T17:36:52'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/7265'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[172\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[172\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[172\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-7265.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[22\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[22\]
+17. **\[title unknown\]** — `doc-577a55ac200f36efce91` — document
+   - URL: https://cyberizegroup.com/agency-services/
+   - HTTP content type: unknown; WordPress type: unknown; dates: {'sitemap\_lastmod': '2025-02-02T18:56:58+00:00'}
+   - REST item scope: not established
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped, title\_unknown, wordpress\_content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[186\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/category-sitemap.xml — route source; see $.routes\[186\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[186\]
+18. **Agency Survey** — `doc-1498e97238072aaeeab8` — document
+   - URL: https://cyberizegroup.com/agency-survey/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2018-02-07T15:03:47', 'date\_gmt': '2018-02-07T20:03:47', 'modified': '2021-03-22T14:06:47', 'modified\_gmt': '2021-03-22T18:06:47'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/5492'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-5492.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[40\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[40\]
+19. **Analyze Your Competitors’ SEO Strategies – A Step-by-Step Guide** — `doc-3757a08766a819a090b7` — document
+   - URL: https://cyberizegroup.com/analyze-competitors-seo/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-08-15T15:40:10+00:00', 'date': '2023-05-05T09:33:00', 'date\_gmt': '2023-05-05T13:33:00', 'modified': '2023-08-15T11:40:10', 'modified\_gmt': '2023-08-15T15:40:10'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9168'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[18\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[18\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[18\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9168.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[40\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[182\]
+20. **Networking Events Staff** — `doc-85854936a90c9e0bda91` — document
+   - URL: https://cyberizegroup.com/auto-demo/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2018-10-17T16:05:25', 'date\_gmt': '2018-10-17T20:05:25', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/5712'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-5712.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[29\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[29\]
+21. **\[title unknown\]** — `doc-7e2e8429f3c21c0e9322` — document
+   - URL: https://cyberizegroup.com/automation/
+   - HTTP content type: unknown; WordPress type: unknown; dates: {'sitemap\_lastmod': '2026-04-30T19:29:20+00:00'}
+   - REST item scope: not established
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped, title\_unknown, wordpress\_content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[187\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/category-sitemap.xml — route source; see $.routes\[187\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[187\]
+22. **Banks Offer Relief To Small Businesses Affected by COVID-19** — `doc-5222bc6af441b77f656b` — document
+   - URL: https://cyberizegroup.com/banks-offer-relief-to-small-businesses-affected-by-covid-19-2/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:01:59+00:00', 'date': '2020-04-16T15:13:32', 'date\_gmt': '2020-04-16T19:13:32', 'modified': '2025-01-26T14:01:59', 'modified\_gmt': '2025-01-26T19:01:59'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/7121'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[143\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[143\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[143\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-7121.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[56\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[198\]
+23. **Become a Google Adwords Consultant: How to Get Started** — `doc-1025d45e9d0e36cca479` — document
+   - URL: https://cyberizegroup.com/become-a-google-adwords-consultant-how-to-get-started/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-26T06:38:31+00:00', 'date': '2024-09-26T02:38:08', 'date\_gmt': '2024-09-26T06:38:08', 'modified': '2024-09-26T02:38:31', 'modified\_gmt': '2024-09-26T06:38:31'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9710'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[111\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[111\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[111\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9710.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[13\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[55\]
+24. **Become a Google AdWords Expert in 5 Easy Steps** — `doc-ecfe7fd84142736f38e2` — document
+   - URL: https://cyberizegroup.com/become-a-google-adwords-expert-in-5-easy-steps/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-22T11:51:02+00:00', 'date': '2023-11-08T03:36:35', 'date\_gmt': '2023-11-08T08:36:35', 'modified': '2024-05-22T07:51:02', 'modified\_gmt': '2024-05-22T11:51:02'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9815'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[63\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[63\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[63\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9815.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[17\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[159\]
+25. **Unlock the Benefits of SEO Copywriting Services for Your Business** — `doc-8595228a288d9d16f4cd` — document
+   - URL: https://cyberizegroup.com/benefits-of-seo-copywriting-services/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-12-03T16:16:30+00:00', 'date': '2024-07-02T06:58:29', 'date\_gmt': '2024-07-02T10:58:29', 'modified': '2024-12-03T11:16:30', 'modified\_gmt': '2024-12-03T16:16:30'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9549'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[123\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[123\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[123\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9549.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[57\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[99\]
+26. **Blog** — `doc-0ddf88c0a3873299185f` — document
+   - URL: https://cyberizegroup.com/blog/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2026-04-30T19:29:20+00:00', 'fetched\_at': '2026-10-05T14:11:37+00:00', 'date': '2020-12-30T17:20:57', 'date\_gmt': '2020-12-30T17:20:57', 'modified': '2025-01-26T11:52:17', 'modified\_gmt': '2025-01-26T16:52:17'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/79'\]
+   - Gaps: content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[0\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[0\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[0\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com-blog.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-79.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[15\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[15\]
+27. **Boost Your Dental Practice with a Professional SEO Company** — `doc-9c9f20df006630a8e5c2` — document
+   - URL: https://cyberizegroup.com/boost-your-dental-practice-with-a-professional-seo-company/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T17:32:33+00:00', 'date': '2024-10-21T07:11:23', 'date\_gmt': '2024-10-21T11:11:23', 'modified': '2025-01-26T12:32:33', 'modified\_gmt': '2025-01-26T17:32:33'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9673'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[131\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[131\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[131\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9673.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[2\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[44\]
+28. **Boost Your Online Visibility: 10 Tips to Get Noticed** — `doc-e51331913baac1f96a89` — document
+   - URL: https://cyberizegroup.com/boost-your-online-visibility-10-tips-to-get-noticed/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-11T11:11:52+00:00', 'date': '2024-09-03T03:18:21', 'date\_gmt': '2024-09-03T07:18:21', 'modified': '2024-09-11T07:11:52', 'modified\_gmt': '2024-09-11T11:11:52'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9649'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[92\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[92\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[92\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9649.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[36\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[78\]
+29. **Broken Link Building: How to Find and Fix Links for SEO Success** — `doc-d2426b7240c12efa706f` — document
+   - URL: https://cyberizegroup.com/broken-link-building-how-to-find-and-fix-links-for-seo-success/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-22T10:35:18+00:00', 'date': '2024-07-22T06:35:18', 'date\_gmt': '2024-07-22T10:35:18', 'modified': '2024-07-22T06:35:18', 'modified\_gmt': '2024-07-22T10:35:18'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9651'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[79\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[79\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[79\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9651.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[44\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[86\]
+30. **Careers** — `doc-053c25287c2cb9f9610c` — document
+   - URL: https://cyberizegroup.com/careers/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-12-08T15:08:48+00:00', 'date': '2020-04-17T15:07:35', 'date\_gmt': '2020-04-17T19:07:35', 'modified': '2025-12-08T10:08:48', 'modified\_gmt': '2025-12-08T15:08:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/4622'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[184\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[184\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[184\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-4622.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[23\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[23\]
+31. **Charleston PPC Agency: Get the Most Out of Your Ad Spend** — `doc-a98d5706c3364057eb2f` — document
+   - URL: https://cyberizegroup.com/charleston-ppc-agency-get-the-most-out-of-your-ad-spend/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-07T06:31:55+00:00', 'date': '2024-03-07T01:31:55', 'date\_gmt': '2024-03-07T06:31:55', 'modified': '2024-03-07T01:31:55', 'modified\_gmt': '2024-03-07T06:31:55'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9867'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[26\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[26\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[26\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9867.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[95\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[137\]
+32. **Chattanooga PPC Agency: Get More Leads and Sales with PPC Advertising** — `doc-6d34622743e107480341` — document
+   - URL: https://cyberizegroup.com/chattanooga-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-04-23T13:17:45+00:00', 'date': '2023-08-24T05:31:59', 'date\_gmt': '2023-08-24T09:31:59', 'modified': '2024-04-23T09:17:45', 'modified\_gmt': '2024-04-23T13:17:45'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9869'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[45\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[45\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[45\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9869.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[24\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[166\]
+33. **Cleveland PPC Agency: Get More Traffic and Leads with Proven Strategies** — `doc-91654c46f2a343169007` — document
+   - URL: https://cyberizegroup.com/cleveland-ppc-agency-get-more-traffic-and-leads-with-proven-strategies/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-07T07:10:46+00:00', 'date': '2024-03-07T02:10:46', 'date\_gmt': '2024-03-07T07:10:46', 'modified': '2024-03-07T02:10:46', 'modified\_gmt': '2024-03-07T07:10:46'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9872'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[30\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[30\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[30\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9872.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[92\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[134\]
+34. **Colorado Springs PPC Agency: Get Your Business Found Online Now** — `doc-8d599516fe10303b54fe` — document
+   - URL: https://cyberizegroup.com/colorado-springs-ppc-agency-get-your-business-found-online-now/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-07T07:20:59+00:00', 'date': '2023-08-28T06:04:39', 'date\_gmt': '2023-08-28T10:04:39', 'modified': '2024-03-07T02:20:59', 'modified\_gmt': '2024-03-07T07:20:59'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9873'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[31\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[31\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[31\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9873.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[22\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[164\]
+35. **10 Common SEO Mistakes to Avoid When Writing Content** — `doc-82ffdae8cd0d7691fc08` — document
+   - URL: https://cyberizegroup.com/common-mistakes-to-avoid-when-writing-seo-content/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-12-03T16:17:22+00:00', 'date': '2024-07-02T06:59:16', 'date\_gmt': '2024-07-02T10:59:16', 'modified': '2024-12-03T11:17:22', 'modified\_gmt': '2024-12-03T16:17:22'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9554'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[124\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[124\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[124\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9554.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[56\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[98\]
+36. **Contact** — `doc-51b87dbceb602d2e1d20` — document
+   - URL: https://cyberizegroup.com/contact/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-01-26T15:42:58+00:00', 'date': '2021-01-06T22:03:41', 'date\_gmt': '2021-01-06T22:03:41', 'modified': '2025-01-26T10:42:58', 'modified\_gmt': '2025-01-26T15:42:58'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/1109'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[174\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[174\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[174\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-1109.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[9\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[9\]
+37. **Content restricted** — `doc-ed5916e5a16d348c134e` — document
+   - URL: https://cyberizegroup.com/content-restricted/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2021-03-01T16:07:29', 'date\_gmt': '2021-03-01T16:07:29', 'modified': '2022-09-02T12:07:39', 'modified\_gmt': '2022-09-02T16:07:39'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/8050'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-8050.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[7\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[7\]
+38. **Content Scaling: Strategies for Growing Your Audience and Reach** — `doc-39ef8b5c5a8e5fd1add4` — document
+   - URL: https://cyberizegroup.com/content-scaling-strategies-for-growing-your-audience-and-reach/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-26T07:32:00+00:00', 'date': '2024-09-26T02:40:35', 'date\_gmt': '2024-09-26T06:40:35', 'modified': '2024-09-26T03:32:00', 'modified\_gmt': '2024-09-26T07:32:00'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9653'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[112\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[112\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[112\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9653.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[12\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[54\]
+39. **COVID-19 Safety Tips for  the 2020 Pandemic** — `doc-1b1de140418a63b769e9` — document
+   - URL: https://cyberizegroup.com/covid-19-safety-tips-for-the-2020-pandemic/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-04-25T21:33:48+00:00', 'fetched\_at': '2026-10-05T14:12:56+00:00', 'date': '2020-03-23T11:51:04', 'date\_gmt': '2020-03-23T15:51:04', 'modified': '2023-04-25T17:33:48', 'modified\_gmt': '2023-04-25T21:33:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/6865'\]
+   - Gaps: content\_type\_unknown, needs\_HTML\_review\_if\_selected, rest\_content\_rendered\_empty.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[6\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[6\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[6\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com-covid-19-safety-tips-for-the-2020-pandemic.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-6865.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[62\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[204\]
+40. **The Ultimate CRM Guide for Restaurants: How to Increase Customer Loyalty &amp; Profits** — `doc-6a7cb1f8715013fdf3aa` — document
+   - URL: https://cyberizegroup.com/crm-guide-for-restaurants/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:29:58+00:00', 'date': '2024-07-08T05:45:52', 'date\_gmt': '2024-07-08T09:45:52', 'modified': '2025-01-26T14:29:58', 'modified\_gmt': '2025-01-26T19:29:58'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9616'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[150\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[150\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[150\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9616.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[46\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[88\]
+41. **5 CRM Tips for Food Trucks to Grow Their Business** — `doc-dde233a674bd98cb4d3b` — document
+   - URL: https://cyberizegroup.com/crm-tips-for-food-trucks/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2026-04-30T19:29:20+00:00', 'date': '2024-07-08T05:43:48', 'date\_gmt': '2024-07-08T09:43:48', 'modified': '2026-04-30T15:29:20', 'modified\_gmt': '2026-04-30T19:29:20'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9612'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[166\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[166\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[166\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9612.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[49\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[91\]
+42. **The Ultimate Guide to Acquiring More Pizza Shop Customers** — `doc-296a2811110e2ba2afd3` — document
+   - URL: https://cyberizegroup.com/customer-acquisition-guide-for-pizza-shops/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-08T09:43:08+00:00', 'date': '2023-11-30T03:48:53', 'date\_gmt': '2023-11-30T08:48:53', 'modified': '2024-07-08T05:43:08', 'modified\_gmt': '2024-07-08T09:43:08'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9607'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[71\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[71\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[71\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9607.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[6\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[148\]
+43. **Dermatology Digital Marketing Agency: How to Reach More Patients Online** — `doc-842f259adee24921a807` — document
+   - URL: https://cyberizegroup.com/dermatology-digital-marketing-agency-how-to-reach-more-patients-online/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-24T06:19:01+00:00', 'date': '2024-09-24T02:18:20', 'date\_gmt': '2024-09-24T06:18:20', 'modified': '2024-09-24T02:19:01', 'modified\_gmt': '2024-09-24T06:19:01'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9676'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[106\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[106\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[106\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9676.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[20\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[62\]
+44. **Diverse Solutions Sign Up** — `doc-d1ecc1f9f3ae418c03bd` — document
+   - URL: https://cyberizegroup.com/diverse-solutions-sign-up/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2020-10-02T13:32:33', 'date\_gmt': '2020-10-02T17:32:33', 'modified': '2023-09-27T12:36:29', 'modified\_gmt': '2023-09-27T16:36:29'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/7890'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-7890.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[17\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[17\]
+45. **Duplicate Content: What It Is and How to Avoid It** — `doc-6d58d5bc17e7d691629d` — document
+   - URL: https://cyberizegroup.com/duplicate-content-what-it-is-and-how-to-avoid-it/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-11T11:27:38+00:00', 'date': '2024-09-10T07:18:26', 'date\_gmt': '2024-09-10T11:18:26', 'modified': '2024-09-11T07:27:38', 'modified\_gmt': '2024-09-11T11:27:38'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9659'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[95\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[95\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[95\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9659.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[34\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[76\]
+46. **E-commerce Advertising: How to Reach Your Target Audience and Increase Sales** — `doc-91a99db36f5065324b2d` — document
+   - URL: https://cyberizegroup.com/e-commerce-advertising-how-to-reach-your-target-audience-and-increase-sales/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-29T10:22:17+00:00', 'date': '2024-05-29T06:22:17', 'date\_gmt': '2024-05-29T10:22:17', 'modified': '2024-05-29T06:22:17', 'modified\_gmt': '2024-05-29T10:22:17'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9817'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[64\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[64\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[64\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9817.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[59\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[101\]
+47. **Example Webinar Process Mapping** — `doc-e80586c6fbd378c5a727` — document
+   - URL: https://cyberizegroup.com/example-webinar-process-mapping/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2022-08-02T15:04:26', 'date\_gmt': '2022-08-02T19:04:26', 'modified': '2022-08-02T15:21:01', 'modified\_gmt': '2022-08-02T19:21:01'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/8775'\]
+   - Gaps: content\_type\_unknown, needs\_HTML\_review\_if\_selected, rendered\_capture\_not\_selected\_or\_not\_known, rest\_content\_rendered\_empty.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-8775.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[1\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[1\]
+48. **How to Regain Consistency with Facebook Ads After the Andromeda Update** — `doc-c6b9265b51bf57660bb4` — document
+   - URL: https://cyberizegroup.com/facebook-ads-andromeda-update/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-09-23T19:16:52+00:00', 'date': '2025-09-23T15:16:50', 'date\_gmt': '2025-09-23T19:16:50', 'modified': '2025-09-23T15:16:52', 'modified\_gmt': '2025-09-23T19:16:52'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/11945'\]
+   - Gaps: content\_type\_unknown, needs\_HTML\_review\_if\_selected, rendered\_html\_skipped, rest\_content\_rendered\_empty.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[165\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[165\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[165\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-11945.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[0\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[42\]
+49. **\[title unknown\]** — `doc-1e783f6d75515dc63432` — document
+   - URL: https://cyberizegroup.com/featured/
+   - HTTP content type: unknown; WordPress type: unknown; dates: {'sitemap\_lastmod': '2025-09-23T19:16:52+00:00'}
+   - REST item scope: not established
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped, title\_unknown, wordpress\_content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[188\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/category-sitemap.xml — route source; see $.routes\[188\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[188\]
+50. **Find the Best Atlanta PPC Agency for Your Business Needs** — `doc-2cb69c92354c8ee90219` — document
+   - URL: https://cyberizegroup.com/find-the-best-atlanta-ppc-agency-for-your-business-needs/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-21T09:55:11+00:00', 'date': '2024-03-21T05:55:11', 'date\_gmt': '2024-03-21T09:55:11', 'modified': '2024-03-21T05:55:11', 'modified\_gmt': '2024-03-21T09:55:11'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9861'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[41\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[41\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[41\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9861.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[83\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[125\]
+51. **Find the Best Birmingham PPC Agency for Your Business Needs** — `doc-3336099402443165eb22` — document
+   - URL: https://cyberizegroup.com/find-the-best-birmingham-ppc-agency-for-your-business-needs/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T18:59:50+00:00', 'date': '2024-04-09T06:26:29', 'date\_gmt': '2024-04-09T10:26:29', 'modified': '2025-01-26T13:59:50', 'modified\_gmt': '2025-01-26T18:59:50'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9865'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[142\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[142\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[142\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9865.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[77\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[119\]
+52. **Find the Best Fresno PPC Agency for Your Business Needs** — `doc-72bf978eadb8cced87bb` — document
+   - URL: https://cyberizegroup.com/find-the-best-fresno-ppc-agency-for-your-business-needs/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-19T08:30:46+00:00', 'date': '2024-03-19T04:30:46', 'date\_gmt': '2024-03-19T08:30:46', 'modified': '2024-03-19T04:30:46', 'modified\_gmt': '2024-03-19T08:30:46'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9878'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[39\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[39\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[39\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9878.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[85\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[127\]
+53. **Find the Right Chiropractor PPC Agency for Your Practice** — `doc-290002202a2f0e575e85` — document
+   - URL: https://cyberizegroup.com/find-the-best-roofing-ppc-agency-for-your-business/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-23T10:49:27+00:00', 'date': '2024-09-23T06:44:29', 'date\_gmt': '2024-09-23T10:44:29', 'modified': '2024-09-23T06:49:27', 'modified\_gmt': '2024-09-23T10:49:27'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9698'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[105\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[105\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[105\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9698.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[22\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[64\]
+54. **Find the Right Chiropractor PPC Agency for Your Practice** — `doc-9db727c002540f6eb8d2` — document
+   - URL: https://cyberizegroup.com/find-the-right-chiropractor-ppc-agency-for-your-practice/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-21T11:10:13+00:00', 'date': '2024-09-23T06:41:05', 'date\_gmt': '2024-09-23T10:41:05', 'modified': '2024-10-21T07:10:13', 'modified\_gmt': '2024-10-21T11:10:13'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9683'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[116\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[116\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[116\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9683.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[23\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[65\]
+55. **Find the Right Irvine PPC Agency for Your Business Needs** — `doc-54d0eb9df2fcb0eec6dd` — document
+   - URL: https://cyberizegroup.com/find-the-right-irvine-ppc-agency-for-your-business-needs/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T18:39:24+00:00', 'date': '2024-03-25T06:00:25', 'date\_gmt': '2024-03-25T10:00:25', 'modified': '2025-01-26T13:39:24', 'modified\_gmt': '2025-01-26T18:39:24'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9883'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[138\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[138\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[138\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9883.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[80\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[122\]
+56. **Find the Right Landscaping PPC Agency for Your Business Needs** — `doc-3d072ac6b24ebf712f30` — document
+   - URL: https://cyberizegroup.com/find-the-right-landscaping-ppc-agency-for-your-business-needs/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-12T08:39:08+00:00', 'date': '2024-09-12T04:34:12', 'date\_gmt': '2024-09-12T08:34:12', 'modified': '2024-09-12T04:39:08', 'modified\_gmt': '2024-09-12T08:39:08'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9688'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[96\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[96\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[96\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9688.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[32\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[74\]
+57. **Free Checklist** — `doc-36d07c51af927db1652d` — document
+   - URL: https://cyberizegroup.com/free-checklist/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2021-03-22T18:06:48+00:00', 'date': '2018-10-30T10:52:27', 'date\_gmt': '2018-10-30T14:52:27', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/5756'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[169\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[169\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[169\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-5756.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[28\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[28\]
+58. **Full SEO Audit** — `doc-b69f17967fcaf56d85c0` — document
+   - URL: https://cyberizegroup.com/full-seo-audit/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-02-02T16:37:56+00:00', 'date': '2023-04-21T13:13:34', 'date\_gmt': '2023-04-21T17:13:34', 'modified': '2025-02-02T11:37:56', 'modified\_gmt': '2025-02-02T16:37:56'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/9067'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[177\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[177\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[177\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-9067.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[0\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[0\]
+59. **Funeral Home Digital Marketing Agency: Reach More Families with Your Services** — `doc-77ca8cc21aa01c5077d1` — document
+   - URL: https://cyberizegroup.com/funeral-home-digital-marketing-agency-reach-more-families-with-your-services/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-23T10:46:54+00:00', 'date': '2024-09-23T06:46:51', 'date\_gmt': '2024-09-23T10:46:51', 'modified': '2024-09-23T06:46:54', 'modified\_gmt': '2024-09-23T10:46:54'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9669'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[104\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[104\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[104\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9669.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[21\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[63\]
+60. **Gainesville PPC Agency: Get More Leads with Proven Strategies** — `doc-970bcb739f3028dec590` — document
+   - URL: https://cyberizegroup.com/gainesville-ppc-agency-get-more-leads-with-proven-strategies/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T20:08:33+00:00', 'date': '2024-07-08T05:44:23', 'date\_gmt': '2024-07-08T09:44:23', 'modified': '2025-01-26T15:08:33', 'modified\_gmt': '2025-01-26T20:08:33'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9879'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[155\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[155\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[155\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9879.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[48\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[90\]
+61. **Garage Door Repair PPC Agency – Get More Leads &amp; Sales Now!** — `doc-64e397f98cf595d53e06` — document
+   - URL: https://cyberizegroup.com/garage-door-repair-ppc-agency-get-more-leads-sales-now/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-02-02T18:56:58+00:00', 'date': '2024-10-22T07:00:30', 'date\_gmt': '2024-10-22T11:00:30', 'modified': '2025-02-02T13:56:58', 'modified\_gmt': '2025-02-02T18:56:58'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9687'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[164\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[164\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[164\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9687.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[1\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[43\]
+62. **General Policies** — `doc-1dbda136882e4eee805a` — document
+   - URL: https://cyberizegroup.com/general-policies/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2018-02-19T15:35:52', 'date\_gmt': '2018-02-19T15:35:52', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/4750'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-4750.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[36\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[36\]
+63. **Get More Customers with Louisville’s Best PPC Agency** — `doc-9de27d976b89e3c3b45e` — document
+   - URL: https://cyberizegroup.com/get-more-customers-with-louisvilles-best-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-05T12:31:22+00:00', 'date': '2024-03-05T07:31:22', 'date\_gmt': '2024-03-05T12:31:22', 'modified': '2024-03-05T07:31:22', 'modified\_gmt': '2024-03-05T12:31:22'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9887'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[23\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[23\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[23\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9887.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[97\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[139\]
+64. **Unlock Your Digital Advertising Potential with Google Ads Tools** — `doc-6de8888ca5194df3559c` — document
+   - URL: https://cyberizegroup.com/google-ads-tools/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-19T08:18:18+00:00', 'date': '2024-03-19T04:18:18', 'date\_gmt': '2024-03-19T08:18:18', 'modified': '2024-03-19T04:18:18', 'modified\_gmt': '2024-03-19T08:18:18'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9852'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[38\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[38\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[38\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9852.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[86\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[128\]
+65. **Government Support Program for COVID-19** — `doc-4f1fe9e039701b2edb88` — document
+   - URL: https://cyberizegroup.com/government-support-program-for-covid-19/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T20:10:50+00:00', 'date': '2020-06-09T05:00:48', 'date\_gmt': '2020-06-09T09:00:48', 'modified': '2025-01-26T15:10:50', 'modified\_gmt': '2025-01-26T20:10:50'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/6974'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[156\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[156\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[156\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-6974.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[55\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[197\]
+66. **Grand Rapids PPC Agency: Get More Leads and Sales with PPC Advertising** — `doc-75503cb0b1a2360f0480` — document
+   - URL: https://cyberizegroup.com/grand-rapids-ppc-agency-get-more-leads-and-sales-with-ppc-advertising/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-11T10:32:04+00:00', 'date': '2024-03-11T06:32:04', 'date\_gmt': '2024-03-11T10:32:04', 'modified': '2024-03-11T06:32:04', 'modified\_gmt': '2024-03-11T10:32:04'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9880'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[35\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[35\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[35\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9880.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[89\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[131\]
+67. **Growth Call** — `doc-7bc93e08a02de54d94b3` — document
+   - URL: https://cyberizegroup.com/growth-call/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-01-26T16:37:13+00:00', 'date': '2021-03-29T16:40:29', 'date\_gmt': '2021-03-29T20:40:29', 'modified': '2025-01-26T11:37:13', 'modified\_gmt': '2025-01-26T16:37:13'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/8331'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[175\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[175\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[175\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-8331.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[4\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[4\]
+68. **Harness the Power of Targeted Email Marketing for Your Business** — `doc-b897196fdc2fac2384e7` — document
+   - URL: https://cyberizegroup.com/harness-the-power-of-targeted-email-marketing-for-your-business/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-22T10:29:55+00:00', 'date': '2024-02-25T23:00:39', 'date\_gmt': '2024-02-26T04:00:39', 'modified': '2024-07-22T06:29:55', 'modified\_gmt': '2024-07-22T10:29:55'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9642'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[75\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[75\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[75\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9642.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[0\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[142\]
+69. **Hosting Solutions** — `doc-83a6401fb484f9b27895` — document
+   - URL: https://cyberizegroup.com/hosting-solutions/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2018-08-31T23:43:06', 'date\_gmt': '2018-09-01T03:43:06', 'modified': '2022-08-12T13:40:32', 'modified\_gmt': '2022-08-12T17:40:32'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/5426'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-5426.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[30\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[30\]
+70. **How to Advertise on Google: A Step-by-Step Guide** — `doc-791a426f3a97ce93a049` — document
+   - URL: https://cyberizegroup.com/how-to-advertise-on-google-a-step-by-step-guide/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-08-29T11:09:47+00:00', 'date': '2024-08-12T04:54:37', 'date\_gmt': '2024-08-12T08:54:37', 'modified': '2024-08-29T07:09:47', 'modified\_gmt': '2024-08-29T11:09:47'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9706'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[86\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[86\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[86\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9706.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[43\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[85\]
+71. **How to Build Relevant Backlinks for SEO Success** — `doc-031b4c35390f351f4cb3` — document
+   - URL: https://cyberizegroup.com/how-to-build-relevant-backlinks-for-seo-success/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-29T09:13:42+00:00', 'date': '2024-02-20T06:31:39', 'date\_gmt': '2024-02-20T11:31:39', 'modified': '2024-10-29T05:13:42', 'modified\_gmt': '2024-10-29T09:13:42'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9646'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[122\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[122\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[122\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9646.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[3\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[145\]
+72. **How to Create and Manage Ads on Google Ads Platform** — `doc-97907bc352b67330ba6a` — document
+   - URL: https://cyberizegroup.com/how-to-create-and-manage-ads-on-google-ads-platform/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-08-29T11:12:08+00:00', 'date': '2024-08-29T06:09:53', 'date\_gmt': '2024-08-29T10:09:53', 'modified': '2024-08-29T07:12:08', 'modified\_gmt': '2024-08-29T11:12:08'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9705'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[87\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[87\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[87\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9705.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[39\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[81\]
+73. **How to Identify Quality Backlinks** — `doc-b2d964469547fcaafc22` — document
+   - URL: https://cyberizegroup.com/how-to-identify-quality-backlinks/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-08-10T21:20:32+00:00', 'date': '2023-05-04T08:08:56', 'date\_gmt': '2023-05-04T12:08:56', 'modified': '2023-08-10T17:20:32', 'modified\_gmt': '2023-08-10T21:20:32'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9174'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[17\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[17\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[17\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9174.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[42\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[184\]
+74. **How to Improve Your Google Ads Performance and Get More Conversions** — `doc-49f20b159841e29a32ba` — document
+   - URL: https://cyberizegroup.com/how-to-improve-your-google-ads-performance-and-get-more-conversions/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-11T11:17:09+00:00', 'date': '2024-09-10T07:04:48', 'date\_gmt': '2024-09-10T11:04:48', 'modified': '2024-09-11T07:17:09', 'modified\_gmt': '2024-09-11T11:17:09'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9711'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[93\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[93\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[93\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9711.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[35\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[77\]
+75. **How to Market Your Therapy Practice: 5 Tips for Therapists** — `doc-48971407bd06da6516fb` — document
+   - URL: https://cyberizegroup.com/how-to-market-your-therapy-practice-5-tips-for-therapists/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-22T10:28:16+00:00', 'date': '2024-02-25T23:15:43', 'date\_gmt': '2024-02-26T04:15:43', 'modified': '2024-07-22T06:28:16', 'modified\_gmt': '2024-07-22T10:28:16'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9643'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[74\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[74\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[74\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9643.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[99\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[141\]
+76. **How to Measure the Success of an SEO Content Audit** — `doc-99c20baaaaa374208e52` — document
+   - URL: https://cyberizegroup.com/how-to-measure-the-success-of-an-seo-content-audit/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-08-12T09:47:09+00:00', 'date': '2023-05-19T08:08:00', 'date\_gmt': '2023-05-19T12:08:00', 'modified': '2024-08-12T05:47:09', 'modified\_gmt': '2024-08-12T09:47:09'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9383'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[82\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[82\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[82\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9383.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[35\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[177\]
+77. **10 Proven Strategies to Optimize Your Content for Search Engines** — `doc-4b8f09357f086d3d5754` — document
+   - URL: https://cyberizegroup.com/how-to-optimize-content-for-search-engines/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-12-03T16:18:16+00:00', 'date': '2024-07-02T06:59:51', 'date\_gmt': '2024-07-02T10:59:51', 'modified': '2024-12-03T11:18:16', 'modified\_gmt': '2024-12-03T16:18:16'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9545'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[125\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[125\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[125\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9545.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[55\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[97\]
+78. **How to optimize internal links for SEO** — `doc-c27c54090b0f1a3fbb06` — document
+   - URL: https://cyberizegroup.com/how-to-optimize-internal-links-for-seo/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-08-10T21:18:18+00:00', 'date': '2023-05-03T08:47:00', 'date\_gmt': '2023-05-03T12:47:00', 'modified': '2023-08-10T17:18:18', 'modified\_gmt': '2023-08-10T21:18:18'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9184'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[16\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[16\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[16\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9184.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[44\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[186\]
+79. **How to Optimize Page Speed for SEO: 8 Tips to Improve Your Rankings** — `doc-42b642d989100d2c08e9` — document
+   - URL: https://cyberizegroup.com/how-to-optimize-page-speed-for-seo/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-05-09T10:32:17+00:00', 'date': '2023-05-04T07:33:13', 'date\_gmt': '2023-05-04T11:33:13', 'modified': '2023-05-09T06:32:17', 'modified\_gmt': '2023-05-09T10:32:17'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9176'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[14\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[14\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[14\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9176.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[43\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[185\]
+80. **How to Optimize Your Website for Voice Search in 2023** — `doc-b7c754e422a802ed8e4e` — document
+   - URL: https://cyberizegroup.com/how-to-optimize-your-website-for-voice-search-in-2023/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-23T11:34:34+00:00', 'date': '2023-08-10T15:23:33', 'date\_gmt': '2023-08-10T19:23:33', 'modified': '2024-10-23T07:34:34', 'modified\_gmt': '2024-10-23T11:34:34'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9652'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[119\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[119\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[119\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9652.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[28\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[170\]
+81. **How to Prioritize Your SEO Content Audit: A Step-by-Step Guide** — `doc-9fb0120eb6d4929e3d32` — document
+   - URL: https://cyberizegroup.com/how-to-prioritize-your-seo-content-audit/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-10T14:25:27+00:00', 'date': '2023-05-22T21:21:15', 'date\_gmt': '2023-05-23T01:21:15', 'modified': '2024-09-10T10:25:27', 'modified\_gmt': '2024-09-10T14:25:27'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9406'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[91\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[91\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[91\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9406.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[34\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[176\]
+82. **How to Rank High on Google: A Step-by-Step Guide** — `doc-fd3564c9b71053fbacb5` — document
+   - URL: https://cyberizegroup.com/how-to-rank-high-on-google-a-step-by-step-guide/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-02-02T18:52:12+00:00', 'date': '2024-10-14T07:04:04', 'date\_gmt': '2024-10-14T11:04:04', 'modified': '2025-02-02T13:52:12', 'modified\_gmt': '2025-02-02T18:52:12'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9645'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[163\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[163\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[163\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9645.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[3\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[45\]
+83. **How to Run Google Ads: A Step-by-Step Guide to Get You Started** — `doc-2182482421b426c6b997` — document
+   - URL: https://cyberizegroup.com/how-to-run-google-ads-a-step-by-step-guide-to-get-you-started/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-08-13T11:12:48+00:00', 'date': '2023-08-10T15:23:05', 'date\_gmt': '2023-08-10T19:23:05', 'modified': '2024-08-13T07:12:48', 'modified\_gmt': '2024-08-13T11:12:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9708'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[85\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[85\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[85\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9708.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[31\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[173\]
+84. **How to Use Google Ads to Grow Your Business and Increase Sales** — `doc-d8dac44d7c0c1cbe7af7` — document
+   - URL: https://cyberizegroup.com/how-to-use-google-ads-to-grow-your-business-and-increase-sales/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-04-10T10:18:51+00:00', 'date': '2024-04-10T06:18:51', 'date\_gmt': '2024-04-10T10:18:51', 'modified': '2024-04-10T06:18:51', 'modified\_gmt': '2024-04-10T10:18:51'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9848'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[44\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[44\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[44\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9848.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[75\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[117\]
+85. **Unlock SEO Success with Structured Data: A Guide for Beginners** — `doc-336c1b73c8413b37f50e` — document
+   - URL: https://cyberizegroup.com/how-to-use-structured-data-for-seo/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-06T10:52:26+00:00', 'date': '2023-05-11T09:06:00', 'date\_gmt': '2023-05-11T13:06:00', 'modified': '2024-03-06T05:52:26', 'modified\_gmt': '2024-03-06T10:52:26'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9397'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[24\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[24\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[24\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9397.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[39\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[181\]
+86. **How to Write SEO-Friendly Content: A Step-by-Step Guide** — `doc-252b3105477233afdbbb` — document
+   - URL: https://cyberizegroup.com/how-to-write-seo-friendly-content-a-step-by-step-guide/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-02-02T18:36:54+00:00', 'date': '2024-10-10T06:02:11', 'date\_gmt': '2024-10-10T10:02:11', 'modified': '2025-02-02T13:36:54', 'modified\_gmt': '2025-02-02T18:36:54'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9664'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[161\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[161\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[161\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9664.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[7\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[49\]
+87. **How to Write SEO-Friendly Content: A Step-by-Step Guide** — `doc-b0d85d9c01e073e42b08` — document
+   - URL: https://cyberizegroup.com/how-to-write-seo-friendly-content/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-12-03T16:23:03+00:00', 'date': '2023-11-14T05:07:10', 'date\_gmt': '2023-11-14T10:07:10', 'modified': '2024-12-03T11:23:03', 'modified\_gmt': '2024-12-03T16:23:03'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9537'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[127\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[127\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[127\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9537.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[11\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[153\]
+88. **The Essential Guide to Link Building: Why It Matters and How to Do It Right** — `doc-84d84a5ab39c81fcb2dd` — document
+   - URL: https://cyberizegroup.com/importance-of-link-building/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-05-18T12:27:00+00:00', 'date': '2023-05-18T08:27:00', 'date\_gmt': '2023-05-18T12:27:00', 'modified': '2023-05-09T08:50:00', 'modified\_gmt': '2023-05-09T12:50:00'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9376'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[15\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[15\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[15\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9376.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[36\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[178\]
+89. **Unlocking the Power of SEO Copywriting: What You Need to Know** — `doc-2d5c1dd3ca4411271631` — document
+   - URL: https://cyberizegroup.com/importance-of-seo-copywriting/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-12-03T16:24:41+00:00', 'date': '2023-11-16T04:24:01', 'date\_gmt': '2023-11-16T09:24:01', 'modified': '2024-12-03T11:24:41', 'modified\_gmt': '2024-12-03T16:24:41'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9533'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[129\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[129\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[129\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9533.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[9\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[151\]
+90. **Join Agency Partner Program** — `doc-5c249b80b338c173b606` — document
+   - URL: https://cyberizegroup.com/join-agency-partner-program/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2018-02-07T19:02:39', 'date\_gmt': '2018-02-07T19:02:39', 'modified': '2023-09-27T14:25:39', 'modified\_gmt': '2023-09-27T18:25:39'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/4725'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-4725.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[39\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[39\]
+91. **Kansas City PPC Agency – Get the Most Out of Your Ad Spend** — `doc-d4ade3c6e29d6684bb02` — document
+   - URL: https://cyberizegroup.com/kansas-city-ppc-agency-get-the-most-out-of-your-ad-spend/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T20:15:50+00:00', 'date': '2024-04-08T06:41:51', 'date\_gmt': '2024-04-08T10:41:51', 'modified': '2025-01-26T15:15:50', 'modified\_gmt': '2025-01-26T20:15:50'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9884'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[157\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[157\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[157\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9884.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[79\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[121\]
+92. **Law Firm PPC Agency: Get More Clients with Paid Ads** — `doc-8855f9c526af4821a73b` — document
+   - URL: https://cyberizegroup.com/law-firm-ppc-agency-get-more-clients-with-paid-ads/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-12T08:44:26+00:00', 'date': '2024-09-12T04:43:49', 'date\_gmt': '2024-09-12T08:43:49', 'modified': '2024-09-12T04:44:26', 'modified\_gmt': '2024-09-12T08:44:26'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9689'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[97\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[97\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[97\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9689.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[31\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[73\]
+93. **Law Firm SEO: How to Get Your Law Firm Found Online** — `doc-5669a521e2ddd2e64dee` — document
+   - URL: https://cyberizegroup.com/law-firm-seo-how-to-get-your-law-firm-found-online/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-16T13:30:42+00:00', 'date': '2024-09-16T09:30:19', 'date\_gmt': '2024-09-16T13:30:19', 'modified': '2024-09-16T09:30:42', 'modified\_gmt': '2024-09-16T13:30:42'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9681'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[98\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[98\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[98\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9681.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[28\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[70\]
+94. **Local SEO Services: How to Rank Higher in Local Search Results** — `doc-848d02df5b5703922628` — document
+   - URL: https://cyberizegroup.com/local-seo-services-how-to-rank-higher-in-local-search-results/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-29T10:49:14+00:00', 'date': '2023-11-09T04:02:58', 'date\_gmt': '2023-11-09T09:02:58', 'modified': '2024-05-29T06:49:14', 'modified\_gmt': '2024-05-29T10:49:14'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9802'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[65\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[65\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[65\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9802.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[16\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[158\]
+95. **Marketing Plan / Strategy Session Discovery Form** — `doc-fb69bb96b80ff3cabf27` — document
+   - URL: https://cyberizegroup.com/marketing-plan-strategy-session-discovery-form/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2019-02-19T17:17:04', 'date\_gmt': '2019-02-19T22:17:04', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/6124'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-6124.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[27\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[27\]
+96. **Master Facebook Ads Management with These Pro Tips** — `doc-1d7044da3b60b537d236` — document
+   - URL: https://cyberizegroup.com/master-facebook-ads-management-with-these-pro-tips/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-07T10:18:27+00:00', 'date': '2024-05-07T06:18:21', 'date\_gmt': '2024-05-07T10:18:21', 'modified': '2024-05-07T06:18:27', 'modified\_gmt': '2024-05-07T10:18:27'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9807'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[56\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[56\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[56\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9807.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[64\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[106\]
+97. **Master Google Ads Management: A Step-by-Step Guide** — `doc-a01981854eb18dc4a8d4` — document
+   - URL: https://cyberizegroup.com/master-google-ads-management-a-step-by-step-guide/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-26T06:37:09+00:00', 'date': '2024-09-26T02:35:30', 'date\_gmt': '2024-09-26T06:35:30', 'modified': '2024-09-26T02:37:09', 'modified\_gmt': '2024-09-26T06:37:09'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9707'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[110\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[110\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[110\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9707.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[14\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[56\]
+98. **Master Google Ads Management: Tips and Strategies for Success** — `doc-e00d950d9dc2792552cc` — document
+   - URL: https://cyberizegroup.com/master-google-ads-management-tips-and-strategies-for-success/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-29T11:03:22+00:00', 'date': '2023-11-09T04:46:30', 'date\_gmt': '2023-11-09T09:46:30', 'modified': '2024-05-29T07:03:22', 'modified\_gmt': '2024-05-29T11:03:22'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9803'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[66\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[66\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[66\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9803.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[15\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[157\]
+99. **Master LinkedIn Ads Management with These Pro Tips** — `doc-ab4ad7f25488334d9276` — document
+   - URL: https://cyberizegroup.com/master-linkedin-ads-management-with-these-pro-tips/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-03T10:11:38+00:00', 'date': '2024-05-03T06:11:38', 'date\_gmt': '2024-05-03T10:11:38', 'modified': '2024-05-03T06:11:38', 'modified\_gmt': '2024-05-03T10:11:38'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9820'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[47\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[47\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[47\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9820.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[73\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[115\]
+100. **Maximize Your Auto Repair Business with a PPC Agency** — `doc-714feda5edbefcece796` — document
+   - URL: https://cyberizegroup.com/maximize-your-auto-repair-business-with-a-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-16T13:37:06+00:00', 'date': '2024-09-16T09:36:35', 'date\_gmt': '2024-09-16T13:36:35', 'modified': '2024-09-16T09:37:06', 'modified\_gmt': '2024-09-16T13:37:06'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9682'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[102\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[102\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[102\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9682.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[25\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[67\]
+101. **Maximize Your Dental Practice’s Growth with PPC Agency Services** — `doc-e18c2222c55a7a9db009` — document
+   - URL: https://cyberizegroup.com/maximize-your-dental-practices-growth-with-ppc-agency-services/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-16T13:31:54+00:00', 'date': '2024-09-16T09:26:54', 'date\_gmt': '2024-09-16T13:26:54', 'modified': '2024-09-16T09:31:54', 'modified\_gmt': '2024-09-16T13:31:54'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9674'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[99\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[99\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[99\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9674.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[29\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[71\]
+102. **Maximize Your eLearning ROI with a PPC Agency** — `doc-6993573ecebc22a46ef6` — document
+   - URL: https://cyberizegroup.com/maximize-your-elearning-roi-with-a-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T18:49:04+00:00', 'date': '2024-10-01T07:12:14', 'date\_gmt': '2024-10-01T11:12:14', 'modified': '2025-01-26T13:49:04', 'modified\_gmt': '2025-01-26T18:49:04'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9686'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[139\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[139\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[139\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9686.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[11\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[53\]
+103. **Maximize Your Medical Spa’s Profits with the Right PPC Agency** — `doc-0de3ef222a141e68d7a9` — document
+   - URL: https://cyberizegroup.com/maximize-your-medical-spas-profits-with-the-right-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-24T06:22:57+00:00', 'date': '2024-09-24T02:22:34', 'date\_gmt': '2024-09-24T06:22:34', 'modified': '2024-09-24T02:22:57', 'modified\_gmt': '2024-09-24T06:22:57'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9690'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[108\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[108\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[108\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9690.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[18\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[60\]
+104. **Maximize Your Medical Supplies PPC Campaigns with the Right Agency** — `doc-16ee2c6bf5b2c138ea1f` — document
+   - URL: https://cyberizegroup.com/maximize-your-medical-supplies-ppc-campaigns-with-the-right-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T18:56:32+00:00', 'date': '2024-09-25T07:40:23', 'date\_gmt': '2024-09-25T11:40:23', 'modified': '2025-01-26T13:56:32', 'modified\_gmt': '2025-01-26T18:56:32'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9678'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[141\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[141\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[141\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9678.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[16\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[58\]
+105. **Maximize Your Nursing Home’s Digital Presence with a PPC Agency** — `doc-97a0a037fb263f24f2f1` — document
+   - URL: https://cyberizegroup.com/maximize-your-nursing-homes-digital-presence-with-a-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-16T13:35:26+00:00', 'date': '2024-09-16T09:34:49', 'date\_gmt': '2024-09-16T13:34:49', 'modified': '2024-09-16T09:35:26', 'modified\_gmt': '2024-09-16T13:35:26'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9680'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[101\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[101\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[101\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9680.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[26\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[68\]
+106. **Maximize Your Online Presence with a Boise PPC Agency** — `doc-fbfe43941123f1cec596` — document
+   - URL: https://cyberizegroup.com/maximize-your-online-presence-with-a-boise-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:16:22+00:00', 'date': '2024-04-08T06:56:14', 'date\_gmt': '2024-04-08T10:56:14', 'modified': '2025-01-26T14:16:22', 'modified\_gmt': '2025-01-26T19:16:22'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9866'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[145\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[145\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[145\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9866.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[78\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[120\]
+107. **Maximize Your ROI with a Lexington Kentucky PPC Agency** — `doc-095c37ec614c3745872c` — document
+   - URL: https://cyberizegroup.com/maximize-your-roi-with-a-lexington-kentucky-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-04T11:06:31+00:00', 'date': '2024-03-04T06:06:31', 'date\_gmt': '2024-03-04T11:06:31', 'modified': '2024-03-04T06:06:31', 'modified\_gmt': '2024-03-04T11:06:31'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9886'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[21\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[21\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[21\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9886.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[98\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[140\]
+108. **Maximize Your ROI with Denver’s Top PPC Agency** — `doc-c1f8bac54a85008b890a` — document
+   - URL: https://cyberizegroup.com/maximize-your-roi-with-denvers-top-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-12T09:28:18+00:00', 'date': '2024-03-12T05:28:18', 'date\_gmt': '2024-03-12T09:28:18', 'modified': '2024-03-12T05:28:18', 'modified\_gmt': '2024-03-12T09:28:18'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9876'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[36\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[36\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[36\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9876.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[88\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[130\]
+109. **Maximize Your ROI with Google Analytics Ads: A Step-by-Step Guide** — `doc-5f0c2e77084d20dad562` — document
+   - URL: https://cyberizegroup.com/maximize-your-roi-with-google-analytics-ads-a-step-by-step-guide/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-22T10:26:40+00:00', 'date': '2024-03-06T06:13:26', 'date\_gmt': '2024-03-06T11:13:26', 'modified': '2024-07-22T06:26:40', 'modified\_gmt': '2024-07-22T10:26:40'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9858'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[73\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[73\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[73\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9858.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[96\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[138\]
+110. **Maximize Your Tree Service Business with a PPC Agency** — `doc-7c05a7bb5d95f82e8479` — document
+   - URL: https://cyberizegroup.com/maximize-your-tree-service-business-with-a-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-24T06:21:11+00:00', 'date': '2024-09-24T02:20:58', 'date\_gmt': '2024-09-24T06:20:58', 'modified': '2024-09-24T02:21:11', 'modified\_gmt': '2024-09-24T06:21:11'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9700'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[107\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[107\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[107\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9700.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[19\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[61\]
+111. **Maximize Your Veterinary Practice’s ROI with a PPC Agency** — `doc-f29611e4060909a7f14c` — document
+   - URL: https://cyberizegroup.com/maximize-your-veterinary-practices-roi-with-a-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-11T11:22:40+00:00', 'date': '2024-09-02T09:58:08', 'date\_gmt': '2024-09-02T13:58:08', 'modified': '2024-09-11T07:22:40', 'modified\_gmt': '2024-09-11T11:22:40'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9701'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[94\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[94\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[94\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9701.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[37\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[79\]
+112. **Website Migration Request** — `doc-aebe365a92507403b65e` — document
+   - URL: https://cyberizegroup.com/migration-request/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2020-04-13T23:09:36', 'date\_gmt': '2020-04-14T03:09:36', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/7107'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-7107.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[24\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[24\]
+113. **Newsletter Thank You** — `doc-6cde8c896d6f1680566a` — document
+   - URL: https://cyberizegroup.com/news-thx/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2022-05-02T09:59:11', 'date\_gmt': '2022-05-02T13:59:11', 'modified': '2022-05-02T10:10:05', 'modified\_gmt': '2022-05-02T14:10:05'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/8728'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-8728.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[3\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[3\]
+114. **\[title unknown\]** — `doc-1f6342cc1f774c30a7ea` — document
+   - URL: https://cyberizegroup.com/news/
+   - HTTP content type: unknown; WordPress type: unknown; dates: {'sitemap\_lastmod': '2025-01-26T20:36:14+00:00'}
+   - REST item scope: not established
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped, title\_unknown, wordpress\_content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[189\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/category-sitemap.xml — route source; see $.routes\[189\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[189\]
+115. **Off-Page SEO Audit: A Comprehensive Guide for Optimizing Your Website** — `doc-1b79e983f5cef9073551` — document
+   - URL: https://cyberizegroup.com/off-page-seo-audit/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T17:49:17+00:00', 'date': '2023-05-12T09:14:00', 'date\_gmt': '2023-05-12T13:14:00', 'modified': '2025-01-26T12:49:17', 'modified\_gmt': '2025-01-26T17:49:17'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9401'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[132\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[132\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[132\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9401.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[38\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[180\]
+116. **Office Management and Remote Working Tools** — `doc-90ade56f41f38c4491f9` — document
+   - URL: https://cyberizegroup.com/office-management-and-remote-working-tools/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T18:35:00+00:00', 'date': '2020-04-02T09:53:19', 'date\_gmt': '2020-04-02T13:53:19', 'modified': '2025-01-26T13:35:00', 'modified\_gmt': '2025-01-26T18:35:00'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/6994'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[137\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[137\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[137\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-6994.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[59\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[201\]
+117. **How to Do an On-Page SEO Audit for Your Website** — `doc-ca909d75f6580a7c493d` — document
+   - URL: https://cyberizegroup.com/on-page-seo-audit/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-05-02T13:24:56+00:00', 'fetched\_at': '2026-10-05T14:13:08+00:00', 'date': '2023-05-02T09:24:56', 'date\_gmt': '2023-05-02T13:24:56', 'modified': '2023-04-27T09:29:13', 'modified\_gmt': '2023-04-27T13:29:13'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9110'\]
+   - Gaps: content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[7\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[7\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[7\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com-on-page-seo-audit.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9110.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[46\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[188\]
+118. **Online Marketing Tools for SMBs Navigating COVID-19** — `doc-8824a00ff9ebc45993dc` — document
+   - URL: https://cyberizegroup.com/online-marketing-tools-for-smbs-navigating-covid-19/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T20:05:58+00:00', 'date': '2020-04-08T09:55:27', 'date\_gmt': '2020-04-08T13:55:27', 'modified': '2025-01-26T15:05:58', 'modified\_gmt': '2025-01-26T20:05:58'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/7078'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[154\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[154\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[154\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-7078.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[57\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[199\]
+119. **\[title unknown\]** — `doc-b21e4cc1f112eeef51f4` — document
+   - URL: https://cyberizegroup.com/online-marketing/
+   - HTTP content type: unknown; WordPress type: unknown; dates: {'sitemap\_lastmod': '2025-09-23T19:16:52+00:00'}
+   - REST item scope: not established
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped, title\_unknown, wordpress\_content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[190\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/category-sitemap.xml — route source; see $.routes\[190\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[190\]
+120. **Orthodontist PPC Company: Get More Leads and Increase ROI** — `doc-554020bb02f4a4172f57` — document
+   - URL: https://cyberizegroup.com/orthodontist-ppc-company-get-more-leads-and-increase-roi/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-16T13:33:06+00:00', 'date': '2024-09-16T09:32:35', 'date\_gmt': '2024-09-16T13:32:35', 'modified': '2024-09-16T09:33:06', 'modified\_gmt': '2024-09-16T13:33:06'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9693'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[100\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[100\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[100\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9693.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[27\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[69\]
+121. **Our Covid-19 Plan** — `doc-dd76061b58ba33fdcad0` — document
+   - URL: https://cyberizegroup.com/our-covid-19-plan/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-04-25T21:12:35+00:00', 'fetched\_at': '2026-10-05T14:12:18+00:00', 'date': '2020-03-01T08:47:04', 'date\_gmt': '2020-03-01T13:47:04', 'modified': '2023-04-25T17:12:35', 'modified\_gmt': '2023-04-25T21:12:35'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/6896'\]
+   - Gaps: content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[3\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[3\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[3\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com-our-covid-19-plan.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-6896.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[63\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[205\]
+122. **Our Partners** — `doc-f088f0022038b830f69b` — document
+   - URL: https://cyberizegroup.com/our-partners/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-02-02T16:44:12+00:00', 'date': '2020-12-30T17:23:04', 'date\_gmt': '2020-12-30T17:23:04', 'modified': '2025-02-02T11:44:12', 'modified\_gmt': '2025-02-02T16:44:12'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/87'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[178\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[178\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[178\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-87.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[14\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[14\]
+123. **Our White Label Agency Partner Program** — `doc-e817006dcad52e36751e` — document
+   - URL: https://cyberizegroup.com/partner-program/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2021-03-22T18:06:48+00:00', 'date': '2018-01-20T17:25:17', 'date\_gmt': '2018-01-20T17:25:17', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/4518'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[170\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[170\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[170\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-4518.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[41\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[41\]
+124. **Plumber Digital Marketing Agency: Unlocking Your Business’s Potential** — `doc-0c684c690d7845d948e1` — document
+   - URL: https://cyberizegroup.com/plumber-digital-marketing-agency-unlocking-your-businesss-potential/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-16T13:38:47+00:00', 'date': '2024-09-16T09:38:20', 'date\_gmt': '2024-09-16T13:38:20', 'modified': '2024-09-16T09:38:47', 'modified\_gmt': '2024-09-16T13:38:47'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9671'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[103\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[103\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[103\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9671.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[24\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[66\]
+125. **PPC Agency Checklist: What to Look for Before You Hire One** — `doc-d76fc848fbc6600378ad` — document
+   - URL: https://cyberizegroup.com/ppc-agency-checklist/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-04-27T13:55:28+00:00', 'date': '2023-04-26T09:51:59', 'date\_gmt': '2023-04-26T13:51:59', 'modified': '2023-04-27T09:55:28', 'modified\_gmt': '2023-04-27T13:55:28'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9055'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[9\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[9\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[9\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9055.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[49\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[191\]
+126. **PPC** — `doc-37d610e1be002873555a` — document
+   - URL: https://cyberizegroup.com/ppc/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-02-02T17:12:12+00:00', 'date': '2020-12-30T17:23:51', 'date\_gmt': '2020-12-30T17:23:51', 'modified': '2025-02-02T12:12:12', 'modified\_gmt': '2025-02-02T17:12:12'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/95'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[179\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[179\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[179\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-95.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[13\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[13\]
+127. **Privacy Policy** — `doc-67d06de52f895f4321cd` — document
+   - URL: https://cyberizegroup.com/privacy-policy/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2018-02-17T16:03:24', 'date\_gmt': '2018-02-17T21:03:24', 'modified': '2021-11-08T13:33:46', 'modified\_gmt': '2021-11-08T18:33:46'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/4740'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-4740.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[38\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[38\]
+128. **Refund &amp; Cancellation Policy** — `doc-056b5590d5f2a6f6fec2` — document
+   - URL: https://cyberizegroup.com/refund-cancellation-policy/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-01-26T16:39:10+00:00', 'date': '2018-02-19T15:35:39', 'date\_gmt': '2018-02-19T15:35:39', 'modified': '2025-01-26T11:39:10', 'modified\_gmt': '2025-01-26T16:39:10'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/4745'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[176\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[176\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[176\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-4745.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[37\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[37\]
+129. **Request Quote** — `doc-89caf5f8ee730c0561dc` — document
+   - URL: https://cyberizegroup.com/request-quote/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2022-04-12T18:15:40+00:00', 'date': '2018-02-21T20:36:48', 'date\_gmt': '2018-02-21T20:36:48', 'modified': '2022-04-12T14:15:40', 'modified\_gmt': '2022-04-12T18:15:40'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/4802'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[171\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[171\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[171\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-4802.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[35\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[35\]
+130. **Retargeting Ads: How to Reach Your Target Audience with Remarketing Ads** — `doc-a33baa3ab207b14321e9` — document
+   - URL: https://cyberizegroup.com/retargeting-ads-how-to-reach-your-target-audience-with-remarketing-ads/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-06T10:34:12+00:00', 'date': '2024-05-06T06:34:12', 'date\_gmt': '2024-05-06T10:34:12', 'modified': '2024-05-06T06:34:12', 'modified\_gmt': '2024-05-06T10:34:12'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9823'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[51\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[51\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[51\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9823.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[69\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[111\]
+131. **SEO Content Audit: How to Optimize Your Content for Maximum Visibility** — `doc-77301ab876e0c942486c` — document
+   - URL: https://cyberizegroup.com/seo-content-audit-how-to-optimize-your-content-for-maximum-visibility/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-05-09T10:22:33+00:00', 'date': '2023-05-04T10:10:09', 'date\_gmt': '2023-05-04T14:10:09', 'modified': '2023-05-09T06:22:33', 'modified\_gmt': '2023-05-09T10:22:33'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9172'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[13\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[13\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[13\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9172.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[41\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[183\]
+132. **SEO Copywriting Best Practices: How to Write SEO-Friendly Content** — `doc-b3d064492f311b14911e` — document
+   - URL: https://cyberizegroup.com/seo-copywriting-best-practices-how-to-write-seo-friendly-content/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-22T12:03:22+00:00', 'date': '2023-08-10T15:23:06', 'date\_gmt': '2023-08-10T19:23:06', 'modified': '2024-10-22T08:03:22', 'modified\_gmt': '2024-10-22T12:03:22'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9665'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[118\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[118\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[118\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9665.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[30\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[172\]
+133. **SEO Copywriting Best Practices: How to Write SEO-Friendly Content** — `doc-3fbf24b37c6dbb904c10` — document
+   - URL: https://cyberizegroup.com/seo-copywriting-best-practices/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-12-03T16:22:13+00:00', 'date': '2023-11-14T04:43:53', 'date\_gmt': '2023-11-14T09:43:53', 'modified': '2024-12-03T11:22:13', 'modified\_gmt': '2024-12-03T16:22:13'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9541'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[126\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[126\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[126\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9541.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[12\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[154\]
+134. **SEO** — `doc-3664a6f1c294518322b1` — document
+   - URL: https://cyberizegroup.com/seo-services/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-02-02T18:22:29+00:00', 'date': '2021-01-07T19:39:56', 'date\_gmt': '2021-01-07T19:39:56', 'modified': '2025-02-02T13:22:29', 'modified\_gmt': '2025-02-02T18:22:29'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/1143'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[182\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[182\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[182\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-1143.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[8\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[8\]
+135. **We Want To Know** — `doc-ac6450209302444e729d` — document
+   - URL: https://cyberizegroup.com/share/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2018-08-31T11:57:45', 'date\_gmt': '2018-08-31T15:57:45', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/5405'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-5405.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[31\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[31\]
+136. **Small Business Online Communication Tools** — `doc-3690adce86319f20af7a` — document
+   - URL: https://cyberizegroup.com/small-business-online-communication-tools/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-08-15T16:27:53+00:00', 'date': '2020-03-31T15:59:32', 'date\_gmt': '2020-03-31T19:59:32', 'modified': '2023-08-15T12:27:53', 'modified\_gmt': '2023-08-15T16:27:53'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/6988'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[19\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[19\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[19\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-6988.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[60\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[202\]
+137. **SMS Marketing Tips for Restaurants: Reach More Customers with Mobile Messages** — `doc-305363dd826419fe5758` — document
+   - URL: https://cyberizegroup.com/sms-marketing-tips-for-restaurants-reach-more-customers-with-mobile-messages/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-08-13T10:13:14+00:00', 'date': '2024-08-13T06:13:14', 'date\_gmt': '2024-08-13T10:13:14', 'modified': '2024-08-13T06:13:14', 'modified\_gmt': '2024-08-13T10:13:14'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9630'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[84\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[84\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[84\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9630.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[41\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[83\]
+138. **SMS Marketing Tips for Restaurants: Reach More Customers with Mobile Messages** — `doc-48a9d8eb7b2a5272cbe0` — document
+   - URL: https://cyberizegroup.com/sms-marketing-tips-for-restaurants/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-08T09:42:06+00:00', 'date': '2023-11-28T04:37:51', 'date\_gmt': '2023-11-28T09:37:51', 'modified': '2024-07-08T05:42:06', 'modified\_gmt': '2024-07-08T09:42:06'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9597'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[69\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[69\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[69\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9597.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[7\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[149\]
+139. **The Ultimate Social Media Guide for Restaurants: How to Grow Your Business Online** — `doc-0a104df4dcb1c745c1b1` — document
+   - URL: https://cyberizegroup.com/social-media-guide-for-restaurants/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-08T09:42:32+00:00', 'date': '2024-07-08T05:42:32', 'date\_gmt': '2024-07-08T09:42:32', 'modified': '2024-07-08T05:42:32', 'modified\_gmt': '2024-07-08T09:42:32'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9601'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[70\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[70\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[70\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9601.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[50\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[92\]
+140. **Social Media Platform For Small Business** — `doc-3eae3fe0097dd5a6861d` — document
+   - URL: https://cyberizegroup.com/social-media-platform-for-small-business/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:27:30+00:00', 'date': '2020-04-06T12:25:12', 'date\_gmt': '2020-04-06T16:25:12', 'modified': '2025-01-26T14:27:30', 'modified\_gmt': '2025-01-26T19:27:30'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/7030'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[149\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[149\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[149\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-7030.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[58\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[200\]
+141. **How to Perform a Technical SEO Audit for Your Website** — `doc-ace4ede16dd00f41e4e7` — document
+   - URL: https://cyberizegroup.com/technical-seo-audit/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-05-02T13:48:28+00:00', 'date': '2023-04-30T21:08:16', 'date\_gmt': '2023-05-01T01:08:16', 'modified': '2023-05-02T09:48:28', 'modified\_gmt': '2023-05-02T13:48:28'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9104'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[11\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[11\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[11\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9104.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[47\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[189\]
+142. **Termageddon 90 Second Video** — `doc-d6b91e333f36685ea8e0` — document
+   - URL: https://cyberizegroup.com/termageddon-90-second-video/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2022-05-12T16:06:55', 'date\_gmt': '2022-05-12T20:06:55', 'modified': '2022-05-12T16:06:55', 'modified\_gmt': '2022-05-12T20:06:55'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/8733'\]
+   - Gaps: content\_type\_unknown, needs\_HTML\_review\_if\_selected, rendered\_capture\_not\_selected\_or\_not\_known, rest\_content\_rendered\_empty.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-8733.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[2\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[2\]
+143. **Termageddon Review: Protect Your Business with Automated Privacy Policy Updates** — `doc-1f82063c6bc621ad4c2d` — document
+   - URL: https://cyberizegroup.com/termageddon-review/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:06:22+00:00', 'date': '2024-07-08T05:45:12', 'date\_gmt': '2024-07-08T09:45:12', 'modified': '2025-01-26T14:06:22', 'modified\_gmt': '2025-01-26T19:06:22'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9620'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[144\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[144\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[144\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9620.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[47\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[89\]
+144. **Testimonials** — `doc-c8c6589ce19121b5d9af` — document
+   - URL: https://cyberizegroup.com/testimonials/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2021-03-22T18:06:48+00:00', 'date': '2018-08-29T22:57:53', 'date\_gmt': '2018-08-30T02:57:53', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/4620'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[168\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[168\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[168\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-4620.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[32\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[32\]
+145. **Thank You** — `doc-930a86ef4f3cd1cb9f99` — document
+   - URL: https://cyberizegroup.com/thank-you/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2020-12-30T19:05:24', 'date\_gmt': '2020-12-30T19:05:24', 'modified': '2023-09-27T13:41:45', 'modified\_gmt': '2023-09-27T17:41:45'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/142'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-142.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[10\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[10\]
+146. **THANK YOU: Quote Thank You** — `doc-4c1b31e67b16e05db02d` — document
+   - URL: https://cyberizegroup.com/thank-you/quote-thank-you/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2018-02-22T14:46:35', 'date\_gmt': '2018-02-22T19:46:35', 'modified': '2022-04-12T09:26:20', 'modified\_gmt': '2022-04-12T13:26:20'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/5490'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-5490.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[34\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[34\]
+147. **The Best Bakersfield PPC Agency: Get More Traffic and Leads Now** — `doc-a5e551b6488df684c59b` — document
+   - URL: https://cyberizegroup.com/the-best-bakersfield-ppc-agency-get-more-traffic-and-leads-now/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-25T09:28:37+00:00', 'date': '2024-03-25T05:28:37', 'date\_gmt': '2024-03-25T09:28:37', 'modified': '2024-03-25T05:28:37', 'modified\_gmt': '2024-03-25T09:28:37'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9863'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[42\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[42\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[42\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9863.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[82\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[124\]
+148. **The Best Chicago PPC Agency: Get More Leads and Sales with PPC Advertising** — `doc-7f48a4b7230b9119e590` — document
+   - URL: https://cyberizegroup.com/the-best-chicago-ppc-agency-get-more-leads-and-sales-with-ppc-advertising/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-07T06:58:49+00:00', 'date': '2023-08-24T06:06:11', 'date\_gmt': '2023-08-24T10:06:11', 'modified': '2024-03-07T01:58:49', 'modified\_gmt': '2024-03-07T06:58:49'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9870'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[28\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[28\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[28\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9870.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[23\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[165\]
+149. **The Essential Guide to Developing a Winning Digital Marketing Strategy** — `doc-2c8ce961350d3c868c41` — document
+   - URL: https://cyberizegroup.com/the-essential-guide-to-developing-a-winning-digital-marketing-strategy/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-02-02T18:47:06+00:00', 'date': '2024-10-03T04:38:37', 'date\_gmt': '2024-10-03T08:38:37', 'modified': '2025-02-02T13:47:06', 'modified\_gmt': '2025-02-02T18:47:06'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9675'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[162\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[162\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[162\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9675.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[8\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[50\]
+150. **Unlock Your SEO Potential with Keyword Research: A Guide** — `doc-4727adb5934ad827b05a` — document
+   - URL: https://cyberizegroup.com/the-importance-of-keyword-research/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-05-09T00:58:38+00:00', 'date': '2023-05-02T10:10:00', 'date\_gmt': '2023-05-02T14:10:00', 'modified': '2023-05-08T20:58:38', 'modified\_gmt': '2023-05-09T00:58:38'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9188'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[12\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[12\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[12\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9188.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[45\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[187\]
+151. **The Ultimate CRM Guide for Restaurants: How to Increase Customer Loyalty &amp; Profits** — `doc-30e70c05d67a06d91ee8` — document
+   - URL: https://cyberizegroup.com/the-ultimate-crm-guide-for-restaurants-how-to-increase-customer-loyalty-profits/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-08-13T10:11:54+00:00', 'date': '2023-12-05T05:36:28', 'date\_gmt': '2023-12-05T10:36:28', 'modified': '2024-08-13T06:11:54', 'modified\_gmt': '2024-08-13T10:11:54'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9626'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[83\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[83\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[83\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9626.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[5\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[147\]
+152. **The Ultimate Guide to Acquiring More Pizza Shop Customers** — `doc-46f5a88bd34696886105` — document
+   - URL: https://cyberizegroup.com/the-ultimate-guide-to-acquiring-more-pizza-shop-customers/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T17:04:13+00:00', 'date': '2024-10-14T06:44:15', 'date\_gmt': '2024-10-14T10:44:15', 'modified': '2025-01-26T12:04:13', 'modified\_gmt': '2025-01-26T17:04:13'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9628'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[130\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[130\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[130\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9628.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[4\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[46\]
+153. **The Ultimate SEO Content Template: How to Create SEO-Friendly Content in Minutes** — `doc-f99468c9a5a5100151aa` — document
+   - URL: https://cyberizegroup.com/the-ultimate-seo-content-template-how-to-create-seo-friendly-content-in-minutes/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T18:14:26+00:00', 'date': '2024-10-03T04:18:53', 'date\_gmt': '2024-10-03T08:18:53', 'modified': '2025-01-26T13:14:26', 'modified\_gmt': '2025-01-26T18:14:26'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9656'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[135\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[135\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[135\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9656.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[9\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[51\]
+154. **The Ultimate Guide to SEO Content Auditing: What Tools to Use** — `doc-a6852878ecac4de901a8` — document
+   - URL: https://cyberizegroup.com/tools-to-use-seo-content-audit/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-08-12T09:27:30+00:00', 'date': '2023-05-17T08:45:00', 'date\_gmt': '2023-05-17T12:45:00', 'modified': '2024-08-12T05:27:30', 'modified\_gmt': '2024-08-12T09:27:30'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9389'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[81\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[81\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[81\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9389.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[37\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[179\]
+155. **Unlock the Benefits of SEO Copywriting Services for Your Business** — `doc-5d94f67997a976af6a81` — document
+   - URL: https://cyberizegroup.com/unlock-the-benefits-of-seo-copywriting-services-for-your-business/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-10T11:22:36+00:00', 'date': '2024-09-10T07:20:12', 'date\_gmt': '2024-09-10T11:20:12', 'modified': '2024-09-10T07:22:36', 'modified\_gmt': '2024-09-10T11:22:36'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9667'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[90\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[90\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[90\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9667.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[33\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[75\]
+156. **Unlock the Benefits of Working with a PPC Agency for Your Business** — `doc-00bc50f3369fc8f49bae` — document
+   - URL: https://cyberizegroup.com/unlock-the-benefits-of-working-with-a-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-04-28T14:02:20+00:00', 'date': '2023-04-28T10:02:20', 'date\_gmt': '2023-04-28T14:02:20', 'modified': '2023-04-27T10:17:15', 'modified\_gmt': '2023-04-27T14:17:15'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9059'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[10\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[10\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[10\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9059.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[48\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[190\]
+157. **Unlock the Power of Google Ads: How to Get Started with Google Ad Services** — `doc-c487905c32c4f314b22d` — document
+   - URL: https://cyberizegroup.com/unlock-the-power-of-google-ads-how-to-get-started-with-google-ad-services/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-08-29T11:14:09+00:00', 'date': '2024-08-29T06:49:45', 'date\_gmt': '2024-08-29T10:49:45', 'modified': '2024-08-29T07:14:09', 'modified\_gmt': '2024-08-29T11:14:09'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9704'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[88\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[88\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[88\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9704.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[38\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[80\]
+158. **Unlock the Power of Limo PPC Services to Increase Your Profits** — `doc-b8f112382a93aae4955d` — document
+   - URL: https://cyberizegroup.com/unlock-the-power-of-limo-ppc-services-to-increase-your-profits/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-29T09:09:39+00:00', 'date': '2024-08-19T10:23:07', 'date\_gmt': '2024-08-19T14:23:07', 'modified': '2024-10-29T05:09:39', 'modified\_gmt': '2024-10-29T09:09:39'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9702'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[121\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[121\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[121\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9702.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[40\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[82\]
+159. **Unlock the Power of Local Online Marketing with the Right Company** — `doc-4873d816ff746d111646` — document
+   - URL: https://cyberizegroup.com/unlock-the-power-of-local-online-marketing-with-the-right-company/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-07T10:04:43+00:00', 'date': '2024-05-07T06:04:43', 'date\_gmt': '2024-05-07T10:04:43', 'modified': '2024-05-07T06:04:43', 'modified\_gmt': '2024-05-07T10:04:43'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9806'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[55\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[55\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[55\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9806.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[65\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[107\]
+160. **Unlock the Power of Mobile Advertising with These Services** — `doc-3f49cf98c1c4172adf6a` — document
+   - URL: https://cyberizegroup.com/unlock-the-power-of-mobile-advertising-with-these-services/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-22T11:50:04+00:00', 'date': '2023-11-08T03:03:03', 'date\_gmt': '2023-11-08T08:03:03', 'modified': '2024-05-22T07:50:04', 'modified\_gmt': '2024-05-22T11:50:04'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9814'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[62\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[62\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[62\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9814.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[18\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[160\]
+161. **Unlock the Power of Paid Advertising with a Columbus PPC Agency** — `doc-af922399391cf932dcfd` — document
+   - URL: https://cyberizegroup.com/unlock-the-power-of-paid-advertising-with-a-columbus-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-11T10:02:15+00:00', 'date': '2024-03-11T06:02:15', 'date\_gmt': '2024-03-11T10:02:15', 'modified': '2024-03-11T06:02:15', 'modified\_gmt': '2024-03-11T10:02:15'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9874'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[32\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[32\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[32\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9874.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[91\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[133\]
+162. **Unlock Your Brand’s Potential with a Social Media Advertising Agency** — `doc-d6af562f708673d58452` — document
+   - URL: https://cyberizegroup.com/unlock-your-brands-potential-with-a-social-media-advertising-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-22T11:24:31+00:00', 'date': '2024-05-22T07:24:31', 'date\_gmt': '2024-05-22T11:24:31', 'modified': '2024-05-22T07:24:31', 'modified\_gmt': '2024-05-22T11:24:31'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9813'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[61\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[61\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[61\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9813.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[60\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[102\]
+163. **Unlock Your Brand’s Potential with Display Advertising Services** — `doc-b18956590ce009cda1c7` — document
+   - URL: https://cyberizegroup.com/unlock-your-brands-potential-with-display-advertising-services/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-03T10:38:07+00:00', 'date': '2024-05-03T06:38:07', 'date\_gmt': '2024-05-03T10:38:07', 'modified': '2024-05-03T06:38:07', 'modified\_gmt': '2024-05-03T10:38:07'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9819'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[49\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[49\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[49\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9819.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[71\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[113\]
+164. **Unlock Your Business Growth with Houston’s Best PPC Agency** — `doc-5a5a6250d82cc7a22a83` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-growth-with-houstons-best-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-23T11:45:59+00:00', 'date': '2024-03-11T06:19:13', 'date\_gmt': '2024-03-11T10:19:13', 'modified': '2024-07-23T07:45:59', 'modified\_gmt': '2024-07-23T11:45:59'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9881'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[80\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[80\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[80\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9881.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[90\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[132\]
+165. **Unlock Your Business Growth with Online Lead Generation Strategies** — `doc-9a4e8b9a3af4194f9525` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-growth-with-online-lead-generation-strategies/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-07T09:46:51+00:00', 'date': '2024-05-07T05:46:51', 'date\_gmt': '2024-05-07T09:46:51', 'modified': '2024-05-07T05:46:51', 'modified\_gmt': '2024-05-07T09:46:51'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9812'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[54\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[54\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[54\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9812.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[66\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[108\]
+166. **Unlock Your Business Growth with PPC Services for Small Businesses** — `doc-098454ef89d1e480262d` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-growth-with-ppc-services-for-small-businesses/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-13T09:44:36+00:00', 'date': '2024-05-13T05:44:36', 'date\_gmt': '2024-05-13T09:44:36', 'modified': '2024-05-13T05:44:36', 'modified\_gmt': '2024-05-13T09:44:36'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9808'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[59\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[59\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[59\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9808.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[62\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[104\]
+167. **Unlock Your Business Potential with a Charlotte PPC Agency** — `doc-16e79379d5d2fd227045` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-potential-with-a-charlotte-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-07T06:38:17+00:00', 'date': '2024-03-07T01:38:17', 'date\_gmt': '2024-03-07T06:38:17', 'modified': '2024-03-07T01:38:17', 'modified\_gmt': '2024-03-07T06:38:17'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9868'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[27\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[27\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[27\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9868.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[94\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[136\]
+168. **Unlock Your Business Potential With a Cincinnati PPC Agency** — `doc-d55610a412dd5c502b5c` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-potential-with-a-cincinnati-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-07T07:04:00+00:00', 'date': '2024-03-07T02:04:00', 'date\_gmt': '2024-03-07T07:04:00', 'modified': '2024-03-07T02:04:00', 'modified\_gmt': '2024-03-07T07:04:00'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9871'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[29\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[29\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[29\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9871.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[93\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[135\]
+169. **Unlock Your Business Potential with a Fort Collins PPC Agency** — `doc-81fa87a505c12f5f5213` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-potential-with-a-fort-collins-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T18:29:55+00:00', 'date': '2024-03-25T05:44:15', 'date\_gmt': '2024-03-25T09:44:15', 'modified': '2025-01-26T13:29:55', 'modified\_gmt': '2025-01-26T18:29:55'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9877'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[136\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[136\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[136\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9877.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[81\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[123\]
+170. **Unlock Your Business Potential with a Pay-Per-Click Advertising Company** — `doc-b804e40cd166ff54bfe0` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-potential-with-a-pay-per-click-advertising-company/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-09T10:08:05+00:00', 'date': '2024-05-09T06:08:05', 'date\_gmt': '2024-05-09T10:08:05', 'modified': '2024-05-09T06:08:05', 'modified\_gmt': '2024-05-09T10:08:05'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9810'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[58\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[58\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[58\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9810.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[63\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[105\]
+171. **Unlock Your Business Potential with an Austin PPC Agency** — `doc-96d02408375a228e2290` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-potential-with-an-austin-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-20T12:19:01+00:00', 'date': '2024-03-20T08:19:01', 'date\_gmt': '2024-03-20T12:19:01', 'modified': '2024-03-20T08:19:01', 'modified\_gmt': '2024-03-20T12:19:01'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9862'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[40\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[40\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[40\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9862.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[84\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[126\]
+172. **Unlock Your Business Potential with an Indianapolis PPC Agency** — `doc-e8860a6cc9d5ab030205` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-potential-with-an-indianapolis-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-11T10:25:38+00:00', 'date': '2023-09-18T04:58:28', 'date\_gmt': '2023-09-18T08:58:28', 'modified': '2024-03-11T06:25:38', 'modified\_gmt': '2024-03-11T10:25:38'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9882'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[34\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[34\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[34\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9882.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[20\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[162\]
+173. **Unlock Your Business Potential with Google Ads Services** — `doc-1a775550c1c25ae2e70f` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-potential-with-google-ads-services/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T20:36:14+00:00', 'date': '2023-08-10T15:22:23', 'date\_gmt': '2023-08-10T19:22:23', 'modified': '2025-01-26T15:36:14', 'modified\_gmt': '2025-01-26T20:36:14'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9712'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[160\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[160\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[160\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9712.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[32\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[174\]
+174. **Unlock Your Business Potential with Search Engine Marketing** — `doc-0a3a09bf14beb6af88aa` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-potential-with-search-engine-marketing/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-03T10:24:31+00:00', 'date': '2024-05-03T06:24:31', 'date\_gmt': '2024-05-03T10:24:31', 'modified': '2024-05-03T06:24:31', 'modified\_gmt': '2024-05-03T10:24:31'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9821'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[48\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[48\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[48\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9821.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[72\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[114\]
+175. **Unlock Your Business Potential with the Best Dallas PPC Agency** — `doc-180b8702883d978b8d0d` — document
+   - URL: https://cyberizegroup.com/unlock-your-business-potential-with-the-best-dallas-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-11T10:13:15+00:00', 'date': '2023-09-14T09:07:27', 'date\_gmt': '2023-09-14T13:07:27', 'modified': '2024-03-11T06:13:15', 'modified\_gmt': '2024-03-11T10:13:15'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9875'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[33\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[33\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[33\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9875.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[21\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[163\]
+176. **Unlock Your Business’s Potential with a Baton Rouge PPC Agency** — `doc-0d72a9843284afcee683` — document
+   - URL: https://cyberizegroup.com/unlock-your-businesss-potential-with-a-baton-rouge-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-06T11:22:34+00:00', 'date': '2023-08-22T09:49:37', 'date\_gmt': '2023-08-22T13:49:37', 'modified': '2024-03-06T06:22:34', 'modified\_gmt': '2024-03-06T11:22:34'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9864'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[25\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[25\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[25\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9864.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[25\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[167\]
+177. **Unlock Your Business’s Potential with a Las Vegas PPC Agency** — `doc-d87461a2b81d3fc61c87` — document
+   - URL: https://cyberizegroup.com/unlock-your-businesss-potential-with-a-las-vegas-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-04T11:15:35+00:00', 'date': '2023-08-21T05:51:50', 'date\_gmt': '2023-08-21T09:51:50', 'modified': '2024-03-04T06:15:35', 'modified\_gmt': '2024-03-04T11:15:35'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9885'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[22\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[22\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[22\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9885.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[26\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[168\]
+178. **Unlock Your Business’s Potential with Local Digital Marketing Services** — `doc-b8df47492c01d55e559c` — document
+   - URL: https://cyberizegroup.com/unlock-your-businesss-potential-with-local-digital-marketing-services/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-08-29T11:56:11+00:00', 'date': '2024-06-03T06:37:36', 'date\_gmt': '2024-06-03T10:37:36', 'modified': '2024-08-29T07:56:11', 'modified\_gmt': '2024-08-29T11:56:11'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9800'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[89\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[89\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[89\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9800.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[58\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[100\]
+179. **Unlock Your Digital Marketing Potential with These Solutions** — `doc-46e27f3ea85d7a3bc7f3` — document
+   - URL: https://cyberizegroup.com/unlock-your-digital-marketing-potential-with-these-solutions/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-09T09:52:20+00:00', 'date': '2023-11-06T02:40:01', 'date\_gmt': '2023-11-06T07:40:01', 'modified': '2024-05-09T05:52:20', 'modified\_gmt': '2024-05-09T09:52:20'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9809'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[57\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[57\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[57\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9809.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[19\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[161\]
+180. **Unlock Your Digital Potential with a Professional SEM Agency** — `doc-a8db140b20d843c2644c` — document
+   - URL: https://cyberizegroup.com/unlock-your-digital-potential-with-a-professional-sem-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-29T11:22:12+00:00', 'date': '2023-11-13T04:40:35', 'date\_gmt': '2023-11-13T09:40:35', 'modified': '2024-05-29T07:22:12', 'modified\_gmt': '2024-05-29T11:22:12'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9805'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[67\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[67\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[67\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9805.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[14\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[156\]
+181. **Unlock Your Local Business Potential with an Online Advertising Agency** — `doc-28a65309db624edaaeb7` — document
+   - URL: https://cyberizegroup.com/unlock-your-local-business-potential-with-an-online-advertising-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-05-06T10:51:06+00:00', 'date': '2024-05-06T06:51:06', 'date\_gmt': '2024-05-06T10:51:06', 'modified': '2024-05-06T06:51:06', 'modified\_gmt': '2024-05-06T10:51:06'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9816'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[52\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[52\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[52\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9816.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[68\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[110\]
+182. **Unlock Your Organic CTR Potential: Tips and Strategies for Success** — `doc-7b46c1cd273f8d709ff4` — document
+   - URL: https://cyberizegroup.com/unlock-your-organic-ctr-potential-tips-and-strategies-for-success/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-22T10:30:40+00:00', 'date': '2024-02-22T07:25:37', 'date\_gmt': '2024-02-22T12:25:37', 'modified': '2024-07-22T06:30:40', 'modified\_gmt': '2024-07-22T10:30:40'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9655'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[76\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[76\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[76\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9655.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[1\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[143\]
+183. **Unlock Your Plumbing Business’s Potential with PPC Agency Services** — `doc-b0ae25119c0be523f32b` — document
+   - URL: https://cyberizegroup.com/unlock-your-plumbing-businesss-potential-with-ppc-agency-services/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-29T09:00:46+00:00', 'date': '2024-09-12T07:13:03', 'date\_gmt': '2024-09-12T11:13:03', 'modified': '2024-10-29T05:00:46', 'modified\_gmt': '2024-10-29T09:00:46'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9695'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[120\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[120\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[120\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9695.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[30\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[72\]
+184. **Unlock Your Real Estate Business’s Growth with a Social Media Agency** — `doc-18e455da241a807c0bfc` — document
+   - URL: https://cyberizegroup.com/unlock-your-real-estate-businesss-growth-with-a-social-media-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T20:29:55+00:00', 'date': '2024-09-25T07:41:59', 'date\_gmt': '2024-09-25T11:41:59', 'modified': '2025-01-26T15:29:55', 'modified\_gmt': '2025-01-26T20:29:55'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9679'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[159\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[159\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[159\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9679.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[15\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[57\]
+185. **Unlock Your Real Estate Potential with a Professional PPC Agency** — `doc-a11d4b4bde498864cadc` — document
+   - URL: https://cyberizegroup.com/unlock-your-real-estate-potential-with-a-professional-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-17T11:22:40+00:00', 'date': '2023-08-10T15:22:23', 'date\_gmt': '2023-08-10T19:22:23', 'modified': '2024-10-17T07:22:40', 'modified\_gmt': '2024-10-17T11:22:40'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9696'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[115\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[115\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[115\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9696.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[33\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[175\]
+186. **Unlock Your Salon’s Potential with a Hair Salon Digital Marketing Agency** — `doc-7ae74ab5cebd65357565` — document
+   - URL: https://cyberizegroup.com/unlock-your-salons-potential-with-a-hair-salon-digital-marketing-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-09-24T06:25:00+00:00', 'date': '2024-09-24T02:24:16', 'date\_gmt': '2024-09-24T06:24:16', 'modified': '2024-09-24T02:25:00', 'modified\_gmt': '2024-09-24T06:25:00'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9670'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[109\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[109\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[109\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9670.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[17\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[59\]
+187. **Unlock Your SEO Potential with Chat GPT Plugin** — `doc-e76df20b08256e138710` — document
+   - URL: https://cyberizegroup.com/unlock-your-seo-potential-with-chat-gpt-plugin/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-21T11:18:16+00:00', 'date': '2024-02-14T04:45:21', 'date\_gmt': '2024-02-14T09:45:21', 'modified': '2024-10-21T07:18:16', 'modified\_gmt': '2024-10-21T11:18:16'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9641'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[117\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[117\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[117\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9641.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[4\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[146\]
+188. **Unlocking the Power of Customer Intent: How to Leverage It for Success** — `doc-ecd3b6df6d36853dfff8` — document
+   - URL: https://cyberizegroup.com/unlocking-the-power-of-customer-intent-how-to-leverage-it-for-success/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-22T10:23:33+00:00', 'date': '2023-08-10T15:23:33', 'date\_gmt': '2023-08-10T19:23:33', 'modified': '2024-07-22T06:23:33', 'modified\_gmt': '2024-07-22T10:23:33'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9647'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[72\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[72\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[72\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9647.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[29\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[171\]
+189. **Unlocking the Power of SEO Copywriting: What You Need to Know** — `doc-c4db2dc9cf8c18df6673` — document
+   - URL: https://cyberizegroup.com/unlocking-the-power-of-seo-copywriting-what-you-need-to-know/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T17:57:33+00:00', 'date': '2024-10-14T06:19:50', 'date\_gmt': '2024-10-14T10:19:50', 'modified': '2025-01-26T12:57:33', 'modified\_gmt': '2025-01-26T17:57:33'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9663'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[133\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[133\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[133\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9663.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[5\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[47\]
+190. **WCC Discovery Download – CG** — `doc-8c6c9473410b66227f61` — document
+   - URL: https://cyberizegroup.com/wcc-discovery-download/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2020-09-25T16:20:07', 'date\_gmt': '2020-09-25T20:20:07', 'modified': '2024-12-03T10:59:11', 'modified\_gmt': '2024-12-03T15:59:11'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/7537'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-7537.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[21\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[21\]
+191. **Website Conversion Checklist Download – CG** — `doc-15ba6909208cd54dcdb1` — document
+   - URL: https://cyberizegroup.com/wcc-download/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2020-09-25T17:07:06', 'date\_gmt': '2020-09-25T21:07:06', 'modified': '2024-12-03T11:00:21', 'modified\_gmt': '2024-12-03T16:00:21'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/7575'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-7575.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[20\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[20\]
+192. **WCC Discovery Call – CG** — `doc-b39678955cce6898b276` — document
+   - URL: https://cyberizegroup.com/wcc-set-discovery/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2020-10-05T08:39:42', 'date\_gmt': '2020-10-05T12:39:42', 'modified': '2021-03-30T10:35:42', 'modified\_gmt': '2021-03-30T14:35:42'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/7916'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-7916.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[16\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[16\]
+193. **Our Web Design Process** — `doc-7dcda288b8c683843083` — document
+   - URL: https://cyberizegroup.com/web-design-process/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2021-03-22T01:20:55+00:00', 'fetched\_at': '2026-10-05T14:11:51+00:00', 'date': '2018-03-01T17:00:48', 'date\_gmt': '2018-03-01T22:00:48', 'modified': '2021-03-21T21:20:55', 'modified\_gmt': '2021-03-22T01:20:55'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/4952'\]
+   - Gaps: content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[1\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[1\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[1\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com-web-design-process.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-4952.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[65\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[207\]
+194. **\[title unknown\]** — `doc-470fe1920edfc4d6794c` — document
+   - URL: https://cyberizegroup.com/web-design/
+   - HTTP content type: unknown; WordPress type: unknown; dates: {'sitemap\_lastmod': '2025-01-26T19:06:22+00:00'}
+   - REST item scope: not established
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped, title\_unknown, wordpress\_content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[191\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/category-sitemap.xml — route source; see $.routes\[191\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[191\]
+195. **Web Development** — `doc-f02f2882fb052089db53` — document
+   - URL: https://cyberizegroup.com/web-development/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-02-02T18:06:43+00:00', 'date': '2020-12-30T17:24:01', 'date\_gmt': '2020-12-30T17:24:01', 'modified': '2025-02-02T13:06:43', 'modified\_gmt': '2025-02-02T18:06:43'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/97'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[181\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[181\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[181\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-97.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[12\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[12\]
+196. **Website Architecture 101: How to Design a Website for Maximum Performance** — `doc-46a9bf48441d8bd1471e` — document
+   - URL: https://cyberizegroup.com/website-architecture-101-how-to-design-a-website-for-maximum-performance/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-07-22T10:31:10+00:00', 'date': '2024-07-22T06:31:10', 'date\_gmt': '2024-07-22T10:31:10', 'modified': '2024-07-22T06:31:10', 'modified\_gmt': '2024-07-22T10:31:10'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9654'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[77\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[77\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[77\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9654.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[45\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[87\]
+197. **Website Conversion Checklist – CG** — `doc-98a67670acbc56ea6050` — document
+   - URL: https://cyberizegroup.com/website-conversion-checklist/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2024-12-03T16:02:56+00:00', 'date': '2020-09-25T17:42:27', 'date\_gmt': '2020-09-25T21:42:27', 'modified': '2024-12-03T11:02:56', 'modified\_gmt': '2024-12-03T16:02:56'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/7603'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[173\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[173\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[173\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-7603.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[19\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[19\]
+198. **Website Design Questionnaire  (short form)** — `doc-e5a9b5e329d66b85c497` — document
+   - URL: https://cyberizegroup.com/website-design-questionnaire-short/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2019-05-16T14:45:33', 'date\_gmt': '2019-05-16T18:45:33', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/6214'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-6214.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[25\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[25\]
+199. **Website Design Questionnaire** — `doc-0cf347e12cebb9953cb5` — document
+   - URL: https://cyberizegroup.com/website-design-questionnaire/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2019-04-10T16:13:35', 'date\_gmt': '2019-04-10T20:13:35', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/6176'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-6176.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[26\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[26\]
+200. **Web Design** — `doc-58e73eb40d965c38a5ae` — document
+   - URL: https://cyberizegroup.com/website-design/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-02-02T17:19:18+00:00', 'date': '2020-12-30T17:24:11', 'date\_gmt': '2020-12-30T17:24:11', 'modified': '2025-02-02T12:19:18', 'modified\_gmt': '2025-02-02T17:19:18'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/99'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[180\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[180\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[180\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-99.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[11\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[11\]
+201. **Website Development Agreement** — `doc-876f457b3710117c4078` — document
+   - URL: https://cyberizegroup.com/website-development-agreement/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2018-05-01T09:41:53', 'date\_gmt': '2018-05-01T13:41:53', 'modified': '2021-03-22T14:06:48', 'modified\_gmt': '2021-03-22T18:06:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/5044'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-5044.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[33\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[33\]
+202. **What is a PPC Agency? A Guide to Understanding Paid Advertising** — `doc-38f22e14b43abfff185e` — document
+   - URL: https://cyberizegroup.com/what-is-a-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-10-08T10:08:22+00:00', 'date': '2023-04-21T04:31:29', 'date\_gmt': '2023-04-21T08:31:29', 'modified': '2024-10-08T06:08:22', 'modified\_gmt': '2024-10-08T10:08:22'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9023'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[114\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[114\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[114\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9023.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[52\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[194\]
+203. **What is a Sitemap and How to Create One for Your Website** — `doc-d45ad4705b91bb77360c` — document
+   - URL: https://cyberizegroup.com/what-is-a-sitemap-and-how-to-create-one-for-your-website/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T18:00:12+00:00', 'date': '2024-10-10T06:41:26', 'date\_gmt': '2024-10-10T10:41:26', 'modified': '2025-01-26T13:00:12', 'modified\_gmt': '2025-01-26T18:00:12'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9657'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[134\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[134\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[134\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9657.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[6\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[48\]
+204. **What is PPC? A Guide to Pay-Per-Click Advertising** — `doc-6609adb6409d007c81a1` — document
+   - URL: https://cyberizegroup.com/what-is-ppc/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-03-04T10:55:03+00:00', 'date': '2023-04-19T03:35:25', 'date\_gmt': '2023-04-19T07:35:25', 'modified': '2024-03-04T05:55:03', 'modified\_gmt': '2024-03-04T10:55:03'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9014'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[20\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[20\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[20\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9014.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[53\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[195\]
+205. **What is SEO Copywriting? A Guide to Writing SEO-Friendly Content** — `doc-add2f2c4b1212a80e221` — document
+   - URL: https://cyberizegroup.com/what-is-seo-copywriting/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2024-12-03T16:23:37+00:00', 'date': '2023-11-15T04:39:32', 'date\_gmt': '2023-11-15T09:39:32', 'modified': '2024-12-03T11:23:37', 'modified\_gmt': '2024-12-03T16:23:37'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9524'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[128\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[128\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[128\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9524.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[10\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[152\]
+206. **Unlocking the Value of Pay-Per-Click Advertising: What to Expect from a PPC Agency** — `doc-3fdbfc24b135de38ab20` — document
+   - URL: https://cyberizegroup.com/what-to-expect-from-a-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-04-27T13:49:48+00:00', 'fetched\_at': '2026-10-05T14:13:20+00:00', 'date': '2023-04-24T06:08:26', 'date\_gmt': '2023-04-24T10:08:26', 'modified': '2023-04-27T09:49:48', 'modified\_gmt': '2023-04-27T13:49:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9127'\]
+   - Gaps: content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[8\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[8\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[8\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com-what-to-expect-from-a-ppc-agency.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9127.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[51\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[193\]
+207. **What to Look for in a PPC Agency: A Guide to Maximizing Your ROI** — `doc-6df02951174690297ec3` — document
+   - URL: https://cyberizegroup.com/what-to-look-for-in-ppc-agency/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2023-04-25T14:37:10+00:00', 'fetched\_at': '2026-10-05T14:12:04+00:00', 'date': '2023-04-24T08:18:00', 'date\_gmt': '2023-04-24T12:18:00', 'modified': '2023-04-25T10:37:10', 'modified\_gmt': '2023-04-25T14:37:10'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9134'\]
+   - Gaps: content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[2\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[2\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[2\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/html/cyberizegroup-com-what-to-look-for-in-ppc-agency.html — rendered HTML; not REST content
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9134.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[50\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[192\]
+208. **Make Your WordPress Site Accessible with the Best Plugins** — `doc-f78b20a941a06e9cc7e1` — document
+   - URL: https://cyberizegroup.com/wordpress-accessibility-plugin/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T20:00:15+00:00', 'date': '2024-07-02T07:03:49', 'date\_gmt': '2024-07-02T11:03:49', 'modified': '2025-01-26T15:00:15', 'modified\_gmt': '2025-01-26T20:00:15'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9582'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[153\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[153\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[153\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9582.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[51\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[93\]
+209. **Master WordPress Management with These Step-by-Step Tutorials** — `doc-875b4d9827db8e3077e4` — document
+   - URL: https://cyberizegroup.com/wordpress-management-tutorials/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:24:48+00:00', 'date': '2024-07-02T07:02:02', 'date\_gmt': '2024-07-02T11:02:02', 'modified': '2025-01-26T14:24:48', 'modified\_gmt': '2025-01-26T19:24:48'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9572'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[148\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[148\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[148\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9572.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[53\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[95\]
+210. **The Best WordPress Privacy Policy Plugin for Your Website** — `doc-25d6f94af2e5a349ad0a` — document
+   - URL: https://cyberizegroup.com/wordpress-privacy-policy-plugin/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:50:06+00:00', 'date': '2023-11-28T04:08:02', 'date\_gmt': '2023-11-28T09:08:02', 'modified': '2025-01-26T14:50:06', 'modified\_gmt': '2025-01-26T19:50:06'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9587'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[151\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[151\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[151\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9587.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[8\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[150\]
+211. **WordPress Support Options** — `doc-1c23994a8f200bc6ba60` — document
+   - URL: https://cyberizegroup.com/wordpress-support-options/
+   - HTTP content type: unknown; WordPress type: page; dates: {'sitemap\_lastmod': '2025-02-02T18:27:03+00:00', 'date': '2021-03-10T16:35:44', 'date\_gmt': '2021-03-10T21:35:44', 'modified': '2025-02-02T13:27:03', 'modified\_gmt': '2025-02-02T18:27:03'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/8283'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[183\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/page-sitemap.xml — route source; see $.routes\[183\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[183\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-8283.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[5\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[5\]
+212. **WordPress Support – E5** — `doc-5dfafefb84d8e894c679` — document
+   - URL: https://cyberizegroup.com/wordpress-support/
+   - HTTP content type: unknown; WordPress type: page; dates: {'date': '2020-09-28T09:56:37', 'date\_gmt': '2020-09-28T13:56:37', 'modified': '2023-06-28T15:55:39', 'modified\_gmt': '2023-06-28T19:55:39'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/pages/7626'\]
+   - Gaps: content\_type\_unknown, rendered\_capture\_not\_selected\_or\_not\_known.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/pages-7626.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/pages-1.body — $\[18\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[18\]
+213. **WordPress Tutorial for Beginners: Step-by-Step Guide to Create a Website** — `doc-4ce27b38422ca32a8ff6` — document
+   - URL: https://cyberizegroup.com/wordpress-tutorial-for-beginners/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:22:55+00:00', 'date': '2024-07-02T07:00:40', 'date\_gmt': '2024-07-02T11:00:40', 'modified': '2025-01-26T14:22:55', 'modified\_gmt': '2025-01-26T19:22:55'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9564'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[147\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[147\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[147\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9564.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[54\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[96\]
+214. **WordPress Tutorial for Developers: A Step-by-Step Guide** — `doc-75bf7823282ea392cdf6` — document
+   - URL: https://cyberizegroup.com/wordpress-tutorial-for-developers/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T20:22:06+00:00', 'date': '2023-08-10T15:23:34', 'date\_gmt': '2023-08-10T19:23:34', 'modified': '2025-01-26T15:22:06', 'modified\_gmt': '2025-01-26T20:22:06'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9568'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[158\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[158\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[158\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9568.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-2.body — $\[27\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[169\]
+215. **\[title unknown\]** — `doc-7b239b9b5b330f287435` — document
+   - URL: https://cyberizegroup.com/wordpress-tutorials/
+   - HTTP content type: unknown; WordPress type: unknown; dates: {'sitemap\_lastmod': '2025-01-26T20:22:06+00:00'}
+   - REST item scope: not established
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped, title\_unknown, wordpress\_content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[193\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/category-sitemap.xml — route source; see $.routes\[193\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[193\]
+216. **Build a Professional WordPress Website in Minutes – No Coding Required!** — `doc-85a4bb53733de96733a9` — document
+   - URL: https://cyberizegroup.com/wordpress-website-builder/
+   - HTTP content type: unknown; WordPress type: post; dates: {'sitemap\_lastmod': '2025-01-26T19:52:55+00:00', 'date': '2024-07-02T07:03:15', 'date\_gmt': '2024-07-02T11:03:15', 'modified': '2025-01-26T14:52:55', 'modified\_gmt': '2025-01-26T19:52:55'}
+   - REST item scope: \['https://cyberizegroup.com/wp-json/wp/v2/posts/9576'\]
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[152\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/post-sitemap.xml — route source; see $.routes\[152\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[152\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/objects/posts-9576.json — $
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/responses/posts-1.body — $\[52\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/rest/index.json — $.objects\[94\]
+217. **\[title unknown\]** — `doc-dcc35cbbc720562b450b` — document
+   - URL: https://cyberizegroup.com/wordpress/
+   - HTTP content type: unknown; WordPress type: unknown; dates: {'sitemap\_lastmod': '2025-01-26T20:00:15+00:00'}
+   - REST item scope: not established
+   - Gaps: content\_type\_unknown, rendered\_html\_skipped, title\_unknown, wordpress\_content\_type\_unknown.
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/routes.json — $.routes\[192\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/discovery/category-sitemap.xml — route source; see $.routes\[192\]
+   - Evidence: /home/moose/PYTHON/stark-web-factory-scrapper-v1/outputs/CyberizeGroup/runs/2026-10-05T14-10-49Z/manifest.json — $.pages\[192\]

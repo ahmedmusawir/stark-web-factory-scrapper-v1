@@ -1,0 +1,475 @@
+diff --git a/smart_crawler/browser_session.py b/smart_crawler/browser_session.py
+index 9f895d5..a3bc170 100644
+--- a/smart_crawler/browser_session.py
++++ b/smart_crawler/browser_session.py
+@@ -4,6 +4,7 @@ No alternate HTTP client. Crawl4AI hooks provide all browser objects. Events for
+ incidental resources are separate from intentional admission/pacing evidence.
+ """
+ import asyncio
++import base64
+ import hashlib
+ import json
+ from pathlib import Path
+@@ -282,7 +283,13 @@ class BrowserSession:
+         self.cdp.on('Network.loadingFailed', self.network_failed)
+         self.cdp.on('Network.responseReceived', self.network_response)
+         await self.cdp.send('Network.enable')
+-        await self.cdp.send('Fetch.enable', {'patterns':[{'urlPattern':'*','requestStage':'Request'}]})
++        # Own only navigation and browser reads. Chromium can label window.fetch
++        # XHR here while Network reports Fetch, so retain both resource types.
++        # Match every URL: intentional redirect scope is checked before dispatch.
++        # Other resources keep the context guard and passive Network observers.
++        await self.cdp.send('Fetch.enable', {'patterns':[
++            {'urlPattern':'*','resourceType':kind,'requestStage':'Request'}
++            for kind in ('Document','Fetch','XHR')]})
+         self.event('controls_installed', transport='Chromium CDP Fetch.requestPaused')
+         return page
+ 
+@@ -385,7 +392,9 @@ class BrowserSession:
+         identity = {'network_id': params['requestId'], 'frame_id': params.get('frameId'),
+                     'resource_type': params.get('type'), 'loader_id': params.get('loaderId'),
+                     'initiator_type': params.get('initiator', {}).get('type'),
+-                    'initiator_script_id': frames[0].get('scriptId') if frames else None}
++                    'initiator_script_id': frames[0].get('scriptId') if frames else None,
++                    'method': params['request']['method'],
++                    'redirect_from': params.get('redirectResponse', {}).get('url')}
+         self.network_requests[(params['requestId'], params['request']['url'])] = identity
+         redirect = params.get('redirectResponse')
+         # Chromium marks redirect completion on the Network redirect transition.
+@@ -404,7 +413,7 @@ class BrowserSession:
+                 self.op.redirect_transition = (params['requestId'], predecessor,
+                                                params['request']['url'], time.monotonic())
+         self.event('cdp_request_will_be_sent', request_id=params['requestId'],
+-                   url=params['request']['url'], redirect_from=redirect['url'] if redirect else None,
++                   url=params['request']['url'],
+                    redirect_status=redirect['status'] if redirect else None,
+                    browser_timestamp=params['timestamp'], **identity)
+ 
+@@ -506,6 +515,64 @@ class BrowserSession:
+             raise CollectionStopped(self.stop_reason)
+         return identity
+ 
++    async def redirect_identity(self, params, op):
++        """Resolve an owned redirect without inventing Chrome's native parent ID."""
++        entry = self.interceptions[params['requestId']]
++        network_id, url = params.get('networkId'), params['request']['url']
++        native_parent = params.get('redirectedRequestId')
++        previous = getattr(op, 'network_ids', {}).get(network_id)
++        deadline = min(getattr(op, 'redirect_deadline', op.started + self.bounds.read_seconds),
++                       self.started + self.bounds.seconds - self.bounds.finalization_reserve)
++        def refuse():
++            self.stop('ambiguous_redirect_identity')
++            raise CollectionStopped(self.stop_reason)
++        if (op is not self.op or self.closing or entry.operation is not op or
++                entry.owner is not self.cdp or entry.owner is not self.interception_owner or
++                not previous or params.get('frameId') != self.main_frame or
++                params['resourceType'] not in (('Document',) if op.kind == 'document' else ('Fetch','XHR')) or
++                params['request']['method'] != op.method):
++            refuse()
++        candidates = [rid for rid, old_url in getattr(op, 'fetch_ids', {}).items()
++                      if old_url == previous and rid in self.interceptions and
++                      self.interceptions[rid].details['network_id'] == network_id and
++                      self.interceptions[rid].operation is op and
++                      self.interceptions[rid].owner is entry.owner and
++                      self.interceptions[rid].classification == 'intentional']
++        if len(candidates) != 1 or (native_parent is not None and native_parent != candidates[0]):
++            refuse()
++        parent = candidates[0]
++        self.event('redirect_identity_wait', **entry.details, previous_url=previous, next_url=url,
++                   correlation_deadline=deadline)
++        while True:
++            if self.stop_reason:
++                raise CollectionStopped(self.stop_reason)
++            if op is not self.op or self.closing or time.monotonic() >= deadline:
++                refuse()
++            identity = self.network_requests.get((network_id, url))
++            transition = getattr(op, 'redirect_transition', None)
++            if identity:
++                compatible = (identity['resource_type'] == params['resourceType'] or
++                              (params['resourceType'],identity['resource_type']) == ('XHR','Fetch'))
++                if (not compatible or identity['frame_id'] != params.get('frameId') or
++                        identity['method'] != op.method or identity['redirect_from'] != previous):
++                    refuse()
++                if transition and transition[:3] == (network_id, previous, url):
++                    if self.interceptions[parent].state != 'resolved':
++                        # The prior continue command may still be returning while
++                        # native Network/Fetch callbacks deliver its redirect.
++                        if self.interceptions[parent].state != 'resolving': refuse()
++                    else:
++                        source = ('native_fetch_parent+network_transition' if native_parent else
++                                  'owned_network_transition_missing_fetch_parent')
++                        self.event('redirect_identity_resolved', **entry.details,
++                                   resolved_predecessor=parent, correlation_source=source,
++                                   previous_url=previous, next_url=url, completed=transition[3])
++                        return {**identity,'resolved_predecessor':parent,'correlation_source':source,
++                                'redirect_completed':transition[3]}
++                elif transition and transition[0] == network_id and transition[2] == url:
++                    refuse()
++            await asyncio.sleep(.001)
++
+     async def admission_kind(self, params, op):
+         parent = params.get('redirectedRequestId')
+         if not op:
+@@ -514,6 +581,9 @@ class BrowserSession:
+         frame = params.get('frameId')
+         expected_resources = ('Document',) if op.kind == 'document' else ('Fetch', 'XHR')
+         related = parent in getattr(op, 'fetch_ids', {})
++        owned_network = params.get('networkId') in getattr(op, 'network_ids', {})
++        if related or owned_network:
++            return 'intentional', await self.redirect_identity(params, op)
+         matches = params['request']['url'] == op.url and params['request']['method'] == op.method
+         if not related and not matches:
+             return 'incidental', None
+@@ -523,12 +593,6 @@ class BrowserSession:
+                 raise CollectionStopped(self.stop_reason)
+             return 'incidental', None
+         identity = await self.request_identity(params, op)
+-        if related:
+-            predecessor = op.fetch_ids[parent]
+-            if op.network_ids.get(identity['network_id']) != predecessor:
+-                self.stop('ambiguous_redirect_identity')
+-                raise CollectionStopped(self.stop_reason)
+-            return 'intentional', identity
+         if op.kind == 'read':
+             script = identity['initiator_script_id']
+             if not script or not op.script_id:
+@@ -557,6 +621,9 @@ class BrowserSession:
+         try:
+             classification, identity = await self.admission_kind(params, op)
+             entry.classification = classification
++            if identity and identity.get('resolved_predecessor'):
++                parent = identity['resolved_predecessor']
++                details.update(resolved_predecessor=parent, correlation_source=identity['correlation_source'])
+             intended = classification == 'intentional'
+             self.event('request_classified', url=url, method=method, classification=classification,
+                        initiator_script_id=identity.get('initiator_script_id') if identity else None,
+@@ -632,6 +699,7 @@ class BrowserSession:
+         except CollectionStopped as exc:
+             if op and classification != 'incidental':
+                 op.error = op.error or str(exc)
++                op.admission_error = op.error
+             self.event(classification+'_prevented', url=url, reason=str(exc), **details)
+             await self.resolve_interception(entry, 'Fetch.failRequest')
+         except Exception as exc:
+@@ -671,6 +739,7 @@ class BrowserSession:
+             self.documents += 1
+             self.op = self.new_operation(url,'GET','document')
+             self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=time.monotonic()+self.timeout(self.bounds.document_seconds))
++            outcome = 'failure'
+             try:
+                 record = await asyncio.wait_for(crawl_page(self.crawler,url,session_id=self.session_id),
+                                                 timeout=self.timeout(self.bounds.document_seconds))
+@@ -684,13 +753,25 @@ class BrowserSession:
+                     record.update(ok=False, fetched=False, error='blocked' if self.stop_reason and
+                                   ('http_' in self.stop_reason or 'challenge' in self.stop_reason or 'block_document' in self.stop_reason)
+                                   else op.error or self.stop_reason)
++                outcome = 'success' if record.get('ok') else 'failure'
++                op.error = op.error or record.get('error') or self.stop_reason
+                 return record
++            except asyncio.CancelledError:
++                outcome = 'cancelled'
++                self.stop('document_cancelled')
++                self.op.error = self.stop_reason
++                raise
+             except asyncio.TimeoutError:
+                 self.stop('document_deadline')
++                self.op.error = self.stop_reason
+                 raise CollectionStopped(self.stop_reason)
++            except Exception:
++                self.op.error = self.op.error or self.stop_reason or 'document_failed'
++                raise
+             finally:
+                 self.last_completion = time.monotonic()
+-                self.event('operation_complete', url=url, kind='document', operation_id=self.op.operation_id, error=self.op.error)
++                self.event('operation_complete', url=url, kind='document', operation_id=self.op.operation_id,
++                           outcome=outcome, error=self.op.error)
+                 self.op = None
+ 
+     def new_operation(self, url, method, kind):
+@@ -698,6 +779,7 @@ class BrowserSession:
+         return Operation(url, method, kind, operation_id=f'op-{self.operation_sequence}')
+ 
+     async def correlated_read(self, expression):
++        self.event('read_setup_start', operation_id=self.op.operation_id)
+         await self.cdp.send('Runtime.enable')
+         world = await self.cdp.send('Page.createIsolatedWorld', {
+             'frameId': self.main_frame, 'worldName': 'abm-read-identity',
+@@ -724,6 +806,7 @@ class BrowserSession:
+     async def run_read_script(self, op):
+         # The native initiator's top scriptId must match the compiled script, not
+         # its spoofable sourceURL. Nothing is added to HTTP headers or URLs.
++        self.event('read_script_started', operation_id=op.operation_id)
+         return await self.cdp.send('Runtime.runScript', {
+             'scriptId': op.script_id, 'executionContextId': op.context_id,
+             'awaitPromise': True, 'returnByValue': True})
+@@ -738,42 +821,86 @@ class BrowserSession:
+             if not self.scoped(url):
+                 raise CollectionStopped('off_scope')
+             self.op = self.new_operation(url,method,'read')
+-            self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=time.monotonic()+self.timeout(self.bounds.read_seconds))
++            # One operation boundary, shared with the unchanged hard supervisor.
++            # Setup and pacing consume this budget. Reserve time *inside* it for
++            # the browser's partial result, then Python failure handoff. No grace
++            # period extends the 30-second collection ceiling.
++            read_timeout = self.timeout(self.bounds.read_seconds)
++            deadline = time.monotonic() + read_timeout
++            handoff = min(1.0, read_timeout / 10)
++            python_margin = min(0.25, read_timeout / 40)
++            self.event('operation_start', url=url, operation_id=self.op.operation_id, deadline=deadline)
++            self.event('read_abort_deadline', operation_id=self.op.operation_id, deadline=deadline-handoff)
++            self.op.redirect_deadline = deadline-handoff
++            outcome = 'failure'
+             try:
+-                read_timeout=self.timeout(self.bounds.read_seconds)
++                # Same-host wall time only anchors the cooperative JS timer;
++                # Python and supervisor hard limits remain monotonic. Computing
++                # an absolute cutoff prevents CDP setup from restarting a timer.
+                 args = {'url':url,'method':method,'cap':self.bounds.response_bytes,
+-                        'timeout':max(1,int(read_timeout*1000)-100)}
+-                expression = '(' + '''async ({url,method,cap,timeout}) => {
+-                    const ctl = new AbortController(); const timer=setTimeout(()=>ctl.abort(),timeout);
++                        'abortAt':(time.time()+deadline-time.monotonic()-handoff)*1000}
++                expression = '(' + '''async ({url,method,cap,abortAt}) => {
++                    const ctl = new AbortController(); let timedOut=false;
++                    const abort=()=>{timedOut=true;ctl.abort();};
++                    const remaining=abortAt-Date.now();
++                    const timer=remaining>0 ? setTimeout(abort,remaining) : null;
++                    if(remaining<=0) abort();
+                     let chunks=[], count=0;
++                    // Keep the CDP result compact. Bounded binary-to-base64
++                    // blocks preserve bytes without a JSON number per byte or
++                    // an unbounded spread argument list. The decoded cap below
++                    // remains authoritative; Unicode is never re-encoded here.
++                    const append = value => {
++                        for(let offset=0;offset<value.length;offset+=32768) {
++                            chunks.push(btoa(String.fromCharCode(...value.subarray(offset,offset+32768))));
++                        }
++                    };
+                     try {
+                         const r=await window.fetch(url,{method,redirect:'follow',signal:ctl.signal});
+                         if(r.body) { const reader=r.body.getReader();
+                             while(true) { const {done,value}=await reader.read(); if(done) break;
+-                                const room=cap-count; chunks.push(Array.from(value.slice(0,room)));
++                                const room=cap-count; append(value.subarray(0,room));
+                                 count+=Math.min(value.length,room);
+                                 if(value.length>room) { await reader.cancel(); ctl.abort();
+                                     return {status:r.status,url:r.url,chunks,bytes:count,incomplete:true,error:'response_limit'}; }
+                             }
+                         }
+                         return {status:r.status,url:r.url,chunks,bytes:count,incomplete:false};
+-                    } catch(e) { return {chunks,bytes:count,incomplete:true,error:e.name}; }
++                    } catch(e) { return {chunks,bytes:count,incomplete:true,error:timedOut?'read_deadline':e.name}; }
+                     finally { clearTimeout(timer); }
+                 }''' + ')(' + json.dumps(args) + ')'
+-                result = await asyncio.wait_for(self.correlated_read(expression), read_timeout)
+-                body = bytes(x for chunk in result.pop('chunks') for x in chunk)
++                async with asyncio.timeout_at(deadline-python_margin):
++                    result = await self.correlated_read(expression)
++                self.event('read_result_received', operation_id=self.op.operation_id,
++                           bytes=result['bytes'], incomplete=result['incomplete'], error=result.get('error'))
++                body = b''.join(base64.b64decode(chunk,validate=True) for chunk in result.pop('chunks'))
+                 result.update(body=body,sha256=hashlib.sha256(body).hexdigest(),headers=dict(self.op.response_headers),
+                               redirect_chain=list(self.op.chain),transport='Chromium same-page window.fetch / Response.body.getReader',
+-                              boundary='browser-decoded entity bytes',error=result.get('error') or self.op.error)
++                              boundary='browser-decoded entity bytes',
++                              error=getattr(self.op,'admission_error',None) or result.get('error') or self.op.error)
+                 if result.get('error'):
+                     result['incomplete'] = True
+                 reason = challenge_reason(result.get('status'), result['headers'], body.decode('utf-8',errors='replace'))
+                 if reason: self.stop(reason)
+                 if result.get('incomplete'): self.stop(result.get('error') or 'incomplete_response')
++                self.op.error = self.stop_reason or result.get('error') or self.op.error
++                outcome = 'success' if not result['incomplete'] and not self.op.error else 'failure'
+                 return result
++            except asyncio.CancelledError:
++                outcome = 'cancelled'
++                self.stop('read_cancelled')
++                self.op.error = self.stop_reason
++                # External task/SIGINT cancellation is not a successful read.
++                # Closing the existing page stops its pending fetch; never issue
++                # a replacement HTTP request or retry a resolved interception.
++                if self.page and not self.page.is_closed():self.spawn(self.page.close())
++                raise
+             except Exception as exc:
+-                error=self.op.error or ('read_deadline' if isinstance(exc,asyncio.TimeoutError) else 'browser_read_failed')
++                error=self.stop_reason or self.op.error or ('read_deadline' if isinstance(exc,asyncio.TimeoutError) else 'browser_read_failed')
+                 self.stop(error)
++                self.op.error = self.stop_reason
++                if isinstance(exc,asyncio.TimeoutError) and self.page and not self.page.is_closed():
++                    self.spawn(self.page.close())
+                 return {'body':b'', 'bytes':0,'sha256':hashlib.sha256(b'').hexdigest(),
+                         'status':self.op.status,'url':self.op.final_url,'headers':dict(self.op.response_headers),
+                         'redirect_chain':list(self.op.chain),'incomplete':True,'error':error,
+@@ -782,5 +909,6 @@ class BrowserSession:
+                         'evidence_gap':'browser read interrupted before available chunks returned'}
+             finally:
+                 self.last_completion = time.monotonic()
+-                self.event('operation_complete', url=url, kind='read', operation_id=self.op.operation_id, error=self.op.error)
++                self.event('operation_complete', url=url, kind='read', operation_id=self.op.operation_id,
++                           outcome=outcome, error=self.op.error)
+                 self.op = None
+diff --git a/tests/fixture_server.py b/tests/fixture_server.py
+index b9b82e2..9fbe414 100644
+--- a/tests/fixture_server.py
++++ b/tests/fixture_server.py
+@@ -12,7 +12,7 @@ ENTITY = b'[ {"id": 1, "link": "http://127.0.0.1/article/", "content": {"rendere
+ 
+ 
+ @contextmanager
+-def fixture_server(*, mode=None, port=0, variant="complete"):
++def fixture_server(*, mode=None, port=0, variant="complete", sitemap_delay=0, body_responses=None):
+     timeline=[]
+     identity_reads={}
+     class Handler(BaseHTTPRequestHandler):
+@@ -25,6 +25,8 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
+             self.rfile.read(int(self.headers.get('Content-Length','0')))
+             self.respond(204,b'',{})
+         def do_HEAD(self):
++            if self.path=='/boundary-denied':
++                return self.respond(302,b'',{'Location':f'http://localhost:{self.server.server_port}/never-boundary'})
+             if self.path=='/read-identity':
+                 return self.identity_read()
+             if mode=='pipeline' and self.path=='/image.png':
+@@ -35,6 +37,38 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
+                 return self.respond(429,b'',{'Retry-After':'42'})
+             self.respond(200,b'',{'Content-Type':'image/png','Content-Length':'4096'})
+         def do_GET(self):
++            if self.path=='/boundary-denied':
++                return self.respond(302,b'',{'Location':f'http://localhost:{self.server.server_port}/never-boundary'})
++            if self.path=='/boundary':
++                body=ARTICLE.replace(b'</head>',b'<link rel="stylesheet" href="/boundary.css"><script src="/boundary.js"></script></head>')
++                body=body.replace(b'</body>',b'<img id="boundary-image" src="/boundary.png"></body>')
++                return self.respond(200,body,{'Content-Type':'text/html'})
++            if self.path=='/boundary.css':
++                return self.respond(200,b'body { color: rgb(12, 34, 56); }',{'Content-Type':'text/css'})
++            if self.path=='/boundary.js':
++                return self.respond(200,b'window.boundaryScript=true;',{'Content-Type':'application/javascript'})
++            if self.path=='/boundary.png':
++                return self.respond(200,fixture_png(),{'Content-Type':'image/png'})
++            if self.path.startswith('/boundary-cancel.png'):
++                return self.respond(200,fixture_png(),{'Content-Type':'image/png'},delay=10,prefix=8)
++            if body_responses and self.path in body_responses:
++                return self.respond(200,body_responses[self.path],{'Content-Type':'application/json; charset=UTF-8',
++                    'X-WP-Total':'100','X-WP-TotalPages':'1'})
++            if self.path=='/handoff-activity':
++                # Public, deterministic loopback traffic; no interaction or form submission.
++                body=ARTICLE.replace(b'</body>',b'''<script>
++                for(let i=0;i<12;i++) {
++                  fetch('/activity-read?i='+i);
++                  let x=new XMLHttpRequest();x.open('GET','/activity-xhr?i='+i);x.send();
++                  let img=new Image();img.src='/activity-image?i='+i;document.body.append(img);
++                }
++                fetch('/activity-beacon',{method:'POST',body:'synthetic telemetry'});
++                </script></body>''')
++                return self.respond(200,body,{'Content-Type':'text/html'})
++            if self.path.startswith('/activity-image'):
++                return self.respond(200,fixture_png(),{'Content-Type':'image/png'})
++            if self.path.startswith('/activity-'):
++                return self.respond(200,b'public fixture background',{'Content-Type':'text/plain'})
+             if self.path=='/read-identity':
+                 return self.identity_read()
+             if self.path.startswith('/identity/'):
+@@ -70,7 +104,7 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
+                 if self.path=='/robots.txt':
+                     return self.respond(200,('User-agent: *\nDisallow: /private/\nSitemap: '+origin+'/sitemap.xml\n').encode(),{'Content-Type':'text/plain'})
+                 if self.path=='/sitemap.xml':
+-                    return self.respond(200,('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>'+origin+'/pages.xml</loc></sitemap><sitemap><loc>'+origin+'/aliases.xml</loc></sitemap></sitemapindex>').encode(),{'Content-Type':'application/xml'})
++                    return self.respond(200,('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>'+origin+'/pages.xml</loc></sitemap><sitemap><loc>'+origin+'/aliases.xml</loc></sitemap></sitemapindex>').encode(),{'Content-Type':'application/xml'},delay=sitemap_delay,prefix=64 if sitemap_delay else 0)
+                 if self.path in ('/pages.xml','/aliases.xml'):
+                     paths=HEALTHY_PATHS+(['/missing/'] if variant=='base' else []) if self.path=='/pages.xml' else ['/about/?utm_source=alias']
+                     return self.respond(200,('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+origin+x+'</loc></url>' for x in paths)+'</urlset>').encode(),{'Content-Type':'application/xml'})
+@@ -124,6 +158,8 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
+                 try:
+                     self.wfile.write(b'a'*2048);self.wfile.flush();self.emit('body_sent',bytes=4096)
+                 except (BrokenPipeError,ConnectionResetError):self.emit('browser_closed_connection')
++            elif self.path=='/deadline-stream':
++                self.respond(200,b'a'*4096,{'Content-Type':'text/plain'},delay=40,prefix=2048)
+             elif self.path.startswith('/large'):
+                 self.respond(200,b'a'*4096,{})
+             else:
+@@ -134,15 +170,17 @@ def fixture_server(*, mode=None, port=0, variant="complete"):
+             # fixture order, never an identification header/query on the request.
+             self.respond(403 if count==1 else 200,b'' if self.command=='HEAD' else b'coordinator response',
+                          {'Content-Type':'text/plain'})
+-        def respond(self,status,body,headers,delay=0):
++        def respond(self,status,body,headers,delay=0,prefix=0):
+             self.emit('request_received',user_agent=self.headers.get('User-Agent'),resource_destination=self.headers.get('Sec-Fetch-Dest'))
+             self.send_response(status)
+             if 'Content-Length' not in headers: self.send_header('Content-Length',str(len(body)))
+             for k,v in headers.items(): self.send_header(k,v)
+             self.end_headers();self.wfile.flush();self.emit('headers_sent',status=status)
++            if prefix and self.command!='HEAD':
++                self.wfile.write(body[:prefix]);self.wfile.flush();self.emit('body_prefix_sent',bytes=prefix)
+             if delay: time.sleep(delay)
+             try:
+-                if self.command!='HEAD': self.wfile.write(body);self.wfile.flush()
++                if self.command!='HEAD': self.wfile.write(body[prefix:]);self.wfile.flush()
+                 self.emit('body_sent',bytes=len(body))
+             except (BrokenPipeError, ConnectionResetError): self.emit('browser_closed_connection')
+     server=ThreadingHTTPServer(('127.0.0.1',port),Handler)
+diff --git a/tests/test_interception_lifecycle.py b/tests/test_interception_lifecycle.py
+index 9e23adc..e26d0af 100644
+--- a/tests/test_interception_lifecycle.py
++++ b/tests/test_interception_lifecycle.py
+@@ -104,7 +104,10 @@ def test_native_intentional_cancellation_never_succeeds(tmp_path,kind):
+     class CanceledIntentional(NativeCancellation):
+         async def correlated_read(self, expression):
+             # Native AbortController; change only the fixture abort timing.
+-            return await super().correlated_read(expression.replace('ctl.abort(),timeout','ctl.abort(),300'))
++            marker='if(remaining<=0) abort();'
++            assert marker in expression, 'Native cancellation injection must bind the current script'
++            return await super().correlated_read(expression.replace(marker,
++                marker+' setTimeout(()=>ctl.abort(),300);'))
+     with fixture_server() as (origin,timeline):
+         async def exercise():
+             s=CanceledIntentional(origin,bounds=Bounds(seconds=60,finalization_reserve=5),
+diff --git a/tests/test_request_identity.py b/tests/test_request_identity.py
+index 2d54060..b19b0ef 100644
+--- a/tests/test_request_identity.py
++++ b/tests/test_request_identity.py
+@@ -20,6 +20,9 @@ def test_same_url_document_background_is_incidental(tmp_path,kind):
+                     requests=[e for e in session.events if e['event']=='browser_request']
+                     assert any(e['resource_type']==kind for e in requests)
+                     assert len([e for e in timeline if e['event']=='request_received'])==2
++                    if kind in ('stylesheet','image'):
++                        assert not any(e['event']=='request_classified' and
++                                       e['resource_type'].lower()==kind for e in session.events)
+             finally:retain(tmp_path,'same-url-'+kind,session,timeline)
+         asyncio.run(exercise())
+ 
+@@ -53,6 +56,7 @@ def test_read_cannot_be_impersonated(tmp_path,method,background):
+                     assert [e['classification'] for e in rows]==['incidental','intentional']
+                     assert rows[0]['initiator_script_id']!=rows[1]['initiator_script_id']
+                     assert rows[0]['frame_id']==rows[1]['frame_id']==session.main_frame
++                    assert (rows[1]['resource_type'],rows[1]['network_resource_type'])==('XHR','Fetch')
+                     if background=='fetch':
+                         assert rows[0]['resource_type']==rows[1]['resource_type']
+                         assert rows[0]['network_resource_type']==rows[1]['network_resource_type']=='Fetch'
+@@ -119,22 +123,22 @@ def test_genuine_second_document_is_prevented(tmp_path):
+ 
+ 
+ def test_sticky_stop_names_incidental_prevention(tmp_path):
+-    class StopBeforeStyle(BrowserSession):
++    class StopBeforeFetch(BrowserSession):
+         async def paused(self,params):
+-            if params['resourceType']=='Stylesheet':
++            if params['resourceType'] in ('Fetch','XHR'):
+                 self.stop('fixture_forced_stop')
+             await super().paused(params)
+     with fixture_server() as (origin,timeline):
+         async def exercise():
+-            session=StopBeforeStyle(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
++            session=StopBeforeFetch(origin,bounds=Bounds(seconds=45,finalization_reserve=5),
+                                     runtime_dir=tmp_path/'runtime',loopback_only=True)
+             try:
+                 async with session:
+-                    result=await session.capture(origin+'/identity/stylesheet')
++                    result=await session.capture(origin+'/identity/fetch')
+                     assert not result['ok'] and session.stop_reason=='fixture_forced_stop'
+                     assert session.dispatches==1
+                     assert len([e for e in timeline if e['event']=='request_received'])==1
+-                    assert any(e['event']=='incidental_prevented' and e['resource_type']=='Stylesheet' for e in session.events)
++                    assert any(e['event']=='incidental_prevented' and e['resource_type'] in ('Fetch','XHR') for e in session.events)
+                     assert not any(e['event']=='intentional_prevented' for e in session.events)
+             finally:retain(tmp_path,'incidental-sticky-prevention',session,timeline)
+         asyncio.run(exercise())

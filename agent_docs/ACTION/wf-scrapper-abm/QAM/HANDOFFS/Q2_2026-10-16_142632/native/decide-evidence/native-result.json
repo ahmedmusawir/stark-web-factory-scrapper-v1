@@ -1,0 +1,308 @@
+{
+  "inventory": {
+    "schema": "web-recon-review-v1",
+    "origin": "FRESH_BOUNDED_RECON",
+    "mode": "sitemap",
+    "created_at": "2026-10-16T08:35:42.988003+00:00",
+    "context": {
+      "base": "http://127.0.0.1:46527/",
+      "wp_api_base": "http://127.0.0.1:46527/wp-json/",
+      "bounds": {
+        "requests": 4,
+        "discovery_pages": 3,
+        "depth": 1,
+        "rest_pages_per_type": 1,
+        "per_page": 20,
+        "candidates": 5000,
+        "seconds": 300,
+        "gap_seconds": 0.05
+      },
+      "scope": "same-origin planned URLs; ordinary browser redirects/resources add traffic",
+      "purpose": "recon metadata only; never marks full collector tasks complete",
+      "known_collection": null,
+      "discovery_pages_read": 1
+    },
+    "items": [
+      {
+        "id": "doc-cd8009033468750f6f17",
+        "kind": "document",
+        "url": "http://127.0.0.1:46527/a",
+        "title": null,
+        "content_type": null,
+        "dates": {
+          "sitemap_lastmod": "2026-10-01"
+        },
+        "sources": [
+          {
+            "file": "evidence/0001.body",
+            "sha256": "4308cdc58cd48a32562d6ed7eb9cf662d30ceeade946a6004f55a0b80e28579a",
+            "discovered_from": "http://127.0.0.1:46527/s.xml",
+            "locator": "XML loc[0]"
+          },
+          {
+            "file": "evidence/0001.body",
+            "sha256": "4308cdc58cd48a32562d6ed7eb9cf662d30ceeade946a6004f55a0b80e28579a",
+            "discovered_from": "http://127.0.0.1:46527/s.xml",
+            "locator": "XML loc[1]"
+          }
+        ],
+        "rest_items": [],
+        "gaps": [
+          "content_type_unknown",
+          "title_unknown"
+        ],
+        "selection": "UNDECIDED",
+        "row": 1
+      },
+      {
+        "id": "doc-62e8bb9e3357815cd692",
+        "kind": "document",
+        "url": "http://127.0.0.1:46527/article-11945",
+        "title": "Article 11945",
+        "content_type": null,
+        "dates": {
+          "date": "2026-10-07T00:00:00"
+        },
+        "sources": [
+          {
+            "file": "evidence/0003.body",
+            "sha256": "4c269e4b1a22eddba58b3af803c3fa7878c189c8f7753358a4a0faebd989bc33",
+            "discovered_from": "http://127.0.0.1:46527/wp-json/wp/v2/posts?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+            "locator": "$[0]"
+          }
+        ],
+        "rest_items": [
+          {
+            "id": 11945,
+            "type": "post",
+            "url": "http://127.0.0.1:46527/wp-json/wp/v2/posts/11945"
+          }
+        ],
+        "gaps": [
+          "content_not_requested_in_recon",
+          "content_type_unknown"
+        ],
+        "selection": "UNDECIDED",
+        "wordpress_type": "post",
+        "row": 2
+      },
+      {
+        "id": "doc-a0f6b9df46e5a1d3d4c8",
+        "kind": "document",
+        "url": "http://127.0.0.1:46527/b",
+        "title": null,
+        "content_type": null,
+        "dates": {},
+        "sources": [
+          {
+            "file": "evidence/0001.body",
+            "sha256": "4308cdc58cd48a32562d6ed7eb9cf662d30ceeade946a6004f55a0b80e28579a",
+            "discovered_from": "http://127.0.0.1:46527/s.xml",
+            "locator": "XML loc[2]"
+          }
+        ],
+        "rest_items": [],
+        "gaps": [
+          "content_type_unknown",
+          "dates_unknown",
+          "title_unknown"
+        ],
+        "selection": "UNDECIDED",
+        "row": 3
+      },
+      {
+        "id": "rest-fadd59aa60fae8bc8b7d",
+        "kind": "rest_collection",
+        "url": "http://127.0.0.1:46527/wp-json/wp/v2/books",
+        "title": "REST collection: Books",
+        "content_type": null,
+        "dates": {},
+        "sources": [
+          {
+            "file": "evidence/0002.body",
+            "sha256": "66806bab460d4f23a3a79f6427dab2438b31b1eae43518863af53bb48cdfea9b",
+            "discovered_from": "http://127.0.0.1:46527/wp-json/wp/v2/types",
+            "locator": "types.book"
+          }
+        ],
+        "rest_items": [],
+        "gaps": [
+          "content_type_unknown",
+          "dates_unknown"
+        ],
+        "selection": "UNDECIDED",
+        "wordpress_type": "book",
+        "row": 4
+      },
+      {
+        "id": "rest-dd3855ee6731a2466283",
+        "kind": "rest_collection",
+        "url": "http://127.0.0.1:46527/wp-json/wp/v2/posts",
+        "title": "REST collection: Posts",
+        "content_type": null,
+        "dates": {},
+        "sources": [
+          {
+            "file": "evidence/0002.body",
+            "sha256": "66806bab460d4f23a3a79f6427dab2438b31b1eae43518863af53bb48cdfea9b",
+            "discovered_from": "http://127.0.0.1:46527/wp-json/wp/v2/types",
+            "locator": "types.post"
+          }
+        ],
+        "rest_items": [],
+        "gaps": [
+          "content_type_unknown",
+          "dates_unknown"
+        ],
+        "selection": "UNDECIDED",
+        "wordpress_type": "post",
+        "row": 5
+      }
+    ],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:46527/s.xml",
+        "purpose": "sitemap",
+        "started": 963017.750839917,
+        "preceding_completion": null,
+        "completed": 963018.173278035,
+        "status": 200,
+        "headers": {
+          "content-length": "242",
+          "content-type": "application/xml"
+        },
+        "final_url": "http://127.0.0.1:46527/s.xml",
+        "error": null,
+        "body_file": "evidence/0001.body",
+        "body_bytes": 242,
+        "sha256": "4308cdc58cd48a32562d6ed7eb9cf662d30ceeade946a6004f55a0b80e28579a",
+        "body_complete": true,
+        "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+        "redirect_from": []
+      },
+      {
+        "url": "http://127.0.0.1:46527/wp-json/wp/v2/types",
+        "purpose": "wp_types",
+        "started": 963018.224067757,
+        "preceding_completion": 963018.173278035,
+        "completed": 963018.471124436,
+        "status": 200,
+        "headers": {
+          "content-length": "152",
+          "content-type": "application/json"
+        },
+        "final_url": "http://127.0.0.1:46527/wp-json/wp/v2/types",
+        "error": null,
+        "body_file": "evidence/0002.body",
+        "body_bytes": 152,
+        "sha256": "66806bab460d4f23a3a79f6427dab2438b31b1eae43518863af53bb48cdfea9b",
+        "body_complete": true,
+        "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+        "redirect_from": []
+      },
+      {
+        "url": "http://127.0.0.1:46527/wp-json/wp/v2/posts?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+        "purpose": "wp_metadata:post",
+        "started": 963018.522210139,
+        "preceding_completion": 963018.471124436,
+        "completed": 963018.813379973,
+        "status": 200,
+        "headers": {
+          "content-length": "150",
+          "content-type": "application/json",
+          "x-wp-total": "166",
+          "x-wp-totalpages": "9"
+        },
+        "final_url": "http://127.0.0.1:46527/wp-json/wp/v2/posts?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+        "error": null,
+        "body_file": "evidence/0003.body",
+        "body_bytes": 150,
+        "sha256": "4c269e4b1a22eddba58b3af803c3fa7878c189c8f7753358a4a0faebd989bc33",
+        "body_complete": true,
+        "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+        "redirect_from": []
+      },
+      {
+        "url": "http://127.0.0.1:46527/wp-json/wp/v2/books?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+        "purpose": "wp_metadata:book",
+        "started": 963018.864015199,
+        "preceding_completion": 963018.813379973,
+        "completed": 963019.08937969,
+        "status": 200,
+        "headers": {
+          "content-length": "2",
+          "content-type": "application/json",
+          "x-wp-total": "0",
+          "x-wp-totalpages": "0"
+        },
+        "final_url": "http://127.0.0.1:46527/wp-json/wp/v2/books?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+        "error": null,
+        "body_file": "evidence/0004.body",
+        "body_bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "body_complete": true,
+        "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes",
+        "redirect_from": []
+      }
+    ],
+    "gaps": [],
+    "wordpress": {
+      "status": "bounded",
+      "collections": [
+        {
+          "type": "post",
+          "endpoint": "http://127.0.0.1:46527/wp-json/wp/v2/posts",
+          "status": "partial",
+          "advertised_total": 166,
+          "advertised_pages": 9,
+          "fetched_pages": [
+            1
+          ],
+          "enumerated_records": 1,
+          "enumerated_unique": 1,
+          "duplicates": [],
+          "short_pages": [
+            1
+          ],
+          "gaps": [
+            "metadata_page_limit"
+          ]
+        },
+        {
+          "type": "book",
+          "endpoint": "http://127.0.0.1:46527/wp-json/wp/v2/books",
+          "status": "enumerated_metadata",
+          "advertised_total": 0,
+          "advertised_pages": 0,
+          "fetched_pages": [
+            1
+          ],
+          "enumerated_records": 0,
+          "enumerated_unique": 0,
+          "duplicates": [],
+          "short_pages": [],
+          "gaps": []
+        }
+      ],
+      "types_response": "evidence/0002.body",
+      "excluded_types": [],
+      "gaps": [
+        "page_type_not_exposed"
+      ]
+    },
+    "stop_reason": null,
+    "cleanup_error": null,
+    "browser_traffic": {
+      "request:document": 4,
+      "status:200": 4
+    },
+    "finished_at": "2026-10-16T08:35:45.060159+00:00",
+    "inventory_id": "5cf82ddbf996e73774968a6dcbfa0aeeac16fb580d900a4abb66ed5f50852939"
+  },
+  "server_requests": [
+    "/s.xml",
+    "/wp-json/wp/v2/types",
+    "/wp-json/wp/v2/posts?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+    "/wp-json/wp/v2/books?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt"
+  ]
+}

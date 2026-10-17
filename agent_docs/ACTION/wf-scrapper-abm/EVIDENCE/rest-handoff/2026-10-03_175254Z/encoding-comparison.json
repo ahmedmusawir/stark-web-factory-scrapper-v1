@@ -1,0 +1,106 @@
+{
+  "cases": [
+    {
+      "case": "body-10489856-history-1",
+      "expected_bytes": 10489856,
+      "returned_bytes": 10485760,
+      "returned_sha256": "ff318151907b7354250184c53a0b2e9912c0f6e8ec85d1599d91e289d51da2c5",
+      "original": {
+        "read_operation_s": 32.33693915401818,
+        "browser_script_to_prepared_s": 5.649299999952317,
+        "encoding_ms": 493.299999833107,
+        "prepared_mark_delivery_to_python_result_s": 19.49258696095785,
+        "cleanup_s": 0.11665500298840925
+      },
+      "compact_candidate": {
+        "read_operation_s": 12.875560122949537,
+        "browser_script_to_prepared_s": 5.541699999988079,
+        "encoding_ms": 494.4999998807907,
+        "prepared_mark_delivery_to_python_result_s": 0.6943083800142631,
+        "cleanup_s": 0.13196675397921354
+      }
+    },
+    {
+      "case": "body-1500000-history-1",
+      "expected_bytes": 1500000,
+      "returned_bytes": 1500000,
+      "returned_sha256": "0bbaceb77a02135146df98d4b8414174eb363af03aecf0bbfb8dbc004b404951",
+      "original": {
+        "read_operation_s": 7.922267045010813,
+        "browser_script_to_prepared_s": 5.095900000035763,
+        "encoding_ms": 71.59999996423721,
+        "prepared_mark_delivery_to_python_result_s": 1.854802366986405,
+        "cleanup_s": 0.1044469810440205
+      },
+      "compact_candidate": {
+        "read_operation_s": 6.085281569045037,
+        "browser_script_to_prepared_s": 5.0805,
+        "encoding_ms": 72.69999998807907,
+        "prepared_mark_delivery_to_python_result_s": 0.05642951501067728,
+        "cleanup_s": 0.12139683100394905
+      }
+    },
+    {
+      "case": "body-4000000-history-1",
+      "expected_bytes": 4000000,
+      "returned_bytes": 4000000,
+      "returned_sha256": "3c4a67afeed8aad1c93b2739a7bae95773f572bfd91c73639768939895d8d77f",
+      "original": {
+        "read_operation_s": 13.751499122008681,
+        "browser_script_to_prepared_s": 5.261100000023842,
+        "encoding_ms": 204.20000004768372,
+        "prepared_mark_delivery_to_python_result_s": 5.637846792989876,
+        "cleanup_s": 0.12496672000270337
+      },
+      "compact_candidate": {
+        "read_operation_s": 7.765447480021976,
+        "browser_script_to_prepared_s": 5.253299999952317,
+        "encoding_ms": 203.30000001192093,
+        "prepared_mark_delivery_to_python_result_s": 0.19290717504918575,
+        "cleanup_s": 0.13521324301837012
+      }
+    },
+    {
+      "case": "body-4000000-history-3",
+      "expected_bytes": 4000000,
+      "returned_bytes": 4000000,
+      "returned_sha256": "3c4a67afeed8aad1c93b2739a7bae95773f572bfd91c73639768939895d8d77f",
+      "original": {
+        "read_operation_s": 12.795842677005567,
+        "browser_script_to_prepared_s": 5.225199999988079,
+        "encoding_ms": 172.20000004768372,
+        "prepared_mark_delivery_to_python_result_s": 5.041198191989679,
+        "cleanup_s": 0.12068613199517131
+      },
+      "compact_candidate": {
+        "read_operation_s": 8.434953142015729,
+        "browser_script_to_prepared_s": 5.280199999988079,
+        "encoding_ms": 221.39999997615814,
+        "prepared_mark_delivery_to_python_result_s": 0.18540305201895535,
+        "cleanup_s": 0.11333616502815858
+      }
+    },
+    {
+      "case": "body-8000000-history-1",
+      "expected_bytes": 8000000,
+      "returned_bytes": 8000000,
+      "returned_sha256": "046b03dd5581a99a251fc3b24913ce6b03dca3d640baf6469b99fcec0c784178",
+      "original": {
+        "read_operation_s": 22.680715658992995,
+        "browser_script_to_prepared_s": 5.524,
+        "encoding_ms": 370.5999999642372,
+        "prepared_mark_delivery_to_python_result_s": 12.384530815994367,
+        "cleanup_s": 0.1357332159532234
+      },
+      "compact_candidate": {
+        "read_operation_s": 11.485679605975747,
+        "browser_script_to_prepared_s": 5.511,
+        "encoding_ms": 402.19999998807907,
+        "prepared_mark_delivery_to_python_result_s": 0.5928129029925913,
+        "cleanup_s": 0.10914559703087434
+      }
+    }
+  ],
+  "interpretation": "Both representations passed all6 assertions. Compact byte encoding materially reduces the observed result-prepared binding delivery to Python receipt interval. CDP/driver/Python sub-costs are not independently isolated. The live missing-body failure is not reproduced or assigned a cause.",
+  "product_change": "Only browser byte-result encoding and Python decoding; no timeout/cap/pagination/transport/identity changes."
+}

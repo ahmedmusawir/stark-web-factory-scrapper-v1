@@ -1,0 +1,154 @@
+{
+  "schema": "selected-collection-v1",
+  "created_at": "2026-10-07T14:07:15.969461+00:00",
+  "items": [
+    {
+      "kind": "page",
+      "url": "http://127.0.0.1:36047/selected",
+      "id": "0850703d560a1978f527444d",
+      "page": 1,
+      "status": "completed",
+      "result": {
+        "file": "attempts/0850703d560a1978f527444d/3dde4b8c256a4751957a62f86b5f83ff/result.json",
+        "sha256": "6d8516090401b96b899b2cc844958336b6a2534a256bb44cd5a6107726955394"
+      },
+      "attempts": [
+        {
+          "file": "attempts/0850703d560a1978f527444d/3dde4b8c256a4751957a62f86b5f83ff/result.json",
+          "sha256": "6d8516090401b96b899b2cc844958336b6a2534a256bb44cd5a6107726955394"
+        }
+      ],
+      "error": null
+    },
+    {
+      "kind": "rest",
+      "url": "http://127.0.0.1:36047/wp-json/wp/v2/posts?per_page=2",
+      "paginate": true,
+      "max_pages": 2,
+      "id": "e26b68b9869159599e922ebe",
+      "page": 1,
+      "status": "completed",
+      "result": {
+        "file": "attempts/e26b68b9869159599e922ebe/b0fe6832d1eb4a36a50db0f2f994b602/result.json",
+        "sha256": "74814341a7b87cc29af76bf2d70f9da1596fa1a272b2fd089ea27355cb05771b"
+      },
+      "attempts": [
+        {
+          "file": "attempts/e26b68b9869159599e922ebe/b0fe6832d1eb4a36a50db0f2f994b602/result.json",
+          "sha256": "74814341a7b87cc29af76bf2d70f9da1596fa1a272b2fd089ea27355cb05771b"
+        }
+      ],
+      "error": null,
+      "group": "e26b68b9869159599e922ebe"
+    },
+    {
+      "id": "5ba2097688b849308e466308",
+      "kind": "rest",
+      "url": "http://127.0.0.1:36047/wp-json/wp/v2/posts?per_page=2&page=2",
+      "page": 2,
+      "group": "e26b68b9869159599e922ebe",
+      "status": "completed",
+      "result": {
+        "file": "attempts/5ba2097688b849308e466308/17ffd0ca348f4625b1863a038553fdca/result.json",
+        "sha256": "2812ef2309b59fb1eab37d5fa7b84bcd78d01ab767fee9e4c980bea48b3afc6a"
+      },
+      "attempts": [
+        {
+          "file": "attempts/5ba2097688b849308e466308/17ffd0ca348f4625b1863a038553fdca/result.json",
+          "sha256": "2812ef2309b59fb1eab37d5fa7b84bcd78d01ab767fee9e4c980bea48b3afc6a"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "coverage": {
+    "e26b68b9869159599e922ebe": {
+      "status": "complete",
+      "fetched_pages": [
+        1,
+        2
+      ],
+      "advertised_total": 3,
+      "advertised_pages": 2,
+      "records": 3,
+      "unique_ids": 3,
+      "duplicate_ids": [],
+      "short_pages": [
+        {
+          "page": 1,
+          "records": 1
+        }
+      ],
+      "gaps": [],
+      "advertised_end_reached": true
+    }
+  },
+  "runs": [
+    {
+      "started_at": "2026-10-07T14:07:16.033683+00:00",
+      "requests": [
+        {
+          "id": "0850703d560a1978f527444d",
+          "url": "http://127.0.0.1:36047/selected",
+          "kind": "page",
+          "start": 637117.847795545,
+          "preceding_completion": null,
+          "completion": 637121.376329496,
+          "completion_epoch": 1791382040.1484692
+        },
+        {
+          "id": "e26b68b9869159599e922ebe",
+          "url": "http://127.0.0.1:36047/wp-json/wp/v2/posts?per_page=2",
+          "kind": "rest",
+          "start": 637121.528446105,
+          "preceding_completion": 637121.376329496,
+          "completion": 637121.79936138,
+          "completion_epoch": 1791382040.5715017
+        },
+        {
+          "id": "5ba2097688b849308e466308",
+          "url": "http://127.0.0.1:36047/wp-json/wp/v2/posts?per_page=2&page=2",
+          "kind": "rest",
+          "start": 637121.951279438,
+          "preceding_completion": 637121.79936138,
+          "completion": 637122.191668936,
+          "completion_epoch": 1791382040.963809
+        }
+      ],
+      "stop_reason": null,
+      "cleanup_error": null,
+      "gap_seconds": 0.15,
+      "max_requests": 100,
+      "max_seconds": 60,
+      "max_bytes": 100000000,
+      "response_cap": 10485760,
+      "browser_traffic": {
+        "request:document": 3,
+        "status:200": 3
+      },
+      "runtime": {
+        "python": "3.12.3",
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "crawl4ai": "0.9.3",
+        "playwright": "1.52.0",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "cache": "BYPASS",
+        "html_wait_for_images": true,
+        "html_post_load_delay": 3,
+        "navigation_timeout_ms": {
+          "page": 90000,
+          "rest": 30000
+        },
+        "tls_verification": true,
+        "browser": "136.0.7103.25"
+      },
+      "cleanup_messages": [],
+      "collection_outcome": "complete",
+      "finished_at": "2026-10-07T14:07:21.090037+00:00",
+      "elapsed_s": 5.056375505984761,
+      "completed": 3,
+      "remaining": 0
+    }
+  ],
+  "last_completion_epoch": 1791382040.963809
+}

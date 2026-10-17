@@ -1,0 +1,103 @@
+{
+  "schema": "web-recon-prepared-v0.1",
+  "prepared_at": "2026-10-13T16:38:46.315366+00:00",
+  "path_base": "repository root (same layout in review ZIP)",
+  "source_collection": "outputs/collections/CyberizeGroup-growth-call-follow-up-2026-10-13_223736",
+  "checklist": {
+    "file": "outputs/collections/CyberizeGroup-growth-call-follow-up-2026-10-13_223736/checklist.json",
+    "sha256": "889fdc54f27825c5d8e8e8a3f93a80263a9d191c5a7f626ef2d0695b60233b3a"
+  },
+  "scope": "One explicitly selected follow-up HTML parent page; embedded booking content remains unavailable; not whole-site assessment",
+  "pages": [
+    {
+      "id": "1919308e975782c911a6d794",
+      "url": "https://cyberizegroup.com/growth-call/",
+      "final_url": "https://cyberizegroup.com/growth-call/",
+      "capture_saved_at": "2026-10-13T16:38:43.362487+00:00",
+      "document_type": "consultation/booking page with embedded widget",
+      "title": "Schedule Your Digital Growth Strategy Call Now",
+      "source": {
+        "raw_file": "outputs/collections/CyberizeGroup-growth-call-follow-up-2026-10-13_223736/attempts/1919308e975782c911a6d794/7ec2e8ca209e4388ad37785247758eb2/body",
+        "raw_sha256": "aaa0e8572d812572288d62747f3d1cbe4e01bbe6f0614e4d55163f9d361987dd",
+        "raw_bytes": 298221,
+        "metadata_file": "outputs/collections/CyberizeGroup-growth-call-follow-up-2026-10-13_223736/attempts/1919308e975782c911a6d794/7ec2e8ca209e4388ad37785247758eb2/result.json",
+        "metadata_sha256": "e2b113486aa3729b08e54af6e44bdf1ce81c02813e98c58fdaf20cb2f65e535e"
+      },
+      "extraction": {
+        "css_selector": ".tcb-post-content #tve_editor",
+        "match_index": 0,
+        "removed_markup": "script, style, noscript, template, svg, input[type=\"hidden\"]",
+        "separated_boilerplate": "header, footer, nav, #thrive-header, #thrive-footer, [role=\"navigation\"], [role=\"banner\"], [role=\"contentinfo\"]",
+        "basis": "observed semantic/theme container; agent must inspect the boundary",
+        "main_text_empty": true
+      },
+      "prepared": {
+        "file": "outputs/prepared/CyberizeGroup-growth-call-follow-up-2026-10-13_223736-reviewed/pages/1919308e975782c911a6d794.md",
+        "sha256": "01a9b129426ca0c918f248d6b5395ec7575e204c7c71196311024dad2287c0be",
+        "presentation": "agent-authored source-fact annotations; native main text empty"
+      },
+      "content": {
+        "headings": [],
+        "paragraphs": 0,
+        "list_items": 0,
+        "empty_list_items_removed": 0,
+        "links": [],
+        "images": [],
+        "images_note": "not included as downloaded image bytes or OCR; loading unverified"
+      },
+      "boilerplate_locations": [
+        "header#thrive-header",
+        "footer#thrive-footer"
+      ],
+      "gaps": [
+        "booking iframe child DOM not archived",
+        "visible field labels unavailable in parent snapshot",
+        "offer details and booking function untested"
+      ],
+      "classification_basis": "Body has WordPress page classes (page-id-8331); title describes a digital growth strategy call; main subtree contains a booking iframe. The helper initial article heuristic is not the observed content type.",
+      "source_metadata": {
+        "description": "Take your business to the next level. Schedule your digital growth strategy call today and unlock tailored solutions for success online.",
+        "description_locator": "meta[name=\"description\"]",
+        "not_main_body_copy": true
+      }
+    }
+  ],
+  "rest_context": [],
+  "unavailable_items": [],
+  "historical_context": [],
+  "agent_authored": [
+    {
+      "file": "outputs/prepared/CyberizeGroup-growth-call-follow-up-2026-10-13_223736-reviewed/ARCHITECT_BRIEF.md",
+      "sha256": "aae3b2734feb51ff1252fb87dc23940be1c9178c9dc101a9ecaa878cd5f411c8",
+      "author": "Cody, Engineer",
+      "basis": "saved parent-source facts and labeled agent interpretation"
+    },
+    {
+      "file": "outputs/prepared/CyberizeGroup-growth-call-follow-up-2026-10-13_223736-reviewed/GAPS_AND_REQUESTS.md",
+      "sha256": "7825912f7167bad51b0c4501305a2f5e3a92c939a2c0ce31fc189e75389bb3b5",
+      "author": "Cody, Engineer",
+      "basis": "saved parent-source facts and labeled agent interpretation"
+    }
+  ],
+  "image_completeness": "UNVERIFIED; image references do not prove images loaded",
+  "boilerplate": {
+    "file": "outputs/prepared/CyberizeGroup-growth-call-follow-up-2026-10-13_223736-reviewed/BOILERPLATE.md",
+    "sha256": "2eaf8e52e9892b35880de4720be2b3077119ce2da3776ae0ac6f084a9f8b8821"
+  },
+  "supporting_evidence": [
+    {
+      "file": "outputs/prepared/CyberizeGroup-growth-call-follow-up-2026-10-13_223736-reviewed/EMBEDS_AND_FORM_LABELS.json",
+      "sha256": "eb0c8e152b1e21c34f3d13f0bad9458318362c123a98dbdc7b70174ed04e0044"
+    },
+    {
+      "file": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/growth-call-follow-up/2026-10-13_163736Z/collect.log",
+      "sha256": "7827d23c7baad76fd8f1a3114f522443158766fee1ae6facda507e5622a3def2"
+    }
+  ],
+  "preparation_outcome": "Parent-page evidence prepared; booking form/content coverage PARTIAL / UNKNOWN",
+  "initial_extraction": {
+    "directory": "outputs/prepared/CyberizeGroup-growth-call-follow-up-2026-10-13_223736",
+    "finding": "Initial helper type heuristic labels this page article and Markdown contains an empty code marker; preserved. No helper or baseline edits."
+  },
+  "images_completeness": "UNVERIFIED; parent snapshot does not archive child images/resources"
+}

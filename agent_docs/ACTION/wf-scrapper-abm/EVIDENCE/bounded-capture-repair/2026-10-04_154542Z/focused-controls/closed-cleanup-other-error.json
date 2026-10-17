@@ -1,0 +1,75 @@
+{
+  "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+  "case": "closed-cleanup-other-error",
+  "calls": [
+    {
+      "command": "Fetch.failRequest",
+      "args": {
+        "requestId": "fixture-fetch-1",
+        "errorReason": "Aborted"
+      }
+    }
+  ],
+  "returned": [
+    false,
+    false
+  ],
+  "stop_reason": "interception_error:RuntimeError",
+  "closing": true,
+  "entry_state": "error",
+  "entry_command": "Fetch.failRequest",
+  "events": [
+    {
+      "event": "interception_command",
+      "monotonic": 483664.513514274,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_error",
+      "monotonic": 483664.513532799,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "incidental",
+      "state": "error",
+      "error": "RuntimeError",
+      "detail": "different protocol fault",
+      "confirmed_canceled": false,
+      "supported_incidental": false,
+      "supported_cleanup_closed": false
+    },
+    {
+      "event": "stop",
+      "monotonic": 483664.513535828,
+      "reason": "interception_error:RuntimeError"
+    },
+    {
+      "event": "interception_resolution_skipped",
+      "monotonic": 483664.51354062,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "incidental",
+      "state": "error"
+    }
+  ]
+}

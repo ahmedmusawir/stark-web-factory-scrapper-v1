@@ -1,0 +1,440 @@
+{
+  "verdict": "LOCAL REPAIR VERIFIED; ORIGINAL LIVE DELAY UNRESOLVED; STOP",
+  "created_at": "2026-10-03T12:45:24.620482+00:00",
+  "branch": "wf-scrapper-abm",
+  "initial_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+  "current_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "head_change": "Observed external advance; no agent Git mutation",
+  "source_inventory_sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b",
+  "source_entries": 62,
+  "source_unchanged_across_final_checks": true,
+  "changed_source_files": {
+    "smart_crawler/browser_session.py": {
+      "before_sha256": "265545f494406dd688b2ddfa6770827cb33293b449946747e1e3a665a45c96d9",
+      "after_sha256": "23652b1fbc8270be29302cfcae51052b8881ee00ac5c9c08fbf28ea353518fa3",
+      "bytes": 45356
+    },
+    "tests/fixture_server.py": {
+      "before_sha256": "6de61d6a8cf3d1163652f0ab2b873396cd7e721e4ebad7410f3a2552c5e2ff34",
+      "after_sha256": "ed00676c3f21f360bff6345305924039e6f314bfd27e58bc28370dc824e67097",
+      "bytes": 16028
+    },
+    "tests/test_interception_lifecycle.py": {
+      "before_sha256": "4098d141b992395bbf564fe27b5b56cdc892c6117313277d560e879e7f66c1a3",
+      "after_sha256": "40350c72a9bd56a514b33c085dbf0033b32aaeddfe0a4326693211979562913d",
+      "bytes": 18766
+    },
+    "tests/test_read_deadlines.py": {
+      "before_sha256": null,
+      "after_sha256": "3d70d3ced2be3800c7d8f00aacb2722f15ef769a892135cdd8e8735777639e89",
+      "bytes": 6362
+    },
+    "tests/deadline_worker.py": {
+      "before_sha256": null,
+      "after_sha256": "e9dd0b3ed118cbc740c4746ebce5025ce7c0e18eea85cffd0ff6cd51a8243bac",
+      "bytes": 807
+    }
+  },
+  "supervisor_unchanged": true,
+  "proof": {
+    "before_browser_consumed": 2048,
+    "before_python_returned": 0,
+    "after_browser_consumed": 2048,
+    "after_python_returned": 2048,
+    "both_outcomes": "incomplete / read_deadline",
+    "supervised_stalled_prefix_before_bytes": 0,
+    "supervised_stalled_prefix_after_bytes": 64,
+    "latency_injection": "0.6s setup scheduling delay, explicitly injected; real Chromium requests/body; no injected protocol error",
+    "original_live_mechanism": "Not identified; no claim local mechanism exactly reproduces the original live timing"
+  },
+  "results": {
+    "affected_checks": 55,
+    "full_engineering_regression": 173,
+    "capture_compared_files": 231,
+    "independent_qa": "NOT RUN"
+  },
+  "commands_and_results": {
+    "before-checks": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_read_deadlines.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T12:11:55.280779+00:00",
+      "finished_at": "2026-10-03T12:13:15.239668+00:00",
+      "elapsed_s": 79.9588741339976,
+      "exit_code": 1,
+      "command_log_bytes": 15834,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "e393acf4b5a806528b96425f44287f1b385cec9783f88bd31013af6b5b7c14f8",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "before-supervisor": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_read_deadlines.py::test_actual_supervisor_retains_stalled_sitemap_prefix[True]",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T12:14:22.266645+00:00",
+      "finished_at": "2026-10-03T12:15:07.276163+00:00",
+      "elapsed_s": 45.00951492897002,
+      "exit_code": 1,
+      "command_log_bytes": 1797,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "66a4f07beba07844683e1c1e0de25614d655e40fdfda43c63fdb2680d70cc6c0",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "affected": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_read_deadlines.py",
+        "tests/test_interception_lifecycle.py",
+        "tests/test_resolution_stop.py",
+        "tests/test_browser_controls.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T12:15:53.551542+00:00",
+      "finished_at": "2026-10-03T12:21:15.003627+00:00",
+      "elapsed_s": 321.45207213499816,
+      "exit_code": 2,
+      "command_log_bytes": 277,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "ff79957939665f317614d8ba172bc9f976cc454a778343117d543f2e57a4b6f4",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "chunk-handoff-proof": {
+      "command": [
+        "venv/bin/python",
+        "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/chunk-handoff-proof.py"
+      ],
+      "started_at": "2026-10-03T12:24:57.223202+00:00",
+      "finished_at": "2026-10-03T12:25:00.842344+00:00",
+      "elapsed_s": 3.619190810015425,
+      "exit_code": 1,
+      "command_log_bytes": 2291,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "chunk-handoff-confirmed": {
+      "command": [
+        "venv/bin/python",
+        "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/chunk-handoff-proof.py"
+      ],
+      "started_at": "2026-10-03T12:25:47.437016+00:00",
+      "finished_at": "2026-10-03T12:26:14.433730+00:00",
+      "elapsed_s": 26.996708151011262,
+      "exit_code": 0,
+      "command_log_bytes": 1794,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "affected-final": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_read_deadlines.py",
+        "tests/test_interception_lifecycle.py",
+        "tests/test_resolution_stop.py",
+        "tests/test_browser_controls.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T12:21:58.263317+00:00",
+      "finished_at": "2026-10-03T12:29:00.098951+00:00",
+      "elapsed_s": 421.8356291889795,
+      "exit_code": 0,
+      "command_log_bytes": 111,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "regression": {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T12:29:10.842781+00:00",
+      "finished_at": "2026-10-03T12:40:36.041318+00:00",
+      "elapsed_s": 685.1985309959855,
+      "exit_code": 0,
+      "command_log_bytes": 272,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    },
+    "comparison": {
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/regression-controls/complete-raw"
+      ],
+      "started_at": "2026-10-03T12:40:54.061215+00:00",
+      "finished_at": "2026-10-03T12:42:48.521685+00:00",
+      "elapsed_s": 114.46046446001856,
+      "exit_code": 0,
+      "command_log_bytes": 275,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "source_inventory_sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+    }
+  },
+  "comparison": {
+    "full_canonical_comparison": "PASS",
+    "files": 231,
+    "normalization": "page elapsed; measured protocol times; correlated protocol IDs; independent resource channels; derived metadata byte-count/hash edges only"
+  },
+  "comparison_evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/comparison-controls/F09-complete-lam0jqwf/full-comparison.json",
+  "preservation": {
+    "files_checked": 7204,
+    "missing": [],
+    "changed": [],
+    "baseline_sha256": "62265afa8c4a6cf15d3e5ae00477df4f08939bffa2767fe662e3b2910a93f455"
+  },
+  "acceptance_rows": 48,
+  "qa_rows_not_run": 48,
+  "findings": [
+    "Live final reason was operation_watchdog; exact Python cancellation/signal arrival not separately logged.",
+    "Old operation_complete(error=null) was unconditional terminal bookkeeping and did not establish success.",
+    "Original delayed live event/result delivery cause remains unknown.",
+    "Final dispatch/document/resource counters missing from supervisor-finalized live manifest; no counter implementation change.",
+    "Hard watchdog can still stop an unresponsive runtime; never infer saved bytes from response headers."
+  ],
+  "evidence": {
+    "root": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z",
+    "live_timeline": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/live-timeline.json",
+    "readable_diagnosis": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/diagnosis.md",
+    "native_js_before": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/chunk-proof-before.json",
+    "native_js_after": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/chunk-proof-after.json",
+    "preservation": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/preservation-result.json",
+    "installed_timeout_sources": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/active-python-timeout-sources.json",
+    "checkpoint": "RECOVERY.md"
+  },
+  "live_requests_this_mission": 0,
+  "prepare": "ON HOLD for in-repo agent-skill ABM amendment",
+  "next": "JARVIS review; no further action/live allocation authorized",
+  "handoff_files": {
+    "report": "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout.md",
+    "diff": "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout_source-test.diff.txt",
+    "checks": "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout_checks.json",
+    "source_inventory": "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout_source-inventory.json",
+    "controller": "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout_browser_session.py.txt",
+    "supervisor": "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout_capture.py.txt"
+  },
+  "attachment_hashes": {
+    "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout_source-test.diff.txt": {
+      "bytes": 21191,
+      "sha256": "9e305949af3bc4d17897a5b5bf0a88f8a065b61e5e8fd11c81c467900f959e4c"
+    },
+    "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout_source-inventory.json": {
+      "bytes": 11438,
+      "sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b"
+    },
+    "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout_browser_session.py.txt": {
+      "bytes": 45356,
+      "sha256": "23652b1fbc8270be29302cfcae51052b8881ee00ac5c9c08fbf28ea353518fa3"
+    },
+    "agent_docs/RESPONSES/response_2026-10-03_184524_local-sitemap-timeout_capture.py.txt": {
+      "bytes": 19217,
+      "sha256": "4d6b85b4c0aca9a234f0980cd32f5ad89fa5466a9d73e34f9fe157db8484f810"
+    }
+  },
+  "execution_context": {
+    "cwd": "/home/moose/python/stark-web-factory-scrapper-v1",
+    "recorder": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+    "recorder_change": "Only locator path changed to this new evidence directory",
+    "invocations": {
+      "before-checks": {
+        "argv": [
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+          "before-checks",
+          "venv/bin/pytest",
+          "-q",
+          "tests/test_read_deadlines.py",
+          "-o",
+          "tmp_path_retention_count=1000000",
+          "-o",
+          "tmp_path_retention_policy=all"
+        ],
+        "environment_overrides": {
+          "ABM_QUIET_LOG": "1",
+          "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/before-controls"
+        }
+      },
+      "before-supervisor": {
+        "argv": [
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+          "before-supervisor",
+          "venv/bin/pytest",
+          "-q",
+          "tests/test_read_deadlines.py::test_actual_supervisor_retains_stalled_sitemap_prefix[True]",
+          "-o",
+          "tmp_path_retention_count=1000000",
+          "-o",
+          "tmp_path_retention_policy=all"
+        ],
+        "environment_overrides": {
+          "ABM_QUIET_LOG": "1",
+          "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/before-supervisor-controls"
+        }
+      },
+      "affected": {
+        "argv": [
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+          "affected",
+          "venv/bin/pytest",
+          "-q",
+          "tests/test_read_deadlines.py",
+          "tests/test_interception_lifecycle.py",
+          "tests/test_resolution_stop.py",
+          "tests/test_browser_controls.py",
+          "-o",
+          "tmp_path_retention_count=1000000",
+          "-o",
+          "tmp_path_retention_policy=all"
+        ],
+        "environment_overrides": {
+          "ABM_QUIET_LOG": "1",
+          "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/affected-controls"
+        }
+      },
+      "chunk-handoff-proof": {
+        "argv": [
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+          "chunk-handoff-proof",
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/chunk-handoff-proof.py"
+        ],
+        "environment_overrides": {
+          "ABM_QUIET_LOG": "1"
+        }
+      },
+      "chunk-handoff-confirmed": {
+        "argv": [
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+          "chunk-handoff-confirmed",
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/chunk-handoff-proof.py"
+        ],
+        "environment_overrides": {
+          "ABM_QUIET_LOG": "1"
+        }
+      },
+      "affected-final": {
+        "argv": [
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+          "affected-final",
+          "venv/bin/pytest",
+          "-q",
+          "tests/test_read_deadlines.py",
+          "tests/test_interception_lifecycle.py",
+          "tests/test_resolution_stop.py",
+          "tests/test_browser_controls.py",
+          "-o",
+          "tmp_path_retention_count=1000000",
+          "-o",
+          "tmp_path_retention_policy=all"
+        ],
+        "environment_overrides": {
+          "ABM_QUIET_LOG": "1",
+          "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/affected-final-controls"
+        }
+      },
+      "regression": {
+        "argv": [
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+          "regression",
+          "venv/bin/pytest",
+          "-q",
+          "-o",
+          "tmp_path_retention_count=1000000",
+          "-o",
+          "tmp_path_retention_policy=all"
+        ],
+        "environment_overrides": {
+          "ABM_QUIET_LOG": "1",
+          "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/regression-controls"
+        }
+      },
+      "comparison": {
+        "argv": [
+          "venv/bin/python",
+          "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/recorder.py",
+          "comparison",
+          "venv/bin/python",
+          "tests/regen_fixtures.py",
+          "--check",
+          "--variant",
+          "complete",
+          "--stage",
+          "capture",
+          "--compare-to",
+          "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/regression-controls/complete-raw"
+        ],
+        "environment_overrides": {
+          "ABM_QUIET_LOG": "1",
+          "ABM_CONTROL_EVIDENCE": "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/sitemap-timeout/2026-10-03_121047Z/comparison-controls"
+        }
+      }
+    },
+    "rerun_rule": "Use NEW evidence/output destinations. These recorder tag directories are exclusive and must not be reused."
+  },
+  "diagnostic_helper_sha256": "cb6dbd30efe1b8c65ab8708d72f9a8914a17bf0d550b7ffd4f1590ec6d5f5896",
+  "preserved_original_controller_sha256": "265545f494406dd688b2ddfa6770827cb33293b449946747e1e3a665a45c96d9"
+}

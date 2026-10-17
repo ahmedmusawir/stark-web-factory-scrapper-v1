@@ -1,0 +1,4 @@
+{"utc": "2026-10-01T14:57:53.264109+00:00", "event": "coordinator_start", "local_only": true, "gap_s": 0, "max_requests": 6, "transfer_limit_s": 3, "body_ceiling": 2097152}
+{"utc": "2026-10-01T14:57:53.264420+00:00", "event": "request_dispatch", "sequence": 1, "url": "http://127.0.0.1:38093/other-redirect", "client": "python"}
+{"utc": "2026-10-01T14:57:53.559178+00:00", "event": "request_complete", "sequence": 1, "status": 302, "validation": {"expected": "xml", "passed": false, "reason": "unexpected_redirect", "resolved_location": "https://never-contact.invalid/"}, "body_bytes": 0}
+{"utc": "2026-10-01T14:57:53.559362+00:00", "event": "sticky_stop", "reason": "unexpected_redirect", "requests_dispatched": 1}

@@ -1,0 +1,226 @@
+{
+  "status": "INCOMPLETE; allocation consumed; STOP",
+  "report": "agent_docs/RESPONSES/response_2026-10-03_234344_deadline-live-retest.md",
+  "repository": "/home/moose/PYTHON/stark-web-factory-scrapper-v1",
+  "branch": "wf-scrapper-abm",
+  "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "source_entries": 62,
+  "source_inventory_sha256": "f2aaab42fa6c64ef1cb621566ad7d4c8e606814e4d9f1caa5013979324b1a27b",
+  "source_unchanged": true,
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "recon_pipeline",
+    "--project",
+    "CyberizeGroup",
+    "--url",
+    "https://cyberizegroup.com",
+    "--limit",
+    "10",
+    "--skip-prepare",
+    "--no-media-head",
+    "--max-operations",
+    "120",
+    "--max-seconds",
+    "1800",
+    "--max-bytes",
+    "100000000",
+    "--max-aggregate-bytes",
+    "100000000"
+  ],
+  "exit_code": 2,
+  "stop_reason": "read_deadline",
+  "started_at": "2026-10-03T17:35:56.151057+00:00",
+  "finished_at": "2026-10-03T17:39:40.941469+00:00",
+  "elapsed_s": 224.79041876702104,
+  "raw_run": "outputs/CyberizeGroup/runs/2026-10-03T17-35-57Z",
+  "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_173535Z",
+  "counts": {
+    "routes": 194,
+    "captured": 10,
+    "blocked": 0,
+    "failed": 0,
+    "unsupported": 0,
+    "skipped": 184,
+    "rest_objects": 42,
+    "rest_mapped_routes": 19,
+    "media_items": 242
+  },
+  "streams": {
+    "discovery": "complete",
+    "html": "partial",
+    "rest": "partial",
+    "media": "skipped",
+    "screenshots": "empty"
+  },
+  "sitemap": {
+    "bodies": 4,
+    "total_bytes": 102866,
+    "all_complete": true,
+    "all_xml_valid": true,
+    "details": [
+      {
+        "file": "discovery/sitemap_index.xml",
+        "bytes": 662,
+        "sha256": "94e327fb8e913af3df0d462621ce25f5bac53ca86bbcf7a6988225ddc42cf109",
+        "status": 200,
+        "xml_valid": true,
+        "root": "sitemapindex",
+        "entries": 3,
+        "operation_id": "op-3",
+        "body_complete": true
+      },
+      {
+        "file": "discovery/post-sitemap.xml",
+        "bytes": 93198,
+        "sha256": "31462f08eb8182613b85295c3082c19e6c817618fffd0499a330bf41b79a1f1b",
+        "status": 200,
+        "xml_valid": true,
+        "root": "urlset",
+        "entries": 167,
+        "operation_id": "op-4",
+        "body_complete": true
+      },
+      {
+        "file": "discovery/page-sitemap.xml",
+        "bytes": 7353,
+        "sha256": "a78a8023d1e180bc7da9f3a6113a1a4a9ffc02b1b064791de22a404ed58e3bfc",
+        "status": 200,
+        "xml_valid": true,
+        "root": "urlset",
+        "entries": 18,
+        "operation_id": "op-5",
+        "body_complete": true
+      },
+      {
+        "file": "discovery/category-sitemap.xml",
+        "bytes": 1653,
+        "sha256": "97eb2cf8ff7bb9c9c2f4c408db06295dc756604ec743b5a60ad5f5a57e4eed6c",
+        "status": 200,
+        "xml_valid": true,
+        "root": "urlset",
+        "entries": 9,
+        "operation_id": "op-6",
+        "body_complete": true
+      }
+    ]
+  },
+  "rest": {
+    "pages_complete_objects": 42,
+    "pages_complete_body_bytes": 1459408,
+    "posts_body_bytes": 0,
+    "posts_body_complete": false,
+    "posts_status": 200,
+    "posts_advertised_total": 166,
+    "posts_advertised_pages": 2,
+    "posts_usable_objects": 0,
+    "remaining_collections": "media/categories/tags/users skipped after stop",
+    "pages_fields": {
+      "content": {
+        "rendered_nonempty": 40,
+        "rendered_empty": 2
+      },
+      "yoast_head": {
+        "present_str": 42
+      },
+      "yoast_head_json": {
+        "present_dict": 42
+      }
+    }
+  },
+  "media": {
+    "counts": {
+      "items": 242,
+      "internal": 201,
+      "external": 12,
+      "staging_domain": 29
+    },
+    "retrieval_reasons": {
+      "disabled": 201,
+      "off_scope_untested": 41
+    }
+  },
+  "traffic": {
+    "intentional_dispatches": 17,
+    "intentional_redirect_hops": 0,
+    "document_slots": 10,
+    "browser_request_events": 1148,
+    "browser_response_statuses": {
+      "200": 1019,
+      "301": 9,
+      "201": 2,
+      "204": 50,
+      "302": 4,
+      "404": 1
+    },
+    "min_gap_s": 5.001886438985821,
+    "all_gaps_at_least_5": true,
+    "intentional_dispatches_after_stop": 0,
+    "invalid_interception_ids": 6,
+    "all_invalid_ids_supported_incidental": true,
+    "cleanup_errors": 4,
+    "same_url_ambiguity_recorded": false,
+    "refusal_or_challenge_recorded": false
+  },
+  "reader": {
+    "command": [
+      "venv/bin/python",
+      "-m",
+      "prepare.reader",
+      "--raw",
+      "outputs/CyberizeGroup/runs/2026-10-03T17-35-57Z"
+    ],
+    "exit_code": 0,
+    "output": "VALID RAW: 194 route outcomes; Prepare construction is a separate stage\n",
+    "raw_files": 69,
+    "raw_unchanged": true
+  },
+  "timeout": {
+    "operation": "op-17",
+    "fetch_id": "interception-job-2369.0",
+    "network_id": "644661.2921",
+    "session": "page-cdp-1",
+    "frame_id": "06C7C5B730C5F422D1152AF7C797D54C",
+    "start_monotonic": 406135.267747896,
+    "advertised_deadline": 406165.26774491,
+    "setup_start_offset_s": 0.002755,
+    "script_started_offset_s": 0.023196,
+    "pacing_wait_s": 4.71450400800677,
+    "dispatch_offset_s": 4.760024,
+    "headers_offset_s": 8.63721,
+    "loading_finished_observed_offset_s": 12.977415,
+    "read_result_received": false,
+    "stop_offset_s": 29.758199,
+    "terminal_offset_s": 29.760372,
+    "terminal_outcome": "failure",
+    "saved_body_bytes": 0,
+    "request_finished_observed_offset_s": 54.26141,
+    "page_closed_offset_s": 54.36943,
+    "supervisor_stop_observed": false,
+    "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_173535Z/timeout-timeline.json",
+    "cause": "Not established; Network.loadingFinished does not establish JS result handoff."
+  },
+  "manifest_counter_gap": "Final counters present in this run; older supervisor-finalized run gap remains unresolved, no supervisor change.",
+  "preservation": {
+    "prior_files_unchanged": 8062,
+    "audit_original_content_preserved": true
+  },
+  "prepare": "ON HOLD for agent-skill amendment",
+  "independent_qa": "NOT RUN",
+  "next_action": "JARVIS review of retained network-completion/result-handoff gap; no repair or live retry authorized.",
+  "budget": {
+    "raw_bytes": 12418353,
+    "support_bytes": 674504,
+    "aggregate_bytes": 13092857,
+    "evidence_directory_bytes": 635785,
+    "report_bytes": 11346,
+    "summary_bytes": 6824,
+    "audit_growth_bytes": 20549,
+    "runtime_persisted_bytes": 0,
+    "temporary_files_bytes": 0,
+    "raw_ceiling": 97000000,
+    "support_ceiling": 3000000,
+    "aggregate_ceiling": 100000000,
+    "method": "Final byte sizes of new raw/evidence/report/summary files plus net appended/prepended audit bytes and new runtime files. Prior bytes are not recounted."
+  }
+}

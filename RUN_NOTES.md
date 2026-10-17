@@ -1,5 +1,11 @@
 # RUN_NOTES
 
+## Current ABM setup and launch pointer — 2026-10-02
+
+JARVIS Architect ruling under Tony's delegated authority: canonical clean setup uses `venv/bin/pip install -r requirements-lock.txt`, then `venv/bin/pip check` and the exact normalized comparison in [README §Setup](README.md#setup). requirements.txt remains direct declarations; neither dependency file changes. Record Python/platform, browser identity and lock hash. Clean-environment QA NOT RUN. [BUILD_READBACK](agent_docs/ACTION/wf-scrapper-abm/BUILD_READBACK.md) is delivered; AWAITING BUILD_READBACK REVIEW AND TONY'S BUILD APPROVAL. No implementation/live authorization here.
+
+The dated sections below preserve historical commands/results, including old installs, Git/destructive commands and live requests. Do not execute them as current instructions.
+
 ## Phase C1 functional baseline (2026-09-02)
 
 Exact commands used on branch `phase-c1-cleanup`, machine: Linux, pyenv Python 3.12.3. All commands from the repo root.

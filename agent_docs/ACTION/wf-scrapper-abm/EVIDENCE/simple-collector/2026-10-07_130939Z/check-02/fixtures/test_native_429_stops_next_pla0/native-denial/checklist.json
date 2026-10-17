@@ -1,0 +1,83 @@
+{
+  "schema": "selected-collection-v1",
+  "created_at": "2026-10-07T13:18:00.388229+00:00",
+  "items": [
+    {
+      "kind": "page",
+      "url": "http://127.0.0.1:36701/deny",
+      "id": "6f848aa645c35472e6ce13e7",
+      "page": 1,
+      "status": "failed",
+      "result": {
+        "file": "attempts/6f848aa645c35472e6ce13e7/022bf90fdcfb447fbabc93181b97daba/result.json",
+        "sha256": "d65f245c21101070215d43f7a4ca9f40fd4f62c5d3cba6e8c09ab3826192c368"
+      },
+      "attempts": [
+        {
+          "file": "attempts/6f848aa645c35472e6ce13e7/022bf90fdcfb447fbabc93181b97daba/result.json",
+          "sha256": "d65f245c21101070215d43f7a4ca9f40fd4f62c5d3cba6e8c09ab3826192c368"
+        }
+      ],
+      "error": "http_429"
+    },
+    {
+      "kind": "page",
+      "url": "http://127.0.0.1:36701/must-not-collect",
+      "id": "78b4bf3351860ad82fd84542",
+      "page": 1,
+      "status": "pending",
+      "result": null,
+      "attempts": [],
+      "error": null
+    }
+  ],
+  "coverage": {},
+  "runs": [
+    {
+      "started_at": "2026-10-07T13:18:00.520712+00:00",
+      "requests": [
+        {
+          "id": "6f848aa645c35472e6ce13e7",
+          "url": "http://127.0.0.1:36701/deny",
+          "kind": "page",
+          "start": 634162.268478382,
+          "preceding_completion": null,
+          "completion": 634165.845894416
+        }
+      ],
+      "stop_reason": "http_429",
+      "cleanup_error": null,
+      "gap_seconds": 0.05,
+      "max_requests": 100,
+      "max_seconds": 60,
+      "max_bytes": 100000000,
+      "response_cap": 10485760,
+      "browser_traffic": {
+        "request:document": 1,
+        "status:429": 1
+      },
+      "runtime": {
+        "python": "3.12.3",
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "crawl4ai": "0.9.3",
+        "playwright": "1.52.0",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "cache": "BYPASS",
+        "html_wait_for_images": true,
+        "html_post_load_delay": 3,
+        "navigation_timeout_ms": {
+          "page": 90000,
+          "rest": 30000
+        },
+        "tls_verification": true,
+        "browser": "136.0.7103.25"
+      },
+      "cleanup_messages": [],
+      "collection_outcome": "partial",
+      "finished_at": "2026-10-07T13:18:04.719807+00:00",
+      "elapsed_s": 4.199116250034422,
+      "completed": 0,
+      "remaining": 2
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+  "case": "closed-cleanup-unresolved",
+  "calls": [
+    {
+      "command": "Fetch.failRequest",
+      "args": {
+        "requestId": "fixture-fetch-1",
+        "errorReason": "Aborted"
+      }
+    }
+  ],
+  "returned": [
+    false,
+    false
+  ],
+  "stop_reason": "interception_error:TargetClosedError",
+  "closing": true,
+  "entry_state": "error",
+  "entry_command": "Fetch.failRequest",
+  "events": [
+    {
+      "event": "interception_command",
+      "monotonic": 483863.254967639,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "unresolved",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_error",
+      "monotonic": 483863.254989576,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "unresolved",
+      "state": "error",
+      "error": "TargetClosedError",
+      "detail": "Target page, context or browser has been closed",
+      "confirmed_canceled": false,
+      "supported_incidental": false,
+      "supported_cleanup_closed": false
+    },
+    {
+      "event": "stop",
+      "monotonic": 483863.254993187,
+      "reason": "interception_error:TargetClosedError"
+    },
+    {
+      "event": "interception_resolution_skipped",
+      "monotonic": 483863.254998291,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "unresolved",
+      "state": "error"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "failed_stage": "handoff-race-fixed",
+  "result": "16 passed, 1 fixture timing failure",
+  "cause": "The new intentional-abort test timer began before the mandatory 5-second admission gap, so cancellation occurred before admission, not at the intended streaming boundary. Existing native pre-admission cancellation tests already cover that case.",
+  "correction": "Start fixture abort timer after Fetch response headers; use deterministic 2048-byte prefix and delayed 2048-byte remainder. Expect 2048 retained bytes and AbortError, never a successful result. No product change for this fixture correction."
+}

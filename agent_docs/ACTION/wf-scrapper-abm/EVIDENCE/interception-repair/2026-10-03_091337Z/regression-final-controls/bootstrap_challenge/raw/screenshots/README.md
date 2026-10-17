@@ -1,0 +1,1 @@
+Director-authored evidence slot. Drop screenshots here. The tool writes only this README into this folder; screenshot bytes are Director-authored. Files here are listed in `manifest.streams.screenshots` as `authored` with their sha256; if empty, `absences.json` carries `stream: screenshots, outcome: skipped, reason: none_supplied`.

@@ -1,0 +1,40 @@
+{
+  "test": "T-23",
+  "executor": "Claudy (Claude Code, Claude Opus 5.5) — post-run executor adjudication; instrument output left unmodified",
+  "result_file": "offline/t23_untrusted_privacy_result.json",
+  "result_sha256": "39df3c59789a9624696881451235e4ed8652bfca7967128c513b4ba4e92a0f33",
+  "measurement": "PASS with three recorded sanitization boundaries (ADJUDICATE B1-B3 for the QA Lead)",
+  "passed_observations": [
+    "script/style/noscript/template/svg/hidden-input markers absent from page md, BOILERPLATE.md and SOURCE_INDEX.json",
+    "javascript:/data:/vbscript: anchor destinations (incl. leading-space, mixed-case and tab-entity obfuscations) stripped from md and SOURCE_INDEX links; 7/7 labels retained as inert text; event-handler attributes and iframe absent",
+    "traversal href ../../../../etc/t23-traversal normalized via urljoin to same-host http://synthetic.t23.invalid/etc/t23-traversal; source_href and resolved_url both recorded; never a filesystem path",
+    "prompt-like commands retained verbatim as text; no execution (BeautifulSoup + markdown generator only, empty network namespace); canary and all prepared files intact",
+    "raw collection bytes unchanged in all 7 cases; outside targets unchanged",
+    "negatives corrupt-body/escaping-ref/symlink-out/existing-out/out-inside-collection: exit 2, Prepare refused prefix, no output created (existing-out: pre-existing dir byte-unchanged)",
+    "escaping-ref and symlink-out refused although targets were hash-consistent/byte-identical; artifact() in-process raises artifact outside collection; CLI surfaces invalid completed saved result (valid_result masks the message)",
+    "symlink-in (honest boundary): accepted exit 0; SOURCE_INDEX raw_file records the resolved in-collection target mirror/body",
+    "checker: 9 controls x 2 modes meet expectation; clean prose PASS, synthetic leak/prohibited/nested/corrupt-member/corrupt-digest/stale-adjudication FAIL at exact locations, exact-location adjudication does not mask genuine leaks; no matched value echoed"
+  ],
+  "boundaries": [
+    {
+      "id": "B1",
+      "observation": "entity-escaped markup in source text (&lt;script&gt;...) is decoded to literal <script>alert('t23-escaped-text')</script> in the derived page Markdown",
+      "risk": "inert as a file; becomes active only if a Markdown renderer passes raw HTML through",
+      "classification": "ADJUDICATE — unsupported sanitization boundary, recorded not repaired"
+    },
+    {
+      "id": "B2",
+      "observation": "plain source text [click me](javascript:alert('t23-md-inject')) passes through unescaped and forms syntactically valid Markdown link syntax",
+      "risk": "active only if a renderer allows javascript: link targets",
+      "classification": "ADJUDICATE — unsupported sanitization boundary"
+    },
+    {
+      "id": "B3",
+      "observation": "SOURCE_INDEX.json pages[].content.images[].source_src records the raw img src verbatim, including javascript:alert('t23-img-src')",
+      "risk": "data field in JSON, not a rendered link; a consumer rendering it as a URL would inherit it",
+      "classification": "ADJUDICATE — recorded data-preservation boundary"
+    }
+  ],
+  "minor_observation": "footer mailto: anchor rendered as label text only in BOILERPLATE.md (scheme is allowlisted in clean(); converter output dropped the link) — observation only",
+  "scope_limits": "synthetic fixtures only; converter behaviour bounded to these inputs; no claim that every unsafe string is removed; checker is QA-authored, not a product feature; broad hostile-viewer coverage remains unclosed per plan §6"
+}

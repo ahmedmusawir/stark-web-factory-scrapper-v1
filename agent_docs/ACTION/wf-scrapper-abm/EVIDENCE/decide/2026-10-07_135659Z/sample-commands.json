@@ -1,0 +1,43 @@
+[
+  {
+    "command": [
+      "venv/bin/python",
+      "-m",
+      "recon_pipeline.decide",
+      "select",
+      "--inventory",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/imported-review/inventory.json",
+      "--include-html",
+      "3",
+      "--include-rest",
+      "doc-c6b9265b51bf57660bb4",
+      "--exclude",
+      "1",
+      "--by",
+      "Cody illustrative example; NOT Tony approval",
+      "--example",
+      "--out",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/EXAMPLE_ONLY_decision.json"
+    ],
+    "exit": 0,
+    "stdout": "Explicit choices saved: agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/EXAMPLE_ONLY_decision.json; no collection executed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "venv/bin/python",
+      "-m",
+      "recon_pipeline.decide",
+      "export",
+      "--inventory",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/imported-review/inventory.json",
+      "--decision",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/EXAMPLE_ONLY_decision.json",
+      "--out",
+      "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/EXAMPLE_ONLY_collector-plan.json"
+    ],
+    "exit": 0,
+    "stdout": "Collector plan exported: agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/decide/2026-10-07_135659Z/EXAMPLE_ONLY_collector-plan.json; no collection executed\n",
+    "stderr": ""
+  }
+]

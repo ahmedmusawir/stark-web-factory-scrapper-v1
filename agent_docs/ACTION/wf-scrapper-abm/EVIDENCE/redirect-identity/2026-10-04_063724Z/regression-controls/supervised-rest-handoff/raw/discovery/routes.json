@@ -1,0 +1,119 @@
+{
+  "schema": "abm-routes-v1",
+  "mode": "sitemap",
+  "sitemap_url_used": "http://127.0.0.1:36577/sitemap.xml",
+  "sources": [
+    {
+      "file": "bootstrap.html",
+      "url": "http://127.0.0.1:36577/",
+      "status": 200,
+      "sha256": "e3ee377f4c323925c41585cc12ac54fe508ed755ab74322be8412c679cff8953",
+      "role": "origin bootstrap; reused if route matches"
+    },
+    {
+      "file": "robots.txt",
+      "url": "http://127.0.0.1:36577/robots.txt",
+      "status": 200,
+      "sha256": "0792c9aa874f76e36df693d1fef33cca0bd368efb7fe8fe4fbb2b2c40d08e7bc",
+      "transport": "Chromium same-page window.fetch / Response.body.getReader",
+      "boundary": "browser-decoded entity bytes"
+    },
+    {
+      "file": "sitemap.xml",
+      "url": "http://127.0.0.1:36577/sitemap.xml",
+      "status": 200,
+      "sha256": "c54cf8a9d37e156d2ba53efd83fc84aa597273d5a0bd9fe95b685f830e079ff5",
+      "transport": "Chromium same-page window.fetch / Response.body.getReader",
+      "boundary": "browser-decoded entity bytes",
+      "child_count": 2
+    },
+    {
+      "file": "pages.xml",
+      "url": "http://127.0.0.1:36577/pages.xml",
+      "status": 200,
+      "sha256": "9730bbf9a4499a6264c78f85bf0ddf95395ba739266b11ac08a2b549248eb67a",
+      "transport": "Chromium same-page window.fetch / Response.body.getReader",
+      "boundary": "browser-decoded entity bytes",
+      "loc_count": 6
+    },
+    {
+      "file": "aliases.xml",
+      "url": "http://127.0.0.1:36577/aliases.xml",
+      "status": 200,
+      "sha256": "5c374ea341864dbcec4dc73ac44feb6bd3caa1e063443a173ab400bc4df17c8d",
+      "transport": "Chromium same-page window.fetch / Response.body.getReader",
+      "boundary": "browser-decoded entity bytes",
+      "loc_count": 1
+    }
+  ],
+  "routes": [
+    {
+      "url": "http://127.0.0.1:36577/",
+      "input_urls": [
+        "http://127.0.0.1:36577/"
+      ],
+      "aliases": [],
+      "source_file": "pages.xml",
+      "lastmod": null
+    },
+    {
+      "url": "http://127.0.0.1:36577/about/",
+      "input_urls": [
+        "http://127.0.0.1:36577/about/",
+        "http://127.0.0.1:36577/about/?utm_source=alias"
+      ],
+      "aliases": [
+        "http://127.0.0.1:36577/about/?utm_source=alias"
+      ],
+      "source_file": "pages.xml",
+      "lastmod": null
+    },
+    {
+      "url": "http://127.0.0.1:36577/services/",
+      "input_urls": [
+        "http://127.0.0.1:36577/services/"
+      ],
+      "aliases": [],
+      "source_file": "pages.xml",
+      "lastmod": null
+    },
+    {
+      "url": "http://127.0.0.1:36577/contact/",
+      "input_urls": [
+        "http://127.0.0.1:36577/contact/"
+      ],
+      "aliases": [],
+      "source_file": "pages.xml",
+      "lastmod": null
+    },
+    {
+      "url": "http://127.0.0.1:36577/article/",
+      "input_urls": [
+        "http://127.0.0.1:36577/article/"
+      ],
+      "aliases": [],
+      "source_file": "pages.xml",
+      "lastmod": null
+    },
+    {
+      "url": "http://127.0.0.1:36577/rendered-only/",
+      "input_urls": [
+        "http://127.0.0.1:36577/rendered-only/"
+      ],
+      "aliases": [],
+      "source_file": "pages.xml",
+      "lastmod": null
+    }
+  ],
+  "dropped": [
+    {
+      "loc": "http://127.0.0.1:36577/about/?utm_source=alias",
+      "reason": "duplicate"
+    }
+  ],
+  "counts": {
+    "loc_total": 7,
+    "routes": 6,
+    "dropped": 1
+  }
+}

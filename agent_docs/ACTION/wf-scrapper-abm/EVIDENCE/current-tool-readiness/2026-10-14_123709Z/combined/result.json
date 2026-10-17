@@ -1,0 +1,57 @@
+{
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_selected_collector.py",
+    "tests/test_decide.py",
+    "agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp",
+    "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/combined/fixtures",
+    "--junitxml",
+    "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/combined/junit.xml"
+  ],
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "SELECTED_COLLECTOR_EVIDENCE": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/combined/collector-native",
+    "DECIDE_EVIDENCE": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/current-tool-readiness/2026-10-14_123709Z/combined/decide-native"
+  },
+  "started_at": "2026-10-14T12:47:36.626933+00:00",
+  "source_inventory_sha256": "39b9728ac72cd2699410b6fda05c68c38b842b23eff7bd6490d9fb4f6d3d8314",
+  "scope": "Engineer combined verification; loopback browser fixtures and offline saved captures only; independent QA NOT RUN",
+  "no_source_edits": true,
+  "exit_code": 0,
+  "elapsed_seconds": 20.55070755002089,
+  "finished_at": "2026-10-14T12:47:57.177948+00:00",
+  "junit_totals": {
+    "tests": 97,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failures": [],
+  "per_module": {
+    "tests.test_selected_collector": {
+      "tests": 32,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "tests.test_decide": {
+      "tests": 55,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "agent_docs.SKILLS.web-recon-prepare.tests.test_prepare_saved": {
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "source_after_unchanged": true
+}

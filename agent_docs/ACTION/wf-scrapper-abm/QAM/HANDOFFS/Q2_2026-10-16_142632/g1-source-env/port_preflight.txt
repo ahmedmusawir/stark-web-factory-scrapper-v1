@@ -1,0 +1,17 @@
+2026-10-16 14:33:58 +0600
+--- free-port preflight for QA-owned loopback listeners ---
+[loopback interface]
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+[listen sockets before tests (ss -ltn)]
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
+LISTEN 0      4096   127.0.0.53%lo:53         0.0.0.0:*          
+LISTEN 0      128        127.0.0.1:42125      0.0.0.0:*          
+LISTEN 0      4096       127.0.0.1:631        0.0.0.0:*          
+LISTEN 0      4096      127.0.0.54:53         0.0.0.0:*          
+LISTEN 0      512        127.0.0.1:49374      0.0.0.0:*          
+LISTEN 0      128        127.0.0.1:44875      0.0.0.0:*          
+LISTEN 0      4096       127.0.0.1:11434      0.0.0.0:*          
+LISTEN 0      4096           [::1]:631           [::]:*          
+[bind probe 127.0.0.1:9876 — fixed loopback port used by tests/test_selected_collector.py]
+PORT_9876_FREE
+probe_exit=0

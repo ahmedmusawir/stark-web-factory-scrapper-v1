@@ -1,0 +1,105 @@
+{
+  "bindings": {
+    "t04": "two planned documents, default gap (no override), native monotonic timing, unlinked-route oracle",
+    "t07": "DOM-mutation rendered-vs-original-bytes plus independent Playwright observation",
+    "evidence_note": "SELECTED_COLLECTOR_EVIDENCE deposition is a suite-harness mechanism (tests/test_selected_collector.py line 228), not product behavior; this QA run records its own server event log and the checklist run record as native evidence"
+  },
+  "port_record": {
+    "bind": "127.0.0.1",
+    "port": 33009,
+    "origin": "http://127.0.0.1:33009"
+  },
+  "cli": {
+    "exit": 2,
+    "stdout": "{\n  \"collection_outcome\": \"partial\",\n  \"stop_reason\": null,\n  \"cleanup_error\": null,\n  \"completed\": 1,\n  \"remaining\": 1,\n  \"elapsed_s\": 12.631623200024478\n}\nCHECKLIST: /tmp/opencode/q2-scratch-20261016/t04-native/collection/checklist.json\n",
+    "stderr": "[FETCH]... \u2193 http://127.0.0.1:33009/doc-mut                                                                       | \u2713 | \u23f1: 3.49s \n[SCRAPE].. \u25c6 http://127.0.0.1:33009/doc-mut                                                                       | \u2713 | \u23f1: 0.00s \n[COMPLETE] \u25cf http://127.0.0.1:33009/doc-mut                                                                       | \u2713 | \u23f1: 3.51s \n[FETCH]... \u2193 http://127.0.0.1:33009/doc-b                                                                         | \u2713 | \u23f1: 3.28s \n[SCRAPE].. \u25c6 http://127.0.0.1:33009/doc-b                                                                         | \u2713 | \u23f1: 0.00s \n[ERROR]... \u00d7 http://127.0.0.1:33009/doc-b                       | Error: Blocked by anti-bot protection: Structural: minimal_text on small page (121 bytes, 32 chars visible) \n[COMPLETE] \u25cf http://127.0.0.1:33009/doc-b                                                                         | \u2717 | \u23f1: 3.28s \n",
+    "wall_elapsed_s": 14.1
+  },
+  "run_record": {},
+  "server_events": [
+    {
+      "arrival": 963983.983019566,
+      "arrival_epoch": 1792140709.8463662,
+      "method": "GET",
+      "path": "/doc-mut",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 963983.993039972,
+      "arrival_epoch": 1792140709.856386,
+      "method": "GET",
+      "path": "/pixel.png",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
+    },
+    {
+      "arrival": 963992.429503788,
+      "arrival_epoch": 1792140718.2928493,
+      "method": "GET",
+      "path": "/doc-b",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 963996.86311412,
+      "arrival_epoch": 1792140722.7264602,
+      "method": "GET",
+      "path": "/doc-mut",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    },
+    {
+      "arrival": 963996.87640392,
+      "arrival_epoch": 1792140722.73975,
+      "method": "GET",
+      "path": "/pixel.png",
+      "query": "",
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
+    }
+  ],
+  "t04_pacing": {
+    "resolved_gap_seconds": null,
+    "gap_override_passed": false,
+    "planned_calls_recorded": 0,
+    "collector_native_gap_s": null,
+    "collector_gap_pass_5s": false,
+    "server_observed_gap_s": 8.446484221960418,
+    "server_gap_pass_5s": true,
+    "preceding_completion_consistent": false,
+    "unlinked_route_requested": false,
+    "unlinked_route_oracle_pass": true,
+    "linked_unselected_requested": false,
+    "background_traffic": {
+      "pixel_png_requests": 1,
+      "favicon_requests": 0,
+      "browser_traffic_counter": null,
+      "note": "subresource/favicon requests are browser background traffic, recorded in the server log and traffic counter, not in the planned-call records"
+    },
+    "planned_calls_exactly_two": false
+  },
+  "saved_results": {},
+  "t07_fidelity": {
+    "error": "doc-mut item not found in saved results"
+  },
+  "t11_records": {
+    "runtime": null,
+    "cleanup_messages": null,
+    "collection_outcome": null,
+    "stop_reason": null,
+    "elapsed_s": null,
+    "observed_user_agent_first_page": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "user_agent_matches_runtime_record": false
+  },
+  "assessment": {
+    "collect_exit_zero": false,
+    "both_items_completed": true,
+    "t04_pass": false,
+    "t07_pass": null
+  }
+}

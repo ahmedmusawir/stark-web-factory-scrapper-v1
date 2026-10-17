@@ -1,0 +1,189 @@
+{
+  "status": "INCOMPLETE \u2014 single allocation consumed; STOP",
+  "created_at": "2026-10-03T11:52:32.991207+00:00",
+  "report": "agent_docs/RESPONSES/response_2026-10-03_175232_bounded-live-capture.md",
+  "branch": "wf-scrapper-abm",
+  "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+  "source_inventory_sha256": "38fd82f3f26468c2ec31a3db2919061caaa79763d7f2887909c5176c58435ffa",
+  "source_entries": 60,
+  "source_unchanged": true,
+  "candidate_commit": "Not created; existing dirty/untracked work preserved",
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "recon_pipeline",
+    "--project",
+    "CyberizeGroup",
+    "--url",
+    "https://cyberizegroup.com",
+    "--limit",
+    "10",
+    "--skip-prepare",
+    "--no-media-head",
+    "--max-operations",
+    "120",
+    "--max-seconds",
+    "1800",
+    "--max-bytes",
+    "100000000",
+    "--max-aggregate-bytes",
+    "100000000"
+  ],
+  "started_at": "2026-10-03T11:46:32.144795+00:00",
+  "finished_at": "2026-10-03T11:48:47.768405+00:00",
+  "elapsed_s": 135.62362998898607,
+  "exit_code": 2,
+  "stop_reason": "operation_watchdog",
+  "secondary_cleanup_error": "BrowserContext.close: Target page, context or browser has been closed",
+  "intentional_dispatches": 3,
+  "document_slots_observed": 1,
+  "successful_bootstrap_captures": 1,
+  "manifest_route_captures": 0,
+  "known_routes": 0,
+  "captured_content": {
+    "url": "https://cyberizegroup.com/",
+    "observed_status": 200,
+    "title": "B2B Digital Marketing Agency >> Cyberize Group",
+    "html": "outputs/CyberizeGroup/runs/2026-10-03T11-46-34Z/discovery/bootstrap.html",
+    "html_bytes": 410449,
+    "sha256": "c4e1cbf8bf8978aff013ff2e6ec374b10f9eaa766eaedf058257b5d60aa31eda",
+    "paragraphs_over_90_characters": 9,
+    "assessment": "Usable service prose/headings; not a completeness claim. Bootstrap is archived as a discovery source, not a pages[] row."
+  },
+  "discovery": {
+    "robots_status": 200,
+    "robots_bytes": 175,
+    "sitemap_url": "https://cyberizegroup.com/sitemap_index.xml",
+    "sitemap_headers_status": 200,
+    "sitemap_body_saved": false,
+    "sitemap_xml_validated": false,
+    "outcome": "Partial; read operation deadline expired. Zero known routes is not an empty-site finding."
+  },
+  "rest": {
+    "intentional_reads": 0,
+    "responses": 0,
+    "objects": 0,
+    "skipped_collections": [
+      "pages",
+      "posts",
+      "media",
+      "categories",
+      "tags",
+      "users"
+    ],
+    "reason": "Collection not reached before stop; no root enumeration"
+  },
+  "media": {
+    "items": 0,
+    "internal": 0,
+    "external": 0,
+    "staging_domain": 0,
+    "intentional_heads": 0,
+    "reason": "Inventory collection not reached; --no-media-head. Rendering resources were separately loaded."
+  },
+  "pacing": {
+    "completion_gap_seconds": [
+      10.768617675988935,
+      5.079847060027532
+    ],
+    "minimum_observed_seconds": 5.079847060027532,
+    "required_seconds": 5,
+    "redirect_hops_observed_intentional": 0,
+    "background_resources_paced": false
+  },
+  "browser_request_events": 147,
+  "observed_response_statuses": {
+    "200": 131,
+    "301": 3,
+    "201": 2,
+    "204": 6,
+    "302": 2
+  },
+  "observed_refusals_or_explicit_challenges": [],
+  "interception": {
+    "invalid_interception_id_events": 0,
+    "same_url_classification_defect_recurred": false,
+    "continue_commands_completed": 154,
+    "intentional": 3,
+    "incidental": 151,
+    "last_intentional": {
+      "source_line": 1366,
+      "url": "https://cyberizegroup.com/sitemap_index.xml",
+      "method": "GET",
+      "kind": "read",
+      "ordinal": 3,
+      "operation_id": "op-3",
+      "request_id": "interception-job-297.0",
+      "network_id": "480900.367",
+      "resource_type": "XHR",
+      "frame_id": "B707AC7A533C3031A186A10DB89A53A5",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    "cleanup_request_attribution": "Context-close error has no specific Fetch/Network ID; do not attribute it to the sitemap or adjacent traffic."
+  },
+  "reader": {
+    "exit_code": 0,
+    "result": "VALID RAW: 0 route outcomes; Prepare construction is a separate stage",
+    "raw_unchanged": true,
+    "hash_checks": "Referenced hashes pass; all 11 raw files inventoried independently."
+  },
+  "manifest_sha256": "bc2f3e8bfa470e483566a93135b97d849502d94bc523673a501480e489d2de05",
+  "limits": {
+    "intentional_dispatches": 120,
+    "document_slots_including_bootstrap": 10,
+    "completion_gap_s": 5,
+    "seconds_including_finalization": 1800,
+    "raw_bytes": 97000000,
+    "recorder_evidence_bytes": 3000000,
+    "aggregate_bytes": 100000000,
+    "decoded_response_bytes": 10485760,
+    "document_seconds": 180,
+    "read_seconds": 30,
+    "finalization_reserve_seconds": 30
+  },
+  "persisted_bytes": {
+    "raw_bytes": 904386,
+    "support_bytes": 1160129,
+    "aggregate_bytes": 2064515,
+    "evidence_directory_bytes": 1127065,
+    "report_bytes": 8871,
+    "summary_bytes": 7415,
+    "audit_growth_bytes": 16778,
+    "runtime_persisted_bytes": 0,
+    "temporary_files_bytes": 0,
+    "raw_ceiling": 97000000,
+    "support_ceiling": 3000000,
+    "aggregate_ceiling": 100000000,
+    "method": "Final file sizes, including all new evidence/report/summary files and net appended/prepended checkpoint bytes; pre-existing source/evidence bytes are not recounted."
+  },
+  "preservation": {
+    "preexisting_files_checked": 7172,
+    "changed": 0,
+    "missing": 0,
+    "product_test_changes": 0,
+    "audit_history_preserved": true
+  },
+  "evidence": {
+    "directory": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_114612Z",
+    "raw_run": "outputs/CyberizeGroup/runs/2026-10-03T11-46-34Z",
+    "result": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_114612Z/smoke/result.json",
+    "source_inventory": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_114612Z/smoke/source-before.json",
+    "timeline": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_114612Z/event-excerpt.json",
+    "raw_inventory": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_114612Z/raw-inventory.json",
+    "reader": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_114612Z/reader-validation.json",
+    "preservation": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_114612Z/preservation-result.json",
+    "checks": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_114612Z/final-checks.json",
+    "traffic": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-03_114612Z/traffic-summary.json",
+    "checkpoint": "RECOVERY.md"
+  },
+  "gaps": [
+    "No completed sitemap response, selected-route batch, REST coverage or media inventory.",
+    "operation_complete(error=null) is emitted on sitemap teardown; not proof of successful response handoff.",
+    "Supervisor-finalized manifest omits final dispatch/document/resource totals; counts reconstructed from retained events.",
+    "No proven cause for delayed sitemap result delivery or cleanup failure. No full-crawl readiness claim."
+  ],
+  "prepare": "ON HOLD for in-repo agent-skill ABM amendment; P1\u2013P6/E1/E2 not started",
+  "independent_qa": "NOT RUN",
+  "next": "JARVIS reviews controller/watchdog evidence; further repair/live work requires new authority. STOP."
+}

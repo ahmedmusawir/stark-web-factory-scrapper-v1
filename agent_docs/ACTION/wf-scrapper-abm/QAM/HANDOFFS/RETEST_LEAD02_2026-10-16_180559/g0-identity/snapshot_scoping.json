@@ -1,0 +1,14 @@
+{
+  "action": "snapshot scoped after extraction",
+  "removed": [
+    "agent_docs/ACTION (473MB historical QA/engineering evidence lanes; not product, not needed for execution)",
+    "agent_docs/RESPONSES/OLD (23MB archived responses)"
+  ],
+  "reason": "QA disk budget 500,000,000 bytes; full git-archive was 501MB. Product code, tests, skills, fixtures and current RESPONSES fixture ZIPs retained.",
+  "snapshot_source52_after_scoping": "6f35cf8dacf3aeecc17a89b1c96e3558ea52e3c03edf63c2e402a766a1e986f4",
+  "matches_go": true,
+  "fixtures_exit": 0,
+  "fixtures_stdout_tail": "-growth-call-follow-up-2026-10-13_223736/SOURCE_INDEX.json', 'outputs/prepared/CyberizeGroup-growth-call-follow-up-2026-10-13_223736/pages/1919308e975782c911a6d794.md']\nmismatch: none\nALL_MATCH False\n",
+  "fixture_restoration": "git archive omits untracked outputs/ and pruning removed EVIDENCE paths; the 34 fixture-manifest reference files were copied from the hash-verified worktree (worktree recheck exit 0, 34/34) and re-verified on the snapshot: 34/34 all_match, exit 0 (recheck_fixtures_snapshot.json)",
+  "final_snapshot_bytes_total_scratch": 6754936
+}

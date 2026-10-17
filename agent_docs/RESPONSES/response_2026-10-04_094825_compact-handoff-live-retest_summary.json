@@ -1,0 +1,356 @@
+{
+  "outcome": "INCOMPLETE; single allocation consumed; STOP",
+  "report": "agent_docs/RESPONSES/response_2026-10-04_094825_compact-handoff-live-retest.md",
+  "repository": "/home/moose/PYTHON/stark-web-factory-scrapper-v1",
+  "branch": "wf-scrapper-abm",
+  "head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "source_inventory_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+  "source_entries": 65,
+  "source_unchanged": true,
+  "prior_post_correction_retest_found": false,
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "recon_pipeline",
+    "--project",
+    "CyberizeGroup",
+    "--url",
+    "https://cyberizegroup.com",
+    "--limit",
+    "10",
+    "--skip-prepare",
+    "--no-media-head",
+    "--max-operations",
+    "120",
+    "--max-seconds",
+    "1800",
+    "--max-bytes",
+    "100000000",
+    "--max-aggregate-bytes",
+    "100000000"
+  ],
+  "exit_code": 2,
+  "stop_reason": "interception_error:Error",
+  "started_at": "2026-10-04T03:42:08.770043+00:00",
+  "finished_at": "2026-10-04T03:44:48.750513+00:00",
+  "elapsed_s": 159.98045188898686,
+  "raw_run": "outputs/CyberizeGroup/runs/2026-10-04T03-42-09Z",
+  "manifest_counts": {
+    "routes": 194,
+    "captured": 8,
+    "blocked": 0,
+    "failed": 1,
+    "unsupported": 0,
+    "skipped": 185,
+    "rest_objects": 0,
+    "rest_mapped_routes": 0,
+    "media_items": 197
+  },
+  "streams": {
+    "discovery": "complete",
+    "html": "partial",
+    "rest": "partial",
+    "media": "skipped",
+    "screenshots": "empty"
+  },
+  "sitemaps": [
+    {
+      "file": "discovery/sitemap_index.xml",
+      "bytes": 662,
+      "sha256": "94e327fb8e913af3df0d462621ce25f5bac53ca86bbcf7a6988225ddc42cf109",
+      "xml_root": "{http://www.sitemaps.org/schemas/sitemap/0.9}sitemapindex",
+      "entries": 3,
+      "complete": true,
+      "hash_matches_source": true
+    },
+    {
+      "file": "discovery/post-sitemap.xml",
+      "bytes": 93198,
+      "sha256": "31462f08eb8182613b85295c3082c19e6c817618fffd0499a330bf41b79a1f1b",
+      "xml_root": "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset",
+      "entries": 167,
+      "complete": true,
+      "hash_matches_source": true
+    },
+    {
+      "file": "discovery/page-sitemap.xml",
+      "bytes": 7353,
+      "sha256": "a78a8023d1e180bc7da9f3a6113a1a4a9ffc02b1b064791de22a404ed58e3bfc",
+      "xml_root": "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset",
+      "entries": 18,
+      "complete": true,
+      "hash_matches_source": true
+    },
+    {
+      "file": "discovery/category-sitemap.xml",
+      "bytes": 1653,
+      "sha256": "97eb2cf8ff7bb9c9c2f4c408db06295dc756604ec743b5a60ad5f5a57e4eed6c",
+      "xml_root": "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset",
+      "entries": 9,
+      "complete": true,
+      "hash_matches_source": true
+    }
+  ],
+  "html": {
+    "successful_route_files": 8,
+    "separate_bootstrap": {
+      "file": "discovery/bootstrap.html",
+      "bytes": 410002,
+      "sha256": "80b7eaa14303728fe865538a042b17c6a78a170dd9a8dc5f1f9644652c40b6ce",
+      "title": "B2B Digital Marketing Agency >> Cyberize Group",
+      "operation_outcome": "success",
+      "route_outcome": "skipped"
+    },
+    "usable_saved_documents": 9,
+    "failed_document": "https://cyberizegroup.com/what-to-expect-from-a-ppc-agency/",
+    "failed_document_status": 200,
+    "failed_document_html_saved": false,
+    "caveat": "Bootstrap is saved as discovery evidence, but the final route table marks homepage skipped; do not count it as a ninth captured route."
+  },
+  "posts": {
+    "attempted": false,
+    "response_bytes_saved": 0,
+    "body_complete": null,
+    "pagination_attempted": false,
+    "per_page_setting_unchanged": 100,
+    "advertised_total": null,
+    "advertised_pages": null,
+    "objects": 0,
+    "reason": "Controller stopped during HTML before REST collection; no posts response exists."
+  },
+  "rest_collections": [
+    {
+      "type": "pages",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/pages",
+      "per_page": 100,
+      "total": null,
+      "total_pages": null,
+      "fetched_objects": 0,
+      "status": "skipped",
+      "response_refs": []
+    },
+    {
+      "type": "posts",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/posts",
+      "per_page": 100,
+      "total": null,
+      "total_pages": null,
+      "fetched_objects": 0,
+      "status": "skipped",
+      "response_refs": []
+    },
+    {
+      "type": "media",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/media",
+      "per_page": 100,
+      "total": null,
+      "total_pages": null,
+      "fetched_objects": 0,
+      "status": "skipped",
+      "response_refs": []
+    },
+    {
+      "type": "categories",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/categories",
+      "per_page": 100,
+      "total": null,
+      "total_pages": null,
+      "fetched_objects": 0,
+      "status": "skipped",
+      "response_refs": []
+    },
+    {
+      "type": "tags",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/tags",
+      "per_page": 100,
+      "total": null,
+      "total_pages": null,
+      "fetched_objects": 0,
+      "status": "skipped",
+      "response_refs": []
+    },
+    {
+      "type": "users",
+      "endpoint": "https://cyberizegroup.com/wp-json/wp/v2/users",
+      "per_page": 100,
+      "total": null,
+      "total_pages": null,
+      "fetched_objects": 0,
+      "status": "skipped",
+      "response_refs": []
+    }
+  ],
+  "media_inventory": {
+    "items": 197,
+    "internal": 169,
+    "external": 10,
+    "staging_domain": 18
+  },
+  "media_retrieval": "HEAD disabled; external/staging inventory only; no separate media-byte harvesting",
+  "failure": {
+    "request": {
+      "line": 9725,
+      "utc": "2026-10-04T03:44:27+00:00",
+      "event": "interception_command_error",
+      "monotonic": 442477.699890045,
+      "operation_id": "op-15",
+      "request_id": "interception-job-2132.0",
+      "network_id": "935232.2634",
+      "resource_type": "Image",
+      "frame_id": "44951AED282F00EE2F45BA81D139F343",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "error",
+      "error": "Error",
+      "detail": "CDPSession.send: Protocol error (Fetch.continueRequest): Invalid InterceptionId.",
+      "confirmed_canceled": false,
+      "supported_incidental": false
+    },
+    "resource_origin": "https://www.googletagmanager.com/td (query omitted)",
+    "timeline": [
+      {
+        "event": "operation_start",
+        "offset_s": 0.0,
+        "line": 9546
+      },
+      {
+        "event": "intentional_intercepted",
+        "offset_s": 0.08410935499705374,
+        "line": 9557
+      },
+      {
+        "event": "pause",
+        "offset_s": 0.08508977701421827,
+        "line": 9558
+      },
+      {
+        "event": "intentional_dispatch",
+        "offset_s": 5.001877656031866,
+        "line": 9579
+      },
+      {
+        "event": "cdp_response_headers",
+        "offset_s": 5.0809789699851535,
+        "line": 9584
+      },
+      {
+        "event": "interception_command",
+        "offset_s": 5.168278023018502,
+        "line": 9599
+      },
+      {
+        "event": "cdp_loading_finished",
+        "offset_s": 5.525647089991253,
+        "line": 9723
+      },
+      {
+        "event": "interception_command_error",
+        "offset_s": 5.528181531990413,
+        "line": 9725
+      },
+      {
+        "event": "stop",
+        "offset_s": 5.5292013679863885,
+        "line": 9726
+      },
+      {
+        "event": "operation_complete",
+        "offset_s": 10.882886178034823,
+        "line": 9964
+      },
+      {
+        "event": "interception_page_closed",
+        "offset_s": 25.65207047399599,
+        "line": 9966
+      }
+    ],
+    "supervisor_action": "None recorded; normal pipeline finalization retained interception_error:Error",
+    "cause": "Unknown; cancellation not confirmed for this incidental Image at command failure; no cause assigned to adjacent events."
+  },
+  "reader_validation": {
+    "validator": "prepare.reader.RawRun(raw) -> smart_crawler.validate.validate_run",
+    "result": "PASS",
+    "read_only": true,
+    "files": 23,
+    "route_outcomes": 194,
+    "checks": [
+      "schemas and mandatory files valid",
+      "references and byte hashes valid",
+      "route outcomes/counts/absences reconciled",
+      "REST derivatives and mappings valid"
+    ],
+    "hashes_unchanged": true,
+    "meaning": "Structurally valid partial raw package; not complete collection or independent QA."
+  },
+  "traffic": {
+    "intentional_dispatches": 15,
+    "intentional_redirect_hops": 0,
+    "document_slots": 10,
+    "minimum_completion_gap_s": 5.001487017027102,
+    "all_14_gaps_at_least_5s": true,
+    "dispatches_after_stop": 0,
+    "browser_request_events": 1080,
+    "browser_response_events": 977,
+    "response_statuses": {
+      "200": 912,
+      "301": 10,
+      "201": 2,
+      "204": 48,
+      "302": 4,
+      "404": 1
+    }
+  },
+  "preservation": {
+    "prior_files": 11161,
+    "changed_or_missing": [],
+    "source_unchanged": true,
+    "final_source_inventory_sha256": "4166482e389d46c7680e18ae11a0406ebe893c3a28631a9f7e04d455614a5afe",
+    "raw_hashes_unchanged_by_reader": true,
+    "prior_live_run": "outputs/CyberizeGroup/runs/2026-10-03T17-35-57Z",
+    "prior_live_run_preserved": true,
+    "original_checkpoint_contents_preserved": {
+      "RECOVERY.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md": true,
+      "agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md": true,
+      "agent_docs/SESSIONS/session_2026-10-04.md": true
+    }
+  },
+  "evidence": {
+    "smoke/result.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/smoke/result.json",
+    "preflight.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/preflight.json",
+    "source-final.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/source-final.json",
+    "collected-results.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/collected-results.json",
+    "failed-operation-timeline.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/failed-operation-timeline.json",
+    "interception-excerpt.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/interception-excerpt.json",
+    "operation-and-pacing.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/operation-and-pacing.json",
+    "reader-validation.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/reader-validation.json",
+    "raw-inventory.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/raw-inventory.json",
+    "preservation-result.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/preservation-result.json",
+    "budget-accounting.json": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/bounded-live-capture/2026-10-04_034156Z/budget-accounting.json"
+  },
+  "remaining_findings": [
+    "Compact posts-body handoff remains untested live in this attempt; REST not reached.",
+    "Homepage bootstrap saved but final route marked skipped; separate evidence/outcome counts disclosed.",
+    "Previously recorded supervisor-finalization manifest-counter gap remains unresolved; counters present in this normal-finalization run."
+  ],
+  "prepare": "ON HOLD for agent-skill amendment",
+  "independent_qa": "NOT RUN",
+  "next_action": "JARVIS reviews controller stop; no automatic repair or further live request.",
+  "budget": {
+    "raw_bytes": 8208742,
+    "support_bytes": 1330136,
+    "aggregate_bytes": 9538878,
+    "evidence_directory_bytes": 1291756,
+    "report_bytes": 9906,
+    "summary_bytes": 12275,
+    "audit_growth_bytes": 16199,
+    "runtime_persisted_bytes": 0,
+    "raw_ceiling": 97000000,
+    "support_ceiling": 3000000,
+    "aggregate_ceiling": 100000000,
+    "method": "All new raw/evidence/report/summary bytes plus checkpoint growth and run runtime files; previous bytes excluded."
+  }
+}

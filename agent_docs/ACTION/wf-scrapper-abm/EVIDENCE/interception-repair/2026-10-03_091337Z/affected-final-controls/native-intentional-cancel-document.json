@@ -1,0 +1,175 @@
+{
+  "browser_events": [
+    {
+      "event": "operation_start",
+      "monotonic": 376204.547636539,
+      "url": "http://127.0.0.1:44591/cancel-fixture",
+      "operation_id": "op-1",
+      "deadline": 376258.830857834
+    },
+    {
+      "event": "controls_installed",
+      "monotonic": 376205.577878878,
+      "transport": "Chromium CDP Fetch.requestPaused"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 376205.586460662,
+      "request_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "url": "http://127.0.0.1:44591/cancel-fixture",
+      "redirect_from": null,
+      "redirect_status": null,
+      "browser_timestamp": 376205.585478,
+      "network_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "frame_id": "2EEACCEC69E170012E5FE92E7AD52A24",
+      "resource_type": "Document",
+      "loader_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "initiator_type": "other",
+      "initiator_script_id": null
+    },
+    {
+      "event": "operation_complete",
+      "monotonic": 376205.603026316,
+      "url": "http://127.0.0.1:44591/cancel-fixture",
+      "kind": "document",
+      "operation_id": "op-1",
+      "error": null
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 376205.603406972,
+      "url": "http://127.0.0.1:44591/cancel-fixture",
+      "method": "GET",
+      "resource_type": "document"
+    },
+    {
+      "event": "browser_request_failed",
+      "monotonic": 376205.603547971,
+      "url": "http://127.0.0.1:44591/cancel-fixture",
+      "resource_type": "document"
+    },
+    {
+      "event": "cdp_loading_failed",
+      "monotonic": 376205.603756442,
+      "request_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "session": "page-cdp-1",
+      "browser_timestamp": 376205.591915,
+      "canceled": true,
+      "error_text": "net::ERR_ABORTED",
+      "blocked_reason": null,
+      "resource_type": "Document"
+    },
+    {
+      "event": "fixture_native_cancellation",
+      "monotonic": 376205.60376223,
+      "request_id": "interception-job-1.0",
+      "network_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "frame_id": "2EEACCEC69E170012E5FE92E7AD52A24",
+      "canceled": true,
+      "error_text": "net::ERR_ABORTED"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 376205.60394627,
+      "url": "http://127.0.0.1:44591/cancel-fixture",
+      "method": "GET",
+      "classification": "intentional",
+      "initiator_script_id": null,
+      "network_resource_type": "Document",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "resource_type": "Document",
+      "frame_id": "2EEACCEC69E170012E5FE92E7AD52A24",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "intentional_intercepted",
+      "monotonic": 376205.603955671,
+      "url": "http://127.0.0.1:44591/cancel-fixture",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "resource_type": "Document",
+      "frame_id": "2EEACCEC69E170012E5FE92E7AD52A24",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "stop",
+      "monotonic": 376205.603958428,
+      "reason": "inactive_operation"
+    },
+    {
+      "event": "intentional_prevented",
+      "monotonic": 376205.603964604,
+      "url": "http://127.0.0.1:44591/cancel-fixture",
+      "reason": "inactive_operation",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "resource_type": "Document",
+      "frame_id": "2EEACCEC69E170012E5FE92E7AD52A24",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 376205.603973722,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "resource_type": "Document",
+      "frame_id": "2EEACCEC69E170012E5FE92E7AD52A24",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_error",
+      "monotonic": 376205.608427458,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "D7C9F37C0414D9B669047FA8A40E29B5",
+      "resource_type": "Document",
+      "frame_id": "2EEACCEC69E170012E5FE92E7AD52A24",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "state": "error",
+      "error": "Error",
+      "detail": "CDPSession.send: Protocol error (Fetch.failRequest): Invalid InterceptionId.",
+      "confirmed_canceled": true,
+      "supported_incidental": false
+    },
+    {
+      "event": "interception_page_closed",
+      "monotonic": 376205.616462737,
+      "session": "page-cdp-1",
+      "cleanup": true
+    }
+  ],
+  "server_events": [],
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+  },
+  "dispatches": 0,
+  "stop_reason": "inactive_operation"
+}

@@ -1,0 +1,61 @@
+{
+  "candidate": {
+    "actual_head": "8fbcff289fde5149be0c0631b08e8a5fbcb3faa4",
+    "branch": "qa/wf-scrapper-abm",
+    "commit_author": "Ahmed Musawir",
+    "commit_date": "2026-10-15T18:59:22+06:00",
+    "commit_subject": "Prepare DECIDE COLLECT PREPARE candidate for independent QA",
+    "expected_sha": "8fbcff289fde5149be0c0631b08e8a5fbcb3faa4",
+    "matches": true
+  },
+  "environment": {
+    "python": "Python 3.12.3",
+    "venv": "existing venv/, no installs performed",
+    "versions": {
+      "beautifulsoup4": "4.13.4",
+      "crawl4ai": "0.9.3",
+      "markdown-it-py": "4.2.0",
+      "playwright": "1.52.0",
+      "pytest": "8.3.5",
+      "python-dotenv": "1.1.0",
+      "requests": "2.32.3"
+    }
+  },
+  "executor": "Opy (OpenCode, GLM 5.3) \u2014 independent QA Executor seat, previously Claudy",
+  "fixtures": {
+    "archives_matching": 2,
+    "dependencies_matching": 2,
+    "reference_files_matching": 34
+  },
+  "harness_notes": {
+    "network": "no external requests made; git used read-only (rev-parse, status, log, cat-file); no ls-remote",
+    "python3_bash": "allowed in this OpenCode harness (no denial); prior 2026-10-15 harness rejections did not recur",
+    "tool_denials": "none this session"
+  },
+  "non_blocking_observations": [
+    "agent_docs/KIP_REGISTRY.md absent",
+    "/home/moose/Downloads/WebFactory_Engineering_Readiness_and_QA_Handoff_2026-10-14_183709.zip still absent from Downloads (content exists in-repo)",
+    "governing/source-inventory.json field candidate_commit still reads 'PENDING Tony' (stale; per-file hashes are what was verified)"
+  ],
+  "schema": "q1-bound-readiness-checks-v1",
+  "source52_gate": {
+    "committed_files_matching": 52,
+    "expected": "39b9728ac72cd2699410b6fda05c68c38b842b23eff7bd6490d9fb4f6d3d8314",
+    "matches": true,
+    "method": "sha256 of json.dumps(path->sha256 mapping, sort_keys=True, separators=(',', ':')) utf-8, no trailing newline",
+    "recomputed_from_committed": "39b9728ac72cd2699410b6fda05c68c38b842b23eff7bd6490d9fb4f6d3d8314",
+    "recomputed_from_worktree": "39b9728ac72cd2699410b6fda05c68c38b842b23eff7bd6490d9fb4f6d3d8314",
+    "worktree_files_matching": 52
+  },
+  "worktree_state": {
+    "note": "Tracked deletions are the Director's 2026-10-15 archiving of agent_docs/RESPONSES/*_review/ directories into agent_docs/RESPONSES/OLD/ (unstaged); untracked OLD/ copies and root AGENTS.md also appeared. None intersect the 52 source paths or fixture inputs; not touched by Executor.",
+    "porcelain_lines": 71,
+    "stash_list": "(empty)",
+    "tracked_deletions_count": 61,
+    "tracked_modified": [
+      " M RECOVERY.md",
+      " M agent_docs/SESSIONS/session_2026-10-15.md"
+    ],
+    "untracked_count": 8
+  }
+}

@@ -1,0 +1,291 @@
+--- before/smart_crawler/browser_session.py
++++ after/smart_crawler/browser_session.py
+@@ -4,6 +4,7 @@
+ incidental resources are separate from intentional admission/pacing evidence.
+ """
+ import asyncio
++import base64
+ import hashlib
+ import json
+ from pathlib import Path
+@@ -777,11 +778,20 @@
+                     const timer=remaining>0 ? setTimeout(abort,remaining) : null;
+                     if(remaining<=0) abort();
+                     let chunks=[], count=0;
++                    // Keep the CDP result compact. Bounded binary-to-base64
++                    // blocks preserve bytes without a JSON number per byte or
++                    // an unbounded spread argument list. The decoded cap below
++                    // remains authoritative; Unicode is never re-encoded here.
++                    const append = value => {
++                        for(let offset=0;offset<value.length;offset+=32768) {
++                            chunks.push(btoa(String.fromCharCode(...value.subarray(offset,offset+32768))));
++                        }
++                    };
+                     try {
+                         const r=await window.fetch(url,{method,redirect:'follow',signal:ctl.signal});
+                         if(r.body) { const reader=r.body.getReader();
+                             while(true) { const {done,value}=await reader.read(); if(done) break;
+-                                const room=cap-count; chunks.push(Array.from(value.slice(0,room)));
++                                const room=cap-count; append(value.subarray(0,room));
+                                 count+=Math.min(value.length,room);
+                                 if(value.length>room) { await reader.cancel(); ctl.abort();
+                                     return {status:r.status,url:r.url,chunks,bytes:count,incomplete:true,error:'response_limit'}; }
+@@ -795,7 +805,7 @@
+                     result = await self.correlated_read(expression)
+                 self.event('read_result_received', operation_id=self.op.operation_id,
+                            bytes=result['bytes'], incomplete=result['incomplete'], error=result.get('error'))
+-                body = bytes(x for chunk in result.pop('chunks') for x in chunk)
++                body = b''.join(base64.b64decode(chunk,validate=True) for chunk in result.pop('chunks'))
+                 result.update(body=body,sha256=hashlib.sha256(body).hexdigest(),headers=dict(self.op.response_headers),
+                               redirect_chain=list(self.op.chain),transport='Chromium same-page window.fetch / Response.body.getReader',
+                               boundary='browser-decoded entity bytes',error=result.get('error') or self.op.error)
+--- before/tests/fixture_server.py
++++ after/tests/fixture_server.py
+@@ -12,7 +12,7 @@
+ 
+ 
+ @contextmanager
+-def fixture_server(*, mode=None, port=0, variant="complete", sitemap_delay=0):
++def fixture_server(*, mode=None, port=0, variant="complete", sitemap_delay=0, body_responses=None):
+     timeline=[]
+     identity_reads={}
+     class Handler(BaseHTTPRequestHandler):
+@@ -35,6 +35,24 @@
+                 return self.respond(429,b'',{'Retry-After':'42'})
+             self.respond(200,b'',{'Content-Type':'image/png','Content-Length':'4096'})
+         def do_GET(self):
++            if body_responses and self.path in body_responses:
++                return self.respond(200,body_responses[self.path],{'Content-Type':'application/json; charset=UTF-8',
++                    'X-WP-Total':'100','X-WP-TotalPages':'1'})
++            if self.path=='/handoff-activity':
++                # Public, deterministic loopback traffic; no interaction or form submission.
++                body=ARTICLE.replace(b'</body>',b'''<script>
++                for(let i=0;i<12;i++) {
++                  fetch('/activity-read?i='+i);
++                  let x=new XMLHttpRequest();x.open('GET','/activity-xhr?i='+i);x.send();
++                  let img=new Image();img.src='/activity-image?i='+i;document.body.append(img);
++                }
++                fetch('/activity-beacon',{method:'POST',body:'synthetic telemetry'});
++                </script></body>''')
++                return self.respond(200,body,{'Content-Type':'text/html'})
++            if self.path.startswith('/activity-image'):
++                return self.respond(200,fixture_png(),{'Content-Type':'image/png'})
++            if self.path.startswith('/activity-'):
++                return self.respond(200,b'public fixture background',{'Content-Type':'text/plain'})
+             if self.path=='/read-identity':
+                 return self.identity_read()
+             if self.path.startswith('/identity/'):
+--- /dev/null
++++ after/tests/handoff_probe.py
+@@ -0,0 +1,122 @@
++"""Bounded native handoff measurements; fixture instrumentation, never live.
++
++Marks report browser performance time and Python delivery time separately. The
++compact candidate changes only result encoding, not fetch/identity/interception.
++No body or full CDP result is printed or copied into measurement logs.
++"""
++import asyncio
++import base64
++import hashlib
++import json
++import os
++from pathlib import Path
++import time
++
++from smart_crawler.browser_session import BrowserSession
++
++SIZES=(1_500_000,4_000_000,8_000_000,10*1024*1024+4096)
++
++
++def rest_payload(size):
++    objects=[]
++    for i in range(100):
++        objects.append({'id':i+1,'type':'post','link':f'http://127.0.0.1/article-{i}/',
++            'slug':f'article-{i}','status':'publish','date':'2026-01-01T00:00:00',
++            'modified':'2026-01-01T00:00:00','title':{'rendered':'বাংলা café 😀 '+str(i)},
++            'content':{'rendered':''},'excerpt':{'rendered':'Unicode résumé — 中文'},
++            'author':1,'featured_media':0,'categories':[1,2],'tags':[3],
++            'yoast_head':'<title>Preserve source SEO</title>',
++            'yoast_head_json':{'title':'বাংলা café 😀','schema':{'@graph':[{'@type':'Article'}]}},
++            'unknown':{'large':900719925474099312345,'null':None,'boolean':False,
++                       'escaped':'line\nquote"slash\\','padding':''}})
++    def encode():return (json.dumps(objects,ensure_ascii=False,indent=1)+'\r\n').encode()
++    unit='<p>বাংলা café 😀 中文; public facts, full fields and Unicode survive unchanged.</p>'
++    repeats=(size-len(encode()))//(100*len(unit.encode()))
++    assert repeats>=0
++    for obj in objects:obj['content']['rendered']=unit*repeats
++    objects[-1]['unknown']['padding']='x'*(size-len(encode()))
++    result=encode();assert len(result)==size
++    return result
++
++
++class MeasuredSession(BrowserSession):
++    representation=os.environ.get('ABM_HANDOFF_REPRESENTATION','product')
++
++    async def created(self,*args,**kwargs):
++        page=await super().created(*args,**kwargs)
++        if not getattr(self,'measurement_listener',False):
++            self.measurement_listener=True
++            self.cdp.on('Runtime.bindingCalled',self.measurement)
++        return page
++
++    def measurement(self,value):
++        if value.get('name')!='abmFixtureMark':return
++        payload=json.loads(value['payload'])
++        self.event('fixture_browser_mark',execution_context=value['executionContextId'],**payload)
++
++    async def correlated_read(self,expression):
++        # Assert instrumentation anchors rather than silently dropping measures.
++        marker='let chunks=[], count=0;'
++        assert expression.count(marker)==1
++        expression=expression.replace(marker,marker+"""
++            let encodingMs=0;
++            const mark=(stage)=>globalThis.abmFixtureMark(JSON.stringify({
++                stage,bytes:count,encoding_ms:encodingMs,browser_ms:performance.now(),
++                browser_wall_ms:Date.now()}));
++            mark('script_entered');
++        """)
++        array='chunks.push(Array.from(value.slice(0,room)));'
++        compact_candidate=self.representation=='compact_candidate'
++        if array in expression:
++            conversion=array if not compact_candidate else """
++                for(let offset=0;offset<Math.min(value.length,room);offset+=32768) {
++                    chunks.push(btoa(String.fromCharCode(...value.subarray(
++                        offset,Math.min(offset+32768,value.length,room)))));
++                }
++            """
++            expression=expression.replace(array,'const encodingStart=performance.now();'+conversion+
++                'encodingMs+=performance.now()-encodingStart;')
++        else:
++            assert not compact_candidate, 'candidate only compares against the unmodified number-array reader'
++            marker='append(value.subarray(0,room));'
++            assert expression.count(marker)==1
++            expression=expression.replace(marker,'const encodingStart=performance.now();'+marker+
++                'encodingMs+=performance.now()-encodingStart;')
++        marker='if(done) break;';assert expression.count(marker)==1
++        expression=expression.replace(marker,"if(done) {mark('body_consumed'); break;}")
++        marker='await reader.cancel(); ctl.abort();';assert expression.count(marker)==1
++        expression=expression.replace(marker,"mark('cap_prefix_consumed'); "+marker)
++        marker='finally { clearTimeout(timer); }';assert expression.count(marker)==1
++        expression=expression.replace(marker,"finally { clearTimeout(timer); mark('result_prepared'); }")
++        result=await super().correlated_read(expression)
++        self.event('fixture_python_result_received',bytes=result['bytes'],chunks=len(result['chunks']),
++                   scalar_items=sum(len(x) for x in result['chunks']),representation=self.representation)
++        if compact_candidate:
++            result['chunks']=[base64.b64decode(x,validate=True) for x in result['chunks']]
++        return result
++
++    async def run_read_script(self,op):
++        await self.cdp.send('Runtime.addBinding',{'name':'abmFixtureMark','executionContextId':op.context_id})
++        return await super().run_read_script(op)
++
++    async def __aexit__(self,*args):
++        self.event('fixture_cleanup_start')
++        try:return await super().__aexit__(*args)
++        finally:self.event('fixture_cleanup_complete')
++
++
++def retain_measurement(folder,name,session,timeline,result,expected,elapsed):
++    folder=Path(folder);folder.mkdir(parents=True,exist_ok=True)
++    wanted=expected[:session.bounds.response_bytes]
++    body=result.get('body',b'') if result else b''
++    value={'name':name,'representation':session.representation,'expected_bytes':len(expected),
++        'expected_sha256':hashlib.sha256(expected).hexdigest(),'expected_returned_bytes':len(wanted),
++        'expected_returned_sha256':hashlib.sha256(wanted).hexdigest(),
++        'returned_bytes':len(body),'returned_sha256':hashlib.sha256(body).hexdigest(),
++        'exact_bytes':body==wanted,'result':{k:result.get(k) for k in ('status','bytes','incomplete','error','sha256','evidence_gap')} if result else None,
++        'elapsed_s':elapsed,'stop_reason':session.stop_reason,'dispatches':session.dispatches,
++        'browser_events':session.events,'server_events':timeline,'runtime':session.runtime}
++    assert len(session.events)<5000 and len(timeline)<1000
++    data=json.dumps(value,indent=2)+'\n';assert len(data.encode())<2_000_000
++    with (folder/(name+'.json')).open('x') as f:f.write(data)
++    return value
+--- /dev/null
++++ after/tests/handoff_worker.py
+@@ -0,0 +1,10 @@
++"""Actual product supervisor with loopback-only measurement hooks."""
++from pathlib import Path
++import sys
++sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
++from recon_pipeline import capture
++from handoff_probe import MeasuredSession
++capture.BrowserSession=MeasuredSession
++if __name__=='__main__':
++    assert '--fixture-only' in sys.argv
++    capture.main()
+--- /dev/null
++++ after/tests/test_read_body_handoff.py
+@@ -0,0 +1,73 @@
++"""Native size/fidelity proof, including the actual Capture worker/supervisor."""
++import asyncio
++import hashlib
++import json
++import os
++from pathlib import Path
++import subprocess
++import sys
++import time
++from urllib.parse import urlsplit
++
++import pytest
++from fixture_server import fixture_server
++from handoff_probe import MeasuredSession,rest_payload,SIZES,retain_measurement
++from smart_crawler.browser_session import Bounds,CollectionStopped
++from prepare.reader import RawRun
++from test_pipeline_shutdown import retain as retain_pipeline
++
++
++@pytest.mark.parametrize('size,history',[(size,1) for size in SIZES]+[(4_000_000,3)])
++def test_native_rest_size_byte_fidelity(tmp_path,size,history):
++    expected=rest_payload(size)
++    with fixture_server(body_responses={'/handoff-rest':expected}) as (origin,timeline):
++        async def exercise():
++            s=MeasuredSession(origin,bounds=Bounds(seconds=180,document_slots=4),
++                runtime_dir=tmp_path/'runtime',loopback_only=True)
++            result=None;started=time.monotonic()
++            try:
++                async with s:
++                    for _ in range(history):assert (await s.capture(origin+'/handoff-activity'))['ok']
++                    result=await s.read(origin+'/handoff-rest')
++                    assert result['body']==expected[:s.bounds.response_bytes]
++                    assert result['sha256']==hashlib.sha256(expected[:s.bounds.response_bytes]).hexdigest()
++                    if size>s.bounds.response_bytes:
++                        assert result['incomplete'] and result['error']==s.stop_reason=='response_limit'
++                        with pytest.raises(CollectionStopped):await s.read(origin+'/never')
++                    else:
++                        assert not result['incomplete'] and result['error'] is None and s.stop_reason is None
++                        decoded=json.loads(result['body']);assert len(decoded)==100
++                        assert decoded[0]['title']['rendered']=='বাংলা café 😀 0'
++                        assert decoded[0]['unknown']['large']==900719925474099312345
++                        assert 'yoast_head_json' in decoded[0]
++                    dispatch=[v for v in s.events if v['event']=='intentional_dispatch']
++                    assert len(dispatch)==history+1
++                    assert all(v['monotonic']-v['preceding_completion']>=5 for v in dispatch[1:])
++                    assert not any(v['event']=='external_test_request_prevented' or
++                                   v.get('reason')=='fixture_egress' for v in s.events)
++                    assert all(urlsplit(v['url']).hostname=='127.0.0.1' for v in s.events
++                               if v['event'] in ('intentional_dispatch','browser_request'))
++            finally:
++                retain_measurement(os.environ.get('ABM_CONTROL_EVIDENCE',tmp_path),
++                    f'body-{size}-history-{history}',s,timeline,result,expected,time.monotonic()-started)
++        asyncio.run(exercise())
++
++
++def test_actual_supervisor_rest_body_handoff(tmp_path):
++    expected=rest_payload(4_000_000)
++    with fixture_server(mode='pipeline',body_responses={
++            '/wp-json/wp/v2/posts?per_page=100&page=1':expected}) as (origin,timeline):
++        cmd=[sys.executable,str(Path(__file__).with_name('handoff_worker.py')),
++            '--project','Fix','--url',origin,'--limit','1','--skip-prepare','--no-media-head',
++            '--fixture-only','--max-seconds','180','--max-operations','30',
++            '--max-bytes','30000000','--output-root',str(tmp_path/'output')]
++        result=subprocess.run(cmd,capture_output=True,text=True,timeout=180)
++        raw=RawRun(next((tmp_path/'output/Fix/runs').iterdir()))
++        retain_pipeline('supervised-rest-handoff',result,timeline,raw)
++        assert result.returncode==0,result.stdout+result.stderr
++        assert raw.bytes('rest/responses/posts-1.body')==expected
++        response=next(x for x in raw.rest_index['responses'] if x['collection']=='posts')
++        assert response['body_complete'] and response['sha256']==hashlib.sha256(expected).hexdigest()
++        collection=next(x for x in raw.rest_index['collections'] if x['type']=='posts')
++        assert collection['status']=='complete' and collection['fetched_objects']==100
++        assert not (tmp_path/'output/Fix/packs').exists()

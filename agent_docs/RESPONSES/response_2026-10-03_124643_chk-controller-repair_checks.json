@@ -1,0 +1,259 @@
+{
+  "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+  "branch": "wf-scrapper-abm",
+  "candidate_commit": "PENDING Tony",
+  "source_inventory_sha256": "3e629379a1295ca0a76c636ab2dc361ffdb449fdf2bdc9ae10ebc5a43af6e2d5",
+  "source_inventory_path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/regression-final/source-before.json",
+  "changed_source_hashes": {
+    "smart_crawler/browser_session.py": {
+      "before": "0142dde449dd49c827c97c9046062adca54582448a2941d50fd131d758d17b3d",
+      "after": "13f66967d005cf662b07acb32a13fd22e92348a7843874305cebca2875708016"
+    },
+    "tests/fixture_server.py": {
+      "before": "c0d0695eea4944ff56772479dddb31db5f7d1bd2466b952a7a3cc99707da241d",
+      "after": "f1b64edc94e5c747fa70c00cfb5467bb24b55bf4f8de0ff8f2c071f9cd155df2"
+    },
+    "tests/test_browser_controls.py": {
+      "before": "e787965b613e419c71581c60c3d9deda7c31fed500a1154b5787ac31b8f46b09",
+      "after": "cc0dc66feea77c7a607b8ac0896405011518347902684c6e3434369ad83d427c"
+    },
+    "tests/test_request_identity.py": {
+      "before": null,
+      "after": "e4e09b980c71689cc0ff4ace3e71b35f0591e260bb4c6f2fd61ea3fd339d2d03"
+    },
+    "tests/snapshot_compare.py": {
+      "before": "769e47596258c0867611e028c829b27f0abe78ebadf0d7e2a089d6c55c618846",
+      "after": "d406cd4b80ad40fde08df9afcc4415bf9c383f3918910310032d904b9a661a2e"
+    }
+  },
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+  },
+  "packages": {
+    "crawl4ai": "0.9.3",
+    "playwright": "1.52.0",
+    "requests": "2.32.3"
+  },
+  "checks": [
+    {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_request_identity.py",
+        "-k",
+        "stylesheet",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T05:11:48.366503+00:00",
+      "finished_at": "2026-10-03T05:11:51.016915+00:00",
+      "elapsed_s": 2.6504060690058395,
+      "exit_code": 1,
+      "command_log_bytes": 2185,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "0012f786f723e6792ffaa7bf8ec50dc1622275aad7d548f007906e1f01b817d6",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/before-fix/result.json",
+      "result_sha256": "e3deeb343ad08226a4466a0e6f083440c23981c61f3d1a3ab015c72d2d72ec77",
+      "command_log_sha256": "486ab26dc0eeb22fe63ac95ff58248d3de7e3da7e0809f5482f6612a864cfd44"
+    },
+    {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_request_identity.py",
+        "-k",
+        "stylesheet",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T05:13:37.876869+00:00",
+      "finished_at": "2026-10-03T05:13:45.186147+00:00",
+      "elapsed_s": 7.309271517035086,
+      "exit_code": 1,
+      "command_log_bytes": 3261,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "0012f786f723e6792ffaa7bf8ec50dc1622275aad7d548f007906e1f01b817d6",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/before-fix-real/result.json",
+      "result_sha256": "49f4cd7c0a865fdcb9845811ab0588311bd4578d9dd171cb00ec698fab67eefc",
+      "command_log_sha256": "b48dcc83eb1d43a1fee98dd3cc7bf3ef4272a7d30b721fe5e52694c34a8b1dee"
+    },
+    {
+      "command": [
+        "venv/bin/python",
+        "/tmp/abm_correlation_probe.py"
+      ],
+      "started_at": "2026-10-03T05:23:17.818507+00:00",
+      "finished_at": "2026-10-03T05:23:24.508284+00:00",
+      "elapsed_s": 6.6897727429750375,
+      "exit_code": 0,
+      "command_log_bytes": 597,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "0012f786f723e6792ffaa7bf8ec50dc1622275aad7d548f007906e1f01b817d6",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/correlation-proof/result.json",
+      "result_sha256": "b98a309c5898c3ec8d644fd7e4cdd4cb6cf313e8bbbc303f64550f784494fdae",
+      "command_log_sha256": "1abcc76eb559dbda418cc524c5f706c6b972566ac38ed36af6c5d1a412926780"
+    },
+    {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_request_identity.py",
+        "tests/test_browser_controls.py",
+        "-x",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T05:28:24.945435+00:00",
+      "finished_at": "2026-10-03T05:28:57.731982+00:00",
+      "elapsed_s": 32.786545967974234,
+      "exit_code": 1,
+      "command_log_bytes": 4960,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "25aad90e3ed510a4856335af603095df3bb51187ae625e6b9b92b58d213ed073",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/identity-first/result.json",
+      "result_sha256": "7acc5a1fc2b77ef2617a326308b4d2cac39d7433b92295cbde1ff1050f2fb5d4",
+      "command_log_sha256": "e379e49db15815cedeef1133b059d1521ece3d416e2b81f323ec86e7eb2f1c1c"
+    },
+    {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_request_identity.py",
+        "tests/test_browser_controls.py",
+        "-x",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T05:46:08.063670+00:00",
+      "finished_at": "2026-10-03T05:50:43.248158+00:00",
+      "elapsed_s": 275.1844826709712,
+      "exit_code": 1,
+      "command_log_bytes": 3723,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "241a6c68ea5ef932183e613264ea76065172400b8ce7d1250233c80ae874fdd2",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/identity-second/result.json",
+      "result_sha256": "08cdaf7381ac0314aa8b7332572c1f294f9fb87d6c91315e350d26cee874dfbc",
+      "command_log_sha256": "d0fe4a7b77a1f4afa5cd86b0a4ab183228e0edd2329eafde9f9e294f86a3fc2e"
+    },
+    {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "tests/test_request_identity.py",
+        "tests/test_browser_controls.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T05:53:11.066413+00:00",
+      "finished_at": "2026-10-03T05:57:54.906034+00:00",
+      "elapsed_s": 283.83962024899665,
+      "exit_code": 0,
+      "command_log_bytes": 111,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "3e629379a1295ca0a76c636ab2dc361ffdb449fdf2bdc9ae10ebc5a43af6e2d5",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/affected-final/result.json",
+      "result_sha256": "6ee4181474707ce02c38d4a1a8936ad42a4a0dac0bebb4551732545da26e6271",
+      "command_log_sha256": "5816d2c7733f9939667a73f9c9a458998009f189104a7f781696354977722bd5"
+    },
+    {
+      "command": [
+        "venv/bin/pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-03T05:57:55.094187+00:00",
+      "finished_at": "2026-10-03T06:05:45.726096+00:00",
+      "elapsed_s": 470.63184770703083,
+      "exit_code": 0,
+      "command_log_bytes": 192,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "3e629379a1295ca0a76c636ab2dc361ffdb449fdf2bdc9ae10ebc5a43af6e2d5",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/regression-final/result.json",
+      "result_sha256": "1f94583bc4c74292edefc0c2598f5eeadb977aa93e9c4152fbdc86a34d6babb3",
+      "command_log_sha256": "6213f3eefe792edb2f7c0ef0087109c7d7c7d0cf1e1b074c86ff851ef62a5f86"
+    },
+    {
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/python/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/regression-final-controls/complete-raw"
+      ],
+      "started_at": "2026-10-03T06:05:45.899133+00:00",
+      "finished_at": "2026-10-03T06:07:40.489414+00:00",
+      "elapsed_s": 114.5902765240171,
+      "exit_code": 0,
+      "command_log_bytes": 281,
+      "command_log_ceiling": 1000000,
+      "command_log_limit_hit": false,
+      "source_unchanged": true,
+      "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+      "source_inventory_sha256": "3e629379a1295ca0a76c636ab2dc361ffdb449fdf2bdc9ae10ebc5a43af6e2d5",
+      "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references",
+      "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/snapshot-final/result.json",
+      "result_sha256": "716cbde73742f9c6b32693124efea16aa5f0090fbe5ec0ca68809c5dbb360112",
+      "command_log_sha256": "469381dbcb8c63c12c2915efb87eba2bc498fcdcb8364a43d171157f3d19d8cc"
+    }
+  ],
+  "external_live_requests_this_mission": 0,
+  "independent_qa": "NOT RUN"
+}

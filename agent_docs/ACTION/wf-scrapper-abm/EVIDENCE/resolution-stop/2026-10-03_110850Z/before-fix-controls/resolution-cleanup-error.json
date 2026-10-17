@@ -1,0 +1,73 @@
+{
+  "proof_kind": "recording CDP double; actual resolve_interception method; no HTTP",
+  "case": "resolution-cleanup-error",
+  "calls": [
+    {
+      "command": "Fetch.continueRequest",
+      "args": {
+        "requestId": "fixture-fetch-1"
+      }
+    }
+  ],
+  "returned": [
+    false,
+    false
+  ],
+  "stop_reason": "original_refusal",
+  "closing": false,
+  "entry_state": "error",
+  "entry_command": "Fetch.continueRequest",
+  "events": [
+    {
+      "event": "stop",
+      "monotonic": 382787.949520843,
+      "reason": "original_refusal"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 382787.949530058,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_error",
+      "monotonic": 382787.949659314,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "error",
+      "error": "RuntimeError",
+      "detail": "CDPSession.send: Protocol error (Fetch.failRequest): Invalid InterceptionId.",
+      "confirmed_canceled": false,
+      "supported_incidental": false
+    },
+    {
+      "event": "interception_resolution_skipped",
+      "monotonic": 382787.949668937,
+      "operation_id": "op-1",
+      "request_id": "fixture-fetch-1",
+      "network_id": "fixture-network-1",
+      "frame_id": "fixture-frame-1",
+      "resource_type": "Document",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.failRequest",
+      "classification": "intentional",
+      "state": "error"
+    }
+  ]
+}

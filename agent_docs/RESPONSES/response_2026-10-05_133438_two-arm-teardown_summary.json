@@ -1,0 +1,427 @@
+{
+  "verdict": "Local page closure delivered held intentional GET to fixture server without custom-controller continuation. Exact wire time and Chromium internal release mechanism are unproven. Architectural review recommended before live verification.",
+  "utc": "2026-10-05T07:34:38.999833+00:00",
+  "branch": "wf-scrapper-abm",
+  "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "source_inventory_sha256": "aaf883a8c59960ab825e5a58508772bb9c099b49f65187b248e1f2ed813dc622",
+  "engineering_only": true,
+  "independent_qa": "NOT RUN",
+  "prepare": "ON HOLD",
+  "experiment_repeated": false,
+  "external_target_requests": 0,
+  "arms": {
+    "A": {
+      "launcher": {
+        "arm": "A",
+        "command": [
+          "/home/moose/PYTHON/stark-web-factory-scrapper-v1/venv/bin/python",
+          "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/two-arm-teardown/2026-10-05_072634Z/experiment_worker.py",
+          "A",
+          "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/two-arm-teardown/2026-10-05_072634Z/arm-A"
+        ],
+        "exit_code": 0,
+        "elapsed_s": 12.590184258995578,
+        "supervisor_stop": null,
+        "protocol_rows": 47,
+        "stderr_unretained_lines": 4,
+        "observed_driver_console_bytes": 713143,
+        "limits": {
+          "total_seconds": 60,
+          "intentional_dispatches": 3,
+          "retained_driver_or_console_file_bytes": 1000000,
+          "decoded_response_bytes": 10485760
+        },
+        "clock_note": "Worker/server and parent observations use OS CLOCK_MONOTONIC. Driver protocol timestamps are log metadata, not calibrated transmit time."
+      },
+      "result": {
+        "arm": "A",
+        "read_result": {
+          "status": 200,
+          "url": "http://127.0.0.1:35487/cleanup-held",
+          "bytes": 3615,
+          "incomplete": false,
+          "sha256": "cd71a9553347bcb1e9452c426c874f3c8dd40979e456d1fb8caf35983aa5f4bd",
+          "headers": {
+            "content-length": "3615",
+            "content-type": "text/html"
+          },
+          "redirect_chain": [],
+          "transport": "Chromium same-page window.fetch / Response.body.getReader",
+          "boundary": "browser-decoded entity bytes",
+          "error": null,
+          "body_bytes": 3615,
+          "matches_fixture_article": true
+        },
+        "control_received_while_held": false,
+        "errors": [],
+        "dispatches": 2,
+        "stop_reason": null,
+        "runtime": {
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+          "headless": true,
+          "ignore_https_errors": true,
+          "page_timeout_ms": 90000,
+          "wait_for_images": true,
+          "post_load_delay_s": 3.0,
+          "cache_mode": "BYPASS",
+          "library_file_logging": false,
+          "browser_version": "136.0.7103.25",
+          "browser_executable": "headless_shell",
+          "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+          "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+          "machine": "x86_64",
+          "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+        },
+        "server_events": [
+          {
+            "event": "request_received",
+            "path": "/background",
+            "method": "GET",
+            "monotonic": 540123.022129827,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "resource_destination": "document"
+          },
+          {
+            "event": "headers_sent",
+            "path": "/background",
+            "method": "GET",
+            "monotonic": 540123.02230928,
+            "status": 200
+          },
+          {
+            "event": "body_sent",
+            "path": "/background",
+            "method": "GET",
+            "monotonic": 540123.022354777,
+            "bytes": 3710
+          },
+          {
+            "event": "request_received",
+            "path": "/beacon",
+            "method": "POST",
+            "monotonic": 540123.082037234,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "resource_destination": "empty"
+          },
+          {
+            "event": "headers_sent",
+            "path": "/beacon",
+            "method": "POST",
+            "monotonic": 540123.082168071,
+            "status": 204
+          },
+          {
+            "event": "body_sent",
+            "path": "/beacon",
+            "method": "POST",
+            "monotonic": 540123.08219699,
+            "bytes": 0
+          },
+          {
+            "event": "request_received",
+            "path": "/incidental",
+            "method": "GET",
+            "monotonic": 540123.084187359,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "resource_destination": "empty"
+          },
+          {
+            "event": "headers_sent",
+            "path": "/incidental",
+            "method": "GET",
+            "monotonic": 540123.084866277,
+            "status": 403
+          },
+          {
+            "event": "body_sent",
+            "path": "/incidental",
+            "method": "GET",
+            "monotonic": 540123.084998702,
+            "bytes": 18
+          },
+          {
+            "event": "request_received",
+            "path": "/cleanup-held",
+            "method": "GET",
+            "monotonic": 540131.331380452,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "resource_destination": "empty"
+          },
+          {
+            "event": "headers_sent",
+            "path": "/cleanup-held",
+            "method": "GET",
+            "monotonic": 540131.33423387,
+            "status": 200
+          },
+          {
+            "event": "body_sent",
+            "path": "/cleanup-held",
+            "method": "GET",
+            "monotonic": 540131.334382749,
+            "bytes": 3615
+          }
+        ],
+        "held_params": {
+          "requestId": "interception-job-7.0",
+          "frameId": "2A64933A9AB0C0132CBA32FD5AD6C2CF",
+          "resourceType": "XHR",
+          "networkId": "1707616.4"
+        },
+        "clock": {
+          "name": "time.monotonic",
+          "info": "namespace(implementation='clock_gettime(CLOCK_MONOTONIC)', monotonic=True, adjustable=False, resolution=1e-09)"
+        }
+      },
+      "identities": {
+        "custom_cdp_session_id": "C85CEB3610A43F491EFF221DDCDD65F1",
+        "routing_cdp_session_id": "51B34426FD477863647948E043EFCC20",
+        "held_fetch_id": "interception-job-7.0",
+        "network_id": "1707616.4",
+        "frame_id": "2A64933A9AB0C0132CBA32FD5AD6C2CF"
+      },
+      "target_continue_driver_records": [
+        {
+          "line": 39,
+          "clock": 540131.323796083,
+          "message": {
+            "id": 71,
+            "method": "Fetch.continueRequest",
+            "params": {
+              "requestId": "interception-job-7.0"
+            },
+            "sessionId": "C85CEB3610A43F491EFF221DDCDD65F1"
+          }
+        },
+        {
+          "line": 42,
+          "clock": 540131.329119673,
+          "message": {
+            "id": 72,
+            "method": "Fetch.continueRequest",
+            "params": {
+              "requestId": "interception-job-8.0"
+            },
+            "sessionId": "51B34426FD477863647948E043EFCC20"
+          }
+        }
+      ],
+      "server_target_bytes_observed_at": 540131.330825229,
+      "server_bytes_after_bootstrap_complete_s": 5.0130902469391,
+      "server_bytes_after_stop_s": null,
+      "fixture_request_count": 4,
+      "retained_arm_bytes": 55951
+    },
+    "B": {
+      "launcher": {
+        "arm": "B",
+        "command": [
+          "/home/moose/PYTHON/stark-web-factory-scrapper-v1/venv/bin/python",
+          "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/two-arm-teardown/2026-10-05_072634Z/experiment_worker.py",
+          "B",
+          "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/two-arm-teardown/2026-10-05_072634Z/arm-B"
+        ],
+        "exit_code": 0,
+        "elapsed_s": 7.659931708010845,
+        "supervisor_stop": null,
+        "protocol_rows": 42,
+        "stderr_unretained_lines": 4,
+        "observed_driver_console_bytes": 698497,
+        "limits": {
+          "total_seconds": 60,
+          "intentional_dispatches": 3,
+          "retained_driver_or_console_file_bytes": 1000000,
+          "decoded_response_bytes": 10485760
+        },
+        "clock_note": "Worker/server and parent observations use OS CLOCK_MONOTONIC. Driver protocol timestamps are log metadata, not calibrated transmit time."
+      },
+      "result": {
+        "arm": "B",
+        "read_result": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status": null,
+          "url": null,
+          "headers": {},
+          "redirect_chain": [],
+          "incomplete": true,
+          "error": "browser_page_closed",
+          "transport": "Chromium same-page window.fetch / Response.body.getReader",
+          "boundary": "browser-decoded entity bytes",
+          "evidence_gap": "browser read interrupted before available chunks returned",
+          "body_bytes": 0,
+          "matches_fixture_article": false
+        },
+        "control_received_while_held": false,
+        "errors": [],
+        "dispatches": 1,
+        "stop_reason": "browser_page_closed",
+        "runtime": {
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+          "headless": true,
+          "ignore_https_errors": true,
+          "page_timeout_ms": 90000,
+          "wait_for_images": true,
+          "post_load_delay_s": 3.0,
+          "cache_mode": "BYPASS",
+          "library_file_logging": false,
+          "browser_version": "136.0.7103.25",
+          "browser_executable": "headless_shell",
+          "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+          "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+          "machine": "x86_64",
+          "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+        },
+        "server_events": [
+          {
+            "event": "request_received",
+            "path": "/background",
+            "method": "GET",
+            "monotonic": 540134.615248433,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "resource_destination": "document"
+          },
+          {
+            "event": "headers_sent",
+            "path": "/background",
+            "method": "GET",
+            "monotonic": 540134.615465452,
+            "status": 200
+          },
+          {
+            "event": "body_sent",
+            "path": "/background",
+            "method": "GET",
+            "monotonic": 540134.615512732,
+            "bytes": 3710
+          },
+          {
+            "event": "request_received",
+            "path": "/beacon",
+            "method": "POST",
+            "monotonic": 540134.646652111,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "resource_destination": "empty"
+          },
+          {
+            "event": "headers_sent",
+            "path": "/beacon",
+            "method": "POST",
+            "monotonic": 540134.646793575,
+            "status": 204
+          },
+          {
+            "event": "body_sent",
+            "path": "/beacon",
+            "method": "POST",
+            "monotonic": 540134.646834034,
+            "bytes": 0
+          },
+          {
+            "event": "request_received",
+            "path": "/incidental",
+            "method": "GET",
+            "monotonic": 540134.652126047,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "resource_destination": "empty"
+          },
+          {
+            "event": "headers_sent",
+            "path": "/incidental",
+            "method": "GET",
+            "monotonic": 540134.653312895,
+            "status": 403
+          },
+          {
+            "event": "body_sent",
+            "path": "/incidental",
+            "method": "GET",
+            "monotonic": 540134.653478181,
+            "bytes": 18
+          },
+          {
+            "event": "request_received",
+            "path": "/cleanup-held",
+            "method": "GET",
+            "monotonic": 540138.905739386,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "resource_destination": "empty"
+          },
+          {
+            "event": "headers_sent",
+            "path": "/cleanup-held",
+            "method": "GET",
+            "monotonic": 540138.906004582,
+            "status": 200
+          },
+          {
+            "event": "body_sent",
+            "path": "/cleanup-held",
+            "method": "GET",
+            "monotonic": 540138.906456464,
+            "bytes": 3615
+          }
+        ],
+        "held_params": {
+          "requestId": "interception-job-7.0",
+          "frameId": "3D026F63E2F5E9869347E280FB23B29E",
+          "resourceType": "XHR",
+          "networkId": "1707806.4"
+        },
+        "clock": {
+          "name": "time.monotonic",
+          "info": "namespace(implementation='clock_gettime(CLOCK_MONOTONIC)', monotonic=True, adjustable=False, resolution=1e-09)"
+        }
+      },
+      "identities": {
+        "custom_cdp_session_id": "3280E00130F1ED7E9B2BD470F36440B8",
+        "routing_cdp_session_id": "30C24241AB2C9AD71B368B76D5E75C4F",
+        "held_fetch_id": "interception-job-7.0",
+        "network_id": "1707806.4",
+        "frame_id": "3D026F63E2F5E9869347E280FB23B29E"
+      },
+      "target_continue_driver_records": [],
+      "server_target_bytes_observed_at": 540138.90519288,
+      "server_bytes_after_bootstrap_complete_s": 1.0296223199693486,
+      "server_bytes_after_stop_s": 0.0026252259267494082,
+      "fixture_request_count": 4,
+      "retained_arm_bytes": 52230
+    }
+  },
+  "observation_checks": {
+    "A": {
+      "one_bootstrap_and_one_read": true,
+      "bounded_hold_without_handler_receipt": true,
+      "within_60_seconds": true,
+      "within_3_recorded_dispatches": true,
+      "no_supervisor_limit_trigger": true,
+      "worker_exit_zero": true
+    },
+    "B": {
+      "one_bootstrap_and_one_read": true,
+      "bounded_hold_without_handler_receipt": true,
+      "within_60_seconds": true,
+      "within_3_recorded_dispatches": true,
+      "no_supervisor_limit_trigger": true,
+      "worker_exit_zero": true
+    }
+  },
+  "preservation": {
+    "source_file_count": 68,
+    "source_before_sha256": "aaf883a8c59960ab825e5a58508772bb9c099b49f65187b248e1f2ed813dc622",
+    "source_after_sha256": "aaf883a8c59960ab825e5a58508772bb9c099b49f65187b248e1f2ed813dc622",
+    "source_identical": true,
+    "monitored_installed_files": 7,
+    "monitored_installed_files_identical": true,
+    "prior_evidence_output_report_files": 14260,
+    "changed_prior_files": [],
+    "missing_prior_files": [],
+    "inventory_procedure": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/two-arm-teardown/2026-10-05_072634Z/identity-function.txt",
+    "baseline_sha256": "0443a7ab47f7e13c227c1351c397fbd717e3bb09e525cdf3e559c65eabad407c"
+  },
+  "clock_boundary": "Worker/server/parent CLOCK_MONOTONIC; parent timestamps observe asynchronously emitted driver logs. Chromium timestamps and driver UTC prefixes are uncalibrated. Server recv return is byte observation, not wire transmit time.",
+  "log_gap": "Four non-protocol or unparseable stderr lines per arm were counted but not retained; no output ceiling triggered. Driver SEND is pre-transport logging; matched replies corroborate delivery.",
+  "evidence": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/two-arm-teardown/2026-10-05_072634Z",
+  "timeline": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/two-arm-teardown/2026-10-05_072634Z/request-timelines.json",
+  "recommended_next_action": "JARVIS review of teardown admission guarantees before live use; scope a pending-interception drain/confirmed-abort-before-planned-close correction and local proof. Unexpected external closure requires separate fail-closed boundary assessment. No repair implemented."
+}

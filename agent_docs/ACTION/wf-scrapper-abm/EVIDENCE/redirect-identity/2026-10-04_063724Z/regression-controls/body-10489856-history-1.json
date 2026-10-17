@@ -1,0 +1,4358 @@
+{
+  "name": "body-10489856-history-1",
+  "representation": "product",
+  "expected_bytes": 10489856,
+  "expected_sha256": "770119e6287af0823bc796799eecb8858146178349ebd3361d1d52b89fe2beb3",
+  "expected_returned_bytes": 10485760,
+  "expected_returned_sha256": "ff318151907b7354250184c53a0b2e9912c0f6e8ec85d1599d91e289d51da2c5",
+  "returned_bytes": 10485760,
+  "returned_sha256": "ff318151907b7354250184c53a0b2e9912c0f6e8ec85d1599d91e289d51da2c5",
+  "exact_bytes": true,
+  "result": {
+    "status": 200,
+    "bytes": 10485760,
+    "incomplete": true,
+    "error": "response_limit",
+    "sha256": "ff318151907b7354250184c53a0b2e9912c0f6e8ec85d1599d91e289d51da2c5",
+    "evidence_gap": null
+  },
+  "elapsed_s": 18.604680430027656,
+  "stop_reason": "response_limit",
+  "dispatches": 2,
+  "browser_events": [
+    {
+      "event": "operation_start",
+      "monotonic": 453989.444575374,
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "operation_id": "op-1",
+      "deadline": 454138.873759488
+    },
+    {
+      "event": "controls_installed",
+      "monotonic": 453990.512027571,
+      "transport": "Chromium CDP Fetch.requestPaused"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.522668413,
+      "request_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "redirect_status": null,
+      "browser_timestamp": 453990.521729,
+      "network_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Document",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "other",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.523541529,
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "method": "GET",
+      "classification": "intentional",
+      "initiator_script_id": null,
+      "network_resource_type": "Document",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "resource_type": "Document",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "intentional_intercepted",
+      "monotonic": 453990.523576808,
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "resource_type": "Document",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "intentional_dispatch",
+      "monotonic": 453990.523668414,
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "method": "GET",
+      "kind": "document",
+      "ordinal": 1,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "resource_type": "Document",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "preceding_completion": null
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.523677354,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "resource_type": "Document",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453990.531895363,
+      "operation_id": "op-1",
+      "request_id": "interception-job-1.0",
+      "network_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "resource_type": "Document",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.53433332,
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "method": "GET",
+      "resource_type": "document"
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453990.55468125,
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "status": 200,
+      "headers": {
+        "content-length": "4027",
+        "content-type": "text/html"
+      },
+      "resource_type": "document"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453990.555119828,
+      "request_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "status": 200
+    },
+    {
+      "event": "interception_frame_navigated",
+      "monotonic": 453990.56241576,
+      "session": "page-cdp-1",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.570975309,
+      "url": "http://127.0.0.1:35467/activity-read?i=0",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-3.0",
+      "network_id": "1037353.2",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.571017961,
+      "operation_id": "op-1",
+      "request_id": "interception-job-3.0",
+      "network_id": "1037353.2",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.582692305,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=0",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-4.0",
+      "network_id": "1037353.3",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.582745075,
+      "operation_id": "op-1",
+      "request_id": "interception-job-4.0",
+      "network_id": "1037353.3",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.594136199,
+      "url": "http://127.0.0.1:35467/activity-read?i=1",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-5.0",
+      "network_id": "1037353.4",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.594175163,
+      "operation_id": "op-1",
+      "request_id": "interception-job-5.0",
+      "network_id": "1037353.4",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.604419241,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=1",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-6.0",
+      "network_id": "1037353.5",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.60450082,
+      "operation_id": "op-1",
+      "request_id": "interception-job-6.0",
+      "network_id": "1037353.5",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.615054296,
+      "url": "http://127.0.0.1:35467/activity-read?i=2",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-7.0",
+      "network_id": "1037353.6",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.615111063,
+      "operation_id": "op-1",
+      "request_id": "interception-job-7.0",
+      "network_id": "1037353.6",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.623559093,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=2",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-8.0",
+      "network_id": "1037353.7",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.623594882,
+      "operation_id": "op-1",
+      "request_id": "interception-job-8.0",
+      "network_id": "1037353.7",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.630565859,
+      "url": "http://127.0.0.1:35467/activity-read?i=3",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-9.0",
+      "network_id": "1037353.8",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.630601099,
+      "operation_id": "op-1",
+      "request_id": "interception-job-9.0",
+      "network_id": "1037353.8",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.638022557,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=3",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-10.0",
+      "network_id": "1037353.9",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.638055579,
+      "operation_id": "op-1",
+      "request_id": "interception-job-10.0",
+      "network_id": "1037353.9",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.64553611,
+      "url": "http://127.0.0.1:35467/activity-read?i=4",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-11.0",
+      "network_id": "1037353.10",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.645570145,
+      "operation_id": "op-1",
+      "request_id": "interception-job-11.0",
+      "network_id": "1037353.10",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.652699274,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=4",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-12.0",
+      "network_id": "1037353.11",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.652733461,
+      "operation_id": "op-1",
+      "request_id": "interception-job-12.0",
+      "network_id": "1037353.11",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.660310537,
+      "url": "http://127.0.0.1:35467/activity-read?i=5",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-13.0",
+      "network_id": "1037353.12",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.660343682,
+      "operation_id": "op-1",
+      "request_id": "interception-job-13.0",
+      "network_id": "1037353.12",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.668326121,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=5",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-14.0",
+      "network_id": "1037353.13",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.668359631,
+      "operation_id": "op-1",
+      "request_id": "interception-job-14.0",
+      "network_id": "1037353.13",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.675986667,
+      "url": "http://127.0.0.1:35467/activity-read?i=6",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-15.0",
+      "network_id": "1037353.14",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.676021457,
+      "operation_id": "op-1",
+      "request_id": "interception-job-15.0",
+      "network_id": "1037353.14",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.683826903,
+      "request_id": "1037353.2",
+      "url": "http://127.0.0.1:35467/activity-read?i=0",
+      "redirect_status": null,
+      "browser_timestamp": 453990.567483,
+      "network_id": "1037353.2",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.684055341,
+      "request_id": "1037353.3",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=0",
+      "redirect_status": null,
+      "browser_timestamp": 453990.568003,
+      "network_id": "1037353.3",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.684218012,
+      "request_id": "1037353.4",
+      "url": "http://127.0.0.1:35467/activity-read?i=1",
+      "redirect_status": null,
+      "browser_timestamp": 453990.568827,
+      "network_id": "1037353.4",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.684521128,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=6",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-16.0",
+      "network_id": "1037353.15",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.684556855,
+      "operation_id": "op-1",
+      "request_id": "interception-job-16.0",
+      "network_id": "1037353.15",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.692140157,
+      "url": "http://127.0.0.1:35467/activity-read?i=7",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-17.0",
+      "network_id": "1037353.16",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.692174077,
+      "operation_id": "op-1",
+      "request_id": "interception-job-17.0",
+      "network_id": "1037353.16",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.699968728,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=7",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-18.0",
+      "network_id": "1037353.17",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.70000393,
+      "operation_id": "op-1",
+      "request_id": "interception-job-18.0",
+      "network_id": "1037353.17",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.707466266,
+      "url": "http://127.0.0.1:35467/activity-read?i=8",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-19.0",
+      "network_id": "1037353.18",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.707516528,
+      "operation_id": "op-1",
+      "request_id": "interception-job-19.0",
+      "network_id": "1037353.18",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.715725444,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=8",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-20.0",
+      "network_id": "1037353.19",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.715760397,
+      "operation_id": "op-1",
+      "request_id": "interception-job-20.0",
+      "network_id": "1037353.19",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.723084983,
+      "url": "http://127.0.0.1:35467/activity-read?i=9",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-21.0",
+      "network_id": "1037353.20",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.723119994,
+      "operation_id": "op-1",
+      "request_id": "interception-job-21.0",
+      "network_id": "1037353.20",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.73040119,
+      "url": "http://127.0.0.1:35467/activity-beacon",
+      "method": "POST",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-22.0",
+      "network_id": "1037353.26",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.730477716,
+      "operation_id": "op-1",
+      "request_id": "interception-job-22.0",
+      "network_id": "1037353.26",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.737518096,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=9",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-23.0",
+      "network_id": "1037353.21",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.737566895,
+      "operation_id": "op-1",
+      "request_id": "interception-job-23.0",
+      "network_id": "1037353.21",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.745754179,
+      "url": "http://127.0.0.1:35467/activity-read?i=10",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-24.0",
+      "network_id": "1037353.22",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.745811589,
+      "operation_id": "op-1",
+      "request_id": "interception-job-24.0",
+      "network_id": "1037353.22",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.753466976,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=10",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-25.0",
+      "network_id": "1037353.23",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.75350032,
+      "operation_id": "op-1",
+      "request_id": "interception-job-25.0",
+      "network_id": "1037353.23",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.760842116,
+      "url": "http://127.0.0.1:35467/activity-read?i=11",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-26.0",
+      "network_id": "1037353.24",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.760875845,
+      "operation_id": "op-1",
+      "request_id": "interception-job-26.0",
+      "network_id": "1037353.24",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453990.768779548,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=11",
+      "method": "GET",
+      "classification": "incidental",
+      "initiator_script_id": null,
+      "network_resource_type": null,
+      "operation_id": "op-1",
+      "request_id": "interception-job-27.0",
+      "network_id": "1037353.25",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453990.768814546,
+      "operation_id": "op-1",
+      "request_id": "interception-job-27.0",
+      "network_id": "1037353.25",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolving"
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.775831818,
+      "request_id": "1037353.5",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=1",
+      "redirect_status": null,
+      "browser_timestamp": 453990.568993,
+      "network_id": "1037353.5",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.77597036,
+      "request_id": "1037353.6",
+      "url": "http://127.0.0.1:35467/activity-read?i=2",
+      "redirect_status": null,
+      "browser_timestamp": 453990.569138,
+      "network_id": "1037353.6",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.77619827,
+      "request_id": "1037353.7",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=2",
+      "redirect_status": null,
+      "browser_timestamp": 453990.56927,
+      "network_id": "1037353.7",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.776354587,
+      "request_id": "1037353.8",
+      "url": "http://127.0.0.1:35467/activity-read?i=3",
+      "redirect_status": null,
+      "browser_timestamp": 453990.56949,
+      "network_id": "1037353.8",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.776473364,
+      "request_id": "1037353.9",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=3",
+      "redirect_status": null,
+      "browser_timestamp": 453990.5696,
+      "network_id": "1037353.9",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.776713485,
+      "request_id": "1037353.10",
+      "url": "http://127.0.0.1:35467/activity-read?i=4",
+      "redirect_status": null,
+      "browser_timestamp": 453990.569796,
+      "network_id": "1037353.10",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.776849489,
+      "request_id": "1037353.11",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=4",
+      "redirect_status": null,
+      "browser_timestamp": 453990.569942,
+      "network_id": "1037353.11",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.776972258,
+      "request_id": "1037353.12",
+      "url": "http://127.0.0.1:35467/activity-read?i=5",
+      "redirect_status": null,
+      "browser_timestamp": 453990.570078,
+      "network_id": "1037353.12",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.777194293,
+      "request_id": "1037353.13",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=5",
+      "redirect_status": null,
+      "browser_timestamp": 453990.570285,
+      "network_id": "1037353.13",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.777324415,
+      "request_id": "1037353.14",
+      "url": "http://127.0.0.1:35467/activity-read?i=6",
+      "redirect_status": null,
+      "browser_timestamp": 453990.57038,
+      "network_id": "1037353.14",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.777444911,
+      "request_id": "1037353.15",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=6",
+      "redirect_status": null,
+      "browser_timestamp": 453990.570481,
+      "network_id": "1037353.15",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.777586944,
+      "request_id": "1037353.16",
+      "url": "http://127.0.0.1:35467/activity-read?i=7",
+      "redirect_status": null,
+      "browser_timestamp": 453990.57066,
+      "network_id": "1037353.16",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.777720525,
+      "request_id": "1037353.17",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=7",
+      "redirect_status": null,
+      "browser_timestamp": 453990.57079,
+      "network_id": "1037353.17",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.777841047,
+      "request_id": "1037353.18",
+      "url": "http://127.0.0.1:35467/activity-read?i=8",
+      "redirect_status": null,
+      "browser_timestamp": 453990.570988,
+      "network_id": "1037353.18",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.777960615,
+      "request_id": "1037353.19",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=8",
+      "redirect_status": null,
+      "browser_timestamp": 453990.571147,
+      "network_id": "1037353.19",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.778189386,
+      "request_id": "1037353.20",
+      "url": "http://127.0.0.1:35467/activity-read?i=9",
+      "redirect_status": null,
+      "browser_timestamp": 453990.571361,
+      "network_id": "1037353.20",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.77833196,
+      "request_id": "1037353.21",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=9",
+      "redirect_status": null,
+      "browser_timestamp": 453990.571556,
+      "network_id": "1037353.21",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.7784543,
+      "request_id": "1037353.22",
+      "url": "http://127.0.0.1:35467/activity-read?i=10",
+      "redirect_status": null,
+      "browser_timestamp": 453990.571825,
+      "network_id": "1037353.22",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.77869,
+      "request_id": "1037353.23",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=10",
+      "redirect_status": null,
+      "browser_timestamp": 453990.572017,
+      "network_id": "1037353.23",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.778831526,
+      "request_id": "1037353.24",
+      "url": "http://127.0.0.1:35467/activity-read?i=11",
+      "redirect_status": null,
+      "browser_timestamp": 453990.572275,
+      "network_id": "1037353.24",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.77896189,
+      "request_id": "1037353.25",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=11",
+      "redirect_status": null,
+      "browser_timestamp": 453990.572658,
+      "network_id": "1037353.25",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "XHR",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.779190934,
+      "request_id": "1037353.26",
+      "url": "http://127.0.0.1:35467/activity-beacon",
+      "redirect_status": null,
+      "browser_timestamp": 453990.573028,
+      "network_id": "1037353.26",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "15",
+      "method": "POST",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.779315774,
+      "request_id": "1037353.27",
+      "url": "http://127.0.0.1:35467/activity-image?i=0",
+      "redirect_status": null,
+      "browser_timestamp": 453990.573531,
+      "network_id": "1037353.27",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.779429777,
+      "request_id": "1037353.28",
+      "url": "http://127.0.0.1:35467/activity-image?i=1",
+      "redirect_status": null,
+      "browser_timestamp": 453990.573751,
+      "network_id": "1037353.28",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.779624879,
+      "request_id": "1037353.29",
+      "url": "http://127.0.0.1:35467/activity-image?i=2",
+      "redirect_status": null,
+      "browser_timestamp": 453990.573883,
+      "network_id": "1037353.29",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.779756406,
+      "request_id": "1037353.30",
+      "url": "http://127.0.0.1:35467/activity-image?i=3",
+      "redirect_status": null,
+      "browser_timestamp": 453990.573984,
+      "network_id": "1037353.30",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.779866649,
+      "request_id": "1037353.31",
+      "url": "http://127.0.0.1:35467/activity-image?i=4",
+      "redirect_status": null,
+      "browser_timestamp": 453990.574146,
+      "network_id": "1037353.31",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.780007794,
+      "request_id": "1037353.32",
+      "url": "http://127.0.0.1:35467/activity-image?i=5",
+      "redirect_status": null,
+      "browser_timestamp": 453990.574326,
+      "network_id": "1037353.32",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.780170905,
+      "request_id": "1037353.33",
+      "url": "http://127.0.0.1:35467/activity-image?i=6",
+      "redirect_status": null,
+      "browser_timestamp": 453990.574533,
+      "network_id": "1037353.33",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.780307199,
+      "request_id": "1037353.34",
+      "url": "http://127.0.0.1:35467/activity-image?i=7",
+      "redirect_status": null,
+      "browser_timestamp": 453990.574791,
+      "network_id": "1037353.34",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.780428024,
+      "request_id": "1037353.35",
+      "url": "http://127.0.0.1:35467/activity-image?i=8",
+      "redirect_status": null,
+      "browser_timestamp": 453990.574896,
+      "network_id": "1037353.35",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.780558265,
+      "request_id": "1037353.36",
+      "url": "http://127.0.0.1:35467/activity-image?i=9",
+      "redirect_status": null,
+      "browser_timestamp": 453990.575002,
+      "network_id": "1037353.36",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.780680454,
+      "request_id": "1037353.37",
+      "url": "http://127.0.0.1:35467/activity-image?i=10",
+      "redirect_status": null,
+      "browser_timestamp": 453990.575132,
+      "network_id": "1037353.37",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453990.7807899,
+      "request_id": "1037353.38",
+      "url": "http://127.0.0.1:35467/activity-image?i=11",
+      "redirect_status": null,
+      "browser_timestamp": 453990.575406,
+      "network_id": "1037353.38",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Image",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "parser",
+      "initiator_script_id": null,
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.78099711,
+      "url": "http://127.0.0.1:35467/activity-image?i=0",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453990.795395092,
+      "operation_id": "op-1",
+      "request_id": "interception-job-3.0",
+      "network_id": "1037353.2",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.795618052,
+      "url": "http://127.0.0.1:35467/activity-image?i=1",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.807856209,
+      "url": "http://127.0.0.1:35467/activity-image?i=2",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.824554406,
+      "url": "http://127.0.0.1:35467/activity-image?i=3",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.841312191,
+      "url": "http://127.0.0.1:35467/activity-image?i=4",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.855357541,
+      "url": "http://127.0.0.1:35467/activity-image?i=5",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.871189388,
+      "url": "http://127.0.0.1:35467/activity-image?i=6",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.888499648,
+      "url": "http://127.0.0.1:35467/activity-image?i=7",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.907299882,
+      "url": "http://127.0.0.1:35467/activity-read?i=0",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.923291658,
+      "url": "http://127.0.0.1:35467/activity-image?i=8",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.939397131,
+      "url": "http://127.0.0.1:35467/activity-image?i=9",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.956225468,
+      "url": "http://127.0.0.1:35467/activity-image?i=10",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.974572821,
+      "url": "http://127.0.0.1:35467/activity-image?i=11",
+      "method": "GET",
+      "resource_type": "image"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453990.998655416,
+      "operation_id": "op-1",
+      "request_id": "interception-job-4.0",
+      "network_id": "1037353.3",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453990.998939701,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=0",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.016723089,
+      "request_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "browser_timestamp": 453990.552257
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.016867532,
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "resource_type": "document"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.027119443,
+      "operation_id": "op-1",
+      "request_id": "interception-job-5.0",
+      "network_id": "1037353.4",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.02733505,
+      "url": "http://127.0.0.1:35467/activity-read?i=1",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.046997933,
+      "operation_id": "op-1",
+      "request_id": "interception-job-6.0",
+      "network_id": "1037353.5",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.047217208,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=1",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.070287717,
+      "operation_id": "op-1",
+      "request_id": "interception-job-7.0",
+      "network_id": "1037353.6",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.070529245,
+      "url": "http://127.0.0.1:35467/activity-read?i=2",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.086911475,
+      "operation_id": "op-1",
+      "request_id": "interception-job-8.0",
+      "network_id": "1037353.7",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.087142937,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=2",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.104044315,
+      "operation_id": "op-1",
+      "request_id": "interception-job-9.0",
+      "network_id": "1037353.8",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.104212757,
+      "url": "http://127.0.0.1:35467/activity-read?i=3",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.12082428,
+      "operation_id": "op-1",
+      "request_id": "interception-job-10.0",
+      "network_id": "1037353.9",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.120987198,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=3",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.134508979,
+      "operation_id": "op-1",
+      "request_id": "interception-job-11.0",
+      "network_id": "1037353.10",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.134734857,
+      "url": "http://127.0.0.1:35467/activity-read?i=4",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.153284057,
+      "operation_id": "op-1",
+      "request_id": "interception-job-12.0",
+      "network_id": "1037353.11",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.153477977,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=4",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.169894282,
+      "operation_id": "op-1",
+      "request_id": "interception-job-13.0",
+      "network_id": "1037353.12",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.170052305,
+      "url": "http://127.0.0.1:35467/activity-read?i=5",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.184120507,
+      "operation_id": "op-1",
+      "request_id": "interception-job-14.0",
+      "network_id": "1037353.13",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.184301419,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=5",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.200880897,
+      "operation_id": "op-1",
+      "request_id": "interception-job-15.0",
+      "network_id": "1037353.14",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.201034993,
+      "url": "http://127.0.0.1:35467/activity-read?i=6",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.217918438,
+      "operation_id": "op-1",
+      "request_id": "interception-job-16.0",
+      "network_id": "1037353.15",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.218124931,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=6",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.23459036,
+      "operation_id": "op-1",
+      "request_id": "interception-job-17.0",
+      "network_id": "1037353.16",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.234731558,
+      "url": "http://127.0.0.1:35467/activity-read?i=7",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.253176021,
+      "operation_id": "op-1",
+      "request_id": "interception-job-18.0",
+      "network_id": "1037353.17",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.253382125,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=7",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.269295974,
+      "operation_id": "op-1",
+      "request_id": "interception-job-19.0",
+      "network_id": "1037353.18",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.269451025,
+      "url": "http://127.0.0.1:35467/activity-read?i=8",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.283950404,
+      "operation_id": "op-1",
+      "request_id": "interception-job-20.0",
+      "network_id": "1037353.19",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.284129373,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=8",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.301304128,
+      "operation_id": "op-1",
+      "request_id": "interception-job-21.0",
+      "network_id": "1037353.20",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.301590225,
+      "url": "http://127.0.0.1:35467/activity-read?i=9",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.317873649,
+      "operation_id": "op-1",
+      "request_id": "interception-job-22.0",
+      "network_id": "1037353.26",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.318099458,
+      "url": "http://127.0.0.1:35467/activity-beacon",
+      "method": "POST",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.333517416,
+      "operation_id": "op-1",
+      "request_id": "interception-job-23.0",
+      "network_id": "1037353.21",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.333725804,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=9",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.351362606,
+      "operation_id": "op-1",
+      "request_id": "interception-job-24.0",
+      "network_id": "1037353.22",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.351594085,
+      "url": "http://127.0.0.1:35467/activity-read?i=10",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.367163758,
+      "operation_id": "op-1",
+      "request_id": "interception-job-25.0",
+      "network_id": "1037353.23",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.367377364,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=10",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.381820493,
+      "operation_id": "op-1",
+      "request_id": "interception-job-26.0",
+      "network_id": "1037353.24",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.381968879,
+      "url": "http://127.0.0.1:35467/activity-read?i=11",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453991.397794361,
+      "operation_id": "op-1",
+      "request_id": "interception-job-27.0",
+      "network_id": "1037353.25",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "incidental",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453991.397949403,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=11",
+      "method": "GET",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.415450061,
+      "request_id": "1037353.27",
+      "url": "http://127.0.0.1:35467/activity-image?i=0",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.416014511,
+      "url": "http://127.0.0.1:35467/activity-image?i=0",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.41662264,
+      "request_id": "1037353.27",
+      "browser_timestamp": 453990.79953
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.416934163,
+      "url": "http://127.0.0.1:35467/activity-image?i=0",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.417852169,
+      "request_id": "1037353.28",
+      "url": "http://127.0.0.1:35467/activity-image?i=1",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.418375085,
+      "url": "http://127.0.0.1:35467/activity-image?i=1",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.419062401,
+      "request_id": "1037353.29",
+      "url": "http://127.0.0.1:35467/activity-image?i=2",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.419488326,
+      "url": "http://127.0.0.1:35467/activity-image?i=2",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.419977789,
+      "request_id": "1037353.29",
+      "browser_timestamp": 453990.835697
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.420189208,
+      "url": "http://127.0.0.1:35467/activity-image?i=2",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.420891752,
+      "request_id": "1037353.30",
+      "url": "http://127.0.0.1:35467/activity-image?i=3",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.421362245,
+      "url": "http://127.0.0.1:35467/activity-image?i=3",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.422096509,
+      "request_id": "1037353.28",
+      "browser_timestamp": 453990.860059
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.422252699,
+      "url": "http://127.0.0.1:35467/activity-image?i=1",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.422904609,
+      "request_id": "1037353.31",
+      "url": "http://127.0.0.1:35467/activity-image?i=4",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.423266383,
+      "url": "http://127.0.0.1:35467/activity-image?i=4",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.423956273,
+      "request_id": "1037353.32",
+      "url": "http://127.0.0.1:35467/activity-image?i=5",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.424417403,
+      "request_id": "1037353.32",
+      "browser_timestamp": 453990.882459
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.424682951,
+      "url": "http://127.0.0.1:35467/activity-image?i=5",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.424877141,
+      "url": "http://127.0.0.1:35467/activity-image?i=5",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.425427305,
+      "request_id": "1037353.30",
+      "browser_timestamp": 453990.891302
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.425571561,
+      "url": "http://127.0.0.1:35467/activity-image?i=3",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.426108308,
+      "request_id": "1037353.33",
+      "url": "http://127.0.0.1:35467/activity-image?i=6",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.426576989,
+      "url": "http://127.0.0.1:35467/activity-image?i=6",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.427173955,
+      "request_id": "1037353.31",
+      "browser_timestamp": 453990.906126
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.427362245,
+      "url": "http://127.0.0.1:35467/activity-image?i=4",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.427994497,
+      "request_id": "1037353.34",
+      "url": "http://127.0.0.1:35467/activity-image?i=7",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.42843648,
+      "url": "http://127.0.0.1:35467/activity-image?i=7",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.429072079,
+      "request_id": "1037353.2",
+      "url": "http://127.0.0.1:35467/activity-read?i=0",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.429486747,
+      "url": "http://127.0.0.1:35467/activity-read?i=0",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.43022558,
+      "request_id": "1037353.33",
+      "browser_timestamp": 453990.942338
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.430395265,
+      "url": "http://127.0.0.1:35467/activity-image?i=6",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.431110412,
+      "request_id": "1037353.35",
+      "url": "http://127.0.0.1:35467/activity-image?i=8",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.432059174,
+      "url": "http://127.0.0.1:35467/activity-image?i=8",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.432776148,
+      "request_id": "1037353.34",
+      "browser_timestamp": 453990.960269
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.432964357,
+      "url": "http://127.0.0.1:35467/activity-image?i=7",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.4335605,
+      "request_id": "1037353.36",
+      "url": "http://127.0.0.1:35467/activity-image?i=9",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.43393924,
+      "url": "http://127.0.0.1:35467/activity-image?i=9",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.434565905,
+      "request_id": "1037353.37",
+      "url": "http://127.0.0.1:35467/activity-image?i=10",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.435060632,
+      "url": "http://127.0.0.1:35467/activity-image?i=10",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.435723553,
+      "request_id": "1037353.37",
+      "browser_timestamp": 453990.986301
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.435961639,
+      "url": "http://127.0.0.1:35467/activity-image?i=10",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.436143072,
+      "request_id": "1037353.2",
+      "browser_timestamp": 453990.93517
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.436344888,
+      "url": "http://127.0.0.1:35467/activity-read?i=0",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.436690578,
+      "request_id": "1037353.35",
+      "browser_timestamp": 453990.992227
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.436893012,
+      "url": "http://127.0.0.1:35467/activity-image?i=8",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.437412741,
+      "request_id": "1037353.38",
+      "url": "http://127.0.0.1:35467/activity-image?i=11",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.437876195,
+      "url": "http://127.0.0.1:35467/activity-image?i=11",
+      "status": 200,
+      "headers": {
+        "content-length": "78",
+        "content-type": "image/png"
+      },
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.438587401,
+      "request_id": "1037353.36",
+      "browser_timestamp": 453991.010209
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.438836617,
+      "url": "http://127.0.0.1:35467/activity-image?i=9",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.440505678,
+      "request_id": "1037353.38",
+      "browser_timestamp": 453991.04454
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.440789676,
+      "url": "http://127.0.0.1:35467/activity-image?i=11",
+      "resource_type": "image"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.441496681,
+      "request_id": "1037353.4",
+      "url": "http://127.0.0.1:35467/activity-read?i=1",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.441738495,
+      "url": "http://127.0.0.1:35467/activity-read?i=1",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.441905207,
+      "request_id": "1037353.3",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=0",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.442080065,
+      "request_id": "1037353.3",
+      "browser_timestamp": 453991.061369
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.44308201,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=0",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.44338338,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=0",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.457152783,
+      "request_id": "1037353.6",
+      "url": "http://127.0.0.1:35467/activity-read?i=2",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.457498231,
+      "url": "http://127.0.0.1:35467/activity-read?i=2",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.458237808,
+      "request_id": "1037353.4",
+      "browser_timestamp": 453991.093567
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.458345848,
+      "url": "http://127.0.0.1:35467/activity-read?i=1",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.458769214,
+      "request_id": "1037353.5",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=1",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.459187009,
+      "request_id": "1037353.5",
+      "browser_timestamp": 453991.114048
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.459680216,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=1",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.459853221,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=1",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.460443863,
+      "request_id": "1037353.8",
+      "url": "http://127.0.0.1:35467/activity-read?i=3",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.460934231,
+      "url": "http://127.0.0.1:35467/activity-read?i=3",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.461698917,
+      "request_id": "1037353.9",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=3",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.462090251,
+      "request_id": "1037353.9",
+      "browser_timestamp": 453991.139821
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.462477559,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=3",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.462699031,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=3",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.462849441,
+      "request_id": "1037353.6",
+      "browser_timestamp": 453991.090231
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.46306871,
+      "url": "http://127.0.0.1:35467/activity-read?i=2",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.46329213,
+      "request_id": "1037353.7",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=2",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.463561433,
+      "request_id": "1037353.7",
+      "browser_timestamp": 453991.148147
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.463881336,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=2",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.464090556,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=2",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.464698173,
+      "request_id": "1037353.10",
+      "url": "http://127.0.0.1:35467/activity-read?i=4",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.465071831,
+      "url": "http://127.0.0.1:35467/activity-read?i=4",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.465666429,
+      "request_id": "1037353.8",
+      "browser_timestamp": 453991.164491
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.465791244,
+      "url": "http://127.0.0.1:35467/activity-read?i=3",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.466318853,
+      "request_id": "1037353.12",
+      "url": "http://127.0.0.1:35467/activity-read?i=5",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.466662704,
+      "url": "http://127.0.0.1:35467/activity-read?i=5",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.467130638,
+      "request_id": "1037353.10",
+      "browser_timestamp": 453991.196125
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.467260272,
+      "url": "http://127.0.0.1:35467/activity-read?i=4",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.46740033,
+      "request_id": "1037353.11",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=4",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.467650415,
+      "request_id": "1037353.11",
+      "browser_timestamp": 453991.213124
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.467823239,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=4",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.467909415,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=4",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.468287812,
+      "request_id": "1037353.14",
+      "url": "http://127.0.0.1:35467/activity-read?i=6",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.468665688,
+      "url": "http://127.0.0.1:35467/activity-read?i=6",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.468978304,
+      "request_id": "1037353.12",
+      "browser_timestamp": 453991.193886
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.469113049,
+      "url": "http://127.0.0.1:35467/activity-read?i=5",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.469253386,
+      "request_id": "1037353.15",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=6",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.469428597,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=6",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.469675881,
+      "request_id": "1037353.15",
+      "browser_timestamp": 453991.23805
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.469756146,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=6",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.469883424,
+      "request_id": "1037353.13",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=5",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.470094597,
+      "request_id": "1037353.13",
+      "browser_timestamp": 453991.245458
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.470260221,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=5",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.47034479,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=5",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.470744457,
+      "request_id": "1037353.16",
+      "url": "http://127.0.0.1:35467/activity-read?i=7",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.470989883,
+      "url": "http://127.0.0.1:35467/activity-read?i=7",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.471369999,
+      "request_id": "1037353.14",
+      "browser_timestamp": 453991.263288
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.471574427,
+      "url": "http://127.0.0.1:35467/activity-read?i=6",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.472131471,
+      "request_id": "1037353.18",
+      "url": "http://127.0.0.1:35467/activity-read?i=8",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.472385324,
+      "url": "http://127.0.0.1:35467/activity-read?i=8",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.472896147,
+      "request_id": "1037353.16",
+      "browser_timestamp": 453991.297528
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.473121212,
+      "url": "http://127.0.0.1:35467/activity-read?i=7",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.473292518,
+      "request_id": "1037353.17",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=7",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.473645207,
+      "request_id": "1037353.17",
+      "browser_timestamp": 453991.313196
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.473862691,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=7",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.474006134,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=7",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.474497311,
+      "request_id": "1037353.20",
+      "url": "http://127.0.0.1:35467/activity-read?i=9",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.474762542,
+      "url": "http://127.0.0.1:35467/activity-read?i=9",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.475291748,
+      "request_id": "1037353.26",
+      "url": "http://127.0.0.1:35467/activity-beacon",
+      "status": 204
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.475587442,
+      "url": "http://127.0.0.1:35467/activity-beacon",
+      "status": 204,
+      "headers": {
+        "content-length": "0"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_failed",
+      "monotonic": 453991.475703891,
+      "request_id": "1037353.26",
+      "session": "page-cdp-1",
+      "browser_timestamp": 453991.337256,
+      "canceled": true,
+      "error_text": "net::ERR_ABORTED",
+      "blocked_reason": null,
+      "resource_type": "Fetch"
+    },
+    {
+      "event": "browser_request_failed",
+      "monotonic": 453991.475795346,
+      "url": "http://127.0.0.1:35467/activity-beacon",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.475908778,
+      "request_id": "1037353.18",
+      "browser_timestamp": 453991.288635
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.47604928,
+      "url": "http://127.0.0.1:35467/activity-read?i=8",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.47620544,
+      "request_id": "1037353.19",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=8",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.47637133,
+      "request_id": "1037353.19",
+      "browser_timestamp": 453991.347124
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.476782336,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=8",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.476982956,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=8",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.478490933,
+      "request_id": "1037353.22",
+      "url": "http://127.0.0.1:35467/activity-read?i=10",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.478907432,
+      "url": "http://127.0.0.1:35467/activity-read?i=10",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.479020982,
+      "request_id": "1037353.20",
+      "browser_timestamp": 453991.362446
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.479115978,
+      "url": "http://127.0.0.1:35467/activity-read?i=9",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.479910671,
+      "request_id": "1037353.23",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=10",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.480165431,
+      "request_id": "1037353.23",
+      "browser_timestamp": 453991.384923
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.480425012,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=10",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.480541672,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=10",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.480679251,
+      "request_id": "1037353.21",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=9",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.480836608,
+      "request_id": "1037353.21",
+      "browser_timestamp": 453991.394263
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.481203447,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=9",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.481400001,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=9",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.481929554,
+      "request_id": "1037353.24",
+      "url": "http://127.0.0.1:35467/activity-read?i=11",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.482254868,
+      "url": "http://127.0.0.1:35467/activity-read?i=11",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.482816492,
+      "request_id": "1037353.22",
+      "browser_timestamp": 453991.411483
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.482987396,
+      "url": "http://127.0.0.1:35467/activity-read?i=10",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.483391031,
+      "request_id": "1037353.24",
+      "browser_timestamp": 453991.442381
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.483529614,
+      "url": "http://127.0.0.1:35467/activity-read?i=11",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453991.48381753,
+      "request_id": "1037353.25",
+      "url": "http://127.0.0.1:35467/activity-xhr?i=11",
+      "status": 200
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 453991.532256962,
+      "request_id": "1037353.25",
+      "browser_timestamp": 453991.474733
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453991.532637042,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=11",
+      "status": 200,
+      "headers": {
+        "content-length": "25",
+        "content-type": "text/plain"
+      },
+      "resource_type": "xhr"
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 453991.532766081,
+      "url": "http://127.0.0.1:35467/activity-xhr?i=11",
+      "resource_type": "xhr"
+    },
+    {
+      "event": "operation_complete",
+      "monotonic": 453994.708579825,
+      "url": "http://127.0.0.1:35467/handoff-activity",
+      "kind": "document",
+      "operation_id": "op-1",
+      "outcome": "success",
+      "error": null
+    },
+    {
+      "event": "operation_start",
+      "monotonic": 453994.708647638,
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "operation_id": "op-2",
+      "deadline": 454024.708645646
+    },
+    {
+      "event": "read_abort_deadline",
+      "monotonic": 453994.70864888,
+      "operation_id": "op-2",
+      "deadline": 454023.708645646
+    },
+    {
+      "event": "read_setup_start",
+      "monotonic": 453994.708726872,
+      "operation_id": "op-2"
+    },
+    {
+      "event": "read_identity_bound",
+      "monotonic": 453994.763096995,
+      "operation_id": "op-2",
+      "script_id": "39",
+      "context_id": 5,
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "execution_world": "same-frame isolated world",
+      "universal_access": false
+    },
+    {
+      "event": "read_script_started",
+      "monotonic": 453994.774851414,
+      "operation_id": "op-2"
+    },
+    {
+      "event": "fixture_browser_mark",
+      "monotonic": 453994.786292019,
+      "execution_context": 5,
+      "stage": "script_entered",
+      "bytes": 0,
+      "encoding_ms": 0,
+      "browser_ms": 4263.399999976158,
+      "browser_wall_ms": 1791096984509
+    },
+    {
+      "event": "cdp_request_will_be_sent",
+      "monotonic": 453994.787259634,
+      "request_id": "1037353.39",
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "redirect_status": null,
+      "browser_timestamp": 453994.785752,
+      "network_id": "1037353.39",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "resource_type": "Fetch",
+      "loader_id": "6EBCD2A5C9F06DA39C77466366292C3E",
+      "initiator_type": "script",
+      "initiator_script_id": "39",
+      "method": "GET",
+      "redirect_from": null
+    },
+    {
+      "event": "request_classified",
+      "monotonic": 453994.787728334,
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "method": "GET",
+      "classification": "intentional",
+      "initiator_script_id": "39",
+      "network_resource_type": "Fetch",
+      "operation_id": "op-2",
+      "request_id": "interception-job-77.0",
+      "network_id": "1037353.39",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "intentional_intercepted",
+      "monotonic": 453994.787741848,
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "operation_id": "op-2",
+      "request_id": "interception-job-77.0",
+      "network_id": "1037353.39",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1"
+    },
+    {
+      "event": "pause",
+      "monotonic": 453994.787754813,
+      "seconds": 4.920823994034436,
+      "predecessor_completed": 453994.708576533
+    },
+    {
+      "event": "intentional_dispatch",
+      "monotonic": 453999.714142081,
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "method": "GET",
+      "kind": "read",
+      "ordinal": 2,
+      "operation_id": "op-2",
+      "request_id": "interception-job-77.0",
+      "network_id": "1037353.39",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "preceding_completion": 453994.708576533
+    },
+    {
+      "event": "interception_command",
+      "monotonic": 453999.714158086,
+      "operation_id": "op-2",
+      "request_id": "interception-job-77.0",
+      "network_id": "1037353.39",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "resolving"
+    },
+    {
+      "event": "interception_command_complete",
+      "monotonic": 453999.726340555,
+      "operation_id": "op-2",
+      "request_id": "interception-job-77.0",
+      "network_id": "1037353.39",
+      "resource_type": "XHR",
+      "frame_id": "7F9D605DE42D1A9F0F989B448A75CFEA",
+      "predecessor": null,
+      "session": "page-cdp-1",
+      "command": "Fetch.continueRequest",
+      "classification": "intentional",
+      "state": "resolved"
+    },
+    {
+      "event": "browser_request",
+      "monotonic": 453999.727436859,
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "method": "GET",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_response_headers",
+      "monotonic": 453999.754327506,
+      "request_id": "1037353.39",
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "status": 200
+    },
+    {
+      "event": "browser_response",
+      "monotonic": 453999.755031716,
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "status": 200,
+      "headers": {
+        "content-length": "10489856",
+        "x-wp-totalpages": "1",
+        "content-type": "application/json; charset=UTF-8",
+        "x-wp-total": "100"
+      },
+      "resource_type": "fetch"
+    },
+    {
+      "event": "cdp_loading_finished",
+      "monotonic": 454000.443161435,
+      "request_id": "1037353.39",
+      "browser_timestamp": 454000.21276
+    },
+    {
+      "event": "fixture_browser_mark",
+      "monotonic": 454000.44342776,
+      "execution_context": 5,
+      "stage": "cap_prefix_consumed",
+      "bytes": 10485760,
+      "encoding_ms": 511.29999989271164,
+      "browser_ms": 9919.899999976158,
+      "browser_wall_ms": 1791096990166
+    },
+    {
+      "event": "fixture_browser_mark",
+      "monotonic": 454000.443665427,
+      "execution_context": 5,
+      "stage": "result_prepared",
+      "bytes": 10485760,
+      "encoding_ms": 511.29999989271164,
+      "browser_ms": 9920.199999988079,
+      "browser_wall_ms": 1791096990166
+    },
+    {
+      "event": "browser_request_finished",
+      "monotonic": 454001.247804632,
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "resource_type": "fetch"
+    },
+    {
+      "event": "fixture_python_result_received",
+      "monotonic": 454001.247974535,
+      "bytes": 10485760,
+      "chunks": 322,
+      "scalar_items": 13981440,
+      "representation": "product"
+    },
+    {
+      "event": "read_result_received",
+      "monotonic": 454001.247986185,
+      "operation_id": "op-2",
+      "bytes": 10485760,
+      "incomplete": true,
+      "error": "response_limit"
+    },
+    {
+      "event": "stop",
+      "monotonic": 454007.313936066,
+      "reason": "response_limit"
+    },
+    {
+      "event": "operation_complete",
+      "monotonic": 454007.313944947,
+      "url": "http://127.0.0.1:35467/handoff-rest",
+      "kind": "read",
+      "operation_id": "op-2",
+      "outcome": "failure",
+      "error": "response_limit"
+    },
+    {
+      "event": "fixture_cleanup_start",
+      "monotonic": 454007.344587482
+    },
+    {
+      "event": "interception_page_closed",
+      "monotonic": 454007.357868423,
+      "session": "page-cdp-1",
+      "cleanup": true
+    },
+    {
+      "event": "fixture_cleanup_complete",
+      "monotonic": 454007.478446685
+    }
+  ],
+  "server_events": [
+    {
+      "event": "request_received",
+      "path": "/handoff-activity",
+      "method": "GET",
+      "monotonic": 453990.550273481,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "document"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/handoff-activity",
+      "method": "GET",
+      "monotonic": 453990.550498431,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/handoff-activity",
+      "method": "GET",
+      "monotonic": 453990.550523346,
+      "bytes": 4027
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=0",
+      "method": "GET",
+      "monotonic": 453990.797771593,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=0",
+      "method": "GET",
+      "monotonic": 453990.797889694,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=0",
+      "method": "GET",
+      "monotonic": 453990.798869108,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=1",
+      "method": "GET",
+      "monotonic": 453990.8175169,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=1",
+      "method": "GET",
+      "monotonic": 453990.819329838,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=1",
+      "method": "GET",
+      "monotonic": 453990.819364931,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=2",
+      "method": "GET",
+      "monotonic": 453990.833503585,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=2",
+      "method": "GET",
+      "monotonic": 453990.833645109,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=2",
+      "method": "GET",
+      "monotonic": 453990.833695599,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=3",
+      "method": "GET",
+      "monotonic": 453990.849451444,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=3",
+      "method": "GET",
+      "monotonic": 453990.849614397,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=3",
+      "method": "GET",
+      "monotonic": 453990.849623719,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=4",
+      "method": "GET",
+      "monotonic": 453990.86481957,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=4",
+      "method": "GET",
+      "monotonic": 453990.864989582,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=4",
+      "method": "GET",
+      "monotonic": 453990.865031981,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=5",
+      "method": "GET",
+      "monotonic": 453990.880856359,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=5",
+      "method": "GET",
+      "monotonic": 453990.880968247,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=5",
+      "method": "GET",
+      "monotonic": 453990.88308516,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=6",
+      "method": "GET",
+      "monotonic": 453990.900701794,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=6",
+      "method": "GET",
+      "monotonic": 453990.9008161,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=6",
+      "method": "GET",
+      "monotonic": 453990.900825916,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=7",
+      "method": "GET",
+      "monotonic": 453990.917534042,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=7",
+      "method": "GET",
+      "monotonic": 453990.917650478,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=7",
+      "method": "GET",
+      "monotonic": 453990.917828248,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=0",
+      "method": "GET",
+      "monotonic": 453990.933397509,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=0",
+      "method": "GET",
+      "monotonic": 453990.933515825,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=0",
+      "method": "GET",
+      "monotonic": 453990.933661707,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=8",
+      "method": "GET",
+      "monotonic": 453990.949250941,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=8",
+      "method": "GET",
+      "monotonic": 453990.949383654,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=8",
+      "method": "GET",
+      "monotonic": 453990.951312394,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=9",
+      "method": "GET",
+      "monotonic": 453990.968655391,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=9",
+      "method": "GET",
+      "monotonic": 453990.968768654,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=9",
+      "method": "GET",
+      "monotonic": 453990.96877834,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=10",
+      "method": "GET",
+      "monotonic": 453990.983827081,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=10",
+      "method": "GET",
+      "monotonic": 453990.985080291,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=10",
+      "method": "GET",
+      "monotonic": 453990.985187035,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-image?i=11",
+      "method": "GET",
+      "monotonic": 453991.002536712,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "image"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-image?i=11",
+      "method": "GET",
+      "monotonic": 453991.002651505,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-image?i=11",
+      "method": "GET",
+      "monotonic": 453991.002661263,
+      "bytes": 78
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=0",
+      "method": "GET",
+      "monotonic": 453991.019814821,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=0",
+      "method": "GET",
+      "monotonic": 453991.019923901,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=0",
+      "method": "GET",
+      "monotonic": 453991.019933159,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=1",
+      "method": "GET",
+      "monotonic": 453991.0521415,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=1",
+      "method": "GET",
+      "monotonic": 453991.052291395,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=1",
+      "method": "GET",
+      "monotonic": 453991.052358279,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=1",
+      "method": "GET",
+      "monotonic": 453991.072712743,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=1",
+      "method": "GET",
+      "monotonic": 453991.072855793,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=1",
+      "method": "GET",
+      "monotonic": 453991.073213312,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=2",
+      "method": "GET",
+      "monotonic": 453991.088710353,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=2",
+      "method": "GET",
+      "monotonic": 453991.088828779,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=2",
+      "method": "GET",
+      "monotonic": 453991.090433221,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=2",
+      "method": "GET",
+      "monotonic": 453991.107048984,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=2",
+      "method": "GET",
+      "monotonic": 453991.107179496,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=2",
+      "method": "GET",
+      "monotonic": 453991.113058625,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=3",
+      "method": "GET",
+      "monotonic": 453991.12245529,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=3",
+      "method": "GET",
+      "monotonic": 453991.124123554,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=3",
+      "method": "GET",
+      "monotonic": 453991.124183503,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=3",
+      "method": "GET",
+      "monotonic": 453991.138082469,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=3",
+      "method": "GET",
+      "monotonic": 453991.138286024,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=3",
+      "method": "GET",
+      "monotonic": 453991.138303782,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=4",
+      "method": "GET",
+      "monotonic": 453991.154723293,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=4",
+      "method": "GET",
+      "monotonic": 453991.154848885,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=4",
+      "method": "GET",
+      "monotonic": 453991.15485943,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=4",
+      "method": "GET",
+      "monotonic": 453991.171830598,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=4",
+      "method": "GET",
+      "monotonic": 453991.173055165,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=4",
+      "method": "GET",
+      "monotonic": 453991.173087637,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=5",
+      "method": "GET",
+      "monotonic": 453991.185765034,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=5",
+      "method": "GET",
+      "monotonic": 453991.192866247,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=5",
+      "method": "GET",
+      "monotonic": 453991.192943093,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=5",
+      "method": "GET",
+      "monotonic": 453991.203741562,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=5",
+      "method": "GET",
+      "monotonic": 453991.203851966,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=5",
+      "method": "GET",
+      "monotonic": 453991.203861942,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=6",
+      "method": "GET",
+      "monotonic": 453991.221649948,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=6",
+      "method": "GET",
+      "monotonic": 453991.22180173,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=6",
+      "method": "GET",
+      "monotonic": 453991.221816626,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=6",
+      "method": "GET",
+      "monotonic": 453991.236393854,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=6",
+      "method": "GET",
+      "monotonic": 453991.236507789,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=6",
+      "method": "GET",
+      "monotonic": 453991.237074371,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=7",
+      "method": "GET",
+      "monotonic": 453991.254829729,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=7",
+      "method": "GET",
+      "monotonic": 453991.25493811,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=7",
+      "method": "GET",
+      "monotonic": 453991.254947619,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=7",
+      "method": "GET",
+      "monotonic": 453991.271294847,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=7",
+      "method": "GET",
+      "monotonic": 453991.271402135,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=7",
+      "method": "GET",
+      "monotonic": 453991.271411182,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=8",
+      "method": "GET",
+      "monotonic": 453991.286850642,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=8",
+      "method": "GET",
+      "monotonic": 453991.287014405,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=8",
+      "method": "GET",
+      "monotonic": 453991.287859329,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=8",
+      "method": "GET",
+      "monotonic": 453991.304086428,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=8",
+      "method": "GET",
+      "monotonic": 453991.304213561,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=8",
+      "method": "GET",
+      "monotonic": 453991.304221772,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=9",
+      "method": "GET",
+      "monotonic": 453991.320334024,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=9",
+      "method": "GET",
+      "monotonic": 453991.320911804,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=9",
+      "method": "GET",
+      "monotonic": 453991.320945173,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-beacon",
+      "method": "POST",
+      "monotonic": 453991.335410269,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-beacon",
+      "method": "POST",
+      "monotonic": 453991.336058042,
+      "status": 204
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-beacon",
+      "method": "POST",
+      "monotonic": 453991.336087984,
+      "bytes": 0
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=9",
+      "method": "GET",
+      "monotonic": 453991.352912474,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=9",
+      "method": "GET",
+      "monotonic": 453991.353107622,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=9",
+      "method": "GET",
+      "monotonic": 453991.353151171,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=10",
+      "method": "GET",
+      "monotonic": 453991.369493122,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=10",
+      "method": "GET",
+      "monotonic": 453991.369601242,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=10",
+      "method": "GET",
+      "monotonic": 453991.369610598,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=10",
+      "method": "GET",
+      "monotonic": 453991.383496983,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=10",
+      "method": "GET",
+      "monotonic": 453991.383606238,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=10",
+      "method": "GET",
+      "monotonic": 453991.383615162,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-read?i=11",
+      "method": "GET",
+      "monotonic": 453991.400870757,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-read?i=11",
+      "method": "GET",
+      "monotonic": 453991.400981023,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-read?i=11",
+      "method": "GET",
+      "monotonic": 453991.408109608,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/activity-xhr?i=11",
+      "method": "GET",
+      "monotonic": 453991.431458383,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/activity-xhr?i=11",
+      "method": "GET",
+      "monotonic": 453991.441130185,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/activity-xhr?i=11",
+      "method": "GET",
+      "monotonic": 453991.441195597,
+      "bytes": 25
+    },
+    {
+      "event": "request_received",
+      "path": "/handoff-rest",
+      "method": "GET",
+      "monotonic": 453999.748541506,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "resource_destination": "empty"
+    },
+    {
+      "event": "headers_sent",
+      "path": "/handoff-rest",
+      "method": "GET",
+      "monotonic": 453999.748718593,
+      "status": 200
+    },
+    {
+      "event": "body_sent",
+      "path": "/handoff-rest",
+      "method": "GET",
+      "monotonic": 453999.984009705,
+      "bytes": 10489856
+    }
+  ],
+  "runtime": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "headless": true,
+    "ignore_https_errors": true,
+    "page_timeout_ms": 90000,
+    "wait_for_images": true,
+    "post_load_delay_s": 3.0,
+    "cache_mode": "BYPASS",
+    "library_file_logging": false,
+    "browser_version": "136.0.7103.25",
+    "browser_executable": "headless_shell",
+    "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+  }
+}

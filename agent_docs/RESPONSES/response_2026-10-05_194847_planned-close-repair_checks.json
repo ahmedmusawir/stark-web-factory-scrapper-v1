@@ -1,0 +1,610 @@
+{
+  "verdict": "Scoped planned-close repair locally verified; stop for review. No guarantee after externally lost control.",
+  "utc": "2026-10-05T13:48:47.416815+00:00",
+  "engineering_only": true,
+  "independent_qa": "NOT RUN",
+  "prepare": "ON HOLD",
+  "branch": "wf-scrapper-abm",
+  "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+  "source_inventory_sha256": "f497011c908057d4a1fb447c8b83a83152cf783ba3f3d8f00ee954aac904c7d3",
+  "source_files": 69,
+  "phases": {
+    "focused-initial": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_planned_shutdown.py",
+        "tests/test_resolution_stop.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-05T12:45:21.909529+00:00",
+      "finished_at": "2026-10-05T12:46:24.181350+00:00",
+      "elapsed_s": 62.271818144014105,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "source_inventory_sha256": "a5a2982528c171b4a282070770c36f19d012e86c4e704df8bf2d972bb37216ef",
+      "source_file_count": 69,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "log_limit_hit": false,
+      "counts": {
+        "console_bytes": 110,
+        "driver_bytes": 0,
+        "observed_bytes": 110,
+        "protocol_parse_gaps": 0
+      },
+      "control_evidence": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-initial-controls"
+    },
+    "focused-final": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-s",
+        "tests/test_planned_shutdown.py",
+        "tests/test_resolution_stop.py",
+        "tests/test_bounded_capture_repair.py",
+        "tests/test_interception_lifecycle.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-05T13:20:30.549196+00:00",
+      "finished_at": "2026-10-05T13:23:58.872977+00:00",
+      "elapsed_s": 208.32377931801602,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "source_inventory_sha256": "f497011c908057d4a1fb447c8b83a83152cf783ba3f3d8f00ee954aac904c7d3",
+      "source_file_count": 69,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "log_limit_hit": false,
+      "counts": {
+        "console_bytes": 12163,
+        "driver_bytes": 527781,
+        "observed_bytes": 16900029,
+        "protocol_parse_gaps": 0
+      },
+      "control_evidence": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls"
+    },
+    "regression": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-05T13:26:03.366894+00:00",
+      "finished_at": "2026-10-05T13:45:33.271763+00:00",
+      "elapsed_s": 1169.904867138015,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "source_inventory_sha256": "f497011c908057d4a1fb447c8b83a83152cf783ba3f3d8f00ee954aac904c7d3",
+      "source_file_count": 69,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "log_limit_hit": false,
+      "counts": {
+        "console_bytes": 353,
+        "driver_bytes": 0,
+        "observed_bytes": 353,
+        "protocol_parse_gaps": 0
+      },
+      "control_evidence": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/regression-final-controls"
+    },
+    "comparison": {
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/regression-final-controls/complete-raw"
+      ],
+      "started_at": "2026-10-05T13:46:36.142130+00:00",
+      "finished_at": "2026-10-05T13:48:32.471400+00:00",
+      "elapsed_s": 116.32926988496911,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "source_inventory_sha256": "f497011c908057d4a1fb447c8b83a83152cf783ba3f3d8f00ee954aac904c7d3",
+      "source_file_count": 69,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "log_limit_hit": false,
+      "counts": {
+        "console_bytes": 282,
+        "driver_bytes": 0,
+        "observed_bytes": 282,
+        "protocol_parse_gaps": 0
+      },
+      "control_evidence": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/comparison-final-controls"
+    }
+  },
+  "test_totals": {
+    "focused-initial": 21,
+    "focused-final": 68,
+    "regression": 235
+  },
+  "capture_comparison": {
+    "full_canonical_comparison": "PASS",
+    "files": 231,
+    "normalization": "page elapsed; measured protocol times; correlated protocol IDs; independent resource channels; derived metadata byte-count/hash edges only"
+  },
+  "native_case_index": {
+    "planned-double-abort-error.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-double-abort-error.json",
+      "sha256": "eab478d04096dcd6c402707023595afea5bb391f1b6457ff0095c59d647985a8",
+      "dispatches": 0,
+      "stop_reason": "fixture_original_stop",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561270.080984379,
+          "confirmed_aborts": 0,
+          "unconfirmed_count": 1,
+          "unconfirmed_sample": [
+            {
+              "operation_id": "op-1",
+              "request_id": "fixture-fetch-1",
+              "network_id": "fixture-network-1",
+              "frame_id": "fixture-frame-1",
+              "resource_type": "Document",
+              "predecessor": null,
+              "session": "page-cdp-1",
+              "state": "error",
+              "command": "Fetch.failRequest",
+              "classification": "intentional",
+              "abort_confirmed": false
+            }
+          ],
+          "deadline": 561270.229969771,
+          "finished": 561270.080969545,
+          "stop_reason": "fixture_original_stop"
+        }
+      ]
+    },
+    "planned-double-already-continuing.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-double-already-continuing.json",
+      "sha256": "0bfd7585ef984c0308aa75c7d64cde7e78f154ff454622f9f00b4ccabdd38fab",
+      "dispatches": 0,
+      "stop_reason": "fixture_original_stop",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561270.327777692,
+          "confirmed_aborts": 0,
+          "unconfirmed_count": 1,
+          "unconfirmed_sample": [
+            {
+              "operation_id": "op-1",
+              "request_id": "fixture-fetch-1",
+              "network_id": "fixture-network-1",
+              "frame_id": "fixture-frame-1",
+              "resource_type": "Document",
+              "predecessor": null,
+              "session": "page-cdp-1",
+              "state": "resolved",
+              "command": "Fetch.continueRequest",
+              "classification": "intentional",
+              "abort_confirmed": false
+            }
+          ],
+          "deadline": 561270.4517406049,
+          "finished": 561270.327773149,
+          "stop_reason": "fixture_original_stop"
+        }
+      ]
+    },
+    "planned-double-hung-abort.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-double-hung-abort.json",
+      "sha256": "38847705ae4ee5f4741de8c0a0c8f2a6315dfe2c4d668e31f151b757de7e0450",
+      "dispatches": 0,
+      "stop_reason": "fixture_original_stop",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561270.24853775,
+          "confirmed_aborts": 0,
+          "unconfirmed_count": 1,
+          "unconfirmed_sample": [
+            {
+              "operation_id": "op-1",
+              "request_id": "fixture-fetch-1",
+              "network_id": "fixture-network-1",
+              "frame_id": "fixture-frame-1",
+              "resource_type": "Document",
+              "predecessor": null,
+              "session": "page-cdp-1",
+              "state": "error",
+              "command": "Fetch.failRequest",
+              "classification": "intentional",
+              "abort_confirmed": false
+            }
+          ],
+          "deadline": 561270.287594731,
+          "finished": 561270.248533385,
+          "stop_reason": "fixture_original_stop"
+        }
+      ]
+    },
+    "planned-external-close-negative.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-external-close-negative.json",
+      "sha256": "cdbafe5c334134d6f7e61df56305c3e545faa242ac253c61c6c0a00118e6b82d",
+      "dispatches": 1,
+      "stop_reason": "browser_page_closed",
+      "held_target_handler_receipts": 1,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561269.583956069,
+          "confirmed_aborts": 0,
+          "unconfirmed_count": 1,
+          "unconfirmed_sample": [
+            {
+              "operation_id": "op-2",
+              "request_id": "interception-job-7.0",
+              "network_id": "1876016.4",
+              "resource_type": "XHR",
+              "frame_id": "4DAF87A28D865337BBDEED3F5D8C5F4F",
+              "predecessor": null,
+              "session": "page-cdp-1",
+              "state": "error",
+              "command": "Fetch.failRequest",
+              "classification": "intentional",
+              "abort_confirmed": false
+            }
+          ],
+          "deadline": 561299.439614044,
+          "finished": 561269.583946343,
+          "stop_reason": "browser_page_closed"
+        }
+      ]
+    },
+    "planned-new-pause.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-new-pause.json",
+      "sha256": "5092bef4dbaa37447d31c2b1e53bcb53580ccb159a55ef98c4325c1163a21992",
+      "dispatches": 1,
+      "stop_reason": "collector_shutdown",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561247.037993428,
+          "confirmed_aborts": 2,
+          "unconfirmed_count": 0,
+          "unconfirmed_sample": [],
+          "deadline": 561276.840658794,
+          "finished": 561247.037982973,
+          "stop_reason": "collector_shutdown"
+        }
+      ]
+    },
+    "planned-normal-barrier.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-normal-barrier.json",
+      "sha256": "ddd13723ee6157399ee91c9db9c768da35258f1d2688559e54683b21d93b2684",
+      "dispatches": 1,
+      "stop_reason": "collector_shutdown",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561217.609853286,
+          "confirmed_aborts": 1,
+          "unconfirmed_count": 0,
+          "unconfirmed_sample": [],
+          "deadline": 561247.433597837,
+          "finished": 561217.609825102,
+          "stop_reason": "collector_shutdown"
+        }
+      ]
+    },
+    "planned-normal-pacing.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-normal-pacing.json",
+      "sha256": "6766a0c0328ba9f930600aba05ec0dead47ffa9645e489d6cf592282f1a9b1f9",
+      "dispatches": 1,
+      "stop_reason": "collector_shutdown",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561229.677841452,
+          "confirmed_aborts": 1,
+          "unconfirmed_count": 0,
+          "unconfirmed_sample": [],
+          "deadline": 561259.500921621,
+          "finished": 561229.677831545,
+          "stop_reason": "collector_shutdown"
+        }
+      ]
+    },
+    "planned-normal-success.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-normal-success.json",
+      "sha256": "14237d536085587fce2e9526f4ce5f1b23422d696e4d9e3cfade02c35b229062",
+      "dispatches": 2,
+      "stop_reason": null,
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561263.693182793,
+          "confirmed_aborts": 0,
+          "unconfirmed_count": 0,
+          "unconfirmed_sample": [],
+          "deadline": 561293.539446921,
+          "finished": 561263.693171611,
+          "stop_reason": null
+        }
+      ]
+    },
+    "planned-resolving-abort.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-resolving-abort.json",
+      "sha256": "65cc4c5d9f64def4e34bf57940cbe972238686419a2cf79883ef43ad7fc0c049",
+      "dispatches": 1,
+      "stop_reason": "collector_shutdown",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561252.970305532,
+          "confirmed_aborts": 1,
+          "unconfirmed_count": 0,
+          "unconfirmed_sample": [],
+          "deadline": 561282.749034393,
+          "finished": 561252.970295391,
+          "stop_reason": "collector_shutdown"
+        }
+      ]
+    },
+    "planned-stop-barrier.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-stop-barrier.json",
+      "sha256": "af4c2a398ca7142f8e926c96d424aec8682f6815ca94fcf5b0700ddc2cb78250",
+      "dispatches": 1,
+      "stop_reason": "fixture_original_refusal",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561223.904882192,
+          "confirmed_aborts": 1,
+          "unconfirmed_count": 0,
+          "unconfirmed_sample": [],
+          "deadline": 561253.733046652,
+          "finished": 561223.904870652,
+          "stop_reason": "fixture_original_refusal"
+        }
+      ]
+    },
+    "planned-stop-pacing.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-stop-pacing.json",
+      "sha256": "ee0d4e68fb7f25c76c258a39e2d48f57ae19f5e504ba1ead44bbdf52e82a58f7",
+      "dispatches": 1,
+      "stop_reason": "fixture_original_refusal",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561235.468885714,
+          "confirmed_aborts": 1,
+          "unconfirmed_count": 0,
+          "unconfirmed_sample": [],
+          "deadline": 561265.307503861,
+          "finished": 561235.468876289,
+          "stop_reason": "fixture_original_refusal"
+        }
+      ]
+    },
+    "planned-write-failure-pacing.json": {
+      "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-bound-controls/planned-write-failure-pacing.json",
+      "sha256": "5a1a3ab098112a29d76b39740202904624598caf28419f283bb559d4484d328d",
+      "dispatches": 1,
+      "stop_reason": "evidence_write_limit",
+      "held_target_handler_receipts": 0,
+      "shutdown_events": [
+        {
+          "event": "shutdown_complete",
+          "monotonic": 561241.198732363,
+          "confirmed_aborts": 1,
+          "unconfirmed_count": 0,
+          "unconfirmed_sample": [],
+          "deadline": 561271.027808839,
+          "finished": 561241.198722047,
+          "stop_reason": "evidence_write_limit"
+        }
+      ]
+    }
+  },
+  "confirmed_native_aborts": 8,
+  "preservation": {
+    "previous_files": 14285,
+    "changed_previous_files": [],
+    "missing_previous_files": [],
+    "source_intake_sha256": "aaf883a8c59960ab825e5a58508772bb9c099b49f65187b248e1f2ed813dc622",
+    "source_final_sha256": "f497011c908057d4a1fb447c8b83a83152cf783ba3f3d8f00ee954aac904c7d3",
+    "changed_existing_sources": [
+      "smart_crawler/browser_session.py",
+      "tests/snapshot_compare.py"
+    ],
+    "new_sources": [
+      "tests/test_planned_shutdown.py"
+    ],
+    "other_intake_source_records_identical": true,
+    "installed_monitored_sources": 7,
+    "installed_identical": true,
+    "dependency_declarations_and_lock_identical": true
+  },
+  "closure_audit": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/closure-audit.md",
+  "live_target_requests": 0,
+  "previous_two_arm_failure": {
+    "path": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/two-arm-teardown/2026-10-05_072634Z/arm-B/observations.jsonl",
+    "preserved": true
+  },
+  "open_findings": [
+    "External target loss can release a held GET without custom continuation; active operation remains failed.",
+    "Forced deadlines/supervisor shutdown may prevent cancellation confirmation.",
+    "Late pauses arriving during target loss cannot be guaranteed canceled.",
+    "Already dispatched resources/streams are not canceled by retrying resolved Fetch IDs.",
+    "Historical homepage route accounting and supervisor final-manifest counters remain OPEN."
+  ],
+  "artifacts": [
+    "agent_docs/RESPONSES/response_2026-10-05_194847_planned-close-repair.md",
+    "agent_docs/RESPONSES/response_2026-10-05_194847_planned-close-repair_source-test.diff.txt",
+    "agent_docs/RESPONSES/response_2026-10-05_194847_planned-close-repair_browser_session.py.txt",
+    "agent_docs/RESPONSES/response_2026-10-05_194847_planned-close-repair_test_planned_shutdown.py.txt",
+    "agent_docs/RESPONSES/response_2026-10-05_194847_planned-close-repair_source-inventory.json",
+    "agent_docs/RESPONSES/response_2026-10-05_194847_planned-close-repair_native-evidence.json",
+    "agent_docs/RESPONSES/response_2026-10-05_194847_planned-close-repair_checks.json",
+    "agent_docs/RESPONSES/response_2026-10-05_194847_planned-close-repair_snapshot_compare.py.txt"
+  ],
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "crawl4ai": "0.9.3",
+      "playwright": "1.52.0",
+      "pytest": "8.3.5",
+      "requests": "2.32.3"
+    },
+    "browser": {
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "headless": true,
+      "ignore_https_errors": true,
+      "page_timeout_ms": 90000,
+      "wait_for_images": true,
+      "post_load_delay_s": 3.0,
+      "cache_mode": "BYPASS",
+      "library_file_logging": false,
+      "browser_version": "136.0.7103.25",
+      "browser_executable": "headless_shell",
+      "browser_executable_sha256": "d6f99f07c09d2982cc3507634ecdb1945fb5f1051e11ccda0e387920ed1ae5a6",
+      "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+      "machine": "x86_64",
+      "lock_sha256": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c"
+    }
+  },
+  "preserved_intermediate_checks": {
+    "focused-final": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-s",
+        "tests/test_planned_shutdown.py",
+        "tests/test_resolution_stop.py",
+        "tests/test_bounded_capture_repair.py",
+        "tests/test_interception_lifecycle.py",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-05T12:47:15.279331+00:00",
+      "finished_at": "2026-10-05T12:50:48.814923+00:00",
+      "elapsed_s": 213.53557935799472,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "source_inventory_sha256": "c2c75adf4928fb350dd6bbae2006754a8cd81ca0f4f700c31e84a8d8d6f6b8d2",
+      "source_file_count": 69,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "log_limit_hit": false,
+      "counts": {
+        "console_bytes": 12163,
+        "driver_bytes": 527792,
+        "observed_bytes": 16900356,
+        "protocol_parse_gaps": 0
+      },
+      "control_evidence": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/focused-final-controls"
+    },
+    "regression": {
+      "command": [
+        "venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "tmp_path_retention_count=1000000",
+        "-o",
+        "tmp_path_retention_policy=all"
+      ],
+      "started_at": "2026-10-05T12:51:59.143069+00:00",
+      "finished_at": "2026-10-05T13:11:42.840447+00:00",
+      "elapsed_s": 1183.6973697339417,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "source_inventory_sha256": "c2c75adf4928fb350dd6bbae2006754a8cd81ca0f4f700c31e84a8d8d6f6b8d2",
+      "source_file_count": 69,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "log_limit_hit": false,
+      "counts": {
+        "console_bytes": 353,
+        "driver_bytes": 0,
+        "observed_bytes": 353,
+        "protocol_parse_gaps": 0
+      },
+      "control_evidence": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/regression-controls"
+    },
+    "comparison": {
+      "command": [
+        "venv/bin/python",
+        "tests/regen_fixtures.py",
+        "--check",
+        "--variant",
+        "complete",
+        "--stage",
+        "capture",
+        "--compare-to",
+        "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/regression-controls/complete-raw"
+      ],
+      "started_at": "2026-10-05T13:14:10.190261+00:00",
+      "finished_at": "2026-10-05T13:16:06.495862+00:00",
+      "elapsed_s": 116.30559067905415,
+      "exit_code": 1,
+      "source_unchanged": true,
+      "source_inventory_sha256": "c2c75adf4928fb350dd6bbae2006754a8cd81ca0f4f700c31e84a8d8d6f6b8d2",
+      "source_file_count": 69,
+      "base_head": "366f9830ba7b9bfb91f17b8655fd37467410123b",
+      "log_limit_hit": false,
+      "counts": {
+        "console_bytes": 999,
+        "driver_bytes": 0,
+        "observed_bytes": 999,
+        "protocol_parse_gaps": 0
+      },
+      "control_evidence": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/planned-shutdown/2026-10-05_123946Z/comparison-controls"
+    }
+  },
+  "comparator_repair": {
+    "authority": "Current scoped local repair of directly affected helpers; existing E-14 fact-bound volatile-metadata comparison",
+    "exact_mismatch": [
+      {
+        "path": "/manifest.json/access/persisted_bytes_before_finalization",
+        "left": 462386,
+        "right": 462385
+      },
+      {
+        "path": "/stage_log.txt/channels/coordinator:session/85/drain_deadline",
+        "left": 559886.848656992,
+        "right": 560971.11492431
+      },
+      {
+        "path": "/stage_log.txt/channels/coordinator:session/89/finished",
+        "left": 559858.003601407,
+        "right": 560942.305317474
+      }
+    ],
+    "change": "Validate shutdown deadline/order/counts/outcomes before projecting only drain_deadline and finished; no expected output or source-content rewrite"
+  }
+}

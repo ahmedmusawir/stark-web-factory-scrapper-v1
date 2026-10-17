@@ -1,0 +1,125 @@
+--- before/recon_pipeline/decide.py
++++ after/recon_pipeline/decide.py
+@@ -68,9 +68,10 @@
+     if source not in row['sources']: row['sources'].append(source)
+     if title:
+         label=BeautifulSoup(title,'html.parser').get_text(' ',strip=True)
+-        # A referring-page CTA is weaker evidence than an informative label.
+-        # Sources are retained above even when its generic label is ignored.
+-        if label and (not row['title'] or label.casefold().rstrip(' .…›»>') not in GENERIC_LINK_LABELS):
++        # Empty/punctuation-only labels and generic CTAs are unavailable titles.
++        # Unicode letters/numbers remain text; sources are retained even when
++        # their weak label is ignored. Never derive a title from the URL.
++        if any(char.isalnum() for char in label) and label.casefold().rstrip(' .…›»>') not in GENERIC_LINK_LABELS:
+             row['title']=label
+     if mime: row['content_type']=mime
+     if dates: row['dates'].update({k:v for k,v in dates.items() if isinstance(v,str) and v})
+--- before/tests/test_decide.py
++++ after/tests/test_decide.py
+@@ -353,3 +353,36 @@
+     assert {ref['locator'] for ref in row['sources']}=={'a[href][0]','a[href][1]','a[href][2]'}
+     assert row['content_type'] is None and row['dates']=={} and row['selection']=='UNDECIDED'
+     assert len(fake.calls)==2  # Destination page was never fetched.
++
++
++@pytest.mark.parametrize('reverse',[False,True])
++@pytest.mark.parametrize('heading',['Useful article heading','বাংলা শিরোনাম','中文标题','Café SEO 🚀'])
++def test_punctuation_and_cta_order_preserves_exact_heading(tmp_path,reverse,heading):
++    labels=[heading,'...','Read Post']
++    if reverse:labels.reverse()
++    html=('<meta charset="utf-8"><title>Saved blog fixture</title>'+''.join('<a href="/article">'+x+'</a>' for x in labels)).encode('utf-8')
++    inv,fake,_=run(tmp_path,[response(html),json_response({})],mode='default',max_depth=0)
++    row=next(x for x in inv['items'] if x['url']==BASE+'/article')
++    assert row['title']==heading  # Exact saved heading, not just non-CTA.
++    assert row['id']==d.item_id(BASE+'/article')
++    assert {x['locator'] for x in row['sources']}=={'a[href][0]','a[href][1]','a[href][2]'}
++    assert row['selection']=='UNDECIDED' and len(fake.calls)==2
++
++
++@pytest.mark.parametrize('weak',['','   ','...','…','—',':;!?',' . \u200b . ','<em>...</em>','Read Post'])
++def test_weak_only_labels_leave_title_unknown_without_slug_guessing(weak):
++    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/tempting-slug-name'
++    row=d.candidate(inv,url,{'locator':'weak'},title=weak)
++    assert row['title'] is None and row['sources']==[{'locator':'weak'}]
++    assert row['id']==d.item_id(url)
++    d.candidate(inv,url,{'locator':'missing'},title=None)
++    assert row['title'] is None and len(row['sources'])==2
++
++
++@pytest.mark.parametrize('weak',['...','Read Post','   '])
++def test_informative_unicode_replaces_legacy_weak_label(weak):
++    inv=d.blank('LOCAL_FIXTURE','default');url=BASE+'/article'
++    row=d.candidate(inv,url,{'locator':'original'},title=None)
++    row['title']=weak  # A weak label inherited from earlier in-memory data.
++    d.candidate(inv,url,{'locator':'heading'},title='বাংলা article café')
++    assert row['title']=='বাংলা article café' and len(row['sources'])==2
+--- before/agent_docs/ACTION/wf-scrapper-abm/DECIDE.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/DECIDE.md
+@@ -1,3 +1,7 @@
++## Offline label correction — 2026-10-11
++
++The October10 nine-heading preservation claim was incorrect: its saved proof contained ellipses, and its non-CTA assertion was insufficient. The historical proof remains intact; current verification must match all nine actual saved h2 texts exactly. Candidate titles require at least one Unicode letter/number and cannot be generic CTAs; empty/whitespace/punctuation-only labels remain unknown. Informative text can replace earlier weak labels; IDs and every source locator remain. No title is invented from a slug. This follow-up imports saved HTML/accepted REST metadata into a NEW immutable review; no live request or human choice is authorized. Current evidence/report are linked from RECOVERY.
++
+ ## Scoped follow-up — 2026-10-10
+ 
+ Tony authorized the types-map/filter and repeated-label fixes, focused local checks and one REST-only live verification of at most three planned calls. The original October 7 inventory, decisions and raw responses remain immutable historical evidence. See current RECOVERY for results; no automatic discovery, selection or collection is authorized. Earlier implementation/proposal wording below records its original checkpoint.
+--- before/agent_docs/RESPONSES/response_2026-10-10_195853_recon-types-label-fixes.md
++++ after/agent_docs/RESPONSES/response_2026-10-10_195853_recon-types-label-fixes.md
+@@ -124,3 +124,10 @@
+ - Final source/preservation checks: `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z/source-final.json`, `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z/preservation-final.json`.
+ 
+ A single review ZIP includes the report, exact diff, changed source snapshots, focused results, small REST bodies and preserved historical `[]` reference. It excludes dependencies, caches and bulky saved blog/capture bodies. No cookies, credentials or private headers are included. **STOP after this handoff.**
++
++
++## Correction — 2026-10-11: nine-label success claim withdrawn
++
++The earlier claim that all nine article headings were preserved was incorrect. The retained saved-label-proof.json records `...` for all nine rows. Its assertion only required a nonempty label unequal to Read Post, so it accepted punctuation-only labels. The original proof, checks, ZIP and successful WordPress/three-call REST evidence remain historical and unchanged.
++
++A scoped offline follow-up rejects empty/punctuation-only labels and generic CTAs, retains Unicode text/IDs/all source locators, and exactly matches all9 replay labels against the saved h2 headings. Focused55checks pass; no live requests repeated. Corrected report: `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices.md`. New immutable36-row review: `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices_review`. All choices remain UNDECIDED. Independent QA NOT RUN.
+--- before/RECOVERY.md
++++ after/RECOVERY.md
+@@ -1,3 +1,11 @@
++# Current checkpoint — corrected labels; Tony’s36 choices UNDECIDED; STOP
++
++## 2026-10-10T18:21:36.986275+00:00 — offline label correction; immutable choices ready; STOP
++
++Correction: prior October10 nine-heading success claim withdrawn; retained saved-label-proof contains9ellipsis labels and its non-CTA oracle was insufficient. Prior proof/ZIP/REST results unchanged; earlier report corrected append-only. New candidate guard rejects empty/punctuation/generic labels, retains Unicode letters/numbers and every locator/ID; no slug titles. Focused55PASS/exit0 and exact9saved-h2/replay matches. Branch `wf-scrapper-abm`; HEAD `fb16b1b927a234d74a2c29c9044df33317ff8276` plus preserved dirty work; source50 `609d3493a7f45bcb151c74c22275c35de171fc015886e40fb4547b6a020eb729` unchanged since tests, onlydecide.py/test_decide.py differ from task base. New review `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices_review`; version `64d54b52b28aa188e4d80a1eab97e1f7ebde293f294f39e6885b60991fb89392`; same36URLs/IDs/rows, allUNDECIDED. Historical accepted REST33type descriptions/pages42advertised+1sample/posts166advertised+1sample imported; no live request repeated. Post11945 historical empty-content warning retained. Recommend HTML1Home/3AgencyServices/9Andromeda only; Tony chooses actualHTML and RESTscope. Report `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices.md`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/label-cleanup/2026-10-10_181514Z`. 43112older output/evidence/report files unchanged, oneauthorized report correction retains oldbytes. No humanchoice/export/collection/Git/dependency/Prepare. Independent QA NOT RUN. Historical unresolved findings remainOPEN. STOP.
++
++## Preserved checkpoints
++
+ # Current checkpoint — two recon fixes; REST-only verification passed; STOP
+ 
+ ## 2026-10-10T13:58:53.195300+00:00 — scoped types/label fixes and single REST verification complete; STOP
+--- before/agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/ENGINEERING_LOG.md
+@@ -441,3 +441,8 @@
+ ## 2026-10-10T13:58:53.195300+00:00 — scoped types/label fixes and single REST verification complete; STOP
+ 
+ Tony/JARVIS authorized the two DECIDE corrections and max3 REST-only calls. No types _fields; local property extraction. Generic CTAs cannot replace informative labels; source locators retained. Eight failing pre-fix cases preserved;35 focused checks PASS/exit0, including real loopback Chromium and realistic type-map filtering. Final/test/live source50 `32cbd7e9f47137afb754b4954bc402ddae7319f2153895f8c16e092e82b91f2f`; branch `wf-scrapper-abm`; HEAD `fb16b1b927a234d74a2c29c9044df33317ff8276` plus pre-existing checkpoint/report/evidence dirty work. Collector and all other product files unchanged. Three HTTP200 calls/types25278bytes/pages276/posts363;33 type descriptions; pages42advertised/1sample, posts166advertised/1sample. Metadata projection honored, no content fields/pagination/custom/media. Work15.836579s; gaps5.000741117/5.003063887s; exit0/stopnull/cleanupnull. Saved HTML replay preserved9heading labels/same36stableIDs; original inventory `b6bbf6e41195988cab053457c81bd91fed8d9560a84953add657c54d8bbcf291` and old[] unchanged. All42686 previous output/evidence/report files preserved. Report `agent_docs/RESPONSES/response_2026-10-10_195853_recon-types-label-fixes.md`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z`. No Tony choice, approved export, capture, extra request, Git mutation or dependencies. Historical content/accounting/media/shutdown/supervisor findings remain OPEN. Independent QA NOT RUN; Prepare not started. Next JARVIS review and Tony’s numbered choices; STOP.
++
++
++## 2026-10-10T18:21:36.986275+00:00 — offline label correction; immutable choices ready; STOP
++
++Correction: prior October10 nine-heading success claim withdrawn; retained saved-label-proof contains9ellipsis labels and its non-CTA oracle was insufficient. Prior proof/ZIP/REST results unchanged; earlier report corrected append-only. New candidate guard rejects empty/punctuation/generic labels, retains Unicode letters/numbers and every locator/ID; no slug titles. Focused55PASS/exit0 and exact9saved-h2/replay matches. Branch `wf-scrapper-abm`; HEAD `fb16b1b927a234d74a2c29c9044df33317ff8276` plus preserved dirty work; source50 `609d3493a7f45bcb151c74c22275c35de171fc015886e40fb4547b6a020eb729` unchanged since tests, onlydecide.py/test_decide.py differ from task base. New review `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices_review`; version `64d54b52b28aa188e4d80a1eab97e1f7ebde293f294f39e6885b60991fb89392`; same36URLs/IDs/rows, allUNDECIDED. Historical accepted REST33type descriptions/pages42advertised+1sample/posts166advertised+1sample imported; no live request repeated. Post11945 historical empty-content warning retained. Recommend HTML1Home/3AgencyServices/9Andromeda only; Tony chooses actualHTML and RESTscope. Report `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices.md`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/label-cleanup/2026-10-10_181514Z`. 43112older output/evidence/report files unchanged, oneauthorized report correction retains oldbytes. No humanchoice/export/collection/Git/dependency/Prepare. Independent QA NOT RUN. Historical unresolved findings remainOPEN. STOP.
+--- before/agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/ABM_CAMPAIGN_JOURNAL.md
+@@ -470,3 +470,8 @@
+ ## 2026-10-10T13:58:53.195300+00:00 — scoped types/label fixes and single REST verification complete; STOP
+ 
+ Tony/JARVIS authorized the two DECIDE corrections and max3 REST-only calls. No types _fields; local property extraction. Generic CTAs cannot replace informative labels; source locators retained. Eight failing pre-fix cases preserved;35 focused checks PASS/exit0, including real loopback Chromium and realistic type-map filtering. Final/test/live source50 `32cbd7e9f47137afb754b4954bc402ddae7319f2153895f8c16e092e82b91f2f`; branch `wf-scrapper-abm`; HEAD `fb16b1b927a234d74a2c29c9044df33317ff8276` plus pre-existing checkpoint/report/evidence dirty work. Collector and all other product files unchanged. Three HTTP200 calls/types25278bytes/pages276/posts363;33 type descriptions; pages42advertised/1sample, posts166advertised/1sample. Metadata projection honored, no content fields/pagination/custom/media. Work15.836579s; gaps5.000741117/5.003063887s; exit0/stopnull/cleanupnull. Saved HTML replay preserved9heading labels/same36stableIDs; original inventory `b6bbf6e41195988cab053457c81bd91fed8d9560a84953add657c54d8bbcf291` and old[] unchanged. All42686 previous output/evidence/report files preserved. Report `agent_docs/RESPONSES/response_2026-10-10_195853_recon-types-label-fixes.md`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z`. No Tony choice, approved export, capture, extra request, Git mutation or dependencies. Historical content/accounting/media/shutdown/supervisor findings remain OPEN. Independent QA NOT RUN; Prepare not started. Next JARVIS review and Tony’s numbered choices; STOP.
++
++
++## 2026-10-10T18:21:36.986275+00:00 — offline label correction; immutable choices ready; STOP
++
++Correction: prior October10 nine-heading success claim withdrawn; retained saved-label-proof contains9ellipsis labels and its non-CTA oracle was insufficient. Prior proof/ZIP/REST results unchanged; earlier report corrected append-only. New candidate guard rejects empty/punctuation/generic labels, retains Unicode letters/numbers and every locator/ID; no slug titles. Focused55PASS/exit0 and exact9saved-h2/replay matches. Branch `wf-scrapper-abm`; HEAD `fb16b1b927a234d74a2c29c9044df33317ff8276` plus preserved dirty work; source50 `609d3493a7f45bcb151c74c22275c35de171fc015886e40fb4547b6a020eb729` unchanged since tests, onlydecide.py/test_decide.py differ from task base. New review `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices_review`; version `64d54b52b28aa188e4d80a1eab97e1f7ebde293f294f39e6885b60991fb89392`; same36URLs/IDs/rows, allUNDECIDED. Historical accepted REST33type descriptions/pages42advertised+1sample/posts166advertised+1sample imported; no live request repeated. Post11945 historical empty-content warning retained. Recommend HTML1Home/3AgencyServices/9Andromeda only; Tony chooses actualHTML and RESTscope. Report `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices.md`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/label-cleanup/2026-10-10_181514Z`. 43112older output/evidence/report files unchanged, oneauthorized report correction retains oldbytes. No humanchoice/export/collection/Git/dependency/Prepare. Independent QA NOT RUN. Historical unresolved findings remainOPEN. STOP.
+--- before/agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md
++++ after/agent_docs/ACTION/wf-scrapper-abm/ABM_LEDGER.md
+@@ -276,3 +276,8 @@
+ Tony/JARVIS authorized the two DECIDE corrections and max3 REST-only calls. No types _fields; local property extraction. Generic CTAs cannot replace informative labels; source locators retained. Eight failing pre-fix cases preserved;35 focused checks PASS/exit0, including real loopback Chromium and realistic type-map filtering. Final/test/live source50 `32cbd7e9f47137afb754b4954bc402ddae7319f2153895f8c16e092e82b91f2f`; branch `wf-scrapper-abm`; HEAD `fb16b1b927a234d74a2c29c9044df33317ff8276` plus pre-existing checkpoint/report/evidence dirty work. Collector and all other product files unchanged. Three HTTP200 calls/types25278bytes/pages276/posts363;33 type descriptions; pages42advertised/1sample, posts166advertised/1sample. Metadata projection honored, no content fields/pagination/custom/media. Work15.836579s; gaps5.000741117/5.003063887s; exit0/stopnull/cleanupnull. Saved HTML replay preserved9heading labels/same36stableIDs; original inventory `b6bbf6e41195988cab053457c81bd91fed8d9560a84953add657c54d8bbcf291` and old[] unchanged. All42686 previous output/evidence/report files preserved. Report `agent_docs/RESPONSES/response_2026-10-10_195853_recon-types-label-fixes.md`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/recon-small-fixes/2026-10-10_135244Z`. No Tony choice, approved export, capture, extra request, Git mutation or dependencies. Historical content/accounting/media/shutdown/supervisor findings remain OPEN. Independent QA NOT RUN; Prepare not started. Next JARVIS review and Tony’s numbered choices; STOP.
+ 
+ Engineering evidence only; legacy AC/QA rows unchanged. No independent QA certification.
++
++
++## 2026-10-10T18:21:36.986275+00:00 — offline label correction; immutable choices ready; STOP
++
++Correction: prior October10 nine-heading success claim withdrawn; retained saved-label-proof contains9ellipsis labels and its non-CTA oracle was insufficient. Prior proof/ZIP/REST results unchanged; earlier report corrected append-only. New candidate guard rejects empty/punctuation/generic labels, retains Unicode letters/numbers and every locator/ID; no slug titles. Focused55PASS/exit0 and exact9saved-h2/replay matches. Branch `wf-scrapper-abm`; HEAD `fb16b1b927a234d74a2c29c9044df33317ff8276` plus preserved dirty work; source50 `609d3493a7f45bcb151c74c22275c35de171fc015886e40fb4547b6a020eb729` unchanged since tests, onlydecide.py/test_decide.py differ from task base. New review `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices_review`; version `64d54b52b28aa188e4d80a1eab97e1f7ebde293f294f39e6885b60991fb89392`; same36URLs/IDs/rows, allUNDECIDED. Historical accepted REST33type descriptions/pages42advertised+1sample/posts166advertised+1sample imported; no live request repeated. Post11945 historical empty-content warning retained. Recommend HTML1Home/3AgencyServices/9Andromeda only; Tony chooses actualHTML and RESTscope. Report `agent_docs/RESPONSES/response_2026-10-11_001956_label-cleanup-tony-choices.md`; evidence `agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/label-cleanup/2026-10-10_181514Z`. 43112older output/evidence/report files unchanged, oneauthorized report correction retains oldbytes. No humanchoice/export/collection/Git/dependency/Prepare. Independent QA NOT RUN. Historical unresolved findings remainOPEN. STOP.

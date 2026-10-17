@@ -1,0 +1,67 @@
+{
+  "schema": "web-recon-prepared-v0.1",
+  "prepared_at": "2026-10-11T15:08:35.024669+00:00",
+  "path_base": "repository root (same layout in review ZIP)",
+  "source_collection": "input",
+  "checklist": {
+    "file": "input/checklist.json",
+    "sha256": "19b62cee521333953f0415c8c8f2094b3c50fd421e5596ccc2a773aac67e0092"
+  },
+  "scope": "Selected saved sample; not whole-site coverage",
+  "pages": [
+    {
+      "id": "61b12ad9bf87feecc0688d4e",
+      "url": "https://example.test/page",
+      "final_url": "https://example.test/page",
+      "capture_saved_at": "2026-10-11T15:08:35.017105+00:00",
+      "document_type": "page",
+      "title": null,
+      "source": {
+        "raw_file": "input/attempts/61b12ad9bf87feecc0688d4e/cfe268e8c405494eb1e958a9075eb8a9/body",
+        "raw_sha256": "f479124599b38780820fb5c437c88289d5335fd5bd0aab8b13eb566deb253823",
+        "raw_bytes": 261,
+        "metadata_file": "input/attempts/61b12ad9bf87feecc0688d4e/cfe268e8c405494eb1e958a9075eb8a9/result.json",
+        "metadata_sha256": "45090079c87031faa68631c3b79f09e7078b4f39e43d8e96fafdd466502551d8"
+      },
+      "extraction": {
+        "css_selector": "main",
+        "match_index": 0,
+        "removed_markup": "script, style, noscript, template, svg, input[type=\"hidden\"]",
+        "separated_boilerplate": "header, footer, nav, #thrive-header, #thrive-footer, [role=\"navigation\"], [role=\"banner\"], [role=\"contentinfo\"]",
+        "basis": "observed semantic/theme container; agent must inspect the boundary"
+      },
+      "prepared": {
+        "file": "derived/pages/61b12ad9bf87feecc0688d4e.md",
+        "sha256": "91ed75bc1e454c89f4e7f968981c78ed2fe03bf928097ca559e5e62984fde832"
+      },
+      "content": {
+        "headings": [
+          "Καλημέρα 世界"
+        ],
+        "paragraphs": 2,
+        "list_items": 2,
+        "empty_list_items_removed": 0,
+        "links": [
+          {
+            "label": "Book my call",
+            "source_href": "/call?source=saved",
+            "resolved_url": "https://example.test/call?source=saved"
+          }
+        ],
+        "images": [],
+        "images_note": "not included as downloaded image bytes or OCR; loading unverified"
+      },
+      "boilerplate_locations": [],
+      "gaps": []
+    }
+  ],
+  "rest_context": [],
+  "unavailable_items": [],
+  "historical_context": [],
+  "agent_authored": [],
+  "image_completeness": "UNVERIFIED; image references do not prove images loaded",
+  "boilerplate": {
+    "file": "derived/BOILERPLATE.md",
+    "sha256": "1d655d11015797cee79294333b79802591a4652e4e43c349be4c70e0903d99d2"
+  }
+}

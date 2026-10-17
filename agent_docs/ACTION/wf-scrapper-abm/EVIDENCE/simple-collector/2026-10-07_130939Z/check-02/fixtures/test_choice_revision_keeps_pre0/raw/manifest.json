@@ -1,0 +1,122 @@
+{
+  "schema": "abm-raw-v2",
+  "project_name": "Static",
+  "run_id": "2026-01-01T00-00-00Z",
+  "started_at": "2026-01-01T00:00:00+00:00",
+  "finished_at": "2026-01-01T00:00:00+00:00",
+  "command": "python -m smart_crawler.crawler --project Static",
+  "input": {
+    "url": "https://example.com/",
+    "mode": "routes",
+    "limit": 2
+  },
+  "scope": {
+    "hosts_allowed": [
+      "example.com",
+      "www.example.com"
+    ],
+    "redirect_max_hops": 5,
+    "robots_policy": "recorded_not_enforced"
+  },
+  "access": {
+    "rung": "a",
+    "operation_gap_after_completion_s": 5.0,
+    "retry_max": 0,
+    "stop_on_first_intentional_refusal": true,
+    "automatic_restart": false,
+    "background_resources_paced": false,
+    "page_timeout_ms": 90000,
+    "delay_before_return_html_s": 3.0,
+    "wait_for_images": true,
+    "cache_mode": "BYPASS",
+    "headless": true,
+    "discovery_rest_transport": "chromium_page_window_fetch",
+    "user_agent": "fixture identity"
+  },
+  "versions": {
+    "python": "3.12.3",
+    "crawl4ai": "0.9.3",
+    "playwright": "1.52.0",
+    "requests": "2.32.3",
+    "tool_commit": "unknown"
+  },
+  "streams": {
+    "discovery": "partial",
+    "html": "partial",
+    "rest": "skipped",
+    "media": "skipped",
+    "screenshots": "empty"
+  },
+  "counts": {
+    "routes": 3,
+    "captured": 1,
+    "failed": 1,
+    "blocked": 0,
+    "unsupported": 0,
+    "skipped": 1,
+    "rest_objects": 0,
+    "rest_mapped_routes": 0,
+    "media_items": 0
+  },
+  "stopped_early": false,
+  "fallbacks_fired": [],
+  "pages": [
+    {
+      "url": "https://example.com/one/",
+      "input_url": "https://example.com/one/",
+      "final_url": "https://example.com/one/",
+      "redirect_chain": [],
+      "slug": "one",
+      "status": 200,
+      "outcome": "captured",
+      "reason": null,
+      "fetched_at": "2026-01-01T00:00:00+00:00",
+      "elapsed_s": 0.1,
+      "retries": 0,
+      "html_file": "html/one.html",
+      "block_file": null,
+      "html_bytes": 50,
+      "sha256": "fa1844f268470190497b1dc60ece2ce9337ce97a752bd77e54dcdc119e35da60",
+      "rest_ref": null,
+      "rest_outcome": "rest_unavailable"
+    },
+    {
+      "url": "https://example.com/missing/",
+      "input_url": "https://example.com/missing/",
+      "final_url": "https://example.com/missing/",
+      "redirect_chain": [],
+      "slug": "missing",
+      "status": 404,
+      "outcome": "failed",
+      "reason": "HTTP 404",
+      "fetched_at": "2026-01-01T00:00:00+00:00",
+      "elapsed_s": 0.1,
+      "retries": 0,
+      "html_file": null,
+      "block_file": null,
+      "html_bytes": null,
+      "sha256": null,
+      "rest_ref": null,
+      "rest_outcome": "rest_unavailable"
+    },
+    {
+      "url": "https://example.com/later/",
+      "input_url": "https://example.com/later/",
+      "final_url": null,
+      "redirect_chain": [],
+      "slug": "later",
+      "status": null,
+      "outcome": "skipped",
+      "reason": "limit",
+      "fetched_at": null,
+      "elapsed_s": 0,
+      "retries": 0,
+      "html_file": null,
+      "block_file": null,
+      "html_bytes": null,
+      "sha256": null,
+      "rest_ref": null,
+      "rest_outcome": "rest_unavailable"
+    }
+  ]
+}

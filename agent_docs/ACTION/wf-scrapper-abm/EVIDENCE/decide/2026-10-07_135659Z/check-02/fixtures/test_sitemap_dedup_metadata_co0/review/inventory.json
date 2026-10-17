@@ -1,0 +1,423 @@
+{
+  "schema": "web-recon-review-v1",
+  "origin": "FRESH_BOUNDED_RECON",
+  "mode": "sitemap",
+  "created_at": "2026-10-07T14:03:11.853246+00:00",
+  "context": {
+    "base": "http://127.0.0.1:9888/",
+    "wp_api_base": "http://127.0.0.1:9888/wp-json/",
+    "bounds": {
+      "requests": 12,
+      "discovery_pages": 3,
+      "depth": 1,
+      "rest_pages_per_type": 1,
+      "per_page": 20,
+      "candidates": 5000,
+      "seconds": 300,
+      "gap_seconds": 0
+    },
+    "scope": "same-origin planned URLs; ordinary browser redirects/resources add traffic",
+    "purpose": "recon metadata only; never marks full collector tasks complete",
+    "known_collection": null,
+    "discovery_pages_read": 1
+  },
+  "items": [
+    {
+      "id": "doc-1cdb8c7ffd0c2646b288",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/a",
+      "title": null,
+      "content_type": null,
+      "dates": {
+        "sitemap_lastmod": "2026-10-01"
+      },
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[0]"
+        },
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[1]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "title_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "row": 1
+    },
+    {
+      "id": "doc-31950248dda8b8a77892",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/article-1",
+      "title": "Article 1",
+      "content_type": null,
+      "dates": {
+        "date": "2026-10-07T00:00:00"
+      },
+      "sources": [
+        {
+          "file": "evidence/0003.body",
+          "sha256": "1a747579f563f22ba4aa5eb4bef993f95c328b511ff2167031164a979fd0115f",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/pages?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+          "locator": "$[0]"
+        }
+      ],
+      "rest_items": [
+        {
+          "id": 1,
+          "type": "page",
+          "url": "http://127.0.0.1:9888/wp-json/wp/v2/pages/1"
+        }
+      ],
+      "gaps": [
+        "content_not_requested_in_recon",
+        "content_type_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "page",
+      "row": 2
+    },
+    {
+      "id": "doc-a120093e7c4ffa02f7d2",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/article-2",
+      "title": "Article 2",
+      "content_type": null,
+      "dates": {
+        "date": "2026-10-07T00:00:00"
+      },
+      "sources": [
+        {
+          "file": "evidence/0004.body",
+          "sha256": "2aac7767b3aaa9939b04ebb40014daac36ec410eeb6660c17991f52f4f0229cd",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+          "locator": "$[0]"
+        }
+      ],
+      "rest_items": [
+        {
+          "id": 2,
+          "type": "post",
+          "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts/2"
+        }
+      ],
+      "gaps": [
+        "content_not_requested_in_recon",
+        "content_type_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "post",
+      "row": 3
+    },
+    {
+      "id": "doc-9c10c1545076a6699be2",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/article-3",
+      "title": "Article 3",
+      "content_type": null,
+      "dates": {
+        "date": "2026-10-07T00:00:00"
+      },
+      "sources": [
+        {
+          "file": "evidence/0005.body",
+          "sha256": "e9e7a3f3b4297522208c524d57abf810b10bb102c94926c44f2a4b6bf0c4c64d",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/books?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+          "locator": "$[0]"
+        }
+      ],
+      "rest_items": [
+        {
+          "id": 3,
+          "type": "book",
+          "url": "http://127.0.0.1:9888/wp-json/wp/v2/books/3"
+        }
+      ],
+      "gaps": [
+        "content_not_requested_in_recon",
+        "content_type_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "book",
+      "row": 4
+    },
+    {
+      "id": "doc-44758ca80440b39a5f01",
+      "kind": "document",
+      "url": "http://127.0.0.1:9888/b",
+      "title": null,
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0001.body",
+          "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+          "discovered_from": "http://127.0.0.1:9888/s.xml",
+          "locator": "XML loc[2]"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "dates_unknown",
+        "title_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "row": 5
+    },
+    {
+      "id": "rest-6437f9963992b783c7cf",
+      "kind": "rest_collection",
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/books",
+      "title": "REST collection: Books",
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0002.body",
+          "sha256": "0a8beb8fe566f7608b2ad7dcc33a9cc2163fe6fe585314a0449e4004ec008520",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+          "locator": "types.book"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "dates_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "book",
+      "row": 6
+    },
+    {
+      "id": "rest-1d50b3e4f4962e3e4eb0",
+      "kind": "rest_collection",
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/pages",
+      "title": "REST collection: Pages",
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0002.body",
+          "sha256": "0a8beb8fe566f7608b2ad7dcc33a9cc2163fe6fe585314a0449e4004ec008520",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+          "locator": "types.page"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "dates_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "page",
+      "row": 7
+    },
+    {
+      "id": "rest-dc5aa2127387494cbe21",
+      "kind": "rest_collection",
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts",
+      "title": "REST collection: Posts",
+      "content_type": null,
+      "dates": {},
+      "sources": [
+        {
+          "file": "evidence/0002.body",
+          "sha256": "0a8beb8fe566f7608b2ad7dcc33a9cc2163fe6fe585314a0449e4004ec008520",
+          "discovered_from": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+          "locator": "types.post"
+        }
+      ],
+      "rest_items": [],
+      "gaps": [
+        "content_type_unknown",
+        "dates_unknown"
+      ],
+      "selection": "UNDECIDED",
+      "wordpress_type": "post",
+      "row": 8
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:9888/s.xml",
+      "purpose": "sitemap",
+      "started": 636873.081718452,
+      "preceding_completion": null,
+      "completed": 636873.083736393,
+      "status": 200,
+      "headers": {
+        "content-type": "application/xml"
+      },
+      "final_url": "http://127.0.0.1:9888/s.xml",
+      "error": null,
+      "body_file": "evidence/0001.body",
+      "body_bytes": 239,
+      "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+      "purpose": "wp_types",
+      "started": 636873.101144637,
+      "preceding_completion": 636873.083736393,
+      "completed": 636873.103318108,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/types?_fields=name%2Cslug%2Crest_base%2Crest_namespace",
+      "error": null,
+      "body_file": "evidence/0002.body",
+      "body_bytes": 310,
+      "sha256": "0a8beb8fe566f7608b2ad7dcc33a9cc2163fe6fe585314a0449e4004ec008520",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/pages?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "purpose": "wp_metadata:page",
+      "started": 636873.110133106,
+      "preceding_completion": 636873.103318108,
+      "completed": 636873.113388203,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "9",
+        "x-wp-totalpages": "3"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/pages?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "error": null,
+      "body_file": "evidence/0003.body",
+      "body_bytes": 137,
+      "sha256": "1a747579f563f22ba4aa5eb4bef993f95c328b511ff2167031164a979fd0115f",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "purpose": "wp_metadata:post",
+      "started": 636873.120111957,
+      "preceding_completion": 636873.113388203,
+      "completed": 636873.12311084,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "4",
+        "x-wp-totalpages": "2"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/posts?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "error": null,
+      "body_file": "evidence/0004.body",
+      "body_bytes": 137,
+      "sha256": "2aac7767b3aaa9939b04ebb40014daac36ec410eeb6660c17991f52f4f0229cd",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/books?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "purpose": "wp_metadata:book",
+      "started": 636873.129353299,
+      "preceding_completion": 636873.12311084,
+      "completed": 636873.131953072,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "x-wp-total": "1",
+        "x-wp-totalpages": "1"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/books?per_page=20&page=1&_fields=id%2Clink%2Ctitle%2Ctype%2Cslug%2Cdate%2Cdate_gmt%2Cmodified%2Cmodified_gmt",
+      "error": null,
+      "body_file": "evidence/0005.body",
+      "body_bytes": 137,
+      "sha256": "e9e7a3f3b4297522208c524d57abf810b10bb102c94926c44f2a4b6bf0c4c64d",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    }
+  ],
+  "gaps": [],
+  "wordpress": {
+    "status": "bounded",
+    "collections": [
+      {
+        "type": "page",
+        "endpoint": "http://127.0.0.1:9888/wp-json/wp/v2/pages",
+        "status": "partial",
+        "advertised_total": 9,
+        "advertised_pages": 3,
+        "fetched_pages": [
+          1
+        ],
+        "enumerated_records": 1,
+        "enumerated_unique": 1,
+        "duplicates": [],
+        "short_pages": [
+          1
+        ],
+        "gaps": [
+          "metadata_page_limit"
+        ]
+      },
+      {
+        "type": "post",
+        "endpoint": "http://127.0.0.1:9888/wp-json/wp/v2/posts",
+        "status": "partial",
+        "advertised_total": 4,
+        "advertised_pages": 2,
+        "fetched_pages": [
+          1
+        ],
+        "enumerated_records": 1,
+        "enumerated_unique": 1,
+        "duplicates": [],
+        "short_pages": [
+          1
+        ],
+        "gaps": [
+          "metadata_page_limit"
+        ]
+      },
+      {
+        "type": "book",
+        "endpoint": "http://127.0.0.1:9888/wp-json/wp/v2/books",
+        "status": "enumerated_metadata",
+        "advertised_total": 1,
+        "advertised_pages": 1,
+        "fetched_pages": [
+          1
+        ],
+        "enumerated_records": 1,
+        "enumerated_unique": 1,
+        "duplicates": [],
+        "short_pages": [],
+        "gaps": []
+      }
+    ],
+    "types_response": "evidence/0002.body",
+    "excluded_types": [
+      {
+        "type": "attachment",
+        "reason": "media_not_enumerated_for_review"
+      }
+    ]
+  },
+  "stop_reason": null,
+  "cleanup_error": null,
+  "browser_traffic": {},
+  "finished_at": "2026-10-07T14:03:11.911313+00:00",
+  "inventory_id": "91e1f91abf9d6199c8a1101c77c9b9884a82499b1527f3249fe22ef793ea2e68"
+}

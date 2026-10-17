@@ -1,0 +1,61 @@
+{
+  "schema": "web-recon-review-v1",
+  "origin": "FRESH_BOUNDED_RECON",
+  "mode": "sitemap",
+  "created_at": "2026-10-10T13:54:35.246989+00:00",
+  "context": {
+    "base": "http://127.0.0.1:9888/",
+    "wp_api_base": "http://127.0.0.1:9888/wp-json/",
+    "bounds": {
+      "requests": 12,
+      "discovery_pages": 3,
+      "depth": 1,
+      "rest_pages_per_type": 1,
+      "per_page": 20,
+      "candidates": 5000,
+      "seconds": 300,
+      "gap_seconds": 0
+    },
+    "scope": "same-origin planned URLs; ordinary browser redirects/resources add traffic",
+    "purpose": "recon metadata only; never marks full collector tasks complete",
+    "known_collection": null,
+    "discovery_pages_read": 1
+  },
+  "items": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:9888/s.xml",
+      "purpose": "sitemap",
+      "started": 649176.647541851,
+      "preceding_completion": null,
+      "completed": 649176.649185088,
+      "status": 200,
+      "headers": {
+        "content-type": "application/xml"
+      },
+      "final_url": "https://outside.invalid/s.xml",
+      "error": "redirect_out_of_origin",
+      "body_file": "evidence/0001.body",
+      "body_bytes": 239,
+      "sha256": "07ed40ab690dbeeac7c790d59094c395c46da6001fa0223ae37906c838e22b27",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    }
+  ],
+  "gaps": [
+    "sitemap:redirect_out_of_origin"
+  ],
+  "wordpress": {
+    "status": "skipped_or_blocked",
+    "collections": [],
+    "gaps": [
+      "Public types/counts not established; no root enumeration or fallback."
+    ]
+  },
+  "stop_reason": "redirect_out_of_origin",
+  "cleanup_error": null,
+  "browser_traffic": {},
+  "finished_at": "2026-10-10T13:54:35.251940+00:00",
+  "inventory_id": "36835bfbe0fd9ce15dc8a2cbb3cf11ecc8120716904b918b0d0468737a712910"
+}

@@ -1,0 +1,22 @@
+{
+  "command": [
+    "venv/bin/pytest",
+    "-q",
+    "tests/test_read_deadlines.py::test_actual_supervisor_retains_stalled_sitemap_prefix[True]",
+    "-o",
+    "tmp_path_retention_count=1000000",
+    "-o",
+    "tmp_path_retention_policy=all"
+  ],
+  "started_at": "2026-10-03T12:14:22.266645+00:00",
+  "finished_at": "2026-10-03T12:15:07.276163+00:00",
+  "elapsed_s": 45.00951492897002,
+  "exit_code": 1,
+  "command_log_bytes": 1797,
+  "command_log_ceiling": 1000000,
+  "command_log_limit_hit": false,
+  "source_unchanged": true,
+  "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+  "source_inventory_sha256": "66a4f07beba07844683e1c1e0de25614d655e40fdfda43c63fdb2680d70cc6c0",
+  "excluded": "runtime/cache/output/evidence; mutable campaign journal, ledger, engineering log; historical references"
+}

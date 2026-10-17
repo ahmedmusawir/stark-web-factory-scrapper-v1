@@ -1,0 +1,138 @@
+"""Final-resolution STOP boundary: actual method, recording CDP, no HTTP."""
+import asyncio
+import json
+import os
+from pathlib import Path
+
+import pytest
+from smart_crawler.browser_session import BrowserSession, Interception
+
+
+class RecordingCDP:
+    def __init__(self, error=None):
+        self.calls = []
+        self.error = error
+
+    async def send(self, command, args):
+        self.calls.append({'command': command, 'args': dict(args)})
+        if self.error:
+            raise self.error
+        return {}
+
+
+def setup_resolution(log=None, error=None):
+    session = BrowserSession('http://127.0.0.1', log=log)
+    cdp = RecordingCDP(error)
+    session.cdp = session.interception_owner = cdp
+    session.op = session.new_operation('http://127.0.0.1/article/', 'GET', 'document')
+    details = dict(operation_id=session.op.operation_id, request_id='fixture-fetch-1',
+                   network_id='fixture-network-1', frame_id='fixture-frame-1',
+                   resource_type='Document', predecessor=None, session='page-cdp-1')
+    entry = Interception(cdp, session.op, details, classification='intentional')
+    session.interceptions[details['request_id']] = entry
+    return session, cdp, entry
+
+
+def retain(tmp_path, name, session, cdp, entry, returned):
+    data = {'proof_kind': 'recording CDP double; actual resolve_interception method; no HTTP',
+            'case': name, 'calls': cdp.calls, 'returned': returned,
+            'stop_reason': session.stop_reason, 'closing': session.closing,
+            'entry_state': entry.state, 'entry_command': entry.command,
+            'events': session.events}
+    (tmp_path/(name+'.json')).write_text(json.dumps(data, indent=2)+'\n')
+    folder = os.environ.get('ABM_CONTROL_EVIDENCE')
+    if folder:
+        p = Path(folder); p.mkdir(parents=True, exist_ok=True)
+        with (p/(name+'.json')).open('x') as stream:
+            json.dump(data, stream, indent=2)
+
+
+@pytest.mark.parametrize('cause', ['diagnostic-limit','write-oserror','write-buffererror',
+                                   'existing-stop','closing','closing-in-diagnostic'])
+def test_stop_at_final_boundary_prevents_continue_and_aborts_once(tmp_path, cause):
+    async def exercise():
+        s, cdp, entry = setup_resolution()
+        reason = {'diagnostic-limit':'interception_evidence_limit',
+                  'write-oserror':'evidence_write_limit', 'write-buffererror':'evidence_write_limit',
+                  'existing-stop':'original_refusal', 'closing':None, 'closing-in-diagnostic':None}[cause]
+        if cause == 'diagnostic-limit':
+            s.diagnostic_events = 20_000
+        elif cause.startswith('write-'):
+            def broken_log(row):
+                if row['event'] == 'interception_command':
+                    raise OSError('fixture evidence sink unavailable') if cause == 'write-oserror' else BufferError('fixture evidence sink full')
+            s.log = broken_log
+        elif cause == 'existing-stop':
+            s.stop('original_refusal')
+        elif cause == 'closing':
+            s.closing = True
+        else:
+            def begin_closing(row):
+                if row['event'] == 'interception_command':s.closing = True
+            s.log = begin_closing
+        returned = []
+        try:
+            returned.append(await s.resolve_interception(entry, 'Fetch.continueRequest'))
+            calls_after_first = list(cdp.calls)
+            returned.append(await s.resolve_interception(entry, 'Fetch.failRequest'))
+            returned.append(await s.resolve_interception(entry, 'Fetch.continueRequest'))
+            # Assert wire commands even if the returned flag also contradicts STOP.
+            assert calls_after_first == [{'command':'Fetch.failRequest',
+                                           'args':{'requestId':'fixture-fetch-1','errorReason':'Aborted'}}]
+            assert cdp.calls == calls_after_first
+            assert returned == [False, False, False]
+            assert (entry.state, entry.command) == ('resolved', 'Fetch.failRequest')
+            assert s.stop_reason == reason
+        finally:retain(tmp_path, 'resolution-'+cause, s, cdp, entry, returned)
+    asyncio.run(exercise())
+
+
+def test_normal_continue_and_late_cleanup_resolve_at_most_once(tmp_path):
+    async def exercise():
+        s, cdp, entry = setup_resolution(); returned = []
+        try:
+            returned.append(await s.resolve_interception(entry, 'Fetch.continueRequest'))
+            s.stop('later_stop')
+            returned.append(await s.resolve_interception(entry, 'Fetch.failRequest'))
+            returned.append(await s.resolve_interception(entry, 'Fetch.continueRequest'))
+            assert cdp.calls == [{'command':'Fetch.continueRequest', 'args':{'requestId':'fixture-fetch-1'}}]
+            assert returned == [True,False,False]
+            assert (entry.state,entry.command) == ('resolved','Fetch.continueRequest')
+            assert s.stop_reason == 'later_stop'
+        finally:retain(tmp_path,'resolution-normal',s,cdp,entry,returned)
+    asyncio.run(exercise())
+
+
+def test_direct_cleanup_is_permitted_after_stop_and_resolves_once(tmp_path):
+    async def exercise():
+        s, cdp, entry = setup_resolution(); returned = []
+        s.stop('original_refusal');s.closing = True;s.diagnostic_events = 20_000
+        try:
+            returned.append(await s.resolve_interception(entry,'Fetch.failRequest'))
+            returned.append(await s.resolve_interception(entry,'Fetch.failRequest'))
+            returned.append(await s.resolve_interception(entry,'Fetch.continueRequest'))
+            assert cdp.calls == [{'command':'Fetch.failRequest',
+                                 'args':{'requestId':'fixture-fetch-1','errorReason':'Aborted'}}]
+            assert returned == [True,False,False]
+            assert entry.command == 'Fetch.failRequest' and entry.state == 'resolved'
+            assert s.stop_reason == 'original_refusal'
+        finally:retain(tmp_path,'resolution-direct-cleanup',s,cdp,entry,returned)
+    asyncio.run(exercise())
+
+
+def test_failed_cleanup_preserves_original_stop_and_never_retries(tmp_path):
+    async def exercise():
+        error = RuntimeError('CDPSession.send: Protocol error (Fetch.failRequest): Invalid InterceptionId.')
+        s, cdp, entry = setup_resolution(error=error); returned = []
+        s.stop('original_refusal')
+        try:
+            returned.append(await s.resolve_interception(entry,'Fetch.continueRequest'))
+            returned.append(await s.resolve_interception(entry,'Fetch.failRequest'))
+            assert cdp.calls == [{'command':'Fetch.failRequest',
+                                 'args':{'requestId':'fixture-fetch-1','errorReason':'Aborted'}}]
+            assert returned == [False,False]
+            assert entry.state == 'error' and entry.command == 'Fetch.failRequest'
+            assert s.stop_reason == 'original_refusal'
+            assert any(e['event']=='interception_command_error' and e['command']=='Fetch.failRequest' for e in s.events)
+        finally:retain(tmp_path,'resolution-cleanup-error',s,cdp,entry,returned)
+    asyncio.run(exercise())

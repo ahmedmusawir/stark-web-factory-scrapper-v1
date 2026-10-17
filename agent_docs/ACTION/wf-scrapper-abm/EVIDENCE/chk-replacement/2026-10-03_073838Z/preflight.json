@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-03T07:38:38.585893+00:00",
+  "state": "AUTHORIZED_NOT_YET_STARTED",
+  "allocation": "ONE replacement CHK smoke",
+  "branch": "wf-scrapper-abm",
+  "base_head": "3c5a0f8ce28bab8c48c0d414d51cd7c4bfadcf5f",
+  "source_inventory_sha256": "3e629379a1295ca0a76c636ab2dc361ffdb449fdf2bdc9ae10ebc5a43af6e2d5",
+  "source_entries": 58,
+  "differences": [],
+  "reviewed_inventory": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/regression-final/source-before.json",
+  "command": [
+    "venv/bin/python",
+    "-m",
+    "recon_pipeline",
+    "--project",
+    "CyberizeGroup",
+    "--url",
+    "https://cyberizegroup.com",
+    "--limit",
+    "10",
+    "--skip-prepare",
+    "--no-media-head",
+    "--max-operations",
+    "120",
+    "--max-seconds",
+    "1800",
+    "--max-bytes",
+    "100000000",
+    "--max-aggregate-bytes",
+    "100000000"
+  ],
+  "previous_runs": [
+    "2026-10-02T16-14-53Z"
+  ],
+  "limits": {
+    "intentional_dispatches": 120,
+    "document_slots_including_bootstrap": 10,
+    "seconds_including_finalization": 1800,
+    "aggregate_persisted_bytes": 100000000,
+    "raw_write_ceiling": 97000000,
+    "recorder_and_evidence_reserve": 3000000,
+    "decoded_response_cap": 10485760,
+    "document_deadline_s": 180,
+    "read_deadline_s": 30,
+    "finalization_reserve_s": 30
+  },
+  "recorder_maximum_calculated_bytes": 1501870,
+  "preexisting_new_evidence_bytes": 150588,
+  "final_handoff_reserve_bytes": 100000,
+  "projected_external_evidence_bytes": 1752458,
+  "recorder_source": "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/check_runner.py",
+  "recorder_original_sha256": "8ffc5fdb8b8b2ad8452c8e8ce255e24c83e1d3ed43b2ed6c7f6d4b1237732dfe",
+  "recorder_copy_sha256": "ac2921d9d829d538c98e77bac03ab1a000f4cc2f283b515abef2e2f3ece8ae2f",
+  "recorder_change": "Only output directory locator; no control changes",
+  "reviewed_gates": [
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/affected-final/result.json",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/regression-final/result.json",
+    "agent_docs/ACTION/wf-scrapper-abm/EVIDENCE/controller-repair/2026-10-03_051020Z/snapshot-final/result.json"
+  ],
+  "after_this_attempt": "STOP regardless of success. No retries, diagnostic, replacement attempt, P1\u2013P6/E1/E2.",
+  "prepare": "ON HOLD. Intended as a skill INSIDE this repository, followed by Cody/Claudy/Opy to transform capture evidence into the Architect data package using documented Ditto lessons; Python helpers support parsing/validation. Old fully programmed Prepare plan requires ABM amendment.",
+  "independent_qa": "NOT RUN"
+}

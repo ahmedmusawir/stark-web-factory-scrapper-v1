@@ -1,0 +1,82 @@
+{
+  "schema": "web-recon-review-v1",
+  "origin": "FRESH_BOUNDED_RECON",
+  "mode": "sitemap",
+  "created_at": "2026-10-10T18:17:54.570277+00:00",
+  "context": {
+    "base": "http://127.0.0.1:9888/",
+    "wp_api_base": "http://127.0.0.1:9888/wp-json/",
+    "bounds": {
+      "requests": 12,
+      "discovery_pages": 3,
+      "depth": 1,
+      "rest_pages_per_type": 1,
+      "per_page": 20,
+      "candidates": 5000,
+      "seconds": 300,
+      "gap_seconds": 0
+    },
+    "scope": "same-origin planned URLs; ordinary browser redirects/resources add traffic",
+    "purpose": "recon metadata only; never marks full collector tasks complete",
+    "known_collection": null,
+    "discovery_pages_read": 1
+  },
+  "items": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:9888/missing.xml",
+      "purpose": "sitemap",
+      "started": 664975.971001497,
+      "preceding_completion": null,
+      "completed": 664975.974568259,
+      "status": 404,
+      "headers": {
+        "content-type": "text/html"
+      },
+      "final_url": "http://127.0.0.1:9888/missing.xml",
+      "error": "http_404",
+      "body_file": "evidence/0001.body",
+      "body_bytes": 262,
+      "sha256": "bc7c8fe6ac841acd5a4db80d3436f6d0612f63d53120566f31bbab48f67a0f23",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    },
+    {
+      "url": "http://127.0.0.1:9888/wp-json/wp/v2/types",
+      "purpose": "wp_types",
+      "started": 664975.977271367,
+      "preceding_completion": 664975.974568259,
+      "completed": 664975.979163893,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "final_url": "http://127.0.0.1:9888/wp-json/wp/v2/types",
+      "error": null,
+      "body_file": "evidence/0002.body",
+      "body_bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "body_complete": true,
+      "transport": "test double",
+      "redirect_from": []
+    }
+  ],
+  "gaps": [
+    "sitemap:http_404"
+  ],
+  "wordpress": {
+    "status": "bounded",
+    "collections": [],
+    "types_response": "evidence/0002.body",
+    "excluded_types": [],
+    "gaps": [
+      "page_type_not_exposed",
+      "post_type_not_exposed"
+    ]
+  },
+  "stop_reason": null,
+  "cleanup_error": null,
+  "browser_traffic": {},
+  "finished_at": "2026-10-10T18:17:54.581463+00:00"
+}
