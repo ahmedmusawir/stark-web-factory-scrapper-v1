@@ -1,0 +1,113 @@
+{
+  "executor": "Claudy (Claude Code, Claude Fable 5)",
+  "instrument_sha256": "21325ec38a1e2228ac8be3c19ff5e7bab37438489ed3e19cd367720c89e8b094",
+  "expected_derived_from": [
+    "g0-identity/DIRECTOR_GO_RETEST.txt",
+    "engineering lane changes/target-files-after.sha256 + baseline/source52-baseline.json",
+    "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/WebFactory_Q1_Lead_Review_2026-10-15/01_QAM_TEST_PLAN_FINAL.md (sha256 4cf1673851f5a170391af4e3e3fa418069732108ff1828e9fead6e062b52da2f)"
+  ],
+  "plan_sha_matches_go": true,
+  "expected": {
+    "candidate": "0f98bcf095781a3ac7a231c276199224dc531f11",
+    "source52_repaired": "6f35cf8dacf3aeecc17a89b1c96e3558ea52e3c03edf63c2e402a766a1e986f4",
+    "eng_zip_sha": "151c15e61ee2d723f4b62fab96e12be3b7706af87641d9bb7eee9931f2b04666",
+    "hist_zip_sha": "06f73841cc678badd30d56bfb4c41614c376b16abe7254ea1e374a96c1d974df",
+    "plan_sha": "4cf1673851f5a170391af4e3e3fa418069732108ff1828e9fead6e062b52da2f",
+    "requirements.txt": "231e1d8f8b3b1b2b8d382b98beadc05361529805cd93081890fff47606df5f46",
+    "requirements-lock.txt": "e6c3e1a9a89f6cd8f5dfb71694c74d54d6b34237929f06a0ce3aa519b89a594c",
+    "prepare_zip": "d54bbaf0c07e1fbd41937afc11e3111378743d8903bdc6254d2e3bb329cc5a63",
+    "growth_zip": "fdf18de8838f36344459555041a12e4f0cf463044a1f211f6241a7bf420ab4a8"
+  },
+  "head": {
+    "actual": "0f98bcf095781a3ac7a231c276199224dc531f11",
+    "is_released_candidate": true,
+    "branch": "qa/wf-scrapper-abm"
+  },
+  "repair_commit_diff": {
+    "total_paths": 82,
+    "non_engineering_lane_paths": [
+      "A\tagent_docs/RESPONSES/response_2026-10-16_173731_lead02-engineering-rework.md",
+      "M\tagent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py",
+      "M\tagent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py",
+      "M\trecon_pipeline/decide.py",
+      "M\ttests/test_decide.py"
+    ],
+    "exactly_four_repaired_product_paths": false
+  },
+  "repaired_files": {
+    "recon_pipeline/decide.py": {
+      "worktree": "2a0a91c5262c350e21013efe850b79b8cd57fb67dba6e547d6f03108b1b458e6",
+      "eng_after": "2a0a91c5262c350e21013efe850b79b8cd57fb67dba6e547d6f03108b1b458e6",
+      "candidate_blob": "2a0a91c5262c350e21013efe850b79b8cd57fb67dba6e547d6f03108b1b458e6",
+      "all_equal": true
+    },
+    "tests/test_decide.py": {
+      "worktree": "de514b062e7f197efb644c47643dbc1e14775b9c255221c534b9c41c3b22538e",
+      "eng_after": "de514b062e7f197efb644c47643dbc1e14775b9c255221c534b9c41c3b22538e",
+      "candidate_blob": "de514b062e7f197efb644c47643dbc1e14775b9c255221c534b9c41c3b22538e",
+      "all_equal": true
+    },
+    "agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py": {
+      "worktree": "962add46f1172018963808a31af5d4fb08276b2bd6c5b4c91a2d952513c69c06",
+      "eng_after": "962add46f1172018963808a31af5d4fb08276b2bd6c5b4c91a2d952513c69c06",
+      "candidate_blob": "962add46f1172018963808a31af5d4fb08276b2bd6c5b4c91a2d952513c69c06",
+      "all_equal": true
+    },
+    "agent_docs/SKILLS/web-recon-prepare/tests/test_prepare_saved.py": {
+      "worktree": "b44a6af7e4234f90972d1a79b35660554dfbc3c0b71451930a7728b9b4289047",
+      "eng_after": "b44a6af7e4234f90972d1a79b35660554dfbc3c0b71451930a7728b9b4289047",
+      "candidate_blob": "b44a6af7e4234f90972d1a79b35660554dfbc3c0b71451930a7728b9b4289047",
+      "all_equal": true
+    }
+  },
+  "source52_worktree": {
+    "digest": "6f35cf8dacf3aeecc17a89b1c96e3558ea52e3c03edf63c2e402a766a1e986f4",
+    "paths": 52,
+    "missing": [],
+    "matches_go": true
+  },
+  "eng_zip_sha": {
+    "actual": "151c15e61ee2d723f4b62fab96e12be3b7706af87641d9bb7eee9931f2b04666",
+    "matches_go": true
+  },
+  "hist_zip_sha": {
+    "actual": "06f73841cc678badd30d56bfb4c41614c376b16abe7254ea1e374a96c1d974df",
+    "matches_go": true
+  },
+  "dependency_and_fixture_zips": {
+    "requirements.txt": {
+      "matches_plan": true
+    },
+    "requirements-lock.txt": {
+      "matches_plan": true
+    },
+    "agent_docs/RESPONSES/response_2026-10-11_210309_prepare-v01.zip": {
+      "matches_plan": true
+    },
+    "agent_docs/RESPONSES/response_2026-10-13_223736_growth-call-follow-up.zip": {
+      "matches_plan": true
+    }
+  },
+  "fixtures_worktree": {
+    "exit": 0,
+    "stdout_tail": "root: /home/moose/PYTHON/stark-web-factory-scrapper-v1\nreferences: 34 match: 34\nmissing: none\nmismatch: none\nALL_MATCH True\n",
+    "report": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/RETEST_LEAD02_2026-10-16_180559/g0-identity/recheck_fixtures_worktree.json"
+  },
+  "working_tree": {
+    "entries": 11,
+    "unexpected_non_lane_drift": [],
+    "product_paths_changed": []
+  },
+  "snapshot": {
+    "path": "/tmp/claudy-lead02-retest-20261016/snapshot-repaired",
+    "source52": "6f35cf8dacf3aeecc17a89b1c96e3558ea52e3c03edf63c2e402a766a1e986f4",
+    "paths": 52,
+    "missing": [],
+    "matches_go": true,
+    "note": "fresh git-archive of the repaired committed candidate; old pre-repair Q2 snapshot untouched"
+  },
+  "environment": {
+    "interpreter": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/venv/bin/python",
+    "python": "Python 3.12.3"
+  }
+}

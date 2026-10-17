@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 2026-10-16 13:28 UTC — [CC] Claudy (Independent QA Executor, Claude Fable 5)
+
+- **Added:** `…/RETEST_LEAD02_2026-10-16_180559/addendum/` — LEAD-03 §3 evidence addendum (A1 C1 artifacts + reviewed-v2, A2 C3 saved chain, A3 runtime sizing proof) and delivered ZIP.
+- **Reason:** JARVIS LEAD-03 bounded addendum, released by Tony's GO.
+
+## 2026-10-16 12:42 UTC — [CC] Claudy (Independent QA Executor, Claude Fable 5)
+
+- **Added:** `agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/RETEST_LEAD02_2026-10-16_180559/` — LEAD-02 retest lane: R1/R2 verification, C1–C3 completion, T-23 rerun, six-module regression (144/144), 48-row supplemental matrix, execution report.
+- **Reason:** Tony's DIRECTOR GO releasing repaired candidate `0f98bcf` to QA per LEAD-02 §6.3.
+
+## 2026-10-16 11:37 UTC — [CC] Claude Code
+
+- **Updated:** `recon_pipeline/decide.py`, `tests/test_decide.py` — R1 generic-CTA title guard (`generic_label`) + regression tests (LEAD-02).
+- **Updated:** `agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py`, `.../tests/test_prepare_saved.py` — R2 inert source text at the Markdown boundary (`escape_snob`, angle-bracket escaping) + regression test (LEAD-02).
+- **Added:** `agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/ENGINEERING_REWORK_LEAD02_2026-10-16_172752/` engineering lane, `agent_docs/RESPONSES/response_2026-10-16_173731_lead02-engineering-rework.md`, RECOVERY/session entries.
+- **Reason:** QA Lead decision LEAD-02 returned the Q2 candidate for bounded rework; Tony DIRECTOR GO authorized Cody's repair pass.
+
 Doc/playbook change log for this repo. `[CC]` = Claude Code, `[TS]` = Tony Stark manual edit. Newest first.
 
 ## 2026-10-16 09:55 UTC — [CC] Claudy (Claude Code/Opus 5.5) — Q2 T-23/T-20/T-24 closeout

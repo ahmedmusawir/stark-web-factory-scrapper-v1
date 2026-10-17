@@ -1,0 +1,6 @@
+{
+  "g3_corrections": [
+    "run 1: instrument passed a minimal env (PYTHONDONTWRITEBYTECODE, PATH) to the prepare subprocess; crawl4ai's import creates ~/.crawl4ai and, with HOME unset under unshare -r, failed with PermissionError on /root/.crawl4ai before any prepare logic ran. Corrected to inherit the full environment (network still removed by unshare -rn). The run-1 synthetic collection and two probe output dirs created while diagnosing were this instrument's own scratch and were removed before the clean rerun; no retained evidence was touched.",
+    "R2 instrument run 1 (preserved as r2/*.run1.*): the converter-boundary scan used the bare substring '<script', which also matches the intentionally escaped literal '\\<script\\>'; corrected to unescaped-occurrence detection. Run-1 synthetic trees preserved as qa-r2-inert-run1."
+  ]
+}

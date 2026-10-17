@@ -1,0 +1,83 @@
+{
+  "executor": "Claudy (Claude Code, Claude Fable 5)",
+  "instrument_sha256": "5ec426be00390b2bada7360188fe475143d22676e4a57c5833975ff09c2e01f1",
+  "existing_measurement_check": "LEAD-02 §4 C3: the rich-native obligation is NOT DEMONSTRATED by the Q2 handoff (T-21 native object is a simple 143-byte id/link/title/type/date fixture per helpers/t21_flow.py); engineering handoff §5 leaves C3 to QA. No existing exact measurement satisfies the obligation, so this single controlled capture closes it.",
+  "origin": "http://127.0.0.1:37785",
+  "rest_url": "http://127.0.0.1:37785/wp-json/wp/v2/posts/1101",
+  "served_bytes": 1104,
+  "served_sha256": "743103072c2e8e88f682b11c4a6fa8f671b9cbf00202c66e29d1965697f83525",
+  "served_properties": {
+    "indent": 4,
+    "ensure_ascii": false,
+    "trailing_newline": true,
+    "non_ascii": true,
+    "content_field": true,
+    "seo_fields": [
+      "yoast_head",
+      "yoast_head_json"
+    ],
+    "nested_unknown": [
+      "unknown_top_level",
+      "_embedded_like_unknown"
+    ],
+    "synthetic_set_cookie_served": true
+  },
+  "cli": {
+    "argv": [
+      "/home/moose/PYTHON/stark-web-factory-scrapper-v1/venv/bin/python",
+      "-m",
+      "recon_pipeline",
+      "collect",
+      "--collection",
+      "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/collections/qa-c3-rich-rest",
+      "--plan",
+      "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/qa-c3-plan.json",
+      "--gap",
+      "0",
+      "--max-requests",
+      "5",
+      "--max-seconds",
+      "120",
+      "--max-bytes",
+      "10000000"
+    ],
+    "cwd": "/tmp/claudy-lead02-retest-20261016/snapshot-repaired",
+    "start": "2026-10-16T12:24:52.940376+00:00",
+    "end": "2026-10-16T12:24:56.085526+00:00",
+    "exit": 0,
+    "stdout": "{\n  \"collection_outcome\": \"complete\",\n  \"stop_reason\": null,\n  \"cleanup_error\": null,\n  \"completed\": 1,\n  \"remaining\": 0,\n  \"elapsed_s\": 1.6359225530177355\n}\nCHECKLIST: /tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/collections/qa-c3-rich-rest/checklist.json\n",
+    "stderr": "[FETCH]... ↓ http://127.0.0.1:37785/wp-json/wp/v2/posts/1101                                                      | ✓ | ⏱: 0.37s \n[SCRAPE].. ◆ http://127.0.0.1:37785/wp-json/wp/v2/posts/1101                                                      | ✓ | ⏱: 0.00s \n[COMPLETE] ● http://127.0.0.1:37785/wp-json/wp/v2/posts/1101                                                      | ✓ | ⏱: 0.39s \n"
+  },
+  "server_closed": true,
+  "server_events": [
+    {
+      "epoch": 1792153495.5169587,
+      "method": "GET",
+      "path": "/wp-json/wp/v2/posts/1101",
+      "query": ""
+    }
+  ],
+  "saved": {
+    "body_file": "attempts/888f03b3ef21b8a7489f6f69/a60f27da84384661be9ba942499d99b0/body",
+    "bytes": 1104,
+    "sha256": "743103072c2e8e88f682b11c4a6fa8f671b9cbf00202c66e29d1965697f83525",
+    "metadata_headers": {
+      "content-length": "1104",
+      "content-type": "application/json; charset=utf-8"
+    },
+    "transport": "Crawl4AI Chromium navigation; after_goto Response.body decoded entity bytes"
+  },
+  "checks": {
+    "collect_exit_0": true,
+    "item_completed": true,
+    "saved_equals_served_bytes": true,
+    "saved_sha_matches_metadata": true,
+    "selected_url_no_fields": true,
+    "no_fields_in_any_server_query": true,
+    "only_planned_loopback_requests": true,
+    "set_cookie_absent_from_metadata": true,
+    "synthetic_cookie_value_absent_from_result": true,
+    "body_complete": true
+  },
+  "verdict_c3": "PASS"
+}

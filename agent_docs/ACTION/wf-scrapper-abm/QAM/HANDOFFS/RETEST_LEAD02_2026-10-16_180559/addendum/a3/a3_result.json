@@ -1,0 +1,69 @@
+{
+  "executor": "Claudy (Claude Code, Claude Fable 5)",
+  "instrument_sha256": "7413a1c1dd8df22995f363c3e98a8ab7ca73f056262da3eaa3e80404e448692a",
+  "sizing_routine": {
+    "module": "/home/moose/PYTHON/stark-web-factory-scrapper-v1/recon_pipeline/collector.py",
+    "module_sha256": "3b2791bccb4fa6d75d3be1f5c281d2de2826c168465c7dda60373d20260b7db2",
+    "location": "run_collection persistence check, line 435",
+    "expression": "sum(p.stat().st_size for p in root.rglob('*') if p.is_file())",
+    "note": "pathlib's rglob('*') matches dot-prefixed names, so .runtime files and .writer.lock are inside the routine’s domain; demonstrated below with a sentinel"
+  },
+  "retained_native_collection": {
+    "path": "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/collections/qa-c3-rich-rest",
+    "runtime": {
+      "exists": true,
+      "entries_by_name_and_size_only": [
+        {
+          "name": ".runtime/.crawl4ai/",
+          "kind": "dir"
+        },
+        {
+          "name": ".runtime/.crawl4ai/cache/",
+          "kind": "dir"
+        }
+      ],
+      "file_count": 0,
+      "dir_count": 2,
+      "runtime_file_subtotal": 0
+    },
+    "writer_lock_bytes": 0,
+    "other_file_subtotal": 4370,
+    "other_file_count": 3,
+    "routine_total": 4370,
+    "independent_total": 4370,
+    "totals_agree": true,
+    "observation": "retained native .runtime holds 0 regular files across 3 directories (crawl4ai cache tree created empty); a zero-byte .writer.lock exists. Valid observation of this run; NOT evidence of nonzero runtime overhead, so the sentinel-clone demonstration below is used per LEAD-03."
+  },
+  "sentinel_demonstration": {
+    "clone_of": "/tmp/claudy-lead02-retest-20261016/c2-run3/qa-c2-maxreq1",
+    "clone": "/tmp/claudy-lead02-retest-20261016/a3-clone/qa-c2-maxreq1-sentinel",
+    "sentinel": {
+      "path": ".runtime/qa-sentinel/sentinel.bin",
+      "bytes": 1337,
+      "sha256": "e4c59110f081f518874286a320d90de63a462ea847bc049f92b6ee8fd999bf3f",
+      "content": "non-secret: 1337 bytes of ASCII \"S\""
+    },
+    "routine_before": 12536,
+    "routine_after": 13873,
+    "routine_delta": 1337,
+    "delta_equals_sentinel_bytes": true,
+    "independent_before": 12536,
+    "independent_after": 13873,
+    "independent_agrees": true,
+    "writer_lock_in_accounting": true,
+    "writer_lock_bytes": 0,
+    "runtime_file_counted": true
+  },
+  "du_note_correction": {
+    "earlier_o2_note": "c2 o2_note claimed \"du -sb exceeds the per-file sum\", while the recorded numbers were equal",
+    "correction": "du -sb implies --apparent-size, so it reports per-file apparent bytes PLUS directory-entry apparent sizes; on this filesystem the directory entries reported 0/negligible apparent size for these small trees, so du -sb equaled the per-file sum. The product routine sums regular-file apparent sizes only (no directories), which is what the byte allowance bounds. Filesystem BLOCK usage (du without --apparent-size) is larger and is NOT what the product measures. No exact persisted-byte ceiling is claimed.",
+    "clone_measurements": {
+      "routine_per_file_sum": 13873,
+      "du_sb_apparent": 13873,
+      "du_apparent_explicit": 13873,
+      "du_matches_routine_plus_dir_entries": 0
+    }
+  },
+  "verdict_a3": "PASS",
+  "export_note": "only this measurement report is exported; .runtime trees and the clone are not exported"
+}

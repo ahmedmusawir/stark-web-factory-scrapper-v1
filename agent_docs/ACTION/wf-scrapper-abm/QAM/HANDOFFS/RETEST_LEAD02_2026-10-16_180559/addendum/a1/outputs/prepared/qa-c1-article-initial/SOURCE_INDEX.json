@@ -1,0 +1,69 @@
+{
+  "schema": "web-recon-prepared-v0.1",
+  "prepared_at": "2026-10-16T12:20:05.052575+00:00",
+  "path_base": "repository root (same layout in review ZIP)",
+  "source_collection": "outputs/collections/qa-c1-article",
+  "checklist": {
+    "file": "outputs/collections/qa-c1-article/checklist.json",
+    "sha256": "9ca738fba22ec38698743890c7cc5d1a2bf1d5fae2e71f107613255fccfc9e58"
+  },
+  "scope": "Selected saved sample; not whole-site coverage",
+  "pages": [
+    {
+      "id": "61b12ad9bf87feecc0688d4e",
+      "url": "https://example.test/page",
+      "final_url": "https://example.test/page",
+      "capture_saved_at": "2026-10-16T12:20:03.792633+00:00",
+      "document_type": "page",
+      "title": null,
+      "source": {
+        "raw_file": "outputs/collections/qa-c1-article/attempts/61b12ad9bf87feecc0688d4e/d2ac74692a784aa6ad3efe000e3e1f25/body",
+        "raw_sha256": "d4251ec9f8acfb1e6ae0b66710adf0147cd1aa66555601bad70e702ea30c59c0",
+        "raw_bytes": 247,
+        "metadata_file": "outputs/collections/qa-c1-article/attempts/61b12ad9bf87feecc0688d4e/d2ac74692a784aa6ad3efe000e3e1f25/result.json",
+        "metadata_sha256": "fb24d343ecbd3b6ab738697624f051bc8278b7d4bc9869aa98b720a1371bbf7b"
+      },
+      "extraction": {
+        "css_selector": "article",
+        "match_index": 0,
+        "removed_markup": "script, style, noscript, template, svg, input[type=\"hidden\"]",
+        "separated_boilerplate": "header, footer, nav, #thrive-header, #thrive-footer, [role=\"navigation\"], [role=\"banner\"], [role=\"contentinfo\"]",
+        "basis": "observed semantic/theme container; agent must inspect the boundary"
+      },
+      "prepared": {
+        "file": "outputs/prepared/qa-c1-article-initial/pages/61b12ad9bf87feecc0688d4e.md",
+        "sha256": "402c43eae696dee5fa63bd9c7c0ec66830daaea62e40709b341d9ec8b65cc2a1"
+      },
+      "content": {
+        "headings": [],
+        "paragraphs": 1,
+        "list_items": 0,
+        "empty_list_items_removed": 0,
+        "links": [
+          {
+            "label": "Book a Call",
+            "source_href": "/book",
+            "resolved_url": "https://example.test/book"
+          }
+        ],
+        "images": [],
+        "images_note": "not included as downloaded image bytes or OCR; loading unverified"
+      },
+      "boilerplate_locations": [
+        "header",
+        "header",
+        "footer"
+      ],
+      "gaps": []
+    }
+  ],
+  "rest_context": [],
+  "unavailable_items": [],
+  "historical_context": [],
+  "agent_authored": [],
+  "image_completeness": "UNVERIFIED; image references do not prove images loaded",
+  "boilerplate": {
+    "file": "outputs/prepared/qa-c1-article-initial/BOILERPLATE.md",
+    "sha256": "b7b994aeea000eab14d1f732e96a729f1bc5200d09eb1d32a3e5abff98b84368"
+  }
+}

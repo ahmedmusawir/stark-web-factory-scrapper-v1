@@ -1,0 +1,47 @@
+{
+  "executor": "Claudy (Claude Code, Claude Fable 5)",
+  "instrument_sha256": "04e2e15c1e2413ba8c2afe7627aaf4e7fee0a6a7d2b1e0f8e94cce37eb2e5feb",
+  "fixture_html_sha256": "d4251ec9f8acfb1e6ae0b66710adf0147cd1aa66555601bad70e702ea30c59c0",
+  "fixture_identical_to_q2_t13": true,
+  "initial_cli": {
+    "argv": [
+      "unshare",
+      "-rn",
+      "/home/moose/PYTHON/stark-web-factory-scrapper-v1/venv/bin/python",
+      "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/agent_docs/SKILLS/web-recon-prepare/scripts/prepare_saved.py",
+      "--collection",
+      "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/collections/qa-c1-article",
+      "--out",
+      "/tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/prepared/qa-c1-article-initial"
+    ],
+    "cwd": "/tmp/claudy-lead02-retest-20261016/snapshot-repaired",
+    "start": "2026-10-16T12:20:03.837838+00:00",
+    "end": "2026-10-16T12:20:05.282871+00:00",
+    "exit": 0,
+    "stdout": "{\"prepared_pages\": 1, \"unavailable_items\": 0, \"out\": \"/tmp/claudy-lead02-retest-20261016/snapshot-repaired/outputs/prepared/qa-c1-article-initial\", \"next\": \"Agent inspects Markdown/source, writes ARCHITECT_BRIEF.md and GAPS_AND_REQUESTS.md, then verifies references.\"}\n",
+    "stderr": ""
+  },
+  "initial_state": {
+    "title_in_main": false,
+    "title_in_boilerplate": true,
+    "reproduces_t13_limitation": true
+  },
+  "reviewed_checks": {
+    "title_in_final_main_content": true,
+    "title_is_heading": true,
+    "paragraph_preserved": true,
+    "cta_preserved": true,
+    "nav_in_boilerplate": true,
+    "footer_in_boilerplate": true,
+    "title_absent_from_boilerplate": true,
+    "index_page_hash_matches": true,
+    "index_boiler_hash_matches": true,
+    "raw_reference_resolves": true,
+    "raw_sha_matches_index": true,
+    "raw_collection_unchanged": true,
+    "initial_rendition_unchanged": true
+  },
+  "reviewed_main_excerpt": "\n\n# Meaningful Page Title\n\n<!-- agent-review: heading restored from raw article>header>h1 -->\n\nMain body paragraph describing the offering.\n\n[Book a Call](https://example.test/book)\n",
+  "reviewed_boilerplate": "# Separated navigation and footer\n\nObserved source text, not verified functionality. Main sales sections remain in page Markdown.\n\n## 61b12ad9bf87feecc0688d4e — header\n\nGlobal Navigation Bar\n\n## 61b12ad9bf87feecc0688d4e — footer\n\nGlobal Site Footer\n\n<!-- agent-review: misrouted article title moved back to page main content; genuine global navigation and footer retained -->\n",
+  "verdict_c1": "PASS"
+}

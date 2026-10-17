@@ -1,3 +1,25 @@
+## 2026-10-16 13:28Z — LEAD-03 ADDENDUM DELIVERED (Claudy, QA Executor, Fable 5)
+
+A1/A2/A3 all PASS; no remaining blocker. ZIP `WebFactory_LEAD03_Evidence_Addendum_2026-10-16_192729.zip` (sha 023057c1…e4913f, 46,785 B, 35 members) in Downloads + lane addendum/exports/. Report: agent_docs/RESPONSES/response_2026-10-16_192830_lead03-evidence-addendum.md. Retain/delete inventory in lane addendum/. Pending: JARVIS final review; Tony Git + cleanup. Certification still withheld per LEAD-03 §4.
+
+## 2026-10-16 12:52Z — LEAD-02 RETEST DELIVERED (Claudy, QA Executor, Fable 5)
+
+Package `WebFactory_LEAD02_QA_Retest_2026-10-16_183150.zip` (sha256 b734010a…fab9d0, 209,786 B, 65 members) in lane exports/ and /home/moose/Downloads/ (byte-identical). All retest obligations PASS; 48-row supplemental matrix; report in agent_docs/RESPONSES/response_2026-10-16_183200_lead02-qa-retest-report.md. Writer seat released. Pending: JARVIS adjudication; Tony acceptance/Git/scratch retain-delete. No certificate claimed.
+
+## 2026-10-16 12:42Z — LEAD-02 RETEST EXECUTED (Claudy, QA Executor, Fable 5)
+
+All retest items PASS: R1 (title guard), R2 (B1/B2 inert), C1 (reviewed heading rendition), C2 (limit fixtures + O2), C3 (rich native REST byte fidelity), T-23 rerun, six modules 144/144. Matrix 48 rows. C2 stop-label OBSERVATION for JARVIS. Writer seat released. Pending: QA ZIP to Downloads + RESPONSES report, then JARVIS adjudication and Tony decisions.
+
+## 2026-10-16 12:06Z — LEAD-02 RETEST STARTED (Claudy, QA Executor, Fable 5)
+
+Tony released repaired candidate `0f98bcf` to QA (DIRECTOR GO recorded in lane). Lane: `agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/RETEST_LEAD02_2026-10-16_180559/`. Scope per LEAD-02 §6.3: R1/R2 verification, C1–C3, six-module regression, new 48-row matrix, one QA ZIP to Downloads. Writer seat: Claudy. Pending: preflight identity checks.
+
+## 2026-10-16T11:37:00Z — LEAD-02 ENGINEERING REPAIR R1/R2 DELIVERED (Cody); TONY COMMIT/RELEASE PENDING; QA RETEST NEXT
+
+Last action: Cody (Engineer seat) implemented the LEAD-02 bounded repairs under Tony's DIRECTOR GO: **R1** `decide.generic_label()` — decorated generic CTAs (`Read more →` etc.) can no longer supply or replace titles; **R2** `prepare_saved.markdown()` — `escape_snob` + angle-bracket escaping keep B1/B2 source text literal through conversion (B3 untouched). Four files changed; 20 new regression node IDs; pre-fix 8 failed/77 passed → post-fix **85 passed**, exit 0. Lane `agent_docs/ACTION/wf-scrapper-abm/QAM/HANDOFFS/ENGINEERING_REWORK_LEAD02_2026-10-16_172752/`; ZIP `/home/moose/Downloads/WebFactory_LEAD02_Engineering_Rework_2026-10-16_173633.zip` (116,748 B, SHA-256 `151c15e61ee2d723f4b62fab96e12be3b7706af87641d9bb7eee9931f2b04666`); report `agent_docs/RESPONSES/response_2026-10-16_173731_lead02-engineering-rework.md`. source52 new identity `6f35cf8dacf3aeecc17a89b1c96e3558ea52e3c03edf63c2e402a766a1e986f4`.
+Pending: Tony exact-path commit + repaired-candidate release; then independent QA `RETEST_LEAD02_<ts>/` (R1/R2 regressions, T-06, T-23, C1–C3, six modules once, 48-row matrix refresh); JARVIS final verdict. Gate Q withheld. Engineering writer seat released. Scratch `/tmp/cody-lead02-2026-10-16_172752/` deletable at Tony's discretion; QA scratch retained.
+Next step: Tony commits/releases → QA retest. No Git mutation by Cody.
+
 ## 2026-10-16T09:52:00Z — Q2 EXECUTED AND RECORDED; PACKAGE DELIVERED; JARVIS REVIEW PENDING
 
 Last action: Claudy closed Q2 (T-23 → T-20 → T-24). Package `WebFactory_QA_Q2_Package_2026-10-16_155121.zip` (lane `exports/` + byte-identical Downloads copy), SHA-256 `06f73841cc678badd30d56bfb4c41614c376b16abe7254ea1e374a96c1d974df`, 499,912 B, 156 members, checker PASS. Report: `agent_docs/RESPONSES/response_2026-10-16_155143_q2-final-report.md`; matrix: lane `matrix/AC_EVIDENCE_MATRIX.md`.

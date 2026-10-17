@@ -1,0 +1,126 @@
+{
+  "executor": "Claudy (Claude Code, Claude Fable 5)",
+  "instrument_sha256": "fa84bc38076ad84d5daf842a2d4658dac30b45e5ab4bbc05902cc2f89c3b6dc0",
+  "authored_at": "2026-10-16T13:24:01.028584+00:00",
+  "exported": {
+    "outputs/collections/qa-c1-article": {
+      "attempts/61b12ad9bf87feecc0688d4e/d2ac74692a784aa6ad3efe000e3e1f25/body": {
+        "sha256": "d4251ec9f8acfb1e6ae0b66710adf0147cd1aa66555601bad70e702ea30c59c0",
+        "bytes": 247
+      },
+      "attempts/61b12ad9bf87feecc0688d4e/d2ac74692a784aa6ad3efe000e3e1f25/result.json": {
+        "sha256": "fb24d343ecbd3b6ab738697624f051bc8278b7d4bc9869aa98b720a1371bbf7b",
+        "bytes": 452
+      },
+      "checklist.json": {
+        "sha256": "9ca738fba22ec38698743890c7cc5d1a2bf1d5fae2e71f107613255fccfc9e58",
+        "bytes": 771
+      }
+    },
+    "outputs/prepared/qa-c1-article-initial": {
+      "BOILERPLATE.md": {
+        "sha256": "b7b994aeea000eab14d1f732e96a729f1bc5200d09eb1d32a3e5abff98b84368",
+        "bytes": 319
+      },
+      "SOURCE_INDEX.json": {
+        "sha256": "af184d5703d7684f94a3e12b0237ac162ddae018df31b5f52a4fc07cf8a639d4",
+        "bytes": 2762
+      },
+      "pages/61b12ad9bf87feecc0688d4e.md": {
+        "sha256": "402c43eae696dee5fa63bd9c7c0ec66830daaea62e40709b341d9ec8b65cc2a1",
+        "bytes": 264
+      }
+    },
+    "outputs/prepared/qa-c1-article-reviewed": {
+      "BOILERPLATE.md": {
+        "sha256": "b05a003c65502cdd32ecb5482d73f3e7858c9faa0119dee8e8380cd567b18326",
+        "bytes": 380
+      },
+      "SOURCE_INDEX.json": {
+        "sha256": "97dcfa4ddcbeb4fe9152f1bfe63cde20e7ac0f243f8b14453a54fabd5a14ebc3",
+        "bytes": 3643
+      },
+      "pages/61b12ad9bf87feecc0688d4e.md": {
+        "sha256": "15cb38ae1d24cfa2644c1ece6b8801e66d7e7470073f2726ce9a77c0ee0af16c",
+        "bytes": 357
+      }
+    },
+    "outputs/prepared/qa-c1-article-reviewed-v2": {
+      "BOILERPLATE.md": {
+        "sha256": "b05a003c65502cdd32ecb5482d73f3e7858c9faa0119dee8e8380cd567b18326",
+        "bytes": 380
+      },
+      "SOURCE_INDEX.json": {
+        "sha256": "aef557701a18d237efa4887d80d309c454234ecbe2cf761643aba23f1624378a",
+        "bytes": 4730
+      },
+      "pages/61b12ad9bf87feecc0688d4e.md": {
+        "sha256": "15cb38ae1d24cfa2644c1ece6b8801e66d7e7470073f2726ce9a77c0ee0af16c",
+        "bytes": 357
+      }
+    }
+  },
+  "export_note": ".writer.lock and .runtime excluded from export; retained trees copied byte-for-byte, source untouched",
+  "hash_chain": {
+    "checklist_records_result_sha": "fb24d343ecbd3b6ab738697624f051bc8278b7d4bc9869aa98b720a1371bbf7b",
+    "result_actual_sha": "fb24d343ecbd3b6ab738697624f051bc8278b7d4bc9869aa98b720a1371bbf7b",
+    "checklist_to_result_ok": true,
+    "result_records_body": {
+      "file": "attempts/61b12ad9bf87feecc0688d4e/d2ac74692a784aa6ad3efe000e3e1f25/body",
+      "sha256": "d4251ec9f8acfb1e6ae0b66710adf0147cd1aa66555601bad70e702ea30c59c0",
+      "bytes": 247
+    },
+    "body_actual": {
+      "sha256": "d4251ec9f8acfb1e6ae0b66710adf0147cd1aa66555601bad70e702ea30c59c0",
+      "bytes": 247
+    },
+    "result_to_body_ok": true,
+    "body_equals_lead02_recorded_fixture": true,
+    "attempts_list_consistent": true
+  },
+  "initial_index_checks": {
+    "prepared_file": "outputs/prepared/qa-c1-article-initial/pages/61b12ad9bf87feecc0688d4e.md",
+    "prepared_hash_ok": true,
+    "raw_hash_ok": true,
+    "boilerplate_hash_ok": true
+  },
+  "reviewed_index_checks": {
+    "prepared_file": "outputs/prepared/qa-c1-article-reviewed/pages/61b12ad9bf87feecc0688d4e.md",
+    "prepared_hash_ok": true,
+    "raw_hash_ok": true,
+    "boilerplate_hash_ok": true
+  },
+  "lead03_finding_confirmed": {
+    "reviewed_content_headings": [],
+    "reviewed_boilerplate_locations": [
+      "header",
+      "header",
+      "footer"
+    ],
+    "still_describe_initial_extraction": true
+  },
+  "v2_checks": {
+    "final_heading_order": [
+      "Meaningful Page Title"
+    ],
+    "heading_first_is_title": true,
+    "paragraph_count_final": 4,
+    "paragraph_text_present": true,
+    "list_items_final": 0,
+    "cta_label_and_destination": true,
+    "cta_destination_in_markdown": true,
+    "nav_in_boilerplate": true,
+    "footer_in_boilerplate": true,
+    "title_absent_from_boilerplate": true,
+    "content_headings_match_final_file": true,
+    "boilerplate_locations_final": true,
+    "initial_metadata_preserved": true,
+    "prepared_hash_ok": true,
+    "boilerplate_hash_ok": true,
+    "raw_hash_ok": true,
+    "raw_unchanged": true,
+    "initial_dir_untouched": true,
+    "reviewed_v1_untouched": true
+  },
+  "verdict_a1": "PASS"
+}
